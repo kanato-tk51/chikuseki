@@ -3,6 +3,7 @@ import { desc, eq, ilike, or } from "drizzle-orm";
 import { getDb } from "@/db/client";
 import { learningNotes, resources } from "@/db/schema";
 import { noteIdSchema } from "@/features/notes/validators";
+import { resourceIdSchema } from "@/features/resources/validators";
 
 export async function listNotes({ q }: { q?: string } = {}) {
   const query = q?.trim();
@@ -58,6 +59,27 @@ export async function getNoteById(id: string) {
     .limit(1);
 
   return note ?? null;
+}
+
+export async function listNotesByResourceId(resourceId: string) {
+  const parsedId = resourceIdSchema.safeParse(resourceId);
+
+  if (!parsedId.success) {
+    return [];
+  }
+
+  return getDb()
+    .select({
+      id: learningNotes.id,
+      title: learningNotes.title,
+      noteType: learningNotes.noteType,
+      updatedAt: learningNotes.updatedAt,
+      createdAt: learningNotes.createdAt,
+    })
+    .from(learningNotes)
+    .where(eq(learningNotes.resourceId, parsedId.data))
+    .orderBy(desc(learningNotes.createdAt))
+    .limit(20);
 }
 
 export async function listResourceOptions() {

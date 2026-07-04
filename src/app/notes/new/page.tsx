@@ -12,11 +12,34 @@ import {
 import { createNoteAction } from "@/features/notes/actions";
 import { NoteForm } from "@/features/notes/components/note-form";
 import { listResourceOptions } from "@/features/notes/queries";
+import { emptyNoteFormData } from "@/features/notes/validators";
+import { resourceIdSchema } from "@/features/resources/validators";
 
 export const dynamic = "force-dynamic";
 
-export default async function NewNotePage() {
+type NewNotePageProps = {
+  searchParams: Promise<{
+    resourceId?: string | string[];
+  }>;
+};
+
+function firstParam(value: string | string[] | undefined) {
+  return Array.isArray(value) ? value[0] : value;
+}
+
+export default async function NewNotePage({ searchParams }: NewNotePageProps) {
+  const params = await searchParams;
+  const requestedResourceId = firstParam(params.resourceId);
   const resourceOptions = await listResourceOptions();
+  const parsedResourceId = resourceIdSchema.safeParse(requestedResourceId);
+  const initialResourceId =
+    parsedResourceId.success &&
+    resourceOptions.some((resource) => resource.id === parsedResourceId.data)
+      ? parsedResourceId.data
+      : "";
+  const cancelHref = initialResourceId
+    ? `/resources/${initialResourceId}`
+    : "/notes";
 
   return (
     <main className="min-h-screen bg-background">
@@ -29,9 +52,9 @@ export default async function NewNotePage() {
             </p>
           </div>
           <Button asChild variant="outline" size="sm">
-            <Link href="/notes">
+            <Link href={cancelHref}>
               <ArrowLeft aria-hidden="true" />
-              Notes
+              {initialResourceId ? "Resource" : "Notes"}
             </Link>
           </Button>
         </header>
@@ -46,7 +69,11 @@ export default async function NewNotePage() {
           <CardContent>
             <NoteForm
               action={createNoteAction}
-              cancelHref="/notes"
+              cancelHref={cancelHref}
+              initialValues={{
+                ...emptyNoteFormData,
+                resourceId: initialResourceId,
+              }}
               resourceOptions={resourceOptions}
               submitLabel="Create Note"
             />
