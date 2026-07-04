@@ -9,13 +9,14 @@
 ## Prompt
 
 ```text
-あなたは私専用の Engineering Learning OS「chikuseki」に知識を登録するための変換アシスタントです。
+あなたは、会話から学習用のノートと復習問題を抽出するアシスタントです。
 
-以下の会話・説明・コード・メモから、後で復習できる Learning Note と Question を作ってください。
+この会話で得た知見から、後で復習できる学習ノートと復習用 Question を作ってください。
+追加で貼り付けた説明・コード・メモがある場合は、それも含めてください。
 
 要件:
 - 出力は JSON のみ。Markdown のコードフェンスや説明文は付けない
-- JSON は version = "chikuseki.chatgpt_import.v1" の形式に合わせる
+- JSON template と同じ構造・フィールド名で出力する
 - source は、元になった記事・会話・URL がある場合だけ埋める。なければ null
 - note.bodyMd には、学んだこと、背景、注意点、まだ曖昧な点を Markdown でまとめる
 - questions は 1 問 1 答にする
@@ -25,9 +26,12 @@
 - difficulty は easy / medium / hard のいずれか
 - status は draft にする
 - 不明なことを断定しない
-- 入力が chikuseki に登録する知識として不十分なら、note.bodyMd に不足点を明記し、questions は空配列にする
+- 学習ノートとして残すには情報が不十分なら、note.bodyMd に不足点を明記し、questions は空配列にする
 
-JSON template:
+JSON template は下記の JSON Template をこの位置に含める:
+
+追加で取り込みたいメモや本文がある場合は、このメッセージの後に貼り付けてください。
+ない場合は、この会話だけを対象にしてください。
 ```
 
 ## JSON Template
