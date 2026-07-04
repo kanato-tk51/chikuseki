@@ -1,15 +1,13 @@
 import { z } from "zod";
 
-import {
-  learningNoteTypes,
-  type LearningNoteType,
-} from "@/features/notes/validators";
+import { learningNoteTypes } from "@/features/notes/validators";
 import {
   difficultyLevels,
   questionStatuses,
 } from "@/features/questions/validators";
 import { resourceTypes } from "@/features/resources/validators";
-import { chatGptImportPayloadVersion } from "@/features/imports/chatgpt-template";
+
+export const chatGptImportPayloadVersion = "chikuseki.chatgpt_import.v1";
 
 export type ChatGptImportFormData = {
   payload: string;
@@ -90,23 +88,33 @@ const markdownSchema = (maxLength: number, label: string) =>
     .trim()
     .max(maxLength, `${label} は${maxLength}文字以内で入力してください`);
 
-const sourceSchema = z
-  .object({
-    title: z
-      .string()
-      .trim()
-      .min(1, "source.title は必須です")
-      .max(300, "source.title は300文字以内で入力してください"),
-    type: z.enum(resourceTypes).default("other"),
-    url: optionalUrlSchema,
-    sourceName: optionalTextSchema(200),
-    author: optionalTextSchema(200),
-    summary: optionalTextSchema(4000),
-    memo: optionalTextSchema(4000),
-  })
-  .nullable()
-  .optional()
-  .transform((value) => value ?? null);
+const sourceKeySchema = z
+  .string()
+  .trim()
+  .min(1, "sources[].key は必須です")
+  .max(80, "sources[].key は80文字以内で入力してください")
+  .regex(
+    /^[A-Za-z0-9_-]+$/,
+    "sources[].key は英数字、ハイフン、アンダースコアで入力してください",
+  );
+
+const baseSourceSchema = z.object({
+  title: z
+    .string()
+    .trim()
+    .min(1, "source.title は必須です")
+    .max(300, "source.title は300文字以内で入力してください"),
+  type: z.enum(resourceTypes).default("other"),
+  url: optionalUrlSchema,
+  sourceName: optionalTextSchema(200),
+  author: optionalTextSchema(200),
+  summary: optionalTextSchema(4000),
+  memo: optionalTextSchema(4000),
+});
+
+const keyedSourceSchema = baseSourceSchema.extend({
+  key: sourceKeySchema,
+});
 
 const noteSchema = z.object({
   title: z
@@ -142,21 +150,59 @@ const questionSchema = z.object({
   status: z.enum(questionStatuses).default("draft"),
 });
 
-export const chatGptImportPayloadSchema = z.object({
-  version: z.literal(chatGptImportPayloadVersion),
-  source: sourceSchema,
+const importItemSchema = z.object({
+  sourceKeys: z.array(sourceKeySchema).max(10).default([]),
   note: noteSchema,
   questions: z.array(questionSchema).max(20).default([]),
+});
+
+export const chatGptImportPayloadSchema = z.object({
+  version: z.literal(chatGptImportPayloadVersion),
+  sources: z.array(keyedSourceSchema).max(20).default([]),
+  items: z.array(importItemSchema).min(1).max(10),
+}).superRefine((payload, context) => {
+  const sourceKeys = new Set<string>();
+
+  payload.sources.forEach((source, index) => {
+    if (sourceKeys.has(source.key)) {
+      context.addIssue({
+        code: "custom",
+        path: ["sources", index, "key"],
+        message: "sources[].key が重複しています",
+      });
+    }
+
+    sourceKeys.add(source.key);
+  });
+
+  payload.items.forEach((item, itemIndex) => {
+    const itemSourceKeys = new Set<string>();
+
+    item.sourceKeys.forEach((sourceKey, sourceKeyIndex) => {
+      if (itemSourceKeys.has(sourceKey)) {
+        context.addIssue({
+          code: "custom",
+          path: ["items", itemIndex, "sourceKeys", sourceKeyIndex],
+          message: "items[].sourceKeys が重複しています",
+        });
+      }
+
+      if (!sourceKeys.has(sourceKey)) {
+        context.addIssue({
+          code: "custom",
+          path: ["items", itemIndex, "sourceKeys", sourceKeyIndex],
+          message: "sources に存在する key を指定してください",
+        });
+      }
+
+      itemSourceKeys.add(sourceKey);
+    });
+  });
 });
 
 export type ChatGptImportPayload = z.infer<
   typeof chatGptImportPayloadSchema
 >;
-export type ImportedNoteValues = {
-  title: string;
-  noteType: LearningNoteType;
-  bodyMd: string;
-};
 
 export function readChatGptImportFormData(
   formData: FormData,

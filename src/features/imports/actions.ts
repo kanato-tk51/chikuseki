@@ -41,62 +41,86 @@ export async function importChatGptKnowledgeAction(
     return payloadErrorState(values, parsed.error);
   }
 
-  let imported: { noteId: string };
+  let imported: { noteIds: string[]; resourceIds: string[] };
 
   try {
     imported = await getDb().transaction(async (tx) => {
-      let resourceId: string | null = null;
+      const resourceIdsByKey = new Map<string, string>();
+      const resourceIds: string[] = [];
+      const noteIds: string[] = [];
 
-      if (parsed.data.source) {
+      for (const source of parsed.data.sources) {
         const [resource] = await tx
           .insert(resources)
           .values({
-            title: parsed.data.source.title,
-            type: parsed.data.source.type,
-            url: parsed.data.source.url,
-            sourceName: parsed.data.source.sourceName,
-            author: parsed.data.source.author,
-            summary: parsed.data.source.summary,
-            memo: parsed.data.source.memo,
+            title: source.title,
+            type: source.type,
+            url: source.url,
+            sourceName: source.sourceName,
+            author: source.author,
+            summary: source.summary,
+            memo: source.memo,
             consumedAt: new Date(),
           })
           .returning({ id: resources.id });
 
-        resourceId = resource.id;
+        resourceIdsByKey.set(source.key, resource.id);
+        resourceIds.push(resource.id);
       }
 
-      const [note] = await tx
-        .insert(learningNotes)
-        .values({
-          title: parsed.data.note.title,
-          noteType: parsed.data.note.noteType,
-          bodyMd: parsed.data.note.bodyMd,
-          resourceId,
-        })
-        .returning({ id: learningNotes.id });
+      for (const item of parsed.data.items) {
+        const itemResourceIds = item.sourceKeys
+          .map((sourceKey) => resourceIdsByKey.get(sourceKey))
+          .filter((resourceId): resourceId is string => Boolean(resourceId));
+        const primaryResourceId = itemResourceIds[0] ?? null;
 
-      if (parsed.data.questions.length > 0) {
-        const questions = await tx
-          .insert(questionCards)
-          .values(parsed.data.questions)
-          .returning({ id: questionCards.id });
+        const [note] = await tx
+          .insert(learningNotes)
+          .values({
+            title: item.note.title,
+            noteType: item.note.noteType,
+            bodyMd: item.note.bodyMd,
+            resourceId: primaryResourceId,
+          })
+          .returning({ id: learningNotes.id });
 
-        await tx.insert(entityLinks).values(
-          questions.map((question) => ({
-            fromType: "learning_note" as const,
-            fromId: note.id,
-            toType: "question_card" as const,
-            toId: question.id,
-            relationType: "derived_question",
-          })),
-        );
+        noteIds.push(note.id);
+
+        if (itemResourceIds.length > 0) {
+          await tx.insert(entityLinks).values(
+            itemResourceIds.map((resourceId) => ({
+              fromType: "learning_note" as const,
+              fromId: note.id,
+              toType: "resource" as const,
+              toId: resourceId,
+              relationType: "references_resource",
+            })),
+          );
+        }
+
+        if (item.questions.length > 0) {
+          const questions = await tx
+            .insert(questionCards)
+            .values(item.questions)
+            .returning({ id: questionCards.id });
+
+          await tx.insert(entityLinks).values(
+            questions.map((question) => ({
+              fromType: "learning_note" as const,
+              fromId: note.id,
+              toType: "question_card" as const,
+              toId: question.id,
+              relationType: "derived_question",
+            })),
+          );
+        }
       }
 
       return {
-        noteId: note.id,
+        noteIds,
+        resourceIds,
       };
     });
-
   } catch {
     return {
       status: "error",
@@ -107,7 +131,19 @@ export async function importChatGptKnowledgeAction(
 
   revalidatePath("/resources");
   revalidatePath("/notes");
-  revalidatePath(`/notes/${imported.noteId}`);
   revalidatePath("/questions");
-  redirect(`/notes/${imported.noteId}`);
+
+  for (const noteId of imported.noteIds) {
+    revalidatePath(`/notes/${noteId}`);
+  }
+
+  for (const resourceId of imported.resourceIds) {
+    revalidatePath(`/resources/${resourceId}`);
+  }
+
+  if (imported.noteIds.length === 1) {
+    redirect(`/notes/${imported.noteIds[0]}`);
+  }
+
+  redirect("/notes");
 }

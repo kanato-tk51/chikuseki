@@ -68,8 +68,8 @@ export default function ChatGptImportPage() {
                 <CardTitle>Import</CardTitle>
               </div>
               <CardDescription>
-                JSON を貼り付けると、必要に応じて Resource を作り、Note と
-                Question draft を保存します
+                JSON を貼り付けると、Resource、Note、Question draft
+                をまとめて保存します
               </CardDescription>
             </CardHeader>
             <CardContent>
