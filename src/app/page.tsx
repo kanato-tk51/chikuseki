@@ -7,6 +7,7 @@ import {
   LibraryBig,
   ListChecks,
   NotebookText,
+  Sparkles,
 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
@@ -25,6 +26,7 @@ const navItems = [
   { label: "Notes", href: "/notes", icon: NotebookText },
   { label: "Questions", href: "/questions", icon: FileQuestion },
   { label: "Reviews", href: "/reviews/today", icon: ListChecks },
+  { label: "Import", href: "/imports/chatgpt", icon: Sparkles },
 ];
 
 const foundationItems = [
