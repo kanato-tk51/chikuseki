@@ -2,6 +2,8 @@
 
 ブラウザ版 ChatGPT で得た知見を chikuseki に取り込むためのプロンプトと JSON template。
 
+アプリでは `/imports/chatgpt` に、下記の prompt と JSON template を結合したコピー用プロンプトを表示する。ユーザーは `Copy prompt` を押して、そのまま ChatGPT に貼り付ける。
+
 この template は、後続の OpenAI API 連携でも structured output の schema として使う。
 
 ## Prompt

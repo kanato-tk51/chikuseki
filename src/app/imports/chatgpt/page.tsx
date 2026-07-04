@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, ClipboardPaste, FileJson, Sparkles } from "lucide-react";
+import { ArrowLeft, ClipboardPaste, Sparkles } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -11,14 +11,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { importChatGptKnowledgeAction } from "@/features/imports/actions";
-import {
-  chatGptImportPrompt,
-  chatGptImportTemplate,
-} from "@/features/imports/chatgpt-template";
+import { chatGptImportPrompt } from "@/features/imports/chatgpt-template";
 import { ChatGptImportForm } from "@/features/imports/components/chatgpt-import-form";
-
-const readOnlyTextareaClassName =
-  "min-h-80 w-full resize-y rounded-lg border border-input bg-muted/30 px-3 py-2 font-mono text-xs leading-5 text-foreground outline-none";
+import { CopyableChatGptPrompt } from "@/features/imports/components/copyable-chatgpt-prompt";
 
 export default function ChatGptImportPage() {
   return (
@@ -45,51 +40,23 @@ export default function ChatGptImportPage() {
         </header>
 
         <section className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="space-y-4">
-            <Card>
-              <CardHeader>
-                <div className="flex items-center gap-2">
-                  <Sparkles
-                    aria-hidden="true"
-                    className="size-4 text-muted-foreground"
-                  />
-                  <CardTitle>Prompt</CardTitle>
-                </div>
-                <CardDescription>
-                  ブラウザ版 ChatGPT に渡す変換プロンプト
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <textarea
-                  readOnly
-                  value={chatGptImportPrompt}
-                  className={readOnlyTextareaClassName}
+          <Card>
+            <CardHeader>
+              <div className="flex items-center gap-2">
+                <Sparkles
+                  aria-hidden="true"
+                  className="size-4 text-muted-foreground"
                 />
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <div className="flex items-center gap-2">
-                  <FileJson
-                    aria-hidden="true"
-                    className="size-4 text-muted-foreground"
-                  />
-                  <CardTitle>JSON Template</CardTitle>
-                </div>
-                <CardDescription>
-                  OpenAI API の structured output でも使う取り込み形式
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <textarea
-                  readOnly
-                  value={chatGptImportTemplate}
-                  className={readOnlyTextareaClassName}
-                />
-              </CardContent>
-            </Card>
-          </div>
+                <CardTitle>ChatGPT Prompt</CardTitle>
+              </div>
+              <CardDescription>
+                このままコピーして ChatGPT に貼り付ける単一プロンプト
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <CopyableChatGptPrompt value={chatGptImportPrompt} />
+            </CardContent>
+          </Card>
 
           <Card>
             <CardHeader>
