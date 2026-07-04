@@ -72,7 +72,7 @@ export function ChatGptImportForm({ action }: ChatGptImportFormProps) {
       <div className="space-y-2">
         <label htmlFor="payload" className="text-sm font-medium text-foreground">
           Import JSON
-          <span aria-hidden="true" className="text-destructive">
+          <span aria-hidden="true" className="text-muted-foreground">
             *
           </span>
           <span className="sr-only"> required</span>
