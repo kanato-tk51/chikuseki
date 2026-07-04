@@ -47,10 +47,20 @@ const optionalTextSchema = (maxLength: number) =>
       return text.length > 0 ? text : null;
     });
 
+function normalizeUrlText(value: string) {
+  const trimmed = value.trim();
+  const markdownLinkMatch = /^\[[^\]]+\]\((https?:\/\/[^)\s]+)\)$/.exec(
+    trimmed,
+  );
+
+  return markdownLinkMatch?.[1] ?? trimmed;
+}
+
 const optionalUrlSchema = z
   .union([z.string(), z.null(), z.undefined()])
   .transform((value, context) => {
-    const text = typeof value === "string" ? value.trim() : "";
+    const text =
+      typeof value === "string" ? normalizeUrlText(value) : "";
 
     if (text.length === 0) {
       return null;
@@ -88,18 +98,20 @@ const conversationUrlSchema = z
   .trim()
   .max(2048, "Chat URL は2048文字以内で入力してください")
   .transform((value, context) => {
-    if (value.length === 0) {
+    const text = normalizeUrlText(value);
+
+    if (text.length === 0) {
       return null;
     }
 
     try {
-      const url = new URL(value);
+      const url = new URL(text);
 
       if (url.protocol !== "http:" && url.protocol !== "https:") {
         throw new Error("Unsupported protocol");
       }
 
-      return value;
+      return text;
     } catch {
       context.addIssue({
         code: "custom",
@@ -187,7 +199,7 @@ const importItemSchema = z.object({
 export const chatGptImportPayloadSchema = z.object({
   version: z.literal(chatGptImportPayloadVersion),
   sources: z.array(keyedSourceSchema).max(20).default([]),
-  items: z.array(importItemSchema).min(1).max(10),
+  items: z.array(importItemSchema).min(1).max(30),
 }).superRefine((payload, context) => {
   const sourceKeys = new Set<string>();
 

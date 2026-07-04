@@ -18,6 +18,7 @@
 - JSON template と同じ構造・フィールド名で出力する
 - sources は、元になった記事・会話・URL ごとに分ける。なければ空配列にする
 - sources[].key は短い英数字の識別子にする
+- sources[].url は Markdown link ではなく、https://example.com のような URL 文字列か null にする
 - 会話の本筋だけでなく、文中に出てきた技術語や比較対象も学習対象として拾う
 - 文中で詳しく説明されていない技術語でも、理解しておくべきものは一般知識を補って Question にする
 - items は学習テーマごとに分ける。例: API 設計、認証・認可、非同期処理、検索、状態管理
@@ -31,6 +32,7 @@
 - 具体名が出た技術は、必要に応じて並列比較される技術も Question に含める。例: REST / GraphQL / tRPC、RBAC / ABAC、WebSocket / SSE / polling
 - 単なる本文確認ではなく、今後の技術選定や設計レビューで使える Question を優先する
 - 重要な技術語が多い場合は、浅く網羅しすぎず、復習価値の高いものを優先する
+- items は最大30件に収める
 - difficulty は easy / medium / hard のいずれか
 - status は draft にする
 - 不明なことを断定しない
