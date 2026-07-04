@@ -2,10 +2,10 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { eq } from "drizzle-orm";
+import { and, eq, or } from "drizzle-orm";
 
 import { getDb } from "@/db/client";
-import { learningNotes } from "@/db/schema";
+import { entityLinks, learningNotes } from "@/db/schema";
 import {
   type NoteFormState,
   noteFormSchema,
@@ -107,8 +107,28 @@ export async function deleteNoteAction(formData: FormData) {
     redirect("/notes");
   }
 
-  await getDb().delete(learningNotes).where(eq(learningNotes.id, parsedId.data));
+  await getDb().transaction(async (tx) => {
+    await tx
+      .delete(entityLinks)
+      .where(
+        or(
+          and(
+            eq(entityLinks.fromType, "learning_note"),
+            eq(entityLinks.fromId, parsedId.data),
+          ),
+          and(
+            eq(entityLinks.toType, "learning_note"),
+            eq(entityLinks.toId, parsedId.data),
+          ),
+        ),
+      );
+
+    await tx
+      .delete(learningNotes)
+      .where(eq(learningNotes.id, parsedId.data));
+  });
 
   revalidatePath("/notes");
+  revalidatePath("/questions");
   redirect("/notes");
 }

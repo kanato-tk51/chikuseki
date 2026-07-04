@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Edit } from "lucide-react";
+import { ArrowLeft, Edit, ListChecks } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -18,6 +18,9 @@ import {
   difficultyLabels,
   questionStatusLabels,
 } from "@/features/questions/validators";
+import { addQuestionToReviewQueueAction } from "@/features/reviews/actions";
+import { getQuestionReviewItem } from "@/features/reviews/queries";
+import { reviewResultLabels } from "@/features/reviews/validators";
 
 export const dynamic = "force-dynamic";
 
@@ -79,6 +82,8 @@ export default async function QuestionDetailPage({
     notFound();
   }
 
+  const reviewItem = await getQuestionReviewItem(question.id);
+
   return (
     <main className="min-h-screen bg-background">
       <div className="mx-auto flex min-h-screen w-full max-w-5xl flex-col gap-6 px-5 py-5 sm:px-6 lg:px-8">
@@ -112,6 +117,22 @@ export default async function QuestionDetailPage({
                 Edit
               </Link>
             </Button>
+            {reviewItem ? (
+              <Button asChild variant="outline" size="sm">
+                <Link href="/reviews/today">
+                  <ListChecks aria-hidden="true" />
+                  Review queued
+                </Link>
+              </Button>
+            ) : (
+              <form action={addQuestionToReviewQueueAction}>
+                <input type="hidden" name="questionId" value={question.id} />
+                <Button type="submit" variant="outline" size="sm">
+                  <ListChecks aria-hidden="true" />
+                  Add to reviews
+                </Button>
+              </form>
+            )}
             <DeleteQuestionForm
               questionId={question.id}
               questionTitle={question.title}
@@ -137,6 +158,22 @@ export default async function QuestionDetailPage({
                 <Badge variant="outline">
                   {questionStatusLabels[question.status]}
                 </Badge>
+              </DetailRow>
+              <DetailRow label="Review">
+                {reviewItem ? (
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Badge variant="outline">
+                      Next {formatDateTime(reviewItem.nextReviewAt)}
+                    </Badge>
+                    {reviewItem.lastResult ? (
+                      <Badge variant="secondary">
+                        Last {reviewResultLabels[reviewItem.lastResult]}
+                      </Badge>
+                    ) : null}
+                  </div>
+                ) : (
+                  <span className="text-muted-foreground">未登録</span>
+                )}
               </DetailRow>
               <Separator />
               <DetailRow label="Created">

@@ -24,4 +24,5 @@ pnpm db:studio
 ## Documents
 
 - [Engineering Learning OS implementation plan](./docs/engineering-learning-os-plan.md)
+- [ChatGPT import template](./docs/chatgpt-import-template.md)
 - [ADR 0001: 初期技術選定](./docs/adr/0001-initial-technology-selection.md)
