@@ -10,6 +10,7 @@ import { resourceTypes } from "@/features/resources/validators";
 export const chatGptImportPayloadVersion = "chikuseki.chatgpt_import.v1";
 
 export type ChatGptImportFormData = {
+  conversationUrl: string;
   payload: string;
 };
 
@@ -76,6 +77,33 @@ const optionalUrlSchema = z
       context.addIssue({
         code: "custom",
         message: "source.url は http または https の URL にしてください",
+      });
+
+      return z.NEVER;
+    }
+  });
+
+const conversationUrlSchema = z
+  .string()
+  .trim()
+  .max(2048, "Chat URL は2048文字以内で入力してください")
+  .transform((value, context) => {
+    if (value.length === 0) {
+      return null;
+    }
+
+    try {
+      const url = new URL(value);
+
+      if (url.protocol !== "http:" && url.protocol !== "https:") {
+        throw new Error("Unsupported protocol");
+      }
+
+      return value;
+    } catch {
+      context.addIssue({
+        code: "custom",
+        message: "Chat URL は http または https の URL にしてください",
       });
 
       return z.NEVER;
@@ -207,10 +235,31 @@ export type ChatGptImportPayload = z.infer<
 export function readChatGptImportFormData(
   formData: FormData,
 ): ChatGptImportFormData {
+  const conversationUrl = formData.get("conversationUrl");
   const payload = formData.get("payload");
 
   return {
+    conversationUrl:
+      typeof conversationUrl === "string" ? conversationUrl : "",
     payload: typeof payload === "string" ? payload : "",
+  };
+}
+
+export function parseChatGptConversationUrl(value: string) {
+  const parsed = conversationUrlSchema.safeParse(value);
+
+  if (!parsed.success) {
+    return {
+      success: false as const,
+      error: parsed.error.issues
+        .map((issue) => issue.message)
+        .join("\n"),
+    };
+  }
+
+  return {
+    success: true as const,
+    data: parsed.data,
   };
 }
 

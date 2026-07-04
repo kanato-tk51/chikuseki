@@ -11,22 +11,90 @@ import {
   resources,
 } from "@/db/schema";
 import {
+  type ChatGptImportPayload,
   type ChatGptImportFormState,
+  parseChatGptConversationUrl,
   parseChatGptImportPayload,
   readChatGptImportFormData,
 } from "@/features/imports/validators";
+
+function validationErrorState(
+  values: ReturnType<typeof readChatGptImportFormData>,
+  errors: ChatGptImportFormState["errors"],
+): ChatGptImportFormState {
+  return {
+    status: "error",
+    message: "入力内容を確認してください",
+    errors,
+    values,
+  };
+}
 
 function payloadErrorState(
   values: ReturnType<typeof readChatGptImportFormData>,
   message: string,
 ): ChatGptImportFormState {
+  return validationErrorState(values, {
+    payload: [message],
+  });
+}
+
+function withConversationUrl(
+  payload: ChatGptImportPayload,
+  conversationUrl: string | null,
+): ChatGptImportPayload {
+  if (!conversationUrl) {
+    return payload;
+  }
+
+  const sources = payload.sources.map((source) => ({ ...source }));
+  const items = payload.items.map((item) => ({
+    ...item,
+    sourceKeys: [...item.sourceKeys],
+    note: { ...item.note },
+    questions: item.questions.map((question) => ({ ...question })),
+  }));
+  let sourceIndex = sources.findIndex(
+    (source) =>
+      source.key === "chatgpt-conversation" ||
+      source.sourceName?.toLowerCase() === "chatgpt",
+  );
+
+  if (sourceIndex === -1 && sources.length > 0) {
+    sourceIndex = 0;
+  }
+
+  let sourceKey = "chatgpt-conversation";
+
+  if (sourceIndex >= 0) {
+    sourceKey = sources[sourceIndex].key;
+    sources[sourceIndex] = {
+      ...sources[sourceIndex],
+      url: conversationUrl,
+    };
+  } else {
+    sources.push({
+      key: sourceKey,
+      title: "ChatGPT conversation",
+      type: "other",
+      url: conversationUrl,
+      sourceName: "ChatGPT",
+      author: null,
+      summary: null,
+      memo: null,
+    });
+  }
+
+  for (const item of items) {
+    if (!item.sourceKeys.includes(sourceKey)) {
+      item.sourceKeys = [sourceKey, ...item.sourceKeys];
+    }
+  }
+
   return {
-    status: "error",
-    message: "入力内容を確認してください",
-    errors: {
-      payload: [message],
-    },
-    values,
+    ...payload,
+    sources,
+    items,
   };
 }
 
@@ -35,11 +103,21 @@ export async function importChatGptKnowledgeAction(
   formData: FormData,
 ): Promise<ChatGptImportFormState> {
   const values = readChatGptImportFormData(formData);
+  const conversationUrl = parseChatGptConversationUrl(values.conversationUrl);
+
+  if (!conversationUrl.success) {
+    return validationErrorState(values, {
+      conversationUrl: [conversationUrl.error],
+    });
+  }
+
   const parsed = parseChatGptImportPayload(values.payload);
 
   if (!parsed.success) {
     return payloadErrorState(values, parsed.error);
   }
+
+  const payload = withConversationUrl(parsed.data, conversationUrl.data);
 
   let imported: { noteIds: string[]; resourceIds: string[] };
 
@@ -49,7 +127,7 @@ export async function importChatGptKnowledgeAction(
       const resourceIds: string[] = [];
       const noteIds: string[] = [];
 
-      for (const source of parsed.data.sources) {
+      for (const source of payload.sources) {
         const [resource] = await tx
           .insert(resources)
           .values({
@@ -68,7 +146,7 @@ export async function importChatGptKnowledgeAction(
         resourceIds.push(resource.id);
       }
 
-      for (const item of parsed.data.items) {
+      for (const item of payload.items) {
         const itemResourceIds = item.sourceKeys
           .map((sourceKey) => resourceIdsByKey.get(sourceKey))
           .filter((resourceId): resourceId is string => Boolean(resourceId));

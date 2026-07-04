@@ -21,11 +21,15 @@ type ChatGptImportFormProps = {
 const textareaClassName =
   "min-h-96 w-full resize-y rounded-lg border border-input bg-background px-3 py-2 font-mono text-sm leading-6 text-foreground shadow-xs outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-destructive/20";
 
+const inputClassName =
+  "h-10 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground shadow-xs outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-destructive/20";
+
 export function ChatGptImportForm({ action }: ChatGptImportFormProps) {
   const [state, formAction, isPending] = useActionState(
     action,
     initialChatGptImportFormState,
   );
+  const conversationUrlError = state.errors?.conversationUrl?.[0];
   const payloadError = state.errors?.payload?.[0];
 
   return (
@@ -35,6 +39,35 @@ export function ChatGptImportForm({ action }: ChatGptImportFormProps) {
           {state.message}
         </div>
       ) : null}
+
+      <div className="space-y-2">
+        <label
+          htmlFor="conversationUrl"
+          className="text-sm font-medium text-foreground"
+        >
+          Chat URL
+        </label>
+        <input
+          id="conversationUrl"
+          name="conversationUrl"
+          type="url"
+          defaultValue={state.values?.conversationUrl ?? ""}
+          placeholder="https://chatgpt.com/share/..."
+          aria-invalid={Boolean(conversationUrlError)}
+          aria-describedby={
+            conversationUrlError ? "conversationUrl-error" : undefined
+          }
+          className={inputClassName}
+        />
+        {conversationUrlError ? (
+          <p
+            id="conversationUrl-error"
+            className="whitespace-pre-wrap text-xs text-destructive"
+          >
+            {conversationUrlError}
+          </p>
+        ) : null}
+      </div>
 
       <div className="space-y-2">
         <label htmlFor="payload" className="text-sm font-medium text-foreground">

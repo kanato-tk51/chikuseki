@@ -126,6 +126,7 @@ JSON template は下記の JSON Template をこの位置に含める:
 ## Import Behavior
 
 - `sources[]` から Resource を作る
+- import 画面で Chat URL を入力した場合は、ChatGPT source の URL として優先して保存し、全 item に関連付ける
 - `items[]` から Learning Note を作る
 - `items[].sourceKeys` の先頭 Resource は `learning_notes.resource_id` に保存する
 - `items[].sourceKeys` の全 Resource は `entity_links.relation_type = "references_resource"` で Learning Note に関連付ける
