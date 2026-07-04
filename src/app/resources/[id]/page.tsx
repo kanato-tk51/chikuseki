@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Edit, ExternalLink } from "lucide-react";
+import { ArrowLeft, Edit, ExternalLink, NotebookText, Plus } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { listNotesByResourceId } from "@/features/notes/queries";
+import { learningNoteTypeLabels } from "@/features/notes/validators";
 import { DeleteResourceForm } from "@/features/resources/components/delete-resource-form";
 import { getResourceById } from "@/features/resources/queries";
 import { resourceTypeLabels } from "@/features/resources/validators";
@@ -82,7 +84,10 @@ export default async function ResourceDetailPage({
   params,
 }: ResourceDetailPageProps) {
   const { id } = await params;
-  const resource = await getResourceById(id);
+  const [resource, notes] = await Promise.all([
+    getResourceById(id),
+    listNotesByResourceId(id),
+  ]);
 
   if (!resource) {
     notFound();
@@ -111,6 +116,12 @@ export default async function ResourceDetailPage({
               </Link>
             </Button>
             <Button asChild size="sm">
+              <Link href={`/notes/new?resourceId=${resource.id}`}>
+                <Plus aria-hidden="true" />
+                New Note
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="sm">
               <Link href={`/resources/${resource.id}/edit`}>
                 <Edit aria-hidden="true" />
                 Edit
@@ -186,6 +197,77 @@ export default async function ResourceDetailPage({
           <TextBlock title="Summary" value={resource.summary} />
           <TextBlock title="Memo" value={resource.memo} />
         </div>
+
+        <Card>
+          <CardHeader className="gap-3 sm:flex sm:items-start sm:justify-between">
+            <div className="space-y-1">
+              <CardTitle>Related Notes</CardTitle>
+              <CardDescription>
+                この Resource から残した Learning Note
+              </CardDescription>
+            </div>
+            <Button asChild size="sm">
+              <Link href={`/notes/new?resourceId=${resource.id}`}>
+                <Plus aria-hidden="true" />
+                New Note
+              </Link>
+            </Button>
+          </CardHeader>
+          <CardContent>
+            {notes.length > 0 ? (
+              <div className="overflow-x-auto">
+                <div className="min-w-[640px]">
+                  <div className="grid grid-cols-[minmax(260px,1fr)_120px_150px_150px] gap-3 border-b border-border px-3 pb-2 text-xs font-medium uppercase text-muted-foreground">
+                    <div>Title</div>
+                    <div>Type</div>
+                    <div>Updated</div>
+                    <div>Created</div>
+                  </div>
+                  <div className="divide-y divide-border">
+                    {notes.map((note) => (
+                      <div
+                        key={note.id}
+                        className="grid grid-cols-[minmax(260px,1fr)_120px_150px_150px] items-center gap-3 px-3 py-3 text-sm"
+                      >
+                        <Link
+                          href={`/notes/${note.id}`}
+                          className="min-w-0 font-medium text-foreground underline-offset-4 hover:underline"
+                        >
+                          <span className="block truncate">{note.title}</span>
+                        </Link>
+                        <div>
+                          <Badge variant="outline">
+                            {learningNoteTypeLabels[note.noteType]}
+                          </Badge>
+                        </div>
+                        <div className="font-mono text-xs text-muted-foreground">
+                          {formatDateTime(note.updatedAt)}
+                        </div>
+                        <div className="font-mono text-xs text-muted-foreground">
+                          {formatDateTime(note.createdAt)}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="flex flex-col items-center gap-4 py-10 text-center">
+                <div className="flex size-12 items-center justify-center rounded-lg border border-border bg-muted text-muted-foreground">
+                  <NotebookText aria-hidden="true" className="size-5" />
+                </div>
+                <div className="space-y-1">
+                  <h2 className="text-base font-medium">
+                    Note はまだありません
+                  </h2>
+                  <p className="max-w-md text-sm text-muted-foreground">
+                    この Resource から学んだことを Note として保存します。
+                  </p>
+                </div>
+              </div>
+            )}
+          </CardContent>
+        </Card>
       </div>
     </main>
   );
