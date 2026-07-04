@@ -2,10 +2,10 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 
 import { getDb } from "@/db/client";
-import { questionCards } from "@/db/schema";
+import { questionCards, reviewItems } from "@/db/schema";
 import {
   type QuestionFormState,
   questionFormSchema,
@@ -107,10 +107,22 @@ export async function deleteQuestionAction(formData: FormData) {
     redirect("/questions");
   }
 
-  await getDb()
-    .delete(questionCards)
-    .where(eq(questionCards.id, parsedId.data));
+  await getDb().transaction(async (tx) => {
+    await tx
+      .delete(reviewItems)
+      .where(
+        and(
+          eq(reviewItems.targetType, "question_card"),
+          eq(reviewItems.targetId, parsedId.data),
+        ),
+      );
+
+    await tx
+      .delete(questionCards)
+      .where(eq(questionCards.id, parsedId.data));
+  });
 
   revalidatePath("/questions");
+  revalidatePath("/reviews/today");
   redirect("/questions");
 }
