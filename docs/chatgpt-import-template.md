@@ -1,12 +1,17 @@
 # ChatGPT Import Template
 
-ブラウザ版 ChatGPT で得た知見を chikuseki に取り込むためのプロンプトと JSON template。
+ブラウザ版 ChatGPT で得た知見や、記事・URL・生テキストを chikuseki に取り込むためのプロンプトと JSON template。
 
-アプリでは `/imports/chatgpt` に、下記の prompt と JSON template を結合したコピー用プロンプトを表示する。ユーザーは `Copy prompt` を押して、そのまま ChatGPT に貼り付ける。
+アプリでは `/imports/chatgpt` に、用途別のコピー用プロンプトを表示する。ユーザーは目的に応じて `Copy conversation prompt` または `Copy source prompt` を押して、そのまま ChatGPT に貼り付ける。
+
+- Conversation Prompt: 既存の ChatGPT 会話から Resource、Learning Note、Question draft を作る
+- Source Prompt: 記事、URL、サイト、生テキストから Resource、Learning Note、Question draft を作る
+
+どちらのプロンプトも、出力させる JSON の形式は同じ `chikuseki.chatgpt_import.v1` を使う。
 
 この template は、後続の OpenAI API 連携でも structured output の schema として使う。
 
-## Prompt
+## Conversation Prompt
 
 ```text
 あなたは、技術学習のために会話から復習用 Question を作るアシスタントです。
@@ -40,6 +45,19 @@
 
 JSON template は下記の JSON Template をこの位置に含める:
 ```
+
+## Source Prompt
+
+記事、URL、サイト、生テキストを共有して、同じ JSON 形式で Resource、Learning Note、Question draft を作らせるためのプロンプト。
+
+主な違い:
+
+- sources は、記事、サイト、URL、生テキスト、コード片ごとに分ける
+- URL や記事を読める場合は `sources[].url` に URL を入れる
+- 生テキストや貼り付けメモだけが元の場合は `sources[].url` を `null` にする
+- `sources[].type` は `article` / `book` / `talk` / `video` / `docs` / `repository` / `other` のいずれかにする
+- URL の中身を確認できない場合は、URL やタイトルだけから内容を推測して Question を作らず、本文の共有を求める
+- 本文の主張確認だけでなく、本文中に出てきた技術語や比較対象も Question として拾う
 
 ## JSON Template
 

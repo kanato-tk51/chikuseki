@@ -4,16 +4,21 @@ import { useEffect, useRef, useState } from "react";
 import { Check, Copy } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 type CopyableChatGptPromptProps = {
   value: string;
+  copyLabel?: string;
+  textareaClassName?: string;
 };
 
-const textareaClassName =
-  "min-h-[42rem] w-full resize-y rounded-lg border border-input bg-muted/30 px-3 py-2 font-mono text-xs leading-5 text-foreground outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50";
+const baseTextareaClassName =
+  "min-h-[26rem] w-full resize-y rounded-lg border border-input bg-muted/30 px-3 py-2 font-mono text-xs leading-5 text-foreground outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50";
 
 export function CopyableChatGptPrompt({
   value,
+  copyLabel = "Copy prompt",
+  textareaClassName,
 }: CopyableChatGptPromptProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [copied, setCopied] = useState(false);
@@ -54,7 +59,7 @@ export function CopyableChatGptPrompt({
           ) : (
             <>
               <Copy aria-hidden="true" />
-              Copy prompt
+              {copyLabel}
             </>
           )}
         </Button>
@@ -63,7 +68,7 @@ export function CopyableChatGptPrompt({
         ref={textareaRef}
         readOnly
         value={value}
-        className={textareaClassName}
+        className={cn(baseTextareaClassName, textareaClassName)}
       />
     </div>
   );

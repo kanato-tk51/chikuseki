@@ -11,7 +11,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { importChatGptKnowledgeAction } from "@/features/imports/actions";
-import { chatGptImportPrompt } from "@/features/imports/chatgpt-template";
+import {
+  chatGptConversationImportPrompt,
+  chatGptSourceMaterialImportPrompt,
+} from "@/features/imports/chatgpt-template";
 import { ChatGptImportForm } from "@/features/imports/components/chatgpt-import-form";
 import { CopyableChatGptPrompt } from "@/features/imports/components/copyable-chatgpt-prompt";
 
@@ -40,23 +43,51 @@ export default function ChatGptImportPage() {
         </header>
 
         <section className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
-          <Card>
-            <CardHeader>
-              <div className="flex items-center gap-2">
-                <Sparkles
-                  aria-hidden="true"
-                  className="size-4 text-muted-foreground"
+          <div className="space-y-4">
+            <Card>
+              <CardHeader>
+                <div className="flex items-center gap-2">
+                  <Sparkles
+                    aria-hidden="true"
+                    className="size-4 text-muted-foreground"
+                  />
+                  <CardTitle>Conversation Prompt</CardTitle>
+                </div>
+                <CardDescription>
+                  既存の ChatGPT 会話から Resource、Note、Question draft
+                  を作るプロンプト
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <CopyableChatGptPrompt
+                  value={chatGptConversationImportPrompt}
+                  copyLabel="Copy conversation prompt"
                 />
-                <CardTitle>ChatGPT Prompt</CardTitle>
-              </div>
-              <CardDescription>
-                このままコピーして ChatGPT に貼り付ける単一プロンプト
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <CopyableChatGptPrompt value={chatGptImportPrompt} />
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <div className="flex items-center gap-2">
+                  <Sparkles
+                    aria-hidden="true"
+                    className="size-4 text-muted-foreground"
+                  />
+                  <CardTitle>Source Prompt</CardTitle>
+                </div>
+                <CardDescription>
+                  記事、URL、サイト、生テキストから Resource、Note、Question
+                  draft を作るプロンプト
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <CopyableChatGptPrompt
+                  value={chatGptSourceMaterialImportPrompt}
+                  copyLabel="Copy source prompt"
+                />
+              </CardContent>
+            </Card>
+          </div>
 
           <Card>
             <CardHeader>

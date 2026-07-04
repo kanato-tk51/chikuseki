@@ -47,16 +47,14 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col antialiased">
         <header className="fixed inset-x-3 top-3 z-50">
           <div className="mx-auto flex max-w-6xl items-center gap-2 rounded-lg border border-border bg-card/95 p-1.5 shadow-sm backdrop-blur">
-            <span className="shrink-0 px-2 text-sm font-semibold tracking-normal text-foreground">
-              chikuseki
-            </span>
             <Link
               href="/"
               aria-label="Home"
               title="Home"
-              className="inline-flex size-9 shrink-0 items-center justify-center rounded-md text-foreground transition-colors hover:bg-muted focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+              className="inline-flex h-9 shrink-0 items-center gap-2 rounded-md px-2.5 text-sm font-semibold tracking-normal text-foreground transition-colors hover:bg-muted focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
             >
               <Layers3 aria-hidden="true" className="size-4" />
+              <span>chikuseki</span>
             </Link>
             <nav
               aria-label="Primary navigation"
