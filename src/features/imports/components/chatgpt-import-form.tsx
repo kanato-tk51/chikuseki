@@ -45,7 +45,7 @@ export function ChatGptImportForm({ action }: ChatGptImportFormProps) {
           htmlFor="conversationUrl"
           className="text-sm font-medium text-foreground"
         >
-          Chat URL
+          Chat URL <span className="text-muted-foreground">(optional)</span>
         </label>
         <input
           id="conversationUrl"
