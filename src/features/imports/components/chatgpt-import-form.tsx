@@ -45,7 +45,7 @@ export function ChatGptImportForm({ action }: ChatGptImportFormProps) {
           htmlFor="conversationUrl"
           className="text-sm font-medium text-foreground"
         >
-          Chat URL <span className="text-muted-foreground">(optional)</span>
+          Chat URL
         </label>
         <input
           id="conversationUrl"
@@ -72,10 +72,15 @@ export function ChatGptImportForm({ action }: ChatGptImportFormProps) {
       <div className="space-y-2">
         <label htmlFor="payload" className="text-sm font-medium text-foreground">
           Import JSON
+          <span aria-hidden="true" className="text-destructive">
+            *
+          </span>
+          <span className="sr-only"> required</span>
         </label>
         <textarea
           id="payload"
           name="payload"
+          required
           defaultValue={state.values?.payload ?? ""}
           aria-invalid={Boolean(payloadError)}
           aria-describedby={payloadError ? "payload-error" : undefined}
