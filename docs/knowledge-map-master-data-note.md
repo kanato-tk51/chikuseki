@@ -245,20 +245,34 @@ pnpm knowledge-map:validate
 
 検証では、Domain と詳細 seed の対応、YAML 構文、必須フィールド、domain 内 slug 重複、edge 参照、relationType、文字化けを確認する。domain 横断の同名 slug は、後続の統合作業の候補として warning に出す。
 
-DB 側の想定:
+DB へ反映する場合は、migration 適用後に import を実行する。
+
+```bash
+pnpm db:migrate
+pnpm knowledge-map:import
+```
+
+`knowledge-map:import` は先に seed validation を実行し、通過した場合だけ DB を更新する。
+
+DB 側の実装:
 
 ```text
 knowledge_nodes
 - id
+- node_key
+- domain_slug
 - slug
 - name
 - level
-- primary_parent_id
+- parent_id
 - summary
 - why_learn
 - prompt_hint
+- boundary_notes
 - sort_order
 - curation_status
+- source_file
+- content_hash
 - created_at
 - updated_at
 
@@ -266,34 +280,42 @@ knowledge_edges
 - id
 - from_node_id
 - to_node_id
+- from_ref
+- to_ref
 - relation_type
+- reason
+- edge_scope
+- source_file
+- created_at
+- updated_at
 
 knowledge_aliases
 - id
 - node_id
 - alias
-
-knowledge_sources
-- id
-- title
-- url
-- source_type
-- summary
-
-knowledge_node_sources
-- node_id
-- source_id
+- created_at
 ```
 
 ユーザー個人の学習状態はマスターとは分ける。
 
 ```text
 knowledge_node_progress
+- id
 - node_id
 - status
+- interest_level
 - last_reviewed_at
+- memo
 - created_at
 - updated_at
+
+knowledge_entity_links
+- id
+- node_id
+- entity_type
+- entity_id
+- relation_type
+- created_at
 ```
 
 `status` の候補:

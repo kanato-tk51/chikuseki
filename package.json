@@ -9,6 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "knowledge-map:validate": "node scripts/knowledge-map/validate.mjs",
+    "knowledge-map:import": "pnpm knowledge-map:validate && node scripts/knowledge-map/import.mjs",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio"

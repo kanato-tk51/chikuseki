@@ -19,6 +19,8 @@ pnpm build
 pnpm db:generate
 pnpm db:migrate
 pnpm db:studio
+pnpm knowledge-map:validate
+pnpm knowledge-map:import
 ```
 
 ## Documents

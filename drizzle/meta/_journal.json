@@ -8,6 +8,13 @@
       "when": 1783157747202,
       "tag": "0000_initial_schema",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1783239174663,
+      "tag": "0001_living_skin",
+      "breakpoints": true
     }
   ]
 }

@@ -1,3 +1,4 @@
+import type { AnyPgColumn } from "drizzle-orm/pg-core";
 import {
   doublePrecision,
   index,
@@ -60,6 +61,33 @@ export const entityTypeEnum = pgEnum("entity_type", [
   "project_log",
   "concept",
   "output",
+]);
+
+export const knowledgeNodeLevelEnum = pgEnum("knowledge_node_level", [
+  "domain",
+  "knowledge_area",
+  "topic_cluster",
+  "concept",
+  "term",
+]);
+
+export const knowledgeCurationStatusEnum = pgEnum(
+  "knowledge_curation_status",
+  ["draft", "reviewed", "deprecated"],
+);
+
+export const knowledgeProgressStatusEnum = pgEnum(
+  "knowledge_progress_status",
+  ["unknown", "interested", "learning", "understood", "ignored"],
+);
+
+export const knowledgeRelationTypeEnum = pgEnum("knowledge_relation_type", [
+  "related",
+  "prerequisite",
+  "compare_with",
+  "used_in",
+  "broader",
+  "narrower",
 ]);
 
 const timestamps = {
@@ -235,9 +263,150 @@ export const entityLinks = pgTable(
   ],
 );
 
+export const knowledgeNodes = pgTable(
+  "knowledge_nodes",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    nodeKey: text("node_key").notNull(),
+    domainSlug: text("domain_slug").notNull(),
+    slug: text("slug").notNull(),
+    name: text("name").notNull(),
+    level: knowledgeNodeLevelEnum("level").notNull(),
+    parentId: uuid("parent_id").references(
+      (): AnyPgColumn => knowledgeNodes.id,
+      { onDelete: "set null" },
+    ),
+    summary: text("summary").notNull(),
+    whyLearn: text("why_learn"),
+    promptHint: text("prompt_hint"),
+    boundaryNotes: text("boundary_notes"),
+    sortOrder: integer("sort_order").notNull().default(0),
+    curationStatus: knowledgeCurationStatusEnum("curation_status")
+      .notNull()
+      .default("draft"),
+    sourceFile: text("source_file").notNull(),
+    contentHash: text("content_hash").notNull(),
+    ...timestamps,
+  },
+  (table) => [
+    uniqueIndex("knowledge_nodes_node_key_unique").on(table.nodeKey),
+    uniqueIndex("knowledge_nodes_domain_slug_unique").on(
+      table.domainSlug,
+      table.slug,
+    ),
+    index("knowledge_nodes_domain_idx").on(table.domainSlug),
+    index("knowledge_nodes_level_idx").on(table.level),
+    index("knowledge_nodes_parent_id_idx").on(table.parentId),
+  ],
+);
+
+export const knowledgeAliases = pgTable(
+  "knowledge_aliases",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    nodeId: uuid("node_id")
+      .notNull()
+      .references(() => knowledgeNodes.id, { onDelete: "cascade" }),
+    alias: text("alias").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("knowledge_aliases_node_alias_unique").on(
+      table.nodeId,
+      table.alias,
+    ),
+    index("knowledge_aliases_node_id_idx").on(table.nodeId),
+    index("knowledge_aliases_alias_idx").on(table.alias),
+  ],
+);
+
+export const knowledgeEdges = pgTable(
+  "knowledge_edges",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    fromNodeId: uuid("from_node_id")
+      .notNull()
+      .references(() => knowledgeNodes.id, { onDelete: "cascade" }),
+    toNodeId: uuid("to_node_id")
+      .notNull()
+      .references(() => knowledgeNodes.id, { onDelete: "cascade" }),
+    fromRef: text("from_ref").notNull(),
+    toRef: text("to_ref").notNull(),
+    relationType: knowledgeRelationTypeEnum("relation_type").notNull(),
+    reason: text("reason").notNull(),
+    edgeScope: text("edge_scope").notNull().default("local"),
+    sourceFile: text("source_file").notNull(),
+    ...timestamps,
+  },
+  (table) => [
+    uniqueIndex("knowledge_edges_relation_unique").on(
+      table.fromNodeId,
+      table.toNodeId,
+      table.relationType,
+    ),
+    index("knowledge_edges_from_node_id_idx").on(table.fromNodeId),
+    index("knowledge_edges_to_node_id_idx").on(table.toNodeId),
+    index("knowledge_edges_relation_type_idx").on(table.relationType),
+  ],
+);
+
+export const knowledgeNodeProgress = pgTable(
+  "knowledge_node_progress",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    nodeId: uuid("node_id")
+      .notNull()
+      .references(() => knowledgeNodes.id, { onDelete: "cascade" }),
+    status: knowledgeProgressStatusEnum("status")
+      .notNull()
+      .default("unknown"),
+    interestLevel: integer("interest_level").notNull().default(0),
+    lastReviewedAt: timestamp("last_reviewed_at", { withTimezone: true }),
+    memo: text("memo"),
+    ...timestamps,
+  },
+  (table) => [
+    uniqueIndex("knowledge_node_progress_node_unique").on(table.nodeId),
+    index("knowledge_node_progress_status_idx").on(table.status),
+  ],
+);
+
+export const knowledgeEntityLinks = pgTable(
+  "knowledge_entity_links",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    nodeId: uuid("node_id")
+      .notNull()
+      .references(() => knowledgeNodes.id, { onDelete: "cascade" }),
+    entityType: entityTypeEnum("entity_type").notNull(),
+    entityId: uuid("entity_id").notNull(),
+    relationType: text("relation_type").notNull().default("related"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("knowledge_entity_links_unique").on(
+      table.nodeId,
+      table.entityType,
+      table.entityId,
+      table.relationType,
+    ),
+    index("knowledge_entity_links_node_id_idx").on(table.nodeId),
+    index("knowledge_entity_links_entity_idx").on(
+      table.entityType,
+      table.entityId,
+    ),
+  ],
+);
+
 export type Resource = typeof resources.$inferSelect;
 export type NewResource = typeof resources.$inferInsert;
 export type LearningNote = typeof learningNotes.$inferSelect;
 export type NewLearningNote = typeof learningNotes.$inferInsert;
 export type QuestionCard = typeof questionCards.$inferSelect;
 export type NewQuestionCard = typeof questionCards.$inferInsert;
+export type KnowledgeNode = typeof knowledgeNodes.$inferSelect;
+export type NewKnowledgeNode = typeof knowledgeNodes.$inferInsert;
