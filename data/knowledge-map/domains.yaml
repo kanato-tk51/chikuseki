@@ -1,0 +1,196 @@
+domains:
+  - slug: mathematical-theoretical-foundations
+    name: 数学的・理論的基礎
+    summary: 計算、正しさ、不確実性、限界を厳密に考えるための数学、論理、理論の基礎。
+    whyLearn: なぜ手法が成り立つのか、何が証明できるのか、計算の限界がどこにあるのかを理解する土台になる。
+    boundaryNotes: 形式的な基礎を扱う。実行可能な問題解法や性能上のトレードオフは Algorithms and Data Structures に寄せる。
+    deepResearchPriority: medium
+    exampleKnowledgeAreas:
+      - name: 離散数学と論理
+        summary: 集合、グラフ、組合せ、論理、証明技法など、計算を支える数学的基礎。
+      - name: 計算のための確率・統計
+        summary: システム、データ、AIで使われる乱択、推定、分布、統計的推論。
+      - name: 計算可能性と形式言語
+        summary: オートマトン、文法、計算可能性、計算モデル、形式的な表現。
+
+  - slug: algorithms-data-structures-computation
+    name: アルゴリズムとデータ構造
+    summary: 問題を表現し、効率的に解く手順とデータ表現を設計する領域。
+    whyLearn: 計算量、問題構造、トレードオフで技術を比較するための、最も転用しやすい思考基盤になる。
+    boundaryNotes: アルゴリズム思考と複雑性を扱う。数学的証明体系は Mathematical Foundations、本番性能や障害は Systems / Reliability に寄せる。
+    deepResearchPriority: high
+    exampleKnowledgeAreas:
+      - name: データ構造
+        summary: 配列、木、グラフ、ヒープ、ハッシュテーブル、インデックスなどの基本表現。
+      - name: アルゴリズム設計と解析
+        summary: 貪欲法、分割統治、動的計画法、グラフアルゴリズム、漸近解析。
+      - name: 計算複雑性と近似
+        summary: 計算困難性、帰着、近似、効率的に解ける範囲の限界。
+
+  - slug: programming-languages-software-construction
+    name: プログラミング言語とソフトウェア構成
+    summary: ソフトウェアをコード、型、抽象化、モジュールとして表現し、変換し、構成する領域。
+    whyLearn: 実装力を概念と結びつけ、言語やフレームワークをまたいで現れる考え方を発見しやすくする。
+    boundaryNotes: コード表現と構成に集中する。ライフサイクル、プロジェクト統治、チームプロセスは Software Engineering / Engineering Organization に寄せる。
+    deepResearchPriority: high
+    exampleKnowledgeAreas:
+      - name: プログラミングパラダイムと型システム
+        summary: 命令型、関数型、オブジェクト指向、並行処理、型による設計。
+      - name: コンパイラ、インタプリタ、ツールチェーン
+        summary: 構文解析、コンパイル、ランタイムモデル、開発者ツール。
+      - name: モジュール性とAPI設計
+        summary: 抽象化境界、インターフェース、パッケージ、バージョニング、コード構成。
+
+  - slug: systems-networks-distributed-infrastructure
+    name: コンピュータシステム、ネットワーク、分散基盤
+    summary: コンピュータがプログラムを実行し、システムが通信・協調・拡張する仕組みを扱う領域。
+    whyLearn: メモリ、スケジューリング、遅延、ストレージ、障害、ネットワーク境界を理解し、アプリ知識を実行基盤に接続できる。
+    boundaryNotes: システム機構と実行時の基礎を扱う。本番運用責任やサービス運用は Reliability, Operations, and Platform Engineering に寄せる。
+    deepResearchPriority: high
+    exampleKnowledgeAreas:
+      - name: コンピュータアーキテクチャとメモリシステム
+        summary: 実行モデル、キャッシュ、メモリ階層、性能特性。
+      - name: オペレーティングシステム
+        summary: プロセス、スレッド、ファイルシステム、スケジューリング、同期、仮想化。
+      - name: ネットワークと分散システム
+        summary: プロトコル、ルーティング、RPC、一貫性、複製、協調、障害モデル。
+
+  - slug: data-management-analytics-experimentation
+    name: データ管理、分析、実験
+    summary: データを設計、保存、移動、分析、計測し、意思決定や学習に使う領域。
+    whyLearn: 現代のプロダクトは、コードだけでなくログ、イベント、実験、指標から学ぶため、この領域が不可欠になる。
+    boundaryNotes: データ保存、パイプライン、指標、実験を扱う。予測モデルは AI、プライバシー義務は Security, Privacy, and Governance に寄せる。
+    deepResearchPriority: high
+    exampleKnowledgeAreas:
+      - name: データベースとトランザクションデータ
+        summary: リレーショナル/非リレーショナルDB、クエリ、インデックス、トランザクション、一貫性。
+      - name: データモデリングとパイプライン
+        summary: スキーマ、リネージ、ETL/ELT、データ契約、DWHやレイクハウスのパターン。
+      - name: 分析、指標、実験
+        summary: 計測設計、ファネル、リテンション、因果推論、A/Bテスト、意思決定指標。
+
+  - slug: artificial-intelligence-intelligent-systems
+    name: 人工知能と知的システム
+    summary: 学習、予測、生成、探索、推論、自動化をソフトウェアシステムに組み込む領域。
+    whyLearn: AIは新しい用語や設計判断が急速に増える領域であり、明示的な学習棚を持つことで未知語を発見しやすくなる。
+    boundaryNotes: モデルの振る舞いや知的システムの手法を扱う。データ統治は Data、人間への影響は UX / Security、価値判断は Product Management / Business に接続する。
+    deepResearchPriority: high
+    exampleKnowledgeAreas:
+      - name: 機械学習
+        summary: 教師あり学習、教師なし学習、強化学習、評価。
+      - name: 生成AIと基盤モデル
+        summary: 言語・マルチモーダル・生成システム、プロンプト、適応、品質評価。
+      - name: 探索、計画、推薦
+        summary: 古典的AI手法と、プロダクト上の知的な意思決定システム。
+
+  - slug: software-engineering-quality
+    name: ソフトウェア工学と品質
+    summary: ソフトウェアを仕様化し、設計し、検証し、進化させ、品質を保証するための工学的手法。
+    whyLearn: 実装の断片知識に閉じず、再現性、保守性、検証可能性を持つ工学として学ぶための柱になる。
+    boundaryNotes: ライフサイクル、品質、保守を扱う。具体的なアプリ構成は Product Engineering、本番信頼性は Reliability / Operations に寄せる。
+    deepResearchPriority: high
+    exampleKnowledgeAreas:
+      - name: 要求とソフトウェアアーキテクチャ
+        summary: 要求工学、アーキテクチャ判断、トレードオフ、設計記録。
+      - name: テスト、検証、妥当性確認
+        summary: 単体、統合、システム、性質ベーステスト、品質の根拠作り。
+      - name: 保守、構成管理、プロセス
+        summary: リファクタリング、構成管理、バージョニング、リリース基準、プロセス改善。
+
+  - slug: product-engineering-application-architecture
+    name: プロダクトエンジニアリングとアプリケーションアーキテクチャ
+    summary: 顧客や社内ユーザーが使う実際のアプリケーションやサービスを技術的に設計し、統合し、進化させる領域。
+    whyLearn: Web/SaaS開発には固有の設計パターン、語彙、トレードオフがあり、一般的なソフトウェア工学だけでは埋もれやすい。
+    boundaryNotes: アプリケーションやサービスの構築を扱う。一般的な工学手法は Software Engineering、優先順位は Product Management、本番健全性は Reliability に寄せる。
+    deepResearchPriority: high
+    exampleKnowledgeAreas:
+      - name: フロントエンドとクライアントエンジニアリング
+        summary: ブラウザ/クライアントアプリのアーキテクチャ、状態、レンダリング、性能。
+      - name: バックエンド、API、サービス設計
+        summary: サービス境界、API、契約、認証認可フロー、ビジネスロジック実装。
+      - name: アプリケーション統合とイベント駆動設計
+        summary: キュー、イベント、ワークフロー、外部連携、非同期なプロダクト挙動。
+
+  - slug: ux-hci-service-design
+    name: UX、HCI、サービスデザイン
+    summary: 人、タスク、文脈、組織を含めて、相互作用やワークフロー、体験全体を設計する領域。
+    whyLearn: 実装詳細だけでなく、ユーザー、アクセシビリティ、評価、社会技術的な影響に関する概念を発見するために必要。
+    boundaryNotes: ユーザー理解、設計、評価を扱う。ロードマップ判断は Product Management、プライバシー統治は Security / Privacy に寄せる。
+    deepResearchPriority: high
+    exampleKnowledgeAreas:
+      - name: ユーザー調査とニーズ発見
+        summary: インタビュー、サーベイ、観察、ジャーニーマップ、問題理解。
+      - name: インタラクションデザインと情報設計
+        summary: フロー、状態、アフォーダンス、情報構造、ナビゲーション、UIの振る舞い。
+      - name: アクセシビリティ、インクルージョン、評価
+        summary: インクルーシブデザイン、アクセシビリティ標準、ユーザビリティ評価、体験品質。
+
+  - slug: product-management-product-strategy
+    name: プロダクトマネジメントとプロダクト戦略
+    summary: 誰に、何を、なぜ、どの順番で作るかを決める領域。
+    whyLearn: 技術学習を、顧客価値、順序付け、プロダクト進化に接続するために必要。
+    boundaryNotes: プロダクトの範囲、戦略、優先順位を扱う。価格や事業ポートフォリオは Business、実装パターンは Product Engineering に寄せる。
+    deepResearchPriority: high
+    exampleKnowledgeAreas:
+      - name: プロダクト戦略とポジショニング
+        summary: ビジョン、セグメント、差別化、対象ユーザー、戦略方向性。
+      - name: ディスカバリーと問題設定
+        summary: 機会評価、仮説、顧客課題、検証方法。
+      - name: ロードマップ、優先順位、ライフサイクル
+        summary: 順序付け、トレードオフ判断、ロードマップ共有、プロダクト進化。
+
+  - slug: security-privacy-governance
+    name: セキュリティ、プライバシー、ガバナンス
+    summary: システム、人、データ、信頼を守るための技術的・組織的実践を扱う領域。
+    whyLearn: 機能的な正しさや開発速度だけでなく、信頼できるシステム設計を学習地図に含めるために必要。
+    boundaryNotes: セキュア開発、プライバシーエンジニアリング、リスク統治を扱う。可用性やサービス健全性は Reliability、法務や事業包装は Business に接続する。
+    deepResearchPriority: high
+    exampleKnowledgeAreas:
+      - name: セキュア設計とアプリケーションセキュリティ
+        summary: 脅威モデリング、セキュアコーディング、Secure SDLC、脆弱性管理。
+      - name: アイデンティティ、アクセス、暗号基礎
+        summary: 認証、認可、暗号の基本概念、信頼境界。
+      - name: プライバシーエンジニアリングとガバナンス
+        summary: データ最小化、プライバシーリスク、同意と制御、ポリシー、コンプライアンス構造。
+
+  - slug: reliability-operations-platform-engineering
+    name: 信頼性、運用、プラットフォームエンジニアリング
+    summary: 本番システムを安全かつ効果的に運用するための実践を扱う領域。
+    whyLearn: プロダクト運用は単なるインフラ作業ではなく、独自の概念、指標、障害からの学習ループを持つ重要な工学領域だから。
+    boundaryNotes: Observability、インシデント、リリース、サービス健全性を扱う。インフラの基礎原理は Systems、一般的なプロセスは Software Engineering に寄せる。
+    deepResearchPriority: high
+    exampleKnowledgeAreas:
+      - name: Observability とサービス目標
+        summary: ログ、メトリクス、トレース、SLI、SLO、テレメトリ駆動の運用。
+      - name: インシデント対応とポストモーテム
+        summary: オンコール、インシデント調整、障害からの学習、再発防止ループ。
+      - name: リリース、自動化、プラットフォーム能力
+        summary: デプロイシステム、CI/CD運用、内部プラットフォーム、運用自動化。
+
+  - slug: business-economics-decision-making
+    name: ビジネス、経済性、意思決定
+    summary: プロダクト、エンジニアリング、運用上の選択を、価値創出、収益、資源配分の観点で考える領域。
+    whyLearn: 技術的な優秀さを、価値創出、価格、投資判断、制約下の資源配分と切り離さないために必要。
+    boundaryNotes: 価値獲得と資源配分のトレードオフを扱う。プロダクト範囲は Product Management、組織配置は Engineering Organization に寄せる。
+    deepResearchPriority: high
+    exampleKnowledgeAreas:
+      - name: ビジネスモデルと市場構造
+        summary: 市場文脈の中でプロダクトが価値を作り、届け、回収する仕組み。
+      - name: 価格、パッケージング、ユニットエコノミクス
+        summary: 収益構造、コスト構造、マネタイズ、持続可能なプロダクト経済性。
+      - name: 事業ケースと投資判断
+        summary: 予測、制約下の優先順位、ポートフォリオ、リターンを意識した意思決定。
+
+  - slug: engineering-organization-delivery-systems
+    name: エンジニアリング組織とデリバリーシステム
+    summary: チーム構造、責務分担、協調、インセンティブ、開発者体験がエンジニアリング成果に与える影響を扱う領域。
+    whyLearn: デリバリー品質と学習速度は、個人の技術力だけでなく組織設計に強く依存するため。
+    boundaryNotes: チームとフローの設計を扱う。プロダクト戦略は Product Management、本番運用は Reliability / Platform Engineering に寄せる。
+    deepResearchPriority: medium
+    exampleKnowledgeAreas:
+      - name: チームトポロジーと責務境界
+        summary: チーム形状、所有権、チーム間インターフェースの設計。
+      - name: デリバリーフローとエンジニアリング指標
+        summary: サイクルタイム、デプロイパターン、協調コスト、改善ループ。
+      - name: 開発者体験と知識システム
+        summary: ツール、ドキュメント、内部学習ループ、エンジニアリング生産性を高める環境。
