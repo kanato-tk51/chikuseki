@@ -237,6 +237,14 @@ data/
 - [business-economics-decision-making.yaml](../data/knowledge-map/domain-details/business-economics-decision-making.yaml)
 - [engineering-organization-delivery-systems.yaml](../data/knowledge-map/domain-details/engineering-organization-delivery-systems.yaml)
 
+seed file は次のコマンドで検証する。
+
+```bash
+pnpm knowledge-map:validate
+```
+
+検証では、Domain と詳細 seed の対応、YAML 構文、必須フィールド、domain 内 slug 重複、edge 参照、relationType、文字化けを確認する。domain 横断の同名 slug は、後続の統合作業の候補として warning に出す。
+
 DB 側の想定:
 
 ```text
