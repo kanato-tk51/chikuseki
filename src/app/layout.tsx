@@ -6,6 +6,7 @@ import {
   Layers3,
   LibraryBig,
   ListChecks,
+  Map,
   NotebookText,
   Sparkles,
 } from "lucide-react";
@@ -27,6 +28,7 @@ export const metadata: Metadata = {
 };
 
 const primaryNavItems = [
+  { label: "Knowledge Map", href: "/knowledge-map", icon: Map },
   { label: "Resources", href: "/resources", icon: LibraryBig },
   { label: "Notes", href: "/notes", icon: NotebookText },
   { label: "Questions", href: "/questions", icon: FileQuestion },
