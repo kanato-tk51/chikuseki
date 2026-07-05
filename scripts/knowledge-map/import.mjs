@@ -43,6 +43,72 @@ function hashContent(value) {
   return crypto.createHash("sha256").update(stableStringify(value)).digest("hex");
 }
 
+function normalizeStringList(value) {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return value
+    .filter((item) => typeof item === "string")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function normalizeSearch(search) {
+  if (!search || typeof search !== "object" || Array.isArray(search)) {
+    return {
+      keywords: [],
+      commonSignals: [],
+      antiSignals: [],
+      relatedNames: [],
+    };
+  }
+
+  return {
+    keywords: normalizeStringList(search.keywords),
+    commonSignals: normalizeStringList(search.commonSignals),
+    antiSignals: normalizeStringList(search.antiSignals),
+    relatedNames: Array.isArray(search.relatedNames)
+      ? search.relatedNames
+          .filter((item) => item && typeof item === "object")
+          .map((item) => ({
+            name: typeof item.name === "string" ? item.name.trim() : "",
+            kind: typeof item.kind === "string" ? item.kind.trim() : "",
+            relevance:
+              typeof item.relevance === "string" ? item.relevance.trim() : "",
+            officialUrl:
+              typeof item.officialUrl === "string"
+                ? item.officialUrl.trim()
+                : null,
+          }))
+          .filter((item) => item.name && item.kind && item.relevance)
+      : [],
+  };
+}
+
+function uniqueStrings(values) {
+  const seen = new Set();
+  const result = [];
+
+  for (const value of values) {
+    if (typeof value !== "string") {
+      continue;
+    }
+
+    const trimmed = value.trim();
+    const key = trimmed.toLocaleLowerCase();
+
+    if (!trimmed || seen.has(key)) {
+      continue;
+    }
+
+    seen.add(key);
+    result.push(trimmed);
+  }
+
+  return result;
+}
+
 function listDetailFiles() {
   return fs
     .readdirSync(DETAILS_DIR)
@@ -57,6 +123,7 @@ function buildNodeKey(domainSlug, localSlug) {
 
 function addNode(nodes, aliases, options) {
   const nodeKey = buildNodeKey(options.domainSlug, options.slug);
+  const search = normalizeSearch(options.search);
   const record = {
     nodeKey,
     domainSlug: options.domainSlug,
@@ -70,6 +137,7 @@ function addNode(nodes, aliases, options) {
     boundaryNotes: options.boundaryNotes ?? null,
     sortOrder: options.sortOrder,
     sourceFile: options.sourceFile,
+    search,
     contentHash: hashContent({
       domainSlug: options.domainSlug,
       slug: options.slug,
@@ -82,6 +150,7 @@ function addNode(nodes, aliases, options) {
       boundaryNotes: options.boundaryNotes ?? null,
       sortOrder: options.sortOrder,
       aliases: options.aliases ?? [],
+      search,
     }),
   };
 
@@ -92,6 +161,145 @@ function addNode(nodes, aliases, options) {
   }
 
   return nodeKey;
+}
+
+function buildParentChain(node, nodeByKey) {
+  const chain = [];
+  let current = node;
+  const seen = new Set([node.nodeKey]);
+
+  while (current.parentKey) {
+    const parent = nodeByKey.get(current.parentKey);
+
+    if (!parent || seen.has(parent.nodeKey)) {
+      break;
+    }
+
+    chain.push(parent);
+    seen.add(parent.nodeKey);
+    current = parent;
+  }
+
+  return chain;
+}
+
+function buildSearchMetadata(nodes, aliases) {
+  const nodeByKey = new Map(nodes.map((node) => [node.nodeKey, node]));
+  const aliasesByNodeKey = new Map();
+  const keywordsByNodeKey = new Map();
+  const relatedByNodeKey = new Map();
+  const searchKeywords = [];
+  const relatedItems = [];
+
+  for (const alias of aliases) {
+    const values = aliasesByNodeKey.get(alias.nodeKey) ?? [];
+    values.push(alias.alias);
+    aliasesByNodeKey.set(alias.nodeKey, values);
+  }
+
+  for (const node of nodes) {
+    const keywordSpecs = [
+      ...node.search.keywords.map((keyword) => ({
+        keyword,
+        keywordType: "keyword",
+      })),
+      ...node.search.commonSignals.map((keyword) => ({
+        keyword,
+        keywordType: "common_signal",
+      })),
+      ...node.search.antiSignals.map((keyword) => ({
+        keyword,
+        keywordType: "anti_signal",
+      })),
+    ];
+
+    const dedupedKeywordSpecs = [];
+    const seenKeywords = new Set();
+
+    for (const spec of keywordSpecs) {
+      const key = `${spec.keywordType}:${spec.keyword.toLocaleLowerCase()}`;
+
+      if (seenKeywords.has(key)) {
+        continue;
+      }
+
+      seenKeywords.add(key);
+      dedupedKeywordSpecs.push(spec);
+      searchKeywords.push({
+        nodeKey: node.nodeKey,
+        keyword: spec.keyword,
+        keywordType: spec.keywordType,
+        sourceFile: node.sourceFile,
+      });
+    }
+
+    keywordsByNodeKey.set(node.nodeKey, dedupedKeywordSpecs);
+
+    const dedupedRelated = [];
+    const seenRelated = new Set();
+
+    for (const item of node.search.relatedNames) {
+      const key = `${item.kind}:${item.name.toLocaleLowerCase()}`;
+
+      if (seenRelated.has(key)) {
+        continue;
+      }
+
+      seenRelated.add(key);
+      const record = {
+        nodeKey: node.nodeKey,
+        name: item.name,
+        itemType: item.kind,
+        relevance: item.relevance,
+        officialUrl: item.officialUrl || null,
+        sourceFile: node.sourceFile,
+        contentHash: hashContent({
+          name: item.name,
+          itemType: item.kind,
+          officialUrl: item.officialUrl || null,
+        }),
+      };
+      dedupedRelated.push(record);
+      relatedItems.push(record);
+    }
+
+    relatedByNodeKey.set(node.nodeKey, dedupedRelated);
+  }
+
+  const searchDocuments = nodes.map((node) => {
+    const parentChain = buildParentChain(node, nodeByKey);
+    const positiveKeywords = (keywordsByNodeKey.get(node.nodeKey) ?? [])
+      .filter((item) => item.keywordType !== "anti_signal")
+      .map((item) => item.keyword);
+    const related = relatedByNodeKey.get(node.nodeKey) ?? [];
+    const searchText = uniqueStrings([
+      node.domainSlug,
+      node.slug,
+      node.name,
+      node.summary,
+      node.whyLearn,
+      node.promptHint,
+      node.boundaryNotes,
+      ...(aliasesByNodeKey.get(node.nodeKey) ?? []),
+      ...positiveKeywords,
+      ...related.flatMap((item) => [item.name, item.relevance]),
+      ...parentChain.flatMap((parent) => [
+        parent.domainSlug,
+        parent.slug,
+        parent.name,
+        parent.summary,
+        parent.whyLearn,
+      ]),
+    ]).join("\n");
+
+    return {
+      nodeKey: node.nodeKey,
+      searchText,
+      contentHash: hashContent({ searchText }),
+    };
+  });
+
+  return { searchKeywords, relatedItems, searchDocuments };
 }
 
 function collectSeed() {
@@ -126,6 +334,7 @@ function collectSeed() {
       boundaryNotes: domain.boundaryNotes,
       sortOrder: domains.findIndex((candidate) => candidate.slug === domainSlug),
       sourceFile,
+      search: domain.search,
     });
 
     const localSlugs = new Set([domainSlug]);
@@ -142,6 +351,7 @@ function collectSeed() {
         whyLearn: knowledgeArea.whyLearn,
         sortOrder: knowledgeAreaIndex,
         sourceFile,
+        search: knowledgeArea.search,
       });
 
       knowledgeArea.topicClusters.forEach((cluster, clusterIndex) => {
@@ -155,6 +365,7 @@ function collectSeed() {
           summary: cluster.summary,
           sortOrder: clusterIndex,
           sourceFile,
+          search: cluster.search,
         });
 
         cluster.concepts.forEach((concept, conceptIndex) => {
@@ -169,6 +380,7 @@ function collectSeed() {
             whyLearn: concept.whyLearn,
             sortOrder: conceptIndex,
             sourceFile,
+            search: concept.search,
           });
 
           concept.terms.forEach((term, termIndex) => {
@@ -185,6 +397,7 @@ function collectSeed() {
               sortOrder: termIndex,
               sourceFile,
               aliases: term.aliases ?? [],
+              search: term.search,
             });
           });
         });
@@ -210,7 +423,7 @@ function collectSeed() {
     }
   }
 
-  return { nodes, aliases, edges };
+  return { nodes, aliases, edges, ...buildSearchMetadata(nodes, aliases) };
 }
 
 function resolveRef(ref, domainSlug, localSlugs, domainSlugs) {
@@ -356,6 +569,129 @@ async function syncAliases(client, aliases, nodeIds) {
   }
 }
 
+async function syncSearchDocuments(client, searchDocuments, nodeIds) {
+  for (const document of searchDocuments) {
+    const nodeId = nodeIds.get(document.nodeKey);
+
+    if (!nodeId) {
+      throw new Error(`missing node for search document ${document.nodeKey}`);
+    }
+
+    await client.query(
+      `
+        INSERT INTO knowledge_node_search_documents (
+          node_id,
+          search_text,
+          content_hash
+        )
+        VALUES ($1, $2, $3)
+        ON CONFLICT (node_id) DO UPDATE SET
+          search_text = EXCLUDED.search_text,
+          content_hash = EXCLUDED.content_hash,
+          updated_at = now()
+      `,
+      [nodeId, document.searchText, document.contentHash],
+    );
+  }
+}
+
+async function syncSearchKeywords(client, searchKeywords, nodeIds) {
+  const nodeIdValues = [...nodeIds.values()];
+
+  if (nodeIdValues.length > 0) {
+    await client.query(
+      "DELETE FROM knowledge_node_search_keywords WHERE node_id = ANY($1::uuid[])",
+      [nodeIdValues],
+    );
+  }
+
+  for (const keyword of searchKeywords) {
+    const nodeId = nodeIds.get(keyword.nodeKey);
+
+    if (!nodeId) {
+      throw new Error(`missing node for search keyword ${keyword.nodeKey}`);
+    }
+
+    await client.query(
+      `
+        INSERT INTO knowledge_node_search_keywords (
+          node_id,
+          keyword,
+          keyword_type,
+          source_file
+        )
+        VALUES ($1, $2, $3, $4)
+        ON CONFLICT (node_id, keyword, keyword_type) DO NOTHING
+      `,
+      [nodeId, keyword.keyword, keyword.keywordType, keyword.sourceFile],
+    );
+  }
+}
+
+async function syncRelatedItems(client, relatedItems, nodeIds) {
+  const nodeIdValues = [...nodeIds.values()];
+
+  if (nodeIdValues.length > 0) {
+    await client.query(
+      "DELETE FROM knowledge_node_related_items WHERE node_id = ANY($1::uuid[])",
+      [nodeIdValues],
+    );
+  }
+
+  for (const item of relatedItems) {
+    const nodeId = nodeIds.get(item.nodeKey);
+
+    if (!nodeId) {
+      throw new Error(`missing node for related item ${item.nodeKey}`);
+    }
+
+    const result = await client.query(
+      `
+        INSERT INTO knowledge_related_items (
+          name,
+          item_type,
+          official_url,
+          content_hash
+        )
+        VALUES ($1, $2, $3, $4)
+        ON CONFLICT (name, item_type) DO UPDATE SET
+          official_url = EXCLUDED.official_url,
+          content_hash = EXCLUDED.content_hash,
+          updated_at = now()
+        RETURNING id
+      `,
+      [item.name, item.itemType, item.officialUrl, item.contentHash],
+    );
+
+    await client.query(
+      `
+        INSERT INTO knowledge_node_related_items (
+          node_id,
+          related_item_id,
+          relevance,
+          source_file
+        )
+        VALUES ($1, $2, $3, $4)
+        ON CONFLICT (node_id, related_item_id) DO UPDATE SET
+          relevance = EXCLUDED.relevance,
+          source_file = EXCLUDED.source_file
+      `,
+      [nodeId, result.rows[0].id, item.relevance, item.sourceFile],
+    );
+  }
+
+  await client.query(
+    `
+      DELETE FROM knowledge_related_items
+      WHERE NOT EXISTS (
+        SELECT 1
+        FROM knowledge_node_related_items
+        WHERE knowledge_node_related_items.related_item_id = knowledge_related_items.id
+      )
+    `,
+  );
+}
+
 async function syncEdges(client, edges, nodeIds) {
   await client.query(
     "DELETE FROM knowledge_edges WHERE source_file LIKE 'data/knowledge-map/domain-details/%'",
@@ -419,12 +755,18 @@ async function main() {
     await client.query("BEGIN");
     const nodeIds = await syncNodes(client, seed.nodes);
     await syncAliases(client, seed.aliases, nodeIds);
+    await syncSearchDocuments(client, seed.searchDocuments, nodeIds);
+    await syncSearchKeywords(client, seed.searchKeywords, nodeIds);
+    await syncRelatedItems(client, seed.relatedItems, nodeIds);
     await syncEdges(client, seed.edges, nodeIds);
     await client.query("COMMIT");
 
     console.log("Knowledge Map import complete");
     console.log(`nodes=${seed.nodes.length}`);
     console.log(`aliases=${seed.aliases.length}`);
+    console.log(`searchDocuments=${seed.searchDocuments.length}`);
+    console.log(`searchKeywords=${seed.searchKeywords.length}`);
+    console.log(`relatedItems=${seed.relatedItems.length}`);
     console.log(`edges=${seed.edges.length}`);
   } catch (error) {
     await client.query("ROLLBACK");

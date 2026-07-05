@@ -6,8 +6,12 @@ import { getDb } from "@/db/client";
 import {
   knowledgeAliases,
   knowledgeEdges,
+  knowledgeNodeRelatedItems,
   knowledgeNodeProgress,
+  knowledgeNodeSearchDocuments,
+  knowledgeNodeSearchKeywords,
   knowledgeNodes,
+  knowledgeRelatedItems,
 } from "@/db/schema";
 import type {
   KnowledgeNodeLevel,
@@ -211,6 +215,13 @@ export async function searchKnowledgeNodes({
       ilike(knowledgeNodes.slug, pattern),
       ilike(knowledgeNodes.summary, pattern),
       ilike(knowledgeAliases.alias, pattern),
+      ilike(knowledgeNodeSearchDocuments.searchText, pattern),
+      and(
+        ne(knowledgeNodeSearchKeywords.keywordType, "anti_signal"),
+        ilike(knowledgeNodeSearchKeywords.keyword, pattern),
+      ),
+      ilike(knowledgeRelatedItems.name, pattern),
+      ilike(knowledgeNodeRelatedItems.relevance, pattern),
     );
 
     if (searchCondition) {
@@ -234,6 +245,9 @@ export async function searchKnowledgeNodes({
     .select({
       ...nodeSelection,
       alias: knowledgeAliases.alias,
+      keyword: knowledgeNodeSearchKeywords.keyword,
+      keywordType: knowledgeNodeSearchKeywords.keywordType,
+      relatedItemName: knowledgeRelatedItems.name,
     })
     .from(knowledgeNodes)
     .leftJoin(
@@ -241,6 +255,22 @@ export async function searchKnowledgeNodes({
       eq(knowledgeNodeProgress.nodeId, knowledgeNodes.id),
     )
     .leftJoin(knowledgeAliases, eq(knowledgeAliases.nodeId, knowledgeNodes.id))
+    .leftJoin(
+      knowledgeNodeSearchDocuments,
+      eq(knowledgeNodeSearchDocuments.nodeId, knowledgeNodes.id),
+    )
+    .leftJoin(
+      knowledgeNodeSearchKeywords,
+      eq(knowledgeNodeSearchKeywords.nodeId, knowledgeNodes.id),
+    )
+    .leftJoin(
+      knowledgeNodeRelatedItems,
+      eq(knowledgeNodeRelatedItems.nodeId, knowledgeNodes.id),
+    )
+    .leftJoin(
+      knowledgeRelatedItems,
+      eq(knowledgeNodeRelatedItems.relatedItemId, knowledgeRelatedItems.id),
+    )
     .where(and(...conditions))
     .orderBy(
       asc(knowledgeNodes.domainSlug),
@@ -259,6 +289,19 @@ export async function searchKnowledgeNodes({
       if (row.alias && !existing.matchedAliases.includes(row.alias)) {
         existing.matchedAliases.push(row.alias);
       }
+      if (
+        row.keyword &&
+        row.keywordType !== "anti_signal" &&
+        !existing.matchedAliases.includes(row.keyword)
+      ) {
+        existing.matchedAliases.push(row.keyword);
+      }
+      if (
+        row.relatedItemName &&
+        !existing.matchedAliases.includes(row.relatedItemName)
+      ) {
+        existing.matchedAliases.push(row.relatedItemName);
+      }
       continue;
     }
 
@@ -266,7 +309,11 @@ export async function searchKnowledgeNodes({
       ...row,
       level: row.level as KnowledgeNodeLevel,
       status: row.status as KnowledgeProgressStatus,
-      matchedAliases: row.alias ? [row.alias] : [],
+      matchedAliases: [
+        row.alias,
+        row.keywordType !== "anti_signal" ? row.keyword : null,
+        row.relatedItemName,
+      ].filter((value): value is string => Boolean(value)),
     });
   }
 

@@ -90,6 +90,28 @@ export const knowledgeRelationTypeEnum = pgEnum("knowledge_relation_type", [
   "narrower",
 ]);
 
+export const knowledgeSearchKeywordTypeEnum = pgEnum(
+  "knowledge_search_keyword_type",
+  ["keyword", "common_signal", "anti_signal"],
+);
+
+export const knowledgeRelatedItemTypeEnum = pgEnum(
+  "knowledge_related_item_type",
+  [
+    "library",
+    "framework",
+    "tool",
+    "standard",
+    "protocol",
+    "service",
+    "platform",
+    "pattern",
+    "language",
+    "method",
+    "other",
+  ],
+);
+
 const timestamps = {
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
@@ -322,6 +344,99 @@ export const knowledgeAliases = pgTable(
   ],
 );
 
+export const knowledgeNodeSearchDocuments = pgTable(
+  "knowledge_node_search_documents",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    nodeId: uuid("node_id")
+      .notNull()
+      .references(() => knowledgeNodes.id, { onDelete: "cascade" }),
+    searchText: text("search_text").notNull(),
+    contentHash: text("content_hash").notNull(),
+    ...timestamps,
+  },
+  (table) => [
+    uniqueIndex("knowledge_node_search_documents_node_unique").on(table.nodeId),
+    index("knowledge_node_search_documents_node_id_idx").on(table.nodeId),
+  ],
+);
+
+export const knowledgeNodeSearchKeywords = pgTable(
+  "knowledge_node_search_keywords",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    nodeId: uuid("node_id")
+      .notNull()
+      .references(() => knowledgeNodes.id, { onDelete: "cascade" }),
+    keyword: text("keyword").notNull(),
+    keywordType: knowledgeSearchKeywordTypeEnum("keyword_type")
+      .notNull()
+      .default("keyword"),
+    sourceFile: text("source_file").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("knowledge_node_search_keywords_unique").on(
+      table.nodeId,
+      table.keyword,
+      table.keywordType,
+    ),
+    index("knowledge_node_search_keywords_node_id_idx").on(table.nodeId),
+    index("knowledge_node_search_keywords_keyword_idx").on(table.keyword),
+    index("knowledge_node_search_keywords_type_idx").on(table.keywordType),
+  ],
+);
+
+export const knowledgeRelatedItems = pgTable(
+  "knowledge_related_items",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    name: text("name").notNull(),
+    itemType: knowledgeRelatedItemTypeEnum("item_type").notNull(),
+    officialUrl: text("official_url"),
+    contentHash: text("content_hash").notNull(),
+    ...timestamps,
+  },
+  (table) => [
+    uniqueIndex("knowledge_related_items_name_type_unique").on(
+      table.name,
+      table.itemType,
+    ),
+    index("knowledge_related_items_name_idx").on(table.name),
+    index("knowledge_related_items_type_idx").on(table.itemType),
+  ],
+);
+
+export const knowledgeNodeRelatedItems = pgTable(
+  "knowledge_node_related_items",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    nodeId: uuid("node_id")
+      .notNull()
+      .references(() => knowledgeNodes.id, { onDelete: "cascade" }),
+    relatedItemId: uuid("related_item_id")
+      .notNull()
+      .references(() => knowledgeRelatedItems.id, { onDelete: "cascade" }),
+    relevance: text("relevance").notNull(),
+    sourceFile: text("source_file").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("knowledge_node_related_items_unique").on(
+      table.nodeId,
+      table.relatedItemId,
+    ),
+    index("knowledge_node_related_items_node_id_idx").on(table.nodeId),
+    index("knowledge_node_related_items_related_item_id_idx").on(
+      table.relatedItemId,
+    ),
+  ],
+);
+
 export const knowledgeEdges = pgTable(
   "knowledge_edges",
   {
@@ -410,3 +525,5 @@ export type QuestionCard = typeof questionCards.$inferSelect;
 export type NewQuestionCard = typeof questionCards.$inferInsert;
 export type KnowledgeNode = typeof knowledgeNodes.$inferSelect;
 export type NewKnowledgeNode = typeof knowledgeNodes.$inferInsert;
+export type KnowledgeRelatedItem = typeof knowledgeRelatedItems.$inferSelect;
+export type NewKnowledgeRelatedItem = typeof knowledgeRelatedItems.$inferInsert;

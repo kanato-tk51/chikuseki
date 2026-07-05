@@ -147,7 +147,34 @@ type KnowledgeNode = {
   summary: string;
   whyLearn: string;
   promptHint: string;
+  aliases?: string[];
+  search?: KnowledgeNodeSearchMetadata;
   curationStatus: "draft" | "reviewed" | "deprecated";
+};
+
+type KnowledgeNodeSearchMetadata = {
+  keywords?: string[];
+  relatedNames?: KnowledgeRelatedName[];
+  commonSignals?: string[];
+  antiSignals?: string[];
+};
+
+type KnowledgeRelatedName = {
+  name: string;
+  kind:
+    | "library"
+    | "framework"
+    | "tool"
+    | "standard"
+    | "protocol"
+    | "service"
+    | "platform"
+    | "pattern"
+    | "language"
+    | "method"
+    | "other";
+  relevance: string;
+  officialUrl?: string;
 };
 ```
 
@@ -245,6 +272,50 @@ pnpm knowledge-map:validate
 
 検証では、Domain と詳細 seed の対応、YAML 構文、必須フィールド、domain 内 slug 重複、edge 参照、relationType、文字化けを確認する。domain 横断の同名 slug は、後続の統合作業の候補として warning に出す。
 
+seed 作成時は、Term を中心に `search` ブロックも付けられる。これは表示名ではなく、あとで Resource / Note / Question との候補リンクを作るための検索補助情報として使う。
+
+```yaml
+- slug: retrieval-augmented-generation
+  name: 検索拡張生成
+  summary: 外部検索結果を文脈へ注入して生成する構成。
+  whyLearn: 幻覚低減、最新知識反映、出典提示の設計に不可欠。
+  promptHint: RAG がモデル内部知識だけに頼る方法とどう違うか説明して。
+  aliases:
+    - RAG
+    - retrieval-augmented generation
+  search:
+    keywords:
+      - retrieval
+      - grounding
+      - vector search
+      - semantic search
+      - embedding search
+    relatedNames:
+      - name: LangChain
+        kind: framework
+        relevance: RAG pipeline を組むときに頻出する orchestration framework。
+      - name: pgvector
+        kind: tool
+        relevance: PostgreSQL 上で vector search を行う拡張。
+    commonSignals:
+      - 社内文書を検索して回答する
+      - 回答に出典を付ける
+    antiSignals:
+      - 単に検索フォームがあるだけ
+      - 通常の SQL 検索だけ
+```
+
+seed 作成を依頼するときは、各 Term について次を明示する。
+
+```text
+各 Term に search ブロックを追加してください。
+keywords には、候補生成に使える同義語、略称、英語名、日本語名、周辺語を入れてください。
+relatedNames には、その Term と実務上よく一緒に出るライブラリ、フレームワーク、ツール、標準、プロトコル、サービス、パターンを入れてください。
+commonSignals には、Resource / Note / 会話本文に出たら候補化しやすい語句や状況表現を入れてください。
+antiSignals には、出てもその Term とは限らない誤爆しやすい語句や除外条件を入れてください。
+search は候補生成用なので、説明文の重複ではなく、検索・照合に効く具体語を優先してください。
+```
+
 DB へ反映する場合は、migration 適用後に import を実行する。
 
 ```bash
@@ -293,6 +364,39 @@ knowledge_aliases
 - id
 - node_id
 - alias
+- created_at
+
+knowledge_node_search_documents
+- id
+- node_id
+- search_text
+- content_hash
+- created_at
+- updated_at
+
+knowledge_node_search_keywords
+- id
+- node_id
+- keyword
+- keyword_type
+- source_file
+- created_at
+
+knowledge_related_items
+- id
+- name
+- item_type
+- official_url
+- content_hash
+- created_at
+- updated_at
+
+knowledge_node_related_items
+- id
+- node_id
+- related_item_id
+- relevance
+- source_file
 - created_at
 ```
 

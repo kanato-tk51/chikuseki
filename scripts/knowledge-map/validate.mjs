@@ -20,6 +20,19 @@ const ALLOWED_LEVELS = new Set([
   "concept",
   "term",
 ]);
+const ALLOWED_RELATED_ITEM_TYPES = new Set([
+  "library",
+  "framework",
+  "tool",
+  "standard",
+  "protocol",
+  "service",
+  "platform",
+  "pattern",
+  "language",
+  "method",
+  "other",
+]);
 
 const errors = [];
 const warnings = [];
@@ -68,6 +81,61 @@ function assertArray(value, label) {
   }
 
   return true;
+}
+
+function validateOptionalStringArray(value, label) {
+  if (value === undefined) {
+    return;
+  }
+
+  if (!Array.isArray(value)) {
+    fail(`${label} must be an array when present`);
+    return;
+  }
+
+  value.forEach((item, index) => {
+    assertString(item, `${label}[${index}]`);
+  });
+}
+
+function validateSearchBlock(node, label) {
+  if (node?.search === undefined) {
+    return;
+  }
+
+  if (!node.search || typeof node.search !== "object" || Array.isArray(node.search)) {
+    fail(`${label}.search must be an object when present`);
+    return;
+  }
+
+  validateOptionalStringArray(node.search.keywords, `${label}.search.keywords`);
+  validateOptionalStringArray(node.search.commonSignals, `${label}.search.commonSignals`);
+  validateOptionalStringArray(node.search.antiSignals, `${label}.search.antiSignals`);
+
+  if (node.search.relatedNames === undefined) {
+    return;
+  }
+
+  if (!Array.isArray(node.search.relatedNames)) {
+    fail(`${label}.search.relatedNames must be an array when present`);
+    return;
+  }
+
+  node.search.relatedNames.forEach((item, index) => {
+    const itemLabel = `${label}.search.relatedNames[${index}]`;
+
+    assertString(item?.name, `${itemLabel}.name`);
+    assertString(item?.kind, `${itemLabel}.kind`);
+    assertString(item?.relevance, `${itemLabel}.relevance`);
+
+    if (item?.kind && !ALLOWED_RELATED_ITEM_TYPES.has(item.kind)) {
+      fail(`${itemLabel}.kind is not allowed: ${item.kind}`);
+    }
+
+    if (item?.officialUrl !== undefined) {
+      assertString(item.officialUrl, `${itemLabel}.officialUrl`);
+    }
+  });
 }
 
 function collectDetailFiles() {
@@ -124,6 +192,8 @@ function addNode(nodes, filePath, level, node, parentKey, domainSlug, sortOrder)
   if (!ALLOWED_LEVELS.has(level)) {
     fail(`${label} has invalid level: ${level}`);
   }
+
+  validateSearchBlock(node, label);
 
   const nodeKey = `${domainSlug}:${node.slug}`;
 
