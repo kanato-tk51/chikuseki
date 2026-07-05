@@ -1,0 +1,1010 @@
+domain:
+  slug: artificial-intelligence-intelligent-systems
+  name: 人工知能と知的システム
+  summary: 学習、予測、生成、探索、推論、自動化をソフトウェアシステムに組み込む領域。
+  boundaryNotes: モデルの振る舞いや知的システムの手法を扱う。データ統治は Data、人間への影響は UX / Security、価値判断は Product Management / Business に接続する。
+  knowledgeAreas:
+    - slug: search-planning-symbolic-reasoning
+      name: 探索、計画、記号推論
+      summary: 状態空間を表現し、探索し、明示的な知識を使って問題を解くための古典AIの中核。
+      whyLearn: 問題をどのように表現すれば解けるか、学習に頼らずにどこまで推論や計画で解けるかを判断できるようになる。
+      topicClusters:
+        - slug: state-space-and-game-search
+          name: 状態空間探索とゲーム探索
+          summary: 問題を状態・遷移・評価関数として表し、探索アルゴリズムで解く。
+          concepts:
+            - slug: heuristic-search
+              name: ヒューリスティック探索
+              summary: 推定コストや評価関数を使って探索空間を効率的に絞る技法群。
+              whyLearn: 探索速度と最適性保証のトレードオフを理解すると、経路探索や推論時探索のレビューがしやすくなる。
+              terms:
+                - slug: a-star
+                  name: A*探索
+                  summary: 実コストと推定残コストを足し合わせて展開順を決める代表的な探索法。
+                  whyLearn: 最適性保証とヒューリスティック設計の関係を学ぶ起点になる。
+                  promptHint: A*探索の評価関数と、なぜ良いヒューリスティックが重要かを説明して。
+                  aliases:
+                    - A*
+                    - A-star search
+                - slug: admissible-heuristic
+                  name: 許容的ヒューリスティック
+                  summary: 真の残コストを過大評価しないヒューリスティックの性質。
+                  whyLearn: A*で最適解が保証される条件を理解する鍵になる。
+                  promptHint: 許容的ヒューリスティックがA*の正しさにどう関わるかを説明して。
+                  aliases:
+                    - admissible heuristic
+                - slug: beam-search
+                  name: ビームサーチ
+                  summary: 各深さで上位候補だけを残して探索幅を制限する近似探索。
+                  whyLearn: 最適性を捨ててでも計算資源を抑える設計判断を理解できる。
+                  promptHint: ビームサーチがA*とどう違い、どんな場面で使われるか説明して。
+                  aliases:
+                    - beam search
+            - slug: game-and-tree-search
+              name: ゲーム木探索
+              summary: 対戦や逐次意思決定を木として表し、勝率や価値を見積もって手を選ぶ。
+              whyLearn: 対戦AIだけでなく、複数候補から先読みして意思決定する仕組みの基礎になる。
+              terms:
+                - slug: minimax
+                  name: ミニマックス法
+                  summary: 相手も最善手を打つと仮定して最悪ケースを最適化する探索法。
+                  whyLearn: 敵対的環境での意思決定の考え方が身につく。
+                  promptHint: ミニマックス法の前提と、どのようなゲームに向くか説明して。
+                  aliases:
+                    - minimax
+                - slug: alpha-beta-pruning
+                  name: αβ枝刈り
+                  summary: ミニマックス探索で不要な分岐を切り落として計算量を減らす最適化。
+                  whyLearn: 同じ正解でも探索順が性能に大きく効くことを理解できる。
+                  promptHint: αβ枝刈りがなぜミニマックスを高速化できるのか説明して。
+                  aliases:
+                    - alpha-beta pruning
+                    - alpha beta pruning
+                - slug: monte-carlo-tree-search
+                  name: モンテカルロ木探索
+                  summary: シミュレーションと木探索を組み合わせて有望手を重点的に深掘りする手法。
+                  whyLearn: 価値推定が不完全でも探索で性能を引き上げる発想を学べる。
+                  promptHint: モンテカルロ木探索の流れと、学習モデルと組み合わせる利点を説明して。
+                  aliases:
+                    - MCTS
+                    - Monte Carlo Tree Search
+        - slug: symbolic-representation-and-planning
+          name: 記号表現と計画
+          summary: 世界知識や行動を明示的な記号として表し、推論や行動列生成に使う。
+          concepts:
+            - slug: symbolic-knowledge-representation
+              name: 記号的知識表現
+              summary: 概念、関係、規則を人間が読める形で構造化する技法。
+              whyLearn: 説明可能性や制約の厳密表現が必要な場面で、学習だけに依らない設計判断ができる。
+              terms:
+                - slug: knowledge-graph
+                  name: ナレッジグラフ
+                  summary: エンティティと関係をグラフとして表現する知識表現。
+                  whyLearn: 構造化知識を検索や推論に再利用する設計の基礎になる。
+                  promptHint: ナレッジグラフが表形式データや文書検索とどう違うか説明して。
+                  aliases:
+                    - knowledge graph
+                    - KG
+                - slug: ontology
+                  name: オントロジー
+                  summary: 概念間の型や意味関係を明示して共有可能にする意味論的な定義体系。
+                  whyLearn: ドメイン知識の曖昧さを減らし、推論可能な共通語彙を作れる。
+                  promptHint: オントロジーが単なる用語集より強い理由を説明して。
+                  aliases:
+                    - ontology
+                - slug: production-rule
+                  name: 生成規則
+                  summary: 条件が満たされたら行動や結論を導く if-then 形式のルール。
+                  whyLearn: ルールベース推論や業務自動化の基礎になる。
+                  promptHint: 生成規則を使う利点と、機械学習との使い分けを説明して。
+                  aliases:
+                    - production rule
+                    - rule-based system
+            - slug: automated-planning-and-constraints
+              name: 自動計画と制約充足
+              summary: 目標達成のための行動列や割当てを探索で構成する技法群。
+              whyLearn: ワークフロー設計、スケジューリング、タスク分解を形式的に考えられるようになる。
+              terms:
+                - slug: strips
+                  name: STRIPS
+                  summary: 行動の前提条件と効果で計画問題を表現する古典的フレームワーク。
+                  whyLearn: 計画を状態遷移として記述する基本形を学べる。
+                  promptHint: STRIPS表現で行動をどう記述するか、簡単な例で説明して。
+                  aliases:
+                    - STRIPS
+                - slug: planning-graph
+                  name: 計画グラフ
+                  summary: 並行可能な行動と到達可能な命題を層状に整理する計画用データ構造。
+                  whyLearn: 計画可能性の見積もりや Graphplan 系の考え方を理解できる。
+                  promptHint: 計画グラフが探索をどう助けるか説明して。
+                  aliases:
+                    - planning graph
+                    - Graphplan
+                - slug: constraint-satisfaction-problem
+                  name: 制約充足問題
+                  summary: 変数・値域・制約からなる問題を満たす割り当てを探す定式化。
+                  whyLearn: スケジューリングやパズルから構成判断まで広く応用できる。
+                  promptHint: 制約充足問題として表現すると何が見通しやすくなるか説明して。
+                  aliases:
+                    - CSP
+                    - constraint satisfaction problem
+
+    - slug: probabilistic-reasoning-and-decision-making
+      name: 確率的推論と意思決定
+      summary: 不確実性の下で信念を更新し、期待価値にもとづいて選択するための理論と手法。
+      whyLearn: AI を現実の曖昧なデータや不完全観測の環境に持ち込むときの基礎判断になる。
+      topicClusters:
+        - slug: uncertainty-modeling
+          name: 不確実性の表現
+          summary: 確率モデルや依存関係の表現で、曖昧さを計算可能な形にする。
+          concepts:
+            - slug: probabilistic-structures
+              name: 確率モデルの構造
+              summary: 事象や依存関係を確率で表現する基本構造。
+              whyLearn: データから何を推定したいのか、どの依存を明示するべきかを整理できる。
+              terms:
+                - slug: bayes-theorem
+                  name: ベイズの定理
+                  summary: 事前知識と観測を組み合わせて事後確率を更新する基本公式。
+                  whyLearn: 推論の更新というAIの基礎動作を最も簡潔に表す。
+                  promptHint: ベイズの定理が観測による信念更新をどう表すか説明して。
+                  aliases:
+                    - Bayes theorem
+                    - Bayes rule
+                - slug: bayesian-network
+                  name: ベイジアンネットワーク
+                  summary: 条件付き依存関係を有向グラフで表す確率モデル。
+                  whyLearn: 因果的な直感に近い形で複雑な依存を分解して考えられる。
+                  promptHint: ベイジアンネットワークが条件付き独立をどう表すか説明して。
+                  aliases:
+                    - Bayesian network
+                    - belief network
+                - slug: hidden-markov-model
+                  name: 隠れマルコフモデル
+                  summary: 観測の背後に見えない状態遷移を仮定する時系列モデル。
+                  whyLearn: 音声、系列ラベリング、状態推定の基礎として重要。
+                  promptHint: 隠れマルコフモデルで状態と観測をどう区別するか説明して。
+                  aliases:
+                    - HMM
+                    - hidden Markov model
+            - slug: probabilistic-inference
+              name: 確率推論
+              summary: 観測された証拠から未知の変数やもっともらしい仮説を求める。
+              whyLearn: ラベル予測、診断、追跡などの裏で何を計算しているか理解できる。
+              terms:
+                - slug: belief-update
+                  name: 信念更新
+                  summary: 新しい観測を受けて状態や仮説の確率分布を更新する操作。
+                  whyLearn: エージェントが観測から継続的に判断を変える仕組みの基礎になる。
+                  promptHint: 信念更新が逐次観測の問題でなぜ重要か説明して。
+                  aliases:
+                    - belief update
+                    - Bayesian update
+                - slug: variable-elimination
+                  name: 変数消去法
+                  summary: 不要な変数を順に周辺化して確率クエリを解く推論アルゴリズム。
+                  whyLearn: 推論コストがモデル構造に依存することを学べる。
+                  promptHint: 変数消去法が全列挙より効率的になる理由を説明して。
+                  aliases:
+                    - variable elimination
+                - slug: maximum-a-posteriori
+                  name: MAP 推定
+                  summary: 観測後にもっとも確からしい仮説や割り当てを選ぶ推定規準。
+                  whyLearn: 確率分布を丸ごと扱う場合と、最尤の一点を選ぶ場合の違いを理解できる。
+                  promptHint: MAP推定と事後分布全体を見る方法の違いを説明して。
+                  aliases:
+                    - MAP
+                    - maximum a posteriori
+        - slug: decision-making-under-uncertainty
+          name: 不確実性下の意思決定
+          summary: 状態が見え切らない環境で行動を選び、長期的な価値を最適化する。
+          concepts:
+            - slug: decision-process-frameworks
+              name: 意思決定過程の枠組み
+              summary: 状態、行動、報酬、遷移を明示して方策を考える枠組み。
+              whyLearn: 強化学習や自律システムの定式化に直接つながる。
+              terms:
+                - slug: markov-decision-process
+                  name: マルコフ決定過程
+                  summary: 状態、行動、遷移、報酬で逐次意思決定を表す基本モデル。
+                  whyLearn: 強化学習を理解するための共通言語になる。
+                  promptHint: MDPの要素と、なぜマルコフ性が重要か説明して。
+                  aliases:
+                    - MDP
+                    - Markov decision process
+                - slug: partially-observable-markov-decision-process
+                  name: 部分観測マルコフ決定過程
+                  summary: 真の状態が観測できず、観測から信念状態を保つ意思決定モデル。
+                  whyLearn: 現実の不完全観測環境を扱うときの設計難所が分かる。
+                  promptHint: POMDPがMDPより難しい理由を説明して。
+                  aliases:
+                    - POMDP
+                    - partially observable MDP
+                - slug: expected-utility
+                  name: 期待効用
+                  summary: 各結果の効用を確率で重み付けして意思決定を評価する考え方。
+                  whyLearn: 単なる正解率ではなく価値ベースで判断する視点が持てる。
+                  promptHint: 期待効用が予測精度だけでは足りない理由を説明して。
+                  aliases:
+                    - expected utility
+            - slug: online-exploration-methods
+              name: オンライン探索戦略
+              summary: 試行しながら学び、探索と活用のバランスを取る方法群。
+              whyLearn: 推薦、広告、UI最適化、リアルタイム自動化の設計に直結する。
+              terms:
+                - slug: multi-armed-bandit
+                  name: 多腕バンディット
+                  summary: 複数選択肢から報酬を最大化するために探索と活用を両立させる問題設定。
+                  whyLearn: オンライン実験と逐次最適化の基礎問題として重要。
+                  promptHint: 多腕バンディットで探索活用トレードオフがなぜ生まれるか説明して。
+                  aliases:
+                    - multi-armed bandit
+                    - MAB
+                - slug: upper-confidence-bound
+                  name: 上限信頼区間法
+                  summary: 平均報酬だけでなく不確実性も加味して腕を選ぶバンディット戦略。
+                  whyLearn: 楽観的探索の考え方を学べる。
+                  promptHint: UCBが楽観的に探索するとはどういう意味か説明して。
+                  aliases:
+                    - UCB
+                    - upper confidence bound
+                - slug: thompson-sampling
+                  name: トンプソンサンプリング
+                  summary: 事後分布からサンプルして行動を選ぶ確率的探索戦略。
+                  whyLearn: ベイズ的な探索設計の代表例として理解しておきたい。
+                  promptHint: トンプソンサンプリングがUCBとどう違うか説明して。
+                  aliases:
+                    - Thompson sampling
+
+    - slug: machine-learning-fundamentals
+      name: 機械学習の基礎
+      summary: データから予測器や構造を学び、汎化性能を見極めるための基本手法。
+      whyLearn: 目の前の課題を分類・回帰・異常検知・クラスタリングのどれとして扱うべきか判断できるようになる。
+      topicClusters:
+        - slug: supervised-predictive-modeling
+          name: 教師あり予測モデリング
+          summary: ラベル付きデータから入力と出力の対応を学習する。
+          concepts:
+            - slug: classical-predictors
+              name: 古典的予測器
+              summary: 線形モデルやマージン最大化など、振る舞いを説明しやすい基本手法。
+              whyLearn: まずベースラインを作り、複雑なモデルとの比較軸を持てる。
+              terms:
+                - slug: linear-regression
+                  name: 線形回帰
+                  summary: 入力の線形結合で連続値を予測する回帰モデル。
+                  whyLearn: 回帰問題と損失最小化のもっとも基本的な入口になる。
+                  promptHint: 線形回帰がどんな前提で成り立つか説明して。
+                  aliases:
+                    - linear regression
+                - slug: logistic-regression
+                  name: ロジスティック回帰
+                  summary: クラス確率を推定するための線形分類モデル。
+                  whyLearn: 解釈しやすく堅い分類ベースラインとして重要。
+                  promptHint: ロジスティック回帰が分類問題でよく使われる理由を説明して。
+                  aliases:
+                    - logistic regression
+                - slug: support-vector-machine
+                  name: サポートベクターマシン
+                  summary: クラス間マージンを最大化する分類器。
+                  whyLearn: 特徴空間と境界の考え方を学ぶのに役立つ。
+                  promptHint: SVMがマージン最大化を使う意味を説明して。
+                  aliases:
+                    - SVM
+                    - support vector machine
+            - slug: tree-and-ensemble-methods
+              name: 木とアンサンブル
+              summary: 分割規則や複数モデルの組み合わせで高い性能を狙う手法群。
+              whyLearn: 表形式データでは深層学習以外の主力選択肢として重要。
+              terms:
+                - slug: decision-tree
+                  name: 決定木
+                  summary: 条件分岐を木構造で表現する分類・回帰モデル。
+                  whyLearn: モデルの分岐ロジックが見やすく、特徴量の効きを把握しやすい。
+                  promptHint: 決定木が解釈しやすい一方で過学習しやすい理由を説明して。
+                  aliases:
+                    - decision tree
+                - slug: random-forest
+                  name: ランダムフォレスト
+                  summary: 多数の決定木を組み合わせて分散を下げるアンサンブル法。
+                  whyLearn: 強いベースラインとして実務で頻出する。
+                  promptHint: ランダムフォレストが単一決定木より安定しやすい理由を説明して。
+                  aliases:
+                    - random forest
+                - slug: gradient-boosting
+                  name: 勾配ブースティング
+                  summary: 残差を順次学習して予測を改善するアンサンブル法。
+                  whyLearn: 表形式データでの高性能モデル群を理解する基礎になる。
+                  promptHint: 勾配ブースティングがどのように誤差を詰めていくか説明して。
+                  aliases:
+                    - gradient boosting
+                    - GBDT
+        - slug: unsupervised-learning-and-generalization
+          name: 教師なし学習と汎化
+          summary: ラベルのないデータから構造を見つけ、学習が過剰適合していないかを判断する。
+          concepts:
+            - slug: structure-discovery
+              name: 構造発見
+              summary: データの分布や潜在構造を要約・分解・検出する技法。
+              whyLearn: 教師なしの探索や前処理の判断に使える。
+              terms:
+                - slug: k-means
+                  name: k-means
+                  summary: データを代表点に近いクラスタへ反復的に割り当てるクラスタリング手法。
+                  whyLearn: クラスタリングの基本発想と前提を学ぶのに最適。
+                  promptHint: k-meansが球状クラスタを想定しやすい理由を説明して。
+                  aliases:
+                    - k-means
+                - slug: principal-component-analysis
+                  name: 主成分分析
+                  summary: 分散の大きい方向へ射影して次元を圧縮する手法。
+                  whyLearn: 次元削減と可視化の基本が分かる。
+                  promptHint: 主成分分析で情報を圧縮するとはどういうことか説明して。
+                  aliases:
+                    - PCA
+                    - principal component analysis
+                - slug: anomaly-detection
+                  name: 異常検知
+                  summary: 通常パターンからの逸脱を見つける問題設定と手法群。
+                  whyLearn: 障害、 fraud、品質管理など実務応用が広い。
+                  promptHint: 異常検知が分類問題とどう違うか説明して。
+                  aliases:
+                    - anomaly detection
+                    - outlier detection
+            - slug: validation-and-bias-variance
+              name: 検証とバイアス・バリアンス
+              summary: 学習結果が未知データでも保つかを確認し、複雑さと汎化のバランスを取る。
+              whyLearn: モデル比較やリーク防止のレビュー観点が得られる。
+              terms:
+                - slug: train-validation-test-split
+                  name: 学習・検証・評価分割
+                  summary: 学習用、モデル選択用、最終評価用にデータを分ける基本手順。
+                  whyLearn: 性能の見かけ倒しを避けるための最低限の作法になる。
+                  promptHint: 学習・検証・評価を分ける理由を説明して。
+                  aliases:
+                    - train validation test split
+                - slug: cross-validation
+                  name: 交差検証
+                  summary: データ分割を入れ替えながら評価を安定化させる方法。
+                  whyLearn: データが少ないときの評価のぶれを減らせる。
+                  promptHint: 交差検証が単一分割評価より信頼しやすい理由を説明して。
+                  aliases:
+                    - cross-validation
+                    - CV
+                - slug: overfitting
+                  name: 過学習
+                  summary: 学習データに適応しすぎて未知データで性能が落ちる現象。
+                  whyLearn: モデル複雑性と汎化の基本的な失敗パターンを理解できる。
+                  promptHint: 過学習をどう検出し、どう緩和するか説明して。
+                  aliases:
+                    - overfitting
+
+    - slug: deep-learning-and-representation-learning
+      name: 深層学習と表現学習
+      summary: 多層ニューラルネットワークで表現を学習し、画像・系列・マルチモーダル入力を扱う領域。
+      whyLearn: 基盤モデル以前のDLの基礎と、現在の大規模モデルを支える表現学習の考え方をつなげられる。
+      topicClusters:
+        - slug: neural-network-foundations
+          name: ニューラルネットワーク基礎
+          summary: 学習の力学と基本アーキテクチャを理解する。
+          concepts:
+            - slug: optimization-and-regularization
+              name: 最適化と正則化
+              summary: 学習を進め、暴走や過学習を抑えるための基本要素。
+              whyLearn: 深層学習の学習曲線を読めるようになる。
+              terms:
+                - slug: backpropagation
+                  name: 誤差逆伝播法
+                  summary: 出力誤差を各層へ伝播して重み更新の勾配を求める計算法。
+                  whyLearn: ニューラルネット学習の中身を理解する最重要概念。
+                  promptHint: 誤差逆伝播法が多層ネットワーク学習を可能にする理由を説明して。
+                  aliases:
+                    - backpropagation
+                    - backprop
+                - slug: stochastic-gradient-descent
+                  name: 確率的勾配降下法
+                  summary: ミニバッチ単位で損失を下げる方向へ反復更新する最適化法。
+                  whyLearn: 学習速度、安定性、汎化の関係を理解できる。
+                  promptHint: 確率的勾配降下法が一括最適化とどう違うか説明して。
+                  aliases:
+                    - SGD
+                    - stochastic gradient descent
+                - slug: dropout
+                  name: ドロップアウト
+                  summary: 学習時に一部のユニットを無効化して過学習を抑える正則化法。
+                  whyLearn: 汎化改善のために表現の共適応を崩す考え方を学べる。
+                  promptHint: ドロップアウトが過学習抑制に効く理由を説明して。
+                  aliases:
+                    - dropout
+            - slug: canonical-neural-architectures
+              name: 基本ニューラルアーキテクチャ
+              summary: 入力構造に応じて使い分けられてきた代表的ネットワーク。
+              whyLearn: Transformer 以前の設計判断がどこから来たかを理解できる。
+              terms:
+                - slug: convolutional-neural-network
+                  name: 畳み込みニューラルネットワーク
+                  summary: 局所受容野と重み共有で空間構造を扱うネットワーク。
+                  whyLearn: 画像認識や特徴抽出の設計原理を学べる。
+                  promptHint: CNNで重み共有が効く理由を説明して。
+                  aliases:
+                    - CNN
+                    - convolutional neural network
+                - slug: recurrent-neural-network
+                  name: 再帰型ニューラルネットワーク
+                  summary: 過去の状態を引き継ぎながら系列を処理するネットワーク。
+                  whyLearn: 系列処理の基本発想と長期依存の難しさを理解できる。
+                  promptHint: RNNが系列データに向く理由と弱点を説明して。
+                  aliases:
+                    - RNN
+                    - recurrent neural network
+                - slug: long-short-term-memory
+                  name: LSTM
+                  summary: ゲート機構で長期依存を扱いやすくしたRNNの拡張。
+                  whyLearn: 勾配消失をどう緩和するかの代表例になる。
+                  promptHint: LSTMが通常のRNNより長い依存を扱いやすい理由を説明して。
+                  aliases:
+                    - LSTM
+                    - long short-term memory
+        - slug: representations-and-multimodality
+          name: 表現学習とマルチモーダル
+          summary: データから再利用可能な表現を学び、複数モダリティを統合する。
+          concepts:
+            - slug: learned-representations
+              name: 学習された表現
+              summary: 特徴量エンジニアリングを減らし、下流タスクに転用できる表現を獲得する。
+              whyLearn: 近年のAI進歩の中心が、手作業特徴から表現学習への移行だから。
+              terms:
+                - slug: embedding
+                  name: 埋め込み表現
+                  summary: 高次元で離散的な対象を連続ベクトル空間へ写像した表現。
+                  whyLearn: 類似検索、推薦、RAG、表現比較の基礎になる。
+                  promptHint: 埋め込み表現がなぜ意味的近さを扱いやすいのか説明して。
+                  aliases:
+                    - embedding
+                    - representation vector
+                - slug: self-supervised-learning
+                  name: 自己教師あり学習
+                  summary: データ自体から学習課題を作り、大量のラベルなしデータで表現を学ぶ方法。
+                  whyLearn: 基盤モデル時代の事前学習の理解に不可欠。
+                  promptHint: 自己教師あり学習が大量ラベルなしデータを活かせる理由を説明して。
+                  aliases:
+                    - self-supervised learning
+                - slug: contrastive-learning
+                  name: コントラスト学習
+                  summary: 近づけたい表現と遠ざけたい表現の関係から特徴空間を学ぶ方法。
+                  whyLearn: CLIPや検索用埋め込みの理解につながる。
+                  promptHint: コントラスト学習が類似性学習に向く理由を説明して。
+                  aliases:
+                    - contrastive learning
+            - slug: multimodal-architectures
+              name: マルチモーダル構造
+              summary: 画像・テキスト・音声など複数の入力様式を同一または連結表現で扱う。
+              whyLearn: 現代のAIは言語単独よりも、モダリティ横断の統合が重要だから。
+              terms:
+                - slug: vision-transformer
+                  name: Vision Transformer
+                  summary: 画像をパッチ列として扱い、Transformerで処理するアーキテクチャ。
+                  whyLearn: CNN以外の視覚表現学習の代表系として重要。
+                  promptHint: Vision Transformerが画像をどのように系列化して扱うか説明して。
+                  aliases:
+                    - ViT
+                    - vision transformer
+                - slug: clip
+                  name: CLIP
+                  summary: 画像とテキストを同一埋め込み空間で対応づける対照学習モデル。
+                  whyLearn: テキスト条件付き画像理解やマルチモーダル検索の基礎になる。
+                  promptHint: CLIPが画像とテキストをどう結びつけるか説明して。
+                  aliases:
+                    - CLIP
+                    - Contrastive Language Image Pre-training
+                - slug: encoder-decoder-architecture
+                  name: エンコーダ・デコーダ構造
+                  summary: 入力を表現へ圧縮し、その表現から出力系列や構造を生成する構成。
+                  whyLearn: 翻訳、要約、音声認識、画像説明などで頻出する。
+                  promptHint: エンコーダ・デコーダ構造が変換タスクに向く理由を説明して。
+                  aliases:
+                    - encoder-decoder
+                    - seq2seq
+
+    - slug: generative-ai-and-foundation-models
+      name: 生成AIと基盤モデル
+      summary: Transformer を中心に、大規模事前学習モデルの生成、適応、接地を扱う領域。
+      whyLearn: 現代のAI実務で増え続ける用語や設計判断を、原理とアーキテクチャで整理できるようになる。
+      topicClusters:
+        - slug: transformer-and-inference-time-generation
+          name: Transformer と生成制御
+          summary: 生成モデルの内部構造と、推論時の出力制御を理解する。
+          concepts:
+            - slug: transformer-internals
+              name: Transformer の内部機構
+              summary: self-attention を中核にした現代LLMの基本構造。
+              whyLearn: LLM の性能、コスト、文脈長、適応方法の多くがここから説明できる。
+              terms:
+                - slug: self-attention
+                  name: 自己注意機構
+                  summary: 入力系列内の各位置がお互いを参照して表現を更新する仕組み。
+                  whyLearn: Transformer を理解する最重要部品。
+                  promptHint: 自己注意機構がRNNと異なる点を説明して。
+                  aliases:
+                    - self-attention
+                    - attention
+                - slug: tokenizer
+                  name: トークナイザ
+                  summary: 文字列をモデルが扱うトークン列に分割する前処理。
+                  whyLearn: 文字数とコスト、文脈長、分割誤差の背景が分かる。
+                  promptHint: トークナイザの違いがモデル利用に与える影響を説明して。
+                  aliases:
+                    - tokenizer
+                    - tokenization
+                - slug: positional-encoding
+                  name: 位置エンコーディング
+                  summary: 系列順序の情報を attention ベースのモデルに与える仕組み。
+                  whyLearn: 順序を持つデータを attention だけで扱う理由が理解できる。
+                  promptHint: 位置エンコーディングが必要な理由を説明して。
+                  aliases:
+                    - positional encoding
+                    - position embedding
+            - slug: generation-control
+              name: 生成の制御
+              summary: 推論時の文脈・指示・サンプリング設定で出力を調整する。
+              whyLearn: モデル自体を変えずに挙動を変える実務上の主要手段だから。
+              terms:
+                - slug: context-window
+                  name: コンテキストウィンドウ
+                  summary: モデルが一度に参照できる入力と履歴の長さ。
+                  whyLearn: 長文処理や会話設計の限界とコストに直結する。
+                  promptHint: コンテキストウィンドウが長いと何が有利で何が不利か説明して。
+                  aliases:
+                    - context window
+                    - context length
+                - slug: system-prompt
+                  name: システムプロンプト
+                  summary: モデルの役割や応答方針を上位から与える指示。
+                  whyLearn: 振る舞いの一貫性と安全制御の起点になる。
+                  promptHint: システムプロンプトがユーザープロンプトとどう役割分担するか説明して。
+                  aliases:
+                    - system prompt
+                - slug: decoding-strategy
+                  name: デコーディング戦略
+                  summary: 次トークン選択の規則を変えて生成品質や多様性を調整する方法。
+                  whyLearn: 温度やサンプリング設定の意味を原理的に理解できる。
+                  promptHint: デコーディング戦略が出力の安定性と多様性にどう影響するか説明して。
+                  aliases:
+                    - decoding
+                    - sampling strategy
+        - slug: adaptation-grounding-and-alignment
+          name: 適応、接地、アラインメント
+          summary: 事前学習済みモデルを特定目的に合わせ、外部知識と結びつける。
+          concepts:
+            - slug: model-adaptation
+              name: モデル適応
+              summary: 下流タスクや望ましい応答スタイルへモデルを合わせる方法。
+              whyLearn: 学習済みモデルをそのまま使うか、適応するかの判断ができるようになる。
+              terms:
+                - slug: supervised-fine-tuning
+                  name: 教師ありファインチューニング
+                  summary: 指定データでモデル重みを追加学習し、特定タスクへ寄せる手法。
+                  whyLearn: 事前学習後のもっとも基本的な適応法だから。
+                  promptHint: 教師ありファインチューニングがプロンプト調整とどう違うか説明して。
+                  aliases:
+                    - SFT
+                    - supervised fine-tuning
+                - slug: lora
+                  name: LoRA
+                  summary: 低ランク行列だけを学習して大規模モデルを効率的に適応する手法。
+                  whyLearn: パラメータ効率の良い実務適応法として重要。
+                  promptHint: LoRAが全重み更新より軽い理由を説明して。
+                  aliases:
+                    - LoRA
+                    - low-rank adaptation
+                - slug: rlhf
+                  name: RLHF
+                  summary: 人間の好みフィードバックを使ってモデル出力を望ましい方向へ整列させる手法群。
+                  whyLearn: 役に立つが危険な出力を抑えるための実務技法として重要。
+                  promptHint: RLHFが単なる教師あり学習とどう違うか説明して。
+                  aliases:
+                    - RLHF
+                    - reinforcement learning from human feedback
+                - slug: direct-preference-optimization
+                  name: 直接選好最適化
+                  summary: 報酬モデルと強化学習を明示せずに選好データから整列させる方法。
+                  whyLearn: 現代のアラインメント実務でよく比較対象になる。
+                  promptHint: DPOがRLHFより簡潔とされる理由を説明して。
+                  aliases:
+                    - DPO
+                    - direct preference optimization
+            - slug: retrieval-grounding
+              name: 検索接地
+              summary: モデル外部の知識を取得して、回答生成を根拠あるものへ寄せる。
+              whyLearn: 幻覚低減、最新知識反映、出典提示の設計に不可欠。
+              terms:
+                - slug: retrieval-augmented-generation
+                  name: 検索拡張生成
+                  summary: 外部検索結果を文脈へ注入して生成する構成。
+                  whyLearn: 生成AIの実務設計で最頻出のアーキテクチャの一つ。
+                  promptHint: RAGがモデル内部知識だけに頼る方法とどう違うか説明して。
+                  aliases:
+                    - RAG
+                    - retrieval-augmented generation
+                - slug: vector-database
+                  name: ベクトルデータベース
+                  summary: 埋め込み表現を近傍検索できるよう保存・索引化するストア。
+                  whyLearn: RAGや意味検索を成立させる基盤の一つだから。
+                  promptHint: ベクトルデータベースが通常のキーワード検索とどう違うか説明して。
+                  aliases:
+                    - vector database
+                    - vector store
+                - slug: reranker
+                  name: リランキングモデル
+                  summary: 初期検索候補を再評価して、より関連性の高い順に並べ替えるモデル。
+                  whyLearn: RAG品質が検索第一段だけで決まらないことを理解できる。
+                  promptHint: リランキングがRAGの回答品質をどう改善するか説明して。
+                  aliases:
+                    - reranker
+                    - re-ranker
+
+    - slug: recommendation-reinforcement-learning-and-agentic-systems
+      name: 推薦、強化学習、エージェント
+      summary: 行動を選び、フィードバックから改善し、外部ツールを使ってタスクを完了する仕組みを扱う。
+      whyLearn: プロダクトの自動最適化、推薦、逐次意思決定、エージェント化を同じ設計問題として理解できる。
+      topicClusters:
+        - slug: reinforcement-learning-and-online-optimization
+          name: 強化学習とオンライン最適化
+          summary: 報酬にもとづいて行動方策を改善する。
+          concepts:
+            - slug: value-and-policy-learning
+              name: 価値学習と方策学習
+              summary: 行動価値や方策を直接学び、長期報酬を最大化する。
+              whyLearn: 強化学習系の主要アルゴリズムを比較する軸が得られる。
+              terms:
+                - slug: q-learning
+                  name: Q学習
+                  summary: 行動価値関数を更新して最適行動を近似するオフポリシー学習法。
+                  whyLearn: 価値ベースRLの出発点として必須。
+                  promptHint: Q学習が環境モデルなしで学べる理由を説明して。
+                  aliases:
+                    - Q-learning
+                - slug: deep-q-network
+                  name: Deep Q-Network
+                  summary: Q関数近似に深層ニューラルネットワークを使う手法。
+                  whyLearn: 高次元入力でRLを成立させた代表例として重要。
+                  promptHint: DQNがQ学習を画像入力へ拡張した要点を説明して。
+                  aliases:
+                    - DQN
+                    - Deep Q-Network
+                - slug: policy-gradient
+                  name: 方策勾配法
+                  summary: 方策を直接パラメータ化し、期待報酬の勾配で更新する方法。
+                  whyLearn: 連続行動や確率方策を扱う基本となる。
+                  promptHint: 方策勾配法が価値ベース法とどう違うか説明して。
+                  aliases:
+                    - policy gradient
+            - slug: exploration-at-scale
+              name: 大規模探索と実運用RL
+              summary: 実運用や大規模環境に近い条件で学習を成立させる考え方。
+              whyLearn: オンライン試行、ログ再利用、自己対戦など設計の幅が広がる。
+              terms:
+                - slug: contextual-bandit
+                  name: 文脈付きバンディット
+                  summary: 文脈特徴を見ながら各選択肢の報酬を学習する逐次最適化設定。
+                  whyLearn: 推薦や広告配信など実務応用が多い。
+                  promptHint: 文脈付きバンディットが通常のバンディットより表現力が高い理由を説明して。
+                  aliases:
+                    - contextual bandit
+                - slug: offline-reinforcement-learning
+                  name: オフライン強化学習
+                  summary: 過去ログだけを使って新しい方策を学ぶ強化学習。
+                  whyLearn: 実システムで危険な探索を減らす方法として重要。
+                  promptHint: オフライン強化学習がオンライン学習より難しい理由を説明して。
+                  aliases:
+                    - offline RL
+                    - batch reinforcement learning
+                - slug: self-play
+                  name: 自己対戦学習
+                  summary: 自分自身との対戦やシミュレーションから方策を改善する学習法。
+                  whyLearn: 探索と学習を組み合わせる強力な設計として理解しておきたい。
+                  promptHint: 自己対戦学習がゲームAIで強い理由を説明して。
+                  aliases:
+                    - self-play
+        - slug: personalization-and-tool-using-agents
+          name: パーソナライズとツール利用エージェント
+          summary: ユーザーごとに行動を最適化し、モデルが外部ツールを使って仕事を完了する。
+          concepts:
+            - slug: recommendation-engines
+              name: 推薦エンジン
+              summary: ユーザーとアイテムの相互作用から好みを予測して提示を最適化する。
+              whyLearn: プロダクト価値に直結するAI応用の代表例。
+              terms:
+                - slug: collaborative-filtering
+                  name: 協調フィルタリング
+                  summary: 類似ユーザーや類似アイテムの相互作用から推薦する方法群。
+                  whyLearn: 推薦の基本問題設定とベースライン理解に必要。
+                  promptHint: 協調フィルタリングが内容ベース推薦とどう違うか説明して。
+                  aliases:
+                    - collaborative filtering
+                    - CF
+                - slug: matrix-factorization
+                  name: 行列分解
+                  summary: ユーザー・アイテム行列を潜在因子へ分解して推薦する手法。
+                  whyLearn: 推薦システムの古典かつ実用的な中心手法。
+                  promptHint: 行列分解が推薦の潜在特徴をどう表すか説明して。
+                  aliases:
+                    - matrix factorization
+                - slug: wide-and-deep-learning
+                  name: Wide & Deep
+                  summary: 記憶的な特徴交差と汎化的な深層表現を同時に学ぶ推薦アーキテクチャ。
+                  whyLearn: 推薦実務で memorization と generalization をどう両立するか学べる。
+                  promptHint: Wide & Deepが推薦でなぜ有効か説明して。
+                  aliases:
+                    - Wide & Deep
+                    - wide and deep learning
+            - slug: tool-using-agents
+              name: ツール利用エージェント
+              summary: モデル単体で答えるのではなく、外部APIやツールを呼び出してタスクを進める構成。
+              whyLearn: 2026時点の実務では、LLMを単独応答器ではなくオーケストレータとして使う場面が増えている。
+              terms:
+                - slug: tool-calling
+                  name: ツール呼び出し
+                  summary: モデルが外部関数やAPIの使用を選び、結果を取り込んで応答する仕組み。
+                  whyLearn: 生成だけでなく実行可能性を持ったAI設計の入口になる。
+                  promptHint: ツール呼び出しが通常のテキスト生成より何を可能にするか説明して。
+                  aliases:
+                    - tool calling
+                - slug: planner-executor
+                  name: プランナー・エグゼキュータ
+                  summary: 計画を作る役割と実行する役割を分けるエージェント構成パターン。
+                  whyLearn: 複雑タスクで分解と実行を分ける設計が理解できる。
+                  promptHint: プランナー・エグゼキュータ構成の利点と欠点を説明して。
+                  aliases:
+                    - planner executor
+                    - plan and execute
+                - slug: reflection
+                  name: リフレクション
+                  summary: モデルが自分の中間結果や失敗を振り返って改善するパターン。
+                  whyLearn: エージェント性能向上手法として頻出する。
+                  promptHint: リフレクションがエージェントの失敗率をどう下げうるか説明して。
+                  aliases:
+                    - reflection
+                    - self-critique
+
+    - slug: evaluation-safety-and-responsible-ai
+      name: 評価、安全性、責任あるAI
+      summary: AI の性能、失敗、攻撃面、説明責任、文書化を扱う実務上の品質領域。
+      whyLearn: 使えるAIと信頼できるAIは同義ではなく、評価軸と失敗様式を持っていないと設計判断を誤るから。
+      topicClusters:
+        - slug: evaluation-and-reliability
+          name: 評価と信頼性
+          summary: モデルの良し悪しを測り、どこで壊れるかを捉える。
+          concepts:
+            - slug: evaluation-practice
+              name: 評価実務
+              summary: ベンチマーク、検証セット、人手評価などでモデル品質を多面的に確認する。
+              whyLearn: 単一指標に依存しないレビュー観点を持てる。
+              terms:
+                - slug: benchmark
+                  name: ベンチマーク
+                  summary: モデル能力を比較するための標準化された評価課題やデータセット。
+                  whyLearn: 何を測っていて何を測っていないかを読む力が必要。
+                  promptHint: ベンチマークが便利でありながら危うい理由を説明して。
+                  aliases:
+                    - benchmark
+                - slug: golden-set
+                  name: ゴールデンセット
+                  summary: 対象業務に合わせて厳選した高信頼の評価事例集。
+                  whyLearn: 汎用ベンチマークだけでは見えない実務品質を測れる。
+                  promptHint: ゴールデンセットを自分たちで作る意義を説明して。
+                  aliases:
+                    - golden set
+                    - eval set
+                - slug: human-evaluation
+                  name: 人手評価
+                  summary: 有用性、自然さ、安全性などを人間が基準に沿って評価する方法。
+                  whyLearn: 自動指標だけでは拾えない品質を補完できる。
+                  promptHint: 人手評価が必要になる品質属性を説明して。
+                  aliases:
+                    - human evaluation
+                    - human review
+            - slug: uncertainty-and-failure-analysis
+              name: 不確実性と失敗分析
+              summary: モデルがどこで自信過剰になり、どのように壊れるかを扱う。
+              whyLearn: 失敗を前提に利用条件やガードレールを決めるために必要。
+              terms:
+                - slug: hallucination
+                  name: 幻覚
+                  summary: もっともらしいが事実に根拠のない内容を生成してしまう現象。
+                  whyLearn: 生成AI利用の最大級の実務リスクの一つ。
+                  promptHint: 幻覚がなぜ起きるのか、RAGや評価でどう向き合うか説明して。
+                  aliases:
+                    - hallucination
+                    - confabulation
+                - slug: calibration
+                  name: キャリブレーション
+                  summary: モデルの確信度と実際の正答確率の一致度。
+                  whyLearn: 自信を伴う予測を安全に使うには不可欠。
+                  promptHint: キャリブレーションが良いモデルとはどういう状態か説明して。
+                  aliases:
+                    - calibration
+                - slug: robustness
+                  name: ロバストネス
+                  summary: 入力ゆらぎや条件変化に対して性能や挙動が大きく崩れにくい性質。
+                  whyLearn: 実環境での信頼性を見積もる中心概念になる。
+                  promptHint: ロバストネスが高いことをどう評価するか説明して。
+                  aliases:
+                    - robustness
+        - slug: adversarial-risk-and-governance-artifacts
+          name: 攻撃リスクとガバナンス成果物
+          summary: 悪用、攻撃、説明責任に向き合うための実務パターン。
+          concepts:
+            - slug: attack-and-misuse-patterns
+              name: 攻撃と誤用パターン
+              summary: 生成AIやエージェントが誘導攻撃や危険出力にさらされる失敗モード。
+              whyLearn: 便利機能の追加がそのまま攻撃面の拡大になるから。
+              terms:
+                - slug: prompt-injection
+                  name: プロンプトインジェクション
+                  summary: 外部入力が指示系統を乗っ取り、望ましくない動作を誘発する攻撃。
+                  whyLearn: tool-calling や RAG を含む実運用系で特に重要。
+                  promptHint: プロンプトインジェクションがなぜ単なる悪い入力以上の問題か説明して。
+                  aliases:
+                    - prompt injection
+                - slug: jailbreak
+                  name: ジェイルブレイク
+                  summary: 制約や安全方針を回避して禁止出力を引き出そうとする誘導手法。
+                  whyLearn: 安全制御がどの程度脆いかを見る基本語彙になる。
+                  promptHint: ジェイルブレイクが安全評価で何を試しているのか説明して。
+                  aliases:
+                    - jailbreak
+                - slug: red-teaming
+                  name: レッドチーミング
+                  summary: 想定外の失敗や悪用を意図的に探す評価活動。
+                  whyLearn: 本番前に脆弱性や危険挙動を洗い出す実務の基本になる。
+                  promptHint: レッドチーミングが通常のテストより広く見るものを説明して。
+                  aliases:
+                    - red teaming
+                    - red-teaming
+            - slug: documentation-and-governance-hooks
+              name: 文書化とガバナンス接続
+              summary: モデルやデータの来歴、用途、制約を記録し、説明責任へ接続する。
+              whyLearn: チーム外や将来の運用者に知識を引き継ぐために必要。
+              terms:
+                - slug: model-card
+                  name: モデルカード
+                  summary: モデルの用途、評価、制約、リスクを記述する文書化テンプレート。
+                  whyLearn: モデル利用条件を共有しやすくなる。
+                  promptHint: モデルカードに何を書くとレビューに役立つか説明して。
+                  aliases:
+                    - model card
+                - slug: data-card
+                  name: データカード
+                  summary: データセットの収集方法、範囲、偏り、制約を記述する文書。
+                  whyLearn: モデル品質をデータ起点で追跡しやすくなる。
+                  promptHint: データカードがないと何が分からなくなるか説明して。
+                  aliases:
+                    - data card
+                    - datasheet
+                - slug: content-provenance
+                  name: コンテンツ来歴
+                  summary: 生成物や学習資源の由来、変更履歴、真正性を追跡する考え方。
+                  whyLearn: 生成物の信頼性、説明責任、透明性に関わる。
+                  promptHint: コンテンツ来歴が生成AI時代に重要になった理由を説明して。
+                  aliases:
+                    - content provenance
+                    - provenance
+
+edges:
+  - from: bayes-theorem
+    to: bayesian-network
+    relationType: prerequisite
+    reason: ベイジアンネットワークの条件付き確率計算はベイズの定理の理解を前提にする。
+  - from: markov-decision-process
+    to: q-learning
+    relationType: prerequisite
+    reason: Q学習はMDP上で行動価値を更新する発想を前提にする。
+  - from: partially-observable-markov-decision-process
+    to: belief-update
+    relationType: related
+    reason: POMDPでは観測ごとの信念更新が中核になる。
+  - from: multi-armed-bandit
+    to: contextual-bandit
+    relationType: prerequisite
+    reason: 文脈付きバンディットは通常のバンディットを特徴量付きへ拡張した設定だから。
+  - from: upper-confidence-bound
+    to: multi-armed-bandit
+    relationType: used_in
+    reason: UCBは多腕バンディット問題を解く代表的戦略の一つ。
+  - from: thompson-sampling
+    to: multi-armed-bandit
+    relationType: used_in
+    reason: トンプソンサンプリングも多腕バンディットの代表解法として使われる。
+  - from: a-star
+    to: beam-search
+    relationType: compare_with
+    reason: どちらも探索の候補削減に関わるが、A*は最適性重視、ビームサーチは計算資源節約重視である。
+  - from: minimax
+    to: alpha-beta-pruning
+    relationType: prerequisite
+    reason: αβ枝刈りはミニマックス探索を効率化する技巧だから。
+  - from: monte-carlo-tree-search
+    to: self-play
+    relationType: related
+    reason: 自己対戦学習ではMCTSと方策学習を組み合わせる設計が代表的である。
+  - from: ontology
+    to: knowledge-graph
+    relationType: related
+    reason: オントロジーはナレッジグラフの意味制約や型定義を強化するためによく使われる。
+  - from: strips
+    to: planning-graph
+    relationType: related
+    reason: 古典計画ではSTRIPS表現と計画グラフ系の探索が結びついて使われることが多い。
+  - from: backpropagation
+    to: convolutional-neural-network
+    relationType: prerequisite
+    reason: CNNも誤差逆伝播で学習されるニューラルネットワークだから。
+  - from: backpropagation
+    to: self-attention
+    relationType: prerequisite
+    reason: Transformer系も学習自体は勾配ベース最適化を前提にする。
+  - from: embedding
+    to: vector-database
+    relationType: prerequisite
+    reason: ベクトルデータベースは埋め込み表現を索引化して近傍検索するための仕組みだから。
+  - from: contrastive-learning
+    to: clip
+    relationType: used_in
+    reason: CLIPは画像とテキストを対応づける対照学習の代表例である。
+  - from: self-attention
+    to: retrieval-augmented-generation
+    relationType: related
+    reason: RAGは検索接地の構成だが、生成器の中心にはTransformer系モデルが置かれることが多い。
+  - from: supervised-fine-tuning
+    to: lora
+    relationType: compare_with
+    reason: どちらもモデル適応だが、LoRAはパラメータ効率に主眼を置く。
+  - from: rlhf
+    to: direct-preference-optimization
+    relationType: compare_with
+    reason: どちらも選好整列の方法だが、DPOはより簡潔な最適化として比較される。
+  - from: retrieval-augmented-generation
+    to: vector-database
+    relationType: used_in
+    reason: 多くのRAG構成ではベクトルストアが検索基盤になる。
+  - from: retrieval-augmented-generation
+    to: reranker
+    relationType: used_in
+    reason: RAGの検索品質向上のためにリランキングが組み合わされることが多い。
+  - from: collaborative-filtering
+    to: matrix-factorization
+    relationType: used_in
+    reason: 行列分解は協調フィルタリングの代表的実装である。
+  - from: matrix-factorization
+    to: wide-and-deep-learning
+    relationType: compare_with
+    reason: どちらも推薦に使われるが、前者は潜在因子中心、後者は特徴交差と深層表現の併用を狙う。
+  - from: tool-calling
+    to: prompt-injection
+    relationType: related
+    reason: ツール利用が増えるほど、外部入力による指示乗っ取りのリスクが増える。
+  - from: red-teaming
+    to: prompt-injection
+    relationType: used_in
+    reason: プロンプトインジェクション耐性の検証ではレッドチーミングが有効である。
+  - from: benchmark
+    to: golden-set
+    relationType: compare_with
+    reason: ベンチマークは汎用比較向け、ゴールデンセットは自社文脈の品質保証向けである。
+  - from: hallucination
+    to: retrieval-augmented-generation
+    relationType: related
+    reason: RAGは幻覚低減の主要アプローチの一つとして使われる。
+  - from: calibration
+    to: human-evaluation
+    relationType: related
+    reason: 自信度の妥当性と人間が感じる信頼性は併せて見ないと判断を誤りやすい。
+  - from: model-card
+    to: data-card
+    relationType: related
+    reason: モデル理解とデータ理解は分離できず、文書化も対で整備されることが多い。
+  - from: content-provenance
+    to: model-card
+    relationType: related
+    reason: どちらも透明性と説明責任を支える成果物として機能する。

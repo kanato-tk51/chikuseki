@@ -1,0 +1,946 @@
+domain:
+  slug: systems-networks-distributed-infrastructure
+  name: コンピュータシステム、ネットワーク、分散基盤
+  summary: コンピュータがプログラムを実行し、システムが通信・協調・拡張する仕組みを扱う領域。
+  boundaryNotes: システム機構と実行時の基礎を扱う。本番運用責任やサービス運用は Reliability, Operations, and Platform Engineering に寄せる。アプリケーション固有のサービス設計は Product Engineering に、広いセキュリティ統治は Security, Privacy, and Governance に寄せる。
+  knowledgeAreas:
+    - slug: computer-architecture-and-execution-model
+      name: コンピュータアーキテクチャと実行モデル
+      summary: CPU、命令実行、並列性、メモリ階層、共有メモリの意味論を理解するための領域。
+      whyLearn: アプリケーションの性能、局所性、並列化、共有データ競合の説明力を得るために必要。
+      topicClusters:
+        - slug: instruction-execution-and-privilege
+          name: 命令実行と特権制御
+          summary: 命令セット、制御移譲、特権モード、CPU内部の実行最適化を扱う。
+          concepts:
+            - slug: isa-and-control-transfer
+              name: ISAと制御移譲
+              summary: CPUが何を実行でき、どの条件で制御を切り替えるかを規定する考え方。
+              whyLearn: コンパイラ、OS、CPUの責務境界を理解しやすくなる。
+              terms:
+                - slug: instruction-set-architecture
+                  name: 命令セットアーキテクチャ
+                  summary: CPUが公開する命令、レジスタ、アドレッシング方式などの抽象境界。
+                  whyLearn: ISAと実装を分けて考えることで移植性と性能議論を整理できる。
+                  promptHint: ISAとマイクロアーキテクチャの違いを具体例で説明して。
+                  aliases:
+                    - ISA
+                - slug: privilege-level
+                  name: 特権レベル
+                  summary: ユーザー空間とカーネル空間のように実行権限を段階化する仕組み。
+                  whyLearn: 保護境界、システムコール、例外処理の前提が分かる。
+                  promptHint: ユーザーモードとカーネルモードの違いを説明して。
+                  aliases:
+                    - ring
+                - slug: interrupt-and-exception
+                  name: 割り込みと例外
+                  summary: 外部イベントや異常条件で通常の命令列から制御を切り替える仕組み。
+                  whyLearn: I/O、タイマ、ページフォールト、障害時の制御移譲を説明できる。
+                  promptHint: 割り込みと例外の違いをOS視点で説明して。
+                  aliases:
+                    - interrupt
+                    - exception
+            - slug: parallel-execution-techniques
+              name: 並列実行技法
+              summary: 命令レベルやデータレベルでCPUの実効性能を高めるための技法。
+              whyLearn: 同じアルゴリズムでもCPU上で速さが変わる理由を理解できる。
+              terms:
+                - slug: pipelining
+                  name: パイプライン
+                  summary: 命令実行を段階に分けて重ね合わせる基本的な高速化手法。
+                  whyLearn: ハザードや分岐ミスが性能に効く理由を理解できる。
+                  promptHint: パイプライン化がなぜスループットを上げるか説明して。
+                  aliases:
+                    - pipeline
+                - slug: branch-prediction
+                  name: 分岐予測
+                  summary: 条件分岐の進路を先読みして投機的に実行を進める仕組み。
+                  whyLearn: 分岐の多いコードが速くも遅くもなる理由を説明できる。
+                  promptHint: 分岐予測ミスが遅延を生む仕組みを説明して。
+                  aliases:
+                    - branch predictor
+                - slug: simd
+                  name: SIMD
+                  summary: 一つの命令で複数データを同時に処理するデータ並列実行方式。
+                  whyLearn: 数値計算、画像処理、検索処理の高速化の基礎になる。
+                  promptHint: SIMDが有効な処理と不向きな処理を比較して。
+                  aliases:
+                    - vectorization
+        - slug: memory-hierarchy-and-shared-memory
+          name: メモリ階層と共有メモリ
+          summary: キャッシュ、局所性、整合性、NUMAのようなメモリ性能と意味論を扱う。
+          concepts:
+            - slug: cache-and-locality
+              name: キャッシュと局所性
+              summary: データ配置とアクセスパターンが性能に与える影響を扱う。
+              whyLearn: 実装上の小さな変更が大きな性能差を生む理由を見抜ける。
+              terms:
+                - slug: cache-line
+                  name: キャッシュライン
+                  summary: キャッシュが主記憶との間でやり取りする最小単位。
+                  whyLearn: false sharing やメモリアラインメントの理解に直結する。
+                  promptHint: キャッシュラインサイズが設計に与える影響を説明して。
+                  aliases:
+                    - cache block
+                - slug: locality
+                  name: 局所性
+                  summary: 近い時間や近い場所のデータを再利用しやすい性質。
+                  whyLearn: キャッシュヒット率やI/O効率の改善に使える。
+                  promptHint: 時間的局所性と空間的局所性をコード例で説明して。
+                  aliases:
+                    - temporal locality
+                    - spatial locality
+                - slug: false-sharing
+                  name: フォールスシェアリング
+                  summary: 別変数でも同一キャッシュライン共有により無駄な競合が起きる現象。
+                  whyLearn: マルチスレッド性能劣化の典型原因を特定できる。
+                  promptHint: false sharing が起きる例と避け方を説明して。
+                  aliases:
+                    - false sharing
+            - slug: shared-memory-semantics
+              name: 共有メモリ意味論
+              summary: 複数コアから見たメモリ可視性と整合性のルールを扱う。
+              whyLearn: 並行処理の正しさと性能の両方を説明できるようになる。
+              terms:
+                - slug: cache-coherence
+                  name: キャッシュコヒーレンス
+                  summary: 複数キャッシュにある同一データの整合を保つ仕組み。
+                  whyLearn: 共有変数更新がどのように他コアへ伝わるか理解できる。
+                  promptHint: コヒーレンスと一貫性モデルの違いを説明して。
+                  aliases:
+                    - coherence
+                - slug: numa
+                  name: NUMA
+                  summary: メモリアクセス遅延がCPUソケットやノード位置に依存する構成。
+                  whyLearn: 大規模サーバで配置とスレッド親和性が重要な理由が分かる。
+                  promptHint: NUMA環境で性能が悪化する典型例を説明して。
+                  aliases:
+                    - Non-Uniform Memory Access
+                - slug: memory-consistency-model
+                  name: メモリ一貫性モデル
+                  summary: 並行実行時にメモリ操作がどの順序で観測されうるかを定める規則。
+                  whyLearn: ロック、アトミック命令、フェンスの必要性を理解できる。
+                  promptHint: 強い一貫性モデルと弱い一貫性モデルを比較して。
+                  aliases:
+                    - memory model
+
+    - slug: operating-systems-and-resource-management
+      name: オペレーティングシステムと資源管理
+      summary: OSがプロセス、メモリ、I/O、ファイル、ストレージを抽象化し制御する領域。
+      whyLearn: 実行時の待ち、隔離、ページング、FD枯渇、I/O詰まりなどを読めるようになる。
+      topicClusters:
+        - slug: process-scheduling-and-isolation
+          name: プロセス、スケジューリング、隔離
+          summary: 実行主体の表現、CPU配分、資源制御、隔離境界を扱う。
+          concepts:
+            - slug: process-and-thread-model
+              name: プロセスとスレッドのモデル
+              summary: 実行主体とアドレス空間共有の表し方を扱う。
+              whyLearn: 並行性、障害分離、メモリ共有の設計判断がしやすくなる。
+              terms:
+                - slug: process
+                  name: プロセス
+                  summary: 独立したアドレス空間と資源集合を持つ実行主体。
+                  whyLearn: 障害分離、権限分離、プロセス外呼び出しの理解に必要。
+                  promptHint: プロセスがスレッドより重いと言われる理由を説明して。
+                  aliases:
+                    - process
+                - slug: thread
+                  name: スレッド
+                  summary: 同一プロセスのアドレス空間を共有して動く軽量な実行主体。
+                  whyLearn: 共有メモリ並行性と競合の議論に直結する。
+                  promptHint: スレッドとプロセスの使い分けを説明して。
+                  aliases:
+                    - thread
+                - slug: context-switch
+                  name: コンテキストスイッチ
+                  summary: CPUが別の実行主体に切り替わる際の保存と復元の処理。
+                  whyLearn: スレッド数増加で性能が落ちる理由を説明できる。
+                  promptHint: コンテキストスイッチが高コストになる要因を説明して。
+                  aliases:
+                    - context switch
+            - slug: scheduling-and-resource-control
+              name: スケジューリングと資源制御
+              summary: CPU時間とメモリなどの共有資源を配分・制限する仕組み。
+              whyLearn: 公平性、遅延、スロットリング、マルチテナント制御を理解できる。
+              terms:
+                - slug: scheduler
+                  name: スケジューラ
+                  summary: どの実行主体をいつCPUに載せるかを決める仕組み。
+                  whyLearn: レイテンシとスループットの両立を議論できる。
+                  promptHint: スケジューラ設計で公平性と応答性が衝突する場面を説明して。
+                  aliases:
+                    - cpu scheduler
+                - slug: cgroup
+                  name: Cgroup
+                  summary: プロセス群に対してCPU、メモリ、I/Oなどの資源制御をかける機構。
+                  whyLearn: コンテナの資源制限やノイズ抑制の基礎になる。
+                  promptHint: Cgroupがコンテナ運用で重要な理由を説明して。
+                  aliases:
+                    - control group
+                - slug: namespace
+                  name: Namespace
+                  summary: PIDやネットワーク、マウントなどの見える世界を分離する機構。
+                  whyLearn: コンテナの隔離境界をOSレベルで説明できる。
+                  promptHint: Namespaceが分離する対象を例で説明して。
+                  aliases:
+                    - linux namespace
+        - slug: virtual-memory-and-io
+          name: 仮想記憶とI/O
+          summary: アドレス空間、ページング、メモリ写像、同期I/Oと非同期I/Oを扱う。
+          concepts:
+            - slug: address-space-and-mapping
+              name: アドレス空間とメモリ写像
+              summary: 仮想アドレス空間を物理メモリやファイルへ結び付ける仕組み。
+              whyLearn: ページフォールト、共有メモリ、ゼロコピーの前提になる。
+              terms:
+                - slug: virtual-memory
+                  name: 仮想記憶
+                  summary: 各プロセスに独立した連続アドレス空間を見せる仕組み。
+                  whyLearn: メモリ保護と大容量アドレス空間の両立を理解できる。
+                  promptHint: 仮想記憶がOS設計に与える利点を説明して。
+                  aliases:
+                    - virtual memory
+                - slug: paging
+                  name: ページング
+                  summary: メモリをページ単位で管理し必要時に読み込む方式。
+                  whyLearn: スワップやページフォールトの遅延要因を理解できる。
+                  promptHint: ページフォールトが遅い理由を説明して。
+                  aliases:
+                    - demand paging
+                - slug: mmap
+                  name: mmap
+                  summary: ファイルや匿名領域を仮想アドレス空間へ写像する機構。
+                  whyLearn: 共有メモリ、メモリマップドファイル、ゼロコピー理解に有効。
+                  promptHint: mmapとread/writeの使い分けを説明して。
+                  aliases:
+                    - memory map
+            - slug: readiness-and-async-io
+              name: レディネス通知と非同期I/O
+              summary: 多数のI/O待ちを効率良く扱うためのOS機構を扱う。
+              whyLearn: 高並行サーバやイベントループの性能設計に直結する。
+              terms:
+                - slug: system-call
+                  name: システムコール
+                  summary: ユーザープログラムがOS機能を呼び出すための入口。
+                  whyLearn: カーネル境界とコストの基本単位になる。
+                  promptHint: システムコール境界が性能に与える影響を説明して。
+                  aliases:
+                    - syscall
+                - slug: epoll
+                  name: epoll
+                  summary: 多数のファイルディスクリプタを監視するI/Oイベント通知機構。
+                  whyLearn: スレッドを増やさず高並行接続を扱う発想を学べる。
+                  promptHint: epollが高並行サーバで使われる理由を説明して。
+                  aliases:
+                    - epoll
+                - slug: io-uring
+                  name: io_uring
+                  summary: 共有リングを使って低オーバーヘッドな非同期I/Oを行うLinux機構。
+                  whyLearn: 現代の高性能I/Oパスと既存手法との差を理解できる。
+                  promptHint: io_uringがepollや従来AIOとどう違うか説明して。
+                  aliases:
+                    - io_uring
+        - slug: filesystems-and-storage
+          name: ファイルシステムとストレージ
+          summary: データ永続化の抽象、メタデータ、耐障害性、デバイス階層を扱う。
+          concepts:
+            - slug: filesystem-abstractions
+              name: ファイルシステム抽象
+              summary: ファイルとディレクトリを永続データとして扱うための抽象。
+              whyLearn: アプリI/Oが実際にどう保存されるかを理解できる。
+              terms:
+                - slug: file-descriptor
+                  name: ファイルディスクリプタ
+                  summary: OS内で開かれたファイルやソケットなどを指すハンドル。
+                  whyLearn: I/O資源管理とリーク調査の基礎になる。
+                  promptHint: ファイルディスクリプタ枯渇が起きる例を説明して。
+                  aliases:
+                    - fd
+                - slug: inode
+                  name: inode
+                  summary: UNIX系ファイルシステムでファイル実体のメタデータを保持する構造。
+                  whyLearn: ファイル名と実体が分かれている理由を理解できる。
+                  promptHint: inodeとファイル名の関係を説明して。
+                  aliases:
+                    - inode
+                - slug: journaling
+                  name: ジャーナリング
+                  summary: 変更を先にログへ記録して整合性回復を容易にする方式。
+                  whyLearn: クラッシュ後の回復性と書き込みコストの両方を考えられる。
+                  promptHint: ジャーナリングが何を守り何を犠牲にするか説明して。
+                  aliases:
+                    - journal
+            - slug: storage-devices-and-redundancy
+              name: ストレージ装置と冗長化
+              summary: ブロックデバイス、SSD時代のI/O、冗長化方式を扱う。
+              whyLearn: IOPS、耐障害性、再構築時間の議論ができるようになる。
+              terms:
+                - slug: block-device
+                  name: ブロックデバイス
+                  summary: 固定長ブロック単位で読み書きするストレージ抽象。
+                  whyLearn: ファイルシステムと物理媒体の間の境界を理解できる。
+                  promptHint: ブロックデバイスとファイルシステムの役割分担を説明して。
+                  aliases:
+                    - block storage
+                - slug: nvme
+                  name: NVMe
+                  summary: SSD向けに設計された高並列低遅延のストレージプロトコル群。
+                  whyLearn: 現代ストレージ性能の前提を理解するために重要。
+                  promptHint: SATA世代と比べたNVMeの利点を説明して。
+                  aliases:
+                    - NVM Express
+                - slug: raid
+                  name: RAID
+                  summary: 複数ディスクをまとめて冗長性や性能を得る構成技法。
+                  whyLearn: 障害耐性と書き込み性能のトレードオフを学べる。
+                  promptHint: RAID1とRAID5の違いを説明して。
+                  aliases:
+                    - Redundant Array of Independent Disks
+
+    - slug: networking-and-internet-communication
+      name: ネットワークとインターネット通信
+      summary: アドレッシング、経路制御、輸送制御、名前解決、暗号化、Web通信を扱う領域。
+      whyLearn: 遅延、再送、輻輳、名前解決、接続確立の問題を切り分けられるようになる。
+      topicClusters:
+        - slug: packet-delivery-and-addressing
+          name: パケット配送とアドレッシング
+          summary: パケットがどこへどう届くか、その経路制約は何かを扱う。
+          concepts:
+            - slug: addressing-and-routing
+              name: アドレッシングと経路制御
+              summary: ノード識別と経路選択の基本概念を扱う。
+              whyLearn: 接続不能や経路誤りの調査に必要。
+              terms:
+                - slug: ip-address
+                  name: IPアドレス
+                  summary: ネットワーク上の到達先を識別する論理アドレス。
+                  whyLearn: ルーティング、NAT、サブネット分割の基本になる。
+                  promptHint: IPアドレスがMACアドレスとどう違うか説明して。
+                  aliases:
+                    - IP
+                - slug: subnet-cidr
+                  name: サブネットとCIDR
+                  summary: アドレス空間を接頭辞長で分割して管理する方式。
+                  whyLearn: ネットワーク分割やACL設計の基礎になる。
+                  promptHint: CIDR表記で何が表現されるか説明して。
+                  aliases:
+                    - CIDR
+                - slug: routing-table
+                  name: ルーティングテーブル
+                  summary: 宛先ごとに次の転送先を決めるための経路表。
+                  whyLearn: パケットが想定外の経路へ流れる原因を追える。
+                  promptHint: デフォルトルートの役割を説明して。
+                  aliases:
+                    - route table
+            - slug: path-and-edge-constraints
+              name: 経路上の制約と境界装置
+              summary: MTU、アドレス変換、L2解決のような実務上の制約を扱う。
+              whyLearn: 接続はするが壊れる問題や断続的障害の理解に役立つ。
+              terms:
+                - slug: mtu
+                  name: MTU
+                  summary: 一度に送れるIPパケットの最大サイズ。
+                  whyLearn: フラグメンテーションやPMTU問題の理解に必要。
+                  promptHint: MTUミスマッチで何が起きるか説明して。
+                  aliases:
+                    - Maximum Transmission Unit
+                - slug: nat
+                  name: NAT
+                  summary: アドレスやポートを書き換えて到達性を中継する仕組み。
+                  whyLearn: 内外向き通信、ポート競合、到達性制約を理解できる。
+                  promptHint: NATがP2P通信を難しくする理由を説明して。
+                  aliases:
+                    - Network Address Translation
+                - slug: arp
+                  name: ARP
+                  summary: IPv4アドレスから同一L2上のMACアドレスを解決する仕組み。
+                  whyLearn: ローカルネットワーク内の到達性トラブルを説明できる。
+                  promptHint: ARPがどの層を橋渡ししているか説明して。
+                  aliases:
+                    - Address Resolution Protocol
+        - slug: transport-and-connection-semantics
+          name: トランスポートと接続意味論
+          summary: エンドツーエンド通信の信頼性、順序、輻輳制御、プロトコル差を扱う。
+          concepts:
+            - slug: transport-protocols
+              name: 輸送プロトコル
+              summary: アプリケーション間通信を支える接続とデータ配送の方式を扱う。
+              whyLearn: TCPとUDPとQUICの使い分けを説明できるようになる。
+              terms:
+                - slug: tcp
+                  name: TCP
+                  summary: 信頼性、順序、再送、輻輳制御を備えた接続型トランスポート。
+                  whyLearn: WebやRPCの基礎となる配送特性を理解できる。
+                  promptHint: TCPが提供する保証とコストを説明して。
+                  aliases:
+                    - Transmission Control Protocol
+                - slug: udp
+                  name: UDP
+                  summary: 低オーバーヘッドでベストエフォート配送を行うコネクションレス輸送。
+                  whyLearn: DNS、音声、ゲーム、QUICの土台を理解できる。
+                  promptHint: UDPがTCPより適する場面を説明して。
+                  aliases:
+                    - User Datagram Protocol
+                - slug: quic
+                  name: QUIC
+                  summary: UDP上に多重化、低遅延接続確立、暗号化を統合した現代的輸送。
+                  whyLearn: HTTP/3時代の接続性能と移動性の前提を把握できる。
+                  promptHint: QUICがTCPより有利になる条件を説明して。
+                  aliases:
+                    - QUIC
+            - slug: control-and-reliability
+              name: 制御と信頼性機構
+              summary: 通信品質を保つための流量制御、輻輳制御、再送の仕組みを扱う。
+              whyLearn: 遅い通信の原因をプロトコル機構まで掘れる。
+              terms:
+                - slug: flow-control
+                  name: フロー制御
+                  summary: 受信側の処理能力を超えないよう送信量を調節する仕組み。
+                  whyLearn: バッファ枯渇や受信側ボトルネックを説明できる。
+                  promptHint: フロー制御と輻輳制御の違いを説明して。
+                  aliases:
+                    - flow control
+                - slug: congestion-control
+                  name: 輻輳制御
+                  summary: ネットワーク全体の混雑を検知し送信レートを調節する仕組み。
+                  whyLearn: 遅延増大やスループット低下を理解する鍵になる。
+                  promptHint: 輻輳制御がなぜ必要かを説明して。
+                  aliases:
+                    - congestion control
+                - slug: retransmission-timeout
+                  name: 再送タイムアウト
+                  summary: 応答がないとき送信データを再送するまでの待機時間。
+                  whyLearn: パケット損失時の回復挙動と遅延増加を読める。
+                  promptHint: RTOが大きすぎる場合と小さすぎる場合を比較して。
+                  aliases:
+                    - RTO
+        - slug: naming-security-and-service-protocols
+          name: 名前解決、保護、サービス通信
+          summary: 名前解決、通信保護、Web系サービスプロトコルを扱う。
+          concepts:
+            - slug: naming-and-trust
+              name: 名前解決と信頼連鎖
+              summary: 宛先名を解決し通信相手を信頼するための基礎を扱う。
+              whyLearn: DNS障害や証明書問題を切り分けられるようになる。
+              terms:
+                - slug: dns
+                  name: DNS
+                  summary: 名前をIPアドレス等へ変換する分散階層型の名前解決システム。
+                  whyLearn: サービス到達性や内部サービス発見の基礎になる。
+                  promptHint: DNSが分散システムとして設計されている理由を説明して。
+                  aliases:
+                    - Domain Name System
+                - slug: tls
+                  name: TLS
+                  summary: 通信路の暗号化、完全性、相手認証を提供するプロトコル。
+                  whyLearn: 平文通信の危険とHTTPSの前提を理解できる。
+                  promptHint: TLSハンドシェイクで何が決まるか説明して。
+                  aliases:
+                    - Transport Layer Security
+                - slug: certificate-chain
+                  name: 証明書チェーン
+                  summary: サーバ証明書が信頼できる根まで連なることを示す構造。
+                  whyLearn: 証明書検証失敗や中間証明書問題を理解できる。
+                  promptHint: 証明書チェーンが必要な理由を説明して。
+                  aliases:
+                    - cert chain
+                - slug: http
+                  name: HTTP
+                  summary: リクエストとレスポンスで表現されるWebの基本通信プロトコル。
+                  whyLearn: API設計やキャッシュやプロキシの前提になる。
+                  promptHint: HTTPのメソッドとステータスコードの役割を説明して。
+                  aliases:
+                    - Hypertext Transfer Protocol
+        - slug: web-protocol-evolution
+          name: Webプロトコルの進化
+          summary: Web通信が性能と多重化の都合でどう進化してきたかを扱う。
+          concepts:
+            - slug: http-versioning
+              name: HTTPバージョン進化
+              summary: HTTP/1.1からHTTP/2、HTTP/3への進化と背景を扱う。
+              whyLearn: レイテンシ、コネクション数、多重化の設計が見えやすくなる。
+              terms:
+                - slug: http-2
+                  name: HTTP/2
+                  summary: 単一接続上で多重化を行いヘッダ圧縮などを導入したHTTP。
+                  whyLearn: head-of-line blocking や並列取得の説明に役立つ。
+                  promptHint: HTTP/1.1とHTTP/2の差を説明して。
+                  aliases:
+                    - h2
+                - slug: http-3
+                  name: HTTP/3
+                  summary: QUIC上でHTTP意味論を運ぶ新しいWeb通信プロトコル。
+                  whyLearn: モバイルや高遅延環境での接続体験改善を理解できる。
+                  promptHint: HTTP/3がQUIC上に載る利点を説明して。
+                  aliases:
+                    - h3
+                - slug: keep-alive
+                  name: Keep-Alive
+                  summary: 接続を使い捨てにせず再利用して往復回数を減らす仕組み。
+                  whyLearn: 接続確立コストとレイテンシの関係が見える。
+                  promptHint: Keep-Aliveが効くケースと逆効果のケースを説明して。
+                  aliases:
+                    - connection reuse
+
+    - slug: distributed-systems-and-coordination
+      name: 分散システムと協調
+      summary: 複数ノードの時間、障害、複製、整合性、合意、再配置を扱う領域。
+      whyLearn: 単一マシン前提では見えない設計上の制約と失敗モードを学べる。
+      topicClusters:
+        - slug: time-failure-and-membership
+          name: 時間、障害、メンバーシップ
+          summary: 因果順序、時計ずれ、故障検知、分断時の振る舞いを扱う。
+          concepts:
+            - slug: time-and-causality
+              name: 時間と因果
+              summary: 分散環境でイベント順序をどう表すかを扱う。
+              whyLearn: ログ順序や競合解決や整合性議論の基礎になる。
+              terms:
+                - slug: lamport-clock
+                  name: Lamport clock
+                  summary: 分散イベントの happened-before 関係を反映する論理時計。
+                  whyLearn: 物理時刻なしで因果順序を扱う感覚が身につく。
+                  promptHint: Lamport clock が表せる順序と表せない順序を説明して。
+                  aliases:
+                    - logical clock
+                - slug: vector-clock
+                  name: Vector clock
+                  summary: 各ノードの因果関係をより詳細に表現する論理時計の拡張。
+                  whyLearn: 同時並行更新や競合検出を理解しやすくなる。
+                  promptHint: Vector clock が Lamport clock より強い点を説明して。
+                  aliases:
+                    - vector timestamp
+                - slug: clock-skew
+                  name: クロックスキュー
+                  summary: ノード間で物理時計がずれている状態。
+                  whyLearn: タイムスタンプ依存設計の危うさを理解できる。
+                  promptHint: 物理時計ずれが分散処理に与える問題を説明して。
+                  aliases:
+                    - time drift
+            - slug: failure-detection-and-membership
+              name: 障害検知とメンバーシップ
+              summary: 誰が生きているかを不完全情報の下で推定する仕組みを扱う。
+              whyLearn: フェイルオーバーや split brain の理解に必須。
+              terms:
+                - slug: heartbeat
+                  name: Heartbeat
+                  summary: 定期信号で相手の生存を推定する基本手法。
+                  whyLearn: 障害検知の遅延と誤検知の両立問題が分かる。
+                  promptHint: Heartbeat間隔を短くしすぎる問題を説明して。
+                  aliases:
+                    - heartbeat
+                - slug: failure-detector
+                  name: 障害検出器
+                  summary: ノード故障を完全には分からない前提で推定する抽象装置。
+                  whyLearn: 分散系では故障検知が本質的に不完全だと理解できる。
+                  promptHint: 障害検出器が誤検知を避けられない理由を説明して。
+                  aliases:
+                    - failure detector
+                - slug: split-brain
+                  name: Split Brain
+                  summary: 分断された複数側が自分を正統とみなし更新を進める状態。
+                  whyLearn: 可用性重視設計の危険な失敗モードを理解できる。
+                  promptHint: Split Brain を避ける典型策を説明して。
+                  aliases:
+                    - network partition dual primary
+        - slug: consistency-replication-and-consensus
+          name: 一貫性、複製、合意
+          summary: 複製データの振る舞いと、その上での合意形成を扱う。
+          concepts:
+            - slug: consistency-models-and-tradeoffs
+              name: 一貫性モデルとトレードオフ
+              summary: どの整合性保証をどのコストで得るかを扱う。
+              whyLearn: 強整合と低遅延と高可用性の衝突を説明できる。
+              terms:
+                - slug: linearizability
+                  name: 線形化可能性
+                  summary: 各操作が単一の実時間順序に見える強い整合性保証。
+                  whyLearn: 強整合が必要な箇所と不要な箇所を切り分けられる。
+                  promptHint: 線形化可能性と最終的整合性を比較して。
+                  aliases:
+                    - linearizability
+                - slug: eventual-consistency
+                  name: 最終的整合性
+                  summary: 競合が収束すれば最終的には同じ状態に近づく整合性モデル。
+                  whyLearn: 分散可用性を得る代わりに何を失うかを理解できる。
+                  promptHint: 最終的整合性が許容される業務例を挙げて。
+                  aliases:
+                    - eventual consistency
+                - slug: cap-theorem
+                  name: CAP定理
+                  summary: 分断下で整合性と可用性を同時に完全達成できないという定理。
+                  whyLearn: 分散設計で不可能性と前提条件を明示する癖が付く。
+                  promptHint: CAP定理が誤解されやすい点を説明して。
+                  aliases:
+                    - CAP theorem
+            - slug: quorum-and-consensus
+              name: クォーラムと合意形成
+              summary: 複数ノードの過半や規則に基づいて正しい決定を得る仕組みを扱う。
+              whyLearn: レプリカ更新やリーダ選出の基礎になる。
+              terms:
+                - slug: quorum
+                  name: Quorum
+                  summary: 読み書きや合意の成立に必要な最小十分集合。
+                  whyLearn: 可用性と安全性の境界を定量的に考えられる。
+                  promptHint: Quorumがなぜ安全性に効くか説明して。
+                  aliases:
+                    - quorum
+                - slug: paxos
+                  name: Paxos
+                  summary: 故障下でも合意を形成する古典的なコンセンサスアルゴリズム群。
+                  whyLearn: 合意形成の安全性条件を厳密に学べる。
+                  promptHint: Paxosが難解でも重要な理由を説明して。
+                  aliases:
+                    - Paxos
+                - slug: raft
+                  name: Raft
+                  summary: リーダ選出とログ複製を分かりやすく分離した合意アルゴリズム。
+                  whyLearn: 実務システムで使われる合意形成の理解に直結する。
+                  promptHint: Raftの役割分担をPaxosと比較して説明して。
+                  aliases:
+                    - Raft
+        - slug: partitioning-messaging-and-scaleout
+          name: 分割、メッセージング、スケールアウト
+          summary: データや負荷を分散し、流量を制御しながら全体を伸ばす考え方を扱う。
+          concepts:
+            - slug: data-partitioning
+              name: データ分割と配置
+              summary: データを複数ノードへどう割り当てるかを扱う。
+              whyLearn: ホットスポット、再配置、拡張容易性の議論ができる。
+              terms:
+                - slug: sharding
+                  name: シャーディング
+                  summary: データ集合を複数のシャードへ分割して保持する方式。
+                  whyLearn: 単一ノード限界を超える基本戦略になる。
+                  promptHint: シャーディングが難しくなる場面を説明して。
+                  aliases:
+                    - sharding
+                - slug: consistent-hashing
+                  name: 一貫ハッシュ
+                  summary: ノード追加削除時の再配置量を抑える分散配置手法。
+                  whyLearn: キャッシュや分散ストレージの再配置コストを理解できる。
+                  promptHint: 一貫ハッシュが通常ハッシュより有利な理由を説明して。
+                  aliases:
+                    - consistent hashing
+                - slug: replication-factor
+                  name: 複製係数
+                  summary: 各データ片を何個のレプリカとして保持するかの設定。
+                  whyLearn: 可用性、耐障害性、書き込みコストのバランスを取れる。
+                  promptHint: 複製係数を増やすと何が得られ何が失われるか説明して。
+                  aliases:
+                    - RF
+            - slug: messaging-and-flow-regulation
+              name: メッセージングと流量調整
+              summary: 非同期連携と過負荷制御の基礎概念を扱う。
+              whyLearn: サービス間の疎結合と詰まり制御の発想を身に付けられる。
+              terms:
+                - slug: message-queue
+                  name: メッセージキュー
+                  summary: 送受信を時間的に切り離して処理を仲介する仕組み。
+                  whyLearn: バッファリング、再試行、非同期化の基本になる。
+                  promptHint: メッセージキューを使う利点と欠点を説明して。
+                  aliases:
+                    - queue
+                - slug: pub-sub
+                  name: Publish-Subscribe
+                  summary: 発行者と購読者を疎結合に接続するイベント配信モデル。
+                  whyLearn: ファンアウトとイベント駆動設計の理解に役立つ。
+                  promptHint: キューとPub/Subの違いを説明して。
+                  aliases:
+                    - publish subscribe
+                - slug: backpressure
+                  name: Backpressure
+                  summary: 下流の処理能力に合わせて上流の流量を抑える仕組み。
+                  whyLearn: 連鎖的過負荷を防ぐ設計レビュー観点になる。
+                  promptHint: Backpressureがないと何が起きるか説明して。
+                  aliases:
+                    - back pressure
+
+    - slug: virtualization-containers-and-cloud-runtime
+      name: 仮想化、コンテナ、クラウド実行環境
+      summary: 仮想マシン、コンテナ、イメージ、ランタイム、オーケストレーションを扱う領域。
+      whyLearn: 現代の実行基盤で隔離境界とデプロイ単位を正しく読めるようになる。
+      topicClusters:
+        - slug: virtual-machines-and-paravirtualization
+          name: 仮想マシンと準仮想化
+          summary: ハイパーバイザ、ゲストOS、仮想I/O、仮想ネットワークを扱う。
+          concepts:
+            - slug: hypervisors-and-guest-machines
+              name: ハイパーバイザとゲストマシン
+              summary: 1台の物理機上で複数OSを安全に動かすための仕組みを扱う。
+              whyLearn: VMとコンテナの違いを基盤視点で整理できる。
+              terms:
+                - slug: hypervisor
+                  name: ハイパーバイザ
+                  summary: 仮想マシンを実行・隔離・管理する層。
+                  whyLearn: フルVMの隔離境界と性能コストを理解できる。
+                  promptHint: ハイパーバイザがコンテナより強い隔離を持つ理由を説明して。
+                  aliases:
+                    - VMM
+                - slug: kvm
+                  name: KVM
+                  summary: Linuxカーネルをハイパーバイザ化する仮想化基盤。
+                  whyLearn: Linux上の実務的VM基盤を理解する代表例になる。
+                  promptHint: KVMがLinuxでVM基盤として機能する仕組みを説明して。
+                  aliases:
+                    - Kernel-based Virtual Machine
+                - slug: virtual-machine
+                  name: 仮想マシン
+                  summary: 仮想化されたハードウェア上で独立したOSとして動く実行単位。
+                  whyLearn: OSごとの隔離やレガシー互換の設計判断に必要。
+                  promptHint: VMが必要になる典型状況を説明して。
+                  aliases:
+                    - VM
+            - slug: paravirtualized-io-and-virtual-networking
+              name: 準仮想化I/Oと仮想ネットワーク
+              summary: 仮想化環境でI/Oオーバーヘッドを下げる仕組みとネットワーク抽象を扱う。
+              whyLearn: 仮想環境特有の性能差とネットワーク構成を理解できる。
+              terms:
+                - slug: virtio
+                  name: Virtio
+                  summary: 仮想化環境向けにI/Oを効率化する標準的な準仮想化I/O方式。
+                  whyLearn: ディスクやNICの仮想I/Oコストを理解しやすい。
+                  promptHint: Virtioがなぜ仮想環境で重要か説明して。
+                  aliases:
+                    - virtio
+                - slug: virtual-switch
+                  name: 仮想スイッチ
+                  summary: 仮想NIC間のL2転送やポリシー適用を行うソフトウェアスイッチ。
+                  whyLearn: VMやコンテナの接続経路を読めるようになる。
+                  promptHint: 仮想スイッチがどこで使われるか説明して。
+                  aliases:
+                    - vSwitch
+                - slug: overlay-network
+                  name: オーバーレイネットワーク
+                  summary: 既存ネットワーク上に論理的な仮想ネットワークを重ねる方式。
+                  whyLearn: クラスタ跨ぎのPod通信やマルチテナント基盤の理解に役立つ。
+                  promptHint: オーバーレイネットワークの利点と欠点を説明して。
+                  aliases:
+                    - tunnel network
+        - slug: container-runtime-and-images
+          name: コンテナランタイムとイメージ
+          summary: コンテナをどう表現し、実行し、配備するかを扱う。
+          concepts:
+            - slug: container-isolation-and-artifacts
+              name: コンテナ隔離と成果物
+              summary: コンテナ実行に必要な隔離機構と配布物の基本を扱う。
+              whyLearn: イメージ、ランタイム、OS隔離の関係が整理できる。
+              terms:
+                - slug: container
+                  name: コンテナ
+                  summary: OSカーネルを共有しつつ隔離された実行環境として動く単位。
+                  whyLearn: VMとの境界や軽量性の理由を説明できる。
+                  promptHint: コンテナが軽量だと言われる理由を説明して。
+                  aliases:
+                    - container
+                - slug: oci-image
+                  name: OCI Image
+                  summary: コンテナのファイルシステムや設定を配布する標準化された形式。
+                  whyLearn: build と run の境界を理解する助けになる。
+                  promptHint: OCI Image が何を含み何を含まないか説明して。
+                  aliases:
+                    - image
+                - slug: oci-runtime
+                  name: OCI Runtime
+                  summary: OCI仕様に従ってコンテナを実行するためのランタイム規約。
+                  whyLearn: Dockerとcontainerdとruncの役割分担を整理しやすい。
+                  promptHint: OCI Runtime が担う責務を説明して。
+                  aliases:
+                    - runtime-spec
+            - slug: orchestration-primitives
+              name: オーケストレーション基本オブジェクト
+              summary: コンテナ群を宣言的に配置・更新・公開するための基本単位を扱う。
+              whyLearn: Kubernetesの最小限の読み解き能力を作れる。
+              terms:
+                - slug: kubernetes-pod
+                  name: Kubernetes Pod
+                  summary: 1個以上のコンテナを共有ネットワークと共有ボリュームで束ねる最小配置単位。
+                  whyLearn: コンテナ単体ではなくPodが実行単位である理由を理解できる。
+                  promptHint: Podと単一コンテナの違いを説明して。
+                  aliases:
+                    - Pod
+                - slug: kubernetes-service
+                  name: Kubernetes Service
+                  summary: Pod集合へ安定した仮想IPや名前解決を与える抽象。
+                  whyLearn: 再配置されるPodに対して安定到達性を持たせる発想を学べる。
+                  promptHint: Serviceが必要な理由をPodの可変性から説明して。
+                  aliases:
+                    - Service
+                - slug: kubernetes-deployment
+                  name: Kubernetes Deployment
+                  summary: Pod群の望ましい状態とローリング更新を宣言的に管理するオブジェクト。
+                  whyLearn: 配置、更新、ロールバックの責務分離が理解できる。
+                  promptHint: DeploymentがReplicaSetの上位にある理由を説明して。
+                  aliases:
+                    - Deployment
+
+edges:
+  - from: instruction-set-architecture
+    to: privilege-level
+    relationType: prerequisite
+    reason: 命令実行の公開境界を理解してからでないと、特権で何が守られているかを説明しにくい。
+  - from: privilege-level
+    to: system-call
+    relationType: prerequisite
+    reason: システムコールは特権境界をまたぐ入口なので、権限モードの理解が前提になる。
+  - from: cache-line
+    to: false-sharing
+    relationType: prerequisite
+    reason: false sharing はキャッシュライン単位で競合が起きる現象だから。
+  - from: cache-coherence
+    to: memory-consistency-model
+    relationType: compare_with
+    reason: 前者はキャッシュ間のデータ整合、後者は観測可能な順序保証であり、似て非なる概念だから。
+  - from: process
+    to: thread
+    relationType: compare_with
+    reason: 両者は実行主体だが、アドレス空間共有と障害分離の性質が異なる。
+  - from: virtual-memory
+    to: paging
+    relationType: used_in
+    reason: 仮想記憶は多くのOSでページングを使って実現されるため。
+  - from: virtual-memory
+    to: mmap
+    relationType: prerequisite
+    reason: mmap は仮想アドレス空間へ領域を写像する機構なので、仮想記憶の理解が必要。
+  - from: system-call
+    to: epoll
+    relationType: prerequisite
+    reason: epoll もシステムコール群として提供されるI/O通知機構だから。
+  - from: epoll
+    to: io-uring
+    relationType: compare_with
+    reason: どちらも高並行I/Oを支えるが、待ち合わせモデルとオーバーヘッド特性が異なる。
+  - from: file-descriptor
+    to: epoll
+    relationType: prerequisite
+    reason: epoll は監視対象としてファイルディスクリプタを扱うため。
+  - from: journaling
+    to: raid
+    relationType: compare_with
+    reason: どちらも耐障害性に関わるが、前者は整合性回復、後者は装置冗長化に主眼がある。
+  - from: ip-address
+    to: subnet-cidr
+    relationType: prerequisite
+    reason: サブネット分割はIPアドレス空間の理解が前提になる。
+  - from: subnet-cidr
+    to: routing-table
+    relationType: used_in
+    reason: 経路選択ではプレフィックス単位の宛先判定が使われるため。
+  - from: mtu
+    to: tcp
+    relationType: related
+    reason: MTUはセグメント化や再送効率に影響し、TCPの実効性能へ直結する。
+  - from: udp
+    to: quic
+    relationType: used_in
+    reason: QUICはUDP上に構築される輸送プロトコルだから。
+  - from: tcp
+    to: quic
+    relationType: compare_with
+    reason: どちらも輸送層相当の役割を担うが、接続確立、多重化、再送単位が異なる。
+  - from: tls
+    to: http-3
+    relationType: used_in
+    reason: HTTP/3はQUIC上で暗号化を前提に動作し、TLSの仕組みを組み込んでいる。
+  - from: dns
+    to: kubernetes-service
+    relationType: used_in
+    reason: Kubernetes Service はクラスタ内DNSと組み合わせて安定名で到達されることが多い。
+  - from: lamport-clock
+    to: vector-clock
+    relationType: prerequisite
+    reason: vector clock は論理時計の限界を拡張する発想として理解すると捉えやすい。
+  - from: heartbeat
+    to: failure-detector
+    relationType: used_in
+    reason: heartbeat は障害検出器を実装する代表的手段だから。
+  - from: failure-detector
+    to: split-brain
+    relationType: related
+    reason: 誤検知や分断時判断のまずさは split brain の主要因になる。
+  - from: linearizability
+    to: eventual-consistency
+    relationType: compare_with
+    reason: 分散データの整合性保証として対照的な強さを持つため。
+  - from: cap-theorem
+    to: linearizability
+    relationType: related
+    reason: 強整合を分断下でも維持したい場合の可用性制約を考える起点になる。
+  - from: quorum
+    to: raft
+    relationType: prerequisite
+    reason: Raftの安全性とコミット規則は過半数クォーラムの発想に依存する。
+  - from: paxos
+    to: raft
+    relationType: compare_with
+    reason: どちらも合意形成を扱うが、理解しやすさと構成の分け方が異なる。
+  - from: sharding
+    to: consistent-hashing
+    relationType: related
+    reason: 一貫ハッシュは再配置コストを抑えたシャーディング実装の代表手法だから。
+  - from: replication-factor
+    to: quorum
+    relationType: related
+    reason: 複製数が変わると必要な読書きクォーラム設計も変わる。
+  - from: message-queue
+    to: pub-sub
+    relationType: compare_with
+    reason: どちらも非同期連携だが、消費モデルとファンアウト特性が異なる。
+  - from: pub-sub
+    to: backpressure
+    relationType: related
+    reason: ファンアウト型配信では下流の消費遅延が全体の圧力制御問題になりやすい。
+  - from: hypervisor
+    to: container
+    relationType: compare_with
+    reason: どちらも隔離を提供するが、前者は仮想ハードウェア境界、後者は共有カーネル境界である。
+  - from: kvm
+    to: virtual-machine
+    relationType: used_in
+    reason: KVMはLinux上で仮想マシンを動かす実装基盤だから。
+  - from: virtio
+    to: kvm
+    relationType: used_in
+    reason: VirtioはKVM環境で広く使われる準仮想化I/O方式だから。
+  - from: virtual-switch
+    to: overlay-network
+    relationType: related
+    reason: オーバーレイネットワークの終端や転送制御で仮想スイッチが使われることが多い。
+  - from: namespace
+    to: container
+    relationType: used_in
+    reason: コンテナ隔離はLinux namespaceを土台にするため。
+  - from: cgroup
+    to: container
+    relationType: used_in
+    reason: コンテナのCPU・メモリ・I/O制限はcgroupで実現されるため。
+  - from: oci-image
+    to: oci-runtime
+    relationType: prerequisite
+    reason: OCI Runtime は展開されたOCI Image由来のファイルシステム束を実行するため。
+  - from: container
+    to: kubernetes-pod
+    relationType: used_in
+    reason: Podは1個以上のコンテナを束ねる実行単位だから。
+  - from: kubernetes-pod
+    to: kubernetes-service
+    relationType: used_in
+    reason: Service はPod群への安定到達性を与える抽象だから。
+  - from: kubernetes-pod
+    to: kubernetes-deployment
+    relationType: used_in
+    reason: DeploymentはPod群の望ましい状態を宣言的に管理するため。
+  - from: tls
+    to: security-privacy-governance
+    relationType: related
+    reason: TLSは通信保護の実装基盤だが、鍵管理や信頼政策は隣接Domainで深掘りすべきだから。
+  - from: kubernetes-deployment
+    to: reliability-operations-platform-engineering
+    relationType: related
+    reason: Deploymentは実行基盤オブジェクトだが、リリース戦略やロールバック運用は隣接Domainと強く結び付く。
+  - from: message-queue
+    to: data-management-analytics-experimentation
+    relationType: related
+    reason: イベント流通や非同期処理はデータパイプライン設計と接続しやすいため。

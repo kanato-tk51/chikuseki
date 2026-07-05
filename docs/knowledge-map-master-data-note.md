@@ -315,13 +315,30 @@ edges:
 data/
   knowledge-map/
     domains.yaml
-    theory.yaml
-    computer-systems.yaml
-    data-management.yaml
-    security.yaml
-    software-engineering.yaml
-    product-engineering.yaml
+    domain-details/
+      product-engineering-application-architecture.yaml
+      software-engineering-quality.yaml
+      data-management-analytics-experimentation.yaml
+      security-privacy-governance.yaml
+      ...
 ```
+
+作成済みの詳細 seed:
+
+- [mathematical-theoretical-foundations.yaml](../data/knowledge-map/domain-details/mathematical-theoretical-foundations.yaml)
+- [algorithms-data-structures-computation.yaml](../data/knowledge-map/domain-details/algorithms-data-structures-computation.yaml)
+- [programming-languages-software-construction.yaml](../data/knowledge-map/domain-details/programming-languages-software-construction.yaml)
+- [systems-networks-distributed-infrastructure.yaml](../data/knowledge-map/domain-details/systems-networks-distributed-infrastructure.yaml)
+- [data-management-analytics-experimentation.yaml](../data/knowledge-map/domain-details/data-management-analytics-experimentation.yaml)
+- [artificial-intelligence-intelligent-systems.yaml](../data/knowledge-map/domain-details/artificial-intelligence-intelligent-systems.yaml)
+- [software-engineering-quality.yaml](../data/knowledge-map/domain-details/software-engineering-quality.yaml)
+- [product-engineering-application-architecture.yaml](../data/knowledge-map/domain-details/product-engineering-application-architecture.yaml)
+- [ux-hci-service-design.yaml](../data/knowledge-map/domain-details/ux-hci-service-design.yaml)
+- [product-management-product-strategy.yaml](../data/knowledge-map/domain-details/product-management-product-strategy.yaml)
+- [security-privacy-governance.yaml](../data/knowledge-map/domain-details/security-privacy-governance.yaml)
+- [reliability-operations-platform-engineering.yaml](../data/knowledge-map/domain-details/reliability-operations-platform-engineering.yaml)
+- [business-economics-decision-making.yaml](../data/knowledge-map/domain-details/business-economics-decision-making.yaml)
+- [engineering-organization-delivery-systems.yaml](../data/knowledge-map/domain-details/engineering-organization-delivery-systems.yaml)
 
 DB 側の想定:
 

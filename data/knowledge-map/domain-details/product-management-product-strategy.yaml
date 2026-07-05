@@ -1,0 +1,858 @@
+domain:
+  slug: product-management-product-strategy
+  name: プロダクトマネジメントとプロダクト戦略
+  summary: 誰に、何を、なぜ、どの順番で作るかを決める領域。
+  boundaryNotes: プロダクトの範囲、戦略、優先順位を扱う。価格や事業ポートフォリオは Business、実装パターンは Product Engineering に寄せる。
+  knowledgeAreas:
+    - slug: product-strategy-and-positioning
+      name: プロダクト戦略とポジショニング
+      summary: 顧客、市場、競争、提供価値を定め、どこでどう勝つかを決める。
+      whyLearn: 何を作るかの前に、誰にどんな価値を届け、どの競争軸で勝つかを考える基準を持てる。
+      topicClusters:
+        - slug: vision-and-market-choice
+          name: ビジョンと市場選択
+          summary: 目指す未来と、狙う市場・顧客の輪郭を定めるまとまり。
+          concepts:
+            - slug: vision-strategy-goal
+              name: ビジョン、戦略、目標の接続
+              summary: プロダクトの未来像と、そこへ至る戦略、当面の目標を接続する考え方。
+              whyLearn: 抽象的な理想と日々の優先順位の間を埋める基礎になる。
+              terms:
+                - slug: product-vision
+                  name: プロダクトビジョン
+                  summary: プロダクトが中長期で実現したい未来像や到達状態。
+                  whyLearn: 戦略、ロードマップ、日々の判断の上位基準になる。
+                  promptHint: そのプロダクトが将来どんな世界や状態を作りたいかを説明するとき。
+                  aliases:
+                    - vision
+                    - product vision
+                - slug: product-strategy
+                  name: プロダクト戦略
+                  summary: ビジョンを実現するために、どの問題をどの順番で解くかを定める方針。
+                  whyLearn: 機能要望の寄せ集めではなく、解くべき問題の束として計画できる。
+                  promptHint: 今期から中期にかけて、どの顧客問題に集中するかを整理するとき。
+                  aliases:
+                    - strategy
+                    - product strategy
+                - slug: product-goal
+                  name: プロダクトゴール
+                  summary: プロダクト改善の方向を示す長めの到達目標。
+                  whyLearn: backlog や sprint の判断を、その場の都合ではなく目標に結び付けられる。
+                  promptHint: いまの backlog が何に向かって束ねられているかを示すとき。
+                  aliases:
+                    - goal
+                    - product goal
+            - slug: market-segmentation-and-positioning
+              name: 市場分解とポジショニング
+              summary: 顧客群を分け、どの顧客にどんな違いで価値提供するかを定める手法。
+              whyLearn: すべての人向けに曖昧な価値を語る失敗を減らせる。
+              terms:
+                - slug: target-segment
+                  name: ターゲットセグメント
+                  summary: 狙う市場の中で、共通した課題や文脈を持つ顧客群。
+                  whyLearn: 誰のどんな状況に最適化するのかを明確にできる。
+                  promptHint: このプロダクトがまず勝ちにいく顧客群を定義するとき。
+                  aliases:
+                    - market segment
+                    - target market
+                - slug: ideal-customer-profile
+                  name: 理想顧客プロファイル
+                  summary: 最も高い適合度と継続価値を持つ顧客像を記述したもの。
+                  whyLearn: セグメントの中でも、今もっとも刺さる顧客を具体化できる。
+                  promptHint: どの顧客を優先獲得すると学習と事業が進みやすいかを考えるとき。
+                  aliases:
+                    - ICP
+                    - ideal customer profile
+                - slug: strategic-positioning
+                  name: 戦略的ポジショニング
+                  summary: 競合と違う形で価値を作り、より高い価格や低いコストにつなげる立ち位置。
+                  whyLearn: 競争軸を明確にし、差別化を単なるメッセージではなく戦略として扱える。
+                  promptHint: 競合と比べて何を違いとして打ち出すかを整理するとき。
+                  aliases:
+                    - positioning
+                    - strategic positioning
+
+        - slug: value-proposition-and-fit
+          name: 価値提案と適合
+          summary: 提供価値の核と、市場に対する適合度を評価するまとまり。
+          concepts:
+            - slug: value-proposition-design
+              name: 価値提案設計
+              summary: 顧客がなぜそのプロダクトを選ぶのかを、便益と言葉の両面で設計する。
+              whyLearn: 機能の列挙ではなく、顧客が受け取る価値で語れるようになる。
+              terms:
+                - slug: value-proposition
+                  name: 価値提案
+                  summary: 顧客の課題や欲求に対して、プロダクトが提供する中核価値の約束。
+                  whyLearn: 戦略、営業、UX、実装の会話を一本化しやすくなる。
+                  promptHint: 顧客がこのプロダクトを使う理由を一文で表したいとき。
+                  aliases:
+                    - value prop
+                    - value proposition
+                - slug: positioning-statement
+                  name: ポジショニングステートメント
+                  summary: 対象顧客、カテゴリ、主要便益、差別化要因を短く定義した文章。
+                  whyLearn: チーム内外で一貫した説明をしやすくなる。
+                  promptHint: そのプロダクトを誰向けの何として説明するかを明文化するとき。
+                  aliases:
+                    - brand positioning statement
+                    - positioning statement
+                - slug: differentiation
+                  name: 差別化
+                  summary: 顧客が競合ではなく自社を選ぶ理由になる違い。
+                  whyLearn: 「ただ存在するだけの機能」と「選ばれる理由」を区別できる。
+                  promptHint: 競合比較でどの違いが選好に効くかを考えるとき。
+                  aliases:
+                    - differentiation strategy
+                    - unique value
+
+            - slug: market-fit-assessment
+              name: 市場適合の見極め
+              summary: 解こうとしている問題と市場需要の適合度を段階的に見る考え方。
+              whyLearn: 作る前、伸ばす前、広げる前で、どの適合を確認すべきか整理できる。
+              terms:
+                - slug: problem-solution-fit
+                  name: 問題解決適合
+                  summary: 提案する解決策が、実在する強い課題に十分応えられている状態。
+                  whyLearn: 市場拡大の前に、解くべき問題が本当に刺さるかを確かめられる。
+                  promptHint: まだ PMF 前の段階で、課題と解決策の噛み合いを議論するとき。
+                  aliases:
+                    - PSF
+                    - problem solution fit
+                - slug: product-market-fit
+                  name: プロダクトマーケットフィット
+                  summary: 良い市場に対し、その市場が強く求めるプロダクトを提供できている状態。
+                  whyLearn: 拡大に入る前に、需要の強さと利用の持続性を見極められる。
+                  promptHint: いまは探索段階か、拡大段階かを判断したいとき。
+                  aliases:
+                    - PMF
+                    - product market fit
+                - slug: beachhead-market
+                  name: ビーチヘッド市場
+                  summary: 最初に深く勝ちにいく、狭く集中的な初期市場。
+                  whyLearn: 早期に学習と勝ち筋を作るための集中領域を定められる。
+                  promptHint: 最初の勝ち筋をどの市場に絞るかを決めるとき。
+                  aliases:
+                    - beachhead
+                    - initial target market
+
+    - slug: discovery-and-problem-framing
+      name: ディスカバリーと問題設定
+      summary: 顧客の進歩、文脈、機会を理解し、解くべき問題を定義する。
+      whyLearn: 作る前の不確実性を減らし、価値のある問題に集中できる。
+      topicClusters:
+        - slug: customer-understanding
+          name: 顧客理解
+          summary: 顧客の文脈、欲求、切り替え理由を捉えるまとまり。
+          concepts:
+            - slug: jobs-based-research
+              name: ジョブ起点の顧客理解
+              summary: 顧客属性ではなく、顧客が進歩したいことを中心に理解する見方。
+              whyLearn: 「誰か」だけでなく「何を前進させたいか」で問題を捉えられる。
+              terms:
+                - slug: jobs-to-be-done
+                  name: Jobs to Be Done
+                  summary: 顧客が特定の状況で前進するために片付けたい仕事や進歩の定義。
+                  whyLearn: 機能中心ではなく、顧客の進歩中心で発見と戦略を考えられる。
+                  promptHint: 顧客が何を達成したくてその製品を雇うのかを説明するとき。
+                  aliases:
+                    - JTBD
+                    - jobs theory
+                - slug: forces-of-progress
+                  name: 進歩の力学
+                  summary: 変化を促す力と、現状維持に引き戻す力を整理する枠組み。
+                  whyLearn: なぜ顧客が移行しないのか、どこで不安が生まれるのかを見やすくなる。
+                  promptHint: 顧客の乗り換えを押す力と止める力を整理するとき。
+                  aliases:
+                    - push pull habit anxiety
+                    - forces of progress
+                - slug: switch-interview
+                  name: スイッチインタビュー
+                  summary: 顧客が別の手段から乗り換えた前後の出来事を掘るインタビュー。
+                  whyLearn: きれいな要望ではなく、実際の選択行動の因果を掴みやすい。
+                  promptHint: なぜその顧客が使い始めたか、あるいはやめたかを深掘りするとき。
+                  aliases:
+                    - switching interview
+                    - switch interview
+
+            - slug: context-modeling
+              name: 利用文脈のモデル化
+              summary: 利用者、購買者、行動文脈、体験の流れを整理する考え方。
+              whyLearn: 顧客を単一人物として誤って扱うことを避けられる。
+              terms:
+                - slug: persona
+                  name: ペルソナ
+                  summary: 典型的な利用者像を、行動や目標を中心に表現したモデル。
+                  whyLearn: 抽象的なユーザー議論を具体的な判断材料に変えられる。
+                  promptHint: 誰向けに設計しているかを具体像で揃えたいとき。
+                  aliases:
+                    - user persona
+                    - archetype
+                - slug: buyer-user-gap
+                  name: 購買者と利用者の分離
+                  summary: 買う人と使う人が異なることで、価値判断や要件がずれる状況。
+                  whyLearn: B2B や管理者製品で、誰の要求を優先すべきかを誤りにくくなる。
+                  promptHint: 導入決裁者と日常利用者の利害が違う製品を考えるとき。
+                  aliases:
+                    - buyer user distinction
+                    - economic buyer
+                - slug: user-journey
+                  name: ユーザージャーニー
+                  summary: 認知、導入、利用、継続までの体験の流れを時系列で見たもの。
+                  whyLearn: 体験のどこで摩擦や離脱が生まれるかを見つけやすくなる。
+                  promptHint: 顧客がどの場面で詰まり、どこで価値を感じるかを可視化するとき。
+                  aliases:
+                    - customer journey
+                    - journey map
+
+        - slug: opportunity-discovery-and-validation
+          name: 機会発見と検証
+          summary: 顧客理解を、機会の整理と仮説検証へ接続するまとまり。
+          concepts:
+            - slug: continuous-discovery-practice
+              name: 継続的ディスカバリー実践
+              summary: 発見活動を一度きりではなく継続的な習慣として回すやり方。
+              whyLearn: ロードマップ消化型の開発から、学習ループ型の開発へ移行しやすくなる。
+              terms:
+                - slug: continuous-discovery
+                  name: 継続的ディスカバリー
+                  summary: 顧客接点と仮説更新を継続的に行う探索の運用スタイル。
+                  whyLearn: 大きな企画フェーズに依存せず、小さく学習を積み重ねられる。
+                  promptHint: 発見活動を常設プロセスとして設計したいとき。
+                  aliases:
+                    - continuous discovery
+                    - discovery habit
+                - slug: customer-interview
+                  name: 顧客インタビュー
+                  summary: 顧客の行動、課題、意思決定、文脈を直接聞く調査手法。
+                  whyLearn: ログや要望票だけでは見えない動機や制約を理解できる。
+                  promptHint: 顧客の言葉で何が起きているかを確かめたいとき。
+                  aliases:
+                    - user interview
+                    - customer conversation
+                - slug: product-trio
+                  name: プロダクトトリオ
+                  summary: PM、デザイナー、エンジニアが一体で discovery する基本単位。
+                  whyLearn: 価値、使いやすさ、実現性を同時に検討しやすくなる。
+                  promptHint: 誰が discovery を担うべきかを設計するとき。
+                  aliases:
+                    - trio
+                    - product trio
+
+            - slug: opportunity-mapping-and-hypothesis
+              name: 機会の構造化と仮説化
+              summary: 見つけた課題を機会として整理し、検証可能な仮説へ落とす手法。
+              whyLearn: 漠然とした洞察を、優先順位づけ可能な意思決定材料に変えられる。
+              terms:
+                - slug: opportunity-solution-tree
+                  name: Opportunity Solution Tree
+                  summary: outcome から opportunity、solution、assumption test へ枝分かれさせる図式。
+                  whyLearn: discovery の思考過程を可視化し、チームで共有しやすくなる。
+                  promptHint: 目標から機会、解決策、検証までの道筋を一枚で示したいとき。
+                  aliases:
+                    - OST
+                    - opportunity solution tree
+                - slug: opportunity-space
+                  name: オポチュニティスペース
+                  summary: 顧客の痛み、欲求、未充足ニーズを機会として並べた探索領域。
+                  whyLearn: すぐに解決策へ飛ばず、問題領域を比較検討しやすくなる。
+                  promptHint: どの顧客課題群を掘るべきかを整理するとき。
+                  aliases:
+                    - opportunity map
+                    - problem space
+                - slug: riskiest-assumption
+                  name: 最重要仮説
+                  summary: アイデアが成立するために最初に確かめるべき最も危険な前提。
+                  whyLearn: 低コストで大きな不確実性から潰す判断ができる。
+                  promptHint: 何を最初に検証しないと無駄な実装になるかを見極めるとき。
+                  aliases:
+                    - riskiest assumption
+                    - critical assumption
+
+    - slug: outcome-metrics-and-experimentation
+      name: 成果指標と実験による意思決定
+      summary: 何を成果とみなし、何を測り、どう学習するかを定める。
+      whyLearn: 出荷量ではなく、顧客と事業の変化に基づいて判断できるようになる。
+      topicClusters:
+        - slug: goal-and-metric-systems
+          name: 目標と指標の体系
+          summary: 目標を分解し、指標へ接続して組織で整合させるまとまり。
+          concepts:
+            - slug: objective-and-outcome-alignment
+              name: 目標と成果の整合
+              summary: 目標の言葉と成果の観測を結び付ける考え方。
+              whyLearn: 「やること」ではなく「起こしたい変化」で計画を立てられる。
+              terms:
+                - slug: objective
+                  name: Objective
+                  summary: 達成したい方向や状態を示す定性的な目標。
+                  whyLearn: チームが何を目指すのかを短く強く揃えられる。
+                  promptHint: 今期の狙いを、手段ではなく目標として表現するとき。
+                  aliases:
+                    - objective
+                    - OKR objective
+                - slug: key-result
+                  name: Key Result
+                  summary: Objective の達成を示す定量的な結果指標。
+                  whyLearn: 目標達成を言いっぱなしにせず、測定可能にできる。
+                  promptHint: その objective が実現したと判断する数値を置くとき。
+                  aliases:
+                    - KR
+                    - key result
+                - slug: outcome
+                  name: アウトカム
+                  summary: 機能の出荷ではなく、利用者や事業に起きた望ましい変化。
+                  whyLearn: output ではなく結果で価値を判断する習慣を作れる。
+                  promptHint: 出荷の先で何が変わるべきかを定義するとき。
+                  aliases:
+                    - result
+                    - business outcome
+
+            - slug: product-measurement-frameworks
+              name: プロダクト計測フレーム
+              summary: プロダクト価値を継続的に測るための代表的な指標設計フレーム。
+              whyLearn: 指標が散らばりすぎる問題を防ぎ、判断軸を揃えられる。
+              terms:
+                - slug: north-star-metric
+                  name: ノーススターメトリクス
+                  summary: 顧客価値と長期事業成果の関係を表す中心指標。
+                  whyLearn: 多数の KPI を束ねる中核指標を置ける。
+                  promptHint: プロダクトの成功を一つの主指標で表したいとき。
+                  aliases:
+                    - NSM
+                    - north star metric
+                - slug: kpi
+                  name: KPI
+                  summary: 継続的に監視する重要業績指標の総称。
+                  whyLearn: 運営に必要な複数の観測点を体系的に持てる。
+                  promptHint: 日々の健全性や進捗を定点観測する指標を設計するとき。
+                  aliases:
+                    - key performance indicator
+                - slug: heart-framework
+                  name: HEART フレームワーク
+                  summary: Happiness、Engagement、Adoption、Retention、Task Success で UX を測る枠組み。
+                  whyLearn: ユーザー中心の指標を business goal に接続しやすくなる。
+                  promptHint: UX 品質を何で測るかを体系立てて考えるとき。
+                  aliases:
+                    - HEART
+                    - goals signals metrics
+
+        - slug: evidence-and-experimentation
+          name: 根拠と実験
+          summary: 仮説を定量・定性の証拠で検証し、意思決定の質を上げるまとまり。
+          concepts:
+            - slug: experimentation-design
+              name: 実験設計
+              summary: 仮説検証のために比較条件と評価指標を定めるやり方。
+              whyLearn: 施策の効果を雰囲気ではなく比較で判断できる。
+              terms:
+                - slug: ab-testing
+                  name: A/B テスト
+                  summary: 複数のデザインや機能案を live 環境で比較する定量実験。
+                  whyLearn: 施策の効果を因果に近い形で見やすくなる。
+                  promptHint: どちらの案がより良い結果を出すかを現実の利用で比べるとき。
+                  aliases:
+                    - split testing
+                    - online controlled experiment
+                - slug: guardrail-metric
+                  name: ガードレール指標
+                  summary: 主指標を改善しても壊してはいけない副作用監視指標。
+                  whyLearn: 一つの数値最適化で体験や収益の別指標を壊すのを防げる。
+                  promptHint: 施策を打つときに、悪化していないことも同時に見たいとき。
+                  aliases:
+                    - counter metric
+                    - guardrail metric
+                - slug: control-group
+                  name: コントロール群
+                  summary: 新しい施策を適用しない比較対象のユーザー群。
+                  whyLearn: 変化が施策由来かどうかを判断しやすくなる。
+                  promptHint: 新施策の効果を既存状態と比べて検証するとき。
+                  aliases:
+                    - control
+                    - baseline group
+
+            - slug: metric-quality-and-reliability
+              name: 指標の質と解釈
+              summary: どの指標をどれくらい信じてよいかを考える基礎。
+              whyLearn: 間違った指標で速く走る失敗を減らせる。
+              terms:
+                - slug: leading-indicator
+                  name: 先行指標
+                  summary: 将来の成果を早めに示唆する指標。
+                  whyLearn: 結果が出る前に方向修正しやすくなる。
+                  promptHint: 売上や継続の前に、早く反応が見える指標を探すとき。
+                  aliases:
+                    - lead metric
+                    - leading metric
+                - slug: lagging-indicator
+                  name: 遅行指標
+                  summary: すでに起きた成果を後から示す結果指標。
+                  whyLearn: 先行指標だけでは見誤る長期成果を確認できる。
+                  promptHint: 最終的な成果を確定的に見る指標を整理するとき。
+                  aliases:
+                    - lag metric
+                    - trailing metric
+                - slug: sample-size
+                  name: サンプルサイズ
+                  summary: 実験や調査で必要な観測数の大きさ。
+                  whyLearn: 早すぎる結論や偶然の差を避けやすくなる。
+                  promptHint: A/B テストやアンケート結果をどこまで信じてよいか考えるとき。
+                  aliases:
+                    - n
+                    - sample size
+
+    - slug: prioritization-roadmapping-and-investment
+      name: 優先順位、ロードマップ、投資判断
+      summary: 何を先にやるか、どこまで約束するか、どこへ投資するかを決める。
+      whyLearn: 要望の強さではなく、価値・リスク・時間の観点で順序を決められる。
+      topicClusters:
+        - slug: prioritization-and-sequencing
+          name: 優先順位と順序付け
+          summary: 候補の比較、先送りコスト、依存関係を扱うまとまり。
+          concepts:
+            - slug: prioritization-frameworks
+              name: 優先順位づけフレーム
+              summary: 複数案を一定の基準で比較するための代表的な手法群。
+              whyLearn: 声の大きさや勘だけで順番を決めるのを避けられる。
+              terms:
+                - slug: rice
+                  name: RICE
+                  summary: Reach、Impact、Confidence、Effort で候補を比較するスコア手法。
+                  whyLearn: 多数のアイデアを比較的軽量に横並びで評価できる。
+                  promptHint: 多くの施策候補を定量寄りに並べ替えたいとき。
+                  aliases:
+                    - RICE score
+                    - reach impact confidence effort
+                - slug: moscow
+                  name: MoSCoW
+                  summary: Must、Should、Could、Won't で必要性の強さを分ける優先順位法。
+                  whyLearn: 納期固定の場面で、何を落とせるかを明示しやすい。
+                  promptHint: 締切は固定で、どの範囲までを必須にするか決めるとき。
+                  aliases:
+                    - MoSCoW prioritization
+                    - must should could wont
+                - slug: kano-model
+                  name: Kano モデル
+                  summary: 機能の達成度と顧客満足の関係で要件を分類するモデル。
+                  whyLearn: 単純な要望数ではなく、満足への効き方で要件を見られる。
+                  promptHint: どの機能が満足を大きく左右するか整理するとき。
+                  aliases:
+                    - kano
+                    - customer satisfaction model
+
+            - slug: economic-sequencing
+              name: 経済合理性による順序付け
+              summary: 遅延コストや依存関係を踏まえて着手順を決める考え方。
+              whyLearn: 「大きいものから」ではなく「今やる価値が高いものから」に変えられる。
+              terms:
+                - slug: wsjf
+                  name: WSJF
+                  summary: Cost of Delay と job size を用いて経済的に順序付ける手法。
+                  whyLearn: 大規模な backlog やポートフォリオでも説明可能な順序を作りやすい。
+                  promptHint: 案件の着手順を delay cost と size で比較したいとき。
+                  aliases:
+                    - weighted shortest job first
+                    - WSJF
+                - slug: cost-of-delay
+                  name: 遅延コスト
+                  summary: その仕事を後回しにしたときに生じる価値損失。
+                  whyLearn: 先送りの痛みを可視化し、優先順位に時間軸を入れられる。
+                  promptHint: いま着手しないことの損失を見積もるとき。
+                  aliases:
+                    - CoD
+                    - cost of delay
+                - slug: dependency
+                  name: 依存関係
+                  summary: ある仕事が別の仕事の完了や判断に依存する関係。
+                  whyLearn: 単体では高価値でも、順序を誤ると進まない問題を見抜ける。
+                  promptHint: 何から着手しないと後続が詰まるかを整理するとき。
+                  aliases:
+                    - dependency
+                    - blocker relationship
+
+        - slug: roadmap-and-investment
+          name: ロードマップと投資配分
+          summary: 約束の仕方、時間視野、投資の進め方を扱うまとまり。
+          concepts:
+            - slug: roadmap-design
+              name: ロードマップ設計
+              summary: 戦略を関係者へ伝えるための表現形式と運用方法。
+              whyLearn: 予定表ではなく、戦略コミュニケーションとして roadmap を扱える。
+              terms:
+                - slug: product-roadmap
+                  name: プロダクトロードマップ
+                  summary: 現在地からビジョン実現までの道筋を高い粒度で示す計画。
+                  whyLearn: 戦略、優先順位、説明責任をつなぐ中心文書になる。
+                  promptHint: いまから先の方向性を社内外に説明するとき。
+                  aliases:
+                    - roadmap
+                    - product roadmap
+                - slug: outcome-based-roadmap
+                  name: アウトカムベースロードマップ
+                  summary: 機能ではなく、達成したい成果や変化を単位にした roadmap。
+                  whyLearn: feature commitment ではなく problem ownership に寄せられる。
+                  promptHint: 何を作るかより何を変えたいかを roadmap で示したいとき。
+                  aliases:
+                    - outcome roadmap
+                    - goal-based roadmap
+                - slug: now-next-later
+                  name: Now-Next-Later
+                  summary: 日付よりも優先度と確度を重視して、今・次・後で整理する roadmap 形式。
+                  whyLearn: 過度に正確な日付約束を避けつつ方向性を共有できる。
+                  promptHint: 長期の日付確約を避けながら優先順位を伝えたいとき。
+                  aliases:
+                    - now next later
+                    - time-horizon roadmap
+
+            - slug: portfolio-governance
+              name: 投資ポートフォリオの統治
+              summary: 複数テーマや複数製品への投資を管理する考え方。
+              whyLearn: 一つひとつの案件最適ではなく、全体資源配分を見られる。
+              terms:
+                - slug: stage-gate
+                  name: Stage-Gate
+                  summary: 段階ごとの作業と go/kill 判断を組み合わせた新製品開発ガバナンス。
+                  whyLearn: 不確実な投資を段階的に評価しながら進められる。
+                  promptHint: アイデアから launch までを段階審査で管理したいとき。
+                  aliases:
+                    - stage gate
+                    - gated development
+                - slug: kill-criteria
+                  name: 中止基準
+                  summary: その投資や施策を止める条件を事前に定めた基準。
+                  whyLearn: sunk cost で惰性的に続ける失敗を減らせる。
+                  promptHint: どの条件ならこの取り組みをやめるべきかを先に決めるとき。
+                  aliases:
+                    - stop criteria
+                    - kill rule
+                - slug: investment-horizon
+                  name: 投資ホライズン
+                  summary: 短期・中期・長期など、投資回収や学習までの時間軸。
+                  whyLearn: 即効性の仕事と将来の賭けを同じ物差しで誤って裁かずに済む。
+                  promptHint: 短期成果と中長期探索の配分を話すとき。
+                  aliases:
+                    - horizon
+                    - time horizon
+
+    - slug: operating-model-launch-and-lifecycle
+      name: プロダクト運用モデル、ローンチ、ライフサイクル
+      summary: 戦略と delivery をつなぎ、導入、継続、終了までを扱う。
+      whyLearn: PM の仕事を backlog 作成で終わらせず、実行と進化に接続できる。
+      topicClusters:
+        - slug: operating-model-and-teaming
+          name: 運用モデルとチーム編成
+          summary: どんな責務分担で問題を解き、意思決定を流すかを扱うまとまり。
+          concepts:
+            - slug: product-operating-model-design
+              name: プロダクト運用モデル設計
+              summary: チームの責務、意思決定、学習ループをどう設計するかの考え方。
+              whyLearn: feature factory と product team を見分けられるようになる。
+              terms:
+                - slug: product-operating-model
+                  name: プロダクトオペレーティングモデル
+                  summary: 顧客価値と事業成果を継続的に生むためのプロダクト中心の運営原理。
+                  whyLearn: 方法論を超えて、組織がどう product work を営むかを見られる。
+                  promptHint: 自社が output 中心か outcome 中心かを診断するとき。
+                  aliases:
+                    - POM
+                    - product model
+                - slug: empowered-product-team
+                  name: 権限移譲されたプロダクトチーム
+                  summary: 解くべき問題と成果に責任を持ち、解決策の裁量も持つチーム。
+                  whyLearn: 企画部門の指示待ちではなく、問題解決主体のチーム設計を理解できる。
+                  promptHint: チームにどこまで裁量を持たせるべきかを議論するとき。
+                  aliases:
+                    - empowered team
+                    - empowered product team
+                - slug: outcome-over-output
+                  name: アウトカム重視
+                  summary: 出荷量より、顧客や事業の変化で成功を判断する姿勢。
+                  whyLearn: 作った量で安心する組織を、変化を起こす組織へ動かせる。
+                  promptHint: 機能を出したかではなく成果が動いたかで評価したいとき。
+                  aliases:
+                    - outcomes over output
+                    - outcome focus
+
+            - slug: backlog-and-execution-interface
+              name: backlog と実行の接続
+              summary: 戦略や goals を delivery の単位へ翻訳するための実務。
+              whyLearn: 高位の戦略を、現場で扱える work item に変換できる。
+              terms:
+                - slug: product-backlog
+                  name: プロダクトバックログ
+                  summary: プロダクト改善に必要なことを順序付きで並べた一覧。
+                  whyLearn: 価値順の仕事リストとして戦略と実装をつなげられる。
+                  promptHint: 何が今後の改善候補で、どう順序付いているかを示すとき。
+                  aliases:
+                    - backlog
+                    - product backlog
+                - slug: backlog-refinement
+                  name: バックログリファインメント
+                  summary: backlog item を小さく具体化し、順序や粒度を整える継続活動。
+                  whyLearn: 曖昧な要求を実行可能な単位に変換しやすくなる。
+                  promptHint: 大きすぎる要件を分解し、優先順位や詳細を整えるとき。
+                  aliases:
+                    - refinement
+                    - backlog grooming
+                - slug: product-owner
+                  name: プロダクトオーナー
+                  summary: backlog の価値最大化と管理に責任を持つ役割。
+                  whyLearn: backlog の最終責任を誰が負うかを明確にできる。
+                  promptHint: backlog の順序や goal の責任者を定めたいとき。
+                  aliases:
+                    - PO
+                    - product owner
+
+        - slug: launch-and-adoption
+          name: ローンチと採用拡大
+          summary: 市場投入、導入、継続利用へつなげるまとまり。
+          concepts:
+            - slug: launch-planning
+              name: ローンチ設計
+              summary: 発売や公開を、メッセージ、対象、展開順、リスクで設計する実務。
+              whyLearn: 良い機能でも、出し方を誤って学習機会を失うのを防げる。
+              terms:
+                - slug: go-to-market
+                  name: Go-To-Market
+                  summary: 顧客獲得、販売、チャネル、支援を含めた市場投入戦略。
+                  whyLearn: 作ることと売れることの間をつなぐ設計ができる。
+                  promptHint: どう市場に出し、誰に届け、どう採用を作るかを考えるとき。
+                  aliases:
+                    - GTM
+                    - go to market
+                - slug: beta-release
+                  name: ベータリリース
+                  summary: 一部ユーザーに限定して機能や製品を試験提供する段階。
+                  whyLearn: 全面展開前に利用実態と問題点を学習できる。
+                  promptHint: 本公開前に限定公開で学びたいとき。
+                  aliases:
+                    - beta
+                    - limited release
+                - slug: rollout-plan
+                  name: ロールアウト計画
+                  summary: 機能や製品をどの対象へどの順で広げるかを定めた展開計画。
+                  whyLearn: 一斉公開のリスクを減らし、段階的に学習と制御ができる。
+                  promptHint: 機能公開を段階的に進めたいとき。
+                  aliases:
+                    - rollout
+                    - phased rollout
+
+            - slug: adoption-and-learning
+              name: 採用拡大と継続学習
+              summary: 使い始めてもらい、継続してもらうための計測と改善。
+              whyLearn: launch 後の成功を、一時的な話題ではなく継続利用で捉えられる。
+              terms:
+                - slug: activation
+                  name: アクティベーション
+                  summary: ユーザーが初期価値を実感する到達点やその達成率。
+                  whyLearn: 登録や導入だけでなく、価値体験の開始を見られる。
+                  promptHint: 新規ユーザーが最初の価値に到達したかを測るとき。
+                  aliases:
+                    - activation metric
+                    - aha moment
+                - slug: retention
+                  name: リテンション
+                  summary: ユーザーが時間をまたいで継続利用する度合い。
+                  whyLearn: 一過性の獲得と、持続価値のあるプロダクトを区別できる。
+                  promptHint: 継続して使われているかを判断したいとき。
+                  aliases:
+                    - retention rate
+                    - repeat usage
+                - slug: churn
+                  name: チャーン
+                  summary: ユーザーや顧客が離脱・解約すること、またはその率。
+                  whyLearn: 成長の裏で失っている価値を可視化できる。
+                  promptHint: なぜ顧客が離れているかを追いたいとき。
+                  aliases:
+                    - churn rate
+                    - attrition
+
+        - slug: lifecycle-and-governance
+          name: ライフサイクルと関係者統治
+          summary: プロダクトの成熟、終了、意思決定責任、対関係者調整を扱うまとまり。
+          concepts:
+            - slug: lifecycle-management
+              name: ライフサイクル管理
+              summary: 導入、成長、成熟、縮小、終了を通じてプロダクトを管理する考え方。
+              whyLearn: いつ拡大し、いつ統合し、いつ終わらせるかの視点を持てる。
+              terms:
+                - slug: product-lifecycle
+                  name: プロダクトライフサイクル
+                  summary: プロダクトが市場でたどる発展から衰退までの流れ。
+                  whyLearn: フェーズごとに指標や戦略が変わることを理解できる。
+                  promptHint: いまの製品が導入期か成熟期かを見立てるとき。
+                  aliases:
+                    - lifecycle
+                    - PLC
+                - slug: end-of-life
+                  name: End of Life
+                  summary: 製品や機能の販売・提供・保守を終了する節目。
+                  whyLearn: 終了判断を先延ばしせず、顧客移行を計画できる。
+                  promptHint: その製品や機能をいつ畳むべきかを決めるとき。
+                  aliases:
+                    - EOL
+                    - retirement
+                - slug: migration-plan
+                  name: 移行計画
+                  summary: 既存ユーザーを代替手段へ安全に移すための計画。
+                  whyLearn: retire 時の顧客損失や運用混乱を減らせる。
+                  promptHint: 廃止対象から新しい製品や機能へ移してもらうとき。
+                  aliases:
+                    - migration
+                    - transition plan
+
+            - slug: stakeholder-alignment
+              name: 関係者アラインメント
+              summary: 利害関係者との期待調整と意思決定責任の明確化。
+              whyLearn: 正しい判断をしても、関係者の合意設計を誤ると前に進まないため。
+              terms:
+                - slug: stakeholder-map
+                  name: ステークホルダーマップ
+                  summary: 関係者の利害、影響力、期待、関与度を整理した図。
+                  whyLearn: 誰をどう巻き込むかを構造的に考えられる。
+                  promptHint: どの関係者に何を先に説明すべきかを整理するとき。
+                  aliases:
+                    - stakeholder matrix
+                    - stakeholder map
+                - slug: decision-rights
+                  name: 意思決定権限
+                  summary: 誰が決め、誰が助言し、誰が実行するかの責任境界。
+                  whyLearn: 合意の遅さや、責任の曖昧さによる停滞を減らせる。
+                  promptHint: この論点は誰が最終決定者なのかを明確にしたいとき。
+                  aliases:
+                    - decision authority
+                    - ownership
+                - slug: review-cadence
+                  name: レビューケイデンス
+                  summary: 定例で戦略、指標、roadmap、進捗を見直す周期設計。
+                  whyLearn: 重要判断を場当たりでなく、一定リズムで更新できる。
+                  promptHint: roadmap や metrics をどの頻度で見直すか決めるとき。
+                  aliases:
+                    - cadence
+                    - review cycle
+
+edges:
+  - from: product-vision
+    to: product-strategy
+    relationType: prerequisite
+    reason: ビジョンがないと、どの問題をどの順で解くかという戦略の方向が定まらない。
+  - from: product-strategy
+    to: product-roadmap
+    relationType: prerequisite
+    reason: ロードマップは戦略の文脈があって初めて意味を持つ。
+  - from: product-strategy
+    to: product-goal
+    relationType: prerequisite
+    reason: 当面の product goal は、戦略で選んだ問題領域から導かれる。
+  - from: product-goal
+    to: product-backlog
+    relationType: prerequisite
+    reason: backlog は product goal を満たすための候補が順序付けられたものだから。
+  - from: jobs-to-be-done
+    to: switch-interview
+    relationType: used_in
+    reason: スイッチインタビューは、顧客がどんな job のために乗り換えたかを掘るために使われる。
+  - from: forces-of-progress
+    to: switch-interview
+    relationType: related
+    reason: 乗り換えの push、pull、habit、anxiety を読むときに両者は密接に結び付く。
+  - from: customer-interview
+    to: opportunity-space
+    relationType: prerequisite
+    reason: 機会空間は、顧客の文脈や困りごとの理解がないと空論になりやすい。
+  - from: opportunity-space
+    to: opportunity-solution-tree
+    relationType: used_in
+    reason: OST は outcome の下に opportunity space を構造化して表現するための図式である。
+  - from: riskiest-assumption
+    to: ab-testing
+    relationType: used_in
+    reason: 最重要仮説の一部は、A/B テストのような比較実験で検証できる。
+  - from: problem-solution-fit
+    to: product-market-fit
+    relationType: prerequisite
+    reason: 問題と解決策の適合が弱いままでは、市場全体の強い需要にはつながりにくい。
+  - from: product-market-fit
+    to: beachhead-market
+    relationType: related
+    reason: 初期の PMF は、しばしばビーチヘッド市場の集中から作られる。
+  - from: objective
+    to: key-result
+    relationType: prerequisite
+    reason: Key Result は Objective の達成を測るための下位指標だから。
+  - from: outcome
+    to: north-star-metric
+    relationType: related
+    reason: North Star は、狙う outcome を継続監視しやすい中心指標へ落としたものとして使われる。
+  - from: north-star-metric
+    to: kpi
+    relationType: compare_with
+    reason: NSM は中心指標、KPI は複数の管理指標であり、役割が異なるため比較理解が必要。
+  - from: heart-framework
+    to: kpi
+    relationType: used_in
+    reason: HEART は UX の観点から KPI 群を設計するための枠組みとして使える。
+  - from: rice
+    to: wsjf
+    relationType: compare_with
+    reason: どちらも優先順位づけ手法だが、RICE は比較的軽量、WSJF は遅延コストを強く意識する。
+  - from: cost-of-delay
+    to: wsjf
+    relationType: prerequisite
+    reason: WSJF の中心発想は、遅延による価値損失を踏まえて順序付けることにある。
+  - from: moscow
+    to: rice
+    relationType: compare_with
+    reason: MoSCoW はカテゴリ分類、RICE はスコア比較であり、使いどころが異なる。
+  - from: kano-model
+    to: differentiation
+    relationType: related
+    reason: 機能が満足にどう効くかを理解すると、どこで差別化するかの判断に役立つ。
+  - from: stage-gate
+    to: continuous-discovery
+    relationType: compare_with
+    reason: どちらも不確実性を扱うが、前者は gate 主導の統治、後者は継続学習主導の運用である。
+  - from: outcome-based-roadmap
+    to: outcome-over-output
+    relationType: related
+    reason: outcome-based roadmap は、output ではなく outcome で約束する発想を可視化したものだから。
+  - from: product-operating-model
+    to: empowered-product-team
+    relationType: used_in
+    reason: product operating model は、権限移譲されたチームを基本単位として機能することが多い。
+  - from: product-owner
+    to: product-backlog
+    relationType: used_in
+    reason: Product Owner は backlog の価値最大化と管理に責任を持つ。
+  - from: backlog-refinement
+    to: product-backlog
+    relationType: used_in
+    reason: refinement は backlog item を分解し、順序や粒度を整える継続活動である。
+  - from: go-to-market
+    to: rollout-plan
+    relationType: used_in
+    reason: GTM の中で、誰へどの順番で出すかは rollout plan として具体化される。
+  - from: beta-release
+    to: rollout-plan
+    relationType: prerequisite
+    reason: ベータ公開は、全面 rollout 前の限定配布段階として使われることが多い。
+  - from: activation
+    to: retention
+    relationType: related
+    reason: 初期価値到達が弱いと、後続の継続利用も弱くなりやすい。
+  - from: churn
+    to: retention
+    relationType: compare_with
+    reason: どちらも継続利用を逆方向から見る指標であり、併せて読む必要がある。
+  - from: end-of-life
+    to: migration-plan
+    relationType: used_in
+    reason: EOL を安全に進めるには、顧客移行の具体的な計画が必要になる。
+  - from: stakeholder-map
+    to: decision-rights
+    relationType: related
+    reason: 誰が関係し、誰が決めるかは別だが、両方を揃えると合意形成が進みやすい。
+  - from: review-cadence
+    to: product-roadmap
+    relationType: used_in
+    reason: roadmap は固定文書ではなく、一定の cadence で見直されることで価値を持つ。

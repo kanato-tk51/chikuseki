@@ -1,0 +1,905 @@
+domain:
+  slug: software-engineering-quality
+  name: ソフトウェア工学と品質
+  summary: ソフトウェアを仕様化し、設計し、検証し、進化させ、品質を保証するための工学的手法。
+  boundaryNotes: ライフサイクル、品質、保守を扱う。具体的なアプリ構成は Product Engineering、本番信頼性は Reliability / Operations に寄せる。
+  knowledgeAreas:
+    - slug: requirements-engineering
+      name: 要求工学
+      summary: 何を作るか、誰の価値を満たすか、どの品質条件で受け入れるかを定義し、変更に耐える形で管理する領域。
+      whyLearn: 曖昧な要求は設計、見積もり、テスト、品質判断のすべてを不安定にするため、要求の質を上げることが工学の起点になる。
+      topicClusters:
+        - slug: requirements-discovery-analysis-and-specification
+          name: 要求の発見、分析、仕様化
+          summary: 利害関係者の意図を抽出し、整理し、仕様として表現するためのまとまり。
+          concepts:
+            - slug: needs-discovery-and-modeling
+              name: ニーズ発見と要求モデリング
+              summary: 利害関係者の目的や業務文脈を、実装可能な要求の候補に変換する技法群。
+              whyLearn: 何を作るべきかを構造化して捉えられると、実装論に入る前に要求の抜けや誤解を減らせる。
+              terms:
+                - slug: stakeholder
+                  name: ステークホルダー
+                  summary: ソフトウェアの価値、制約、受け入れ条件に影響する人や組織や役割。
+                  whyLearn: 誰の要求かを明確にしないと、品質基準や優先順位がぶれる。
+                  promptHint: この機能の成否を判断する主要な人や組織は誰かを洗い出す。
+                  aliases:
+                    - stakeholder
+                    - 利害関係者
+                - slug: use-case
+                  name: ユースケース
+                  summary: 利用者とシステムの相互作用を目的単位で記述する要求表現。
+                  whyLearn: システムが何を実現すべきかを利用文脈と結び付けて捉えられる。
+                  promptHint: この機能で利用者はどんな目的達成のためにシステムとやり取りするかを整理する。
+                  aliases:
+                    - use case
+                    - ユースケース記述
+                - slug: user-story
+                  name: ユーザーストーリー
+                  summary: 利用者価値を短く記述するアジャイルな要求表現。
+                  whyLearn: 実装タスクではなく利用者価値を中心に会話を進めやすくなる。
+                  promptHint: 誰が何をしたいのか、なぜそれが価値なのかを一文で表す。
+                  aliases:
+                    - user story
+                    - ストーリー
+            - slug: requirements-specification
+              name: 要求仕様化
+              summary: 発見した要求を曖昧さの少ない形で仕様に落とし込む技法群。
+              whyLearn: 要求が仕様として表現されて初めて、設計、見積もり、テストに接続できる。
+              terms:
+                - slug: software-requirements-specification
+                  name: ソフトウェア要求仕様書
+                  summary: ソフトウェア要求を体系的に記述した文書や情報集合。
+                  whyLearn: 要求の合意点と変更点を追跡できる共通基盤になる。
+                  promptHint: 要求を後から検証可能な形で残すなら、どの粒度と構造で記述するかを考える。
+                  aliases:
+                    - SRS
+                    - software requirements specification
+                - slug: nonfunctional-requirement
+                  name: 非機能要求
+                  summary: 機能そのものではなく、性能、信頼性、保守性など振る舞いの質を定める要求。
+                  whyLearn: 非機能要求は設計やアーキテクチャの早い段階から判断を拘束する。
+                  promptHint: このソフトウェアに求められる性能や可用性や保守性の条件は何かを明確にする。
+                  aliases:
+                    - NFR
+                    - quality requirement
+                    - 品質要求
+                - slug: acceptance-criteria
+                  name: 受け入れ基準
+                  summary: 要求が満たされたと判断するための具体的な条件。
+                  whyLearn: 完了判定を明確にし、要求とテストをつなぐ橋になる。
+                  promptHint: この要求が満たされたと言える観測可能な条件を列挙する。
+                  aliases:
+                    - acceptance criteria
+                    - 受入基準
+        - slug: requirements-management-and-validation
+          name: 要求の管理と妥当性確認
+          summary: 変更や追跡を制御しながら、要求が本当に正しいかを確かめるためのまとまり。
+          concepts:
+            - slug: requirements-traceability-and-change
+              name: 追跡可能性と変更管理
+              summary: 要求の由来、影響範囲、変更履歴を扱う技法群。
+              whyLearn: 変更のたびに混乱しないためには、何がどこに効いているかを追える必要がある。
+              terms:
+                - slug: traceability-matrix
+                  name: トレーサビリティマトリクス
+                  summary: 要求と設計、実装、テストなどの対応関係を整理した表や構造。
+                  whyLearn: 変更影響を漏れなく追いやすくなり、テスト不足も見つけやすい。
+                  promptHint: 要求ごとに設計要素やテストケースとの対応を追跡できるか確認する。
+                  aliases:
+                    - RTM
+                    - requirements traceability matrix
+                - slug: requirements-baseline
+                  name: 要求ベースライン
+                  summary: 一定時点で合意された要求の基準状態。
+                  whyLearn: 何が合意済みで、何が変更対象かを明確にできる。
+                  promptHint: いま変更前提で固定すべき要求集合はどこまでかを決める。
+                  aliases:
+                    - baseline
+                    - requirements baseline
+                - slug: change-request
+                  name: 変更要求
+                  summary: 既存要求や仕様への追加、修正、削除を正式に扱うための依頼単位。
+                  whyLearn: 変更を口頭で流さず、コストや影響を伴う判断として扱える。
+                  promptHint: この要求変更は何を変え、何に影響し、誰が承認するべきかを明らかにする。
+                  aliases:
+                    - CR
+                    - 変更依頼
+            - slug: requirements-validation-techniques
+              name: 要求の妥当性確認技法
+              summary: 要求が本当に必要で、理解可能で、受け入れ可能かを確かめる技法群。
+              whyLearn: 正しく実装する前に、そもそも正しい要求かを確かめる必要がある。
+              terms:
+                - slug: prototyping
+                  name: プロトタイピング
+                  summary: 早い段階で試作品を作り、要求理解や期待値を確かめる手法。
+                  whyLearn: 文書だけでは見えない誤解や期待ギャップを早く発見できる。
+                  promptHint: どの要求は文章より試作品で見せた方が妥当性確認しやすいかを考える。
+                  aliases:
+                    - prototype
+                    - プロトタイプ
+                - slug: walkthrough
+                  name: ウォークスルー
+                  summary: 作成物を関係者で順に確認し、理解や抜け漏れを見つけるレビュー手法。
+                  whyLearn: 早い段階で誤解や不整合を発見しやすい。
+                  promptHint: 要求を関係者と順に読み合わせたとき、解釈が割れる箇所はどこかを見る。
+                  aliases:
+                    - walkthrough
+                    - 読み合わせ
+                - slug: requirements-review
+                  name: 要求レビュー
+                  summary: 要求の完全性、一貫性、検証可能性などを点検するレビュー活動。
+                  whyLearn: 設計や実装に入る前に、要求そのものの品質を上げられる。
+                  promptHint: この要求は曖昧さ、不整合、検証不能な表現を含んでいないかを確認する。
+                  aliases:
+                    - review
+                    - requirements inspection
+
+    - slug: software-architecture-and-design
+      name: ソフトウェアアーキテクチャと設計
+      summary: ソフトウェアの主要構造、責務分割、品質属性、設計判断を扱う領域。
+      whyLearn: 良い設計はコードを書く前にトレードオフを見える化し、変更容易性や品質の土台を作るため。
+      topicClusters:
+        - slug: architecture-description-and-evaluation
+          name: アーキテクチャ記述と評価
+          summary: アーキテクチャを表現し、品質属性に照らして評価するためのまとまり。
+          concepts:
+            - slug: architecture-description
+              name: アーキテクチャ記述
+              summary: 関係者の関心に応じて、アーキテクチャを複数の見方で表現する技法群。
+              whyLearn: 構造を口頭説明に頼らず、レビューや合意形成の対象として扱える。
+              terms:
+                - slug: viewpoint
+                  name: ビューポイント
+                  summary: 特定の関心事に対して、どの観点でアーキテクチャを見るかを定めた枠組み。
+                  whyLearn: 何を見る図なのかを明確にしないと、図の意味がぶれる。
+                  promptHint: この図は誰のどんな関心に応えるための観点なのかを明確にする。
+                  aliases:
+                    - viewpoint
+                    - 観点
+                - slug: view
+                  name: ビュー
+                  summary: ビューポイントに従って作られた具体的なアーキテクチャ表現。
+                  whyLearn: 一枚の図で全部を表そうとせず、目的に応じた説明ができる。
+                  promptHint: このビューはどの関心事に答え、何をあえて省略しているかを確認する。
+                  aliases:
+                    - view
+                    - アーキテクチャビュー
+                - slug: architecture-decision-record
+                  name: アーキテクチャ決定記録
+                  summary: 重要な設計判断とその背景や代替案を簡潔に記録する文書。
+                  whyLearn: なぜその設計にしたのかを後から説明しやすくなる。
+                  promptHint: この設計判断の背景、選択肢、採用理由、見送った案を残す。
+                  aliases:
+                    - ADR
+                    - architecture decision record
+            - slug: quality-attribute-driven-evaluation
+              name: 品質属性駆動の評価
+              summary: 性能や変更容易性などの品質属性からアーキテクチャを評価する技法群。
+              whyLearn: 構造の良し悪しは、機能の有無だけでなく品質属性の達成可能性で決まる。
+              terms:
+                - slug: quality-attribute
+                  name: 品質属性
+                  summary: ソフトウェアの質を特徴づける性能、信頼性、保守性などの観点。
+                  whyLearn: 設計トレードオフを議論する共通語彙になる。
+                  promptHint: この設計が特に守るべき品質属性は何で、何と衝突しうるかを整理する。
+                  aliases:
+                    - quality attribute
+                    - quality characteristic
+                - slug: scenario
+                  name: シナリオ
+                  summary: 品質属性を具体的な刺激、環境、応答で表現する記述。
+                  whyLearn: 抽象的な品質要求を、評価やテストが可能な形に変換できる。
+                  promptHint: この品質属性を具体的な事象と期待応答で表すとどうなるかを書く。
+                  aliases:
+                    - quality attribute scenario
+                    - シナリオ記述
+                - slug: atam
+                  name: ATAM
+                  summary: 品質属性のトレードオフからアーキテクチャを評価する代表的手法。
+                  whyLearn: 重要な設計判断の利点とコストを早い段階で可視化できる。
+                  promptHint: このアーキテクチャの品質トレードオフを評価するなら、どのシナリオで検討するかを考える。
+                  aliases:
+                    - Architecture Tradeoff Analysis Method
+                    - ATAM
+        - slug: modularity-and-design-principles
+          name: モジュール性と設計原則
+          summary: 変更しやすく理解しやすい構造を作るための分割原理と設計原則のまとまり。
+          concepts:
+            - slug: modularity
+              name: モジュール性
+              summary: 責務の分割と依存関係の制御によって、変更容易性を高める考え方。
+              whyLearn: 大きなソフトウェアでも局所的に理解し変更できる状態を作れる。
+              terms:
+                - slug: coupling
+                  name: 結合度
+                  summary: モジュール間の依存の強さを表す概念。
+                  whyLearn: 結合度が高いと変更波及が大きくなりやすい。
+                  promptHint: この変更はどのモジュール間の依存を増やすか減らすかを見る。
+                  aliases:
+                    - coupling
+                    - 結合
+                - slug: cohesion
+                  name: 凝集度
+                  summary: モジュール内部の責務がどれだけ一貫してまとまっているかを表す概念。
+                  whyLearn: 凝集度が高いと責務が明確で変更理由も揃いやすい。
+                  promptHint: このモジュールの要素は同じ変更理由を共有しているかを確認する。
+                  aliases:
+                    - cohesion
+                    - 凝集
+                - slug: information-hiding
+                  name: 情報隠蔽
+                  summary: 変更されやすい内部詳細を境界の内側に閉じ込める設計原則。
+                  whyLearn: 内部変更の影響を外部へ漏らしにくくできる。
+                  promptHint: どの実装詳細を公開せずに隠すと変更耐性が上がるかを考える。
+                  aliases:
+                    - information hiding
+                    - 実装隠蔽
+            - slug: design-principles-and-styles
+              name: 設計原則と構造スタイル
+              summary: 関心分離と依存制御を通じて構造品質を改善する原則群。
+              whyLearn: 個別のコード改善を超えて、構造全体の一貫した判断基準を持てる。
+              terms:
+                - slug: separation-of-concerns
+                  name: 関心の分離
+                  summary: 性質の異なる責務や関心事を分離して扱う設計原則。
+                  whyLearn: 変更理由が異なるものを分けることで保守しやすくなる。
+                  promptHint: この設計はどの関心事を分離し、どこで混在しているかを見る。
+                  aliases:
+                    - SoC
+                    - separation of concerns
+                - slug: dependency-inversion-principle
+                  name: 依存性逆転の原則
+                  summary: 上位と下位の要素を具体実装ではなく抽象に依存させる原則。
+                  whyLearn: 差し替えやテストや進化がしやすい構造を作れる。
+                  promptHint: この依存は具体実装に固定されていないか、抽象に向け直せるかを考える。
+                  aliases:
+                    - DIP
+                    - dependency inversion principle
+                - slug: layered-architecture
+                  name: レイヤードアーキテクチャ
+                  summary: 責務ごとに層を分け、依存方向を制約する代表的な構造スタイル。
+                  whyLearn: 関心分離と変更範囲の局所化を理解する基本例になる。
+                  promptHint: このシステムで層を分けるなら、各層の責務と依存方向をどう置くかを考える。
+                  aliases:
+                    - layered architecture
+                    - n-tier architecture
+
+    - slug: testing-verification-and-validation
+      name: テスト、検証、妥当性確認
+      summary: ソフトウェアが仕様どおりに動くか、期待された価値に合うかを多面的に確かめる領域。
+      whyLearn: 品質を出荷後の祈りではなく、開発中に観測して改善する工学活動に変えられるため。
+      topicClusters:
+        - slug: test-strategy-and-design
+          name: テスト戦略とテスト設計
+          summary: どこをどの観点でテストするかを設計するためのまとまり。
+          concepts:
+            - slug: test-levels-and-objectives
+              name: テストレベルと目的
+              summary: 対象範囲と目的に応じてテストを階層化して考える技法群。
+              whyLearn: 同じ不具合でも、どのレベルで早く見つけるべきかの議論ができる。
+              terms:
+                - slug: unit-test
+                  name: 単体テスト
+                  summary: 小さな単位の振る舞いを検証するテスト。
+                  whyLearn: 変更の近くで早く壊れ方を検知しやすい。
+                  promptHint: このロジックを最小単位で検証するには何を固定し何を観測するかを考える。
+                  aliases:
+                    - unit test
+                    - ユニットテスト
+                - slug: integration-test
+                  name: 結合テスト
+                  summary: 複数要素の接続や相互作用を検証するテスト。
+                  whyLearn: 単体では見えない契約不一致や結合不良を見つけられる。
+                  promptHint: コンポーネント間の境界で起きうる不整合をどのように検証するか整理する。
+                  aliases:
+                    - integration test
+                    - 統合テスト
+                - slug: system-test
+                  name: システムテスト
+                  summary: システム全体として要求を満たすかを検証するテスト。
+                  whyLearn: 個々の部品が正しくても全体要件を満たさない問題を捉えられる。
+                  promptHint: エンドツーエンドで見たとき、この要求はどのシナリオで検証できるかを考える。
+                  aliases:
+                    - system test
+                    - 総合テスト
+            - slug: black-box-test-design
+              name: ブラックボックス系テスト設計
+              summary: 実装詳細ではなく入出力や仕様からテストケースを導く技法群。
+              whyLearn: 限られたケース数でも、境界や代表値を押さえた効果的なテストを設計できる。
+              terms:
+                - slug: equivalence-partitioning
+                  name: 同値分割
+                  summary: 同じ振る舞いをすると期待される入力群から代表値を選ぶ手法。
+                  whyLearn: 網羅性とケース数のバランスを取れる。
+                  promptHint: 入力を同じ扱いになる群に分けると、どの代表値を選ぶべきかを考える。
+                  aliases:
+                    - equivalence partitioning
+                    - 同値クラス分割
+                - slug: boundary-value-analysis
+                  name: 境界値分析
+                  summary: 境界付近で不具合が出やすいことを利用するテスト設計手法。
+                  whyLearn: 少ないケースで高い発見力を得やすい。
+                  promptHint: 許容範囲や切り替わり条件の境界で何を試すべきか洗い出す。
+                  aliases:
+                    - BVA
+                    - boundary value analysis
+                - slug: decision-table-testing
+                  name: デシジョンテーブルテスト
+                  summary: 条件の組み合わせと期待結果を表で整理してテストする手法。
+                  whyLearn: 複雑な業務ルールや条件分岐の抜け漏れを減らせる。
+                  promptHint: 条件分岐を表にしたとき、未検証の組み合わせがないか確認する。
+                  aliases:
+                    - decision table testing
+                    - 条件組合せテスト
+        - slug: automation-and-broader-verification
+          name: 自動化と広義の検証
+          summary: テスト実行を自動化し、静的解析や形式的手法まで含めて品質を確かめるまとまり。
+          concepts:
+            - slug: automation-and-fast-feedback
+              name: 自動化と高速フィードバック
+              summary: 変更のたびに迅速で再現可能な品質フィードバックを返す技法群。
+              whyLearn: 品質確認が遅いほど手戻りコストが大きくなりやすい。
+              terms:
+                - slug: test-automation
+                  name: テスト自動化
+                  summary: テストの実行、判定、報告を機械的に繰り返せるようにすること。
+                  whyLearn: 回帰確認を継続可能にし、人手を探索的検証へ振り向けやすくする。
+                  promptHint: 繰り返し実行される確認のうち、どこを自動化すると効果が大きいかを考える。
+                  aliases:
+                    - automated testing
+                    - 自動テスト
+                - slug: continuous-integration
+                  name: 継続的インテグレーション
+                  summary: 頻繁な統合と自動ビルド、自動テストで統合不良を早期に検出する実践。
+                  whyLearn: 統合を後回しにせず、小さな差分で品質を確かめ続けられる。
+                  promptHint: 変更を小さく統合し、自動検証で即座に問題を見つける流れを設計する。
+                  aliases:
+                    - CI
+                    - continuous integration
+                - slug: coverage
+                  name: カバレッジ
+                  summary: テストがどの程度対象を実行または充足したかを示す指標。
+                  whyLearn: テストの当たり方を把握できるが、十分条件ではないことも学べる。
+                  promptHint: このカバレッジ指標は何を測っており、何を測っていないかを説明する。
+                  aliases:
+                    - test coverage
+                    - 網羅率
+                - slug: ai-assisted-test-generation
+                  name: AI支援テスト生成
+                  summary: 生成AIを使ってテストケースやテストコードの候補を作る実践。
+                  whyLearn: テスト作成の初速を上げられる一方、妥当性確認の重要性も学べる。
+                  promptHint: AI が出したテスト候補のうち、仕様上本当に価値があるケースはどれかを見極める。
+                  aliases:
+                    - AI test generation
+                    - LLM-based test generation
+            - slug: static-dynamic-and-formal-verification
+              name: 静的、動的、形式的検証
+              summary: 実行前後の解析や数学的手法を含めて、欠陥を多面的に見つける技法群。
+              whyLearn: テストだけでは見つけにくい性質や大きな入力空間に対処しやすくなる。
+              terms:
+                - slug: static-analysis
+                  name: 静的解析
+                  summary: プログラムを実行せずにコードや依存関係を解析して問題を見つける手法。
+                  whyLearn: 早い段階でパターン的な欠陥や規約違反を検出しやすい。
+                  promptHint: 実行前に見つけられる欠陥や規約違反には何があるかを考える。
+                  aliases:
+                    - static analysis
+                    - lint
+                - slug: fuzz-testing
+                  name: ファズテスト
+                  summary: 大量または異常系の入力を与えて、クラッシュや脆弱な振る舞いを見つける手法。
+                  whyLearn: 想定外入力への頑健性を効率よく確認できる。
+                  promptHint: 不正入力やランダム入力を与えたときに壊れやすい境界はどこかを考える。
+                  aliases:
+                    - fuzzing
+                    - ファジング
+                - slug: formal-verification
+                  name: 形式的検証
+                  summary: 数学的モデルや論理を用いて、性質の成立を厳密に確かめる手法。
+                  whyLearn: 高い正しさ保証が必要な箇所で、テストでは得られない確証を与えられる。
+                  promptHint: この性質はテストで近似するべきか、形式的に証明したい性質かを見極める。
+                  aliases:
+                    - formal methods
+                    - model checking
+                    - 定理証明
+
+    - slug: configuration-management-build-and-release-quality
+      name: 構成管理、ビルド、リリース品質
+      summary: ソフトウェア構成要素を識別し、変更を制御し、再現可能に組み立て、安全に出荷する領域。
+      whyLearn: 品質はコードの中だけでなく、変更の流し方や再現性の設計にも依存するため。
+      topicClusters:
+        - slug: versioning-and-change-control
+          name: バージョン管理と変更統制
+          summary: 変更履歴、構成要素、レビューの流れを制御するためのまとまり。
+          concepts:
+            - slug: version-control-practices
+              name: バージョン管理実践
+              summary: 変更を記録し、協調開発での整合性を保つための実践群。
+              whyLearn: 履歴が追えない、差分が大きすぎる、統合が遅いと品質問題が増えやすい。
+              terms:
+                - slug: version-control-system
+                  name: バージョン管理システム
+                  summary: ソースや関連資産の変更履歴を記録し共有する仕組み。
+                  whyLearn: いつ何が変わったかを説明可能にし、協調開発の前提を作る。
+                  promptHint: この変更履歴から、誰が何をどの意図で変えたか追えるかを確認する。
+                  aliases:
+                    - VCS
+                    - version control
+                - slug: trunk-based-development
+                  name: トランクベース開発
+                  summary: 長寿命ブランチを避け、短い差分を主幹に頻繁に統合する開発スタイル。
+                  whyLearn: 統合リスクを小さく保ち、CI と相性の良い流れを作れる。
+                  promptHint: 差分を小さく保ったまま主幹に頻繁に統合できるかを検討する。
+                  aliases:
+                    - TBD
+                    - trunk-based development
+                - slug: pull-request
+                  name: プルリクエスト
+                  summary: 変更提案とレビューを履歴付きで扱うための単位。
+                  whyLearn: 変更理由、差分、レビュー結果を残しやすい。
+                  promptHint: この変更でレビューすべき論点は仕様か設計か実装かを明確にする。
+                  aliases:
+                    - PR
+                    - merge request
+            - slug: configuration-identification-and-baselines
+              name: 構成識別とベースライン
+              summary: 何を管理対象とみなし、どの状態を基準とするかを定める技法群。
+              whyLearn: 管理対象が曖昧だと、再現性も責任範囲も曖昧になる。
+              terms:
+                - slug: configuration-item
+                  name: 構成項目
+                  summary: 識別、統制、監査の対象として扱う文書、コード、成果物などの単位。
+                  whyLearn: どこまでを正式管理対象にするかで変更統制の質が変わる。
+                  promptHint: このプロジェクトで正式に識別し追跡すべき構成項目は何かを決める。
+                  aliases:
+                    - CI item
+                    - configuration item
+                - slug: configuration-baseline
+                  name: 構成ベースライン
+                  summary: 合意された構成項目の基準状態で、変更統制の出発点となるもの。
+                  whyLearn: どこからの差分かを明確にし、再現可能な出荷や変更評価を支えられる。
+                  promptHint: いまのリリースや検証の基準となる構成状態を明示する。
+                  aliases:
+                    - configuration baseline
+                    - baseline
+                - slug: semantic-versioning
+                  name: セマンティックバージョニング
+                  summary: 互換性の意味に基づいてバージョン番号を管理する慣行。
+                  whyLearn: 変更の影響範囲を利用者や依存先に伝えやすくなる。
+                  promptHint: この変更は互換性を壊すのか機能追加なのか修正なのかを区別して版を付ける。
+                  aliases:
+                    - semver
+                    - semantic versioning
+        - slug: build-and-release-quality
+          name: ビルドとリリース品質
+          summary: 成果物を再現可能に組み立て、品質ゲートを通して安全に供給するためのまとまり。
+          concepts:
+            - slug: reproducible-build-and-dependency-management
+              name: 再現可能ビルドと依存管理
+              summary: 同じ入力から同じ成果物を作りやすくする技法群。
+              whyLearn: 環境差分や依存の揺れが混じると、品質問題の原因追跡が難しくなる。
+              terms:
+                - slug: build-automation
+                  name: ビルド自動化
+                  summary: コンパイル、テスト、パッケージ化などを機械的に実行する仕組み。
+                  whyLearn: 手作業差分を減らし、再現可能な供給パイプラインを作れる。
+                  promptHint: 人手ではなく機械で一貫して行うべきビルド手順は何かを整理する。
+                  aliases:
+                    - automated build
+                    - build pipeline
+                - slug: dependency-lockfile
+                  name: 依存ロックファイル
+                  summary: 解決済みの依存バージョンを固定して再現性を高めるファイル。
+                  whyLearn: 環境や時期による依存のぶれを抑えられる。
+                  promptHint: 依存解決結果を固定しないと再現性が崩れる箇所はどこかを確認する。
+                  aliases:
+                    - lockfile
+                    - dependency pinning
+                - slug: artifact-repository
+                  name: アーティファクトリポジトリ
+                  summary: ビルド成果物やパッケージを保管し供給するための保管庫。
+                  whyLearn: 何を出荷し何を再利用したかを追跡しやすくなる。
+                  promptHint: ビルド成果物をどこに保存し、どの版を参照するかを一貫させる。
+                  aliases:
+                    - artifact repository
+                    - package registry
+            - slug: delivery-and-release-safeguards
+              name: デリバリーとリリースの安全策
+              summary: 出荷前後の品質基準と失敗時の戻し方を扱う技法群。
+              whyLearn: 素早く出すことと安全に出すことを両立するために必要。
+              terms:
+                - slug: quality-gate
+                  name: 品質ゲート
+                  summary: 次工程や出荷に進む前に満たすべき品質条件。
+                  whyLearn: 速度を保ちながら最低限守る条件を自動化しやすい。
+                  promptHint: この変更が次に進む前に最低限満たすべき検査条件は何かを定義する。
+                  aliases:
+                    - gate
+                    - quality check
+                - slug: continuous-delivery
+                  name: 継続的デリバリー
+                  summary: 本番投入可能な状態を継続的に保ち、出荷判断を容易にする実践。
+                  whyLearn: リリース頻度を上げつつ変更リスクを小さくしやすい。
+                  promptHint: この変更をいつでも出せる状態に保つには、どこまで自動化と検証が必要かを考える。
+                  aliases:
+                    - CD
+                    - continuous delivery
+                - slug: rollback
+                  name: ロールバック
+                  summary: 問題発生時に変更を迅速に元に戻す操作や戦略。
+                  whyLearn: 安全に変更を出すには、失敗したときの戻し方も設計しておく必要がある。
+                  promptHint: このリリースが問題を起こした場合に、どの単位でどう戻すかを事前に決める。
+                  aliases:
+                    - rollback
+                    - revert strategy
+
+    - slug: maintenance-evolution-and-technical-debt
+      name: 保守、進化、技術的負債
+      summary: 既存ソフトウェアを理解し、壊さずに改善し、長期的な劣化を管理しながら進化させる領域。
+      whyLearn: 実務の多くは新規開発より変更と保守であり、ここで差がつくため。
+      topicClusters:
+        - slug: maintainability-and-evolution
+          name: 保守性と進化
+          summary: 変更し続けられる構造を保つための技法のまとまり。
+          concepts:
+            - slug: refactoring-and-regression-safety
+              name: リファクタリングと回帰安全性
+              summary: 外部振る舞いを保ちつつ内部構造を整え、変更耐性を上げる技法群。
+              whyLearn: 機能追加のたびに構造が悪化するのを抑えられる。
+              terms:
+                - slug: refactoring
+                  name: リファクタリング
+                  summary: 外部仕様を変えずに内部構造を改善する行為。
+                  whyLearn: 将来変更のコストを下げ、設計意図をコードへ反映し直せる。
+                  promptHint: この変更は新機能追加か、既存構造の改善かを切り分けて考える。
+                  aliases:
+                    - refactoring
+                    - リファクタ
+                - slug: code-smell
+                  name: コードスメル
+                  summary: 問題の直接証拠ではないが、設計劣化を示唆する兆候。
+                  whyLearn: 将来の保守コストが上がりそうな箇所を早めに見つけられる。
+                  promptHint: 重複、巨大関数、曖昧命名など、設計上の不快な兆候がないかを見る。
+                  aliases:
+                    - code smell
+                    - 設計臭
+                - slug: regression-test
+                  name: 回帰テスト
+                  summary: 変更後も既存機能が壊れていないことを確かめるテスト。
+                  whyLearn: 安全に改善や修正を進めるための土台になる。
+                  promptHint: この変更で壊れやすい既存振る舞いを何で守るかを明確にする。
+                  aliases:
+                    - regression test
+                    - リグレッションテスト
+            - slug: maintainability-analysis
+              name: 保守性分析
+              summary: 変更しやすさや理解しやすさを指標や関係性から評価する技法群。
+              whyLearn: 保守性を感覚ではなく観測可能な論点として扱える。
+              terms:
+                - slug: maintainability
+                  name: 保守性
+                  summary: ソフトウェアを修正、改善、適応させやすい性質。
+                  whyLearn: 変更コストを左右する重要な品質特性だから。
+                  promptHint: この構造は変更理由の局所化、理解容易性、テスト容易性を備えているかを見る。
+                  aliases:
+                    - maintainability
+                    - 修正容易性
+                - slug: cyclomatic-complexity
+                  name: 循環的複雑度
+                  summary: 制御フローの分岐の多さから複雑さを測る代表的指標。
+                  whyLearn: テスト難易度や理解しづらさの兆候を捉えやすい。
+                  promptHint: この関数やモジュールは分岐過多になっていないかを確認する。
+                  aliases:
+                    - cyclomatic complexity
+                    - McCabe complexity
+                - slug: change-coupling
+                  name: 変更結合
+                  summary: 履歴上、複数要素が一緒に変更されやすい関係。
+                  whyLearn: 暗黙の依存や責務分割の問題を見つけやすい。
+                  promptHint: 履歴上いつも一緒に変わる部分があるなら、構造を見直すべきか考える。
+                  aliases:
+                    - change coupling
+                    - logical coupling
+        - slug: legacy-modernization-and-technical-debt-management
+          name: レガシー刷新と技術的負債管理
+          summary: 古い構造や累積した妥協を管理しながら、安全に刷新するためのまとまり。
+          concepts:
+            - slug: technical-debt-management
+              name: 技術的負債管理
+              summary: 短期的な妥協が将来コストを生む構造を認識し、計画的に扱う技法群。
+              whyLearn: 負債を曖昧な不満で終わらせず、判断対象として扱えるようになる。
+              terms:
+                - slug: technical-debt
+                  name: 技術的負債
+                  summary: 短期便益のための妥協が将来の変更コストやリスクとして残る状態。
+                  whyLearn: 速度と将来コストのトレードオフを可視化できる。
+                  promptHint: この実装上の妥協は、将来どんなコストや制約として返ってくるかを考える。
+                  aliases:
+                    - technical debt
+                    - TD
+                - slug: interest-metaphor
+                  name: 利息メタファ
+                  summary: 技術的負債が時間経過とともに追加コストを生むという捉え方。
+                  whyLearn: なぜ先送りが高くつくのかを説明しやすくなる。
+                  promptHint: この負債を放置すると、どんな作業で追加コストが発生するかを見積もる。
+                  aliases:
+                    - interest metaphor
+                    - debt interest
+                - slug: debt-register
+                  name: 負債レジスタ
+                  summary: 技術的負債項目を記録し、影響や優先度を管理する台帳。
+                  whyLearn: 負債を一覧化し、場当たりではなく計画的に処理できる。
+                  promptHint: どの負債を記録し、どう優先順位付けし、いつ返済するかを明示する。
+                  aliases:
+                    - technical debt register
+                    - debt inventory
+            - slug: modernization-patterns
+              name: モダナイゼーションパターン
+              summary: 既存システムを一気に壊さず段階的に改善する技法群。
+              whyLearn: 大規模刷新のリスクを下げ、段階移行を現実的に進められる。
+              terms:
+                - slug: strangler-fig-pattern
+                  name: ストラングラーフィグパターン
+                  summary: 既存システムの外側から新機能を置き換えて徐々に移行するパターン。
+                  whyLearn: 全面刷新より小さなステップで移行しやすい。
+                  promptHint: 旧システムの周辺から段階的に機能を置き換えるなら、どこから始めるべきかを考える。
+                  aliases:
+                    - strangler pattern
+                    - strangler fig
+                - slug: branch-by-abstraction
+                  name: 抽象化による分岐
+                  summary: 抽象レイヤを介して新旧実装を共存させながら切り替える手法。
+                  whyLearn: 長期ブランチや一括切替のリスクを減らせる。
+                  promptHint: 新旧実装を並行稼働させるためにどの抽象境界を導入するかを考える。
+                  aliases:
+                    - branch by abstraction
+                    - BBA
+                - slug: anti-corruption-layer
+                  name: 腐敗防止層
+                  summary: 既存システムや外部境界の不整合なモデルが内側へ汚染するのを防ぐ層。
+                  whyLearn: 段階移行の中でも新しい設計原則を守りやすくなる。
+                  promptHint: 外部や旧システムのモデル差異をどこで吸収すると内側を守れるかを考える。
+                  aliases:
+                    - ACL
+                    - anti-corruption layer
+
+    - slug: process-quality-assurance-and-improvement
+      name: プロセス、品質保証、改善
+      summary: ライフサイクルの進め方、品質保証の仕組み、測定と改善ループを扱う領域。
+      whyLearn: 良い個人技だけでは再現できない品質を、チームや工程の仕組みとして作るため。
+      topicClusters:
+        - slug: lifecycle-models-and-quality-practices
+          name: ライフサイクルモデルと品質実践
+          summary: 開発の進め方と、品質を早く確かめるための実践をまとめたもの。
+          concepts:
+            - slug: lifecycle-models
+              name: ライフサイクルモデル
+              summary: いつ何を定義し、どの順序で検証するかを表す進め方のモデル群。
+              whyLearn: 進め方の前提が変わると、要求、設計、テスト、レビューの置き方も変わる。
+              terms:
+                - slug: software-life-cycle
+                  name: ソフトウェアライフサイクル
+                  summary: 企画から開発、運用支援、退役までを含むソフトウェアの全期間。
+                  whyLearn: 工学的活動を局所工程ではなく全体の流れで見られるようになる。
+                  promptHint: この活動はライフサイクル全体のどの段階に位置し、前後とどうつながるかを整理する。
+                  aliases:
+                    - software lifecycle
+                    - SDLC
+                - slug: incremental-development
+                  name: インクリメンタル開発
+                  summary: 価値や機能を小さな増分に分けて段階的に提供する進め方。
+                  whyLearn: 早いフィードバックを得ながら変更に適応しやすい。
+                  promptHint: どんな最小増分に分けると学習とリスク低減が両立するかを考える。
+                  aliases:
+                    - incremental development
+                    - incremental delivery
+                - slug: v-model
+                  name: V字モデル
+                  summary: 開発工程と対応する検証工程の対応関係を強調するモデル。
+                  whyLearn: 検証を後工程の作業ではなく、早い設計判断と結び付けて考えられる。
+                  promptHint: 各開発成果物に対してどの検証活動が対応するかを対応付ける。
+                  aliases:
+                    - V-model
+                    - V字工程
+            - slug: quality-focused-delivery-practices
+              name: 品質志向のデリバリー実践
+              summary: 開発の流れの中に品質確認を埋め込むための実践群。
+              whyLearn: 品質を最後にまとめて確認するのではなく、流れの中で作り込める。
+              terms:
+                - slug: devops
+                  name: DevOps
+                  summary: 開発と運用の協調を通じて、変更の流れと品質フィードバックを改善する考え方。
+                  whyLearn: デリバリー速度と安定性を対立ではなく両立の論点として扱える。
+                  promptHint: 開発からデリバリーまでの手戻りや待ち時間を減らすにはどの協調が必要かを見る。
+                  aliases:
+                    - DevOps
+                    - 開発運用協調
+                - slug: shift-left-testing
+                  name: シフトレフトテスト
+                  summary: 品質確認を後工程ではなく前倒しして行う考え方。
+                  whyLearn: 欠陥の早期発見と手戻りコスト低減につながる。
+                  promptHint: いま後工程で見つかっている問題を、どの段階で前倒し検出できるかを考える。
+                  aliases:
+                    - shift left
+                    - 左シフト
+                - slug: definition-of-done
+                  name: 完了の定義
+                  summary: 作業が完了と見なされるための共通条件。
+                  whyLearn: 実装完了と品質完了を混同しないための基準になる。
+                  promptHint: このチームで完了と見なすには、テスト、レビュー、文書化のどこまで必要かを定める。
+                  aliases:
+                    - DoD
+                    - Definition of Done
+        - slug: quality-management-and-continuous-improvement
+          name: 品質管理と継続改善
+          summary: 品質を保証し、測定し、改善ループを回すためのまとまり。
+          concepts:
+            - slug: quality-assurance-control-and-measurement
+              name: 品質保証、品質管理、測定
+              summary: 品質を作り込む活動と、結果を確かめる活動を区別して扱う技法群。
+              whyLearn: 品質問題を個人の注意力ではなく仕組みの問題として改善できる。
+              terms:
+                - slug: quality-assurance
+                  name: 品質保証
+                  summary: 望ましい品質が得られるよう、工程や方法を整える活動。
+                  whyLearn: 不具合を見つけるだけでなく、出にくい作り方を設計できる。
+                  promptHint: この品質問題は検査不足か、工程や設計の仕組み不足かを切り分ける。
+                  aliases:
+                    - QA
+                    - quality assurance
+                - slug: quality-control
+                  name: 品質管理
+                  summary: 成果物や結果を検査し、規準との差を把握して是正する活動。
+                  whyLearn: いまの品質状態を把握し、出荷判断や是正判断につなげられる。
+                  promptHint: どの成果物をどの基準で測り、逸脱時に何をするかを明確にする。
+                  aliases:
+                    - QC
+                    - quality control
+                - slug: defect-leakage
+                  name: 欠陥流出
+                  summary: ある工程で見つけるべき不具合が後工程や顧客環境へ流れてしまうこと。
+                  whyLearn: どの工程の品質ゲートが弱いのかを把握しやすい。
+                  promptHint: 本来どこで見つけるべき欠陥がどこまで流出したかを分析する。
+                  aliases:
+                    - defect leakage
+                    - escaped defect
+            - slug: continuous-improvement-frameworks
+              name: 継続改善フレームワーク
+              summary: 改善を単発の反省ではなく、継続的な仕組みにするための枠組み群。
+              whyLearn: 品質改善を属人的な努力ではなく再現可能な学習ループにできる。
+              terms:
+                - slug: root-cause-analysis
+                  name: 根本原因分析
+                  summary: 目の前の不具合だけでなく、それを生んだ仕組みや条件を探る分析。
+                  whyLearn: 表面的な修正だけで同じ問題を繰り返すのを防げる。
+                  promptHint: この不具合の直接原因だけでなく、なぜその原因が生まれたのかを掘り下げる。
+                  aliases:
+                    - RCA
+                    - root cause analysis
+                - slug: cmmi
+                  name: CMMI
+                  summary: 組織のプロセス能力を評価し改善するための成熟度モデル。
+                  whyLearn: 改善を思いつきではなく能力構築として捉えられる。
+                  promptHint: この組織の改善課題は個別実践の不足か、能力領域の不足かを考える。
+                  aliases:
+                    - CMMI
+                    - Capability Maturity Model Integration
+                - slug: dora-metrics
+                  name: DORAメトリクス
+                  summary: ソフトウェアデリバリー性能を継続的に把握するための代表的指標群。
+                  whyLearn: 速度と安定性の両面から改善を議論しやすくなる。
+                  promptHint: 変更の流れと安定性を測るなら、どの指標をどう解釈するかを定める。
+                  aliases:
+                    - DORA
+                    - delivery metrics
+
+edges:
+  - from: stakeholder
+    to: user-story
+    relationType: used_in
+    reason: 利害関係者の価値や目的を短い要求表現に落とし込むときの起点になる。
+  - from: use-case
+    to: acceptance-criteria
+    relationType: used_in
+    reason: ユースケースの主成功シナリオや代替シナリオは受け入れ基準へ変換しやすい。
+  - from: nonfunctional-requirement
+    to: quality-attribute
+    relationType: related
+    reason: 非機能要求はアーキテクチャ上では品質属性として設計判断に反映されることが多い。
+  - from: traceability-matrix
+    to: change-request
+    relationType: used_in
+    reason: 変更要求の影響範囲を設計やテストまで追うときに使う。
+  - from: prototyping
+    to: requirements-review
+    relationType: compare_with
+    reason: 前者は体験を見せて確認し、後者は文書品質を点検するので妥当性確認の仕方が異なる。
+  - from: viewpoint
+    to: view
+    relationType: used_in
+    reason: ビューはビューポイントに従って具体的に作られる。
+  - from: architecture-decision-record
+    to: quality-attribute
+    relationType: related
+    reason: 重要な設計判断は通常どの品質属性を優先したかの記録を含む。
+  - from: scenario
+    to: atam
+    relationType: used_in
+    reason: ATAM では品質属性シナリオを使ってトレードオフを評価する。
+  - from: information-hiding
+    to: coupling
+    relationType: related
+    reason: 内部詳細を隠すことは結合度を下げる方向に働きやすい。
+  - from: coupling
+    to: cohesion
+    relationType: compare_with
+    reason: 良いモジュール分割を考えるときに外部依存の少なさと内部まとまりの強さを対で見る。
+  - from: static-analysis
+    to: unit-test
+    relationType: compare_with
+    reason: どちらも早期検出に役立つが、実行の有無と見つけやすい欠陥の種類が異なる。
+  - from: coverage
+    to: test-automation
+    relationType: related
+    reason: 自動テストを継続的に実行するほど、カバレッジ計測を改善ループに組み込みやすい。
+  - from: trunk-based-development
+    to: continuous-integration
+    relationType: prerequisite
+    reason: 小さな差分を頻繁に統合する運用は継続的インテグレーションを機能させやすい。
+  - from: continuous-integration
+    to: quality-gate
+    relationType: used_in
+    reason: CI は品質ゲートを自動的に実行し判定する主要な場になる。
+  - from: dependency-lockfile
+    to: build-automation
+    relationType: used_in
+    reason: 自動ビルドの再現性を高めるために依存解決結果の固定が役立つ。
+  - from: artifact-repository
+    to: rollback
+    relationType: used_in
+    reason: 以前の成果物を確実に取得できるとロールバックしやすい。
+  - from: regression-test
+    to: refactoring
+    relationType: prerequisite
+    reason: 安全なリファクタリングには既存振る舞いを守るための回帰テストが重要になる。
+  - from: code-smell
+    to: refactoring
+    relationType: used_in
+    reason: コードスメルはどこを改善対象にするかを見つける手掛かりになる。
+  - from: technical-debt
+    to: debt-register
+    relationType: used_in
+    reason: 技術的負債を管理対象にするには項目として可視化して記録する必要がある。
+  - from: interest-metaphor
+    to: technical-debt
+    relationType: related
+    reason: 利息メタファは技術的負債の時間的コストを説明するための考え方である。
+  - from: anti-corruption-layer
+    to: strangler-fig-pattern
+    relationType: used_in
+    reason: 段階移行の際に旧システムのモデル汚染を防ぐために併用されやすい。
+  - from: software-life-cycle
+    to: incremental-development
+    relationType: compare_with
+    reason: 前者は全体期間の枠組みで、後者はその中での進め方の一つである。
+  - from: v-model
+    to: shift-left-testing
+    relationType: related
+    reason: V字モデルは上流成果物と検証活動の対応を明示し、シフトレフトの発想と相性が良い。
+  - from: quality-assurance
+    to: quality-control
+    relationType: compare_with
+    reason: 品質を作り込む活動と結果を検査する活動として役割が異なる。
+  - from: root-cause-analysis
+    to: defect-leakage
+    relationType: used_in
+    reason: 欠陥流出が起きた理由を工程や仕組みの観点で掘り下げるときに使う。
+  - from: devops
+    to: continuous-delivery
+    relationType: related
+    reason: DevOps の実践は継続的デリバリーを成立させる文化的、技術的土台になりやすい。
+  - from: dora-metrics
+    to: continuous-delivery
+    relationType: related
+    reason: 継続的デリバリーの改善状況を継続測定するための代表的指標群として使われる。

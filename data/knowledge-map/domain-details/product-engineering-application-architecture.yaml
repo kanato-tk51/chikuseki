@@ -1,0 +1,793 @@
+domain:
+  slug: product-engineering-application-architecture
+  name: プロダクトエンジニアリングとアプリケーションアーキテクチャ
+  summary: 顧客や社内ユーザーが使う実際のアプリケーションやサービスを技術的に設計し、統合し、進化させる領域。
+  boundaryNotes: アプリケーションやサービスの構築を扱う。一般的な工学手法は Software Engineering、優先順位は Product Management、本番健全性は Reliability、認証・認可・暗号は Security、分析基盤や実験は Data に寄せる。
+  knowledgeAreas:
+    - slug: frontend-client-engineering
+      name: フロントエンドとクライアントエンジニアリング
+      summary: ユーザー端末で動くアプリケーションの描画、状態、実行環境、性能を設計するための知識領域。
+      whyLearn: どこで描画し、どこで状態を持ち、どこで再訪体験や性能を最適化するかを判断できるようになる。
+      topicClusters:
+        - slug: rendering-and-runtime-experience
+          name: 描画戦略とクライアント実行環境
+          summary: UI をどこで生成し、ブラウザやクライアントランタイムの能力をどう使うかを扱う。
+          concepts:
+            - slug: rendering-strategies
+              name: レンダリング戦略
+              summary: 画面生成をクライアント、サーバ、ビルド時のどこで担うかを決める設計技法。
+              whyLearn: 初回表示、SEO、キャッシュ戦略、サーバ負荷、クライアント負荷のトレードオフを比較できるようになる。
+              terms:
+                - slug: csr
+                  name: CSR
+                  summary: クライアント側 JavaScript で DOM を構築・更新して画面を描画する方式。
+                  whyLearn: 初回表示の遅さと操作の柔軟性の交換条件を理解する基礎になる。
+                  promptHint: CSR を採用する利点と欠点、SSR と比べたときの注意点を説明して。
+                  aliases:
+                    - client-side rendering
+                    - クライアントサイドレンダリング
+                - slug: ssr
+                  name: SSR
+                  summary: サーバで HTML を生成して返し、初回表示を早めやすくする方式。
+                  whyLearn: 初回表示品質、検索性、パーソナライズ、サーバ計算負荷の関係を学べる。
+                  promptHint: SSR が向く画面と向かない画面、CSR と混在させる考え方を説明して。
+                  aliases:
+                    - server-side rendering
+                    - サーバーサイドレンダリング
+            - slug: resilient-web-runtime
+              name: レジリエントな Web ランタイム
+              summary: ブラウザ機能を利用して再訪体験、オフライン耐性、インストール性を高める技法。
+              whyLearn: 単なる表示だけでなく、接続不安定時や再訪時の体験設計まで扱えるようになる。
+              terms:
+                - slug: service-worker
+                  name: Service Worker
+                  summary: ネットワーク要求を仲介し、キャッシュやオフライン処理を実現するブラウザ側仕組み。
+                  whyLearn: 再訪性能、オフライン対応、バックグラウンド連携の基礎になる。
+                  promptHint: Service Worker が何を仲介し、どんな利点と落とし穴があるか説明して。
+                  aliases:
+                    - service worker
+                    - SW
+                - slug: progressive-web-app
+                  name: Progressive Web App
+                  summary: Web 技術で作りつつ、インストール性やオフライン性などアプリらしい体験を持たせる形態。
+                  whyLearn: Web とネイティブのあいだにある選択肢を理解できるようになる。
+                  promptHint: PWA を採用する判断軸と、Service Worker との関係を説明して。
+                  aliases:
+                    - PWA
+                    - プログレッシブウェブアプリ
+        - slug: client-state-and-performance
+          name: クライアント状態と性能最適化
+          summary: クライアント側で何を状態として保持し、どの指標で性能を見るかを扱う。
+          concepts:
+            - slug: client-state-and-fetching
+              name: クライアント状態とデータ取得
+              summary: UI 状態とサーバ由来データを分けて扱うための設計技法。
+              whyLearn: どの状態をブラウザに置くべきか、どの状態は再取得・無効化が必要かを整理できる。
+              terms:
+                - slug: server-state
+                  name: サーバーステート
+                  summary: サーバを正とし、取得・再取得・同期・無効化を伴うクライアント参照データ。
+                  whyLearn: ローカル状態と混同しないことで、再取得戦略や stale 管理を設計しやすくなる。
+                  promptHint: サーバーステートとローカル UI ステートの違いを具体例で説明して。
+                  aliases:
+                    - remote state
+                    - server state
+                - slug: normalized-cache
+                  name: 正規化キャッシュ
+                  summary: エンティティを重複なく保持し、参照関係で再利用できるようにしたクライアントキャッシュ。
+                  whyLearn: 部分更新や一覧詳細間の一貫性を保ちやすくなる理由を理解できる。
+                  promptHint: 正規化キャッシュが効く場面と、単純なキャッシュで十分な場面を比較して。
+                  aliases:
+                    - normalized cache
+                    - entity cache
+            - slug: web-performance-optimization
+              name: Web 性能最適化
+              summary: 体感速度とユーザー操作性を改善するための設計技法。
+              whyLearn: 速い実装ではなく、速い体験を定義し改善する視点が身につく。
+              terms:
+                - slug: code-splitting
+                  name: コード分割
+                  summary: 必要な JavaScript を分割して遅延読み込みし、初回負荷を下げる技法。
+                  whyLearn: 大きなバンドルが初回操作性を悪化させる理由と、その緩和策を学べる。
+                  promptHint: コード分割が効く画面と、分割しすぎて逆効果になる例を説明して。
+                  aliases:
+                    - code splitting
+                    - bundle splitting
+                - slug: core-web-vitals
+                  name: Core Web Vitals
+                  summary: 実利用時の表示・応答・安定性を測る主要な Web UX 指標群。
+                  whyLearn: 性能議論を感覚ではなく共通の指標でレビューできるようになる。
+                  promptHint: Core Web Vitals が何を測り、設計判断にどう影響するか説明して。
+                  aliases:
+                    - CWV
+                    - Web Vitals
+
+    - slug: backend-api-service-design
+      name: バックエンド、API、サービス設計
+      summary: クライアントや他サービスに提供するインターフェースとその契約を設計する知識領域。
+      whyLearn: API を単なる入出力ではなく、長期運用される契約として設計できるようになる。
+      topicClusters:
+        - slug: http-and-contract-design
+          name: HTTP と契約中心の API 設計
+          summary: HTTP の意味論と API 記述仕様を使って、理解しやすく進化しやすい契約を作る。
+          concepts:
+            - slug: http-api-semantics
+              name: HTTP API の意味論
+              summary: リソース、メソッド、表現、交渉を用いて API を明快に設計する技法。
+              whyLearn: URL や HTTP メソッドを見ただけで意図が伝わる API を作りやすくなる。
+              terms:
+                - slug: resource-oriented-design
+                  name: リソース指向設計
+                  summary: 操作対象をリソースとして表現し、HTTP の標準意味論に沿って API を設計する考え方。
+                  whyLearn: 直感的で一貫した API を設計しやすくなる。
+                  promptHint: リソース指向設計の利点と、RPC 風 API と比較した特徴を説明して。
+                  aliases:
+                    - resource-oriented API
+                    - resource-oriented design
+                - slug: content-negotiation
+                  name: コンテントネゴシエーション
+                  summary: クライアントとサーバが表現形式を合意してやり取りする仕組み。
+                  whyLearn: 同じリソースを複数表現で提供する基本を理解できる。
+                  promptHint: コンテントネゴシエーションが必要になる場面と設計上の注意点を説明して。
+                  aliases:
+                    - content negotiation
+                    - 表現交渉
+            - slug: api-contract-description
+              name: API 契約記述
+              summary: API の構造、型、例、互換性を人とツールが共有できる形で表現する技法。
+              whyLearn: 実装前レビュー、クライアント生成、テスト自動化に接続できる。
+              terms:
+                - slug: openapi
+                  name: OpenAPI
+                  summary: HTTP API を機械可読に記述するための代表的な仕様。
+                  whyLearn: 契約ファースト開発、ドキュメント生成、クライアント生成の土台になる。
+                  promptHint: OpenAPI が API 設計レビューや自動生成にどう役立つか説明して。
+                  aliases:
+                    - OpenAPI Specification
+                    - OAS
+                - slug: json-api
+                  name: JSON:API
+                  summary: JSON を用いた HTTP API の表現形式と規約を定める仕様。
+                  whyLearn: 一覧、関連、リンク、含有表現を一貫した形で設計しやすくなる。
+                  promptHint: JSON:API が向くユースケースと OpenAPI との関係を説明して。
+                  aliases:
+                    - JSON API
+                    - JSON:API spec
+        - slug: alternative-api-styles-and-evolution
+          name: 代替 API スタイルと進化戦略
+          summary: HTTP リソース指向以外の API スタイルと、長期互換性を保つ作法を扱う。
+          concepts:
+            - slug: schema-and-rpc-style-apis
+              name: スキーマ駆動と RPC スタイルの API
+              summary: 型や操作を明示してクライアントとサーバを接続する設計技法。
+              whyLearn: REST 以外の有力な選択肢を理解し、データ取得や内部通信に合う方式を選べるようになる。
+              terms:
+                - slug: grpc
+                  name: gRPC
+                  summary: Protocol Buffers を用いることが多い、高速で型付きの RPC 通信方式。
+                  whyLearn: 内部サービス間通信や厳密な型契約の設計で有力な選択肢になる。
+                  promptHint: gRPC が向く場面と、HTTP/JSON API と比べたときの特徴を説明して。
+                  aliases:
+                    - gRPC
+                    - remote procedure call
+                - slug: graphql
+                  name: GraphQL
+                  summary: クライアントが必要なデータ形状を宣言して取得できる型付き API 方式。
+                  whyLearn: UI 駆動のデータ取得や疎結合なクライアント開発の理解に役立つ。
+                  promptHint: GraphQL の利点と、REST や gRPC と比べた設計上の注意点を説明して。
+                  aliases:
+                    - GraphQL
+                    - graph API
+            - slug: api-evolution-and-robustness
+              name: API の進化と堅牢性
+              summary: 既存利用者を壊さずに API を進化させ、再試行にも耐えるようにする技法。
+              whyLearn: 長く使われる API を作るうえで避けられない互換性と再送信の問題を扱える。
+              terms:
+                - slug: api-versioning
+                  name: API バージョニング
+                  summary: 互換性を保ちながら API を進化させるために版を管理する考え方。
+                  whyLearn: 破壊的変更を局所化し、利用者移行を計画できるようになる。
+                  promptHint: API バージョニングの方式と、破壊的変更を減らす設計を説明して。
+                  aliases:
+                    - API versioning
+                    - API version
+                - slug: idempotency-key
+                  name: Idempotency Key
+                  summary: 重複送信時に副作用を二重発生させないためのリクエスト識別子。
+                  whyLearn: 決済や作成系 API で安全な再試行を実現する重要語彙になる。
+                  promptHint: Idempotency Key が必要なケースと、どのようにサーバで扱うか説明して。
+                  aliases:
+                    - idempotency key
+                    - 冪等キー
+
+    - slug: application-structure-and-boundary-design
+      name: アプリケーション構造と境界設計
+      summary: コード構造、モジュール境界、業務境界、移行境界を設計する知識領域。
+      whyLearn: 実装が増えても変更を局所化し、チームで進化しやすい構造を保つために必要になる。
+      topicClusters:
+        - slug: structural-modularity
+          name: 構造的モジュラリティ
+          summary: レイヤやポート、機能単位の分け方でアプリケーション構造を整理する。
+          concepts:
+            - slug: structural-architecture-patterns
+              name: 構造アーキテクチャパターン
+              summary: 依存方向や責務分離を明示するための代表的なアプリケーション構造。
+              whyLearn: テスト容易性、置換可能性、結合度を意識して構造を選べるようになる。
+              terms:
+                - slug: layered-architecture
+                  name: レイヤードアーキテクチャ
+                  summary: 役割ごとに層を分け、上位層が下位層を利用する構造。
+                  whyLearn: 保守しやすい構造の基礎と、その限界を理解する入口になる。
+                  promptHint: レイヤードアーキテクチャの利点と、複雑化しやすい点を説明して。
+                  aliases:
+                    - layered architecture
+                    - n-tier architecture
+                - slug: hexagonal-architecture
+                  name: ヘキサゴナルアーキテクチャ
+                  summary: ドメイン中心にポートとアダプタを置き、外部依存を周辺へ押し出す構造。
+                  whyLearn: フレームワークや外部システムへの依存を弱める考え方が身につく。
+                  promptHint: ヘキサゴナルアーキテクチャとレイヤードアーキテクチャの違いを説明して。
+                  aliases:
+                    - hexagonal architecture
+                    - ports and adapters
+            - slug: feature-oriented-organization
+              name: 機能志向の構成
+              summary: 技術層ではなく機能やユースケース単位で実装を束ねる設計技法。
+              whyLearn: 機能追加時の局所変更や、チームの責務分担をしやすくなる。
+              terms:
+                - slug: vertical-slice-architecture
+                  name: Vertical Slice Architecture
+                  summary: 画面やユースケース単位で必要な処理を縦にまとめる構成。
+                  whyLearn: 一つの変更要求に関わるコードの探索範囲を狭められる。
+                  promptHint: Vertical Slice Architecture が有効な場面と、層構造との違いを説明して。
+                  aliases:
+                    - vertical slice
+                    - feature slice
+                - slug: modular-monolith
+                  name: モジュラーモノリス
+                  summary: 単一デプロイのまま、明確なモジュール境界で分割されたモノリス。
+                  whyLearn: 分散化の複雑さを避けつつ境界設計を学べる実務的な選択肢になる。
+                  promptHint: モジュラーモノリスがマイクロサービスより適する条件を説明して。
+                  aliases:
+                    - modular monolith
+                    - modulith
+        - slug: domain-and-change-boundaries
+          name: 業務境界と変更境界
+          summary: ドメインの分け方と、外部・旧システムとの境界で破壊を防ぐ方法を扱う。
+          concepts:
+            - slug: domain-boundary-modeling
+              name: ドメイン境界モデリング
+              summary: 業務概念に沿って責務境界を切り、モデルを安定化する技法。
+              whyLearn: 技術都合ではなく業務都合でサービスやモジュールを切る感覚が身につく。
+              terms:
+                - slug: bounded-context
+                  name: 境界づけられたコンテキスト
+                  summary: 特定のモデルと言語が一貫して通用する境界。
+                  whyLearn: 同じ用語が場所ごとに違う意味を持つ問題を扱いやすくなる。
+                  promptHint: Bounded Context をどう見つけ、サービス境界にどう反映するか説明して。
+                  aliases:
+                    - bounded context
+                    - 境界コンテキスト
+                - slug: aggregate
+                  name: 集約
+                  summary: 一貫性を保つために一つの単位として更新されるドメインオブジェクト群。
+                  whyLearn: どこまでを同時に整合的に扱うかを設計できるようになる。
+                  promptHint: Aggregate が必要な理由と、テーブル設計との違いを説明して。
+                  aliases:
+                    - aggregate
+                    - aggregate root
+            - slug: migration-and-boundary-protection
+              name: 移行と境界保護
+              summary: 既存システムや外部モデルの影響を隔離しながら移行する技法。
+              whyLearn: 現実のシステム進化では全面刷新より漸進移行が多く、その原則を持てる。
+              terms:
+                - slug: anti-corruption-layer
+                  name: Anti-Corruption Layer
+                  summary: 外部や旧システムのモデルが内部モデルを汚染しないように翻訳層を置く設計。
+                  whyLearn: 境界の内外で語彙やデータ構造を分離する重要性が理解できる。
+                  promptHint: Anti-Corruption Layer が有効なケースと実装上の形を説明して。
+                  aliases:
+                    - ACL
+                    - anti-corruption layer
+                - slug: strangler-fig-pattern
+                  name: Strangler Fig Pattern
+                  summary: 旧システムを段階的に新実装へ置き換えていく移行パターン。
+                  whyLearn: リスクを抑えながら刷新するための現実的な移行戦略を学べる。
+                  promptHint: Strangler Fig Pattern の進め方と、失敗しやすいポイントを説明して。
+                  aliases:
+                    - strangler fig
+                    - strangler pattern
+
+    - slug: integration-and-event-driven-design
+      name: 統合とイベント駆動設計
+      summary: 複数のアプリケーションやサービスを同期・非同期の両方で結合する知識領域。
+      whyLearn: 単体サービスの設計だけでなく、サービス群をどうつなぎ疎結合に保つかを扱えるようになる。
+      topicClusters:
+        - slug: synchronous-integration
+          name: 同期統合パターン
+          summary: リクエスト応答型で複数サービスを接続し、入口や集約を設計する。
+          concepts:
+            - slug: ingress-and-client-optimization
+              name: 入口設計とクライアント最適化
+              summary: 外部公開境界やクライアント別最適化のための統合パターン。
+              whyLearn: 外部に何を見せ、内部の複雑さをどこで吸収するかを決められるようになる。
+              terms:
+                - slug: api-gateway
+                  name: API Gateway
+                  summary: クライアントからの要求を受け、ルーティングや横断関心事を集約する入口層。
+                  whyLearn: 認証、集約、変換、公開境界の置き場所を考える基本になる。
+                  promptHint: API Gateway を置く利点と、置きすぎた場合の問題を説明して。
+                  aliases:
+                    - API gateway
+                    - gateway
+                - slug: backends-for-frontends
+                  name: Backends for Frontends
+                  summary: フロントエンドごとに最適化された専用バックエンドを用意するパターン。
+                  whyLearn: Web、モバイル、管理画面で必要な API 形状が違うときの整理に役立つ。
+                  promptHint: BFF が効く状況と、単一 Gateway で十分な状況を比較して。
+                  aliases:
+                    - BFF
+                    - backend for frontend
+            - slug: aggregation-and-composition
+              name: 集約と合成
+              summary: 複数の下流サービスからデータを集めて、クライアント向けに整形する技法。
+              whyLearn: クライアントのチャティさや結合度を下げる設計を理解できる。
+              terms:
+                - slug: gateway-aggregation
+                  name: Gateway Aggregation
+                  summary: Gateway が複数のバックエンド呼び出しをまとめ、一つの応答に集約するパターン。
+                  whyLearn: クライアント往復回数の削減と公開境界での合成を学べる。
+                  promptHint: Gateway Aggregation の利点と、Gateway の肥大化を避ける方法を説明して。
+                  aliases:
+                    - gateway aggregation
+                    - response aggregation
+                - slug: api-composition
+                  name: API Composition
+                  summary: 複数サービスの API を呼び合わせて一つの問い合わせ結果を構成するパターン。
+                  whyLearn: 画面やユースケースごとの読み取り統合を設計しやすくなる。
+                  promptHint: API Composition が向くケースと CQRS との使い分けを説明して。
+                  aliases:
+                    - API composition
+                    - aggregator pattern
+        - slug: asynchronous-integration
+          name: 非同期統合とイベント契約
+          summary: イベントやメッセージで疎結合に連携するための基礎語彙と契約を扱う。
+          concepts:
+            - slug: messaging-primitives
+              name: メッセージング基礎
+              summary: producer と consumer を時間的に疎結合にするための通信モデル。
+              whyLearn: 同期呼び出しに頼らないアーキテクチャの基本が身につく。
+              terms:
+                - slug: publish-subscribe
+                  name: Publish-Subscribe
+                  summary: 発行者が購読者を知らずにメッセージを配布できる通信モデル。
+                  whyLearn: 疎結合なイベント配信の典型形を理解できる。
+                  promptHint: Publish-Subscribe が request-response と何が違うか説明して。
+                  aliases:
+                    - pub sub
+                    - publish-subscribe
+                - slug: apache-kafka
+                  name: Apache Kafka
+                  summary: 大規模なイベントストリーミングを扱う代表的な分散プラットフォーム。
+                  whyLearn: イベント駆動や CDC の実務で頻出する語彙を押さえられる。
+                  promptHint: Kafka の役割と、単純なキューとの違いを説明して。
+                  aliases:
+                    - Kafka
+                    - event streaming platform
+            - slug: event-contracts
+              name: イベント契約
+              summary: 非同期メッセージの構造やメタデータを明示し、他システムと共有する技法。
+              whyLearn: 非同期連携でも契約を曖昧にしない設計ができるようになる。
+              terms:
+                - slug: asyncapi
+                  name: AsyncAPI
+                  summary: 非同期 API やイベント契約を機械可読に記述するための仕様。
+                  whyLearn: イベント駆動設計をドキュメント資産として管理しやすくなる。
+                  promptHint: AsyncAPI が何を表現でき、OpenAPI とどう違うか説明して。
+                  aliases:
+                    - AsyncAPI
+                    - asynchronous API spec
+                - slug: cloudevents
+                  name: CloudEvents
+                  summary: イベントの共通メタデータを標準化して相互運用性を高める仕様。
+                  whyLearn: イベント識別やルーティングを統一的に扱う意義を理解できる。
+                  promptHint: CloudEvents を使う理由と、イベントペイロードとメタデータの役割を説明して。
+                  aliases:
+                    - CloudEvents
+                    - イベント標準メタデータ
+
+    - slug: consistency-and-caching
+      name: 状態整合性とキャッシュ
+      summary: 複数サービスや複数経路にまたがる状態の整合性、再計算、キャッシュを扱う知識領域。
+      whyLearn: 現代アプリでは単一トランザクションで閉じないため、整合性と鮮度を明示的に設計する必要がある。
+      topicClusters:
+        - slug: distributed-consistency
+          name: 分散整合性パターン
+          summary: 複数サービス間で一貫した状態変化を実現するための代表的なパターン。
+          concepts:
+            - slug: long-running-coordination
+              name: 長期処理の調整
+              summary: 分散したローカルトランザクションを組み合わせて業務整合性を保つ技法。
+              whyLearn: 分散トランザクションを安易に前提にしない設計ができるようになる。
+              terms:
+                - slug: saga
+                  name: Saga
+                  summary: 複数サービスのローカルトランザクションを段階的に進める分散整合性パターン。
+                  whyLearn: 複数サービスにまたがる業務操作をどう完結させるかの基本になる。
+                  promptHint: Saga の基本形と、オーケストレーションとコレオグラフィの違いを説明して。
+                  aliases:
+                    - saga pattern
+                    - SAGA
+                - slug: compensating-transaction
+                  name: 補償トランザクション
+                  summary: 途中失敗時に前段の処理効果を打ち消すための逆操作。
+                  whyLearn: 分散整合性では失敗後の戻し方が本体設計の一部だと理解できる。
+                  promptHint: 補償トランザクションを設計するときの難しさを具体例で説明して。
+                  aliases:
+                    - compensating transaction
+                    - compensation
+            - slug: reliable-state-propagation
+              name: 信頼できる状態伝播
+              summary: ローカル更新とイベント公開のズレを減らし、他サービスへ確実に伝える技法。
+              whyLearn: dual write 問題を安全に扱う設計の土台になる。
+              terms:
+                - slug: transactional-outbox
+                  name: Transactional Outbox
+                  summary: 業務データ更新と同一トランザクションで outbox にイベントを書き、後で配信するパターン。
+                  whyLearn: DB 更新成功とイベント配信失敗のズレを避ける設計を理解できる。
+                  promptHint: Transactional Outbox が dual write をどう避けるか説明して。
+                  aliases:
+                    - transactional outbox
+                    - outbox pattern
+                - slug: change-data-capture
+                  name: Change Data Capture
+                  summary: データベース変更を継続的に検出して下流へ伝える仕組み。
+                  whyLearn: 再実装せずに既存データ変更をイベント化する考え方を学べる。
+                  promptHint: CDC の役割と、Outbox と組み合わせる意味を説明して。
+                  aliases:
+                    - CDC
+                    - change data capture
+        - slug: read-models-and-caching
+          name: 読み取りモデルとキャッシュ
+          summary: 書き込みモデルと読み取りモデルを分ける設計や、鮮度管理を伴うキャッシュを扱う。
+          concepts:
+            - slug: read-write-separation
+              name: 読み書き分離
+              summary: 書き込み責務と読み取り責務を別モデルとして最適化する技法。
+              whyLearn: 高負荷な読取や複雑な参照をシンプルな更新モデルから切り離せる。
+              terms:
+                - slug: cqrs
+                  name: CQRS
+                  summary: Command と Query を分離してそれぞれ最適化するアーキテクチャパターン。
+                  whyLearn: 読み書きのユースケース差が大きいときの分離方法を学べる。
+                  promptHint: CQRS が有効な条件と、複雑性の代償を説明して。
+                  aliases:
+                    - command query responsibility segregation
+                    - CQRS
+                - slug: event-sourcing
+                  name: Event Sourcing
+                  summary: 現在状態ではなく、状態変化イベントの列を正本として保存するパターン。
+                  whyLearn: 監査性や履歴再構成の利点と、導入コストの高さを理解できる。
+                  promptHint: Event Sourcing を採用すべき条件と、通常の CRUD との差を説明して。
+                  aliases:
+                    - event sourcing
+                    - イベントソーシング
+            - slug: caching-and-freshness-control
+              name: キャッシュと鮮度制御
+              summary: 表現を再利用しながら、鮮度と帯域使用量を制御する技法。
+              whyLearn: 速さと正しさを両立する基本設計を学べる。
+              terms:
+                - slug: cache-control
+                  name: Cache-Control
+                  summary: HTTP 応答や要求のキャッシュ方針を指定するヘッダ。
+                  whyLearn: ブラウザ、CDN、共有キャッシュにどこまで再利用を許すか決められる。
+                  promptHint: Cache-Control の代表的な指示と設計判断への影響を説明して。
+                  aliases:
+                    - Cache-Control
+                    - HTTP caching directive
+                - slug: etag
+                  name: ETag
+                  summary: リソース表現の版を識別し、再送や競合回避に使う検証子。
+                  whyLearn: 差分再利用と同時更新保護の両方に効く重要語彙になる。
+                  promptHint: ETag がキャッシュ効率化と競合検知にどう使われるか説明して。
+                  aliases:
+                    - entity tag
+                    - ETag
+
+    - slug: runtime-topologies-and-saas-delivery
+      name: ランタイムトポロジーと SaaS アプリ設計
+      summary: アプリケーションをどの単位で配備し、どの運用モデルで提供するかを扱う知識領域。
+      whyLearn: コード構造だけでなく、デプロイ単位、スケール単位、テナント分離単位まで含めて設計できるようになる。
+      topicClusters:
+        - slug: runtime-topologies
+          name: ランタイムトポロジー
+          summary: モノリス、分散サービス、マネージド実行形態、エッジ配置を比較する。
+          concepts:
+            - slug: deployment-styles
+              name: 配備スタイル
+              summary: どの単位でビルド・配布・スケールするかを決める基本スタイル。
+              whyLearn: 技術分割と運用分割を混同せず、配備コストと変更速度を比較できる。
+              terms:
+                - slug: monolith
+                  name: モノリス
+                  summary: 単一の実行・配備単位として動くアプリケーション構成。
+                  whyLearn: 最も単純な起点として、分散化の必要条件を判断する比較対象になる。
+                  promptHint: モノリスの強みと、どこから限界が見え始めるか説明して。
+                  aliases:
+                    - monolith
+                    - monolithic app
+                - slug: microservices
+                  name: マイクロサービス
+                  summary: 独立配備可能な小さなサービス群でシステムを構成するスタイル。
+                  whyLearn: 自律性と複雑性の交換条件を理解する中心概念になる。
+                  promptHint: マイクロサービスが向く条件と、採用コストを説明して。
+                  aliases:
+                    - microservices
+                    - microservice architecture
+            - slug: managed-runtime-models
+              name: マネージド実行モデル
+              summary: インフラ運用責任や配置場所を抽象化してアプリを動かす形態。
+              whyLearn: 実装責務と運用責務の分担を設計判断として捉えられるようになる。
+              terms:
+                - slug: serverless
+                  name: サーバレス
+                  summary: サーバ管理詳細を抽象化し、イベント駆動や需要変動に応じて実行するモデル。
+                  whyLearn: 運用負担、コールドスタート、課金、分割単位を含めて判断できる。
+                  promptHint: サーバレスの利点と制約、Web/SaaS での向き不向きを説明して。
+                  aliases:
+                    - serverless
+                    - functions as a service
+                - slug: edge-computing
+                  name: エッジコンピューティング
+                  summary: 利用者やデータ発生源に近い場所で計算を行い、遅延を下げる配置モデル。
+                  whyLearn: レイテンシ、地域性、キャッシュ、近接実行の設計を考えられる。
+                  promptHint: エッジ実行が有効なケースと、中央集約型との違いを説明して。
+                  aliases:
+                    - edge computing
+                    - edge runtime
+        - slug: saas-application-design
+          name: SaaS アプリケーション設計
+          summary: 複数顧客を同一基盤で扱うときの分離、設定、クラウドネイティブ原則を扱う。
+          concepts:
+            - slug: tenant-modeling
+              name: テナントモデル設計
+              summary: 複数顧客をどの程度共有し、どこで隔離するかを決める技法。
+              whyLearn: SaaS 固有のセキュリティ、コスト、拡張性、運用性の判断に直結する。
+              terms:
+                - slug: multitenancy
+                  name: マルチテナンシー
+                  summary: 複数テナントが同一アプリケーション基盤を共有する提供モデル。
+                  whyLearn: SaaS の標準的な提供形態を理解し、共有と専有の境目を議論できる。
+                  promptHint: マルチテナンシーの利点と、設計で難しくなる点を説明して。
+                  aliases:
+                    - multitenancy
+                    - multi-tenant
+                - slug: tenant-isolation
+                  name: テナント分離
+                  summary: 共有基盤上でもテナント間でデータや実行境界を分離するための考え方。
+                  whyLearn: SaaS で最重要の信頼要件の一つを学べる。
+                  promptHint: テナント分離をどの層で実現できるか、代表的な方法を説明して。
+                  aliases:
+                    - tenant isolation
+                    - テナント隔離
+            - slug: cloud-native-application-principles
+              name: クラウドネイティブなアプリ原則
+              summary: 変化しやすい実行環境で運びやすくするための基本原則。
+              whyLearn: 実装をデプロイや環境差異に引きずられにくくする。
+              terms:
+                - slug: stateless-process
+                  name: ステートレスプロセス
+                  summary: プロセス内部に永続状態を持たず、再起動や水平分割に強い実行前提。
+                  whyLearn: スケールアウトや失敗時再配置に耐える設計の基本になる。
+                  promptHint: ステートレスプロセスがなぜクラウドで有利か説明して。
+                  aliases:
+                    - stateless process
+                    - stateless app
+                - slug: config-in-env
+                  name: 設定の環境外部化
+                  summary: デプロイ差分となる設定値をコードから分離して環境側で与える原則。
+                  whyLearn: 秘密情報漏えいと環境依存の混乱を減らすための基礎になる。
+                  promptHint: 設定をコードに埋め込まない理由と、どんな値を外部化すべきか説明して。
+                  aliases:
+                    - config in env
+                    - externalized config
+
+    - slug: architecture-description-and-decision-making
+      name: アーキテクチャ記述と設計判断
+      summary: アーキテクチャを誰にどう説明し、どの判断をどの根拠で残すかを扱う知識領域。
+      whyLearn: 良い設計を作るだけでなく、共有・レビュー・継続改善できる形にするために必要になる。
+      topicClusters:
+        - slug: architecture-description
+          name: アーキテクチャ記述
+          summary: 関係者の関心事に応じてアーキテクチャを表現するための概念と図法を扱う。
+          concepts:
+            - slug: views-and-viewpoints
+              name: View と Viewpoint
+              summary: 誰のどんな関心事に答える記述かを定義するための基本概念。
+              whyLearn: 図や文書が誰にも刺さらない問題を避けやすくなる。
+              terms:
+                - slug: stakeholder-concern
+                  name: ステークホルダー関心事
+                  summary: アーキテクチャ記述が答えるべき関係者の重要な関心や懸念。
+                  whyLearn: 何を説明すべきかを、図法や実装より先に定義できるようになる。
+                  promptHint: ステークホルダー関心事がアーキテクチャ記述の出発点になる理由を説明して。
+                  aliases:
+                    - concern
+                    - stakeholder concern
+                - slug: architecture-viewpoint
+                  name: アーキテクチャ Viewpoint
+                  summary: 特定の関心事を扱うために、どの観点・規則で view を作るかを定める枠組み。
+                  whyLearn: 同じシステムでも相手ごとに適切な説明粒度を選べるようになる。
+                  promptHint: viewpoint と view の違いを、具体例つきで説明して。
+                  aliases:
+                    - viewpoint
+                    - architecture viewpoint
+            - slug: architecture-visualization
+              name: アーキテクチャ可視化
+              summary: 構造を理解しやすい図に落とすための代表的な表現法。
+              whyLearn: 設計議論をコード断片ではなく共有図で進められるようになる。
+              terms:
+                - slug: c4-model
+                  name: C4 model
+                  summary: Context、Container、Component、Code のズームレベルで構造を説明する図法。
+                  whyLearn: 相手に応じて説明の解像度を変える実践的な方法を学べる。
+                  promptHint: C4 model の各レベルが何を伝えるか説明して。
+                  aliases:
+                    - C4
+                    - context container component code
+                - slug: container-diagram
+                  name: コンテナ図
+                  summary: システムを構成する主要なアプリケーション実行単位と相互関係を示す図。
+                  whyLearn: 配備単位や責務境界を共有する最小限の図として有用になる。
+                  promptHint: コンテナ図に何を描くべきで、何を描きすぎない方がよいか説明して。
+                  aliases:
+                    - container diagram
+                    - コンテナダイアグラム
+        - slug: decisions-and-review
+          name: 設計判断とアーキテクチャレビュー
+          summary: 重要な判断を残し、品質トレードオフをレビューするための技法を扱う。
+          concepts:
+            - slug: decision-recording
+              name: 判断記録
+              summary: なぜその構成を選んだかを後から追えるように残す技法。
+              whyLearn: 人が替わっても判断理由を再利用し、設計の学習コストを下げられる。
+              terms:
+                - slug: architecture-decision-record
+                  name: Architecture Decision Record
+                  summary: 重要な設計判断、その背景、代替案、帰結を短く記録する文書。
+                  whyLearn: 仕様書とコードのあいだにある判断履歴を残せる。
+                  promptHint: ADR に最低限書くべき項目と、長文化しすぎないコツを説明して。
+                  aliases:
+                    - ADR
+                    - architecture decision record
+                - slug: architecturally-significant-requirement
+                  name: Architecturally Significant Requirement
+                  summary: アーキテクチャに測定可能な影響を与える重要要求。
+                  whyLearn: どの要求が設計を本当に決めるのかを見極めやすくなる。
+                  promptHint: ASR をどう見つけ、通常要求とどう区別するか説明して。
+                  aliases:
+                    - ASR
+                    - architecturally significant requirement
+            - slug: review-and-evaluation
+              name: レビューと評価
+              summary: 品質要求を具体シナリオに落とし、トレードオフを検討する技法。
+              whyLearn: 好みではなく品質属性と根拠でアーキテクチャを議論できるようになる。
+              terms:
+                - slug: quality-attribute-scenario
+                  name: 品質属性シナリオ
+                  summary: 品質要求を刺激、環境、対象、応答、応答測定で具体化したシナリオ。
+                  whyLearn: 抽象的な性能や可用性要求をレビュー可能な形に変えられる。
+                  promptHint: 品質属性シナリオの書き方と、レビューでの使い方を説明して。
+                  aliases:
+                    - quality attribute scenario
+                    - QAS
+                - slug: architecture-tradeoff-analysis-method
+                  name: Architecture Tradeoff Analysis Method
+                  summary: 品質属性のトレードオフを構造的に評価するアーキテクチャ評価法。
+                  whyLearn: ある設計がなぜ妥当かを、品質観点から説明する方法を学べる。
+                  promptHint: ATAM がどのように品質トレードオフを可視化するか説明して。
+                  aliases:
+                    - ATAM
+                    - architecture tradeoff analysis method
+
+edges:
+  - from: csr
+    to: ssr
+    relationType: compare_with
+    reason: どこで画面を描画するかという中核判断を比較する対になる概念だから。
+  - from: service-worker
+    to: progressive-web-app
+    relationType: used_in
+    reason: PWA の主要能力であるオフライン対応や再訪性能の実装で Service Worker がよく使われるから。
+  - from: code-splitting
+    to: core-web-vitals
+    relationType: related
+    reason: 初回読み込みの JavaScript 負荷を減らすことが CWV 改善に直結しやすいから。
+  - from: resource-oriented-design
+    to: openapi
+    relationType: used_in
+    reason: リソース指向で設計した HTTP API を OpenAPI で契約として表現できるから。
+  - from: grpc
+    to: graphql
+    relationType: compare_with
+    reason: どちらも型付き契約を持つが、操作モデルと利用シーンが大きく異なるから。
+  - from: api-versioning
+    to: openapi
+    relationType: related
+    reason: API の版と互換性方針は契約記述と一緒に管理されることが多いから。
+  - from: bounded-context
+    to: modular-monolith
+    relationType: used_in
+    reason: モジュラーモノリスでは業務境界に沿ってモジュールを切る判断が重要だから。
+  - from: bounded-context
+    to: microservices
+    relationType: used_in
+    reason: マイクロサービス境界を業務境界に寄せるときの主要な手がかりになるから。
+  - from: anti-corruption-layer
+    to: strangler-fig-pattern
+    relationType: used_in
+    reason: 段階移行の途中で旧モデルの影響を遮断する翻訳層として使われやすいから。
+  - from: api-gateway
+    to: backends-for-frontends
+    relationType: compare_with
+    reason: どちらも入口層だが、共通入口に寄せるかフロント専用入口に寄せるかで設計意図が異なるから。
+  - from: gateway-aggregation
+    to: api-composition
+    relationType: compare_with
+    reason: どちらも複数サービスの結果を合成するが、責務を置く場所が異なりうるから。
+  - from: apache-kafka
+    to: change-data-capture
+    relationType: used_in
+    reason: CDC で取り出した変化を下流へ流す基盤として Kafka がよく使われるから。
+  - from: asyncapi
+    to: cloudevents
+    relationType: related
+    reason: 非同期契約全体を AsyncAPI で記述し、イベント共通メタデータを CloudEvents で標準化できるから。
+  - from: compensating-transaction
+    to: saga
+    relationType: used_in
+    reason: Saga では失敗時に補償トランザクションで整合性を回復することが多いから。
+  - from: transactional-outbox
+    to: change-data-capture
+    relationType: related
+    reason: Outbox テーブルの配信手段として CDC を組み合わせる構成が実務でよく採られるから。
+  - from: cqrs
+    to: event-sourcing
+    relationType: related
+    reason: 別概念だが組み合わせて使われることが多く、混同も起きやすいから。
+  - from: cache-control
+    to: etag
+    relationType: related
+    reason: どちらも HTTP キャッシュの鮮度と再利用を制御する代表語彙だから。
+  - from: monolith
+    to: microservices
+    relationType: compare_with
+    reason: 配備単位と自律性のトレードオフを考える際の代表的な比較対象だから。
+  - from: multitenancy
+    to: tenant-isolation
+    relationType: prerequisite
+    reason: 共有基盤で複数テナントを扱うなら、まず分離戦略を設計する必要があるから。
+  - from: stateless-process
+    to: serverless
+    relationType: prerequisite
+    reason: サーバレスで安全に再配置・自動スケールするには状態を外に逃がす前提が重要だから。
+  - from: config-in-env
+    to: stateless-process
+    relationType: used_in
+    reason: プロセスを環境差分から独立させるために設定の外部化が必要になるから。
+  - from: stakeholder-concern
+    to: architecture-viewpoint
+    relationType: prerequisite
+    reason: どの viewpoint を作るかは、誰のどんな関心事に答えるかが先に定まっている必要があるから。
+  - from: architecture-viewpoint
+    to: container-diagram
+    relationType: used_in
+    reason: コンテナ図も、どの関心事を扱うかという viewpoint の選択に従って描かれるべきだから。
+  - from: architecturally-significant-requirement
+    to: architecture-decision-record
+    relationType: prerequisite
+    reason: 何が重要要求かが見えないと、何を ADR に残すべきか決めにくいから。
+  - from: quality-attribute-scenario
+    to: architecture-tradeoff-analysis-method
+    relationType: used_in
+    reason: ATAM では品質属性シナリオを使ってトレードオフを具体的に評価するから。

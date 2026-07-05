@@ -1,0 +1,1389 @@
+domain:
+  slug: reliability-operations-platform-engineering
+  name: 信頼性、運用、プラットフォームエンジニアリング
+  summary: 本番システムを安全かつ効果的に運用し、観測し、改善し、開発者に再利用可能な運用能力を提供するための実践を扱う領域。
+  boundaryNotes: Observability、インシデント、リリース、サービス健全性、プラットフォーム能力を中心に扱う。OSやネットワークの機構自体は Systems に、一般的な開発プロセスや品質保証は Software Engineering に、アクセス制御やプライバシー統治は Security に寄せる。
+  knowledgeAreas:
+    - slug: service-reliability-objectives
+      name: サービス信頼性目標と運用指標
+      summary: ユーザー影響を定量化し、どの程度の可用性や性能を約束し、どの程度の変化を許容するかを定める。
+      whyLearn: 運用判断を感覚ではなく、ユーザー体験とビジネス制約に接続した数値でレビューできるようになる。
+      topicClusters:
+        - slug: service-level-modeling
+          name: サービスレベルのモデル化
+          summary: 信頼性をユーザーから見える体験として定義し、測定可能な指標に落とす。
+          concepts:
+            - slug: service-level-objectives
+              name: サービスレベル目標
+              summary: SLI・SLO・SLA・エラーバジェットで信頼性目標を構成する。
+              whyLearn: 可用性と開発速度の衝突を、共通言語と定量指標で扱えるようにするため。
+              terms:
+                - slug: service-level-indicator
+                  name: サービスレベル指標
+                  summary: ユーザー体験やサービス品質を表す計測指標。
+                  whyLearn: 何を測れば信頼性を議論できるかの起点になるため。
+                  promptHint: この機能のSLIとして何を置くべきか、ユーザー視点で定義して、と聞く。
+                  aliases:
+                    - SLI
+                    - service level indicator
+                - slug: service-level-objective
+                  name: サービスレベル目標
+                  summary: SLIに対して設定する目標値や許容範囲。
+                  whyLearn: 信頼性の期待値を曖昧な高品質ではなく数値目標に変えるため。
+                  promptHint: このAPIのSLOをどの値に設定すべきか、根拠とともに整理して、と聞く。
+                  aliases:
+                    - SLO
+                    - service level objective
+                - slug: service-level-agreement
+                  name: サービスレベル合意
+                  summary: 顧客や利用者との契約・約束として表現されたサービス水準。
+                  whyLearn: 内部目標と外部約束を混同せず、責任範囲を切り分けるため。
+                  promptHint: SLOとSLAの違いを、運用設計と契約の観点で比較して、と聞く。
+                  aliases:
+                    - SLA
+                    - service level agreement
+                - slug: error-budget
+                  name: エラーバジェット
+                  summary: SLOから逆算される、許容可能な失敗の予算。
+                  whyLearn: 機能開発と信頼性改善のバランスを定量的に運用するため。
+                  promptHint: 99.9% SLOのエラーバジェットを月間リクエスト数から計算して、と聞く。
+                  aliases:
+                    - error budget
+                    - 許容障害予算
+            - slug: user-centered-reliability-dimensions
+              name: ユーザー中心の信頼性次元
+              summary: 信頼性を可用性だけでなく、応答性や正確さなど複数の性質で捉える。
+              whyLearn: ユーザーが困る壊れ方を正しく捉えないと、測定していても価値に結びつかないため。
+              terms:
+                - slug: critical-user-journey
+                  name: 重要ユーザージャーニー
+                  summary: SLO設計や監視の基点になる、価値の高いユーザー行動経路。
+                  whyLearn: 内部指標ではなく、ユーザーが本当に達成したいことを運用対象にするため。
+                  promptHint: このプロダクトの重要ユーザージャーニーを3つ選び、各々のSLI候補を出して、と聞く。
+                  aliases:
+                    - CUJ
+                    - critical user journey
+                - slug: availability
+                  name: 可用性
+                  summary: 必要なときにサービスを利用できる度合い。
+                  whyLearn: 最も基本的な信頼性指標であり、他の品質特性ともトレードオフになるため。
+                  promptHint: 可用性をエンドユーザー観点と内部観点でどう測るか整理して、と聞く。
+                  aliases:
+                    - availability
+                    - 稼働率
+                - slug: latency
+                  name: レイテンシ
+                  summary: 要求に対する応答完了までの時間。
+                  whyLearn: 使えるが遅い状態は、実質的な障害として体験されるため。
+                  promptHint: p50とp95とp99をどう使い分けるべきか説明して、と聞く。
+                  aliases:
+                    - latency
+                    - 応答時間
+                - slug: correctness
+                  name: 正確性
+                  summary: 返された結果や状態遷移が期待どおりに正しい性質。
+                  whyLearn: サービスが落ちていなくても誤答していれば信頼性を満たさないため。
+                  promptHint: 可用性ではなく正確性をSLIにすべきケースを例示して、と聞く。
+                  aliases:
+                    - correctness
+                    - functional correctness
+        - slug: reliability-policies-and-incident-metrics
+          name: 信頼性ポリシーとインシデント指標
+          summary: 定義した目標を、アラート閾値・凍結ルール・復旧評価へ落とし込む。
+          concepts:
+            - slug: budget-consumption-policies
+              name: 予算消費ポリシー
+              summary: エラーバジェットの使い方と超過時の判断ルールを定める。
+              whyLearn: 目標があっても、超えたときに何を止め何を優先するかが決まっていないと運用できないため。
+              terms:
+                - slug: burn-rate
+                  name: バーンレート
+                  summary: 単位時間あたりにエラーバジェットをどれだけ消費しているかを表す速度。
+                  whyLearn: 重大な障害と低速で続く劣化の両方を早く検知するため。
+                  promptHint: このSLOに対するバーンレートアラートの考え方を説明して、と聞く。
+                  aliases:
+                    - burn rate
+                    - 予算消費率
+                - slug: error-budget-policy
+                  name: エラーバジェットポリシー
+                  summary: バジェット超過時のリリース停止や改善優先を定める運用規約。
+                  whyLearn: 信頼性判断を属人的な議論ではなく事前合意されたルールにするため。
+                  promptHint: エラーバジェットポリシーの雛形を作って、と聞く。
+                  aliases:
+                    - error budget policy
+                    - 予算超過ポリシー
+                - slug: maintenance-window
+                  name: メンテナンスウィンドウ
+                  summary: 意図的な停止や制限を許容する計画済み時間帯。
+                  whyLearn: 計画停止をSLOや顧客期待とどう整合させるかを明確にするため。
+                  promptHint: メンテナンスウィンドウをSLO運用にどう反映すべきか整理して、と聞く。
+                  aliases:
+                    - maintenance window
+                    - 計画停止時間
+            - slug: incident-and-response-metrics
+              name: インシデントと応答の指標
+              summary: 検知、初動、復旧の速さと質を運用の改善対象として測る。
+              whyLearn: 壊れない設計だけでなく、壊れたときにどれだけ早く被害を減らせるかが重要だから。
+              terms:
+                - slug: mean-time-to-detect
+                  name: 平均検知時間
+                  summary: 問題発生から検知までに要する平均時間。
+                  whyLearn: 監視設計や検知品質の弱さを定量的に振り返るため。
+                  promptHint: MTTDを短くするために監視設計で何を変えるべきか提案して、と聞く。
+                  aliases:
+                    - MTTD
+                    - mean time to detect
+                - slug: mean-time-to-acknowledge
+                  name: 平均初動時間
+                  summary: アラート発報から担当者が受理するまでの平均時間。
+                  whyLearn: オンコール体制や通知設計のボトルネックを把握するため。
+                  promptHint: MTTAが長いときの改善レバーを整理して、と聞く。
+                  aliases:
+                    - MTTA
+                    - mean time to acknowledge
+                - slug: mean-time-to-recovery
+                  name: 平均復旧時間
+                  summary: 障害発生からサービスを許容水準まで戻す平均時間。
+                  whyLearn: 復旧手順や運用自動化の有効性を把握するため。
+                  promptHint: MTTR短縮のために必要なランブックや自動化を列挙して、と聞く。
+                  aliases:
+                    - MTTR
+                    - mean time to recovery
+
+    - slug: observability-and-telemetry
+      name: オブザーバビリティとテレメトリ
+      summary: 本番の振る舞いをメトリクス、ログ、トレース、プロファイルとして収集し、診断可能な形にする。
+      whyLearn: 障害対応や性能改善の前提となる観測可能性を設計できるようになる。
+      topicClusters:
+        - slug: telemetry-foundations
+          name: テレメトリ基盤
+          summary: どの種類の信号を、どの文脈で、どう共通化して送るかを定める。
+          concepts:
+            - slug: telemetry-signals
+              name: テレメトリ信号
+              summary: メトリクス、ログ、トレース、プロファイルなどの信号種別を区別して扱う。
+              whyLearn: 観測したい問いに対して、適切な信号を選ばないと調査コストが跳ね上がるため。
+              terms:
+                - slug: metrics
+                  name: メトリクス
+                  summary: 時系列で集約可能な数値観測。
+                  whyLearn: 傾向把握、アラート、SLO計算の中心になるため。
+                  promptHint: この事象はログよりメトリクスで取るべきか判断して、と聞く。
+                  aliases:
+                    - metric
+                    - metrics
+                - slug: logs
+                  name: ログ
+                  summary: 離散的なイベントや状態変化の記録。
+                  whyLearn: 個別事象や失敗理由の追跡に不可欠だから。
+                  promptHint: 構造化ログの設計原則を例付きで説明して、と聞く。
+                  aliases:
+                    - log
+                    - structured log
+                - slug: traces
+                  name: トレース
+                  summary: リクエストが複数コンポーネントを通る経路を表す記録。
+                  whyLearn: 分散システムで遅延や失敗の発生箇所を追うため。
+                  promptHint: 分散トレースが有効な障害例を挙げて、と聞く。
+                  aliases:
+                    - trace
+                    - distributed tracing
+                - slug: profiles
+                  name: プロファイル
+                  summary: コードレベルのCPUやメモリ使用の分布を継続的に捉える記録。
+                  whyLearn: 遅い理由の特定を、メトリクスやトレースより細かい粒度で行えるため。
+                  promptHint: 継続的プロファイリングが必要な状況を説明して、と聞く。
+                  aliases:
+                    - profile
+                    - continuous profiling
+            - slug: telemetry-context-and-schema
+              name: テレメトリの文脈とスキーマ
+              summary: 分散した信号同士を関連づけ、横断分析できる形にそろえる。
+              whyLearn: 信号が多くても相互参照できなければ、調査は人力の寄せ集めになってしまうため。
+              terms:
+                - slug: baggage
+                  name: バゲージ
+                  summary: シグナル間で伝搬される追加コンテキスト情報。
+                  whyLearn: ユーザー種別やリクエスト属性を複数シグナルで一貫して扱うため。
+                  promptHint: Baggageを使うべき情報と使わないべき情報を整理して、と聞く。
+                  aliases:
+                    - baggage
+                    - context baggage
+                - slug: trace-context
+                  name: トレースコンテキスト
+                  summary: 分散トレースの関連付けに使う識別情報や伝搬形式。
+                  whyLearn: サービス境界をまたいで同じリクエストを追跡するため。
+                  promptHint: trace contextがないと何が困るか説明して、と聞く。
+                  aliases:
+                    - trace context
+                    - context propagation
+                - slug: semantic-conventions
+                  name: セマンティック規約
+                  summary: 属性名や意味を共通化する観測データの命名規約。
+                  whyLearn: チームやツールをまたいだ再利用性と検索性を高めるため。
+                  promptHint: OpenTelemetryのsemantic conventionsを導入する利点を説明して、と聞く。
+                  aliases:
+                    - semantic conventions
+                    - semantic attributes
+        - slug: instrumentation-and-alerting
+          name: 計測設計とアラート設計
+          summary: どの粒度で計測し、どう分析し、どの条件で人を起こすかを設計する。
+          concepts:
+            - slug: metric-and-trace-instrumentation
+              name: メトリクスとトレースの計測設計
+              summary: 適切な計測型、ラベル、サンプリングで診断可能性を作る。
+              whyLearn: 収集量と解像度のトレードオフを理解しないと、コストだけ高くて使えない観測基盤になるため。
+              terms:
+                - slug: counter
+                  name: カウンタ
+                  summary: 単調増加する回数系メトリクス。
+                  whyLearn: リクエスト数やエラー総数のような率計算の基本になるため。
+                  promptHint: この指標をcounterで持つべきかgaugeで持つべきか判断して、と聞く。
+                  aliases:
+                    - counter
+                    - カウントメトリクス
+                - slug: histogram
+                  name: ヒストグラム
+                  summary: 観測値の分布をバケットで表すメトリクス型。
+                  whyLearn: 平均値では見えない遅延分布やSLO判定を扱いやすいため。
+                  promptHint: レイテンシ計測にhistogramを使う理由を説明して、と聞く。
+                  aliases:
+                    - histogram
+                    - 分布メトリクス
+                - slug: native-histogram
+                  name: ネイティブヒストグラム
+                  summary: Prometheus系で分布をより効率的に扱う新しいヒストグラム表現。
+                  whyLearn: 高解像度の分布計測とストレージ効率の改善という最新実務差分を理解するため。
+                  promptHint: classic histogramとの違いと移行判断を整理して、と聞く。
+                  aliases:
+                    - native histogram
+                    - sparse histogram
+                - slug: sampling
+                  name: サンプリング
+                  summary: すべてを取らずに一部を選んで観測する手法。
+                  whyLearn: コストを抑えながら、十分な診断情報を残すため。
+                  promptHint: トレースのhead samplingとtail samplingの使い分けを説明して、と聞く。
+                  aliases:
+                    - sampling
+                    - サンプル収集
+            - slug: operational-alert-design
+              name: 運用アラート設計
+              summary: 症状ベースで通知し、誤検知や重複通知を減らしつつ重大事象を素早く拾う。
+              whyLearn: アラート疲れを防ぎつつ、本当に人が介入すべき事象だけを確実に拾うため。
+              terms:
+                - slug: symptom-based-alert
+                  name: 症状ベースアラート
+                  summary: 内部原因ではなく、ユーザー影響やサービス症状に基づくアラート。
+                  whyLearn: 直せる問題に集中し、ノイズを減らすため。
+                  promptHint: 原因ベース監視より症状ベース監視を優先すべき理由を説明して、と聞く。
+                  aliases:
+                    - symptom based alerting
+                    - 症状監視
+                - slug: multi-window-multi-burn-rate-alert
+                  name: 複数ウィンドウ複数バーンレートアラート
+                  summary: 異なる時間窓と消費率でSLO逸脱を検知する手法。
+                  whyLearn: 急激な障害と緩やかな劣化を両方拾えるため。
+                  promptHint: multi window multi burn rate alertの設計例を出して、と聞く。
+                  aliases:
+                    - MWMBR
+                    - multi burn rate alert
+                - slug: alert-silence
+                  name: アラートサイレンス
+                  summary: 一定期間、特定条件のアラート通知を抑止する操作。
+                  whyLearn: 既知作業や重複対応時にノイズを制御するため。
+                  promptHint: サイレンスを安全に使う運用ルールを作って、と聞く。
+                  aliases:
+                    - silence
+                    - mute alert
+                - slug: alert-inhibition
+                  name: アラート抑制
+                  summary: 親アラート発火時に従属アラートを自動抑制する仕組み。
+                  whyLearn: 根本事象と派生事象の通知洪水を防ぐため。
+                  promptHint: inhibitionとsilenceの違いを例付きで説明して、と聞く。
+                  aliases:
+                    - inhibition
+                    - alert suppression
+        - slug: diagnostic-views
+          name: 診断ビュー
+          summary: 何を主画面に置くか、どの見方で絞り込むかを運用の型として持つ。
+          concepts:
+            - slug: service-diagnostic-lenses
+              name: サービス診断の見方
+              summary: サービス中心・資源中心・ユーザー中心の切り口を使い分ける。
+              whyLearn: 同じデータでも、見る観点がずれると根本原因にたどり着けないため。
+              terms:
+                - slug: golden-signals
+                  name: ゴールデンシグナル
+                  summary: レイテンシ、トラフィック、エラー、サチュレーションを中心に見る診断の基本形。
+                  whyLearn: ユーザー影響と資源逼迫を短時間で把握する定番の出発点になるため。
+                  promptHint: このサービスのgolden signalsダッシュボード案を作って、と聞く。
+                  aliases:
+                    - golden signals
+                    - 四つの重要指標
+                - slug: red-method
+                  name: RED法
+                  summary: Rate、Errors、Durationでサービスを観測する方法。
+                  whyLearn: リクエスト駆動のサービスを簡潔に統一監視するため。
+                  promptHint: RED法でAPI監視をどう設計するか説明して、と聞く。
+                  aliases:
+                    - RED
+                    - rate errors duration
+                - slug: use-method
+                  name: USE法
+                  summary: Utilization、Saturation、Errorsで資源ボトルネックを探る方法。
+                  whyLearn: CPU、メモリ、ディスク、ネットワークの性能問題を体系的に洗うため。
+                  promptHint: USE法でこの障害を切り分ける手順を作って、と聞く。
+                  aliases:
+                    - USE
+                    - utilization saturation errors
+            - slug: high-cardinality-and-correlation
+              name: 高カーディナリティと相関
+              summary: ラベル爆発やシグナル相関の設計を通じて、観測コストと追跡性を両立する。
+              whyLearn: 観測基盤は便利でも、無制限に増やすとコストや検索性能が破綻するため。
+              terms:
+                - slug: cardinality
+                  name: カーディナリティ
+                  summary: ラベル値の組み合わせ数が時系列数に与える増加特性。
+                  whyLearn: 監視基盤の性能問題やコスト超過の主要因を理解するため。
+                  promptHint: 高カーディナリティを避けるラベル設計原則を説明して、と聞く。
+                  aliases:
+                    - cardinality
+                    - high cardinality
+                - slug: trace-id
+                  name: トレースID
+                  summary: 同一リクエスト系列を横断追跡する識別子。
+                  whyLearn: ログ、トレース、メトリクス間の相関調査を成立させるため。
+                  promptHint: trace_idをログへ入れる設計の利点を説明して、と聞く。
+                  aliases:
+                    - trace_id
+                    - trace id
+                - slug: exemplar
+                  name: エグゼンプラー
+                  summary: メトリクス点から具体的なトレースやサンプルへ飛ぶための関連付け。
+                  whyLearn: 分布の異常点から詳細なリクエスト調査へ滑らかにつなぐため。
+                  promptHint: histogramとexemplarを組み合わせる利点を説明して、と聞く。
+                  aliases:
+                    - exemplar
+                    - trace exemplar
+
+    - slug: incident-response-and-operational-learning
+      name: インシデント対応と運用学習
+      summary: 障害を検知し、指揮し、緩和し、記録し、再発防止へつなげる運用ループを設計する。
+      whyLearn: 壊れたときの組織行動を設計できることが、信頼性の実効性を左右するから。
+      topicClusters:
+        - slug: on-call-and-incident-command
+          name: オンコールと指揮系統
+          summary: 誰が受け、誰が意思決定し、誰が伝えるかを平時に決めておく。
+          concepts:
+            - slug: on-call-operations
+              name: オンコール運用
+              summary: 障害の一次受けとエスカレーションの責任分担を設計する。
+              whyLearn: 検知できても、受け手が曖昧だと初動が遅れ被害が広がるため。
+              terms:
+                - slug: on-call-rotation
+                  name: オンコールローテーション
+                  summary: 担当者を時間帯や期間で回す当番設計。
+                  whyLearn: 継続可能な運用負荷配分と責任の明確化に必要だから。
+                  promptHint: オンコールローテーション設計時の注意点を整理して、と聞く。
+                  aliases:
+                    - on-call rotation
+                    - 当番表
+                - slug: escalation-policy
+                  name: エスカレーションポリシー
+                  summary: 一次対応で解決できないときに誰へどの順で引き上げるかの規則。
+                  whyLearn: 重大化を防ぐために、迷わず適切な専門家へ接続する必要があるため。
+                  promptHint: エスカレーションポリシーのテンプレートを作って、と聞く。
+                  aliases:
+                    - escalation policy
+                    - 呼び出し規則
+                - slug: pager
+                  name: ページャ通知
+                  summary: 緊急度の高いアラートを担当者へ即時通知する仕組み。
+                  whyLearn: 通知チャネルの設計はMTTAに直結するため。
+                  promptHint: chat通知とpager通知をどう分けるべきか整理して、と聞く。
+                  aliases:
+                    - pager
+                    - page
+            - slug: incident-command-structure
+              name: インシデント指揮構造
+              summary: 重大障害時の役割分担と指揮命令系統を整える。
+              whyLearn: 全員が同時に調査し始める混乱を防ぎ、意思決定を速めるため。
+              terms:
+                - slug: severity
+                  name: 重大度
+                  summary: ユーザー影響や事業影響に応じたインシデントの深刻度分類。
+                  whyLearn: 通知範囲や意思決定速度をそろえるため。
+                  promptHint: 重大度定義をユーザー影響ベースで作って、と聞く。
+                  aliases:
+                    - severity
+                    - sev
+                - slug: incident-commander
+                  name: インシデントコマンダー
+                  summary: 対応全体の優先順位と役割調整を担う責任者。
+                  whyLearn: 技術調査とオペレーション調整を混線させないため。
+                  promptHint: Incident Commanderの責務をチェックリスト化して、と聞く。
+                  aliases:
+                    - IC
+                    - incident commander
+                - slug: communications-lead
+                  name: コミュニケーション担当
+                  summary: 社内外への状況共有を専任で担う役割。
+                  whyLearn: 調査担当の集中を保ちつつ、関係者への透明性を確保するため。
+                  promptHint: 障害時のcommunications leadが持つべき情報テンプレートを作って、と聞く。
+                  aliases:
+                    - comms lead
+                    - communications lead
+                - slug: operations-log
+                  name: 対応ログ
+                  summary: 時系列で判断、観測、施策を記録する運用記録。
+                  whyLearn: 引き継ぎ、振り返り、法的説明責任の基礎になるため。
+                  promptHint: インシデント中のoperations logに残すべき項目を列挙して、と聞く。
+                  aliases:
+                    - ops log
+                    - event log
+        - slug: mitigation-recovery-and-communication
+          name: 緩和、復旧、コミュニケーション
+          summary: 早く戻すことと、状況を正しく伝えることを並行して進める。
+          concepts:
+            - slug: mitigation-and-recovery-actions
+              name: 緩和と復旧のアクション
+              summary: 原因究明を待たず、被害を減らすための操作を優先する。
+              whyLearn: 完全原因分析より先に、ユーザー影響を減らす判断が必要だから。
+              terms:
+                - slug: triage
+                  name: トリアージ
+                  summary: 限られた情報で状況を切り分け、優先順位を定める行為。
+                  whyLearn: 初動で調査対象を広げすぎる失敗を防ぐため。
+                  promptHint: この障害のトリアージ観点を箇条書きで出して、と聞く。
+                  aliases:
+                    - triage
+                    - 初期切り分け
+                - slug: rollback
+                  name: ロールバック
+                  summary: 変更を直前の安定状態へ戻す復旧操作。
+                  whyLearn: 新規変更が原因の障害では最短復旧策になりやすいため。
+                  promptHint: ロールバックを安全に行う前提条件を整理して、と聞く。
+                  aliases:
+                    - rollback
+                    - revert deployment
+                - slug: failover
+                  name: フェイルオーバー
+                  summary: 故障系から待機系や別系統へ切り替える復旧手段。
+                  whyLearn: 単一点障害やゾーン障害に備えた継続運用の要だから。
+                  promptHint: この構成でfailover戦略をどう設計するべきか説明して、と聞く。
+                  aliases:
+                    - failover
+                    - 切替復旧
+                - slug: runbook
+                  name: ランブック
+                  summary: 定型的な障害対応手順を明文化した運用手順書。
+                  whyLearn: 初動品質のばらつきを減らし、復旧を再現可能にするため。
+                  promptHint: このアラート向けのrunbook草案を作って、と聞く。
+                  aliases:
+                    - runbook
+                    - 運用手順書
+            - slug: stakeholder-communication
+              name: 関係者コミュニケーション
+              summary: 顧客・社内・経営への説明を、技術調査と切り分けて運用する。
+              whyLearn: 不確実な状況でも、適切な透明性と期待値調整が必要だから。
+              terms:
+                - slug: status-page
+                  name: ステータスページ
+                  summary: 外部利用者へ障害状況や復旧見込みを公開する窓口。
+                  whyLearn: サポート問い合わせの集中を減らし、信頼回復に役立つため。
+                  promptHint: ステータスページ更新文のテンプレートを作って、と聞く。
+                  aliases:
+                    - status page
+                    - 稼働状況ページ
+                - slug: stakeholder-update
+                  name: ステークホルダー更新
+                  summary: 社内外の関係者へ定期的に共有する状況報告。
+                  whyLearn: 判断待ちや誤情報の拡散を防ぐため。
+                  promptHint: 経営向けと現場向けでupdate内容をどう変えるべきか整理して、と聞く。
+                  aliases:
+                    - stakeholder update
+                    - 状況報告
+                - slug: incident-timeline
+                  name: インシデントタイムライン
+                  summary: 発生から収束までの主要イベントを時系列化した記録。
+                  whyLearn: 事実確認とポストモーテム作成の基礎になるため。
+                  promptHint: 障害後にincident timelineを再構成する手順を説明して、と聞く。
+                  aliases:
+                    - timeline
+                    - incident chronology
+        - slug: post-incident-learning
+          name: 事後学習と再発防止
+          summary: 障害を個人非難ではなく、システム改善の入力へ変える。
+          concepts:
+            - slug: postmortem-practice
+              name: ポストモーテム実践
+              summary: 事象の背景と寄与要因を整理し、学習可能な文書へまとめる。
+              whyLearn: 再発防止は発生事実だけでなく、なぜそう判断されたかを理解して初めて機能するため。
+              terms:
+                - slug: blameless-postmortem
+                  name: ブレームレスポストモーテム
+                  summary: 個人を責めず、状況・仕組み・判断文脈を検討する振り返り。
+                  whyLearn: 学習文化を壊さず、再発要因を引き出すため。
+                  promptHint: ブレームレスなポストモーテムの書き方を例示して、と聞く。
+                  aliases:
+                    - blameless postmortem
+                    - 無過失振り返り
+                - slug: contributory-factor
+                  name: 寄与要因
+                  summary: 単一原因ではなく、障害を成立させた複数の背景要因。
+                  whyLearn: 再発防止策を一点改善で終わらせないため。
+                  promptHint: この障害のcontributory factorsを因果連鎖で整理して、と聞く。
+                  aliases:
+                    - contributing factor
+                    - 寄与因子
+                - slug: action-item
+                  name: アクションアイテム
+                  summary: 再発防止のために責任者と期限を持って追跡する改善項目。
+                  whyLearn: 学習を文書だけで終わらせず、運用変更に結びつけるため。
+                  promptHint: ポストモーテムのaction itemを優先順位付きで出して、と聞く。
+                  aliases:
+                    - action item
+                    - follow-up task
+            - slug: problem-elimination
+              name: 問題の恒久対策
+              summary: 既知問題、反復作業、構造欠陥を継続的に減らす。
+              whyLearn: 表面的な復旧だけでは、同型障害や運用疲弊が繰り返されるため。
+              terms:
+                - slug: problem-management
+                  name: 問題管理
+                  summary: 反復するインシデントの背景問題を管理し、恒久対策へつなぐ実践。
+                  whyLearn: 個別事件の処理と構造問題の改善を分けて扱うため。
+                  promptHint: incidentとproblem managementの違いを運用例で説明して、と聞く。
+                  aliases:
+                    - problem management
+                    - 根本問題管理
+                - slug: known-error
+                  name: 既知エラー
+                  summary: 原因や回避策が分かっているが、まだ恒久解決されていない問題。
+                  whyLearn: 同じ障害に対して毎回ゼロから調査しないため。
+                  promptHint: known error databaseに何を残すべきか整理して、と聞く。
+                  aliases:
+                    - known error
+                    - 既知障害
+                - slug: toil
+                  name: トイル
+                  summary: 手作業で反復的、戦術的、自動化可能だが継続価値の低い運用作業。
+                  whyLearn: 運用負荷の見える化と自動化優先順位づけに不可欠だから。
+                  promptHint: このチームの作業のうちtoilに当たるものを分類して、と聞く。
+                  aliases:
+                    - toil
+                    - 手作業負債
+
+    - slug: safe-release-change-and-automation
+      name: 安全なリリース、変更、運用自動化
+      summary: 変更を高速に届けつつ、事故の確率と影響を制御するためのリリース技法とガードレールを扱う。
+      whyLearn: 本番障害の多くは変更に起因するため、変更管理は信頼性の中心課題になる。
+      topicClusters:
+        - slug: release-pipelines-and-change-governance
+          name: リリースパイプラインと変更統制
+          summary: 変更をビルドから本番反映まで再現可能に流し、必要な統制を組み込む。
+          concepts:
+            - slug: release-engineering-foundations
+              name: リリースエンジニアリング基礎
+              summary: 再現可能なビルド、保管、デプロイ経路を整える。
+              whyLearn: 一度だけ成功する属人的リリースではなく、同じ品質で繰り返せる変更経路を作るため。
+              terms:
+                - slug: ci-cd
+                  name: CI/CD
+                  summary: 変更を継続的に検証し、配布まで自動化するパイプライン。
+                  whyLearn: 変更頻度を上げても品質を保つための土台になるため。
+                  promptHint: このチームのCI/CDパイプライン改善案を出して、と聞く。
+                  aliases:
+                    - CI/CD
+                    - continuous integration continuous delivery
+                - slug: deployment-pipeline
+                  name: デプロイパイプライン
+                  summary: 成果物を環境ごとに安全に昇格させる一連の流れ。
+                  whyLearn: ステージング、本番、承認、検証の境界を設計するため。
+                  promptHint: デプロイパイプラインに入れるべき検証段階を整理して、と聞く。
+                  aliases:
+                    - deployment pipeline
+                    - release pipeline
+                - slug: artifact-repository
+                  name: アーティファクトリポジトリ
+                  summary: ビルド成果物をバージョン管理して保管する場所。
+                  whyLearn: 同じ成果物を再デプロイできる再現性を確保するため。
+                  promptHint: artifact repositoryを運用する利点を説明して、と聞く。
+                  aliases:
+                    - artifact repository
+                    - binary repository
+                - slug: immutable-artifact
+                  name: イミュータブルアーティファクト
+                  summary: ビルド後に内容を書き換えない成果物。
+                  whyLearn: 環境差分や手作業改変を防ぎ、再現性を高めるため。
+                  promptHint: immutable artifactを前提にしたリリース設計を説明して、と聞く。
+                  aliases:
+                    - immutable artifact
+                    - 不変成果物
+            - slug: change-governance
+              name: 変更統制
+              summary: 変更の種類とリスクに応じて承認や時間帯を設計する。
+              whyLearn: すべての変更を同じ重さで扱うと、速度か安全性のどちらかが過剰に失われるため。
+              terms:
+                - slug: change-enablement
+                  name: 変更実現管理
+                  summary: 変更を価値とリスクの両面から計画し、成功率を高める実践。
+                  whyLearn: 変更を止めるためではなく、安全に通すための統制として理解するため。
+                  promptHint: ITILのchange enablementを現代的なCI/CDへどう合わせるか説明して、と聞く。
+                  aliases:
+                    - change enablement
+                    - change management
+                - slug: standard-change
+                  name: 標準変更
+                  summary: 事前承認済みで定型化された低リスク変更。
+                  whyLearn: 毎回重い承認を通さずに、安全な変更を高速化するため。
+                  promptHint: standard changeに分類できる運用作業例を出して、と聞く。
+                  aliases:
+                    - standard change
+                    - 定型変更
+                - slug: change-window
+                  name: 変更ウィンドウ
+                  summary: 変更実施を許可または制限する時間帯。
+                  whyLearn: 利用者影響や対応体制を踏まえて変更リスクを制御するため。
+                  promptHint: change windowを設けるべきケースと不要なケースを比較して、と聞く。
+                  aliases:
+                    - change window
+                    - release window
+                - slug: freeze-window
+                  name: フリーズ期間
+                  summary: 高リスク期間に変更を制限する運用ルール。
+                  whyLearn: 大規模イベントや繁忙期に不用意な変更で事故を起こさないため。
+                  promptHint: freeze windowの条件と解除条件を設計して、と聞く。
+                  aliases:
+                    - freeze window
+                    - change freeze
+        - slug: progressive-delivery-patterns
+          name: プログレッシブデリバリー
+          summary: 変更を一度に全量公開せず、段階的に拡大しながら安全性を確認する。
+          concepts:
+            - slug: rollout-strategies
+              name: ロールアウト戦略
+              summary: トラフィック、環境、ユーザー群で変更の露出を制御する。
+              whyLearn: 異常を小さく発見し、小さく戻せるようにするため。
+              terms:
+                - slug: rolling-update
+                  name: ローリングアップデート
+                  summary: 既存インスタンスを段階的に新バージョンへ置き換える配備方式。
+                  whyLearn: 停止時間を抑えつつ徐々に更新する基本戦略だから。
+                  promptHint: rolling updateの利点と欠点を整理して、と聞く。
+                  aliases:
+                    - rolling update
+                    - 段階更新
+                - slug: blue-green-deployment
+                  name: ブルーグリーンデプロイ
+                  summary: 新旧環境を並行保持し、切替で公開する配備方式。
+                  whyLearn: 即時切戻しがしやすく、環境差分の検証にも向くため。
+                  promptHint: blue green deploymentが向くサービス条件を説明して、と聞く。
+                  aliases:
+                    - blue green
+                    - blue-green deployment
+                - slug: canary-release
+                  name: カナリアリリース
+                  summary: 新バージョンを一部トラフィックへ先行適用して評価する手法。
+                  whyLearn: 本番条件で安全性を早期に検証できるため。
+                  promptHint: canary releaseの評価指標と停止条件を設計して、と聞く。
+                  aliases:
+                    - canary
+                    - canary deployment
+            - slug: runtime-release-controls
+              name: 実行時リリース制御
+              summary: 配備とは別に、機能露出や即時停止のスイッチを持つ。
+              whyLearn: デプロイと公開を分離すると、障害影響をより細かく制御できるため。
+              terms:
+                - slug: feature-flag
+                  name: フィーチャーフラグ
+                  summary: 実行時に機能の有効化を切り替える仕組み。
+                  whyLearn: コード配備と機能公開を分離し、段階公開や実験を可能にするため。
+                  promptHint: feature flagの設計で技術的負債を増やさない方法を教えて、と聞く。
+                  aliases:
+                    - feature flag
+                    - feature toggle
+                - slug: kill-switch
+                  name: キルスイッチ
+                  summary: 危険機能を即時停止するための緊急無効化手段。
+                  whyLearn: 全体ロールバックより小さく速く被害を止められるため。
+                  promptHint: kill switchが必要な機能の特徴を整理して、と聞く。
+                  aliases:
+                    - kill switch
+                    - emergency disable
+                - slug: progressive-delivery
+                  name: プログレッシブデリバリー
+                  summary: 配備・ルーティング・フラグを組み合わせて段階公開する運用様式。
+                  whyLearn: 変更をリスク分散しながら観測ベースで拡大するため。
+                  promptHint: progressive deliveryの全体設計を図式化して説明して、と聞く。
+                  aliases:
+                    - progressive delivery
+                    - 段階的公開
+                - slug: openfeature
+                  name: OpenFeature
+                  summary: 機能フラグをベンダー中立APIで扱うためのオープン仕様。
+                  whyLearn: フラグ基盤の乗り換えや複数採用でもコード層の依存を減らせるため。
+                  promptHint: OpenFeatureを採用する利点を既存feature flag基盤と比較して、と聞く。
+                  aliases:
+                    - OpenFeature
+                    - open feature
+        - slug: declarative-operations-and-supply-chain
+          name: 宣言的運用とサプライチェーン
+          summary: 運用対象と変更経路を宣言的・検証可能に管理し、改ざんやドリフトを防ぐ。
+          concepts:
+            - slug: declarative-automation
+              name: 宣言的自動化
+              summary: 望ましい状態を宣言し、差分適用や再収束を自動化する。
+              whyLearn: 手作業のばらつきと環境差分を減らし、監査可能性を高めるため。
+              terms:
+                - slug: infrastructure-as-code
+                  name: Infrastructure as Code
+                  summary: インフラ定義をコードとして記述し、レビューと自動化の対象にする考え方。
+                  whyLearn: 運用変更を再現可能かつレビュー可能にするため。
+                  promptHint: Infrastructure as Code導入時の効果と落とし穴を整理して、と聞く。
+                  aliases:
+                    - IaC
+                    - infrastructure as code
+                - slug: gitops
+                  name: GitOps
+                  summary: Git上の宣言状態を真実源として継続反映する運用モデル。
+                  whyLearn: 変更履歴、承認、監査、再現性を一体化しやすいため。
+                  promptHint: GitOpsの四原則を踏まえて導入設計を説明して、と聞く。
+                  aliases:
+                    - GitOps
+                    - git ops
+                - slug: drift-detection
+                  name: ドリフト検知
+                  summary: 宣言状態と実際状態のずれを検出する仕組み。
+                  whyLearn: 手修正や予期しない変更を早く見つけるため。
+                  promptHint: drift detectionを導入する価値を運用事故例で説明して、と聞く。
+                  aliases:
+                    - drift detection
+                    - 構成逸脱検知
+                - slug: reconciliation-loop
+                  name: リコンシリエーションループ
+                  summary: 実状態を監視して望ましい状態へ戻そうとする制御ループ。
+                  whyLearn: 一回限りの設定適用ではなく、継続的な収束を可能にするため。
+                  promptHint: reconciliation loopの利点と副作用を整理して、と聞く。
+                  aliases:
+                    - reconciliation
+                    - control loop
+            - slug: software-supply-chain-integrity
+              name: ソフトウェアサプライチェーン完全性
+              summary: 成果物の由来と改ざん耐性を確保し、信頼できるデリバリー経路を作る。
+              whyLearn: リリース速度が上がるほど、配布物の真正性を仕組みで担保する必要があるため。
+              terms:
+                - slug: sbom
+                  name: SBOM
+                  summary: 成果物に含まれるソフトウェア部品表。
+                  whyLearn: 脆弱性影響範囲や依存関係の可視化に必要だから。
+                  promptHint: SBOMを生成・保管・利用する運用フローを説明して、と聞く。
+                  aliases:
+                    - SBOM
+                    - software bill of materials
+                - slug: slsa
+                  name: SLSA
+                  summary: ビルドや配布の完全性を段階的に高めるサプライチェーン安全性フレームワーク。
+                  whyLearn: どこまで対策できているかを共通言語で評価するため。
+                  promptHint: SLSAのレベル概念をCI/CD改善にどう使うか説明して、と聞く。
+                  aliases:
+                    - SLSA
+                    - Supply-chain Levels for Software Artifacts
+                - slug: provenance
+                  name: 来歴証明
+                  summary: 成果物がどのソース・ビルド・主体から生成されたかを示す証跡。
+                  whyLearn: 署名や検証を意味のあるものにするための前提情報だから。
+                  promptHint: artifact provenanceが無いと何が検証できないか説明して、と聞く。
+                  aliases:
+                    - provenance
+                    - build provenance
+                - slug: sigstore
+                  name: Sigstore
+                  summary: 成果物署名と検証の導入を容易にするオープンソース一式。
+                  whyLearn: 鍵管理の運用負荷を抑えつつ、配布物の真正性を強化するため。
+                  promptHint: Sigstoreを使うと従来の署名運用がどう変わるか整理して、と聞く。
+                  aliases:
+                    - Sigstore
+                    - cosign
+
+    - slug: resilience-capacity-and-runtime-operations
+      name: レジリエンス、キャパシティ、ランタイム運用
+      summary: 障害、過負荷、環境変動の中でもサービスを継続し、回復できるようにする。
+      whyLearn: 本番では正常時の最適化だけでなく、異常時にどう壊れるかを設計する必要があるから。
+      topicClusters:
+        - slug: overload-and-fault-isolation
+          name: 過負荷対策と障害隔離
+          summary: 局所障害が全体障害へ拡大するのを防ぐ設計を扱う。
+          concepts:
+            - slug: request-protection-patterns
+              name: リクエスト保護パターン
+              summary: 待ち過ぎ、叩き過ぎ、再試行し過ぎを避ける制御を行う。
+              whyLearn: 障害時に善意のリトライや長時間待機が二次障害を起こしやすいため。
+              terms:
+                - slug: timeout
+                  name: タイムアウト
+                  summary: 一定時間で処理待ちを打ち切る制御。
+                  whyLearn: 無限待機や資源枯渇を防ぐ基本だから。
+                  promptHint: timeout値を決めるときの考え方を説明して、と聞く。
+                  aliases:
+                    - timeout
+                    - request timeout
+                - slug: retry
+                  name: リトライ
+                  summary: 一時的失敗時に再試行する制御。
+                  whyLearn: 一過性障害には有効だが、設計を誤ると障害を増幅するため。
+                  promptHint: retryを安全に設計する条件を整理して、と聞く。
+                  aliases:
+                    - retry
+                    - 再試行
+                - slug: exponential-backoff
+                  name: 指数バックオフ
+                  summary: 再試行間隔を指数的に伸ばすリトライ制御。
+                  whyLearn: 障害時の集中再試行を避け、回復余地を残すため。
+                  promptHint: retry with exponential backoffの設計例を示して、と聞く。
+                  aliases:
+                    - exponential backoff
+                    - バックオフ
+                - slug: circuit-breaker
+                  name: サーキットブレーカー
+                  summary: 失敗が続く依存先への呼び出しを一時遮断する制御。
+                  whyLearn: 壊れている依存先へ押し込み続けて全体を悪化させないため。
+                  promptHint: circuit breakerが有効な依存障害シナリオを説明して、と聞く。
+                  aliases:
+                    - circuit breaker
+                    - 遮断器パターン
+            - slug: degradation-and-containment
+              name: 縮退と封じ込め
+              summary: 全部を守れないときに、重要機能を優先して被害を局所化する。
+              whyLearn: 完全停止より、部分提供で価値を残す設計が必要だから。
+              terms:
+                - slug: bulkhead
+                  name: バルクヘッド
+                  summary: 資源や依存関係を区画分離して障害波及を抑える設計。
+                  whyLearn: 一部機能の問題が全体停止へ波及するのを防ぐため。
+                  promptHint: bulkheadをスレッドプールやキューでどう実装するか説明して、と聞く。
+                  aliases:
+                    - bulkhead
+                    - 隔離パターン
+                - slug: rate-limiting
+                  name: レートリミット
+                  summary: 一定時間内の要求数を制限する制御。
+                  whyLearn: 過負荷や乱用からシステムと依存先を守るため。
+                  promptHint: rate limitingをどの層で掛けるべきか比較して、と聞く。
+                  aliases:
+                    - rate limiting
+                    - throttling
+                - slug: load-shedding
+                  name: ロードシェディング
+                  summary: 処理しきれない要求を早期に落として全体崩壊を防ぐ手法。
+                  whyLearn: 全件を頑張って遅く失敗するより、選択的に落とす方が健全なため。
+                  promptHint: load sheddingを有効化する指標を設計して、と聞く。
+                  aliases:
+                    - load shedding
+                    - request dropping
+                - slug: graceful-degradation
+                  name: グレースフルデグラデーション
+                  summary: 高負荷や部分障害でも、品質を落としながら主要機能を維持する設計。
+                  whyLearn: 全停止を避け、ユーザー価値を最大限残すため。
+                  promptHint: このプロダクトでgraceful degradationできる機能を洗い出して、と聞く。
+                  aliases:
+                    - graceful degradation
+                    - 縮退運転
+        - slug: capacity-and-runtime-controls
+          name: キャパシティとランタイム制御
+          summary: 負荷に応じて伸縮し、ノードやPodの制約下でも安定稼働させる。
+          concepts:
+            - slug: scaling-and-capacity-management
+              name: スケーリングと容量管理
+              summary: 現在の負荷だけでなく、将来の需要に備えた余白を設計する。
+              whyLearn: 需要変動に対して、速く安全に増減できる設計が必要だから。
+              terms:
+                - slug: autoscaling
+                  name: オートスケーリング
+                  summary: 負荷や指標に応じて資源量を自動調整する仕組み。
+                  whyLearn: 固定容量では変動需要に追従しにくいため。
+                  promptHint: autoscalingで使うべきメトリクス候補を比較して、と聞く。
+                  aliases:
+                    - autoscaling
+                    - 自動拡縮
+                - slug: horizontal-pod-autoscaler
+                  name: Horizontal Pod Autoscaler
+                  summary: KubernetesでPod数を需要に応じて増減させる仕組み。
+                  whyLearn: クラウドネイティブ環境での代表的な実装を理解するため。
+                  promptHint: HPAがCPU以外の指標でどう動くか説明して、と聞く。
+                  aliases:
+                    - HPA
+                    - HorizontalPodAutoscaler
+                - slug: headroom
+                  name: ヘッドルーム
+                  summary: ピークや障害時に備えて意図的に残す余剰容量。
+                  whyLearn: 平常時最適化だけだと障害時に即飽和するため。
+                  promptHint: headroomをどの程度持つべきか考える観点を整理して、と聞く。
+                  aliases:
+                    - headroom
+                    - capacity buffer
+                - slug: saturation
+                  name: サチュレーション
+                  summary: 資源が仕事で詰まり始め、待ち行列や競合が増えている状態。
+                  whyLearn: 利用率だけでは見えない限界接近を把握するため。
+                  promptHint: utilizationとsaturationの違いを例で説明して、と聞く。
+                  aliases:
+                    - saturation
+                    - 飽和度
+            - slug: runtime-safeguards
+              name: ランタイム保護機構
+              summary: プロセスやPodの健全性、資源保証、更新時の可用性を守る。
+              whyLearn: スケールできても、個々のワークロード保護が弱いと全体が不安定になるため。
+              terms:
+                - slug: resource-requests-and-limits
+                  name: リソース要求と上限
+                  summary: コンテナに必要資源と許容上限を宣言する設定。
+                  whyLearn: スケジューリングと資源競合の両方に影響する重要設定だから。
+                  promptHint: requestsとlimitsの設計失敗が何を引き起こすか説明して、と聞く。
+                  aliases:
+                    - requests and limits
+                    - resource requests
+                - slug: qos-class
+                  name: QoSクラス
+                  summary: KubernetesがPodの扱い優先度を決める品質クラス。
+                  whyLearn: ノード圧迫時の退避や保護挙動を理解するため。
+                  promptHint: GuaranteedとBurstableとBestEffortの違いを説明して、と聞く。
+                  aliases:
+                    - QoS class
+                    - quality of service class
+                - slug: pod-disruption-budget
+                  name: PodDisruptionBudget
+                  summary: 自発的な中断時に同時停止できるPod数を制御する仕組み。
+                  whyLearn: メンテナンスや更新時の可用性を守るため。
+                  promptHint: PDBをどう設定すると高可用性を保てるか説明して、と聞く。
+                  aliases:
+                    - PDB
+                    - PodDisruptionBudget
+                - slug: readiness-probe
+                  name: Readiness Probe
+                  summary: トラフィックを受けてもよい状態かを判定するヘルスチェック。
+                  whyLearn: 起動中や劣化中のインスタンスへ誤って配信しないため。
+                  promptHint: liveness probeとreadiness probeの違いを説明して、と聞く。
+                  aliases:
+                    - readiness probe
+                    - 準備完了プローブ
+        - slug: continuity-and-resilience-testing
+          name: 継続性とレジリエンステスト
+          summary: 回復計画を持ち、実際に試して、壊れ方を学習する。
+          concepts:
+            - slug: recovery-and-disaster-planning
+              name: 復旧と災害対策計画
+              summary: データ損失と停止時間の許容を明確にし、復旧経路を備える。
+              whyLearn: バックアップがあっても、戻せない・間に合わないでは意味がないため。
+              terms:
+                - slug: backup
+                  name: バックアップ
+                  summary: データや設定を後で復元できるよう保存する仕組み。
+                  whyLearn: 論理障害や誤操作から回復する最終手段になるため。
+                  promptHint: バックアップ運用で取りがちな誤解を整理して、と聞く。
+                  aliases:
+                    - backup
+                    - バックアップコピー
+                - slug: restore
+                  name: リストア
+                  summary: 保存済みデータや設定を実際に復元する手順。
+                  whyLearn: バックアップの価値は、予定時間で復元できて初めて生まれるため。
+                  promptHint: restoreテストを定期運用に組み込む方法を説明して、と聞く。
+                  aliases:
+                    - restore
+                    - 復元
+                - slug: recovery-time-objective
+                  name: 目標復旧時間
+                  summary: 停止後にどれだけ早く戻すかの目標時間。
+                  whyLearn: 復旧設計と投資水準の基準になるため。
+                  promptHint: RTOを決めるときに必要な事業前提を整理して、と聞く。
+                  aliases:
+                    - RTO
+                    - recovery time objective
+                - slug: recovery-point-objective
+                  name: 目標復旧時点
+                  summary: どこまでのデータ損失を許容するかの目標。
+                  whyLearn: レプリケーションやバックアップ頻度の設計基準になるため。
+                  promptHint: RPOとバックアップ頻度の関係を説明して、と聞く。
+                  aliases:
+                    - RPO
+                    - recovery point objective
+                - slug: disaster-recovery
+                  name: 災害復旧
+                  summary: 大規模障害からサービスを再開するための計画と構成。
+                  whyLearn: 単一障害対応とリージョン級障害対応を分けて考えるため。
+                  promptHint: このシステムのDR戦略案をRTO/RPO付きで作って、と聞く。
+                  aliases:
+                    - DR
+                    - disaster recovery
+            - slug: resilience-validation
+              name: レジリエンス検証
+              summary: 実験を通じて、設計した耐障害性が本当に機能するかを確かめる。
+              whyLearn: 耐障害機構は書類上の存在だけでは信用できず、定期的な検証が必要だから。
+              terms:
+                - slug: chaos-engineering
+                  name: カオスエンジニアリング
+                  summary: 本番に近い条件で障害実験を行い、系の耐性を学ぶ実践。
+                  whyLearn: 潜在的な脆弱性を顧客影響前に見つけるため。
+                  promptHint: このサービスで実施できるchaos engineering実験案を出して、と聞く。
+                  aliases:
+                    - chaos engineering
+                    - 障害実験
+                - slug: game-day
+                  name: ゲームデイ
+                  summary: 運用・開発・関係者で障害シナリオを演習する訓練。
+                  whyLearn: 手順・通信・判断の実効性を人の動きまで含めて確認するため。
+                  promptHint: game dayのシナリオと評価観点を作って、と聞く。
+                  aliases:
+                    - game day
+                    - 運用演習
+                - slug: fault-injection
+                  name: 障害注入
+                  summary: 遅延、切断、クラッシュなどを意図的に発生させる手法。
+                  whyLearn: 個別の耐障害設計が期待通り働くか局所的に検証するため。
+                  promptHint: fault injectionで検証すべき代表パターンを整理して、と聞く。
+                  aliases:
+                    - fault injection
+                    - failure injection
+
+    - slug: platform-engineering-and-developer-enablement
+      name: プラットフォームエンジニアリングと開発者イネーブルメント
+      summary: 共有基盤をプロダクトとして設計し、開発者が安全で再現可能な方法でシステムを届けられるようにする。
+      whyLearn: 複雑な組織では、運用能力を各チームへバラ撒くより、再利用可能な形に製品化した方が速く安全だから。
+      topicClusters:
+        - slug: platform-product-model
+          name: プラットフォームのプロダクトモデル
+          summary: プラットフォームを内部向けプロダクトとして定義し、セルフサービスと標準経路を提供する。
+          concepts:
+            - slug: internal-platform-design
+              name: 内部プラットフォーム設計
+              summary: 利用者を開発者と見なし、提供能力と責務境界を明確にする。
+              whyLearn: ただ共通インフラを置くだけでは、開発者体験も信頼性も改善しないため。
+              terms:
+                - slug: internal-developer-platform
+                  name: 内部開発者プラットフォーム
+                  summary: 開発者向けに整えられたツール、ワークフロー、サービスの統合基盤。
+                  whyLearn: 開発チームごとの再発明を減らし、安全な標準を提供するため。
+                  promptHint: IDPの対象範囲をどこまでにすべきか整理して、と聞く。
+                  aliases:
+                    - IDP
+                    - internal developer platform
+                - slug: self-service
+                  name: セルフサービス
+                  summary: 開発者が待ち行列なしで必要な基盤機能を利用できる性質。
+                  whyLearn: プラットフォームがボトルネックではなく加速装置になるため。
+                  promptHint: セルフサービス化すべき運用能力を優先順位付きで出して、と聞く。
+                  aliases:
+                    - self-service
+                    - 自己サービス化
+                - slug: platform-api
+                  name: プラットフォームAPI
+                  summary: 基盤機能を安定したインターフェースとして提供する考え方。
+                  whyLearn: 個別相談ベースの基盤運用を減らし、抽象化の境界を明確にするため。
+                  promptHint: platform APIをどう設計すると利用者認知負荷を下げられるか説明して、と聞く。
+                  aliases:
+                    - platform API
+                    - internal platform interface
+                - slug: golden-path
+                  name: ゴールデンパス
+                  summary: 推奨された最短経路で安全に開発・運用できる標準フロー。
+                  whyLearn: 自由度を残しつつ、よくある成功パターンを再利用できるため。
+                  promptHint: この組織のgolden pathに含めるべき能力を列挙して、と聞く。
+                  aliases:
+                    - golden path
+                    - recommended path
+            - slug: developer-experience-outcomes
+              name: 開発者体験の成果
+              summary: 標準化の目的を統制ではなく、速度・安全性・認知負荷低減として定義する。
+              whyLearn: 開発者に使われるプラットフォームは、規則より体験価値で評価されるため。
+              terms:
+                - slug: paved-road
+                  name: 舗装路
+                  summary: 強く推奨される標準手段で、逸脱も可能だが通常は使うべき経路。
+                  whyLearn: 強制一択ではなく、実務で自然に選ばれる標準化を実現するため。
+                  promptHint: golden pathとpaved roadの違いを説明して、と聞く。
+                  aliases:
+                    - paved road
+                    - 標準経路
+                - slug: self-service-environment
+                  name: セルフサービス環境
+                  summary: 開発者が必要時に作成、更新、破棄できる検証や実行環境。
+                  whyLearn: 環境待ちを減らし、変更の検証速度を上げるため。
+                  promptHint: セルフサービス環境を提供する際のガードレールを整理して、と聞く。
+                  aliases:
+                    - self-service environment
+                    - on-demand environment
+                - slug: developer-experience
+                  name: 開発者体験
+                  summary: 開発者が日々の作業で感じる効率、分かりやすさ、待ち時間の総体。
+                  whyLearn: プラットフォーム投資の価値を内部顧客体験として捉えるため。
+                  promptHint: プラットフォーム投資をDevEx改善として評価する指標を考えて、と聞く。
+                  aliases:
+                    - DevEx
+                    - developer experience
+        - slug: portal-catalog-and-documentation
+          name: ポータル、カタログ、ドキュメンテーション
+          summary: サービス、所有者、運用手順、テンプレートを一カ所に集約して発見可能にする。
+          concepts:
+            - slug: developer-portal-and-catalog
+              name: 開発者ポータルとソフトウェアカタログ
+              summary: 所有物と責任を発見可能にし、分散したツールを一つの入口へまとめる。
+              whyLearn: システム数が増えるほど、見つけるコストと責任の曖昧さが大きな損失になるため。
+              terms:
+                - slug: developer-portal
+                  name: 開発者ポータル
+                  summary: 開発者向けにツール、情報、運用状況を集約した入口。
+                  whyLearn: 分散した運用知識とツールを一貫した体験へまとめるため。
+                  promptHint: 良いdeveloper portalに必要な要素を整理して、と聞く。
+                  aliases:
+                    - developer portal
+                    - internal portal
+                - slug: software-catalog
+                  name: ソフトウェアカタログ
+                  summary: サービス、API、ライブラリ、所有者などを整理した台帳。
+                  whyLearn: 運用責任、依存関係、再利用候補を素早く見つけるため。
+                  promptHint: software catalogに最低限入れるべきメタデータを列挙して、と聞く。
+                  aliases:
+                    - software catalog
+                    - service catalog
+                - slug: service-ownership
+                  name: サービスオーナーシップ
+                  summary: 各サービスの責任者、連絡先、運用責務を明示する考え方。
+                  whyLearn: 障害時の連絡と改善責任を曖昧にしないため。
+                  promptHint: service ownershipを曖昧にしないカタログ設計を説明して、と聞く。
+                  aliases:
+                    - ownership
+                    - service owner
+                - slug: backstage
+                  name: Backstage
+                  summary: 開発者ポータルを構築するための代表的なオープンフレームワーク。
+                  whyLearn: 現代のプラットフォーム実務で広く参照される実装例を理解するため。
+                  promptHint: Backstageでsoftware catalogとテンプレートをどう統合するか説明して、と聞く。
+                  aliases:
+                    - Backstage
+                    - CNCF Backstage
+            - slug: templates-and-docs
+              name: テンプレートとドキュメント
+              summary: 新規サービス作成と運用知識共有を、再利用可能な部品として提供する。
+              whyLearn: 標準化を口頭共有ではなく、生成物と文書に落とすことで再現性が生まれるため。
+              terms:
+                - slug: scaffolder-template
+                  name: スキャフォルダーテンプレート
+                  summary: 新しいサービスやジョブの雛形を自動生成するテンプレート。
+                  whyLearn: 初期構成の品質ばらつきとセットアップ負荷を減らすため。
+                  promptHint: 良いscaffolder templateに入れるべき標準項目を整理して、と聞く。
+                  aliases:
+                    - scaffolder template
+                    - software template
+                - slug: techdocs
+                  name: TechDocs
+                  summary: Backstage系でよく使われるdocs as codeの統合表示機能。
+                  whyLearn: コード近接の文書をポータルに一貫表示する実例を押さえるため。
+                  promptHint: TechDocsを採用する利点と運用上の注意点を説明して、と聞く。
+                  aliases:
+                    - TechDocs
+                    - backstage techdocs
+                - slug: docs-as-code
+                  name: Docs as Code
+                  summary: ドキュメントをコード同様に版管理しレビューする運用。
+                  whyLearn: 運用知識を変更フローへ組み込み、陳腐化を減らすため。
+                  promptHint: docs as codeがrunbook品質に与える効果を説明して、と聞く。
+                  aliases:
+                    - docs as code
+                    - documentation as code
+        - slug: control-planes-and-guardrails
+          name: コントロールプレーンとガードレール
+          summary: 抽象化、アクセス制御、ポリシー適用を通じて、安全な自由度を提供する。
+          concepts:
+            - slug: platform-abstractions-and-control-planes
+              name: プラットフォーム抽象化とコントロールプレーン
+              summary: 利用者に見せるAPIを単純化し、裏側の複雑さを基盤側で吸収する。
+              whyLearn: Kubernetesやクラウドの生APIを各開発者に直接背負わせないため。
+              terms:
+                - slug: score
+                  name: Score
+                  summary: ワークロード要求をベンダー中立で表現するための仕様。
+                  whyLearn: 環境ごとの差異を減らし、開発者視点の宣言を保ちやすいため。
+                  promptHint: ScoreがKubernetes生マニフェストとどう違うか説明して、と聞く。
+                  aliases:
+                    - Score
+                    - score specification
+                - slug: crossplane
+                  name: Crossplane
+                  summary: 宣言的APIでクラウド資源やアプリ基盤を提供するコントロールプレーン基盤。
+                  whyLearn: プラットフォームチームが独自APIを構築する代表例だから。
+                  promptHint: Crossplaneを使うとplatform teamの提供面がどう変わるか説明して、と聞く。
+                  aliases:
+                    - Crossplane
+                    - cloud-native control plane
+                - slug: control-plane
+                  name: コントロールプレーン
+                  summary: 望ましい状態の定義と制御を担う管理系。
+                  whyLearn: プラットフォーム設計で、実行面と制御面を分けて考える基礎になるため。
+                  promptHint: control planeとdata planeの違いをプラットフォーム文脈で説明して、と聞く。
+                  aliases:
+                    - control plane
+                    - management plane
+                - slug: service-template
+                  name: サービステンプレート
+                  summary: サービス種別ごとに必要設定と標準能力を束ねた抽象化。
+                  whyLearn: 同系統サービスの立ち上げ品質を標準化するため。
+                  promptHint: service templateに含めるべき運用能力を列挙して、と聞く。
+                  aliases:
+                    - service template
+                    - golden service template
+            - slug: policy-and-access-guardrails
+              name: ポリシーとアクセスのガードレール
+              summary: 安全性を守る制約を、レビュー可能なコードや権限モデルで表現する。
+              whyLearn: セルフサービスを安全に拡大するには、人手レビューだけでは限界があるため。
+              terms:
+                - slug: policy-as-code
+                  name: ポリシー as Code
+                  summary: 許可条件や標準規約をコードとして記述・検証する実践。
+                  whyLearn: ガードレールを再現可能かつ自動化可能にするため。
+                  promptHint: policy as codeをCIやAdmission Controlへどう組み込むか説明して、と聞く。
+                  aliases:
+                    - policy as code
+                    - ポリシーコード化
+                - slug: open-policy-agent
+                  name: Open Policy Agent
+                  summary: スタック横断でポリシー判定を外出しできる汎用ポリシーエンジン。
+                  whyLearn: KubernetesやCI/CDに一貫したポリシー適用を行う代表例だから。
+                  promptHint: OPAでどんな運用ガードレールを実装できるか例示して、と聞く。
+                  aliases:
+                    - OPA
+                    - Open Policy Agent
+                - slug: role-based-access-control
+                  name: ロールベースアクセス制御
+                  summary: 役割に応じて操作権限を割り当てるアクセス制御方式。
+                  whyLearn: マルチチーム運用で最小権限を実現する基礎になるため。
+                  promptHint: RBAC設計で避けるべきアンチパターンを説明して、と聞く。
+                  aliases:
+                    - RBAC
+                    - role based access control
+                - slug: tenant-isolation
+                  name: テナント分離
+                  summary: チームや顧客ごとの資源、権限、障害影響を分ける設計。
+                  whyLearn: 共有基盤での安全性、請求、運用責任を分離するため。
+                  promptHint: tenant isolationの方式をnamespace、account、cluster単位で比較して、と聞く。
+                  aliases:
+                    - tenant isolation
+                    - multi-tenancy
+                - slug: quota
+                  name: クォータ
+                  summary: 利用可能資源量やAPI利用量の上限。
+                  whyLearn: 共有基盤の公平性と過負荷防止を両立するため。
+                  promptHint: self-service platformにquotaを設ける理由を説明して、と聞く。
+                  aliases:
+                    - quota
+                    - resource quota
+
+edges:
+  - from: service-level-indicator
+    to: service-level-objective
+    relationType: prerequisite
+    reason: SLOは測定対象となるSLIが定義されて初めて設定できる。
+  - from: service-level-objective
+    to: error-budget
+    relationType: prerequisite
+    reason: エラーバジェットはSLOから逆算される許容失敗量だから。
+  - from: error-budget
+    to: burn-rate
+    relationType: prerequisite
+    reason: バーンレートはエラーバジェット消費速度の概念であり、予算定義が前提になる。
+  - from: burn-rate
+    to: multi-window-multi-burn-rate-alert
+    relationType: used_in
+    reason: 複数ウィンドウ複数バーンレートアラートはバーンレートを検知ロジックとして使う。
+  - from: critical-user-journey
+    to: service-level-indicator
+    relationType: prerequisite
+    reason: 何を重要体験として守るかが決まると、それを測るSLIを定義しやすい。
+  - from: semantic-conventions
+    to: trace-id
+    relationType: related
+    reason: 相関可能な観測を実現するには、IDだけでなく属性命名の共通化も重要になる。
+  - from: service-level-objective
+    to: symptom-based-alert
+    relationType: used_in
+    reason: SLOベースの症状監視はユーザー影響に直結したアラート設計へつながる。
+  - from: runbook
+    to: mean-time-to-recovery
+    relationType: used_in
+    reason: 良いランブックは復旧判断と操作を標準化し、MTTR短縮に寄与する。
+  - from: blameless-postmortem
+    to: action-item
+    relationType: used_in
+    reason: ポストモーテムの学習結果は追跡可能なアクションアイテムへ落とす必要がある。
+  - from: toil
+    to: self-service
+    relationType: related
+    reason: 反復運用をセルフサービス化すると、トイル削減と開発者待ち時間削減が同時に進みやすい。
+  - from: ci-cd
+    to: canary-release
+    relationType: prerequisite
+    reason: カナリア運用には継続的に安全配布できるパイプラインが必要になる。
+  - from: feature-flag
+    to: canary-release
+    relationType: compare_with
+    reason: どちらも露出制御に使えるが、前者は実行時制御、後者は配備単位の段階展開という違いがある。
+  - from: infrastructure-as-code
+    to: gitops
+    relationType: prerequisite
+    reason: GitOpsでは宣言的な構成記述が前提になるため、IaCの考え方が土台になる。
+  - from: gitops
+    to: reconciliation-loop
+    relationType: used_in
+    reason: GitOpsは継続的再収束を行うリコンシリエーションループで実現される。
+  - from: slsa
+    to: provenance
+    relationType: used_in
+    reason: SLSAの実践ではビルド来歴証明が重要な要素になる。
+  - from: sigstore
+    to: provenance
+    relationType: related
+    reason: 署名検証は成果物来歴と組み合わせることで意味を持つため。
+  - from: graceful-degradation
+    to: load-shedding
+    relationType: used_in
+    reason: 縮退運転では要求を選択的に落とすロードシェディングが具体策になることが多い。
+  - from: saturation
+    to: horizontal-pod-autoscaler
+    relationType: related
+    reason: HPAは需要増への反応手段だが、サチュレーション指標で妥当性を評価する必要がある。
+  - from: readiness-probe
+    to: pod-disruption-budget
+    relationType: related
+    reason: 更新や中断時の可用性は、受け入れ可能状態判定と同時停止制御の両方で守られる。
+  - from: chaos-engineering
+    to: game-day
+    relationType: compare_with
+    reason: 前者は実験技法、後者は人と手順を含む演習であり、目的は近いが運用形態が異なる。
+  - from: internal-developer-platform
+    to: developer-portal
+    relationType: used_in
+    reason: IDPの入口として開発者ポータルが使われることが多い。
+  - from: software-catalog
+    to: service-ownership
+    relationType: used_in
+    reason: 責任者情報はソフトウェアカタログの重要メタデータとして使われる。
+  - from: backstage
+    to: software-catalog
+    relationType: used_in
+    reason: Backstageはソフトウェアカタログを中心に開発者ポータルを構成する。
+  - from: score
+    to: crossplane
+    relationType: related
+    reason: Scoreは利用者向け宣言仕様、Crossplaneはそれを実現する基盤API群を設計する際の近接領域にある。
+  - from: policy-as-code
+    to: open-policy-agent
+    relationType: used_in
+    reason: OPAはPolicy as Codeを具体的に実装する代表的エンジンである。
+  - from: role-based-access-control
+    to: tenant-isolation
+    relationType: used_in
+    reason: テナント分離では権限境界をRBACで表現することが多い。
+  - from: quota
+    to: tenant-isolation
+    relationType: used_in
+    reason: 共有基盤での公平性と影響範囲制御に、クォータが分離手段として使われる。

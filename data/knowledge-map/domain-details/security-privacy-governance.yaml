@@ -1,0 +1,1138 @@
+domain:
+  slug: security-privacy-governance
+  name: "セキュリティ、プライバシー、ガバナンス"
+  summary: "システム、人、データ、信頼を守るための技術的・組織的実践を扱う領域。"
+  boundaryNotes: "セキュア開発、プライバシーエンジニアリング、リスク統治を扱う。可用性やサービス健全性は Reliability、法務や事業包装は Business に接続する。"
+  knowledgeAreas:
+    - slug: secure-design-threat-management
+      name: "セキュア設計と脅威分析"
+      summary: "境界、資産、攻撃面、脅威、設計原則を前倒しで整理する。"
+      whyLearn: "実装前に危険な仮定を発見し、設計レビューの精度を上げるため。"
+      topicClusters:
+        - slug: threat-modeling-and-risk-discovery
+          name: "脅威モデリングとリスク発見"
+          summary: "システムに対する脅威と悪用経路を構造化して洗い出す。"
+          concepts:
+            - slug: security-threat-modeling
+              name: "セキュリティ脅威モデリング"
+              summary: "システム図、資産、境界、攻撃者視点から脅威を列挙する。"
+              whyLearn: "仕様レビューの段階で重大な欠陥を見つけやすくなる。"
+              terms:
+                - slug: threat-modeling
+                  name: "脅威モデリング"
+                  summary: "守る対象、境界、脅威、対策を系統立てて表現する実践。"
+                  whyLearn: "セキュリティを実装後チェックではなく設計活動にできる。"
+                  promptHint: "何を守り、誰がどう壊し、どこで防ぐかで考える。"
+                  aliases:
+                    - "Threat Modeling"
+                - slug: stride
+                  name: "STRIDE"
+                  summary: "脅威を六つの観点で整理する代表的な分類法。"
+                  whyLearn: "脅威列挙の抜け漏れを減らしやすい。"
+                  promptHint: "なりすまし、改ざん、否認、情報漏えい、DoS、権限昇格で点検する。"
+                  aliases:
+                    - "ストライド"
+                - slug: attack-tree
+                  name: "攻撃木"
+                  summary: "攻撃目標から手段を木構造で分解して表す方法。"
+                  whyLearn: "悪用経路や対策優先度を説明しやすくなる。"
+                  promptHint: "攻撃者の最終目標から必要条件を分解して考える。"
+                  aliases:
+                    - "Attack Tree"
+            - slug: attack-knowledge-and-exposure
+              name: "攻撃知識と攻撃面の把握"
+              summary: "攻撃者の行動パターンと露出面を具体的に把握する。"
+              whyLearn: "抽象的な不安ではなく観測可能な攻撃パターンで議論できる。"
+              terms:
+                - slug: attack-surface
+                  name: "攻撃面"
+                  summary: "攻撃者が触れられる入口、資産、操作面の総称。"
+                  whyLearn: "露出の縮小を設計の第一歩として扱える。"
+                  promptHint: "外部公開面、管理面、依存先、内部横移動面を列挙する。"
+                  aliases:
+                    - "Attack Surface"
+                - slug: mitre-attck
+                  name: "MITRE ATT&CK"
+                  summary: "現実の攻撃者行動を戦術・技術で整理した知識ベース。"
+                  whyLearn: "検知、演習、優先順位付けに共通言語を持てる。"
+                  promptHint: "どの戦術と技術に対して観測・防御・回復が弱いかで問う。"
+                  aliases:
+                    - "ATT&CK"
+                - slug: tactics-techniques-procedures
+                  name: "TTP"
+                  summary: "攻撃者の戦術、技術、手順をまとめて捉える表現。"
+                  whyLearn: "インシデントや脅威情報を行動単位で理解しやすい。"
+                  promptHint: "何を狙ったか、どう実行したか、どの手口が繰り返されるかで整理する。"
+                  aliases:
+                    - "TTP"
+        - slug: secure-architecture-principles
+          name: "セキュアアーキテクチャ原則"
+          summary: "境界設計、信頼仮定、分離、既定値に関する原則を扱う。"
+          concepts:
+            - slug: secure-design-principles
+              name: "セキュア設計原則"
+              summary: "安全な既定値と権限最小化を軸にアーキテクチャを設計する。"
+              whyLearn: "個別パッチではなく壊れにくい構造に近づける。"
+              terms:
+                - slug: least-privilege
+                  name: "最小権限"
+                  summary: "必要最小限の権限だけを付与する原則。"
+                  whyLearn: "侵害時の被害拡大を抑えやすい。"
+                  promptHint: "この主体に本当に必要な権限だけかを確認する。"
+                  aliases:
+                    - "Least Privilege"
+                - slug: defense-in-depth
+                  name: "多層防御"
+                  summary: "複数の防御層を重ねて単一点突破を防ぐ考え方。"
+                  whyLearn: "一つの制御が破られても全体崩壊しにくくなる。"
+                  promptHint: "予防、検知、制限、回復を別レイヤーで持てているかを見る。"
+                  aliases:
+                    - "Defense in Depth"
+                - slug: secure-by-default
+                  name: "セキュア・バイ・デフォルト"
+                  summary: "初期設定のままで危険になりにくい状態を目指す原則。"
+                  whyLearn: "利用者や運用者の設定ミス依存を減らせる。"
+                  promptHint: "何もしないと危険になる設定が残っていないかを問う。"
+                  aliases:
+                    - "Secure by Default"
+            - slug: boundary-and-trust-design
+              name: "境界設計と信頼設計"
+              summary: "信頼境界と通信境界を明示し、横移動や暗黙信頼を減らす。"
+              whyLearn: "システム分割とアクセス制御の設計根拠を説明できる。"
+              terms:
+                - slug: trust-boundary
+                  name: "信頼境界"
+                  summary: "信頼できる前提が切り替わる境目。"
+                  whyLearn: "認証、検証、監査をどこで必須にするか決めやすい。"
+                  promptHint: "この境界をまたぐときに何を再確認すべきかで考える。"
+                  aliases:
+                    - "Trust Boundary"
+                - slug: segmentation
+                  name: "セグメンテーション"
+                  summary: "ネットワークやサービスの分離で影響範囲を限定する設計。"
+                  whyLearn: "横移動や過剰な到達性を抑制できる。"
+                  promptHint: "到達できなくてよい経路が開いていないかを見る。"
+                  aliases:
+                    - "Network Segmentation"
+                - slug: zero-trust-architecture
+                  name: "ゼロトラストアーキテクチャ"
+                  summary: "場所やネットワーク内外に依存せず、継続的に信頼を検証する考え方。"
+                  whyLearn: "社内だから安全という前提を捨てた設計ができる。"
+                  promptHint: "主体、端末、状況、資産ごとに信頼を動的に判断する。"
+                  aliases:
+                    - "ZTA"
+                    - "Zero Trust"
+
+    - slug: application-api-client-security
+      name: "アプリケーション、API、クライアントの保護"
+      summary: "Web、API、モバイルの実装境界で起きる代表的な失敗と防御を扱う。"
+      whyLearn: "実装レビューと仕様レビューの両方で典型的な事故を減らすため。"
+      topicClusters:
+        - slug: server-side-and-browser-defenses
+          name: "サーバー側とブラウザ側の防御"
+          summary: "入力、出力、状態管理、ブラウザ制御の基本防御を扱う。"
+          concepts:
+            - slug: input-and-output-safety
+              name: "入力と出力の安全化"
+              summary: "不正入力や文脈不一致の出力から生じる脆弱性を防ぐ。"
+              whyLearn: "注入系や表示系の脆弱性を基本動作として防ぎやすい。"
+              terms:
+                - slug: input-validation
+                  name: "入力検証"
+                  summary: "型、長さ、形式、範囲などを境界で検証する実践。"
+                  whyLearn: "不正データの早期遮断に役立つ。"
+                  promptHint: "許可すべき入力を定義し、境界で検証する。"
+                  aliases:
+                    - "Input Validation"
+                - slug: output-encoding
+                  name: "出力エンコーディング"
+                  summary: "出力先の文脈に合わせて危険文字を安全化する方法。"
+                  whyLearn: "XSS などの表示文脈依存の事故を防ぎやすい。"
+                  promptHint: "HTML、属性、URL、JS など文脈ごとに分けて考える。"
+                  aliases:
+                    - "Output Encoding"
+                - slug: parameterized-query
+                  name: "パラメータ化クエリ"
+                  summary: "値と命令を分離して安全に問い合わせを行う方法。"
+                  whyLearn: "SQL インジェクション系の基本防御になる。"
+                  promptHint: "文字列連結ではなくバインド変数で扱う前提で考える。"
+                  aliases:
+                    - "Prepared Statement"
+                    - "Parameterized Query"
+            - slug: request-and-browser-controls
+              name: "リクエストとブラウザ制御"
+              summary: "ブラウザの自動送信やスクリプト実行に起因するリスクを抑える。"
+              whyLearn: "セッション依存アプリの基本防御を理解できる。"
+              terms:
+                - slug: cross-site-request-forgery
+                  name: "CSRF"
+                  summary: "利用者のブラウザを悪用して意図しない操作を実行させる攻撃。"
+                  whyLearn: "状態変更系の操作を安全に設計する基礎になる。"
+                  promptHint: "誰の意思で送信されたかをどう確認するかで考える。"
+                  aliases:
+                    - "CSRF"
+                    - "Cross-Site Request Forgery"
+                - slug: content-security-policy
+                  name: "CSP"
+                  summary: "読み込み元や実行元を制限してブラウザ実行を絞る仕組み。"
+                  whyLearn: "XSS の被害縮小と外部資源制御に役立つ。"
+                  promptHint: "どのスクリプトやリソースを許可するかを方針化する。"
+                  aliases:
+                    - "CSP"
+                    - "Content Security Policy"
+                - slug: same-site-cookie
+                  name: "SameSite Cookie"
+                  summary: "Cookie の送信条件をクロスサイト文脈で制御する属性。"
+                  whyLearn: "CSRF とセッション保護の土台になる。"
+                  promptHint: "この Cookie は同一サイト外から送られてよいかで考える。"
+                  aliases:
+                    - "SameSite"
+        - slug: api-and-client-hardening
+          name: "API とクライアントの堅牢化"
+          summary: "API 認可の欠陥とクライアント側の保護を扱う。"
+          concepts:
+            - slug: api-authorization-and-exposure
+              name: "API 認可と公開面の保護"
+              summary: "ID ベース参照や関数権限、公開 API の棚卸しを重視する。"
+              whyLearn: "API が増えるプロダクトで特有の事故を減らせる。"
+              terms:
+                - slug: broken-object-level-authorization
+                  name: "BOLA"
+                  summary: "オブジェクト単位の認可不足で他人データに到達できる問題。"
+                  whyLearn: "API 事故で非常に多い欠陥を具体的に見抜ける。"
+                  promptHint: "この ID を変えたら別人の資産に触れないかを問う。"
+                  aliases:
+                    - "BOLA"
+                    - "Broken Object Level Authorization"
+                - slug: broken-function-level-authorization
+                  name: "BFLA"
+                  summary: "機能単位の認可不足で本来できない操作が実行できる問題。"
+                  whyLearn: "管理 API や内部操作の露出を見つけやすい。"
+                  promptHint: "権限の弱い主体でも管理操作を呼べないかを見る。"
+                  aliases:
+                    - "BFLA"
+                    - "Broken Function Level Authorization"
+                - slug: api-inventory
+                  name: "API インベントリ"
+                  summary: "存在する API、バージョン、利用主体、公開状態を把握すること。"
+                  whyLearn: "守る対象が分からない状態を避けられる。"
+                  promptHint: "未使用、旧版、外部公開、内部限定を整理する。"
+                  aliases:
+                    - "API Inventory"
+            - slug: client-and-mobile-protection
+              name: "クライアントとモバイル保護"
+              summary: "端末側保存、配布物の真正性、実行環境の健全性を扱う。"
+              whyLearn: "Web だけでは見落とす端末側のリスクを扱える。"
+              terms:
+                - slug: masvs
+                  name: "OWASP MASVS"
+                  summary: "モバイルアプリのセキュリティ要件と検証の標準。"
+                  whyLearn: "モバイル固有の要件整理とレビューの基準になる。"
+                  promptHint: "モバイルで守るべき保存、通信、認証、逆解析耐性を点検する。"
+                  aliases:
+                    - "MASVS"
+                - slug: secure-local-storage
+                  name: "安全なローカル保存"
+                  summary: "端末内に保存する資格情報やデータを保護する設計。"
+                  whyLearn: "トークンや個人データの端末漏えいを防ぎやすい。"
+                  promptHint: "保存しなくてよいものを除き、保存するなら OS 保護機構を使う。"
+                  aliases:
+                    - "Secure Local Storage"
+                - slug: app-attestation
+                  name: "アプリ・アテステーション"
+                  summary: "正規アプリや正規端末に近い実行環境かを検証する仕組み。"
+                  whyLearn: "改変クライアントや不正自動化への対抗策を設計できる。"
+                  promptHint: "誰が呼んでいるかだけでなく、どの実行環境からかも確認する。"
+                  aliases:
+                    - "App Attestation"
+
+    - slug: identity-access-secrets
+      name: "アイデンティティ、アクセス、秘密管理"
+      summary: "認証、認可、権限委譲、機械 ID、シークレットを扱う。"
+      whyLearn: "誰が何にどの条件でアクセスできるかを安全に設計するため。"
+      topicClusters:
+        - slug: authentication-and-federation
+          name: "認証とフェデレーション"
+          summary: "本人確認と外部連携認証の中核技術を扱う。"
+          concepts:
+            - slug: modern-authentication
+              name: "現代的なユーザー認証"
+              summary: "多要素化とフィッシング耐性を重視した認証設計。"
+              whyLearn: "パスワード中心設計からの移行判断がしやすくなる。"
+              terms:
+                - slug: multi-factor-authentication
+                  name: "多要素認証"
+                  summary: "異なる要素を組み合わせて認証強度を上げる方式。"
+                  whyLearn: "資格情報漏えい時の突破難度を上げられる。"
+                  promptHint: "知識・所持・生体のどれをどう組み合わせるかを見る。"
+                  aliases:
+                    - "MFA"
+                    - "Multi-Factor Authentication"
+                - slug: passkey
+                  name: "パスキー"
+                  summary: "端末の生体認証や PIN と連動する FIDO ベース認証情報。"
+                  whyLearn: "フィッシング耐性と UX を両立しやすい。"
+                  promptHint: "パスワードを減らしつつ復旧導線をどう設計するかで考える。"
+                  aliases:
+                    - "Passkey"
+                - slug: webauthn
+                  name: "WebAuthn"
+                  summary: "公開鍵資格情報を用いて Web 上で強力な認証を実現する標準。"
+                  whyLearn: "passkey やハードウェア認証の基盤理解になる。"
+                  promptHint: "登録、認証、RP ID、資格情報スコープで理解する。"
+                  aliases:
+                    - "Web Authentication"
+                    - "WebAuthn"
+            - slug: federated-protocols-and-tokens
+              name: "連携プロトコルとトークン"
+              summary: "外部 ID 連携や認可委譲で使う標準を扱う。"
+              whyLearn: "SSO や外部連携を安全に実装するため。"
+              terms:
+                - slug: oauth-2-0
+                  name: "OAuth 2.0"
+                  summary: "第三者に限定的なアクセス権を委譲するための枠組み。"
+                  whyLearn: "API 認可の土台を理解できる。"
+                  promptHint: "主体、認可サーバー、トークン、スコープ、リダイレクトを整理する。"
+                  aliases:
+                    - "OAuth2"
+                    - "OAuth 2.0"
+                - slug: openid-connect
+                  name: "OpenID Connect"
+                  summary: "OAuth 2.0 の上に認証レイヤーを載せた標準。"
+                  whyLearn: "認可と認証の違いを混同しにくくなる。"
+                  promptHint: "ID トークンは何を保証し、アクセストークンと何が違うかで考える。"
+                  aliases:
+                    - "OIDC"
+                    - "OpenID Connect"
+                - slug: pkce
+                  name: "PKCE"
+                  summary: "認可コード奪取に対抗するための追加検証機構。"
+                  whyLearn: "モバイルや SPA を含む現代的 OAuth 実装の必須知識。"
+                  promptHint: "公開クライアントでコードをどう保護するかで理解する。"
+                  aliases:
+                    - "PKCE"
+                    - "Proof Key for Code Exchange"
+        - slug: authorization-and-secret-lifecycle
+          name: "認可と秘密のライフサイクル"
+          summary: "権限モデルとシークレット運用を扱う。"
+          concepts:
+            - slug: access-control-models
+              name: "アクセス制御モデル"
+              summary: "権限をロール、属性、関係で表現する方法を比較する。"
+              whyLearn: "ビジネス権限を実装に落とし込む設計力がつく。"
+              terms:
+                - slug: role-based-access-control
+                  name: "RBAC"
+                  summary: "ロール単位で権限を束ねて付与するモデル。"
+                  whyLearn: "分かりやすい権限管理の基本になる。"
+                  promptHint: "職務ごとの共通権限として表現できるかを見る。"
+                  aliases:
+                    - "RBAC"
+                    - "Role-Based Access Control"
+                - slug: attribute-based-access-control
+                  name: "ABAC"
+                  summary: "主体、資源、環境属性に基づいて権限判定するモデル。"
+                  whyLearn: "状況依存の細かい制御に向く。"
+                  promptHint: "だれが、何に、どんな条件で、という形で表現する。"
+                  aliases:
+                    - "ABAC"
+                    - "Attribute-Based Access Control"
+                - slug: relationship-based-access-control
+                  name: "ReBAC"
+                  summary: "主体と資源の関係性で権限を表すモデル。"
+                  whyLearn: "共同編集や共有モデルに強い。"
+                  promptHint: "所有者、メンバー、上司部下のような関係で考える。"
+                  aliases:
+                    - "ReBAC"
+                    - "Relationship-Based Access Control"
+            - slug: secret-and-privilege-management
+              name: "シークレットと特権管理"
+              summary: "人と機械の資格情報を安全に扱い、特権を管理する。"
+              whyLearn: "漏えいしやすく、被害も大きい資格情報の扱いを改善できる。"
+              terms:
+                - slug: service-account
+                  name: "サービスアカウント"
+                  summary: "機械やサービス同士の認証に使う主体。"
+                  whyLearn: "人間用 ID と分けない設計の危険を避けられる。"
+                  promptHint: "この権限は人ではなくワークロードに紐づくべきかで考える。"
+                  aliases:
+                    - "Service Account"
+                - slug: privileged-access-management
+                  name: "PAM"
+                  summary: "高権限アカウントの発行、利用、監査を統制する仕組み。"
+                  whyLearn: "管理者権限の乱用や漏えいの被害を抑えられる。"
+                  promptHint: "高権限を誰がいつ何のために使うかを追跡できるかを見る。"
+                  aliases:
+                    - "PAM"
+                    - "Privileged Access Management"
+                - slug: secret-rotation
+                  name: "シークレットローテーション"
+                  summary: "鍵やトークンやパスワードを定期的・事象的に切り替える運用。"
+                  whyLearn: "長寿命秘密に依存した事故を減らせる。"
+                  promptHint: "漏えい時に素早く切り替えられる設計かを確認する。"
+                  aliases:
+                    - "Secret Rotation"
+
+    - slug: cryptography-key-management
+      name: "暗号と鍵管理"
+      summary: "データと通信を保護する暗号技術と、その運用条件を扱う。"
+      whyLearn: "暗号を雰囲気で選ばず、用途と制約で使い分けるため。"
+      topicClusters:
+        - slug: cryptographic-primitives-and-protection
+          name: "暗号プリミティブと基本保護"
+          summary: "暗号の基本部品と利用場面を区別して学ぶ。"
+          concepts:
+            - slug: core-primitives
+              name: "中核プリミティブ"
+              summary: "機密性、完全性、認証性を支える基本技術。"
+              whyLearn: "暗号用語を正しく使い分けられるようになる。"
+              terms:
+                - slug: advanced-encryption-standard
+                  name: "AES"
+                  summary: "広く使われる共通鍵暗号標準。"
+                  whyLearn: "保存データや通信保護の基礎となる。"
+                  promptHint: "何をどこで暗号化し、鍵をどう配るかとセットで考える。"
+                  aliases:
+                    - "AES"
+                    - "Advanced Encryption Standard"
+                - slug: secure-hash-algorithm-256
+                  name: "SHA-256"
+                  summary: "メッセージダイジェストを生成する代表的なハッシュ関数。"
+                  whyLearn: "改ざん検知や識別子計算の基本理解になる。"
+                  promptHint: "暗号化ではなく一方向要約である点を区別する。"
+                  aliases:
+                    - "SHA-256"
+                - slug: authenticated-encryption-with-associated-data
+                  name: "AEAD"
+                  summary: "暗号化と改ざん検知を同時に提供する方式。"
+                  whyLearn: "機密性だけでなく完全性も必要な場面を扱える。"
+                  promptHint: "暗号文だけでなく関連データも保護対象に含めて考える。"
+                  aliases:
+                    - "AEAD"
+            - slug: password-and-signature-protection
+              name: "パスワード保護と署名"
+              summary: "認証情報保護と真正性証明のための技術を扱う。"
+              whyLearn: "平文保存や誤った署名理解を避けられる。"
+              terms:
+                - slug: argon2id
+                  name: "Argon2id"
+                  summary: "メモリハード性を持つパスワードハッシュ方式。"
+                  whyLearn: "オフライン解析耐性を意識した保存設計ができる。"
+                  promptHint: "コスト設定、ソルト、移行計画まで含めて考える。"
+                  aliases:
+                    - "Argon2id"
+                - slug: digital-signature
+                  name: "デジタル署名"
+                  summary: "署名者の真正性とデータ完全性を検証する仕組み。"
+                  whyLearn: "署名と暗号化の役割差を理解できる。"
+                  promptHint: "誰が署名し、誰が検証し、何を保証するかで整理する。"
+                  aliases:
+                    - "Digital Signature"
+                - slug: key-derivation-function
+                  name: "KDF"
+                  summary: "秘密から用途別の鍵素材を導出する関数。"
+                  whyLearn: "鍵の使い回しを避けやすい。"
+                  promptHint: "元秘密、ソルト、文脈をどう分離するかで考える。"
+                  aliases:
+                    - "KDF"
+                    - "Key Derivation Function"
+        - slug: transport-and-key-lifecycle
+          name: "通信保護と鍵ライフサイクル"
+          summary: "通信路保護、証明書、鍵の作成から廃棄までを扱う。"
+          concepts:
+            - slug: transport-and-pki
+              name: "通信保護と PKI"
+              summary: "TLS と証明書でネットワーク越しの信頼を構成する。"
+              whyLearn: "HTTPS を設定できるだけでなく、何を保証しているか説明できる。"
+              terms:
+                - slug: transport-layer-security
+                  name: "TLS"
+                  summary: "通信の盗聴や改ざんを防ぐ標準プロトコル。"
+                  whyLearn: "安全な通信の前提を理解できる。"
+                  promptHint: "終端点、証明書、鍵交換、バージョンをセットで考える。"
+                  aliases:
+                    - "TLS"
+                    - "Transport Layer Security"
+                - slug: public-key-infrastructure
+                  name: "PKI"
+                  summary: "公開鍵証明書を発行・管理・失効する信頼基盤。"
+                  whyLearn: "証明書運用や相互認証の理解に不可欠。"
+                  promptHint: "誰が誰を信頼し、その信頼をどう配布するかで考える。"
+                  aliases:
+                    - "PKI"
+                    - "Public Key Infrastructure"
+                - slug: x-509-certificate
+                  name: "X.509 証明書"
+                  summary: "公開鍵と主体情報を結びつける標準的な証明書形式。"
+                  whyLearn: "TLS や署名基盤の実運用理解につながる。"
+                  promptHint: "発行者、失効、SAN、有効期限を確認する。"
+                  aliases:
+                    - "X.509"
+                    - "X.509 Certificate"
+            - slug: key-management-and-agility
+              name: "鍵管理と暗号アジリティ"
+              summary: "鍵の保護と切替え、アルゴリズム変更耐性を設計する。"
+              whyLearn: "強い暗号を使っていても運用で壊れる問題を防げる。"
+              terms:
+                - slug: key-rotation
+                  name: "鍵ローテーション"
+                  summary: "暗号鍵を計画的または緊急時に切り替える運用。"
+                  whyLearn: "鍵漏えい時の被害継続時間を短くできる。"
+                  promptHint: "再暗号化、切替手順、後方互換をどう扱うかで考える。"
+                  aliases:
+                    - "Key Rotation"
+                - slug: hardware-security-module
+                  name: "HSM"
+                  summary: "鍵を高い保護レベルで生成・保管・利用する装置。"
+                  whyLearn: "重要鍵の保護境界を強化できる。"
+                  promptHint: "鍵を平文で出さない設計が必要かで判断する。"
+                  aliases:
+                    - "HSM"
+                    - "Hardware Security Module"
+                - slug: cryptographic-agility
+                  name: "暗号アジリティ"
+                  summary: "暗号アルゴリズムや鍵長を後から移行しやすくする設計。"
+                  whyLearn: "将来の弱体化や標準更新に対応しやすい。"
+                  promptHint: "アルゴリズムを設定や抽象化で差し替えられるかを見る。"
+                  aliases:
+                    - "Cryptographic Agility"
+        - slug: post-quantum-transition
+          name: "耐量子計算機移行"
+          summary: "PQC の基本と、既存方式からの移行を扱う。"
+          concepts:
+            - slug: post-quantum-basics
+              name: "PQC の基礎"
+              summary: "量子計算耐性を考慮した鍵共有と署名の標準群を学ぶ。"
+              whyLearn: "長寿命データや長期署名の保護計画を立てやすくなる。"
+              terms:
+                - slug: post-quantum-cryptography
+                  name: "耐量子計算機暗号"
+                  summary: "量子計算機でも破りにくいと考えられる暗号方式群。"
+                  whyLearn: "将来移行の前提知識になる。"
+                  promptHint: "どの資産が長期保護を必要とするかから考える。"
+                  aliases:
+                    - "PQC"
+                    - "Post-Quantum Cryptography"
+                - slug: ml-kem
+                  name: "ML-KEM"
+                  summary: "NIST 標準化された耐量子 KEM。"
+                  whyLearn: "鍵共有の移行候補を具体語で理解できる。"
+                  promptHint: "どの通信や鍵交換に適用しうるかで考える。"
+                  aliases:
+                    - "ML-KEM"
+                - slug: ml-dsa
+                  name: "ML-DSA"
+                  summary: "NIST 標準化された耐量子デジタル署名方式。"
+                  whyLearn: "署名基盤の移行検討に必要。"
+                  promptHint: "証明書、署名配布、検証性能をどう評価するかで考える。"
+                  aliases:
+                    - "ML-DSA"
+
+    - slug: privacy-engineering-data-protection
+      name: "プライバシーエンジニアリングとデータ保護"
+      summary: "個人データの収集、利用、保持、開示、匿名化を設計する。"
+      whyLearn: "便利さと個人リスクの両方を見ながらデータ設計するため。"
+      topicClusters:
+        - slug: data-lifecycle-and-minimization
+          name: "データライフサイクルと最小化"
+          summary: "何を集め、なぜ使い、いつ消すかを設計する。"
+          concepts:
+            - slug: data-inventory-and-classification
+              name: "データ棚卸しと分類"
+              summary: "扱うデータの種類と重要度を明確化する。"
+              whyLearn: "何を守るかとどのルールを適用するかが見えやすくなる。"
+              terms:
+                - slug: personally-identifiable-information
+                  name: "個人識別情報"
+                  summary: "個人に結びつく、または結びつきうる情報。"
+                  whyLearn: "保護対象の判断を誤りにくくなる。"
+                  promptHint: "単独で識別できるか、組合せで識別できるかを考える。"
+                  aliases:
+                    - "PII"
+                    - "Personally Identifiable Information"
+                - slug: data-classification
+                  name: "データ分類"
+                  summary: "データを機密性や規制性に応じて等級分けすること。"
+                  whyLearn: "保存、アクセス、共有のルールを揃えやすい。"
+                  promptHint: "このデータの漏えい・改ざん・過保持の影響で分類する。"
+                  aliases:
+                    - "Data Classification"
+                - slug: records-of-processing-activities
+                  name: "処理活動記録"
+                  summary: "どの個人データを何の目的でどう扱うかを記録した台帳。"
+                  whyLearn: "説明責任と監査対応の基礎になる。"
+                  promptHint: "目的、項目、主体、保存期間、共有先を残す。"
+                  aliases:
+                    - "ROPA"
+                    - "Records of Processing Activities"
+            - slug: purpose-and-retention-controls
+              name: "目的制限と保持制御"
+              summary: "必要な範囲だけ集め、必要な期間だけ保持する。"
+              whyLearn: "過剰収集・過剰保持によるリスクを下げられる。"
+              terms:
+                - slug: purpose-limitation
+                  name: "目的制限"
+                  summary: "データを明示した目的の範囲で扱う原則。"
+                  whyLearn: "機能追加時の安易な横流用を防ぎやすい。"
+                  promptHint: "この新用途は元の収集目的と整合しているかを問う。"
+                  aliases:
+                    - "Purpose Limitation"
+                - slug: data-minimization
+                  name: "データ最小化"
+                  summary: "目的達成に必要な最小限だけ収集・処理する原則。"
+                  whyLearn: "漏えい時の被害と管理コストを減らせる。"
+                  promptHint: "本当に必要な項目だけか、粒度が粗くできないかを見る。"
+                  aliases:
+                    - "Data Minimisation"
+                    - "Data Minimization"
+                - slug: retention-policy
+                  name: "保持ポリシー"
+                  summary: "データの保存期間と削除条件を定める方針。"
+                  whyLearn: "残しすぎによる法務・セキュリティ負債を減らせる。"
+                  promptHint: "利用価値、規制要件、事故時影響のバランスで考える。"
+                  aliases:
+                    - "Retention Policy"
+        - slug: privacy-risk-and-user-rights
+          name: "プライバシーリスクと利用者権利"
+          summary: "個人への影響評価と透明性・権利対応を扱う。"
+          concepts:
+            - slug: privacy-assessment-and-design
+              name: "プライバシー評価と設計"
+              summary: "企画や変更が個人に与える影響を前倒しで評価する。"
+              whyLearn: "後追いの法務チェックだけでは拾えない設計リスクを見つけやすい。"
+              terms:
+                - slug: privacy-by-design
+                  name: "プライバシー・バイ・デザイン"
+                  summary: "企画・設計段階から保護策を組み込む考え方。"
+                  whyLearn: "後付け対応のコストと漏れを減らせる。"
+                  promptHint: "後から足すのでなく、最初から制約として組み込む。"
+                  aliases:
+                    - "Privacy by Design"
+                - slug: data-protection-impact-assessment
+                  name: "DPIA"
+                  summary: "高リスクな処理の前に個人への影響を評価する手法。"
+                  whyLearn: "重大なプライバシーリスクを開始前に把握できる。"
+                  promptHint: "処理の性質、必要性、比例性、個人リスク、緩和策で整理する。"
+                  aliases:
+                    - "DPIA"
+                    - "Data Protection Impact Assessment"
+                - slug: privacy-risk-assessment-methodology
+                  name: "プライバシーリスク評価法"
+                  summary: "個人への問題発生可能性と影響を評価する枠組み。"
+                  whyLearn: "組織内で privacy risk を共通言語にしやすい。"
+                  promptHint: "事業リスクではなく個人への問題として評価する。"
+                  aliases:
+                    - "PRAM"
+                    - "Privacy Risk Assessment Methodology"
+            - slug: transparency-and-user-rights
+              name: "透明性と利用者権利"
+              summary: "説明、同意、開示請求、削除請求への対応を扱う。"
+              whyLearn: "ユーザー体験と法的期待の両面を設計に含められる。"
+              terms:
+                - slug: consent-management
+                  name: "同意管理"
+                  summary: "同意の取得、記録、変更、撤回を管理する仕組み。"
+                  whyLearn: "取得した同意の範囲と証跡を明確にできる。"
+                  promptHint: "何に同意したか、いつ撤回できるかまで設計する。"
+                  aliases:
+                    - "Consent Management"
+                - slug: data-subject-access-request
+                  name: "開示請求対応"
+                  summary: "本人からのデータアクセス要求に応える運用。"
+                  whyLearn: "どこに何の個人データがあるか把握する動機になる。"
+                  promptHint: "検索、本人確認、出力範囲、期限を考える。"
+                  aliases:
+                    - "DSAR"
+                    - "Data Subject Access Request"
+                - slug: privacy-notice
+                  name: "プライバシー通知"
+                  summary: "何を、なぜ、どのように扱うかを利用者へ説明する情報。"
+                  whyLearn: "透明性を UI と文書の両面で設計できる。"
+                  promptHint: "法務文書で終わらせず、利用時点で伝わるかを見る。"
+                  aliases:
+                    - "Privacy Notice"
+        - slug: deidentification-and-pets
+          name: "匿名化と PETs"
+          summary: "識別性を下げる技術と、分析価値を残す保護技術を扱う。"
+          concepts:
+            - slug: de-identification-techniques
+              name: "匿名化・仮名化技術"
+              summary: "個人との結びつきを弱める技術の違いを扱う。"
+              whyLearn: "匿名化したつもりの再識別リスクを理解できる。"
+              terms:
+                - slug: pseudonymization
+                  name: "仮名化"
+                  summary: "追加情報なしでは本人に結びつけにくくする処理。"
+                  whyLearn: "完全匿名化との違いを理解しやすい。"
+                  promptHint: "戻せる情報が別管理されているかを確認する。"
+                  aliases:
+                    - "Pseudonymization"
+                - slug: anonymization
+                  name: "匿名化"
+                  summary: "個人に結びつけられない状態を目指す処理。"
+                  whyLearn: "再識別耐性を過信しないために重要。"
+                  promptHint: "単体情報だけでなく外部データとの結合も考える。"
+                  aliases:
+                    - "Anonymization"
+                - slug: k-anonymity
+                  name: "k-匿名性"
+                  summary: "各レコードが少なくとも k 件の集団に埋もれるようにする考え方。"
+                  whyLearn: "匿名化の直感と限界を学ぶ入口になる。"
+                  promptHint: "一意性を減らしても属性推定が残るかを見る。"
+                  aliases:
+                    - "k-anonymity"
+            - slug: privacy-enhancing-technologies
+              name: "プライバシー強化技術"
+              summary: "共有・分析をしつつ個人情報露出を抑える技術群。"
+              whyLearn: "データ活用と保護を同時に考える引き出しが増える。"
+              terms:
+                - slug: differential-privacy
+                  name: "差分プライバシー"
+                  summary: "個人データ参加による privacy loss を数学的に制御する考え方。"
+                  whyLearn: "分析と保護のトレードオフを定量的に考えやすい。"
+                  promptHint: "ノイズ量、集計用途、累積利用をセットで考える。"
+                  aliases:
+                    - "Differential Privacy"
+                - slug: homomorphic-encryption
+                  name: "準同型暗号"
+                  summary: "復号せずに暗号文のまま計算できる暗号技術。"
+                  whyLearn: "外部計算委託や共同計算の設計選択肢になる。"
+                  promptHint: "何を秘匿したまま計算したいのかから考える。"
+                  aliases:
+                    - "Homomorphic Encryption"
+                - slug: secure-multiparty-computation
+                  name: "安全な多者計算"
+                  summary: "複数主体が入力を秘匿したまま共同計算する技術。"
+                  whyLearn: "データ共有できない場面の分析設計に役立つ。"
+                  promptHint: "誰も生データを渡したくない状況でどう計算するかで考える。"
+                  aliases:
+                    - "MPC"
+                    - "Secure Multiparty Computation"
+
+    - slug: governance-risk-assurance
+      name: "ガバナンス、リスク、アシュアランス"
+      summary: "統制フレームワーク、リスク管理、セキュア開発、検証を扱う。"
+      whyLearn: "セキュリティを属人運用ではなく再現可能な仕組みにするため。"
+      topicClusters:
+        - slug: frameworks-and-risk-governance
+          name: "フレームワークとリスク統治"
+          summary: "どの統制を、なぜ、どの粒度で実装するかを扱う。"
+          concepts:
+            - slug: control-frameworks
+              name: "統制フレームワーク"
+              summary: "管理・実装・監査の共通言語になる枠組み群。"
+              whyLearn: "組織の成熟度に応じて適切な抽象度を選べる。"
+              terms:
+                - slug: nist-cybersecurity-framework
+                  name: "NIST CSF"
+                  summary: "サイバーリスク管理の高位アウトカムを示すフレームワーク。"
+                  whyLearn: "経営と実装をつなぐ対話に向く。"
+                  promptHint: "Identify, Protect, Detect, Respond, Recover, Govern で整理する。"
+                  aliases:
+                    - "NIST CSF"
+                    - "CSF 2.0"
+                - slug: nist-sp-800-53
+                  name: "NIST SP 800-53"
+                  summary: "security と privacy の詳細な control catalog。"
+                  whyLearn: "具体的な統制項目へ落とし込みやすい。"
+                  promptHint: "高位フレームワークを詳細 control に展開するときに使う。"
+                  aliases:
+                    - "SP 800-53"
+                - slug: iso-iec-27001
+                  name: "ISO/IEC 27001"
+                  summary: "ISMS の要求事項を定める国際標準。"
+                  whyLearn: "継続的な情報セキュリティ管理の骨格になる。"
+                  promptHint: "統制の有無だけでなく、運用サイクルをどう回すかで考える。"
+                  aliases:
+                    - "ISO 27001"
+                    - "ISMS"
+            - slug: risk-and-control-operations
+              name: "リスクと統制運用"
+              summary: "リスク記録、統制対応、第三者評価を運用に組み込む。"
+              whyLearn: "フレームワークを棚に置くだけで終わらせないため。"
+              terms:
+                - slug: risk-register
+                  name: "リスク登録簿"
+                  summary: "リスク、影響、担当、対応方針を記録する台帳。"
+                  whyLearn: "未解決リスクの可視化と合意形成に役立つ。"
+                  promptHint: "受容、低減、回避、移転の判断を記録する。"
+                  aliases:
+                    - "Risk Register"
+                - slug: control-mapping
+                  name: "統制マッピング"
+                  summary: "異なるフレームワーク間で control を対応づける作業。"
+                  whyLearn: "重複作業と監査説明コストを減らせる。"
+                  promptHint: "同じ control を複数規格にどう説明するかで考える。"
+                  aliases:
+                    - "Control Mapping"
+                - slug: third-party-risk-assessment
+                  name: "第三者リスク評価"
+                  summary: "委託先や SaaS 提供者のリスクを評価する活動。"
+                  whyLearn: "自社境界外の依存リスクを見落としにくい。"
+                  promptHint: "相手の事故が自社利用者にどう波及するかで見る。"
+                  aliases:
+                    - "TPRM"
+                    - "Third-Party Risk Assessment"
+        - slug: secure-development-and-validation
+          name: "セキュア開発と検証"
+          summary: "開発手順、成熟度、テストで安全性を担保する。"
+          concepts:
+            - slug: secure-development-programs
+              name: "セキュア開発プログラム"
+              summary: "開発ライフサイクルに security を組み込む仕組み。"
+              whyLearn: "属人的レビューから継続的な開発能力へ移行できる。"
+              terms:
+                - slug: secure-software-development-framework
+                  name: "SSDF"
+                  summary: "セキュア開発実践の高位フレームワーク。"
+                  whyLearn: "会社やチームの開発プロセスに security を載せやすい。"
+                  promptHint: "準備、保護、良いソフト作成、脆弱性対応の流れで見る。"
+                  aliases:
+                    - "SSDF"
+                - slug: samm
+                  name: "OWASP SAMM"
+                  summary: "ソフトウェアセキュリティ成熟度を評価・改善するモデル。"
+                  whyLearn: "今どこが弱いかを段階的に説明できる。"
+                  promptHint: "成熟度を一足飛びでなく段階的に上げる前提で考える。"
+                  aliases:
+                    - "SAMM"
+                - slug: secure-by-design
+                  name: "Secure by Design"
+                  summary: "利用者任せにせず、製品側が安全性の責任を前倒しで負う考え方。"
+                  whyLearn: "開発責務の置き方そのものを見直せる。"
+                  promptHint: "危険な既定値を残していないか、顧客負担に押しつけていないかを見る。"
+                  aliases:
+                    - "Secure by Design"
+            - slug: verification-and-testing
+              name: "検証とテスト"
+              summary: "仕様と実装が安全要件を満たすかを確認する手法群。"
+              whyLearn: "安全性を“気合い”ではなく検証対象として扱える。"
+              terms:
+                - slug: application-security-verification-standard
+                  name: "OWASP ASVS"
+                  summary: "Web アプリの security verification requirements の標準。"
+                  whyLearn: "要求定義と検証観点の土台になる。"
+                  promptHint: "この機能に必要な security 要求を先に言語化する。"
+                  aliases:
+                    - "ASVS"
+                - slug: static-application-security-testing
+                  name: "SAST"
+                  summary: "ソースコードやバイトコードを解析して問題を検出する手法。"
+                  whyLearn: "早い段階での自動検出に向く。"
+                  promptHint: "どのルールを CI で機械的に止めるべきかで考える。"
+                  aliases:
+                    - "SAST"
+                    - "Static Application Security Testing"
+                - slug: penetration-test
+                  name: "ペネトレーションテスト"
+                  summary: "攻撃者視点で実運用に近い侵入・悪用を検証する活動。"
+                  whyLearn: "設計や設定の組合せ不備を見つけやすい。"
+                  promptHint: "現実的な攻撃経路をどこまで再現したいかで計画する。"
+                  aliases:
+                    - "Pentest"
+                    - "Penetration Test"
+
+    - slug: supply-chain-vulnerability-incident-management
+      name: "サプライチェーン、脆弱性、インシデント管理"
+      summary: "供給網の信頼、脆弱性の優先順位付け、対応計画と学習を扱う。"
+      whyLearn: "公開後に起きる現実の security 業務を一連の流れで理解するため。"
+      topicClusters:
+        - slug: software-supply-chain-integrity
+          name: "ソフトウェアサプライチェーン整合性"
+          summary: "何を含み、誰が作り、どこで改ざんされうるかを扱う。"
+          concepts:
+            - slug: transparency-and-attestation
+              name: "透明性と証跡"
+              summary: "構成要素と由来を可視化し、利用者が検証できる状態を作る。"
+              whyLearn: "依存の不透明さと改ざん不安に対処しやすい。"
+              terms:
+                - slug: software-bill-of-materials
+                  name: "SBOM"
+                  summary: "ソフトウェアを構成する部品一覧。"
+                  whyLearn: "脆弱性影響調査と供給網可視化の基盤になる。"
+                  promptHint: "何が入っているかを説明できるかで考える。"
+                  aliases:
+                    - "SBOM"
+                    - "Software Bill of Materials"
+                - slug: provenance-attestation
+                  name: "来歴アテステーション"
+                  summary: "どのソースがどのビルドで成果物になったかを示す証跡。"
+                  whyLearn: "生成物の真正性と追跡可能性を高められる。"
+                  promptHint: "誰が、何から、どの環境で作ったかを証明できるかを見る。"
+                  aliases:
+                    - "Provenance"
+                    - "Attestation"
+                - slug: sigstore
+                  name: "Sigstore"
+                  summary: "署名と検証を簡素化するソフトウェア供給網保護の OSS 群。"
+                  whyLearn: "アーティファクト署名を導入しやすい。"
+                  promptHint: "署名、証明書、透明性ログをどう連携させるかで考える。"
+                  aliases:
+                    - "Sigstore"
+            - slug: build-pipeline-hardening
+              name: "ビルドパイプライン強化"
+              summary: "依存解決、ビルド再現性、改ざん耐性を高める。"
+              whyLearn: "公開物の信頼性を CI/CD レベルで扱える。"
+              terms:
+                - slug: slsa
+                  name: "SLSA"
+                  summary: "サプライチェーン防御を段階的に高めるための枠組み。"
+                  whyLearn: "成熟度の目標設定に使える。"
+                  promptHint: "署名、来歴、ビルド隔離をどのレベルまで満たすかで考える。"
+                  aliases:
+                    - "SLSA"
+                - slug: reproducible-builds
+                  name: "再現可能ビルド"
+                  summary: "同じ入力から同じ成果物を得られるビルド特性。"
+                  whyLearn: "不正混入検知と検証可能性を高められる。"
+                  promptHint: "環境差や時刻依存で成果物が変わらないかを見る。"
+                  aliases:
+                    - "Reproducible Builds"
+                - slug: dependency-pinning
+                  name: "依存固定化"
+                  summary: "依存バージョンやソースを明示的に固定する運用。"
+                  whyLearn: "意図しない更新や供給網揺らぎを抑えられる。"
+                  promptHint: "いつ誰の判断で上がる依存なのかを明確にする。"
+                  aliases:
+                    - "Dependency Pinning"
+        - slug: vulnerability-management-and-disclosure
+          name: "脆弱性管理と開示"
+          summary: "脆弱性の把握、分類、優先順位付け、開示対応を扱う。"
+          concepts:
+            - slug: vulnerability-taxonomy
+              name: "脆弱性分類と言語"
+              summary: "脆弱性情報を整理し比較するための共通語彙。"
+              whyLearn: "脆弱性対応の会話が曖昧になりにくい。"
+              terms:
+                - slug: common-vulnerabilities-and-exposures
+                  name: "CVE"
+                  summary: "公開脆弱性に付与される共通識別子。"
+                  whyLearn: "脆弱性情報の参照と共有の基礎になる。"
+                  promptHint: "同じ問題を別名で追いかけないための識別子として使う。"
+                  aliases:
+                    - "CVE"
+                    - "Common Vulnerabilities and Exposures"
+                - slug: common-weakness-enumeration
+                  name: "CWE"
+                  summary: "脆弱性の背景にある弱点種別を表す分類。"
+                  whyLearn: "個別 CVE を根本原因レベルで学習できる。"
+                  promptHint: "この問題はどの弱点クラスに属するかで見る。"
+                  aliases:
+                    - "CWE"
+                    - "Common Weakness Enumeration"
+                - slug: common-vulnerability-scoring-system
+                  name: "CVSS"
+                  summary: "脆弱性深刻度を共通尺度で表す方法。"
+                  whyLearn: "優先順位付けの会話を揃えやすい。"
+                  promptHint: "ベース値だけでなく脅威・環境要因も考慮する。"
+                  aliases:
+                    - "CVSS"
+                    - "Common Vulnerability Scoring System"
+            - slug: prioritization-and-disclosure
+              name: "優先順位付けと開示運用"
+              summary: "現実の悪用状況と開示窓口を踏まえて対応を進める。"
+              whyLearn: "全部同じ優先度で扱う非現実的な運用を避けられる。"
+              terms:
+                - slug: national-vulnerability-database
+                  name: "NVD"
+                  summary: "脆弱性管理データを提供する米国政府リポジトリ。"
+                  whyLearn: "CVE の追加属性や検索基盤としてよく使われる。"
+                  promptHint: "製品影響や深刻度検索にどう使うかで考える。"
+                  aliases:
+                    - "NVD"
+                    - "National Vulnerability Database"
+                - slug: known-exploited-vulnerabilities-catalog
+                  name: "KEV カタログ"
+                  summary: "実際に悪用が確認された脆弱性一覧。"
+                  whyLearn: "現実の攻撃圧を優先度に反映しやすい。"
+                  promptHint: "理論上の深刻度だけでなく実悪用も加味して優先する。"
+                  aliases:
+                    - "KEV"
+                    - "KEV Catalog"
+                - slug: vulnerability-disclosure-policy
+                  name: "VDP"
+                  summary: "外部からの脆弱性報告を受け付ける方針と窓口。"
+                  whyLearn: "報告者との安全な協調を実装できる。"
+                  promptHint: "どの範囲を受け付け、いつどう返答するかを決める。"
+                  aliases:
+                    - "VDP"
+                    - "Vulnerability Disclosure Policy"
+        - slug: incident-response-and-learning
+          name: "インシデント対応と学習"
+          summary: "準備、検知、封じ込め、復旧、振り返りを扱う。"
+          concepts:
+            - slug: response-lifecycle
+              name: "対応ライフサイクル"
+              summary: "平時準備から有事実行までの一連の流れ。"
+              whyLearn: "混乱時にも役割と手順を崩しにくい。"
+              terms:
+                - slug: incident-response-playbook
+                  name: "対応プレイブック"
+                  summary: "典型シナリオごとの手順と役割をまとめた運用文書。"
+                  whyLearn: "初動のばらつきを減らせる。"
+                  promptHint: "誰が判断し、どこまで止め、何を記録するかを明文化する。"
+                  aliases:
+                    - "IR Playbook"
+                    - "Incident Response Playbook"
+                - slug: detection-and-analysis
+                  name: "検知と分析"
+                  summary: "異常を見つけ、真偽と影響を判断する工程。"
+                  whyLearn: "誤検知と見逃しのバランスを理解できる。"
+                  promptHint: "何が起きたか、どこまで広がったか、確度はどれくらいかで整理する。"
+                  aliases:
+                    - "Detection and Analysis"
+                - slug: containment-eradication-recovery
+                  name: "封じ込め・排除・復旧"
+                  summary: "被害拡大を止め、原因を除去し、業務状態を戻す工程。"
+                  whyLearn: "対応順序を誤って被害を増やすのを防ぎやすい。"
+                  promptHint: "止血、根治、サービス復旧を分けて考える。"
+                  aliases:
+                    - "Containment"
+                    - "Eradication"
+                    - "Recovery"
+            - slug: exercises-and-learning
+              name: "演習と学習"
+              summary: "有事に備える訓練と、事後学習の仕組みを扱う。"
+              whyLearn: "インシデントを単発対応で終わらせず能力向上につなげられる。"
+              terms:
+                - slug: tabletop-exercise
+                  name: "テーブルトップ演習"
+                  summary: "関係者が想定シナリオを辿って判断を確認する訓練。"
+                  whyLearn: "本番前に意思決定の詰まりを見つけられる。"
+                  promptHint: "技術手順だけでなく広報、法務、経営判断も含めて演習する。"
+                  aliases:
+                    - "TTX"
+                    - "Tabletop Exercise"
+                - slug: forensic-readiness
+                  name: "フォレンジック準備"
+                  summary: "後から調査可能な証跡と保全手順を平時から整えること。"
+                  whyLearn: "原因特定や再発防止の質を上げやすい。"
+                  promptHint: "必要ログ、時刻同期、証跡保全、権限分離を確認する。"
+                  aliases:
+                    - "Forensic Readiness"
+                - slug: post-incident-review
+                  name: "事後レビュー"
+                  summary: "発生要因、対応、学び、改善策を整理する振り返り。"
+                  whyLearn: "同じ失敗を繰り返しにくくなる。"
+                  promptHint: "誰の失敗かより、なぜその判断になったかを追う。"
+                  aliases:
+                    - "Post-Incident Review"
+                    - "Postmortem"
+
+edges:
+  - from: threat-modeling
+    to: stride
+    relationType: used_in
+    reason: "STRIDE は脅威モデリングで脅威列挙を体系化する代表的な補助法。"
+  - from: attack-surface
+    to: threat-modeling
+    relationType: prerequisite
+    reason: "露出面を把握しないと、どこをモデル化すべきか定めにくい。"
+  - from: trust-boundary
+    to: zero-trust-architecture
+    relationType: prerequisite
+    reason: "ゼロトラストは境界を消すのではなく、境界ごとの再検証を前提にする。"
+  - from: least-privilege
+    to: role-based-access-control
+    relationType: related
+    reason: "RBAC は最小権限を組織的に実装する代表的手段の一つ。"
+  - from: role-based-access-control
+    to: attribute-based-access-control
+    relationType: compare_with
+    reason: "RBAC は役割中心、ABAC は属性中心で、表現力と運用難度が異なる。"
+  - from: oauth-2-0
+    to: openid-connect
+    relationType: prerequisite
+    reason: "OIDC は OAuth 2.0 の上に認証レイヤーを追加する構成。"
+  - from: oauth-2-0
+    to: pkce
+    relationType: used_in
+    reason: "PKCE は OAuth 2.0 の認可コードフローを強化するために用いられる。"
+  - from: webauthn
+    to: passkey
+    relationType: used_in
+    reason: "passkey の Web 実装は WebAuthn を基盤として構成される。"
+  - from: argon2id
+    to: multi-factor-authentication
+    relationType: compare_with
+    reason: "Argon2id は保存済み秘密の保護、MFA は認証時の強化で役割が異なる。"
+  - from: advanced-encryption-standard
+    to: authenticated-encryption-with-associated-data
+    relationType: used_in
+    reason: "AEAD は AES-GCM などの形で実装されることが多い。"
+  - from: public-key-infrastructure
+    to: transport-layer-security
+    relationType: used_in
+    reason: "TLS の証明書検証や相互認証は PKI に依存する。"
+  - from: cryptographic-agility
+    to: post-quantum-cryptography
+    relationType: prerequisite
+    reason: "PQC への移行にはアルゴリズム差し替え耐性が不可欠。"
+  - from: personally-identifiable-information
+    to: data-classification
+    relationType: used_in
+    reason: "PII 判定は分類と保護要件設定の基礎情報になる。"
+  - from: records-of-processing-activities
+    to: data-subject-access-request
+    relationType: used_in
+    reason: "どこに何の個人データがあるかの把握は DSAR 対応の前提。"
+  - from: data-minimization
+    to: privacy-by-design
+    relationType: used_in
+    reason: "Privacy by Design を具体化する重要原則の一つが最小化。"
+  - from: pseudonymization
+    to: data-protection-impact-assessment
+    relationType: related
+    reason: "DPIA では仮名化を代表的な緩和策として検討しやすい。"
+  - from: differential-privacy
+    to: anonymization
+    relationType: compare_with
+    reason: "どちらも個人保護に関わるが、差分プライバシーは数学的保証を重視する。"
+  - from: nist-cybersecurity-framework
+    to: nist-sp-800-53
+    relationType: compare_with
+    reason: "CSF は高位アウトカム、SP 800-53 は詳細 control catalog という違いがある。"
+  - from: secure-software-development-framework
+    to: samm
+    relationType: compare_with
+    reason: "SSDF は高位実践、SAMM は成熟度改善に強みがある。"
+  - from: application-security-verification-standard
+    to: penetration-test
+    relationType: related
+    reason: "ASVS は何を検証すべきかの基準となり、ペネトレーションテストの観点整理にも使える。"
+  - from: software-bill-of-materials
+    to: known-exploited-vulnerabilities-catalog
+    relationType: used_in
+    reason: "SBOM があると、KEV に載った脆弱コンポーネントの影響確認を進めやすい。"
+  - from: software-bill-of-materials
+    to: slsa
+    relationType: related
+    reason: "SBOM は構成透明性、SLSA は生成過程の保証に強く、補完関係にある。"
+  - from: sigstore
+    to: provenance-attestation
+    relationType: used_in
+    reason: "Sigstore は署名や透明性ログを通じて来歴証明を支える。"
+  - from: common-vulnerabilities-and-exposures
+    to: common-vulnerability-scoring-system
+    relationType: related
+    reason: "CVE は識別子、CVSS は深刻度表現で、脆弱性対応で併用される。"
+  - from: common-weakness-enumeration
+    to: common-vulnerabilities-and-exposures
+    relationType: related
+    reason: "CWE は根本弱点分類、CVE は公開脆弱性識別子で粒度が異なる。"
+  - from: national-vulnerability-database
+    to: known-exploited-vulnerabilities-catalog
+    relationType: compare_with
+    reason: "NVD は広い公開脆弱性データ、KEV は実悪用確認済み脆弱性に絞る。"
+  - from: vulnerability-disclosure-policy
+    to: post-incident-review
+    relationType: related
+    reason: "外部報告の学びは、事後レビューや改善ループに取り込むと効きやすい。"
+  - from: incident-response-playbook
+    to: tabletop-exercise
+    relationType: used_in
+    reason: "テーブルトップ演習はプレイブックの妥当性確認に使える。"
+  - from: forensic-readiness
+    to: post-incident-review
+    relationType: used_in
+    reason: "十分な証跡があるほど、事後レビューの原因分析精度が上がる。"

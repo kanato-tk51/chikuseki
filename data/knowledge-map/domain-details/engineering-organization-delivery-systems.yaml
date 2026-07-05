@@ -1,0 +1,935 @@
+domain:
+  slug: engineering-organization-delivery-systems
+  name: エンジニアリング組織とデリバリーシステム
+  summary: チーム構造、責務分担、協調、インセンティブ、開発者体験がエンジニアリング成果に与える影響を扱う領域。
+  boundaryNotes: チームとフローの設計を扱う。プロダクト戦略は Product Management、本番運用は Reliability / Platform Engineering に寄せる。
+  knowledgeAreas:
+    - slug: team-topologies-and-ownership
+      name: チームトポロジーとオーナーシップ
+      summary: 価値の流れに沿ってチームをどう切り、何を誰が持つかを設計する。
+      whyLearn: 組織図ではなく責務境界と依存関係からチーム設計を考えられるようになる。
+      topicClusters:
+        - slug: team-topologies
+          name: チームトポロジー
+          summary: チームの基本類型と相互作用の設計を扱う。
+          concepts:
+            - slug: fundamental-team-types
+              name: 基本チームタイプ
+              summary: 代表的なチーム類型を理解し、過不足のある組織設計を避ける。
+              whyLearn: すべてのチームを同じものとして扱うと、期待役割と評価軸が曖昧になるため。
+              terms:
+                - slug: stream-aligned-team
+                  name: ストリームアラインドチーム
+                  summary: 顧客や内部利用者への価値の流れに沿って成果を届ける中心チーム。
+                  whyLearn: 機能別分業ではなく価値流中心で責務を切る発想の基準になる。
+                  promptHint: このチームが担当する価値流、主要依存先、成功指標、認知負荷を説明させる。
+                  aliases:
+                    - stream-aligned team
+                    - value stream team
+                - slug: platform-team
+                  name: プラットフォームチーム
+                  summary: 他チームの開発を加速する共通基盤や内部サービスを提供するチーム。
+                  whyLearn: 共通化と自律性のバランスを取る組織設計を考える起点になる。
+                  promptHint: どの開発者課題を解く内部プロダクトなのか、利用者と提供範囲を説明させる。
+                  aliases:
+                    - platform team
+                    - internal platform team
+                - slug: enabling-team
+                  name: イネイブリングチーム
+                  summary: 他チームの学習や能力移転を支援し、自律運用へ移行させる支援チーム。
+                  whyLearn: 恒久的な依存ではなく、能力獲得を目的にした支援の設計に役立つ。
+                  promptHint: 何を恒常運用せず、何を移譲して卒業させるのかを説明させる。
+                  aliases:
+                    - enabling team
+                    - capability team
+                - slug: complicated-subsystem-team
+                  name: 複雑サブシステムチーム
+                  summary: 高度に専門的で、他チームが日常的に抱えるには重すぎる領域を担当するチーム。
+                  whyLearn: 難所をどこで隔離し、どこで抽象化するかの判断に使える。
+                  promptHint: なぜこの領域を共通のプラットフォームではなく専門チームで持つのかを説明させる。
+                  aliases:
+                    - complicated subsystem team
+                    - specialist subsystem team
+            - slug: team-interaction-modes
+              name: チーム相互作用モード
+              summary: チーム間の関わり方を固定的にせず、目的に応じて選ぶ。
+              whyLearn: 依存をなくすだけでなく、必要な協働を意図的に設計できるようになるため。
+              terms:
+                - slug: collaboration
+                  name: コラボレーション
+                  summary: 新しい学習や設計探索のために一定期間だけ密に協働する相互作用。
+                  whyLearn: いつ密接に組むべきかを判断できる。
+                  promptHint: どの不確実性を減らすための短期協働なのかを説明させる。
+                  aliases:
+                    - collaboration mode
+                    - intensive collaboration
+                - slug: x-as-a-service
+                  name: X-as-a-Service
+                  summary: 片方のチームが明確な利用境界を持つサービスとして能力を提供する相互作用。
+                  whyLearn: 毎回の調整を減らし、自律性を上げる設計の基礎になる。
+                  promptHint: 利用者が問い合わせなしで使える契約、入口、サポートモデルを説明させる。
+                  aliases:
+                    - X-as-a-Service
+                    - service interaction
+                - slug: facilitating-interaction
+                  name: ファシリテーティング相互作用
+                  summary: あるチームが別チームの能力獲得を促すために伴走する相互作用。
+                  whyLearn: 支援を運用代行と混同せず、学習転移として設計できる。
+                  promptHint: 何を教え、いつ支援を終えるのか、終了条件を説明させる。
+                  aliases:
+                    - facilitating interaction
+                    - facilitation
+        - slug: ownership-and-boundaries
+          name: オーナーシップと境界
+          summary: チーム境界と責務の切り方を扱う。
+          concepts:
+            - slug: boundary-design
+              name: 境界設計
+              summary: 価値流、依存、認知負荷からチーム境界を考える。
+              whyLearn: 境界が曖昧だと手戻り、調整コスト、責任の拡散が起きやすいため。
+              terms:
+                - slug: value-stream
+                  name: バリューストリーム
+                  summary: 要求から利用者価値までが流れる一連の活動の流れ。
+                  whyLearn: チーム境界や改善対象を顧客価値に接続して考えられる。
+                  promptHint: この組織での主要な価値流と、その途中で発生する待ちや依存を説明させる。
+                  aliases:
+                    - value stream
+                    - flow of value
+                - slug: fracture-plane
+                  name: フラクチャープレーン
+                  summary: チームやシステムを分割するときに使う自然な切れ目。
+                  whyLearn: 地理や職能で雑に割るのではなく、意味のある境界で分けられる。
+                  promptHint: この製品で有効な分割軸が顧客、業務能力、リスク、変更頻度のどれかを比較させる。
+                  aliases:
+                    - fracture plane
+                    - split boundary
+                - slug: cognitive-load
+                  name: 認知負荷
+                  summary: チームが安定して処理できる知識量、文脈量、運用負荷の総量。
+                  whyLearn: 速度低下の原因を個人能力ではなく設計負荷として見られる。
+                  promptHint: チームが抱えている内在負荷、外在負荷、想定外負荷を説明させる。
+                  aliases:
+                    - cognitive load
+                    - team cognitive load
+            - slug: team-interface-design
+              name: チームインターフェース設計
+              summary: チームへの依頼のされ方、責務、接点を可視化する。
+              whyLearn: 良い境界も、接点が見えなければ実務では機能しないため。
+              terms:
+                - slug: team-api
+                  name: Team API
+                  summary: 他チームがそのチームとどう関わるかを示す公開仕様。
+                  whyLearn: 人依存の問い合わせを減らし、接続コストを下げられる。
+                  promptHint: チームのミッション、提供物、窓口、期待応答、禁止事項を列挙させる。
+                  aliases:
+                    - Team API
+                    - team interface
+                - slug: service-ownership
+                  name: サービスオーナーシップ
+                  summary: サービスやコンポーネントに対する最終責任を持つ主体の明確化。
+                  whyLearn: 障害や改善の責任が曖昧なままになるのを防ぐ。
+                  promptHint: このサービスの意思決定者、保守責任者、依存先管理者が誰かを説明させる。
+                  aliases:
+                    - service ownership
+                    - ownership
+                - slug: engagement-model
+                  name: エンゲージメントモデル
+                  summary: 他チームが支援や変更を求める際の入口、期待、優先順位の取り決め。
+                  whyLearn: 依頼が割り込み化し続ける状態を減らせる。
+                  promptHint: 依頼経路、優先順位ルール、SLA 風の期待値、例外対応を説明させる。
+                  aliases:
+                    - engagement model
+                    - operating agreement
+
+    - slug: delivery-flow-and-release-system
+      name: デリバリーフローとリリースシステム
+      summary: 仕事を小さく安全に流し、本番到達までの詰まりを減らす。
+      whyLearn: 出荷の遅さを個人の頑張りではなくシステムの設計問題として扱えるようになる。
+      topicClusters:
+        - slug: flow-efficiency
+          name: フロー効率
+          summary: 待ち、手戻り、依存による詰まりを減らす。
+          concepts:
+            - slug: lean-flow-control
+              name: リーンなフロー制御
+              summary: 仕掛かりとサイズを制御して流れを安定させる。
+              whyLearn: 忙しさの総量より、流れの滑らかさが配送速度を左右するため。
+              terms:
+                - slug: work-in-progress-limit
+                  name: WIP 制限
+                  summary: 同時進行する作業量に上限を置く考え方。
+                  whyLearn: 着手過多による待ち時間と切り替えコストを減らせる。
+                  promptHint: 今のチームでどの工程に WIP 制限を置くべきか、理由と期待効果を説明させる。
+                  aliases:
+                    - WIP limit
+                    - work in progress limit
+                - slug: batch-size
+                  name: バッチサイズ
+                  summary: 一回でまとめて扱う変更や作業単位の大きさ。
+                  whyLearn: 変更を小さくするほどリスクと待ち時間を下げやすい。
+                  promptHint: 変更をどこで細かく分割すればレビュー、テスト、リリースが楽になるかを説明させる。
+                  aliases:
+                    - batch size
+                    - change size
+                - slug: queue-length
+                  name: キュー長
+                  summary: 処理待ちとして積み上がっている仕事量。
+                  whyLearn: どこが真のボトルネックかを可視化しやすい。
+                  promptHint: 依頼キュー、レビュー待ち、デプロイ待ちのどこが最も詰まっているかを説明させる。
+                  aliases:
+                    - queue length
+                    - backlog in queue
+            - slug: dependency-management
+              name: 依存性マネジメント
+              summary: チーム間・工程間の依存を可視化し、遅延を減らす。
+              whyLearn: 自律性は依存が見えないと成立しないため。
+              terms:
+                - slug: blocker
+                  name: ブロッカー
+                  summary: 先に進むために解消が必要な依存や未解決事項。
+                  whyLearn: 単なる遅れと構造的な停止を区別できる。
+                  promptHint: その課題がタスク遅延ではなくブロッカーである理由と解除条件を説明させる。
+                  aliases:
+                    - blocker
+                    - blocking issue
+                - slug: critical-path
+                  name: クリティカルパス
+                  summary: 全体の完了時刻を左右する依存列。
+                  whyLearn: 全員を速くするのではなく最も律速な経路に注力できる。
+                  promptHint: このリリースの完了時刻を決めている依存列を説明させる。
+                  aliases:
+                    - critical path
+                    - dependency chain
+                - slug: handoff
+                  name: ハンドオフ
+                  summary: 作業責任や文脈が別の人・別のチームへ渡る点。
+                  whyLearn: 引き継ぎは待ち・誤解・責任分散の主要原因になりやすい。
+                  promptHint: どのハンドオフが必要悪で、どれが設計で減らせるかを説明させる。
+                  aliases:
+                    - handoff
+                    - transfer point
+        - slug: continuous-delivery-system
+          name: 継続的デリバリー
+          summary: 小さな変更を高頻度かつ安全に流すための技術と運用の組み合わせ。
+          concepts:
+            - slug: integration-practices
+              name: 統合プラクティス
+              summary: 分岐や統合の遅れを減らすための開発プラクティス。
+              whyLearn: 統合が遅いと変更が大きくなり、予測不能な衝突が増えるため。
+              terms:
+                - slug: continuous-integration
+                  name: 継続的インテグレーション
+                  summary: 頻繁な統合と自動検証でメインラインの健全性を保つ実践。
+                  whyLearn: 統合の遅れを後回しにしない運用の基礎になる。
+                  promptHint: CI が単なるビルド自動化ではなく統合戦略であることを説明させる。
+                  aliases:
+                    - CI
+                    - continuous integration
+                - slug: trunk-based-development
+                  name: トランクベース開発
+                  summary: 主幹ブランチ中心で短命な分岐だけを使う開発スタイル。
+                  whyLearn: 長期分岐による統合コストと流れの悪化を減らせる。
+                  promptHint: GitFlow ではなく trunk-based を選ぶ利点と制約を説明させる。
+                  aliases:
+                    - trunk-based development
+                    - TBD
+                - slug: short-lived-feature-branch
+                  name: 短命フィーチャーブランチ
+                  summary: すぐ統合されることを前提にした短期間の作業分岐。
+                  whyLearn: レビュー都合とフロー効率の折衷を考えられる。
+                  promptHint: そのブランチが短命である条件と、長命化を防ぐ運用を説明させる。
+                  aliases:
+                    - short-lived feature branch
+                    - short-lived branch
+            - slug: release-decoupling
+              name: リリースの分離
+              summary: コード統合とユーザー公開を切り分け、安全に出す。
+              whyLearn: 統合を止めずに公開タイミングを制御するため。
+              terms:
+                - slug: continuous-delivery
+                  name: 継続的デリバリー
+                  summary: いつでも安全にリリース可能な状態を保つ実践。
+                  whyLearn: 本番投入を大イベントではなく通常運転にできる。
+                  promptHint: デプロイ自動化とリリース判断の関係を説明させる。
+                  aliases:
+                    - CD
+                    - continuous delivery
+                - slug: deployment-pipeline
+                  name: デプロイメントパイプライン
+                  summary: 変更が段階的な検証を通って本番へ進む仕組み。
+                  whyLearn: 速いフィードバックと高い信頼性の両立点を設計できる。
+                  promptHint: どの段階で何を検証し、どこで停止判断するかを説明させる。
+                  aliases:
+                    - deployment pipeline
+                    - delivery pipeline
+                - slug: feature-flag
+                  name: フィーチャーフラグ
+                  summary: デプロイと機能公開を切り離すための切替機構。
+                  whyLearn: 小さく頻繁に出しつつ、公開リスクを抑えるのに有効。
+                  promptHint: どの種類のフラグを使い、除去コストをどう管理するかを説明させる。
+                  aliases:
+                    - feature flag
+                    - feature toggle
+
+    - slug: metrics-and-feedback-systems
+      name: 計測とフィードバックシステム
+      summary: デリバリー結果と開発者体験を測定し、改善ループを回す。
+      whyLearn: 計測を活動量の監視ではなく改善の会話材料として使えるようになる。
+      topicClusters:
+        - slug: delivery-performance
+          name: デリバリーパフォーマンス
+          summary: フローと安定性を結果として読む。
+          concepts:
+            - slug: dora-metrics
+              name: DORA メトリクス
+              summary: ソフトウェア配信の速度と安定性を示す代表指標群。
+              whyLearn: 組織改善を感覚ではなく比較可能な結果で議論できる。
+              terms:
+                - slug: deployment-frequency
+                  name: デプロイ頻度
+                  summary: 変更を本番へ届ける頻度。
+                  whyLearn: 組織が小さな変更を継続的に流せているかの目安になる。
+                  promptHint: なぜデプロイ頻度が低いのかを、レビュー、承認、テスト、依存の観点で説明させる。
+                  aliases:
+                    - deployment frequency
+                    - DF
+                - slug: lead-time-for-changes
+                  name: 変更のリードタイム
+                  summary: 変更がコミットから本番到達までにかかる時間。
+                  whyLearn: アイデアから価値提供までの遅さを測れる。
+                  promptHint: リードタイムを工程別に分解して、待ちと処理を分けて説明させる。
+                  aliases:
+                    - lead time for changes
+                    - change lead time
+                - slug: change-failure-rate
+                  name: 変更失敗率
+                  summary: 本番変更のうち障害やロールバック等を招いた割合。
+                  whyLearn: 速さの裏で品質を毀損していないかを確認できる。
+                  promptHint: 失敗率の悪化をリリース方式、変更サイズ、検証不足に分けて説明させる。
+                  aliases:
+                    - change failure rate
+                    - CFR
+                - slug: time-to-restore-service
+                  name: 復旧時間
+                  summary: 失敗した変更や障害から正常状態へ戻すまでの時間。
+                  whyLearn: 安定性を回復力として見る視点を持てる。
+                  promptHint: 復旧時間の短縮を検知、ロールバック、所有権、運用手順から説明させる。
+                  aliases:
+                    - time to restore service
+                    - MTTR
+            - slug: system-level-reading
+              name: システム全体の読み方
+              summary: 個別指標を流れ全体の文脈で読む。
+              whyLearn: 単一指標最適化による誤誘導を避けるため。
+              terms:
+                - slug: throughput
+                  name: スループット
+                  summary: 一定期間に完了して価値提供した変更量や成果量。
+                  whyLearn: 忙しさではなく流れの結果を見られる。
+                  promptHint: 活動量ではなく価値提供された完了量として説明させる。
+                  aliases:
+                    - throughput
+                    - flow throughput
+                - slug: stability
+                  name: 安定性
+                  summary: 変更を継続的に届けながら事故や劣化を抑えられている状態。
+                  whyLearn: 速さと信頼性を対立ではなく両立課題として扱える。
+                  promptHint: なぜ速度指標と安定性指標を同時に読む必要があるかを説明させる。
+                  aliases:
+                    - stability
+                    - delivery stability
+                - slug: feedback-loop
+                  name: フィードバックループ
+                  summary: 行動の結果が学習材料として返ってくるまでの循環。
+                  whyLearn: 改善速度はフィードバックの速さと質に強く依存する。
+                  promptHint: この組織の主要フィードバックループがどこで遅くなっているかを説明させる。
+                  aliases:
+                    - feedback loop
+                    - learning loop
+        - slug: developer-productivity-and-devex
+          name: 生産性と DevEx
+          summary: 人間中心の成果、働きやすさ、摩擦を扱う。
+          concepts:
+            - slug: space-framework
+              name: SPACE フレームワーク
+              summary: 生産性を多面的に捉えるための枠組み。
+              whyLearn: 単純な件数指標で個人やチームを誤評価しにくくなる。
+              terms:
+                - slug: satisfaction-and-well-being
+                  name: 満足度とウェルビーイング
+                  summary: 開発者が仕事環境や体験をどう感じているかの次元。
+                  whyLearn: 高速でも疲弊した組織を見抜く助けになる。
+                  promptHint: 生産性指標に満足度を入れる理由を説明させる。
+                  aliases:
+                    - satisfaction and well-being
+                    - satisfaction
+                - slug: performance
+                  name: パフォーマンス
+                  summary: 組織やチームが求める成果を達成できているかの次元。
+                  whyLearn: 個人活動量ではなく結果に近い評価軸を意識できる。
+                  promptHint: チームのパフォーマンスを個人件数ではなく成果で表す方法を説明させる。
+                  aliases:
+                    - performance
+                    - outcomes
+                - slug: activity
+                  name: アクティビティ
+                  summary: コード、レビュー、タスク更新など目に見える活動量の次元。
+                  whyLearn: 観測しやすいが誤用しやすい指標であることを理解できる。
+                  promptHint: 活動量を単独評価すると何が歪むかを説明させる。
+                  aliases:
+                    - activity
+                    - output activity
+                - slug: communication-and-collaboration
+                  name: コミュニケーションと協働
+                  summary: 情報共有、連携、協調の質や頻度に関する次元。
+                  whyLearn: チーム成果が個人作業の総和ではないと理解できる。
+                  promptHint: 協働を増やせば良いのではなく、どの協働が価値を生むかを説明させる。
+                  aliases:
+                    - communication and collaboration
+                    - collaboration metrics
+                - slug: efficiency-and-flow
+                  name: 効率とフロー
+                  summary: 中断、待ち、切り替えを含め、作業が滑らかに進むかの次元。
+                  whyLearn: 作業速度より流れの滑らかさに目を向けられる。
+                  promptHint: 効率を人の速度ではなくフロー阻害要因から説明させる。
+                  aliases:
+                    - efficiency and flow
+                    - flow efficiency
+            - slug: developer-experience-signals
+              name: Developer Experience シグナル
+              summary: 日々の開発摩擦を測るための実務的な観測点。
+              whyLearn: DORA や SPACE を具体的な改善行動へつなげやすくなるため。
+              terms:
+                - slug: toil
+                  name: トイル
+                  summary: 自動化や設計改善で減らせるが、繰り返し発生している面倒な作業。
+                  whyLearn: 生産性低下の原因を改善対象として特定しやすい。
+                  promptHint: その作業が必要業務ではなくトイルである理由を説明させる。
+                  aliases:
+                    - toil
+                    - repetitive manual work
+                - slug: time-to-first-commit
+                  name: 初回コミットまでの時間
+                  summary: 新メンバーや新環境が最初の有意味な変更を出すまでの時間。
+                  whyLearn: オンボーディング摩擦の代表指標として使いやすい。
+                  promptHint: 開発環境、権限、ドキュメント、テンプレートのどこが初回コミットを遅らせるかを説明させる。
+                  aliases:
+                    - time to first commit
+                    - TTFC
+                - slug: self-service-success-rate
+                  name: セルフサービス成功率
+                  summary: 人手支援なしで開発者が必要な作業を完遂できる割合。
+                  whyLearn: platform や portal の有効性を利用者視点で見られる。
+                  promptHint: どの作業をセルフサービス化し、どう成功率を測るかを説明させる。
+                  aliases:
+                    - self-service success rate
+                    - self-service completion rate
+
+    - slug: platform-engineering-and-developer-experience
+      name: プラットフォームエンジニアリングと開発者体験
+      summary: 共通基盤を内部プロダクトとして設計し、開発者の摩擦を下げる。
+      whyLearn: 共通化を押しつけではなく価値提供として設計できるようになる。
+      topicClusters:
+        - slug: internal-platforms
+          name: internal platform
+          summary: 内部開発基盤を製品として提供する考え方を扱う。
+          concepts:
+            - slug: platform-product-model
+              name: プラットフォームのプロダクトモデル
+              summary: platform を利用者のある内部プロダクトとして捉える。
+              whyLearn: 共通基盤が使われない問題を、採用設計と価値提供の問題として扱える。
+              terms:
+                - slug: internal-developer-platform
+                  name: Internal Developer Platform
+                  summary: 開発者が必要な共通能力をセルフサービスで使えるようにした内部基盤。
+                  whyLearn: platform engineering の中心対象を具体化できる。
+                  promptHint: この組織で IDP が提供すべき能力と利用者像を説明させる。
+                  aliases:
+                    - internal developer platform
+                    - IDP
+                - slug: platform-as-a-product
+                  name: Platform as a Product
+                  summary: platform を利用者、価値提案、採用、改善サイクルを持つ製品として扱う姿勢。
+                  whyLearn: platform を中央集権的な標準押しつけにしないため。
+                  promptHint: 利用者調査、ロードマップ、採用指標を持つ platform 運営を説明させる。
+                  aliases:
+                    - platform as a product
+                    - platform product mindset
+                - slug: platform-product-manager
+                  name: プラットフォームプロダクトマネージャー
+                  summary: platform 利用者の課題整理と優先順位付けを担う役割。
+                  whyLearn: platform でも技術だけでなく利用者価値の管理が必要だと理解できる。
+                  promptHint: platform PM が何を測り、誰の声を集め、何を優先するかを説明させる。
+                  aliases:
+                    - platform product manager
+                    - platform PM
+            - slug: paved-roads
+              name: Paved Road 設計
+              summary: 正しいやり方を最も楽なやり方にする設計。
+              whyLearn: 統制と自律性の対立を減らしやすい。
+              terms:
+                - slug: golden-path
+                  name: ゴールデンパス
+                  summary: よくある開発経路に対して最短で安全な標準ルートを用意する考え方。
+                  whyLearn: 標準化を採用される形で届けられる。
+                  promptHint: どのユースケースにゴールデンパスを作り、誰を対象外にするかを説明させる。
+                  aliases:
+                    - golden path
+                    - preferred path
+                - slug: paved-road
+                  name: Paved Road
+                  summary: 推奨された実装・運用方法を、実際に使いやすい形で提供する実践。
+                  whyLearn: ガイドラインだけで終わらせない設計の視点を得られる。
+                  promptHint: その標準が強制ではなく自発的に選ばれる理由を説明させる。
+                  aliases:
+                    - paved road
+                    - paved path
+                - slug: guardrail
+                  name: ガードレール
+                  summary: 自由度を残しつつ危険な逸脱を防ぐ技術的・運用的な制約。
+                  whyLearn: 完全自由と完全統制の中間を設計できる。
+                  promptHint: どこを hard guardrail、どこを soft guidance にするかを説明させる。
+                  aliases:
+                    - guardrail
+                    - policy guardrail
+        - slug: portals-and-automation
+          name: ポータルと自動化
+          summary: 発見性と標準化をツールで支える。
+          concepts:
+            - slug: discovery-and-catalog
+              name: 発見性とカタログ
+              summary: 何があり、誰が持ち、どこを見ればよいかを一元化する。
+              whyLearn: 規模が大きくなるほど「探せない」が最大の摩擦になるため。
+              terms:
+                - slug: developer-portal
+                  name: デベロッパーポータル
+                  summary: 開発者向けの入口としてツール、情報、所有権、作業導線を統合する場。
+                  whyLearn: ツール群を一つの利用体験として設計できる。
+                  promptHint: developer portal が単なるリンク集で終わらない条件を説明させる。
+                  aliases:
+                    - developer portal
+                    - internal developer portal
+                - slug: software-catalog
+                  name: ソフトウェアカタログ
+                  summary: サービス、ライブラリ、データパイプラインなどの所有権とメタデータを管理する仕組み。
+                  whyLearn: 所有権不明と依存関係不明を減らせる。
+                  promptHint: カタログに最低限必要な属性と、その更新責任を説明させる。
+                  aliases:
+                    - software catalog
+                    - service catalog
+                - slug: ownership-metadata
+                  name: オーナーシップメタデータ
+                  summary: コンポーネントの責任者、依存、種別などを機械可読に持つ情報。
+                  whyLearn: 人手で管理しにくい所有権情報を継続的に使える形にできる。
+                  promptHint: ownership metadata をどこに置き、何に活用するかを説明させる。
+                  aliases:
+                    - ownership metadata
+                    - owner metadata
+            - slug: workflow-automation
+              name: ワークフロー自動化
+              summary: 標準の立ち上げと知識更新を自動化して摩擦を下げる。
+              whyLearn: 標準を守りやすくし、立ち上がりと保守を速くするため。
+              terms:
+                - slug: software-template
+                  name: ソフトウェアテンプレート
+                  summary: 標準設定やベストプラクティスを埋め込んだ雛形。
+                  whyLearn: 新規作成時から標準を自然に適用できる。
+                  promptHint: テンプレートにどの設定を baked-in し、何は後から選ばせるかを説明させる。
+                  aliases:
+                    - software template
+                    - scaffolding template
+                - slug: techdocs
+                  name: TechDocs
+                  summary: コードと同じ流れで管理・公開される docs-as-code 型ドキュメント。
+                  whyLearn: ドキュメントを開発フローに組み込み、更新しやすくできる。
+                  promptHint: docs-as-code を portal や catalog とどう連携させるかを説明させる。
+                  aliases:
+                    - TechDocs
+                    - docs as code
+                - slug: ai-coding-assistant
+                  name: AI コーディングアシスタント
+                  summary: 実装、検索、要約、レビュー補助を支援する開発用 AI ツール群。
+                  whyLearn: 開発体験と計測の前提が変わりつつあるため。
+                  promptHint: AI 補助を導入する際に標準、セキュリティ、レビュー、測定をどう変えるかを説明させる。
+                  aliases:
+                    - AI coding assistant
+                    - coding copilot
+
+    - slug: governance-and-decision-systems
+      name: ガバナンスと意思決定システム
+      summary: 権限、整合、設計判断の履歴化を通じて組織を動かす。
+      whyLearn: 良い技術判断も、意思決定の仕組みが弱いと継続できないため。
+      topicClusters:
+        - slug: sociotechnical-governance
+          name: 社会技術的ガバナンス
+          summary: 組織構造とシステム構造の整合を扱う。
+          concepts:
+            - slug: organization-architecture-alignment
+              name: 組織とアーキテクチャの整合
+              summary: 人の協働構造とソフトウェア境界の相互作用を扱う。
+              whyLearn: 組織設計をアーキテクチャ設計から切り離さずに考えられる。
+              terms:
+                - slug: conways-law
+                  name: コンウェイの法則
+                  summary: システム構造がそれを作る組織の通信構造を写し取りやすいという原則。
+                  whyLearn: 技術問題の背後に組織問題があることを見抜きやすくなる。
+                  promptHint: 今の通信構造がどのようにシステム分割へ現れているかを説明させる。
+                  aliases:
+                    - Conway's Law
+                    - Conway law
+                - slug: inverse-conway-maneuver
+                  name: インバースコンウェイ・マヌーバ
+                  summary: 望ましいアーキテクチャに向けて組織構造を意図的に変えるアプローチ。
+                  whyLearn: 組織変更をアーキテクチャ戦略として使える。
+                  promptHint: この製品で望ましい境界に合わせ、どのようにチーム構造を変えるべきかを説明させる。
+                  aliases:
+                    - Inverse Conway Maneuver
+                    - reverse Conway
+                - slug: sociotechnical-system
+                  name: 社会技術システム
+                  summary: 人、ルール、ツール、ソフトウェアが一体となって成果を生む捉え方。
+                  whyLearn: 問題を技術だけ、組織だけで片づけない思考が得られる。
+                  promptHint: この問題を社会技術システムとして分解すると何が見えるかを説明させる。
+                  aliases:
+                    - sociotechnical system
+                    - socio-technical system
+            - slug: decision-rights
+              name: 意思決定権限
+              summary: 誰が決め、誰が意見し、誰が実行するかを整理する。
+              whyLearn: 合意形成の遅さや責任曖昧さを減らせるため。
+              terms:
+                - slug: daci
+                  name: DACI
+                  summary: Driver、Approver、Contributor、Informed で意思決定役割を整理する枠組み。
+                  whyLearn: 大きな論点で責任分担を明確にしやすい。
+                  promptHint: この意思決定の Driver と Approver をどう置くべきかを説明させる。
+                  aliases:
+                    - DACI
+                    - decision framework
+                - slug: raci
+                  name: RACI
+                  summary: Responsible、Accountable、Consulted、Informed で責務を整理する枠組み。
+                  whyLearn: 実行責任と説明責任を分けて考えられる。
+                  promptHint: RACI を使うときに曖昧になりやすい Responsible と Accountable を説明させる。
+                  aliases:
+                    - RACI
+                    - responsibility assignment matrix
+                - slug: rapid
+                  name: RAPID
+                  summary: Recommend、Agree、Perform、Input、Decide で決定フローを整理する枠組み。
+                  whyLearn: DACI や RACI と比較しながら意思決定設計を選べる。
+                  promptHint: DACI と RAPID の使い分けを説明させる。
+                  aliases:
+                    - RAPID
+                    - decision rights model
+        - slug: goals-and-architecture-decisions
+          name: 目標と設計判断
+          summary: チームの方向づけと重要判断の履歴を扱う。
+          concepts:
+            - slug: goals-and-cadence
+              name: 目標整合と運営 cadence
+              summary: 目標をそろえ、定期運営でレビューする。
+              whyLearn: 良い施策も継続的な整列がないと組織全体の流れにつながらないため。
+              terms:
+                - slug: okr
+                  name: OKR
+                  summary: 目標と測定可能な結果で整列を図る目標管理手法。
+                  whyLearn: 技術活動を組織成果へ接続する会話を作れる。
+                  promptHint: エンジニアリング組織の OKR を活動量ではなく成果で書く方法を説明させる。
+                  aliases:
+                    - OKR
+                    - Objectives and Key Results
+                - slug: quarterly-planning
+                  name: 四半期計画
+                  summary: 近い期間の優先事項と容量配分を揃える定期計画。
+                  whyLearn: 中長期目標と日々の作業を接続しやすい。
+                  promptHint: 四半期計画で何を固定し、何を変動させるべきかを説明させる。
+                  aliases:
+                    - quarterly planning
+                    - quarter planning
+                - slug: operating-review
+                  name: オペレーティングレビュー
+                  summary: 指標、阻害要因、優先事項を定期的に見直す運営レビュー。
+                  whyLearn: 目標管理を設定で終わらせず、修正可能な運営にできる。
+                  promptHint: operating review で見るべき指標と論点を説明させる。
+                  aliases:
+                    - operating review
+                    - business review
+            - slug: design-decision-governance
+              name: 設計判断ガバナンス
+              summary: 重要な設計判断を公開・記録・再利用する。
+              whyLearn: 同じ議論を繰り返さず、組織知として残せるようになる。
+              terms:
+                - slug: architecture-decision-record
+                  name: Architecture Decision Record
+                  summary: 重要な設計判断、その背景、結果を記録する文書。
+                  whyLearn: 設計意図を履歴として残し、将来の見直しを容易にする。
+                  promptHint: この判断を ADR にするなら、context と consequences に何を書くかを説明させる。
+                  aliases:
+                    - ADR
+                    - architecture decision record
+                - slug: request-for-comments
+                  name: Request for Comments
+                  summary: 大きな変更案を文書化し、広く非同期にフィードバックを集める仕組み。
+                  whyLearn: 横断的変更を透明に進めやすくなる。
+                  promptHint: RFC にすべき論点と、通常のミーティングで済ませる論点の違いを説明させる。
+                  aliases:
+                    - RFC
+                    - request for comments
+                - slug: architecture-review-board
+                  name: アーキテクチャレビュー委員会
+                  summary: 重要設計を横断観点でレビューする組織的な場。
+                  whyLearn: 一貫性と自由度のバランスを取る統治手段として使える。
+                  promptHint: ARB を審査官組織にしないための設計原則を説明させる。
+                  aliases:
+                    - architecture review board
+                    - ARB
+
+    - slug: learning-culture-and-knowledge-systems
+      name: 学習文化と知識システム
+      summary: チームが安全に学び、知識を再利用できる仕組みを作る。
+      whyLearn: 変化の速い開発では、知識の流れ自体が生産性と品質を左右するため。
+      topicClusters:
+        - slug: team-effectiveness
+          name: チーム有効性
+          summary: チームが機能するための人間的・運営的条件を扱う。
+          concepts:
+            - slug: team-climate
+              name: チームの気候
+              summary: リスクを取れるか、役割が明確か、やり切れるかを扱う。
+              whyLearn: 技術的改善が効かない理由を、関係性や運営条件から見られる。
+              terms:
+                - slug: psychological-safety
+                  name: 心理的安全性
+                  summary: 無知や失敗を恐れず対人リスクを取れる状態。
+                  whyLearn: 学習、相談、改善提案の土台になる。
+                  promptHint: このチームで心理的安全性が高いか低いかを示す行動例を説明させる。
+                  aliases:
+                    - psychological safety
+                    - team safety
+                - slug: dependability
+                  name: 信頼性
+                  summary: メンバーが互いに約束を果たすと期待できる状態。
+                  whyLearn: 自律的なチーム運営の前提になる。
+                  promptHint: dependability が高いチームの行動特徴を説明させる。
+                  aliases:
+                    - dependability
+                    - reliability in team
+                - slug: structure-and-clarity
+                  name: 構造と明確さ
+                  summary: 目標、役割、手順、期待が明確である状態。
+                  whyLearn: 混乱を根性で埋めない設計に役立つ。
+                  promptHint: 役割が曖昧なときに起こる問題と、明確化すべき要素を説明させる。
+                  aliases:
+                    - structure and clarity
+                    - role clarity
+            - slug: management-and-coaching
+              name: マネジメントとコーチング
+              summary: チーム支援を統制ではなく成長支援として捉える。
+              whyLearn: 自律性を損なわずにチーム能力を上げる方法を学べる。
+              terms:
+                - slug: one-on-one
+                  name: ワンオンワン
+                  summary: 個人課題、支援、成長、障害を継続的に扱う対話の場。
+                  whyLearn: 問題が顕在化する前に支援しやすい。
+                  promptHint: ワンオンワンを進捗確認だけで終わらせない設計を説明させる。
+                  aliases:
+                    - one-on-one
+                    - 1:1
+                - slug: coaching
+                  name: コーチング
+                  summary: 答えを与えるより、相手の思考と行動変化を支援する働きかけ。
+                  whyLearn: 組織能力を長期的に高める支援方法として重要。
+                  promptHint: 指示、メンタリング、コーチングの違いを説明させる。
+                  aliases:
+                    - coaching
+                    - team coaching
+                - slug: manager-effectiveness
+                  name: マネージャーの有効性
+                  summary: チームが成果を出せる条件を整えるマネジメント能力。
+                  whyLearn: 個人最適ではなくチーム成果を支える役割理解につながる。
+                  promptHint: 良いエンジニアリングマネージャーが日常で整える条件を説明させる。
+                  aliases:
+                    - manager effectiveness
+                    - effective manager
+        - slug: organizational-learning
+          name: 組織学習
+          summary: 振り返りとオープン協働で知識を蓄積する。
+          concepts:
+            - slug: learning-rituals
+              name: 学習の儀式
+              summary: 経験を改善へ変換する定例の仕組みを扱う。
+              whyLearn: 学習を偶発的なものではなく再現可能な運営にするため。
+              terms:
+                - slug: retrospective
+                  name: レトロスペクティブ
+                  summary: 仕事の進め方を振り返り、次の改善を決める定期的な場。
+                  whyLearn: チーム改善を日々の開発から切り離さず進められる。
+                  promptHint: 良いレトロで扱うべき観点と、避けるべき進め方を説明させる。
+                  aliases:
+                    - retrospective
+                    - retro
+                - slug: after-action-review
+                  name: After Action Review
+                  summary: 期待と実際の差分から学ぶ構造化された振り返り手法。
+                  whyLearn: 事実と学習を分けて整理しやすい。
+                  promptHint: AAR の問いを使ってイベントを振り返る方法を説明させる。
+                  aliases:
+                    - AAR
+                    - after action review
+                - slug: kaizen
+                  name: 改善
+                  summary: 小さな改善を継続的に積み重ねる考え方。
+                  whyLearn: 一度きりの改革ではなく改善習慣を組織化できる。
+                  promptHint: カイゼンを単なる効率化ではなく学習習慣として説明させる。
+                  aliases:
+                    - kaizen
+                    - continuous improvement
+            - slug: open-collaboration
+              name: オープン協働
+              summary: 組織内で知識や改善を横断的に共有しやすくする。
+              whyLearn: サイロを越えた再利用と学習速度の向上に役立つ。
+              terms:
+                - slug: innersource
+                  name: InnerSource
+                  summary: 社内でオープンソース的な協働様式を取り入れる実践。
+                  whyLearn: 組織内の再利用と横断貢献を進めやすくなる。
+                  promptHint: InnerSource を成立させるルール、公開性、参加パターンを説明させる。
+                  aliases:
+                    - InnerSource
+                    - internal open source
+                - slug: community-of-practice
+                  name: コミュニティ・オブ・プラクティス
+                  summary: 共通の実践領域を持つ人々が学び合う横断コミュニティ。
+                  whyLearn: ライン組織とは別の学習回路を持てる。
+                  promptHint: CoP を雑談会で終わらせず、成果につなげる方法を説明させる。
+                  aliases:
+                    - community of practice
+                    - CoP
+                - slug: guild
+                  name: ギルド
+                  summary: 特定テーマの横断的な実践共同体を指す呼称。
+                  whyLearn: 企業固有名称と一般概念の対応関係を理解できる。
+                  promptHint: guild と community of practice の違いと共通点を説明させる。
+                  aliases:
+                    - guild
+                    - chapter guild
+
+edges:
+  - from: value-stream
+    to: stream-aligned-team
+    relationType: prerequisite
+    reason: 価値流を見定めないと、ストリームに沿ったチーム境界を設計しにくいため。
+  - from: fracture-plane
+    to: stream-aligned-team
+    relationType: used_in
+    reason: ストリームアラインドチームの境界を決めるときの分割軸として使うため。
+  - from: cognitive-load
+    to: platform-team
+    relationType: used_in
+    reason: プラットフォームチームは他チームの認知負荷を下げる目的で設計されるため。
+  - from: team-api
+    to: x-as-a-service
+    relationType: used_in
+    reason: サービス型相互作用を成立させるには、接点の仕様化が必要になるため。
+  - from: handoff
+    to: lead-time-for-changes
+    relationType: related
+    reason: 不要なハンドオフは変更のリードタイムを延ばしやすいため。
+  - from: work-in-progress-limit
+    to: throughput
+    relationType: related
+    reason: WIP 制御は流れの詰まりを減らし、結果としてスループット改善に寄与しやすいため。
+  - from: batch-size
+    to: change-failure-rate
+    relationType: related
+    reason: 大きい変更は失敗時の影響範囲を広げ、変更失敗率を悪化させやすいため。
+  - from: continuous-integration
+    to: continuous-delivery
+    relationType: prerequisite
+    reason: 継続的デリバリーを支える前提として、頻繁な統合と自動検証が必要になるため。
+  - from: trunk-based-development
+    to: continuous-integration
+    relationType: related
+    reason: トランクベース開発は CI を回しやすい分岐戦略としてよく組み合わせられるため。
+  - from: feature-flag
+    to: continuous-delivery
+    relationType: used_in
+    reason: デプロイと公開を分離し、小さな変更を安全に流すために使われるため。
+  - from: dora-metrics
+    to: space-framework
+    relationType: compare_with
+    reason: DORA はデリバリー成果中心、SPACE は人間中心の多面的生産性中心であり、補完関係にあるため。
+  - from: toil
+    to: satisfaction-and-well-being
+    relationType: related
+    reason: トイルの増加は開発者の満足度や疲弊に直接影響しやすいため。
+  - from: self-service-success-rate
+    to: internal-developer-platform
+    relationType: used_in
+    reason: internal platform の使いやすさを評価する利用者視点の指標として使えるため。
+  - from: platform-as-a-product
+    to: developer-portal
+    relationType: used_in
+    reason: platform を製品として届ける際、portal は主要な体験面になるため。
+  - from: software-catalog
+    to: ownership-metadata
+    relationType: prerequisite
+    reason: カタログを有効に機能させるには、機械可読な所有権メタデータが必要なため。
+  - from: software-template
+    to: golden-path
+    relationType: used_in
+    reason: ゴールデンパスを実際に採用しやすい導線としてテンプレートが機能するため。
+  - from: conways-law
+    to: inverse-conway-maneuver
+    relationType: prerequisite
+    reason: 逆向きの組織設計を行うには、まず Conway の制約を理解する必要があるため。
+  - from: daci
+    to: architecture-review-board
+    relationType: used_in
+    reason: 横断レビューで誰が進行し、誰が承認するかを整理するのに使えるため。
+  - from: okr
+    to: quarterly-planning
+    relationType: used_in
+    reason: 四半期計画は OKR を具体的な優先事項へ落とし込む場になりやすいため。
+  - from: architecture-decision-record
+    to: request-for-comments
+    relationType: related
+    reason: RFC が提案と議論を担い、ADR が最終判断の記録を担う形で接続しやすいため。
+  - from: psychological-safety
+    to: retrospective
+    relationType: prerequisite
+    reason: 安全に事実や改善案を出せないと、振り返りが機能しにくいため。
+  - from: after-action-review
+    to: kaizen
+    relationType: used_in
+    reason: AAR で得た学びを継続的改善へ変えることで、改善の習慣化につながるため。
+  - from: innersource
+    to: request-for-comments
+    relationType: used_in
+    reason: InnerSource 的な公開協働では RFC が横断意思決定の仕組みとして使いやすいため。
+  - from: community-of-practice
+    to: guild
+    relationType: compare_with
+    reason: guild は特定企業で使われることが多い呼称で、一般概念としては community of practice に近いため。
+  - from: conways-law
+    to: product-engineering-application-architecture
+    relationType: related
+    reason: 組織の通信構造はサービス境界やアプリケーション分割に影響するため。
+  - from: deployment-pipeline
+    to: reliability-operations-platform-engineering
+    relationType: related
+    reason: デプロイパイプラインはリリース安全性と本番健全性の接点にあるため。
+  - from: okr
+    to: product-management-product-strategy
+    relationType: related
+    reason: 技術組織の目標整列は、プロダクト戦略やロードマップとの接続が必要なため。
+  - from: software-catalog
+    to: product-engineering-application-architecture
+    relationType: related
+    reason: カタログはサービスやコンポーネント構造の把握を支援するため。
+  - from: ai-coding-assistant
+    to: artificial-intelligence-intelligent-systems
+    relationType: related
+    reason: AI ツール自体の仕組みは AI Domain に属するが、導入影響はこの Domain に強く現れるため。

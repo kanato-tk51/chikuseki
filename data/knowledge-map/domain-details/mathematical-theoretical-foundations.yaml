@@ -1,0 +1,1174 @@
+domain:
+  slug: mathematical-theoretical-foundations
+  name: 数学的・理論的基礎
+  summary: 計算、正しさ、不確実性、限界を厳密に考えるための数学、論理、理論の基礎。
+  boundaryNotes: 形式的な基礎を扱う。実行可能な問題解法や性能上のトレードオフは Algorithms and Data Structures に寄せる。統計運用、ML 実装、暗号プロトコル設計、形式検証ワークフローは関連 edge で接続する。
+  knowledgeAreas:
+    - slug: discrete-structures-and-proof
+      name: 離散構造と証明
+      summary: 集合、関係、写像、数え上げ、合同算術、帰納法などで有限・可算な対象を厳密に扱う領域。
+      whyLearn: 仕様、制約、状態、データ関係を曖昧なく表現し、議論を反例や証明で点検できるようになる。
+      topicClusters:
+        - slug: set-relation-function
+          name: 集合、関係、写像
+          summary: 離散対象を記号的に表現する最も基本的な道具をまとめる。
+          concepts:
+            - slug: sets-and-cardinality
+              name: 集合と基数
+              summary: 対象の集まりとその大きさを扱う。
+              whyLearn: 問題の対象範囲や状態空間を正しく切り出す前提になる。
+              terms:
+                - slug: set
+                  name: 集合
+                  summary: 対象を条件や列挙でまとめた基本単位。
+                  whyLearn: データ集合、許可集合、状態集合などを曖昧なく定義できる。
+                  promptHint: 何を一つの集まりとして扱うと問題設定が明確になるかを問うときに使う。
+                  aliases:
+                    - set
+                - slug: subset
+                  name: 部分集合
+                  summary: ある集合の要素だけで構成される集合。
+                  whyLearn: 権限範囲、検索結果、制約下の候補集合などの包含関係を整理できる。
+                  promptHint: どの条件を満たす対象だけを切り出しているのかを説明するときに使う。
+                  aliases:
+                    - subset
+                - slug: power-set
+                  name: 冪集合
+                  summary: ある集合のすべての部分集合を集めた集合。
+                  whyLearn: 設定可能な組み合わせ全体や探索空間の大きさを見積もる感覚につながる。
+                  promptHint: 可能な選択肢の全体数がなぜ急増するかを説明するときに使う。
+                  aliases:
+                    - power set
+                - slug: cardinality
+                  name: 基数
+                  summary: 集合の大きさを表す概念。
+                  whyLearn: 離散的な状態数や候補数の比較に必要になる。
+                  promptHint: 要素数の違いが設計や探索可能性にどう効くかを問うときに使う。
+                  aliases:
+                    - cardinality
+            - slug: relations-functions-order
+              name: 関係と写像と順序
+              summary: 要素どうしのつながりや対応付けを表す。
+              whyLearn: データモデル、依存関係、状態遷移、ID 対応を厳密に考えられる。
+              terms:
+                - slug: relation
+                  name: 関係
+                  summary: 二つ以上の対象間の成立条件を表す表現。
+                  whyLearn: 依存、接続、包含、等価といった構造を統一的に記述できる。
+                  promptHint: どの対象どうしがどう結び付くのかを形式化するときに使う。
+                  aliases:
+                    - relation
+                - slug: function
+                  name: 関数
+                  summary: 各入力に対して出力を一つ対応させる写像。
+                  whyLearn: API、変換処理、集計規則、識別子対応を定義する基礎になる。
+                  promptHint: 入力から出力への対応が一意かどうかを説明するときに使う。
+                  aliases:
+                    - function
+                    - mapping
+                - slug: equivalence-relation
+                  name: 同値関係
+                  summary: 同じとみなせる条件を表す関係。
+                  whyLearn: 正規化、重複排除、状態同値、クラス分けの前提になる。
+                  promptHint: 何を同じものとして扱うべきかを定義するときに使う。
+                  aliases:
+                    - equivalence relation
+                - slug: partial-order
+                  name: 半順序
+                  summary: すべての要素が比較可能とは限らない順序関係。
+                  whyLearn: 依存関係、優先関係、バージョン順序などを無理なく表せる。
+                  promptHint: 全順序でなくても順序づけが必要な場面を考えるときに使う。
+                  aliases:
+                    - partial order
+
+        - slug: proof-induction-and-counting
+          name: 証明、帰納、数え上げ
+          summary: 命題を厳密に確かめ、再帰的構造や組合せを扱うための基礎をまとめる。
+          concepts:
+            - slug: proof-strategies
+              name: 証明戦略
+              summary: 命題の真偽を系統立てて確かめる基本手法。
+              whyLearn: レビューや設計判断を、雰囲気ではなく論証で支えられる。
+              terms:
+                - slug: direct-proof
+                  name: 直接証明
+                  summary: 前提から結論へそのまま論理を進める証明。
+                  whyLearn: 最も基本的な論証形として仕様の正しさを説明しやすい。
+                  promptHint: 前提を一つずつ使えば結論に到達できるかを考えるときに使う。
+                  aliases:
+                    - direct proof
+                - slug: contrapositive
+                  name: 対偶
+                  summary: 命題の裏返しで証明しやすくする考え方。
+                  whyLearn: 直接示しにくい条件を見通しよく扱える。
+                  promptHint: 結論が偽なら前提も偽になると示せないかを考えるときに使う。
+                  aliases:
+                    - contrapositive
+                - slug: proof-by-contradiction
+                  name: 背理法
+                  summary: 反対を仮定して矛盾を導く証明方法。
+                  whyLearn: 存在しないことや不可能性を示すときに強い。
+                  promptHint: もし成り立つと仮定したら何が破綻するかを見るときに使う。
+                  aliases:
+                    - contradiction proof
+                    - proof by contradiction
+                - slug: counterexample
+                  name: 反例
+                  summary: 一般命題が成り立たないことを示す具体例。
+                  whyLearn: レビューで誤った一般化を素早く崩せる。
+                  promptHint: その主張が本当に常に成り立つのかを疑うときに使う。
+                  aliases:
+                    - counterexample
+            - slug: induction-and-invariants
+              name: 帰納法と不変条件
+              summary: 再帰的対象や反復処理の正しさを示す手法。
+              whyLearn: 再帰、ループ、段階的構築の説明と検証に直結する。
+              terms:
+                - slug: mathematical-induction
+                  name: 数学的帰納法
+                  summary: 基底部と帰納段階で自然数全体の命題を示す方法。
+                  whyLearn: 再帰的な定義や反復回数に関する正しさの基本になる。
+                  promptHint: 最初に成り立ち、一段進めても保たれるかを問うときに使う。
+                  aliases:
+                    - induction
+                    - mathematical induction
+                - slug: structural-induction
+                  name: 構造的帰納法
+                  summary: 木や式などの再帰構造について成り立つことを示す方法。
+                  whyLearn: 構文木、再帰データ型、文法構造の性質を証明できる。
+                  promptHint: 対象の構造が小さい部分から組み上がるときに使う。
+                  aliases:
+                    - structural induction
+                - slug: well-ordering
+                  name: 整列性
+                  summary: 自然数の非空部分集合には最小要素があるという性質。
+                  whyLearn: 帰納法や最小反例法を支える見方になる。
+                  promptHint: 最小の反例を取る議論がなぜ許されるかを考えるときに使う。
+                  aliases:
+                    - well ordering
+                - slug: loop-invariant
+                  name: ループ不変条件
+                  summary: 反復の前後で保たれる性質。
+                  whyLearn: 実装レビューでループの正しさを説明する最重要道具の一つ。
+                  promptHint: 各反復の前後で何が必ず保たれているかを書くときに使う。
+                  aliases:
+                    - invariant
+                    - loop invariant
+            - slug: counting-and-modular-reasoning
+              name: 数え上げと合同算術
+              summary: 組合せの総数や整数の周期性を扱う。
+              whyLearn: 状態数見積り、確率計算、ハッシュや暗号の理解に接続する。
+              terms:
+                - slug: combinations
+                  name: 組合せ
+                  summary: 順序を無視して要素を選ぶ数え上げ。
+                  whyLearn: サンプリング、候補集合、部分集合選択の理解に必要。
+                  promptHint: 並び順ではなく選び方の数だけを知りたいときに使う。
+                  aliases:
+                    - combination
+                    - nCk
+                - slug: inclusion-exclusion-principle
+                  name: 包除原理
+                  summary: 重複を調整しながら集合の大きさを数える原理。
+                  whyLearn: 条件が重なる場合の数え上げや確率計算で頻出する。
+                  promptHint: 単純に足すと二重に数えてしまう場面で使う。
+                  aliases:
+                    - inclusion exclusion
+                - slug: pigeonhole-principle
+                  name: 鳩の巣原理
+                  summary: 容器より多くの要素を入れれば重なりが必ず起こる原理。
+                  whyLearn: 存在証明や下限の直感を与える短いが強い道具になる。
+                  promptHint: 必ず衝突や重複が起きることを示したいときに使う。
+                  aliases:
+                    - pigeonhole principle
+                - slug: modular-arithmetic
+                  name: 合同算術
+                  summary: ある法で割った余りにもとづく整数の計算体系。
+                  whyLearn: 周期性、ハッシュ、暗号、整合性検査の理解に重要。
+                  promptHint: 値そのものより余りの振る舞いを見たいときに使う。
+                  aliases:
+                    - modular arithmetic
+                    - congruence arithmetic
+
+    - slug: logic-and-formal-reasoning
+      name: 論理と形式的推論
+      summary: 命題や述語で対象世界を表し、含意、充足可能性、メタ性質を扱う領域。
+      whyLearn: 仕様の曖昧さを潰し、前提・結論・制約を機械的に点検しやすくする。
+      topicClusters:
+        - slug: propositional-logic
+          name: 命題論理
+          summary: 真偽が定まる文を論理式として扱う。
+          concepts:
+            - slug: proposition-and-connectives
+              name: 命題と論理結合
+              summary: 真偽値をもつ文を論理式として表す。
+              whyLearn: 条件分岐や仕様文を形式的に読み替える土台になる。
+              terms:
+                - slug: proposition
+                  name: 命題
+                  summary: 真か偽かが定まる文。
+                  whyLearn: 論理的に扱える対象と扱えない対象を区別できる。
+                  promptHint: その文は真偽を判定できる形になっているかを問うときに使う。
+                  aliases:
+                    - proposition
+                - slug: logical-connective
+                  name: 論理結合子
+                  summary: 命題どうしを結び付ける and や or などの演算子。
+                  whyLearn: 条件の合成や否定を正しく読み解ける。
+                  promptHint: 条件が同時成立なのか代替なのかを明確にしたいときに使う。
+                  aliases:
+                    - connective
+                    - logical connective
+                - slug: truth-table
+                  name: 真理値表
+                  summary: 論理式の真偽を入力の全組合せで示した表。
+                  whyLearn: 論理式の意味を機械的に確認できる。
+                  promptHint: 場合分けを全部書き出して論理式を点検したいときに使う。
+                  aliases:
+                    - truth table
+                - slug: satisfiability
+                  name: 充足可能性
+                  summary: ある論理式を真にする割当てが存在するかという性質。
+                  whyLearn: 制約が矛盾していないかを調べる中心概念になる。
+                  promptHint: 条件群を同時に満たす設定が少なくとも一つあるかを問うときに使う。
+                  aliases:
+                    - satisfiability
+                    - satisfiable
+            - slug: inference-and-equivalence
+              name: 推論と同値
+              summary: ある式から別の式が従うかを扱う。
+              whyLearn: レビューで前提から結論が本当に出るかを確認できる。
+              terms:
+                - slug: inference-rule
+                  name: 推論規則
+                  summary: ある形の前提からある形の結論を導く規則。
+                  whyLearn: 推論の一歩一歩を検証可能にする。
+                  promptHint: この結論はどの規則に基づいて出たのかを確認するときに使う。
+                  aliases:
+                    - inference rule
+                - slug: logical-equivalence
+                  name: 論理同値
+                  summary: どの割当てでも同じ真理値をとる二つの式の関係。
+                  whyLearn: 仕様の言い換えや条件簡約で意味を保てる。
+                  promptHint: 表現を変えても意味が変わらないかを確かめるときに使う。
+                  aliases:
+                    - logical equivalence
+                - slug: entailment
+                  name: 論理的含意
+                  summary: 前提が真なら結論も必ず真になる関係。
+                  whyLearn: 要件からテスト条件や安全性条件が従うかを見極められる。
+                  promptHint: この前提集合から本当にその結論が必要に出るかを問うときに使う。
+                  aliases:
+                    - entailment
+                - slug: validity
+                  name: 妥当性
+                  summary: どの解釈でも常に真となる論理式の性質。
+                  whyLearn: 条件付きでなく常に成り立つ論理法則を区別できる。
+                  promptHint: 前提に依らず常に真かどうかを確認したいときに使う。
+                  aliases:
+                    - validity
+
+        - slug: predicate-logic-and-models
+          name: 述語論理とモデル
+          summary: 対象や性質や量化を含む、より表現力の高い論理を扱う。
+          concepts:
+            - slug: predicate-and-quantification
+              name: 述語と量化
+              summary: 個体と性質と量化子で文を組み立てる。
+              whyLearn: 仕様や制約の自然言語をより精密に定式化できる。
+              terms:
+                - slug: predicate
+                  name: 述語
+                  summary: 対象がある性質や関係を満たすかを表す式。
+                  whyLearn: データ条件や制約を記号的に書ける。
+                  promptHint: 何がどの条件を満たすのかを形式化したいときに使う。
+                  aliases:
+                    - predicate
+                - slug: quantifier
+                  name: 量化子
+                  summary: すべてやある存在を表す記号。
+                  whyLearn: 全称条件と存在条件を混同しないために重要。
+                  promptHint: すべてに対する主張なのか存在だけ言いたいのかを切り分けるときに使う。
+                  aliases:
+                    - quantifier
+                - slug: free-variable
+                  name: 自由変数
+                  summary: 量化で束縛されていない変数。
+                  whyLearn: 式が文になっているか、まだパラメータが残るかを区別できる。
+                  promptHint: その式が未定の変数を含んでいないかを点検するときに使う。
+                  aliases:
+                    - free variable
+                - slug: first-order-logic
+                  name: 一階述語論理
+                  summary: 個体についての量化を許す標準的な論理体系。
+                  whyLearn: 形式仕様、データ制約、理論計算機科学の共通土台になる。
+                  promptHint: 命題論理では表せない対象一般の主張を扱うときに使う。
+                  aliases:
+                    - first order logic
+                    - FOL
+            - slug: models-and-metatheory
+              name: モデルとメタ性質
+              summary: 式がどのような解釈で真になるかと体系の性質を扱う。
+              whyLearn: 記号を操作するだけでなく意味との対応を理解できる。
+              terms:
+                - slug: interpretation
+                  name: 解釈
+                  summary: 記号に具体的な対象や関係を割り当てること。
+                  whyLearn: 論理式の意味がどこから生まれるかを理解できる。
+                  promptHint: その記号が実際には何を指しているのかを明確にしたいときに使う。
+                  aliases:
+                    - interpretation
+                - slug: model
+                  name: モデル
+                  summary: ある論理式や理論を真にする解釈。
+                  whyLearn: 仕様が満たされる世界が存在するかを考えられる。
+                  promptHint: 条件群を満たす具体的な世界像があるかを問うときに使う。
+                  aliases:
+                    - model
+                - slug: domain-of-discourse
+                  name: 論議領域
+                  summary: 量化の対象となる個体の範囲。
+                  whyLearn: 条件の適用範囲を誤らないために必要。
+                  promptHint: すべてや存在がどの集合の上で語られているかを確認するときに使う。
+                  aliases:
+                    - universe of discourse
+                    - domain of discourse
+                - slug: signature
+                  name: シグネチャ
+                  summary: 使用する関数記号や述語記号や定数記号の一覧。
+                  whyLearn: どの記号語彙で理論を記述しているかを明確にできる。
+                  promptHint: その形式体系で利用可能な記号を定義したいときに使う。
+                  aliases:
+                    - signature
+            - slug: satisfiability-and-solvers
+              name: 充足可能性とソルバ
+              summary: 論理式を解くための標準形と自動推論の基礎を扱う。
+              whyLearn: 実務で SAT/SMT がどんな問題に効くかを理解しやすくなる。
+              terms:
+                - slug: conjunctive-normal-form
+                  name: 連言標準形
+                  summary: 論理式を節の積の形で表した標準形。
+                  whyLearn: SAT 解法の入口となる基本表現だから。
+                  promptHint: 論理式をソルバにかけやすい形に直したいときに使う。
+                  aliases:
+                    - CNF
+                    - conjunctive normal form
+                - slug: clause
+                  name: 節
+                  summary: リテラルの論理和として表される基本単位。
+                  whyLearn: SAT 問題を分解して読む最小単位になる。
+                  promptHint: 制約を小さな論理ブロックに分けて考えたいときに使う。
+                  aliases:
+                    - clause
+                - slug: sat
+                  name: SAT
+                  summary: 命題論理式の充足可能性を判定する問題やその解法体系。
+                  whyLearn: スケジューリング、検証、構成問題の基礎モデルとして重要。
+                  promptHint: 条件群を満たす割当てを自動探索できないかを考えるときに使う。
+                  aliases:
+                    - satisfiability problem
+                    - SAT
+                - slug: smt
+                  name: SMT
+                  summary: 命題論理に数値や配列などの理論を加えた充足可能性判定。
+                  whyLearn: ソフトウェア検証や制約解決の実務に近い定式化ができる。
+                  promptHint: 真偽だけでなく整数や配列も同時に扱いたいときに使う。
+                  aliases:
+                    - satisfiability modulo theories
+                    - SMT
+                - slug: soundness
+                  name: 健全性
+                  summary: 証明できるものは意味的にも正しいという性質。
+                  whyLearn: ソルバや証明体系を信頼する前提になる。
+                  promptHint: その推論器が誤った結論を出さないかを問うときに使う。
+                  aliases:
+                    - soundness
+                - slug: completeness
+                  name: 完全性
+                  summary: 意味的に正しいものを証明体系が取り逃がさない性質。
+                  whyLearn: 証明できない理由が本質的な限界か表現不足かを見分けられる。
+                  promptHint: 本当に言えることをその体系が全部拾えるかを考えるときに使う。
+                  aliases:
+                    - completeness
+                - slug: consistency
+                  name: 無矛盾性
+                  summary: 体系から命題とその否定の両方を導けない性質。
+                  whyLearn: 仕様やルール集合が破綻していないかを見る基礎になる。
+                  promptHint: そのルール群が自己矛盾していないかを点検するときに使う。
+                  aliases:
+                    - consistency
+                - slug: decidability
+                  name: 決定可能性
+                  summary: ある問題に対して常に停止して yes か no を返せる性質。
+                  whyLearn: 自動化できる問いと原理的にできない問いを分けられる。
+                  promptHint: この判定問題は必ず有限時間で答えられるかを問うときに使う。
+                  aliases:
+                    - decidability
+
+    - slug: probability-statistics-and-information
+      name: 確率・統計・情報
+      summary: 不確実性をモデル化し、観測から推定し、情報量や表現限界を測る領域。
+      whyLearn: 実験、分析、ML、圧縮、検索、推論で不確実性を正しく扱うための基礎になる。
+      topicClusters:
+        - slug: probability-foundations
+          name: 確率の基礎
+          summary: 事象、条件付き確率、確率変数を中心に不確実性を定式化する。
+          concepts:
+            - slug: events-and-conditioning
+              name: 事象と条件付け
+              summary: 確率論の対象と条件づけられた更新を扱う。
+              whyLearn: 監視、予測、診断、ランキングの直感を形式化できる。
+              terms:
+                - slug: sample-space
+                  name: 標本空間
+                  summary: 起こり得る結果の全体集合。
+                  whyLearn: モデル化の対象範囲を最初に誤らないために必要。
+                  promptHint: 何が起こり得る結果として数えられているかを明確にするときに使う。
+                  aliases:
+                    - sample space
+                - slug: event
+                  name: 事象
+                  summary: 標本空間の部分集合として表される出来事。
+                  whyLearn: 条件成立や失敗ケースを集合として扱える。
+                  promptHint: どの結果集合を知りたいのかを表したいときに使う。
+                  aliases:
+                    - event
+                - slug: conditional-probability
+                  name: 条件付き確率
+                  summary: ある条件が分かったあとで更新された確率。
+                  whyLearn: 観測後の判断や部分情報下の推論に必須。
+                  promptHint: 追加情報を得た後で見込みがどう変わるかを計算するときに使う。
+                  aliases:
+                    - conditional probability
+                - slug: bayes-theorem
+                  name: ベイズの定理
+                  summary: 条件付き確率を逆向きに結び付ける公式。
+                  whyLearn: 原因推定、分類、診断、推薦の理解に直結する。
+                  promptHint: 観測から原因側の確率を更新したいときに使う。
+                  aliases:
+                    - Bayes theorem
+            - slug: random-variables-and-distributions
+              name: 確率変数と分布
+              summary: ランダムな結果を数値や分布として扱う。
+              whyLearn: ログ、待ち時間、誤差、成否などを比較可能な形にできる。
+              terms:
+                - slug: random-variable
+                  name: 確率変数
+                  summary: ランダムな結果に数値を対応させる関数。
+                  whyLearn: 出来事を期待値や分散で要約できるようになる。
+                  promptHint: 不確実な現象をどの数値で表すかを決めるときに使う。
+                  aliases:
+                    - random variable
+                - slug: bernoulli-distribution
+                  name: ベルヌーイ分布
+                  summary: 成功か失敗かの二値結果を表す分布。
+                  whyLearn: クリック有無や障害発生有無などのモデルの出発点になる。
+                  promptHint: 一回の試行が成功か失敗かだけを見るときに使う。
+                  aliases:
+                    - Bernoulli distribution
+                - slug: normal-distribution
+                  name: 正規分布
+                  summary: 平均のまわりに対称な連続分布。
+                  whyLearn: ノイズ、誤差、近似計算、統計推論で頻出する。
+                  promptHint: 多数の微小要因の和として現れる量を考えるときに使う。
+                  aliases:
+                    - Gaussian distribution
+                    - normal distribution
+                - slug: independence
+                  name: 独立
+                  summary: 片方の情報がもう片方の確率を変えない関係。
+                  whyLearn: モデル簡略化や誤った推論の回避に重要。
+                  promptHint: その二つの事象を別々に扱ってよいかを判断するときに使う。
+                  aliases:
+                    - independence
+            - slug: expectation-and-limit-laws
+              name: 期待値と極限定理
+              summary: ランダムな量の平均的ふるまいと大数的性質を扱う。
+              whyLearn: 実験結果のぶれと長期的安定性を読む基礎になる。
+              terms:
+                - slug: expectation
+                  name: 期待値
+                  summary: ランダム量の平均的な大きさを表す値。
+                  whyLearn: 施策の平均効果やアルゴリズムの平均コストを考えられる。
+                  promptHint: 長期平均で見たときに何が起こるかを説明するときに使う。
+                  aliases:
+                    - expected value
+                    - expectation
+                - slug: variance
+                  name: 分散
+                  summary: 値のばらつきの大きさを表す尺度。
+                  whyLearn: 平均だけでは見えない不安定さを比較できる。
+                  promptHint: 同じ平均でもどれだけぶれるかを見たいときに使う。
+                  aliases:
+                    - variance
+                - slug: law-of-large-numbers
+                  name: 大数の法則
+                  summary: 試行回数が増えると平均が期待値に近づく現象。
+                  whyLearn: 計測や実験の安定化を説明できる。
+                  promptHint: サンプル数を増やすと推定が安定する理由を説明するときに使う。
+                  aliases:
+                    - LLN
+                    - law of large numbers
+                - slug: central-limit-theorem
+                  name: 中心極限定理
+                  summary: 独立な和が条件の下で正規分布に近づくという定理。
+                  whyLearn: 推定や信頼区間の根拠を理解しやすくなる。
+                  promptHint: なぜ平均まわりの近似に正規分布がよく出るのかを考えるときに使う。
+                  aliases:
+                    - CLT
+                    - central limit theorem
+
+        - slug: statistical-inference
+          name: 統計的推論
+          summary: 標本から母集団やモデルを推定し、仮説を点検する。
+          concepts:
+            - slug: inference-and-testing
+              name: 推定と検定
+              summary: データから未知量を推測し、主張を評価する。
+              whyLearn: 実験結果やダッシュボードを読み違えないために重要。
+              terms:
+                - slug: estimator
+                  name: 推定量
+                  summary: 標本から未知パラメータを計算する規則。
+                  whyLearn: 何をどう集計して知りたい量を近似しているかを把握できる。
+                  promptHint: この値は何を推定しているのかを説明するときに使う。
+                  aliases:
+                    - estimator
+                - slug: maximum-likelihood-estimation
+                  name: 最尤推定
+                  summary: 観測データを最も起こしやすくするパラメータを選ぶ推定法。
+                  whyLearn: 統計や ML の基本的な学習原理を理解できる。
+                  promptHint: このデータを最ももっともらしく説明する設定を探すときに使う。
+                  aliases:
+                    - MLE
+                    - maximum likelihood estimation
+                - slug: confidence-interval
+                  name: 信頼区間
+                  summary: 推定値の不確実性を区間として表す方法。
+                  whyLearn: 点推定だけでなく不確実性込みで判断できる。
+                  promptHint: どの程度の幅を見込んで解釈すべきかを示したいときに使う。
+                  aliases:
+                    - confidence interval
+                - slug: p-value
+                  name: p 値
+                  summary: 帰無仮説の下で現在以上に極端な結果が出る確率。
+                  whyLearn: 検定結果を過大解釈しないために必要。
+                  promptHint: この観測が偶然としてどれくらい珍しいかを見たいときに使う。
+                  aliases:
+                    - p-value
+            - slug: modeling-generalization-and-information
+              name: モデリングと一般化と情報量
+              summary: データへの当てはめ、汎化、情報の尺度を扱う。
+              whyLearn: 実務で頻出する回帰、検証、損失関数、特徴量評価の読解力がつく。
+              terms:
+                - slug: linear-regression
+                  name: 線形回帰
+                  summary: 入力の線形結合で出力を近似する基本モデル。
+                  whyLearn: 予測、傾向把握、最小二乗、解釈可能性の基礎になる。
+                  promptHint: 説明変数と目的変数の関係をまず単純に表したいときに使う。
+                  aliases:
+                    - linear regression
+                - slug: overfitting
+                  name: 過学習
+                  summary: 学習データに合わせすぎて未知データに弱くなる現象。
+                  whyLearn: モデル評価と実運用のギャップを理解する鍵になる。
+                  promptHint: 手元のデータでは良いのに本番で崩れる理由を考えるときに使う。
+                  aliases:
+                    - overfitting
+                - slug: cross-validation
+                  name: 交差検証
+                  summary: データを分割して汎化性能を見積もる評価法。
+                  whyLearn: モデル選択やハイパーパラメータ比較の基礎になる。
+                  promptHint: 手元データだけで汎化性能を推定したいときに使う。
+                  aliases:
+                    - cross validation
+                    - CV
+                - slug: entropy
+                  name: エントロピー
+                  summary: ランダム変数の不確実性や情報量の平均を表す尺度。
+                  whyLearn: 圧縮、特徴選択、損失関数、セキュリティ評価まで幅広く再登場する。
+                  promptHint: その分布がどれだけ予測しにくいかを測りたいときに使う。
+                  aliases:
+                    - entropy
+                - slug: kl-divergence
+                  name: KL ダイバージェンス
+                  summary: 二つの分布のずれを測る情報論的尺度。
+                  whyLearn: 近似分布の評価、生成モデル、推論の目的関数を理解できる。
+                  promptHint: ある分布で別の分布を近似したときの損失を測りたいときに使う。
+                  aliases:
+                    - Kullback-Leibler divergence
+                    - KL divergence
+
+    - slug: linear-algebra-and-optimization-foundations
+      name: 線形代数と最適化の基礎
+      summary: ベクトル、行列、線形写像、分解、微分、凸性を通して連続的な計算対象を扱う領域。
+      whyLearn: 埋め込み、近似、推薦、可視化、機械学習、最適化を共通の言葉で理解できる。
+      topicClusters:
+        - slug: vectors-matrices-and-linear-systems
+          name: ベクトル、行列、線形系
+          summary: 線形代数の基本表現を扱う。
+          concepts:
+            - slug: vectors-and-matrices
+              name: ベクトルと行列
+              summary: 数値列や線形変換の基本対象を扱う。
+              whyLearn: 特徴量、埋め込み、変換、集計を統一的に表せる。
+              terms:
+                - slug: vector
+                  name: ベクトル
+                  summary: 大きさと向きをもつ量、または成分の並び。
+                  whyLearn: 特徴表現や座標表現の最小単位になる。
+                  promptHint: 対象を複数の数で表したいときに使う。
+                  aliases:
+                    - vector
+                - slug: matrix
+                  name: 行列
+                  summary: 線形変換や係数表を表す長方形配列。
+                  whyLearn: バッチ計算、変換、関係表現、最適化の中心概念になる。
+                  promptHint: 多数の係数や対応をまとめて扱いたいときに使う。
+                  aliases:
+                    - matrix
+                - slug: dot-product
+                  name: 内積
+                  summary: 二つのベクトルの向きの近さを測る演算。
+                  whyLearn: 類似度、射影、距離、学習アルゴリズムで頻出する。
+                  promptHint: 二つの表現がどれだけ似た方向を向くかを見たいときに使う。
+                  aliases:
+                    - inner product
+                    - dot product
+                - slug: rank
+                  name: 階数
+                  summary: 行列が表せる独立な情報の次元数。
+                  whyLearn: 冗長性、可逆性、圧縮可能性を判断できる。
+                  promptHint: その変換がどれだけ情報を失っているかを見たいときに使う。
+                  aliases:
+                    - rank
+            - slug: systems-and-basis
+              name: 連立方程式と基底
+              summary: 線形制約の解き方と空間の座標系を扱う。
+              whyLearn: 解の存在・一意性・自由度を説明できる。
+              terms:
+                - slug: linear-system
+                  name: 線形方程式系
+                  summary: 複数の一次方程式を同時に満たす問題。
+                  whyLearn: 制約充足、最適化、推定問題の基本形になる。
+                  promptHint: 条件を連立で解きたいときに使う。
+                  aliases:
+                    - linear system
+                - slug: gaussian-elimination
+                  name: ガウス消去法
+                  summary: 行基本変形で線形方程式系を解く手法。
+                  whyLearn: 行列計算の意味を具体的に理解できる。
+                  promptHint: 連立方程式を段階的に簡単な形へ変形したいときに使う。
+                  aliases:
+                    - Gaussian elimination
+                - slug: basis
+                  name: 基底
+                  summary: 空間の要素を一意に表すための独立な生成系。
+                  whyLearn: 表現の座標系や次元圧縮の理解に直結する。
+                  promptHint: どの最小部品で空間全体を表せるかを考えるときに使う。
+                  aliases:
+                    - basis
+                - slug: linear-independence
+                  name: 線形独立
+                  summary: あるベクトルが他の線形結合で表せない性質。
+                  whyLearn: 冗長特徴の検出や基底の妥当性判断に必要。
+                  promptHint: その特徴群に重複表現がないかを見たいときに使う。
+                  aliases:
+                    - linear independence
+
+        - slug: geometry-and-decomposition
+          name: 幾何と分解
+          summary: 直交、近似、固有構造、分解を通じて線形構造を読む。
+          concepts:
+            - slug: orthogonality-and-least-squares
+              name: 直交と最小二乗
+              summary: 最良近似と誤差を幾何的に理解する。
+              whyLearn: 回帰、近似、射影、ノイズ除去の基礎になる。
+              terms:
+                - slug: orthogonality
+                  name: 直交
+                  summary: 内積がゼロで相互に独立な向きの関係。
+                  whyLearn: 誤差分解や基底選択を見通しよく理解できる。
+                  promptHint: 情報が互いに干渉しない方向を考えたいときに使う。
+                  aliases:
+                    - orthogonality
+                - slug: projection
+                  name: 射影
+                  summary: ベクトルをある部分空間へ落とし込む操作。
+                  whyLearn: 近似、圧縮、フィルタリングの共通図式になる。
+                  promptHint: 複雑な情報を許容された表現空間へ写したいときに使う。
+                  aliases:
+                    - projection
+                - slug: least-squares
+                  name: 最小二乗
+                  summary: 二乗誤差が最小になるように近似を求める考え方。
+                  whyLearn: 回帰、信号処理、推定の最頻出パターンの一つ。
+                  promptHint: 誤差を平均的に小さくする近似を求めたいときに使う。
+                  aliases:
+                    - least squares
+                - slug: gram-schmidt-process
+                  name: グラム・シュミット法
+                  summary: 独立なベクトル列から直交基底を作る手法。
+                  whyLearn: 直交基底と射影の理解を具体化できる。
+                  promptHint: 扱いにくい基底を直交化したいときに使う。
+                  aliases:
+                    - Gram-Schmidt
+            - slug: eigen-and-factorization
+              name: 固有構造と分解
+              summary: 線形変換の本質的な方向と低ランク構造を扱う。
+              whyLearn: 検索、推薦、圧縮、可視化、PCA の基礎になる。
+              terms:
+                - slug: eigenvalue
+                  name: 固有値
+                  summary: 線形変換で伸縮率だけが変わる方向に対応する値。
+                  whyLearn: 安定性や重要方向の判断に使える。
+                  promptHint: 変換の本質的なスケールを読みたいときに使う。
+                  aliases:
+                    - eigenvalue
+                - slug: eigenvector
+                  name: 固有ベクトル
+                  summary: 線形変換で向きが変わらない特別なベクトル。
+                  whyLearn: 主成分やランキング計算の理解に直結する。
+                  promptHint: 変換のもとでも形が保たれる方向を知りたいときに使う。
+                  aliases:
+                    - eigenvector
+                - slug: singular-value-decomposition
+                  name: 特異値分解
+                  summary: 行列を直交変換と伸縮に分ける分解。
+                  whyLearn: 次元圧縮、推薦、埋め込み近似、ノイズ除去で広く使う。
+                  promptHint: 行列の主要構造だけを抜き出したいときに使う。
+                  aliases:
+                    - SVD
+                    - singular value decomposition
+                - slug: principal-component-analysis
+                  name: 主成分分析
+                  summary: 分散が大きい方向へデータを射影する次元削減法。
+                  whyLearn: 可視化、特徴圧縮、相関構造の理解に役立つ。
+                  promptHint: 情報をなるべく保ちながら次元を減らしたいときに使う。
+                  aliases:
+                    - PCA
+                    - principal component analysis
+
+        - slug: calculus-and-optimization
+          name: 微分と最適化
+          summary: 変化率、勾配、凸性を使って最適化問題を扱う。
+          concepts:
+            - slug: gradients-convexity-and-optimization
+              name: 勾配と凸性と最適化
+              summary: 関数の変化と最小化のしやすさを扱う。
+              whyLearn: 学習アルゴリズムや調整問題の読解に必須。
+              terms:
+                - slug: derivative
+                  name: 導関数
+                  summary: 一変数関数の局所的な変化率。
+                  whyLearn: 最適化や感度分析の最小単位になる。
+                  promptHint: 入力を少し変えたとき出力がどう動くかを知りたいときに使う。
+                  aliases:
+                    - derivative
+                - slug: gradient
+                  name: 勾配
+                  summary: 多変数関数で最も増加する方向を表すベクトル。
+                  whyLearn: 学習や最適化の更新式を理解する中心概念。
+                  promptHint: どちらへ動けば値が最も増えるかを知りたいときに使う。
+                  aliases:
+                    - gradient
+                - slug: convex-function
+                  name: 凸関数
+                  summary: 線分の上にグラフが乗らない形の関数。
+                  whyLearn: 局所解と大域解の関係が素直になり、最適化が扱いやすい。
+                  promptHint: 局所最小がそのまま大域最小になる条件を見たいときに使う。
+                  aliases:
+                    - convex function
+                - slug: gradient-descent
+                  name: 勾配降下法
+                  summary: 勾配の逆方向へ進んで目的関数を下げる反復法。
+                  whyLearn: ML や調整問題の最適化の読み方の基本になる。
+                  promptHint: 少しずつ改善して最小値へ近づく方法を説明するときに使う。
+                  aliases:
+                    - gradient descent
+                - slug: lagrangian-duality
+                  name: ラグランジュ双対
+                  summary: 制約付き最適化を別の視点から解くための枠組み。
+                  whyLearn: 制約の意味と最適性条件を深く理解できる。
+                  promptHint: 制約付き問題を別の問題に写して考えたいときに使う。
+                  aliases:
+                    - Lagrangian duality
+
+    - slug: computation-theory-and-formal-languages
+      name: 計算理論と形式言語
+      summary: 言語と機械の対応、決定可能性、還元、複雑性、計算の限界を扱う領域。
+      whyLearn: 表現できるもの、判定できるもの、効率よく解けるものの境界を理解できる。
+      topicClusters:
+        - slug: automata-and-regular-languages
+          name: オートマトンと正規言語
+          summary: 有限状態で扱える言語と機械を扱う。
+          concepts:
+            - slug: regular-languages-and-automata
+              name: 正規言語と有限オートマトン
+              summary: 最も基本的な言語クラスと認識機械をまとめる。
+              whyLearn: 検索、字句解析、パターン認識の理論的土台になる。
+              terms:
+                - slug: regular-language
+                  name: 正規言語
+                  summary: 有限オートマトンで認識できる言語クラス。
+                  whyLearn: 正規表現や DFA/NFA の表現力の限界を理解できる。
+                  promptHint: 有限の記憶で処理できるパターンかを見たいときに使う。
+                  aliases:
+                    - regular language
+                - slug: deterministic-finite-automaton
+                  name: 決定性有限オートマトン
+                  summary: 各状態と入力で遷移先が一つに定まる有限機械。
+                  whyLearn: もっとも明快な状態遷移モデルとして重要。
+                  promptHint: 入力を一文字ずつ読んで一意に状態が進むモデルを考えるときに使う。
+                  aliases:
+                    - DFA
+                    - deterministic finite automaton
+                - slug: nondeterministic-finite-automaton
+                  name: 非決定性有限オートマトン
+                  summary: 遷移候補を複数持てる有限機械。
+                  whyLearn: 表現や構成を簡潔にしつつ DFA との関係を学べる。
+                  promptHint: 複数の遷移可能性をまとめて表したいときに使う。
+                  aliases:
+                    - NFA
+                    - nondeterministic finite automaton
+                - slug: regular-expression
+                  name: 正規表現
+                  summary: 正規言語を記述するための記法。
+                  whyLearn: テキスト処理や lexer の基礎と理論を結び付けられる。
+                  promptHint: 文字列パターンを宣言的に書きたいときに使う。
+                  aliases:
+                    - regex
+                    - regular expression
+            - slug: regularity-techniques
+              name: 正規性の判定技法
+              summary: ある言語が正規かどうかを判定する道具を扱う。
+              whyLearn: 形式言語のクラス分けを根拠ある形で説明できる。
+              terms:
+                - slug: closure-property
+                  name: 閉包性
+                  summary: ある操作をしても同じ言語クラスにとどまる性質。
+                  whyLearn: 新しい言語のクラス所属を既存知識から推論しやすくなる。
+                  promptHint: 和や連接や補集合を取っても同種と言えるかを見るときに使う。
+                  aliases:
+                    - closure property
+                - slug: pumping-lemma
+                  name: ポンピング補題
+                  summary: 正規言語や文脈自由言語で成り立つ繰り返し性質。
+                  whyLearn: 正規でないことの証明に頻出する。
+                  promptHint: その言語が有限状態では無理だと示したいときに使う。
+                  aliases:
+                    - pumping lemma
+                - slug: myhill-nerode-theorem
+                  name: マイヒル・ネローデの定理
+                  summary: 正規性と同値類の有限性を結び付ける定理。
+                  whyLearn: DFA 最小化と正規性理解を深められる。
+                  promptHint: 正規性を状態同値の観点から説明したいときに使う。
+                  aliases:
+                    - Myhill-Nerode theorem
+                - slug: dfa-minimization
+                  name: DFA 最小化
+                  summary: 同じ言語を認識する最小状態数の DFA を求める操作。
+                  whyLearn: 状態の本質数を意識できるようになる。
+                  promptHint: 余分な状態を削って本質構造だけにしたいときに使う。
+                  aliases:
+                    - DFA minimization
+
+        - slug: context-free-languages-and-parsing
+          name: 文脈自由言語と構文
+          summary: ネスト構造や構文木をもつ言語を扱う。
+          concepts:
+            - slug: grammars-and-context-free-languages
+              name: 文法と文脈自由言語
+              summary: 規則から文字列や木構造を生成する方法を扱う。
+              whyLearn: プログラミング言語やデータ形式の構文理解に直結する。
+              terms:
+                - slug: grammar
+                  name: 文法
+                  summary: 記号列を生成する規則の集合。
+                  whyLearn: 構文仕様を宣言的に表せる。
+                  promptHint: どの文字列が構文的に正しいかを規則で表したいときに使う。
+                  aliases:
+                    - grammar
+                - slug: context-free-grammar
+                  name: 文脈自由文法
+                  summary: 単一非終端記号を置き換える生成規則からなる文法。
+                  whyLearn: 多くのプログラミング言語構文の基本モデルだから。
+                  promptHint: ネストした構文を規則的に表したいときに使う。
+                  aliases:
+                    - CFG
+                    - context free grammar
+                - slug: parse-tree
+                  name: 構文木
+                  summary: 生成規則の適用過程を木として表したもの。
+                  whyLearn: 構文解析と意味解析の橋渡しになる。
+                  promptHint: 文字列がどの規則からどう生成されたかを可視化したいときに使う。
+                  aliases:
+                    - parse tree
+                    - syntax tree
+                - slug: pushdown-automaton
+                  name: プッシュダウン・オートマトン
+                  summary: スタックをもつ計算モデルで文脈自由言語を認識する。
+                  whyLearn: 有限状態だけでは表せないネスト構造を理解できる。
+                  promptHint: 括弧対応のような入れ子を機械で扱いたいときに使う。
+                  aliases:
+                    - PDA
+                    - pushdown automaton
+
+        - slug: computability-and-undecidability
+          name: 計算可能性と非決定可能性
+          summary: 何が原理的に判定できるか、できないかを扱う。
+          concepts:
+            - slug: turing-models-and-undecidability
+              name: チューリング機械と決定不能性
+              summary: 汎用計算モデルとその限界を扱う。
+              whyLearn: 自動化の限界線を理解し、無理な要求を見抜ける。
+              terms:
+                - slug: turing-machine
+                  name: チューリング機械
+                  summary: 汎用的な計算可能性を定義する標準モデル。
+                  whyLearn: 計算可能性議論の基準点になる。
+                  promptHint: 計算そのものを最小限の機械で定義したいときに使う。
+                  aliases:
+                    - Turing machine
+                - slug: decidable-language
+                  name: 決定可能言語
+                  summary: 受理か否かを必ず停止して判定できる言語。
+                  whyLearn: 判定問題が自動化可能かを整理できる。
+                  promptHint: yes か no を必ず返せる問題かを考えるときに使う。
+                  aliases:
+                    - decidable language
+                - slug: halting-problem
+                  name: 停止性問題
+                  summary: 任意プログラムが停止するかを一般には判定できない問題。
+                  whyLearn: 非決定可能性の代表例として限界理解に必須。
+                  promptHint: 実行前に停止性を完全判定できるかを問うときに使う。
+                  aliases:
+                    - halting problem
+                - slug: mapping-reduction
+                  name: 写像還元
+                  summary: ある問題を別の問題へ計算可能に移し替える手法。
+                  whyLearn: 難しさや非決定可能性を問題間で運べる。
+                  promptHint: 既知に難しい問題へ変換して難しさを示したいときに使う。
+                  aliases:
+                    - many one reduction
+                    - mapping reduction
+            - slug: reductions-and-impossibility
+              name: 還元と不可能性証明
+              summary: 難しさや不可能性を伝播させる議論を扱う。
+              whyLearn: 限界の所在を別問題へ移して説明できる。
+              terms:
+                - slug: rice-theorem
+                  name: ライスの定理
+                  summary: プログラムの非自明な意味的性質は一般には決定不能という定理。
+                  whyLearn: 静的解析の限界を理解するうえで重要。
+                  promptHint: プログラム意味に関する万能判定器が作れない理由を考えるときに使う。
+                  aliases:
+                    - Rice theorem
+                - slug: diagonalization
+                  name: 対角線論法
+                  summary: 自己参照的なずれを作って限界や非包含を示す手法。
+                  whyLearn: 計算理論の多くの不可能性証明の芯になる。
+                  promptHint: 一覧化された候補から必ず外れる対象を作りたいときに使う。
+                  aliases:
+                    - diagonalization
+                - slug: self-reference
+                  name: 自己参照
+                  summary: 対象が自分自身を参照する構造。
+                  whyLearn: 停止性や不完全性などの難しさの源を理解できる。
+                  promptHint: システムが自分自身について語ると何が起きるかを見るときに使う。
+                  aliases:
+                    - self reference
+                - slug: recognizable-language
+                  name: 半決定可能言語
+                  summary: 属する場合には停止して受理できるが、属さない場合に停止保証がない言語。
+                  whyLearn: 決定可能性との違いを通じて停止保証の難しさを学べる。
+                  promptHint: yes 側だけはいつか分かる問題を区別したいときに使う。
+                  aliases:
+                    - recognizable language
+                    - recursively enumerable language
+
+        - slug: complexity-and-limits
+          name: 複雑性と計算の限界
+          summary: 解けるだけでなく、どれくらい難しいかを理論的に位置づける。
+          concepts:
+            - slug: classical-complexity-and-randomness
+              name: 古典複雑性と拡張的視点
+              summary: 主要な複雑性クラスと検証可能性を扱う。
+              whyLearn: 問題の難しさを直感ではなく理論語彙で語れるようになる。
+              terms:
+                - slug: p
+                  name: P
+                  summary: 多項式時間で解ける決定問題のクラス。
+                  whyLearn: 効率的に解ける問題の代表的な基準になる。
+                  promptHint: 現実的に計算可能と言える目安を考えるときに使う。
+                  aliases:
+                    - P
+                - slug: np
+                  name: NP
+                  summary: 解の正しさを多項式時間で検証できる決定問題のクラス。
+                  whyLearn: 探索の難しさと検証のしやすさの差を捉えられる。
+                  promptHint: 解くのは難しくても答え合わせは速い問題を考えるときに使う。
+                  aliases:
+                    - NP
+                - slug: np-hard
+                  name: NP 困難
+                  summary: NP のどの問題よりも少なくとも難しい問題の分類。
+                  whyLearn: 最適化問題や探索問題の硬さを位置づけられる。
+                  promptHint: その問題が既知の難問族以上に難しいかを示したいときに使う。
+                  aliases:
+                    - NP-hard
+                - slug: np-complete
+                  name: NP 完全
+                  summary: NP に属し、かつ NP の中で最も難しい問題群。
+                  whyLearn: ある問題が計算困難の中心にあるかを判断できる。
+                  promptHint: 難しさの中心例として位置づけたいときに使う。
+                  aliases:
+                    - NP-complete
+                - slug: p-versus-np
+                  name: P 対 NP
+                  summary: 検証しやすい問題がすべて効率よく解けるかを問う未解決問題。
+                  whyLearn: 効率計算の限界についての最重要テーマを押さえられる。
+                  promptHint: 探索と検証の差が本質かどうかを考えるときに使う。
+                  aliases:
+                    - P vs NP
+                    - P versus NP
+                - slug: interactive-proof
+                  name: 対話型証明
+                  summary: 証明者と検証者のやり取りで正しさを確認する枠組み。
+                  whyLearn: 複雑性、暗号、ゼロ知識の接点を理解できる。
+                  promptHint: 一回の静的証明ではなく対話で確信を高めたいときに使う。
+                  aliases:
+                    - interactive proof
+                - slug: zero-knowledge-proof
+                  name: ゼロ知識証明
+                  summary: 正しさ以外の情報を漏らさずに主張を証明する方式。
+                  whyLearn: 理論計算機科学とセキュリティ実装の重要な接点になる。
+                  promptHint: 秘密を明かさずに知っていることだけ示したいときに使う。
+                  aliases:
+                    - ZKP
+                    - zero knowledge proof
+                - slug: bpp
+                  name: BPP
+                  summary: 乱択を使って高い確率で正解できる多項式時間問題クラス。
+                  whyLearn: ランダム化が計算能力に与える影響を考えられる。
+                  promptHint: 確率的に速く解けることを理論的に位置づけたいときに使う。
+                  aliases:
+                    - BPP
+
+edges:
+  - from: set
+    to: relation
+    relationType: prerequisite
+    reason: 関係は集合の直積上の部分集合として定義するのが基本だから。
+  - from: function
+    to: linear-regression
+    relationType: prerequisite
+    reason: 回帰は入力から出力への写像として理解すると整理しやすいから。
+  - from: mathematical-induction
+    to: structural-induction
+    relationType: related
+    reason: どちらも再帰的対象の正しさを示す枠組みであり、対象の種類だけが主に違うから。
+  - from: structural-induction
+    to: parse-tree
+    relationType: used_in
+    reason: 構文木に対する性質証明は構造的帰納法で書くのが自然だから。
+  - from: loop-invariant
+    to: software-engineering-quality
+    relationType: used_in
+    reason: ループ正当性のレビュー観点や形式検証の入口として使えるから。
+  - from: modular-arithmetic
+    to: security-privacy-governance
+    relationType: used_in
+    reason: 公開鍵暗号やハッシュまわりの基礎数理として再登場するから。
+  - from: conditional-probability
+    to: bayes-theorem
+    relationType: prerequisite
+    reason: ベイズの定理は条件付き確率の定義から導かれるから。
+  - from: expectation
+    to: law-of-large-numbers
+    relationType: prerequisite
+    reason: 大数の法則は標本平均が期待値へ近づくという主張だから。
+  - from: central-limit-theorem
+    to: confidence-interval
+    relationType: used_in
+    reason: 信頼区間の近似的な根拠として使われることが多いから。
+  - from: maximum-likelihood-estimation
+    to: linear-regression
+    relationType: related
+    reason: 線形回帰は特定の仮定の下で最尤推定として解釈できるから。
+  - from: overfitting
+    to: cross-validation
+    relationType: related
+    reason: 過学習の検出と抑制のために交差検証がよく使われるから。
+  - from: entropy
+    to: kl-divergence
+    relationType: related
+    reason: どちらも情報量の尺度であり、損失関数や分布比較で一緒に現れるから。
+  - from: entropy
+    to: artificial-intelligence-intelligent-systems
+    relationType: used_in
+    reason: 木分割、表現学習、生成モデル、探索などで情報量の概念が使われるから。
+  - from: matrix
+    to: singular-value-decomposition
+    relationType: prerequisite
+    reason: SVD は行列の構造分解として定義されるから。
+  - from: projection
+    to: least-squares
+    relationType: prerequisite
+    reason: 最小二乗解は部分空間への射影として理解すると本質が見えるから。
+  - from: eigenvector
+    to: principal-component-analysis
+    relationType: prerequisite
+    reason: PCA は共分散行列の主要固有ベクトルを使って方向を選ぶから。
+  - from: gradient
+    to: gradient-descent
+    relationType: prerequisite
+    reason: 勾配降下法は勾配の逆方向へ更新する手法だから。
+  - from: convex-function
+    to: gradient-descent
+    relationType: related
+    reason: 凸性があると勾配法の振る舞いを理論的に理解しやすいから。
+  - from: regular-language
+    to: regular-expression
+    relationType: compare_with
+    reason: 正規言語は言語クラスであり、正規表現はその記述手段だから。
+  - from: deterministic-finite-automaton
+    to: nondeterministic-finite-automaton
+    relationType: compare_with
+    reason: 表現は異なるが認識できる言語クラスは同じで、計算モデルの見方を比較できるから。
+  - from: regular-expression
+    to: programming-languages-software-construction
+    relationType: used_in
+    reason: 字句解析や文字列処理 API の理解と接続しやすいから。
+  - from: context-free-grammar
+    to: programming-languages-software-construction
+    relationType: used_in
+    reason: 言語構文やパーサ設計の理論的基礎になるから。
+  - from: turing-machine
+    to: halting-problem
+    relationType: prerequisite
+    reason: 停止性問題はチューリング機械上で定式化される代表例だから。
+  - from: mapping-reduction
+    to: np-complete
+    relationType: prerequisite
+    reason: NP 完全性証明は多くの場合多項式時間還元で行うから。
+  - from: np-hard
+    to: np-complete
+    relationType: compare_with
+    reason: NP 完全は NP 困難に属しつつ NP にも属する、という関係にあるから。
+  - from: satisfiability
+    to: sat
+    relationType: prerequisite
+    reason: SAT は充足可能性という性質を判定対象として定式化した問題だから。
+  - from: first-order-logic
+    to: smt
+    relationType: related
+    reason: SMT は論理式に理論を加えた自動推論として、一階論理的発想と強く接続するから。
+  - from: interactive-proof
+    to: zero-knowledge-proof
+    relationType: prerequisite
+    reason: ゼロ知識証明は対話型証明の一種として理解するのが自然だから。
+  - from: zero-knowledge-proof
+    to: security-privacy-governance
+    relationType: used_in
+    reason: 秘密を漏らさない検証という要件に直接つながるから。

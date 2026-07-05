@@ -1,0 +1,871 @@
+domain:
+  slug: ux-hci-service-design
+  name: UX、HCI、サービスデザイン
+  summary: "人、タスク、文脈、組織を含めて、相互作用やワークフロー、体験全体を設計する領域。"
+  boundaryNotes: "ユーザー理解、設計、評価、アクセシビリティ、サービス全体の接続を扱う。ロードマップ判断は Product Management、詳細な実装技術は Product Engineering、法令やセキュリティ統治は Security / Privacy に寄せる。"
+  knowledgeAreas:
+    - slug: human-centered-design-foundations
+      name: 人間中心設計の基礎
+      summary: "UX と HCI の基本定義、設計の反復原則、問題設定、認知の前提を扱う。"
+      whyLearn: "設計を見た目の改善ではなく、利用文脈に対する問題解決として捉えられるようになる。"
+      topicClusters:
+        - slug: standards-and-core-models
+          name: 標準と基本モデル
+          summary: "UX と HCI の基礎定義と、設計プロセスの標準的な見取り図を整理する。"
+          concepts:
+            - slug: usability-and-ux-definitions
+              name: ユーザビリティとUXの定義
+              summary: "使いやすさと体験品質を、利用文脈と目標達成の観点で捉える。"
+              whyLearn: "議論を好みや雰囲気ではなく、評価可能な言葉に変換できる。"
+              terms:
+                - slug: usability
+                  name: ユーザビリティ
+                  summary: "特定のユーザーが特定の文脈で目標を達成しやすい度合い。"
+                  whyLearn: "有効性、効率、満足度で体験を具体的に評価できる。"
+                  promptHint: "有効性、効率、満足度を用いて具体例を説明させる。"
+                  aliases: ["usability"]
+                - slug: user-experience
+                  name: ユーザー体験
+                  summary: "利用前、利用中、利用後を通じた知覚や感情を含む総合的な体験。"
+                  whyLearn: "操作性だけでなく期待、安心感、継続利用まで視野に入れられる。"
+                  promptHint: "ユーザビリティと UX の違いを対比させる。"
+                  aliases: ["UX", "user experience"]
+                - slug: context-of-use
+                  name: 利用文脈
+                  summary: "誰が、何の目的で、どの環境や制約の中で使うかを表す枠組み。"
+                  whyLearn: "同じUIでも文脈が違えば良し悪しが変わることを理解できる。"
+                  promptHint: "ユーザー、タスク、環境、制約に分けて要約させる。"
+                  aliases: ["use context", "context of use"]
+            - slug: human-centered-design-process
+              name: 人間中心設計プロセス
+              summary: "ユーザー理解、設計、評価、反復を一連の流れとして扱う。"
+              whyLearn: "設計を一発勝負ではなく学習ループとして進められる。"
+              terms:
+                - slug: iso-9241-210
+                  name: ISO 9241-210
+                  summary: "インタラクティブシステムの人間中心設計活動を定義する ISO 規格。"
+                  whyLearn: "組織や案件をまたいで使える設計プロセスの共通基盤になる。"
+                  promptHint: "規格が求める活動をプロジェクト工程に結びつけて説明させる。"
+                  aliases: ["ISO 9241-210", "human-centred design"]
+                - slug: double-diamond
+                  name: ダブルダイヤモンド
+                  summary: "発散と収束を繰り返して問題発見と解決案形成を進める設計モデル。"
+                  whyLearn: "探索不足なのか、収束不足なのかを会話できるようになる。"
+                  promptHint: "Discover、Define、Develop、Deliver を例とともに説明させる。"
+                  aliases: ["Double Diamond"]
+                - slug: iterative-design
+                  name: 反復設計
+                  summary: "設計案を試し、学びを反映しながら段階的に改善していく進め方。"
+                  whyLearn: "調査や評価結果を次の設計に必ず戻す習慣を作れる。"
+                  promptHint: "なぜ反復が必要かを失敗コストの観点から説明させる。"
+                  aliases: ["iteration", "iterative design"]
+        - slug: framing-and-cognitive-bases
+          name: 問題設定と認知の基礎
+          summary: "設計対象の問題をどう定義し、人の理解や判断の限界をどう扱うかを整理する。"
+          concepts:
+            - slug: problem-and-principle-framing
+              name: 問題設定と原則化
+              summary: "何を解くのかを明確にし、一貫した設計判断の原則を置く。"
+              whyLearn: "表層の要望をそのままUIに変換することを避けられる。"
+              terms:
+                - slug: problem-statement
+                  name: 問題定義
+                  summary: "誰のどんな困りごとを、どの状況で解くのかを簡潔に表した文。"
+                  whyLearn: "議論を機能の話から問題の話へ戻せる。"
+                  promptHint: "ユーザー、状況、障害、望ましい変化の形で書かせる。"
+                  aliases: ["problem statement"]
+                - slug: design-principle
+                  name: 設計原則
+                  summary: "繰り返し判断で使う価値基準やルールを短く表現したもの。"
+                  whyLearn: "細部のUI判断を場当たりではなく一貫した方針で揃えられる。"
+                  promptHint: "良い設計原則の条件を具体例付きで説明させる。"
+                  aliases: ["principle", "design principles"]
+                - slug: dark-pattern
+                  name: ダークパターン
+                  summary: "ユーザーの意図より事業側の都合を優先して誘導や操作を行う設計。"
+                  whyLearn: "短期成果と長期信頼のトレードオフを見抜ける。"
+                  promptHint: "便利な最適化とダークパターンの境界を説明させる。"
+                  aliases: ["dark pattern", "deceptive design"]
+            - slug: cognition-and-mental-models
+              name: 認知とメンタルモデル
+              summary: "人がどう理解し、予測し、混乱するかを前提に設計する。"
+              whyLearn: "分かりにくさの原因をUIの好き嫌いではなく認知負荷として捉えられる。"
+              terms:
+                - slug: mental-model
+                  name: メンタルモデル
+                  summary: "ユーザーがその仕組みをどう理解しているかという内的なモデル。"
+                  whyLearn: "ラベルやレイアウトが期待とズレる理由を説明できる。"
+                  promptHint: "既存プロダクトの期待が新しいUIにどう影響するか説明させる。"
+                  aliases: ["mental model"]
+                - slug: conceptual-model
+                  name: 概念モデル
+                  summary: "システムが提供する仕組みを、ユーザーにどう理解させるかという設計側の表現。"
+                  whyLearn: "機能があるだけではなく、理解可能な形で見せる必要が分かる。"
+                  promptHint: "メンタルモデルとの違いを比較させる。"
+                  aliases: ["conceptual model"]
+                - slug: cognitive-load
+                  name: 認知負荷
+                  summary: "理解、記憶、判断に必要な心的負担の大きさ。"
+                  whyLearn: "選択肢過多や複雑な文言がなぜ離脱を生むか説明できる。"
+                  promptHint: "認知負荷を下げる具体的な設計手段を挙げさせる。"
+                  aliases: ["cognitive load"]
+    - slug: user-research-and-synthesis
+      name: ユーザー調査と統合
+      summary: "ユーザー理解を得るための調査手法と、得られた知見を構造化する方法を扱う。"
+      whyLearn: "思い込みではなく、観察と対話にもとづいて設計判断できるようになる。"
+      topicClusters:
+        - slug: discovery-research-methods
+          name: 発見のための調査手法
+          summary: "ユーザーの行動、文脈、継続的な経験を捉えるための代表的手法を整理する。"
+          concepts:
+            - slug: interviewing-and-observation
+              name: インタビューと観察
+              summary: "本人の語りと実際の行動の両方からニーズを捉える。"
+              whyLearn: "言ったことと実際にしたことのズレを含めて理解できる。"
+              terms:
+                - slug: user-interview
+                  name: ユーザーインタビュー
+                  summary: "ユーザーの目的、背景、困りごとを対話で深掘りする調査手法。"
+                  whyLearn: "表面化していない制約や判断基準を引き出せる。"
+                  promptHint: "良い質問と悪い誘導質問の違いを説明させる。"
+                  aliases: ["interview", "user interview"]
+                - slug: contextual-inquiry
+                  name: コンテクスチュアルインクワイアリ
+                  summary: "実際の利用環境で観察しながら質問する調査手法。"
+                  whyLearn: "作業の流れや周辺道具、他者との連携まで含めて理解できる。"
+                  promptHint: "通常のインタビューでは拾いにくい発見を説明させる。"
+                  aliases: ["contextual inquiry"]
+                - slug: field-study
+                  name: フィールド調査
+                  summary: "実際の現場や生活環境でユーザー行動を観察する調査活動。"
+                  whyLearn: "利用文脈を机上の想像ではなく現場の事実で把握できる。"
+                  promptHint: "ラボ調査との違いを利点と限界で比較させる。"
+                  aliases: ["field study"]
+            - slug: longitudinal-and-structured-research
+              name: 継続観察と構造分析
+              summary: "単発では見えにくい時間変化や作業構造を捉える。"
+              whyLearn: "継続利用や複雑業務のつまずきを把握できる。"
+              terms:
+                - slug: diary-study
+                  name: ダイアリースタディ
+                  summary: "数日から数週間にわたり、ユーザーの経験を継続的に記録してもらう調査。"
+                  whyLearn: "長期利用や繰り返し行動の実態を捉えられる。"
+                  promptHint: "インタビューでは取れない時間的知見を説明させる。"
+                  aliases: ["diary study"]
+                - slug: task-analysis
+                  name: タスク分析
+                  summary: "目標達成までの手順、判断、分岐、依存関係を整理する分析。"
+                  whyLearn: "UI単位ではなくタスク全体の難所を明らかにできる。"
+                  promptHint: "タスク分析から画面要件へ落とす流れを説明させる。"
+                  aliases: ["task analysis"]
+                - slug: ethnography
+                  name: エスノグラフィ
+                  summary: "文化や慣習を含む現場の実践を厚く理解する調査姿勢。"
+                  whyLearn: "仕事や生活の文脈に埋め込まれた行動ルールを見つけやすい。"
+                  promptHint: "単なる観察とエスノグラフィの違いを説明させる。"
+                  aliases: ["ethnography"]
+        - slug: synthesis-and-representation
+          name: 統合と表現
+          summary: "集めた事実を意味のある洞察に変え、共有可能な形にする。"
+          concepts:
+            - slug: qualitative-synthesis
+              name: 定性データの統合
+              summary: "大量の発話や観察を構造化し、設計に使える洞察へ変換する。"
+              whyLearn: "生データの寄せ集めで終わらず、判断材料へ昇華できる。"
+              terms:
+                - slug: affinity-map
+                  name: アフィニティマップ
+                  summary: "観察や発言を近いテーマごとに束ねてパターンを見出す手法。"
+                  whyLearn: "断片的な発見をチームで共有しやすい構造に変えられる。"
+                  promptHint: "どういう粒度で束ねると良いかを説明させる。"
+                  aliases: ["affinity mapping", "affinity diagram"]
+                - slug: thematic-analysis
+                  name: テーマ分析
+                  summary: "定性データから繰り返し現れる意味のまとまりを抽出する分析。"
+                  whyLearn: "個別エピソードを一般化して比較可能にできる。"
+                  promptHint: "コード化からテーマ化までの流れを説明させる。"
+                  aliases: ["thematic analysis"]
+                - slug: insight-statement
+                  name: インサイト文
+                  summary: "観察事実から導いた意味のある理解を短く表現した文。"
+                  whyLearn: "発見をそのまま並べるのではなく、意思決定に使える形にできる。"
+                  promptHint: "事実と解釈を混同しない書き方を説明させる。"
+                  aliases: ["insight", "insight statement"]
+            - slug: user-modeling-artifacts
+              name: ユーザーモデリングの成果物
+              summary: "知見をチームで再利用しやすいモデルやストーリーに落とす。"
+              whyLearn: "調査結果を設計、優先順位、レビューに繰り返し使える。"
+              terms:
+                - slug: persona
+                  name: ペルソナ
+                  summary: "実在ユーザー群を代表する行動特性や目的をまとめたモデル。"
+                  whyLearn: "抽象的な対象ユーザーを、意思決定に使える人物像へ変換できる。"
+                  promptHint: "良いペルソナとステレオタイプの違いを説明させる。"
+                  aliases: ["persona"]
+                - slug: scenario
+                  name: シナリオ
+                  summary: "特定のユーザーが特定の状況で目標達成する流れを記述したもの。"
+                  whyLearn: "機能要件を利用場面に結びつけて検討できる。"
+                  promptHint: "ペルソナとシナリオの役割分担を説明させる。"
+                  aliases: ["scenario"]
+                - slug: empathy-map
+                  name: エンパシーマップ
+                  summary: "ユーザーが考えること、見ること、感じることを整理する簡易フレーム。"
+                  whyLearn: "初期の共有や共感形成を素早く進められる。"
+                  promptHint: "用途と限界を両方説明させる。"
+                  aliases: ["empathy map"]
+    - slug: information-architecture-and-content-design
+      name: 情報アーキテクチャとコンテンツ設計
+      summary: "情報の構造、ラベル、ナビゲーション、文言、フォームの理解しやすさを扱う。"
+      whyLearn: "高機能でも見つからない、読めない、入力しづらい体験を防げる。"
+      topicClusters:
+        - slug: information-structure
+          name: 情報構造
+          summary: "情報をどう分類し、どう見つけやすくするかを整理する。"
+          concepts:
+            - slug: structure-and-labeling
+              name: 構造化とラベリング
+              summary: "情報群を分類し、理解しやすい名前と導線を与える。"
+              whyLearn: "見つけやすさと学習しやすさの基盤になる。"
+              terms:
+                - slug: taxonomy
+                  name: タクソノミー
+                  summary: "情報を分類するための体系的なカテゴリ構造。"
+                  whyLearn: "メニュー、検索、コンテンツ運用の一貫性を保てる。"
+                  promptHint: "分類軸が悪いと何が起こるか説明させる。"
+                  aliases: ["taxonomy"]
+                - slug: sitemap
+                  name: サイトマップ
+                  summary: "情報構造やページ階層を俯瞰して表した図。"
+                  whyLearn: "抜け漏れや重複を上流で発見しやすい。"
+                  promptHint: "ナビゲーション設計とサイトマップの関係を説明させる。"
+                  aliases: ["sitemap"]
+                - slug: navigation-model
+                  name: ナビゲーションモデル
+                  summary: "ユーザーが目的地へ到達するための導線の設計方針。"
+                  whyLearn: "構造が正しくても、たどり着きにくい導線を防げる。"
+                  promptHint: "階層型とタスク型の違いを説明させる。"
+                  aliases: ["navigation model"]
+            - slug: ia-validation
+              name: IA の検証
+              summary: "分類やラベルがユーザー期待に合っているかを調べる。"
+              whyLearn: "作り手の都合で決めた構造を早い段階で修正できる。"
+              terms:
+                - slug: card-sorting
+                  name: カードソーティング
+                  summary: "ユーザーに情報項目を分類してもらい、期待するまとまりを把握する手法。"
+                  whyLearn: "ユーザーのメンタルモデルに沿った分類を作りやすい。"
+                  promptHint: "オープンとクローズドの使い分けを説明させる。"
+                  aliases: ["card sorting"]
+                - slug: tree-testing
+                  name: ツリーテスト
+                  summary: "ラベルと階層だけを使って情報が見つかるかを検証する手法。"
+                  whyLearn: "画面デザインの影響を除いて IA そのものを評価できる。"
+                  promptHint: "カードソーティングとの違いを説明させる。"
+                  aliases: ["tree testing"]
+                - slug: findability
+                  name: 発見可能性
+                  summary: "必要な情報や機能を見つけやすい度合い。"
+                  whyLearn: "使えるのに見つからない体験を評価する視点になる。"
+                  promptHint: "検索とナビゲーションの両面から説明させる。"
+                  aliases: ["findability"]
+        - slug: content-and-forms
+          name: コンテンツとフォーム
+          summary: "理解しやすい文言、質問設計、入力支援、エラー伝達を扱う。"
+          concepts:
+            - slug: content-design-fundamentals
+              name: コンテンツ設計の基礎
+              summary: "情報を読めるだけでなく使える形に整える。"
+              whyLearn: "UI が正しくても文言が悪いと失敗する理由を理解できる。"
+              terms:
+                - slug: plain-language
+                  name: プレーンランゲージ
+                  summary: "ユーザーが一読して理解しやすい明確で簡潔な表現。"
+                  whyLearn: "専門用語や行政語を減らし、誤解や離脱を減らせる。"
+                  promptHint: "難しい文を平易に書き換えさせる。"
+                  aliases: ["plain language"]
+                - slug: microcopy
+                  name: マイクロコピー
+                  summary: "ボタン、ラベル、補助文、確認文など短い文言の設計。"
+                  whyLearn: "小さな文言が行動と信頼に大きく影響することを理解できる。"
+                  promptHint: "良いマイクロコピーの条件を説明させる。"
+                  aliases: ["microcopy", "UX writing"]
+                - slug: content-style-guide
+                  name: コンテンツスタイルガイド
+                  summary: "語彙、書き方、トーン、表記を揃えるためのルール集。"
+                  whyLearn: "画面ごとの言い回しのぶれを減らせる。"
+                  promptHint: "なぜデザインシステムと接続すべきか説明させる。"
+                  aliases: ["style guide", "content style guide"]
+            - slug: forms-and-guidance
+              name: フォームと入力支援
+              summary: "ユーザーに必要な情報を無理なく入力してもらうための設計。"
+              whyLearn: "申し込みや設定の途中離脱を減らせる。"
+              terms:
+                - slug: question-design
+                  name: 質問設計
+                  summary: "何をどの順番で、どの表現で聞くかを設計すること。"
+                  whyLearn: "ユーザーの理解負荷と入力ミスを減らせる。"
+                  promptHint: "悪い設問例を改善させる。"
+                  aliases: ["question design"]
+                - slug: error-message
+                  name: エラーメッセージ
+                  summary: "何が問題で、どう直せばよいかを伝えるメッセージ。"
+                  whyLearn: "失敗をユーザー責任にせず回復可能な体験へ変えられる。"
+                  promptHint: "悪いエラーメッセージを改善させる。"
+                  aliases: ["error message", "validation message"]
+                - slug: progressive-disclosure
+                  name: プログレッシブディスクロージャ
+                  summary: "必要な複雑さだけを段階的に見せる設計手法。"
+                  whyLearn: "初学者の負荷を抑えつつ上級者も妨げにくい。"
+                  promptHint: "隠しすぎと見せすぎの中間を説明させる。"
+                  aliases: ["progressive disclosure"]
+    - slug: interaction-design-and-prototyping
+      name: インタラクションデザインとプロトタイピング
+      summary: "操作、反応、状態遷移、試作を通じて、画面レベルの体験を設計する。"
+      whyLearn: "分かる、押せる、戻れる、学べる UI を設計しやすくなる。"
+      topicClusters:
+        - slug: interaction-principles
+          name: インタラクション原則
+          summary: "人が行動しやすく、結果を理解しやすい操作の原則を扱う。"
+          concepts:
+            - slug: signifiers-and-feedback
+              name: 手がかりと反応
+              summary: "何ができるか、何が起きたかを明確に伝える。"
+              whyLearn: "操作ミスや不安を減らし、学習コストを下げられる。"
+              terms:
+                - slug: affordance
+                  name: アフォーダンス
+                  summary: "その対象に対してどのような行為が可能かという性質。"
+                  whyLearn: "クリック可能性や操作可能性の設計を考えやすくなる。"
+                  promptHint: "実アフォーダンスと見かけの手がかりの違いを説明させる。"
+                  aliases: ["affordance"]
+                - slug: signifier
+                  name: シグニファイア
+                  summary: "何ができるかをユーザーに示す視覚的または聴覚的な手がかり。"
+                  whyLearn: "押せる場所や現在状態を明示する理由が分かる。"
+                  promptHint: "アフォーダンスとの違いを説明させる。"
+                  aliases: ["signifier"]
+                - slug: feedback
+                  name: フィードバック
+                  summary: "操作の結果や現在の状態をユーザーに返す反応。"
+                  whyLearn: "保存されたか、処理中か、失敗したかを安心して理解させられる。"
+                  promptHint: "良いフィードバックの条件を説明させる。"
+                  aliases: ["feedback"]
+            - slug: behavioral-laws-and-memory
+              name: 行動法則と記憶負荷
+              summary: "選択、到達、記憶の負担を減らすための実践的な法則を扱う。"
+              whyLearn: "なぜその配置や選択肢数にするのかを説明できる。"
+              terms:
+                - slug: fitts-law
+                  name: フィッツの法則
+                  summary: "対象までの距離と大きさが選択時間に影響するという法則。"
+                  whyLearn: "タップ領域や主要CTA配置の判断に使える。"
+                  promptHint: "モバイルUIでの具体例を説明させる。"
+                  aliases: ["Fitts's Law", "Fitts law"]
+                - slug: hicks-law
+                  name: ヒックの法則
+                  summary: "選択肢が増えるほど意思決定に時間がかかるという法則。"
+                  whyLearn: "メニューや初回導線で選択肢を絞る理由が分かる。"
+                  promptHint: "選択肢を減らす以外の対処も説明させる。"
+                  aliases: ["Hick's Law", "Hick-Hyman Law"]
+                - slug: recognition-over-recall
+                  name: 再認優先
+                  summary: "思い出させるより見れば分かる状態を優先する設計原則。"
+                  whyLearn: "アイコン、履歴、候補表示、既知パターンの価値が分かる。"
+                  promptHint: "入力補完や最近使った項目と結びつけて説明させる。"
+                  aliases: ["recognition over recall"]
+        - slug: flows-and-prototypes
+          name: フローと試作
+          summary: "タスクの流れと状態遷移を形にし、評価可能な試作品へ落とす。"
+          concepts:
+            - slug: flows-and-critical-states
+              name: フローと重要状態
+              summary: "画面単位ではなく、開始から完了までの流れを設計する。"
+              whyLearn: "途中離脱や行き止まりを画面横断で発見できる。"
+              terms:
+                - slug: user-flow
+                  name: ユーザーフロー
+                  summary: "ユーザーが目標達成までにたどる主要な画面や分岐の流れ。"
+                  whyLearn: "画面単体では見えない詰まりや遠回りを見つけやすい。"
+                  promptHint: "タスクフローと画面遷移の関係を説明させる。"
+                  aliases: ["user flow"]
+                - slug: onboarding
+                  name: オンボーディング
+                  summary: "初回利用時に価値理解と基本行動を支援する体験設計。"
+                  whyLearn: "初回離脱を減らし、継続利用につながる体験を作れる。"
+                  promptHint: "説明過多と学習不足のバランスを説明させる。"
+                  aliases: ["onboarding"]
+                - slug: empty-state
+                  name: エンプティステート
+                  summary: "まだデータがない状態や結果がない状態の画面設計。"
+                  whyLearn: "最初の一歩を示し、空白を混乱にしない設計ができる。"
+                  promptHint: "良い empty state に必要な要素を説明させる。"
+                  aliases: ["empty state"]
+            - slug: prototyping-methods
+              name: プロトタイピング手法
+              summary: "検証目的に応じて試作品の忠実度と表現を選ぶ。"
+              whyLearn: "作り込みすぎや学び不足を避けられる。"
+              terms:
+                - slug: wireframe
+                  name: ワイヤーフレーム
+                  summary: "構造や優先順位を粗く示した低忠実度の画面案。"
+                  whyLearn: "見た目に引っ張られず情報設計を先に検討できる。"
+                  promptHint: "モックアップとの違いを説明させる。"
+                  aliases: ["wireframe"]
+                - slug: paper-prototype
+                  name: ペーパープロトタイプ
+                  summary: "紙や簡易素材で作る低コストの試作品。"
+                  whyLearn: "早い段階で会話と検証を始められる。"
+                  promptHint: "どんな問いに向くかを説明させる。"
+                  aliases: ["paper prototype"]
+                - slug: interactive-prototype
+                  name: インタラクティブプロトタイプ
+                  summary: "遷移や反応を含めて操作感を確認できる試作品。"
+                  whyLearn: "フローや状態変化の分かりにくさを検証しやすい。"
+                  promptHint: "低忠実度と高忠実度の使い分けを説明させる。"
+                  aliases: ["interactive prototype", "clickable prototype"]
+    - slug: accessibility-inclusive-global-ux
+      name: アクセシビリティとインクルーシブ・グローバルUX
+      summary: "誰もが使える体験を実現するための標準、配慮、国際対応を扱う。"
+      whyLearn: "アクセシビリティを後付けチェックではなく設計の前提にできる。"
+      topicClusters:
+        - slug: standards-and-semantic-accessibility
+          name: 標準とセマンティクス
+          summary: "Web アクセシビリティの基準と、意味づけによる支援技術互換を整理する。"
+          concepts:
+            - slug: conformance-and-principles
+              name: 適合基準と原則
+              summary: "アクセシビリティをレビュー可能な基準へ落とす。"
+              whyLearn: "良し悪しを個人の感覚ではなく共通基準で議論できる。"
+              terms:
+                - slug: wcag-2-2
+                  name: WCAG 2.2
+                  summary: "Web コンテンツのアクセシビリティ要件を定める現行の主要標準。"
+                  whyLearn: "実務で最も参照されるアクセシビリティ基準を押さえられる。"
+                  promptHint: "なぜ現在は WCAG 2.2 を基準にするのか説明させる。"
+                  aliases: ["WCAG 2.2", "Web Content Accessibility Guidelines 2.2"]
+                - slug: pour
+                  name: POUR原則
+                  summary: "知覚可能、操作可能、理解可能、堅牢の4原則。"
+                  whyLearn: "細かい基準を大きな設計原則として整理できる。"
+                  promptHint: "各原則に具体例を対応づけて説明させる。"
+                  aliases: ["POUR"]
+                - slug: wai-aria
+                  name: WAI-ARIA
+                  summary: "支援技術に対して役割や状態を伝えるための属性仕様。"
+                  whyLearn: "ネイティブ要素だけでは足りない場面で意味づけを補える。"
+                  promptHint: "使いすぎが危険な理由も説明させる。"
+                  aliases: ["ARIA", "WAI-ARIA"]
+            - slug: accessible-operability
+              name: 操作可能性の設計
+              summary: "キーボード操作や名前付けなど、実際の利用可能性を担保する。"
+              whyLearn: "アクセシビリティを抽象論で終わらせず具体レビューに落とせる。"
+              terms:
+                - slug: keyboard-navigation
+                  name: キーボード操作
+                  summary: "マウスなしでも主要操作が完結できる状態。"
+                  whyLearn: "支援技術利用者だけでなく、高速操作や障害時にも効く。"
+                  promptHint: "タブ順やスキップの観点を説明させる。"
+                  aliases: ["keyboard navigation"]
+                - slug: focus-management
+                  name: フォーカス管理
+                  summary: "現在操作対象がどこにあるかを適切に制御し可視化すること。"
+                  whyLearn: "モーダルや動的UIで迷子になる問題を防げる。"
+                  promptHint: "モーダルの開閉で何をすべきか説明させる。"
+                  aliases: ["focus management"]
+                - slug: accessible-name
+                  name: アクセシブルネーム
+                  summary: "支援技術が要素をどう読み上げるかを決める名前情報。"
+                  whyLearn: "アイコンボタンや複合部品の意味が伝わらない問題を防げる。"
+                  promptHint: "見た目のラベルと読み上げ名の違いを説明させる。"
+                  aliases: ["accessible name"]
+        - slug: inclusion-and-globalization
+          name: 包摂と国際対応
+          summary: "多様な身体、認知、言語、文化に配慮した体験設計を整理する。"
+          concepts:
+            - slug: inclusive-design-practice
+              name: インクルーシブデザイン実践
+              summary: "平均的ユーザーではなく多様な能力や状況から設計を始める。"
+              whyLearn: "一部の人向けの配慮が全体の使いやすさを高めることを理解できる。"
+              terms:
+                - slug: inclusive-design
+                  name: インクルーシブデザイン
+                  summary: "多様な人を排除しないよう、差異を設計の出発点に置く考え方。"
+                  whyLearn: "アクセシビリティを要件消化ではなく価値創出として扱える。"
+                  promptHint: "アクセシビリティとの違いと重なりを説明させる。"
+                  aliases: ["inclusive design"]
+                - slug: assistive-technology
+                  name: 支援技術
+                  summary: "スクリーンリーダーや拡大表示など利用を支えるツール。"
+                  whyLearn: "設計が実際にどのように解釈されるかを理解できる。"
+                  promptHint: "どのような支援技術ユーザーを想定すべきか説明させる。"
+                  aliases: ["AT", "assistive technology"]
+                - slug: color-contrast
+                  name: 色コントラスト
+                  summary: "文字や重要要素が背景と十分に区別できる度合い。"
+                  whyLearn: "見た目の好みではなく可読性と判別性の基礎になる。"
+                  promptHint: "色だけに依存しない設計もあわせて説明させる。"
+                  aliases: ["color contrast", "contrast ratio"]
+            - slug: internationalization-and-localization
+              name: 国際化とローカライズ
+              summary: "異なる言語、書記体系、文化で利用できるように設計する。"
+              whyLearn: "翻訳後に壊れるUIや文化不適合な体験を減らせる。"
+              terms:
+                - slug: internationalization
+                  name: 国際化
+                  summary: "多言語、多地域対応しやすい構造で設計・実装すること。"
+                  whyLearn: "後からの翻訳対応コストを大きく下げられる。"
+                  promptHint: "文字列外出し以外に何が必要か説明させる。"
+                  aliases: ["i18n", "internationalization"]
+                - slug: localization
+                  name: ローカライズ
+                  summary: "特定の言語や地域に合わせて表現や書式を調整すること。"
+                  whyLearn: "単なる翻訳では足りない調整範囲を理解できる。"
+                  promptHint: "日付、通貨、敬称の例で説明させる。"
+                  aliases: ["l10n", "localization"]
+                - slug: right-to-left
+                  name: 右から左のレイアウト
+                  summary: "アラビア語などの表記方向に対応する表示と操作の考慮。"
+                  whyLearn: "グローバル対応で壊れやすいレイアウトの注意点が分かる。"
+                  promptHint: "単純な左右反転では足りない点を説明させる。"
+                  aliases: ["RTL", "right-to-left"]
+    - slug: service-design-and-orchestration
+      name: サービスデザインとオーケストレーション
+      summary: "単一画面ではなく、組織・チャネル・プロセスをまたぐ体験全体を設計する。"
+      whyLearn: "UI 改善だけでは解けない end-to-end の問題を扱えるようになる。"
+      topicClusters:
+        - slug: journey-and-blueprint-models
+          name: ジャーニーとブループリント
+          summary: "ユーザーから見た流れと、裏側の提供構造を分けて可視化する。"
+          concepts:
+            - slug: journey-modeling
+              name: ジャーニーモデリング
+              summary: "体験の流れ、接点、感情、障害をユーザー視点で整理する。"
+              whyLearn: "つながっていない施策を end-to-end の問題として見直せる。"
+              terms:
+                - slug: customer-journey-map
+                  name: カスタマージャーニーマップ
+                  summary: "ユーザーがサービス全体を通じて経験する段階や接点を可視化した図。"
+                  whyLearn: "画面ごとでは見えない断絶や感情変化を捉えられる。"
+                  promptHint: "フローマップとの違いを説明させる。"
+                  aliases: ["journey map", "customer journey map"]
+                - slug: touchpoint
+                  name: タッチポイント
+                  summary: "ユーザーがサービスと接する具体的な接点。"
+                  whyLearn: "どの接点で期待が形成され、どこで損なわれるかを考えられる。"
+                  promptHint: "デジタル以外の接点も含めて説明させる。"
+                  aliases: ["touchpoint"]
+                - slug: pain-point
+                  name: ペインポイント
+                  summary: "利用者が負担や不満を感じる具体的な摩擦点。"
+                  whyLearn: "改善対象を抽象論ではなく体験上の問題として特定できる。"
+                  promptHint: "症状と原因を分けて説明させる。"
+                  aliases: ["pain point"]
+            - slug: service-blueprinting
+              name: サービスブループリント
+              summary: "ユーザー行動に対応する裏側の人、プロセス、システムを可視化する。"
+              whyLearn: "体験課題を運用や組織の問題に接続できる。"
+              terms:
+                - slug: service-blueprint
+                  name: サービスブループリント
+                  summary: "サービス提供に必要な前面と背面の要素を並べて示す図。"
+                  whyLearn: "体験課題と内部オペレーションを同時に議論できる。"
+                  promptHint: "ジャーニーマップとの違いを説明させる。"
+                  aliases: ["service blueprint"]
+                - slug: frontstage-backstage
+                  name: フロントステージとバックステージ
+                  summary: "ユーザーから見える活動と見えない活動の区別。"
+                  whyLearn: "見えない業務やシステム制約が体験をどう作るか分かる。"
+                  promptHint: "具体的なサービス例で両者を分けさせる。"
+                  aliases: ["frontstage", "backstage"]
+                - slug: line-of-visibility
+                  name: 可視線
+                  summary: "ユーザーに見える活動と見えない活動の境界線。"
+                  whyLearn: "何を透明化し、何を内部に留めるかを設計できる。"
+                  promptHint: "問い合わせ対応や配送通知の例で説明させる。"
+                  aliases: ["line of visibility"]
+        - slug: ecosystem-and-co-creation
+          name: エコシステムと共創
+          summary: "関係者、制度、チャネル、運用ルールを含むサービス全体を扱う。"
+          concepts:
+            - slug: stakeholder-and-ecosystem-mapping
+              name: ステークホルダーと生態系の可視化
+              summary: "誰が関わり、何が相互作用しているかを整理する。"
+              whyLearn: "体験課題がどこで生まれるか、権限と責任の位置が見える。"
+              terms:
+                - slug: stakeholder-map
+                  name: ステークホルダーマップ
+                  summary: "関係者の役割、影響力、関係性を整理した図。"
+                  whyLearn: "設計変更の合意形成や巻き込み対象を見誤りにくい。"
+                  promptHint: "影響力と関心の違いを説明させる。"
+                  aliases: ["stakeholder map"]
+                - slug: ecosystem-map
+                  name: エコシステムマップ
+                  summary: "サービスを取り巻く組織、技術、制度、価値交換を俯瞰する図。"
+                  whyLearn: "単一組織では解けない課題を構造的に見られる。"
+                  promptHint: "ブループリントとの違いを説明させる。"
+                  aliases: ["ecosystem map", "system map"]
+                - slug: service-ecosystem
+                  name: サービスエコシステム
+                  summary: "複数の関係者や制度が相互依存して成り立つサービス全体。"
+                  whyLearn: "画面改善だけでは変わらない構造的制約を認識できる。"
+                  promptHint: "個別プロダクトとサービスエコシステムの差を説明させる。"
+                  aliases: ["service ecosystem"]
+            - slug: codesign-and-omnichannel-operations
+              name: 共創とチャネル統合
+              summary: "複数関係者で設計し、チャネル横断で一貫した体験を作る。"
+              whyLearn: "現実のサービス改善は部門横断でないと成立しないことを学べる。"
+              terms:
+                - slug: co-creation
+                  name: 共創
+                  summary: "ユーザーや関係者を設計プロセスに参加させる実践。"
+                  whyLearn: "机上の設計では見落とす現場知を取り込める。"
+                  promptHint: "参加型設計の利点と注意点を説明させる。"
+                  aliases: ["co-creation", "co-design"]
+                - slug: service-standard
+                  name: サービス標準
+                  summary: "良いサービスが満たすべき基準や原則をまとめた共通ルール。"
+                  whyLearn: "個別チームの工夫を組織全体の再現可能な品質へ変えられる。"
+                  promptHint: "デザインシステムとの違いを説明させる。"
+                  aliases: ["service standard"]
+                - slug: omnichannel
+                  name: オムニチャネル
+                  summary: "複数チャネルをまたいでも一貫して続けられる体験設計。"
+                  whyLearn: "Web、メール、窓口、電話が分断されたサービスを改善できる。"
+                  promptHint: "マルチチャネルとの違いを説明させる。"
+                  aliases: ["omnichannel"]
+    - slug: evaluation-measurement-and-design-systems
+      name: 評価・計測・デザインシステム
+      summary: "UX の良し悪しを検証し、継続的に改善し、組織でスケールさせる方法を扱う。"
+      whyLearn: "良いデザインを偶然ではなく再現可能な仕組みにできる。"
+      topicClusters:
+        - slug: evaluation-methods
+          name: 評価手法
+          summary: "専門家レビューとユーザーテストの代表的な方法を整理する。"
+          concepts:
+            - slug: expert-review-and-inspection
+              name: 専門家レビューとインスペクション
+              summary: "利用者調査の前後で、設計上の問題を効率よく見つける。"
+              whyLearn: "大きな問題を早い段階で低コストに発見できる。"
+              terms:
+                - slug: heuristic-evaluation
+                  name: ヒューリスティック評価
+                  summary: "既知の設計原則に照らしてUI上の問題を点検する手法。"
+                  whyLearn: "ユーザーテスト前の粗い欠陥発見に向く。"
+                  promptHint: "どのような問題を見つけやすいか説明させる。"
+                  aliases: ["heuristic evaluation"]
+                - slug: cognitive-walkthrough
+                  name: 認知的ウォークスルー
+                  summary: "初回利用者が各ステップで次の正しい行動を推測できるかを検討する手法。"
+                  whyLearn: "学習性や初見の分かりにくさを点検しやすい。"
+                  promptHint: "ヒューリスティック評価との違いを説明させる。"
+                  aliases: ["cognitive walkthrough"]
+                - slug: design-critique
+                  name: デザインクリティーク
+                  summary: "設計意図と成果物を結びつけて議論するレビュー対話。"
+                  whyLearn: "好みの感想ではなく根拠ある改善議論ができる。"
+                  promptHint: "良い critique の観点を説明させる。"
+                  aliases: ["critique", "design critique"]
+            - slug: usability-and-accessibility-testing
+              name: ユーザビリティとアクセシビリティのテスト
+              summary: "実ユーザーや支援技術利用を通じて設計の妥当性を確かめる。"
+              whyLearn: "レビューだけでは見えない現実のつまずきを把握できる。"
+              terms:
+                - slug: usability-test
+                  name: ユーザビリティテスト
+                  summary: "ユーザーが実際に課題を行う様子を観察して問題点を見つける手法。"
+                  whyLearn: "設計意図と実際の行動のズレを直接確認できる。"
+                  promptHint: "探索型と検証型の違いを説明させる。"
+                  aliases: ["usability test", "usability testing"]
+                - slug: think-aloud-protocol
+                  name: 思考発話法
+                  summary: "作業中に考えていることを声に出してもらうテスト補助手法。"
+                  whyLearn: "迷いの原因や期待とのズレをその場で捉えられる。"
+                  promptHint: "発話誘導のしすぎが危険な理由を説明させる。"
+                  aliases: ["think aloud", "think-aloud protocol"]
+                - slug: accessibility-audit
+                  name: アクセシビリティ監査
+                  summary: "標準や実機確認にもとづいてアクセシビリティ課題を点検する活動。"
+                  whyLearn: "見落としやすい適合不備を体系的に把握できる。"
+                  promptHint: "自動検査と手動検査の役割を説明させる。"
+                  aliases: ["accessibility audit"]
+        - slug: metrics-and-design-systems
+          name: 計測とデザインシステム
+          summary: "測定可能なUX指標と、設計を組織で再利用する仕組みを扱う。"
+          concepts:
+            - slug: ux-metrics-and-questionnaires
+              name: UX指標と尺度
+              summary: "タスク単位からプロダクト全体まで、体験品質を測る方法を整理する。"
+              whyLearn: "良くなった気がするではなく、改善を説明可能にできる。"
+              terms:
+                - slug: task-success-rate
+                  name: タスク成功率
+                  summary: "ユーザーが与えられたタスクを完了できた割合。"
+                  whyLearn: "最も直接的に使える体験品質指標の一つになる。"
+                  promptHint: "時間や満足度とどう補完し合うか説明させる。"
+                  aliases: ["task success rate", "completion rate"]
+                - slug: system-usability-scale
+                  name: System Usability Scale
+                  summary: "10項目で知覚された使いやすさを測る代表的尺度。"
+                  whyLearn: "簡便に比較可能なベンチマークを得やすい。"
+                  promptHint: "SUS が診断ではなく全体指標である点を説明させる。"
+                  aliases: ["SUS", "System Usability Scale"]
+                - slug: single-ease-question
+                  name: Single Ease Question
+                  summary: "個別タスクのやさしさを1問で測る尺度。"
+                  whyLearn: "どの操作が難しいかをタスク単位で比較しやすい。"
+                  promptHint: "SUS との使い分けを説明させる。"
+                  aliases: ["SEQ", "Single Ease Question"]
+                - slug: heart-framework
+                  name: HEARTフレームワーク
+                  summary: "幸福度、関与、導入、継続、タスク成功でUXを測る枠組み。"
+                  whyLearn: "単発のテスト結果を継続的なプロダクト指標へつなげられる。"
+                  promptHint: "Goals、Signals、Metrics の流れで説明させる。"
+                  aliases: ["HEART", "HEART framework"]
+            - slug: design-systems-and-operations
+              name: デザインシステムと運用
+              summary: "一貫したUXを複数チームで継続的に作るための共通基盤を整える。"
+              whyLearn: "よい設計を再利用可能にし、組織スケールの品質を作れる。"
+              terms:
+                - slug: design-system
+                  name: デザインシステム
+                  summary: "パターン、部品、原則、ガイドを束ねた再利用可能な共通基盤。"
+                  whyLearn: "一貫性と開発速度を両立しやすくなる。"
+                  promptHint: "単なるUIキットとの違いを説明させる。"
+                  aliases: ["design system"]
+                - slug: component-library
+                  name: コンポーネントライブラリ
+                  summary: "再利用可能なUI部品をまとめた実装寄りの集合。"
+                  whyLearn: "デザインシステムのうち実装に近い部分を理解できる。"
+                  promptHint: "パターンや原則との違いを説明させる。"
+                  aliases: ["component library"]
+                - slug: design-token
+                  name: デザイントークン
+                  summary: "色、余白、文字などの設計判断を再利用可能な変数として表す単位。"
+                  whyLearn: "テーマ変更や複数チャネル展開を管理しやすい。"
+                  promptHint: "スタイル値の直書きと比較して説明させる。"
+                  aliases: ["design token"]
+                - slug: designops
+                  name: DesignOps
+                  summary: "設計の人、プロセス、道具、運用を整えて価値を拡張する実践。"
+                  whyLearn: "UX を属人的活動ではなく継続運用できる組織能力に変えられる。"
+                  promptHint: "デザインシステムだけでは足りない理由を説明させる。"
+                  aliases: ["DesignOps", "design operations"]
+
+edges:
+  - from: context-of-use
+    to: task-analysis
+    relationType: prerequisite
+    reason: "利用文脈を捉えないと、どのタスクをどう分解すべきか決めにくい。"
+  - from: context-of-use
+    to: usability
+    relationType: prerequisite
+    reason: "ユーザビリティは特定の利用文脈に対する評価だから。"
+  - from: user-interview
+    to: affinity-map
+    relationType: prerequisite
+    reason: "インタビューの観察結果を整理して洞察へ変える際によく使う。"
+  - from: contextual-inquiry
+    to: service-blueprint
+    relationType: used_in
+    reason: "現場観察で得た frontstage と backstage の知見がブループリント化に役立つ。"
+  - from: thematic-analysis
+    to: persona
+    relationType: used_in
+    reason: "行動パターンや目的の共通項をペルソナへ落とし込む基盤になる。"
+  - from: persona
+    to: scenario
+    relationType: prerequisite
+    reason: "誰のどの状況を描くかが決まるとシナリオを作りやすい。"
+  - from: card-sorting
+    to: tree-testing
+    relationType: compare_with
+    reason: "前者は構造を作るため、後者は構造を検証するために使う。"
+  - from: taxonomy
+    to: navigation-model
+    relationType: prerequisite
+    reason: "分類体系が曖昧だと、分かりやすい導線設計が難しい。"
+  - from: plain-language
+    to: microcopy
+    relationType: used_in
+    reason: "マイクロコピーの質は平易で明確な表現原則に強く依存する。"
+  - from: question-design
+    to: error-message
+    relationType: related
+    reason: "入力をどう求めるかと、失敗時にどう回復させるかは同じフォーム体験の両面だから。"
+  - from: mental-model
+    to: navigation-model
+    relationType: used_in
+    reason: "ユーザーがどう分類や導線を予想するかを反映する必要がある。"
+  - from: affordance
+    to: signifier
+    relationType: compare_with
+    reason: "前者は可能な行為の性質、後者はそれを伝える手がかりとして区別して理解したい。"
+  - from: user-flow
+    to: interactive-prototype
+    relationType: prerequisite
+    reason: "流れが整理されると、どの遷移や状態を試作すべきか明確になる。"
+  - from: wcag-2-2
+    to: accessibility-audit
+    relationType: prerequisite
+    reason: "監査の観点は WCAG の基準に基づいて整理されることが多い。"
+  - from: wai-aria
+    to: accessible-name
+    relationType: related
+    reason: "役割や状態だけでなく、支援技術に伝わる名称の設計が重要だから。"
+  - from: keyboard-navigation
+    to: focus-management
+    relationType: prerequisite
+    reason: "キーボード操作が成立するには、正しいフォーカス遷移が必要だから。"
+  - from: customer-journey-map
+    to: service-blueprint
+    relationType: compare_with
+    reason: "前者はユーザー視点、後者は提供構造視点を中心に可視化する。"
+  - from: stakeholder-map
+    to: ecosystem-map
+    relationType: related
+    reason: "どちらも関係者構造を扱うが、ecosystem map は価値交換や制度も含めて広く見る。"
+  - from: usability-test
+    to: heuristic-evaluation
+    relationType: compare_with
+    reason: "前者は実ユーザー観察、後者は専門家レビューとして補完関係にある。"
+  - from: think-aloud-protocol
+    to: usability-test
+    relationType: used_in
+    reason: "作業中の迷いを把握するために、テストの補助手法としてよく組み合わせる。"
+  - from: system-usability-scale
+    to: single-ease-question
+    relationType: compare_with
+    reason: "SUS は全体の知覚を、SEQ は個別タスクの容易さを測る。"
+  - from: heart-framework
+    to: task-success-rate
+    relationType: used_in
+    reason: "HEART の Task Success に具体メトリクスとして組み込める。"
+  - from: design-token
+    to: design-system
+    relationType: used_in
+    reason: "トークンはデザインシステムを実装と運用に接続する基礎単位になる。"
+  - from: component-library
+    to: design-system
+    relationType: used_in
+    reason: "コンポーネントライブラリはデザインシステムの実装面を支える。"
+  - from: dark-pattern
+    to: security-privacy-governance
+    relationType: related
+    reason: "誘導や操作的設計は UX の問題であると同時に、プライバシーやガバナンスとも接続する。"
+  - from: heart-framework
+    to: data-management-analytics-experimentation
+    relationType: related
+    reason: "継続指標として運用するにはイベント計測や分析基盤が必要になる。"
+  - from: designops
+    to: engineering-organization-delivery-systems
+    relationType: related
+    reason: "DesignOps は組織構造、責務分担、運用フローの設計と深く関わる。"
+  - from: design-system
+    to: product-engineering-application-architecture
+    relationType: related
+    reason: "デザインシステムは UI 一貫性だけでなく実装構成とも密接に結びつく。"
+  - from: service-standard
+    to: product-management-product-strategy
+    relationType: related
+    reason: "どの体験品質を組織として標準化するかは、プロダクト方針とも接続する。"
