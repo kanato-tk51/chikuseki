@@ -12,6 +12,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { listKnowledgeDomains } from "@/features/knowledge-map/queries";
+import { KnowledgeLinkerForm } from "@/features/knowledge-linker/components/knowledge-linker-form";
+import { listKnowledgeLinksForEntity } from "@/features/knowledge-linker/queries";
 import { DeleteNoteForm } from "@/features/notes/components/delete-note-form";
 import {
   getNoteById,
@@ -58,12 +61,29 @@ function DetailRow({
   );
 }
 
+function noteKnowledgeText(note: NonNullable<Awaited<ReturnType<typeof getNoteById>>>) {
+  return [note.title, note.resourceTitle, note.resourceUrl, note.bodyMd]
+    .filter((value): value is string => Boolean(value && value.trim()))
+    .join("\n\n");
+}
+
 export default async function NoteDetailPage({ params }: NoteDetailPageProps) {
   const { id } = await params;
-  const [note, linkedResources, linkedQuestions] = await Promise.all([
+  const [
+    note,
+    linkedResources,
+    linkedQuestions,
+    domains,
+    linkedKnowledgeNodes,
+  ] = await Promise.all([
     getNoteById(id),
     listLinkedResourcesByNoteId(id),
     listQuestionsByNoteId(id),
+    listKnowledgeDomains(),
+    listKnowledgeLinksForEntity({
+      entityType: "learning_note",
+      entityId: id,
+    }),
   ]);
 
   if (!note) {
@@ -194,6 +214,27 @@ export default async function NoteDetailPage({ params }: NoteDetailPageProps) {
             </div>
           )}
         </section>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Knowledge Links</CardTitle>
+            <CardDescription>
+              この Note を Knowledge Map のノードに接続する
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <KnowledgeLinkerForm
+              domains={domains}
+              initialText={noteKnowledgeText(note)}
+              targetEntity={{
+                entityType: "learning_note",
+                entityId: note.id,
+                label: note.title,
+              }}
+              linkedNodes={linkedKnowledgeNodes}
+            />
+          </CardContent>
+        </Card>
 
         <Card>
           <CardHeader>

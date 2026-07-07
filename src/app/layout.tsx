@@ -5,6 +5,7 @@ import {
   FileQuestion,
   Layers3,
   LibraryBig,
+  Link2,
   ListChecks,
   Map,
   NotebookText,
@@ -29,6 +30,7 @@ export const metadata: Metadata = {
 
 const primaryNavItems = [
   { label: "Knowledge Map", href: "/knowledge-map", icon: Map },
+  { label: "Linker", href: "/knowledge-linker", icon: Link2 },
   { label: "Resources", href: "/resources", icon: LibraryBig },
   { label: "Notes", href: "/notes", icon: NotebookText },
   { label: "Questions", href: "/questions", icon: FileQuestion },

@@ -42,6 +42,43 @@ domain:
                   aliases:
                     - "dynamic dispatch"
                     - "late binding"
+                  search:
+                    keywords:
+                      - dynamic dispatch
+                      - late binding
+                      - virtual dispatch
+                      - method dispatch
+                      - polymorphic dispatch
+                      - vtable
+                      - 仮想メソッド
+                      - 動的束縛
+                      - 多態性
+                    commonSignals:
+                      - override したメソッドが実行時に選ばれる
+                      - virtual table や vtable の説明がある
+                      - interface 経由で実装を差し替える
+                      - late binding / dynamic binding と対比している
+                    antiSignals:
+                      - 単なる関数呼び出し最適化の話だけで多態性がない
+                      - HTTP request dispatch やルーティングの話だけである
+                      - キューへの dispatch / スレッド dispatch の意味で使っている
+                    relatedNames:
+                      - name: Java virtual method invocation
+                        kind: language
+                        relevance: Java のオーバーライドと実行時メソッド選択を学ぶときに頻出する。
+                        officialUrl: https://docs.oracle.com/javase/specs/
+                      - name: C++ virtual functions
+                        kind: language
+                        relevance: vtable や仮想関数呼び出しの代表例としてよく参照される。
+                        officialUrl: https://isocpp.org/
+                      - name: Objective-C message dispatch
+                        kind: language
+                        relevance: メッセージ送信ベースの動的ディスパッチ例として関連が強い。
+                        officialUrl: https://developer.apple.com/documentation/objectivec
+                      - name: Swift protocol witness table
+                        kind: language
+                        relevance: プロトコルに基づく動的・静的ディスパッチの比較で出やすい。
+                        officialUrl: https://www.swift.org/documentation/
 
             - slug: "functional-abstraction"
               name: "関数型抽象"
@@ -56,7 +93,118 @@ domain:
                   aliases:
                     - "pure function"
                     - "pure"
+                  search:
+                    keywords:
+                      - pure function
+                      - 純粋関数
+                      - side effect free
+                      - 副作用なし
+                      - referential transparency
+                      - deterministic function
+                      - immutable input
+                      - functional core
+                      - 関数型プログラミング
+                    commonSignals:
+                      - 同じ入力なら同じ出力になる
+                      - 外部状態を書き換えない
+                      - テストしやすい関数として切り出す
+                      - キャッシュやメモ化が安全という説明がある
+                    antiSignals:
+                      - 単に関数が短いという話だけで副作用の有無に触れていない
+                      - 数学の純関数だけでソフトウェア設計の文脈がない
+                      - DB 書き込みやログ出力を内部で行っている
+                    relatedNames:
+                      - name: Haskell
+                        kind: language
+                        relevance: 純粋関数と副作用分離を学ぶ代表的な関数型言語。
+                        officialUrl: https://www.haskell.org/
+                      - name: Elm
+                        kind: language
+                        relevance: 副作用を明示的に扱う純粋関数型 UI 言語として関連する。
+                        officialUrl: https://elm-lang.org/
+                      - name: Functional Core, Imperative Shell
+                        kind: pattern
+                        relevance: 純粋関数を中核に寄せる実務的な設計パターンとしてよく出る。
+                      - name: Ramda
+                        kind: library
+                        relevance: JavaScript で純粋関数・関数合成を使う文脈で出やすい。
+                        officialUrl: https://ramdajs.com/
+
                 - slug: "higher-order-function"
+
+                  search:
+
+                    keywords:
+
+                      - higher-order function
+
+                      - HOF
+
+                      - 高階関数
+
+                      - function as argument
+
+                      - callback function
+
+                      - map filter reduce
+
+                      - 関数を返す関数
+
+                      - first-class function
+
+                      - 関数合成
+
+                    commonSignals:
+
+                      - 関数を引数に渡す
+
+                      - map/filter/reduce で反復処理を置き換える
+
+                      - コールバックを受け取る API
+
+                      - 関数を返して処理を部分適用する
+
+                    antiSignals:
+
+                      - 高階という語が数学の高階論理だけを指している
+
+                      - 単なるユーティリティ関数で関数値を扱っていない
+
+                      - callback が非同期通知の話だけで抽象化の説明がない
+
+                    relatedNames:
+
+                      - name: Array.prototype.map
+
+                        kind: method
+
+                        relevance: 高階関数の最も一般的な実務例として JavaScript で頻出する。
+
+                        officialUrl: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+
+                      - name: LINQ
+
+                        kind: library
+
+                        relevance: C# の Select / Where など高階関数的なコレクション処理で関連する。
+
+                        officialUrl: https://learn.microsoft.com/dotnet/csharp/linq/
+
+                      - name: lodash
+
+                        kind: library
+
+                        relevance: map、filter、partial など関数操作ユーティリティと一緒に出やすい。
+
+                        officialUrl: https://lodash.com/
+
+                      - name: RxJS operators
+
+                        kind: library
+
+                        relevance: ストリーム変換を高階関数として表す文脈で関連する。
+
+                        officialUrl: https://rxjs.dev/
                   name: "高階関数"
                   summary: "関数を引数や戻り値として扱う関数。"
                   whyLearn: "処理の共通パターンを抽象化し、重複を減らせる。"
@@ -72,6 +220,44 @@ domain:
                   aliases:
                     - "ADT"
                     - "algebraic data type"
+                  search:
+                    keywords:
+                      - algebraic data type
+                      - ADT
+                      - 代数的データ型
+                      - sum type
+                      - product type
+                      - tagged union
+                      - discriminated union
+                      - sealed class
+                      - enum with associated values
+                      - パターンマッチ
+                    commonSignals:
+                      - 状態を union / enum / sealed class で表す
+                      - フラグではなく場合分け型にする
+                      - match / pattern matching と一緒に説明される
+                      - sum type と product type の対比がある
+                    antiSignals:
+                      - 抽象データ型 Abstract Data Type の略として ADT を使っている
+                      - データベースの代数だけを扱っている
+                      - 列挙型だが値を持たず単なる定数集合の話だけである
+                    relatedNames:
+                      - name: Haskell data
+                        kind: language
+                        relevance: 代数的データ型の基本例として data 宣言がよく使われる。
+                        officialUrl: https://www.haskell.org/documentation/
+                      - name: Rust enum
+                        kind: language
+                        relevance: 値を持つ enum と match による ADT の実務例として関連が強い。
+                        officialUrl: https://doc.rust-lang.org/book/
+                      - name: TypeScript discriminated union
+                        kind: language
+                        relevance: 構造的型付け言語で和型に近い設計を行う代表例。
+                        officialUrl: https://www.typescriptlang.org/docs/
+                      - name: Kotlin sealed class
+                        kind: language
+                        relevance: 閉じた階層による場合分け表現として ADT と一緒に学ばれる。
+                        officialUrl: https://kotlinlang.org/docs/sealed-classes.html
 
         - slug: "asynchronous-reactive-and-scripted-models"
           name: "非同期、リアクティブ、スクリプティング"
@@ -90,7 +276,122 @@ domain:
                   aliases:
                     - "event loop"
                     - "ループ駆動実行"
+                  search:
+                    keywords:
+                      - event loop
+                      - イベントループ
+                      - task queue
+                      - microtask queue
+                      - callback queue
+                      - non-blocking I/O
+                      - single-threaded async
+                      - reactor pattern
+                      - libuv
+                      - run loop
+                    commonSignals:
+                      - ブロッキング処理が全体を止める
+                      - microtask と macrotask の順序を説明している
+                      - non-blocking I/O と callback queue が出る
+                      - single thread なのに並行に見えるという説明がある
+                    antiSignals:
+                      - ゲームループや描画ループだけで非同期 I/O の話がない
+                      - Kubernetes event やドメインイベントの話だけで実行モデルではない
+                      - 単なる for loop の説明である
+                    relatedNames:
+                      - name: Node.js event loop
+                        kind: platform
+                        relevance: イベントループと非同期 I/O の代表的な実務文脈。
+                        officialUrl: https://nodejs.org/en/docs
+                      - name: libuv
+                        kind: library
+                        relevance: Node.js などで使われるクロスプラットフォーム非同期 I/O ライブラリ。
+                        officialUrl: https://libuv.org/
+                      - name: WHATWG HTML event loop
+                        kind: standard
+                        relevance: ブラウザのタスク・マイクロタスク処理モデルの仕様として関連する。
+                        officialUrl: https://html.spec.whatwg.org/
+                      - name: Python asyncio
+                        kind: library
+                        relevance: Python のイベントループベース非同期処理で頻出する。
+                        officialUrl: https://docs.python.org/3/library/asyncio.html
+
                 - slug: "promise-future"
+
+                  search:
+
+                    keywords:
+
+                      - Promise
+
+                      - Future
+
+                      - promise future
+
+                      - deferred
+
+                      - thenable
+
+                      - 非同期結果
+
+                      - async result
+
+                      - completion stage
+
+                      - Task
+
+                      - CompletableFuture
+
+                    commonSignals:
+
+                      - まだ完了していない結果を値として返す
+
+                      - then / catch / finally で非同期処理をつなぐ
+
+                      - resolve / reject の説明がある
+
+                      - future を await する
+
+                    antiSignals:
+
+                      - 将来計画の future という一般語だけである
+
+                      - Promise が仕様や約束という一般語として使われている
+
+                      - スレッドそのものの説明で結果抽象に触れていない
+
+                    relatedNames:
+
+                      - name: JavaScript Promise
+
+                        kind: standard
+
+                        relevance: Promise の実務上もっとも一般的な利用例として頻出する。
+
+                        officialUrl: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+                      - name: Java CompletableFuture
+
+                        kind: library
+
+                        relevance: Future を合成する Java 標準 API として関連する。
+
+                        officialUrl: https://docs.oracle.com/en/java/javase/
+
+                      - name: Scala Future
+
+                        kind: library
+
+                        relevance: 非同期結果とコールバック合成の代表例。
+
+                        officialUrl: https://docs.scala-lang.org/
+
+                      - name: .NET Task
+
+                        kind: library
+
+                        relevance: C# async/await と合わせて Future 的な非同期結果を表す。
+
+                        officialUrl: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
                   name: "Promise と Future"
                   summary: "まだ得られていない計算結果を値として扱う抽象。"
                   whyLearn: "非同期 API の合成とエラー伝播を読む基礎になる。"
@@ -106,6 +407,44 @@ domain:
                   aliases:
                     - "async/await"
                     - "非同期構文"
+                  search:
+                    keywords:
+                      - async await
+                      - async/await
+                      - 非同期構文
+                      - awaitable
+                      - suspending function
+                      - coroutine
+                      - async function
+                      - structured concurrency
+                      - 並行実行
+                      - 非同期制御フロー
+                    commonSignals:
+                      - await をループ内で直列に呼んでいる
+                      - async 関数が Promise / Future / Task を返す
+                      - 非同期だが見た目は同期処理のように書く
+                      - 同時実行には gather / all / join が必要という話がある
+                    antiSignals:
+                      - await が英語の待機という一般語だけである
+                      - OS スレッドの並列処理だけで async 構文がない
+                      - sleep や timer の使い方だけを説明している
+                    relatedNames:
+                      - name: JavaScript async function
+                        kind: standard
+                        relevance: async/await 構文の代表的な標準仕様利用例。
+                        officialUrl: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/async_function
+                      - name: Python async def
+                        kind: language
+                        relevance: async/await と coroutine の学習で頻出する。
+                        officialUrl: https://docs.python.org/3/library/asyncio.html
+                      - name: Kotlin coroutines
+                        kind: library
+                        relevance: suspend と構造化並行性の文脈で async/await と比較される。
+                        officialUrl: https://kotlinlang.org/docs/coroutines-overview.html
+                      - name: C# async and await
+                        kind: language
+                        relevance: .NET の Task ベース非同期構文として安定している。
+                        officialUrl: https://learn.microsoft.com/dotnet/csharp/asynchronous-programming/
 
             - slug: "reactive-and-scripted-composition"
               name: "リアクティブとスクリプト的構成"
@@ -120,7 +459,122 @@ domain:
                   aliases:
                     - "reactive streams"
                     - "observable stream"
+                  search:
+                    keywords:
+                      - reactive stream
+                      - Reactive Streams
+                      - observable
+                      - stream operator
+                      - backpressure
+                      - リアクティブストリーム
+                      - イベントストリーム
+                      - publisher subscriber
+                      - flow API
+                      - data stream
+                    commonSignals:
+                      - Observable / Publisher / Subscriber が出る
+                      - backpressure の説明がある
+                      - イベント列を map/filter/merge で変換している
+                      - 購読解除や subscription の話がある
+                    antiSignals:
+                      - 動画配信やライブ配信の stream だけを指している
+                      - ファイル入出力 stream だけでリアクティブ処理ではない
+                      - SNS のタイムラインを stream と呼んでいるだけである
+                    relatedNames:
+                      - name: Reactive Streams
+                        kind: standard
+                        relevance: 非同期ストリーム処理と backpressure の標準的な仕様名。
+                        officialUrl: https://www.reactive-streams.org/
+                      - name: RxJS
+                        kind: library
+                        relevance: Observable と operator による実務的なリアクティブ処理で頻出する。
+                        officialUrl: https://rxjs.dev/
+                      - name: Project Reactor
+                        kind: library
+                        relevance: JVM のリアクティブストリーム実装として広く使われる。
+                        officialUrl: https://projectreactor.io/
+                      - name: Akka Streams
+                        kind: library
+                        relevance: backpressure 付きストリーム処理の実装例として関連する。
+                        officialUrl: https://akka.io/
+
                 - slug: "shell-scripting"
+
+                  search:
+
+                    keywords:
+
+                      - shell script
+
+                      - シェルスクリプト
+
+                      - Bash
+
+                      - sh
+
+                      - POSIX shell
+
+                      - pipeline
+
+                      - grep awk sed
+
+                      - cron job
+
+                      - automation script
+
+                      - glue code
+
+                    commonSignals:
+
+                      - grep、awk、sed、xargs をパイプでつないでいる
+
+                      - 手作業コマンドを .sh にまとめる
+
+                      - CI の step で bash を実行している
+
+                      - 環境変数や終了コードに依存する
+
+                    antiSignals:
+
+                      - Shell が OS の UI としてだけ使われている
+
+                      - PowerShell 固有のオブジェクトパイプラインだけを説明している
+
+                      - 単なる CLI ツール利用でスクリプト化の話がない
+
+                    relatedNames:
+
+                      - name: Bash
+
+                        kind: language
+
+                        relevance: シェルスクリプティングの代表的な実行環境。
+
+                        officialUrl: https://www.gnu.org/software/bash/
+
+                      - name: POSIX Shell
+
+                        kind: standard
+
+                        relevance: 移植性のあるシェル構文を考えるときの基準になる。
+
+                        officialUrl: https://pubs.opengroup.org/onlinepubs/9699919799/
+
+                      - name: ShellCheck
+
+                        kind: tool
+
+                        relevance: シェルスクリプトの静的解析・lint でよく使われる。
+
+                        officialUrl: https://www.shellcheck.net/
+
+                      - name: GNU coreutils
+
+                        kind: tool
+
+                        relevance: シェルスクリプトで頻繁に連結される基本コマンド群。
+
+                        officialUrl: https://www.gnu.org/software/coreutils/
                   name: "シェルスクリプティング"
                   summary: "既存コマンドやファイル操作を連結して自動化する書き方。"
                   whyLearn: "小さな作業の再現性を上げ、開発体験と運用効率を改善できる。"
@@ -136,6 +590,44 @@ domain:
                   aliases:
                     - "DSL"
                     - "domain specific language"
+                  search:
+                    keywords:
+                      - DSL
+                      - domain-specific language
+                      - ドメイン特化言語
+                      - internal DSL
+                      - external DSL
+                      - fluent API
+                      - query language
+                      - configuration language
+                      - grammar
+                      - language workbench
+                    commonSignals:
+                      - 業務ルールを専用構文で書く
+                      - 設定ファイルが小さな言語のように扱われる
+                      - parser / grammar / AST を定義している
+                      - fluent API で自然言語風に記述する
+                    antiSignals:
+                      - 通信回線の DSL という意味で使われている
+                      - 単なる設定ファイルで構文や語彙設計の話がない
+                      - 一般的なプログラミング言語の紹介だけで特定ドメインがない
+                    relatedNames:
+                      - name: SQL
+                        kind: language
+                        relevance: データ問い合わせに特化した DSL の代表例。
+                        officialUrl: https://www.iso.org/standard/76583.html
+                      - name: GraphQL
+                        kind: language
+                        relevance: API クエリのための外部 DSL として関連する。
+                        officialUrl: https://graphql.org/
+                      - name: ANTLR
+                        kind: tool
+                        relevance: 外部 DSL の文法定義と parser 生成で頻出する。
+                        officialUrl: https://www.antlr.org/
+                      - name: Xtext
+                        kind: framework
+                        relevance: DSL 開発用の言語ワークベンチとして関連する。
+                        officialUrl: https://www.eclipse.org/Xtext/
 
     - slug: "type-systems-and-program-semantics"
       name: "型システムとプログラム意味"
@@ -159,7 +651,120 @@ domain:
                   aliases:
                     - "static typing"
                     - "compile-time typing"
+                  search:
+                    keywords:
+                      - static typing
+                      - 静的型付け
+                      - compile-time type checking
+                      - type checker
+                      - strong typing
+                      - 型検査
+                      - 型安全
+                      - typed language
+                      - type annotation
+                      - gradual typing
+                    commonSignals:
+                      - コンパイル時に型エラーを検出する
+                      - type checker が API の不整合を指摘する
+                      - 型注釈を追加してリファクタを安全にする
+                      - IDE の補完や定義ジャンプが型情報に依存する
+                    antiSignals:
+                      - 静的という語が静的ファイル配信だけを指している
+                      - 型という語が業務分類や人格タイプを指している
+                      - 実行時バリデーションだけでコンパイル時検査がない
+                    relatedNames:
+                      - name: TypeScript
+                        kind: language
+                        relevance: JavaScript に静的型検査を追加する実務上の代表例。
+                        officialUrl: https://www.typescriptlang.org/
+                      - name: mypy
+                        kind: tool
+                        relevance: Python の型ヒントを静的検査する代表的ツール。
+                        officialUrl: https://mypy-lang.org/
+                      - name: Flow
+                        kind: tool
+                        relevance: JavaScript 向け静的型検査ツールとして関連する。
+                        officialUrl: https://flow.org/
+                      - name: Rust
+                        kind: language
+                        relevance: 所有権を含む強い静的型付けの代表例として出やすい。
+                        officialUrl: https://www.rust-lang.org/
+
                 - slug: "dynamic-typing"
+
+                  search:
+
+                    keywords:
+
+                      - dynamic typing
+
+                      - 動的型付け
+
+                      - runtime type
+
+                      - duck typing
+
+                      - late-bound type
+
+                      - dynamic language
+
+                      - 型は実行時
+
+                      - runtime check
+
+                      - optional typing
+
+                    commonSignals:
+
+                      - 実行するまで型エラーが分からない
+
+                      - duck typing でオブジェクトの振る舞いを期待する
+
+                      - プロトタイピングは速いが大規模化で不安になる
+
+                      - runtime type check や isinstance が増えている
+
+                    antiSignals:
+
+                      - 動的という語が動的 UI や動的コンテンツだけを指す
+
+                      - 型情報はあるが単に実行時バリデーションをしているだけ
+
+                      - プログラミング言語ではなくデータベースの動的型だけの話
+
+                    relatedNames:
+
+                      - name: Python
+
+                        kind: language
+
+                        relevance: 動的型付けと duck typing の代表的な実務言語。
+
+                        officialUrl: https://www.python.org/
+
+                      - name: Ruby
+
+                        kind: language
+
+                        relevance: 動的型付けとメタプログラミングの文脈で出やすい。
+
+                        officialUrl: https://www.ruby-lang.org/
+
+                      - name: JavaScript
+
+                        kind: language
+
+                        relevance: 実行時型と型変換の話題で頻出する。
+
+                        officialUrl: https://tc39.es/ecma262/
+
+                      - name: Sorbet
+
+                        kind: tool
+
+                        relevance: Ruby に静的型検査を追加する gradual typing の例として関連する。
+
+                        officialUrl: https://sorbet.org/
                   name: "動的型付け"
                   summary: "主に実行時に値の種類を扱う方式。"
                   whyLearn: "柔軟な試作の利点と、運用時の失敗箇所の見えづらさを理解できる。"
@@ -175,6 +780,42 @@ domain:
                   aliases:
                     - "type inference"
                     - "推論型付け"
+                  search:
+                    keywords:
+                      - type inference
+                      - 型推論
+                      - Hindley-Milner
+                      - local type inference
+                      - inferred type
+                      - 型注釈省略
+                      - type deduction
+                      - var inference
+                      - let inference
+                    commonSignals:
+                      - 型注釈を書かなくてもコンパイラが型を推定する
+                      - inferred as という診断が出る
+                      - 明示型を書くべきか推論に任せるべきか悩んでいる
+                      - ジェネリック関数の型引数が自動で決まる
+                    antiSignals:
+                      - AI の推論や論理推論だけで型の話ではない
+                      - 型推定ではなく実行時の型判定だけをしている
+                      - var が単なる動的型として説明されている
+                    relatedNames:
+                      - name: Hindley-Milner type system
+                        kind: method
+                        relevance: 型推論アルゴリズムの基礎としてよく参照される。
+                      - name: OCaml
+                        kind: language
+                        relevance: 強力な型推論を持つ ML 系言語として代表的。
+                        officialUrl: https://ocaml.org/
+                      - name: Haskell
+                        kind: language
+                        relevance: 型推論と型クラスを学ぶ文脈で頻出する。
+                        officialUrl: https://www.haskell.org/
+                      - name: TypeScript inference
+                        kind: language
+                        relevance: 実務で型注釈と推論のバランスを考える対象になりやすい。
+                        officialUrl: https://www.typescriptlang.org/docs/
 
             - slug: "polymorphism-and-type-relations"
               name: "多相性と型の関係"
@@ -189,7 +830,120 @@ domain:
                   aliases:
                     - "generic"
                     - "parametric polymorphism"
+                  search:
+                    keywords:
+                      - generics
+                      - generic type
+                      - ジェネリクス
+                      - type parameter
+                      - parametric polymorphism
+                      - template
+                      - 型パラメータ
+                      - bounded generic
+                      - generic constraint
+                      - monomorphization
+                    commonSignals:
+                      - T や K,V などの型パラメータを使う
+                      - 同じコレクションや関数を複数型に再利用する
+                      - trait bound / extends / constraint が出る
+                      - 型安全な共通部品を作る話がある
+                    antiSignals:
+                      - generic が一般的という意味だけで使われている
+                      - テンプレートが HTML テンプレートだけを指している
+                      - 多態性はあるが型パラメータを使っていない
+                    relatedNames:
+                      - name: Java Generics
+                        kind: language
+                        relevance: 型消去や境界付き型パラメータの代表例として関連する。
+                        officialUrl: https://docs.oracle.com/javase/tutorial/java/generics/
+                      - name: C++ templates
+                        kind: language
+                        relevance: コンパイル時多相とジェネリックプログラミングの代表例。
+                        officialUrl: https://isocpp.org/
+                      - name: Rust generics
+                        kind: language
+                        relevance: trait bounds と monomorphization の文脈で頻出する。
+                        officialUrl: https://doc.rust-lang.org/book/
+                      - name: TypeScript Generics
+                        kind: language
+                        relevance: Web 実務の型安全 API 設計でよく使われる。
+                        officialUrl: https://www.typescriptlang.org/docs/
+
                 - slug: "structural-typing"
+
+                  search:
+
+                    keywords:
+
+                      - structural typing
+
+                      - structural subtyping
+
+                      - 構造的型付け
+
+                      - duck typing
+
+                      - shape-based typing
+
+                      - type compatibility
+
+                      - structural type system
+
+                      - protocol typing
+
+                      - property-based compatibility
+
+                    commonSignals:
+
+                      - 名前ではなくプロパティやメソッドの形で互換性を判断する
+
+                      - 同じ shape を持つなら代入できる
+
+                      - implements を書かなくても interface を満たす
+
+                      - duck typing と静的型検査を比較している
+
+                    antiSignals:
+
+                      - 構造体 struct の説明だけで型互換性の話がない
+
+                      - 建築や組織構造の structural という一般語である
+
+                      - JSON schema の形だけでプログラミング言語の型互換ではない
+
+                    relatedNames:
+
+                      - name: TypeScript structural typing
+
+                        kind: language
+
+                        relevance: 構造的型付けの実務上最も見かけやすい代表例。
+
+                        officialUrl: https://www.typescriptlang.org/docs/handbook/type-compatibility.html
+
+                      - name: Go interfaces
+
+                        kind: language
+
+                        relevance: 明示実装なしにメソッド集合で満たす interface と関連する。
+
+                        officialUrl: https://go.dev/doc/
+
+                      - name: Python Protocol
+
+                        kind: language
+
+                        relevance: 静的型検査での構造的部分型を表す仕組みとして関連する。
+
+                        officialUrl: https://typing.python.org/
+
+                      - name: OCaml object types
+
+                        kind: language
+
+                        relevance: 構造的なオブジェクト型の例として比較対象になる。
+
+                        officialUrl: https://ocaml.org/manual
                   name: "構造的型付け"
                   summary: "名前ではなく、持っているメンバー構造で型互換性を判断する方式。"
                   whyLearn: "柔軟な API 接続の利点と、意図しない互換の危険を理解できる。"
@@ -205,6 +959,42 @@ domain:
                   aliases:
                     - "nominal typing"
                     - "名義的型付け"
+                  search:
+                    keywords:
+                      - nominal typing
+                      - nominal type system
+                      - 名前的型付け
+                      - 名義的型付け
+                      - name-based typing
+                      - declared type identity
+                      - brand type
+                      - newtype
+                      - opaque type
+                    commonSignals:
+                      - 同じ構造でも型名が違えば互換ではない
+                      - ドメイン型を区別して誤代入を防ぐ
+                      - brand / opaque / newtype で識別性を持たせる
+                      - 構造的型付けと比較している
+                    antiSignals:
+                      - 名前空間や命名規則だけの話で型互換性がない
+                      - nominal が名目値や名目金額の意味で使われている
+                      - 単なるクラス名の説明で型システム上の同一性に触れていない
+                    relatedNames:
+                      - name: Java nominal type system
+                        kind: language
+                        relevance: class / interface の宣言名に基づく型互換の代表例。
+                        officialUrl: https://docs.oracle.com/javase/specs/
+                      - name: C# type system
+                        kind: language
+                        relevance: 名前的型付けと interface 実装の代表的な実務言語。
+                        officialUrl: https://learn.microsoft.com/dotnet/csharp/
+                      - name: TypeScript branded types
+                        kind: pattern
+                        relevance: 構造的型付け上で名前的な区別を作る実務パターンとして出やすい。
+                      - name: Haskell newtype
+                        kind: language
+                        relevance: 既存表現に新しい型名を与えて誤用を防ぐ例として関連する。
+                        officialUrl: https://www.haskell.org/documentation/
 
         - slug: "safety-and-correctness"
           name: "安全性と正しさ"
@@ -223,7 +1013,120 @@ domain:
                   aliases:
                     - "Option"
                     - "Maybe"
+                  search:
+                    keywords:
+                      - Option
+                      - Maybe
+                      - optional type
+                      - nullable
+                      - null safety
+                      - Some None
+                      - Just Nothing
+                      - Optional
+                      - 値がない
+                      - null 回避
+                    commonSignals:
+                      - null を返さず Some/None で表す
+                      - 値がない場合を型で強制的に処理する
+                      - optional chaining や nullable と比較している
+                      - map / flatMap で Optional を変換している
+                    antiSignals:
+                      - HTML option 要素や設定 option の話だけである
+                      - maybe が単なる可能性を表す英単語として使われている
+                      - null チェックだけで型による表現がない
+                    relatedNames:
+                      - name: Rust Option
+                        kind: language
+                        relevance: Some / None による null 不在表現の代表例。
+                        officialUrl: https://doc.rust-lang.org/std/option/
+                      - name: Haskell Maybe
+                        kind: language
+                        relevance: Maybe 型の基本例として頻出する。
+                        officialUrl: https://www.haskell.org/documentation/
+                      - name: Java Optional
+                        kind: library
+                        relevance: Java で値の欠如を明示する標準 API として関連する。
+                        officialUrl: https://docs.oracle.com/en/java/javase/
+                      - name: Kotlin null safety
+                        kind: language
+                        relevance: nullable 型と Option 的な設計比較で出やすい。
+                        officialUrl: https://kotlinlang.org/docs/null-safety.html
+
                 - slug: "result-either"
+
+                  search:
+
+                    keywords:
+
+                      - Result
+
+                      - Either
+
+                      - Ok Err
+
+                      - Left Right
+
+                      - typed error
+
+                      - error as value
+
+                      - railway oriented programming
+
+                      - 失敗を型で表す
+
+                      - 例外ではなく戻り値
+
+                    commonSignals:
+
+                      - 例外ではなく Err を返す
+
+                      - 成功値と失敗値を union / sum type で表す
+
+                      - 呼び出し側にエラー処理を強制する
+
+                      - Left/Right や Ok/Err のパターンマッチがある
+
+                    antiSignals:
+
+                      - result が単なる結果という一般語で使われている
+
+                      - Either が英語の either/or としてだけ出ている
+
+                      - HTTP status code だけで型付きエラー表現がない
+
+                    relatedNames:
+
+                      - name: Rust Result
+
+                        kind: language
+
+                        relevance: Ok / Err によるエラー表現の代表例。
+
+                        officialUrl: https://doc.rust-lang.org/std/result/
+
+                      - name: Haskell Either
+
+                        kind: language
+
+                        relevance: Left / Right による成功・失敗表現の基本例。
+
+                        officialUrl: https://www.haskell.org/documentation/
+
+                      - name: fp-ts Either
+
+                        kind: library
+
+                        relevance: TypeScript で Either を使う関数型実務ライブラリとして関連する。
+
+                        officialUrl: https://gcanti.github.io/fp-ts/
+
+                      - name: Scala Either
+
+                        kind: language
+
+                        relevance: JVM 系で型付きエラー表現を学ぶときに出やすい。
+
+                        officialUrl: https://docs.scala-lang.org/
                   name: "Result と Either"
                   summary: "成功値と失敗値を同じ型で表す手法。"
                   whyLearn: "エラーを例外だけに頼らず、制御フローとして明示できる。"
@@ -239,6 +1142,43 @@ domain:
                   aliases:
                     - "ownership"
                     - "所有権システム"
+                  search:
+                    keywords:
+                      - ownership
+                      - 所有権
+                      - borrow checker
+                      - borrowing
+                      - move semantics
+                      - lifetime
+                      - RAII
+                      - memory safety
+                      - resource ownership
+                      - use after free
+                    commonSignals:
+                      - 値の所有者が一つだけという説明がある
+                      - borrow / mutable borrow / lifetime が出る
+                      - move した後に使えない
+                      - GC なしでメモリ安全を保証する
+                    antiSignals:
+                      - 会社や不動産の所有権の話である
+                      - ファイル所有者や Unix permission だけの話である
+                      - 単なる責任者 ownership でメモリや資源寿命に触れていない
+                    relatedNames:
+                      - name: Rust ownership
+                        kind: language
+                        relevance: 所有権・借用・ライフタイムを型規則で扱う代表例。
+                        officialUrl: https://doc.rust-lang.org/book/ch04-00-understanding-ownership.html
+                      - name: RAII
+                        kind: pattern
+                        relevance: C++ などで資源の寿命を所有オブジェクトに結びつけるパターン。
+                      - name: C++ move semantics
+                        kind: language
+                        relevance: 所有権移動とリソース管理の文脈で関連する。
+                        officialUrl: https://isocpp.org/
+                      - name: Valgrind
+                        kind: tool
+                        relevance: 所有権規律が破れたメモリ不具合の検出文脈で出やすい。
+                        officialUrl: https://valgrind.org/
 
             - slug: "semantic-reasoning-and-correctness"
               name: "意味論的推論と正しさ"
@@ -253,7 +1193,113 @@ domain:
                   aliases:
                     - "referential transparency"
                     - "置換可能性"
+                  search:
+                    keywords:
+                      - referential transparency
+                      - 参照透過性
+                      - substitution model
+                      - 置換可能性
+                      - equational reasoning
+                      - pure expression
+                      - 副作用なし
+                      - 式の値への置換
+                    commonSignals:
+                      - 式を評価結果で置き換えても意味が変わらない
+                      - equational reasoning と一緒に説明される
+                      - メモ化やキャッシュが安全かを議論している
+                      - 副作用のある関数と比較している
+                    antiSignals:
+                      - 透明性が UI の opacity の話である
+                      - 参照がポインタや URL 参照だけを意味している
+                      - 単なる immutable の説明で置換可能性に触れていない
+                    relatedNames:
+                      - name: Haskell
+                        kind: language
+                        relevance: 参照透過性と遅延評価を学ぶ文脈で頻出する。
+                        officialUrl: https://www.haskell.org/
+                      - name: Elm Architecture
+                        kind: pattern
+                        relevance: 純粋な update 関数など参照透過な設計の実務例として関連する。
+                        officialUrl: https://guide.elm-lang.org/architecture/
+                      - name: Functional Core, Imperative Shell
+                        kind: pattern
+                        relevance: 参照透過な中核を保つ設計方針として関連する。
+
                 - slug: "exhaustiveness-checking"
+
+                  search:
+
+                    keywords:
+
+                      - exhaustiveness checking
+
+                      - exhaustive match
+
+                      - 網羅性検査
+
+                      - non-exhaustive patterns
+
+                      - pattern matching
+
+                      - sealed class when
+
+                      - match expression
+
+                      - switch exhaustive
+
+                      - never type
+
+                    commonSignals:
+
+                      - 新しい variant を追加したらコンパイルエラーにしたい
+
+                      - non-exhaustive match という警告が出る
+
+                      - default 分岐を避けて全ケースを列挙する
+
+                      - sealed / enum / union の分岐をチェックする
+
+                    antiSignals:
+
+                      - テストケースを網羅する話だけで型や分岐の検査ではない
+
+                      - 検索を exhaustive に行うという一般表現である
+
+                      - switch 文だが全ケース検査の仕組みがない
+
+                    relatedNames:
+
+                      - name: Rust match
+
+                        kind: language
+
+                        relevance: match の網羅性検査が代表的に説明される。
+
+                        officialUrl: https://doc.rust-lang.org/book/
+
+                      - name: Kotlin sealed when
+
+                        kind: language
+
+                        relevance: sealed class と when の網羅性で頻出する。
+
+                        officialUrl: https://kotlinlang.org/docs/sealed-classes.html
+
+                      - name: TypeScript never
+
+                        kind: language
+
+                        relevance: discriminated union の網羅性チェック実装でよく使われる。
+
+                        officialUrl: https://www.typescriptlang.org/docs/
+
+                      - name: Swift switch
+
+                        kind: language
+
+                        relevance: enum と switch の網羅性検査の例として関連する。
+
+                        officialUrl: https://www.swift.org/documentation/
                   name: "網羅性検査"
                   summary: "分岐が取りうる全ケースを漏れなく扱っているかを検査する仕組み。"
                   whyLearn: "状態追加時の未処理バグを減らせる。"
@@ -292,7 +1338,122 @@ domain:
                   aliases:
                     - "module"
                     - "単位モジュール"
+                  search:
+                    keywords:
+                      - module
+                      - モジュール
+                      - namespace
+                      - import export
+                      - module system
+                      - ES modules
+                      - Python module
+                      - Java module
+                      - Go module
+                      - visibility boundary
+                    commonSignals:
+                      - import / export で境界を作る
+                      - 名前空間を分ける
+                      - module-info や go.mod が出る
+                      - 内部実装を隠し公開面を限定する
+                    antiSignals:
+                      - 学習教材の module / 単元という意味だけである
+                      - ハードウェア部品の module の話である
+                      - npm package の話だけでコード内のモジュール境界がない
+                    relatedNames:
+                      - name: ECMAScript Modules
+                        kind: standard
+                        relevance: JavaScript の標準 module system として頻出する。
+                        officialUrl: https://tc39.es/ecma262/
+                      - name: Java Platform Module System
+                        kind: standard
+                        relevance: Java の明示的なモジュール境界として関連する。
+                        officialUrl: https://openjdk.org/projects/jigsaw/
+                      - name: Python modules
+                        kind: language
+                        relevance: ファイルと import によるモジュール構成の代表例。
+                        officialUrl: https://docs.python.org/3/tutorial/modules.html
+                      - name: Go modules
+                        kind: tool
+                        relevance: モジュールと依存管理の境界が一体化した実務例。
+                        officialUrl: https://go.dev/ref/mod
+
                 - slug: "package"
+
+                  search:
+
+                    keywords:
+
+                      - package
+
+                      - パッケージ
+
+                      - library package
+
+                      - crate
+
+                      - npm package
+
+                      - Python distribution
+
+                      - Maven artifact
+
+                      - Go module
+
+                      - dependency
+
+                      - package registry
+
+                    commonSignals:
+
+                      - 依存として公開・配布する単位の話
+
+                      - registry から install する
+
+                      - package name と version がある
+
+                      - library と application の境界を議論している
+
+                    antiSignals:
+
+                      - 配送パッケージや梱包の話である
+
+                      - Java の package 宣言だけで配布単位ではない
+
+                      - OS パッケージ管理だけで言語パッケージの話がない
+
+                    relatedNames:
+
+                      - name: npm
+
+                        kind: tool
+
+                        relevance: JavaScript パッケージの配布・依存管理で最も頻出する。
+
+                        officialUrl: https://www.npmjs.com/
+
+                      - name: Cargo crate
+
+                        kind: tool
+
+                        relevance: Rust のパッケージ単位 crate として関連する。
+
+                        officialUrl: https://doc.rust-lang.org/cargo/
+
+                      - name: PyPI
+
+                        kind: service
+
+                        relevance: Python パッケージ配布の代表的レジストリ。
+
+                        officialUrl: https://pypi.org/
+
+                      - name: Maven Central
+
+                        kind: service
+
+                        relevance: JVM パッケージ配布と artifact 管理の代表例。
+
+                        officialUrl: https://central.sonatype.com/
                   name: "パッケージ"
                   summary: "配布や依存管理の単位としてのコード集合。"
                   whyLearn: "再利用、公開、依存解決を考えるときの実務的な境界になる。"
@@ -322,7 +1483,121 @@ domain:
                   aliases:
                     - "interface"
                     - "契約面"
+                  search:
+                    keywords:
+                      - interface
+                      - インターフェース
+                      - contract
+                      - protocol
+                      - abstract interface
+                      - API surface
+                      - implements
+                      - dependency inversion
+                      - port
+                      - 契約面
+                    commonSignals:
+                      - 実装ではなく契約に依存する
+                      - mock / fake を差し替えるために interface を切る
+                      - implements や protocol conformance が出る
+                      - 公開メソッド集合を安定化する
+                    antiSignals:
+                      - UI インターフェースだけを指している
+                      - ネットワーク interface / NIC の話である
+                      - API と同義に広く使っているだけで型や契約面の話がない
+                    relatedNames:
+                      - name: Java interface
+                        kind: language
+                        relevance: interface と implements の代表的な言語機能。
+                        officialUrl: https://docs.oracle.com/javase/specs/
+                      - name: TypeScript interface
+                        kind: language
+                        relevance: 構造的な API 契約を表す実務上頻出の仕組み。
+                        officialUrl: https://www.typescriptlang.org/docs/
+                      - name: Go interface
+                        kind: language
+                        relevance: 暗黙実装の interface 設計として関連が強い。
+                        officialUrl: https://go.dev/doc/
+                      - name: Ports and Adapters
+                        kind: pattern
+                        relevance: 外部依存を interface で隔離する設計文脈で出やすい。
+
                 - slug: "trait-protocol"
+
+                  search:
+
+                    keywords:
+
+                      - trait
+
+                      - protocol
+
+                      - トレイト
+
+                      - プロトコル
+
+                      - typeclass
+
+                      - interface-like
+
+                      - trait bound
+
+                      - protocol conformance
+
+                      - extension method
+
+                      - capability
+
+                    commonSignals:
+
+                      - 型が特定の能力を満たすことを表す
+
+                      - trait bound / protocol conformance が出る
+
+                      - 継承ではなく振る舞い単位で抽象化する
+
+                      - extension や default implementation がある
+
+                    antiSignals:
+
+                      - 通信 protocol の話だけで型の振る舞い契約ではない
+
+                      - trait が性格特性の意味で使われている
+
+                      - interface と言っているだけで能力合成や制約の話がない
+
+                    relatedNames:
+
+                      - name: Rust traits
+
+                        kind: language
+
+                        relevance: trait bound と generic 制約の代表例として関連する。
+
+                        officialUrl: https://doc.rust-lang.org/book/ch10-02-traits.html
+
+                      - name: Swift protocols
+
+                        kind: language
+
+                        relevance: Protocol-Oriented Programming の文脈で頻出する。
+
+                        officialUrl: https://www.swift.org/documentation/
+
+                      - name: Scala traits
+
+                        kind: language
+
+                        relevance: trait による振る舞い合成の代表例。
+
+                        officialUrl: https://docs.scala-lang.org/
+
+                      - name: Haskell type classes
+
+                        kind: language
+
+                        relevance: 型に対する能力制約を表す概念として比較される。
+
+                        officialUrl: https://www.haskell.org/documentation/
                   name: "Trait と Protocol"
                   summary: "型に期待する振る舞いを合意するための抽象契約。"
                   whyLearn: "継承より柔らかく能力を表現し、横断的な再利用に使える。"
@@ -356,7 +1631,122 @@ domain:
                   aliases:
                     - "public API"
                     - "外部契約"
+                  search:
+                    keywords:
+                      - public API
+                      - 公開 API
+                      - API surface
+                      - external contract
+                      - stable API
+                      - library API
+                      - SDK API
+                      - public interface
+                      - breaking change
+                      - deprecation
+                    commonSignals:
+                      - 利用者が依存してよい面を定義する
+                      - breaking change かどうかを判断している
+                      - deprecated だがまだ削除しない
+                      - SDK や library の外部向け契約を説明している
+                    antiSignals:
+                      - REST API の実装全般だけで公開互換性の話がない
+                      - 社内 private API だけで外部契約ではない
+                      - UI の公開範囲や広報の public だけを指す
+                    relatedNames:
+                      - name: OpenAPI
+                        kind: standard
+                        relevance: HTTP API の公開面を仕様化する文脈で頻出する。
+                        officialUrl: https://www.openapis.org/
+                      - name: Javadoc
+                        kind: tool
+                        relevance: Java ライブラリの公開 API ドキュメント生成で関連する。
+                        officialUrl: https://www.oracle.com/java/technologies/javase/javadoc-tool.html
+                      - name: TypeDoc
+                        kind: tool
+                        relevance: TypeScript の公開 API ドキュメント生成で出やすい。
+                        officialUrl: https://typedoc.org/
+                      - name: API Extractor
+                        kind: tool
+                        relevance: TypeScript ライブラリの API surface 管理に使われる。
+                        officialUrl: https://api-extractor.com/
+
                 - slug: "backward-compatibility"
+
+                  search:
+
+                    keywords:
+
+                      - backward compatibility
+
+                      - 後方互換性
+
+                      - source compatibility
+
+                      - binary compatibility
+
+                      - behavioral compatibility
+
+                      - breaking change
+
+                      - migration guide
+
+                      - deprecation policy
+
+                      - 互換性維持
+
+                      - API evolution
+
+                    commonSignals:
+
+                      - 既存利用者を壊さない変更かを確認している
+
+                      - breaking change / migration guide が出る
+
+                      - source compatible と binary compatible を分けている
+
+                      - deprecated API の削除タイミングを議論している
+
+                    antiSignals:
+
+                      - 後方が物理的な後ろ方向の意味である
+
+                      - データ移行だけで API 互換性に触れていない
+
+                      - 単なるブラウザ対応表でコード契約の話がない
+
+                    relatedNames:
+
+                      - name: Semantic Versioning
+
+                        kind: standard
+
+                        relevance: 互換性の変化をバージョン番号に反映する代表的な規約。
+
+                        officialUrl: https://semver.org/
+
+                      - name: JVM binary compatibility
+
+                        kind: standard
+
+                        relevance: バイナリ互換性の学習で代表的に参照される。
+
+                        officialUrl: https://docs.oracle.com/javase/specs/
+
+                      - name: Rust Editions
+
+                        kind: language
+
+                        relevance: 互換性を保ちながら言語進化する仕組みとして関連する。
+
+                        officialUrl: https://doc.rust-lang.org/edition-guide/
+
+                      - name: Kotlin binary compatibility validator
+
+                        kind: tool
+
+                        relevance: ライブラリ API のバイナリ互換性検査で関連する。
+
+                        officialUrl: https://github.com/Kotlin/binary-compatibility-validator
                   name: "後方互換性"
                   summary: "既存利用者のコードやデータを壊さずに新しい版へ移行できる性質。"
                   whyLearn: "ライブラリや SDK の変更方針を適切に判断できる。"
@@ -372,6 +1762,43 @@ domain:
                   aliases:
                     - "SemVer"
                     - "semver"
+                  search:
+                    keywords:
+                      - Semantic Versioning
+                      - SemVer
+                      - セマンティックバージョニング
+                      - MAJOR MINOR PATCH
+                      - breaking change
+                      - version range
+                      - caret range
+                      - tilde range
+                      - pre-release version
+                    commonSignals:
+                      - MAJOR.MINOR.PATCH のどれを上げるか
+                      - 破壊的変更なので major bump する
+                      - ^ や ~ の依存範囲を説明している
+                      - pre-release や build metadata の話がある
+                    antiSignals:
+                      - 単なるバージョン番号の表記で互換性意味論がない
+                      - カレンダーバージョニング CalVer の話だけである
+                      - API ではなくデータセットの版管理だけを指す
+                    relatedNames:
+                      - name: semver.org
+                        kind: standard
+                        relevance: Semantic Versioning 2.0.0 の公式仕様。
+                        officialUrl: https://semver.org/
+                      - name: npm semver
+                        kind: library
+                        relevance: npm のバージョン範囲解釈で実務上頻出する。
+                        officialUrl: https://docs.npmjs.com/
+                      - name: PEP 440
+                        kind: standard
+                        relevance: Python パッケージのバージョン仕様と比較されやすい。
+                        officialUrl: https://peps.python.org/pep-0440/
+                      - name: Conventional Commits
+                        kind: standard
+                        relevance: SemVer に基づくリリース自動化と一緒に出やすい。
+                        officialUrl: https://www.conventionalcommits.org/
 
             - slug: "metaprogramming-and-reflection"
               name: "メタプログラミングとリフレクション"
@@ -386,7 +1813,122 @@ domain:
                   aliases:
                     - "macro"
                     - "コード展開"
+                  search:
+                    keywords:
+                      - macro
+                      - マクロ
+                      - procedural macro
+                      - syntax macro
+                      - macro expansion
+                      - code expansion
+                      - derive macro
+                      - hygienic macro
+                      - metaprogramming
+                      - compile-time code generation
+                    commonSignals:
+                      - コンパイル時にコードを展開する
+                      - derive / annotation / attribute から実装を生成する
+                      - DSL を構文として埋め込む
+                      - macro expansion の結果をデバッグする
+                    antiSignals:
+                      - Excel マクロや業務自動化だけを指す
+                      - マクロ経済の macro である
+                      - 単なる関数呼び出しで構文やコード生成を伴わない
+                    relatedNames:
+                      - name: Rust macros
+                        kind: language
+                        relevance: declarative macro と procedural macro の実務例として頻出する。
+                        officialUrl: https://doc.rust-lang.org/reference/macros.html
+                      - name: C preprocessor
+                        kind: tool
+                        relevance: テキスト置換型マクロの代表例として比較対象になる。
+                        officialUrl: https://gcc.gnu.org/onlinedocs/cpp/
+                      - name: Lisp macros
+                        kind: language
+                        relevance: 構文木を扱うマクロの古典的代表例。
+                        officialUrl: https://common-lisp.net/
+                      - name: Scala macros
+                        kind: language
+                        relevance: JVM 系のコンパイル時メタプログラミング例として関連する。
+                        officialUrl: https://docs.scala-lang.org/
+
                 - slug: "reflection"
+
+                  search:
+
+                    keywords:
+
+                      - reflection
+
+                      - リフレクション
+
+                      - introspection
+
+                      - runtime type information
+
+                      - RTTI
+
+                      - metadata
+
+                      - annotation processing
+
+                      - getDeclaredMethods
+
+                      - dynamic invocation
+
+                      - 型情報
+
+                    commonSignals:
+
+                      - 実行時に型やメソッド一覧を取得する
+
+                      - annotation を読み取って処理を切り替える
+
+                      - private field にアクセスする
+
+                      - DI container や ORM が型情報を使う
+
+                    antiSignals:
+
+                      - 光の反射 reflection の話である
+
+                      - 内省という心理学的意味だけである
+
+                      - 単なるログ出力で runtime metadata を扱っていない
+
+                    relatedNames:
+
+                      - name: Java Reflection API
+
+                        kind: library
+
+                        relevance: 実行時にクラスやメソッド情報を扱う代表的 API。
+
+                        officialUrl: https://docs.oracle.com/en/java/javase/
+
+                      - name: .NET Reflection
+
+                        kind: library
+
+                        relevance: C# / .NET の runtime metadata 取得で頻出する。
+
+                        officialUrl: https://learn.microsoft.com/dotnet/fundamentals/reflection/
+
+                      - name: Python inspect
+
+                        kind: library
+
+                        relevance: Python でオブジェクトや関数情報を調べる代表的モジュール。
+
+                        officialUrl: https://docs.python.org/3/library/inspect.html
+
+                      - name: Kotlin reflection
+
+                        kind: library
+
+                        relevance: KClass や annotation 処理の文脈で出やすい。
+
+                        officialUrl: https://kotlinlang.org/docs/reflection.html
                   name: "リフレクション"
                   summary: "型やメンバーなどのプログラム情報を実行時または生成時に参照する仕組み。"
                   whyLearn: "柔軟なフレームワーク実装に有効だが、静的保証を弱めることがある。"
@@ -402,6 +1944,44 @@ domain:
                   aliases:
                     - "codegen"
                     - "source generation"
+                  search:
+                    keywords:
+                      - code generation
+                      - codegen
+                      - コード生成
+                      - source generation
+                      - schema-first
+                      - generated code
+                      - scaffolding
+                      - template engine
+                      - IDL compiler
+                      - stub generation
+                    commonSignals:
+                      - schema や IDL からコードを生成する
+                      - generated files を編集してはいけない
+                      - 差分レビューで生成物を含めるか悩んでいる
+                      - client SDK や server stub を自動生成する
+                    antiSignals:
+                      - AI がコードを書くという一般的な話だけである
+                      - テンプレートによる HTML 出力だけでソースコード生成ではない
+                      - ビルド成果物の生成だけで API や型の生成に触れていない
+                    relatedNames:
+                      - name: Protocol Buffers
+                        kind: standard
+                        relevance: IDL から各言語のコードを生成する代表例。
+                        officialUrl: https://protobuf.dev/
+                      - name: OpenAPI Generator
+                        kind: tool
+                        relevance: OpenAPI 定義からクライアントやサーバ stub を生成する。
+                        officialUrl: https://openapi-generator.tech/
+                      - name: GraphQL Code Generator
+                        kind: tool
+                        relevance: GraphQL schema / operation から型や client code を生成する。
+                        officialUrl: https://the-guild.dev/graphql/codegen
+                      - name: ANTLR
+                        kind: tool
+                        relevance: grammar から lexer/parser コードを生成する。
+                        officialUrl: https://www.antlr.org/
 
     - slug: "language-implementation-and-runtime"
       name: "言語実装とランタイム"
@@ -425,7 +2005,122 @@ domain:
                   aliases:
                     - "lexer"
                     - "scanner"
+                  search:
+                    keywords:
+                      - lexer
+                      - scanner
+                      - lexical analyzer
+                      - 字句解析器
+                      - tokenizer
+                      - token stream
+                      - regular expression lexer
+                      - lex
+                      - JFlex
+                      - Flex
+                    commonSignals:
+                      - 文字列を token に分割する
+                      - 識別子、数値、演算子、空白を認識する
+                      - 正規表現で lexical rule を定義している
+                      - parser の前段として scanner が出る
+                    antiSignals:
+                      - セキュリティの token や認証トークンだけの話である
+                      - 自然言語処理の tokenizer だけでプログラミング言語構文ではない
+                      - ログ scanner など単なる文字列検索ツールの話である
+                    relatedNames:
+                      - name: Flex
+                        kind: tool
+                        relevance: C 系の lexer generator として古典的に使われる。
+                        officialUrl: https://github.com/westes/flex
+                      - name: JFlex
+                        kind: tool
+                        relevance: Java 向け字句解析器生成ツールとして関連する。
+                        officialUrl: https://jflex.de/
+                      - name: ANTLR lexer
+                        kind: tool
+                        relevance: 文法定義から lexer と parser を生成する文脈で頻出する。
+                        officialUrl: https://www.antlr.org/
+                      - name: Tree-sitter scanner
+                        kind: tool
+                        relevance: 外部 scanner を含む構文解析基盤として関連する。
+                        officialUrl: https://tree-sitter.github.io/tree-sitter/
+
                 - slug: "parser"
+
+                  search:
+
+                    keywords:
+
+                      - parser
+
+                      - 構文解析器
+
+                      - syntax parser
+
+                      - grammar
+
+                      - parse tree
+
+                      - recursive descent
+
+                      - LR parser
+
+                      - LL parser
+
+                      - parser generator
+
+                      - PEG
+
+                    commonSignals:
+
+                      - 文法規則から構文木を作る
+
+                      - recursive descent / LR / LL / PEG が出る
+
+                      - 構文エラーの位置や回復を扱う
+
+                      - DSL やコンパイラの front-end を作っている
+
+                    antiSignals:
+
+                      - JSON.parse の使い方だけで parser 設計ではない
+
+                      - HTML parser のブラウザ挙動だけで一般構文解析の話がない
+
+                      - parse が単なる文字列分割の意味で使われている
+
+                    relatedNames:
+
+                      - name: ANTLR
+
+                        kind: tool
+
+                        relevance: 多言語対応の parser generator として実務・教材で頻出する。
+
+                        officialUrl: https://www.antlr.org/
+
+                      - name: Bison
+
+                        kind: tool
+
+                        relevance: Yacc 系 LR parser generator の代表例。
+
+                        officialUrl: https://www.gnu.org/software/bison/
+
+                      - name: PEG.js
+
+                        kind: tool
+
+                        relevance: PEG 文法による JavaScript parser 生成の例として関連する。
+
+                        officialUrl: https://pegjs.org/
+
+                      - name: Tree-sitter
+
+                        kind: tool
+
+                        relevance: エディタ向け incremental parsing の代表的基盤。
+
+                        officialUrl: https://tree-sitter.github.io/tree-sitter/
                   name: "構文解析器"
                   summary: "トークン列から文法構造を組み立てる処理器。"
                   whyLearn: "言語設計とツール実装の両方で中心的な役割を持つ。"
@@ -441,6 +2136,44 @@ domain:
                   aliases:
                     - "AST"
                     - "abstract syntax tree"
+                  search:
+                    keywords:
+                      - AST
+                      - abstract syntax tree
+                      - 抽象構文木
+                      - syntax tree
+                      - AST node
+                      - visitor pattern
+                      - tree traversal
+                      - source transformation
+                      - compiler frontend
+                      - code analysis
+                    commonSignals:
+                      - AST node を走査して変換する
+                      - parser の出力として syntax tree が出る
+                      - visitor pattern で木を処理する
+                      - lint rule や codemod が AST を使う
+                    antiSignals:
+                      - 木構造データ一般の話で構文解析ではない
+                      - AST が時刻や団体名の略称として使われている
+                      - DOM tree の説明だけでソースコード構文ではない
+                    relatedNames:
+                      - name: ESTree
+                        kind: standard
+                        relevance: JavaScript AST の共通仕様として多くのツールで参照される。
+                        officialUrl: https://github.com/estree/estree
+                      - name: Babel parser
+                        kind: tool
+                        relevance: JavaScript/TypeScript の AST 変換で頻出する。
+                        officialUrl: https://babeljs.io/docs/babel-parser
+                      - name: TypeScript Compiler API
+                        kind: tool
+                        relevance: TypeScript AST の解析・変換で実務利用される。
+                        officialUrl: https://github.com/microsoft/TypeScript/wiki/Using-the-Compiler-API
+                      - name: Clang AST
+                        kind: tool
+                        relevance: C/C++ の AST 解析でよく参照される。
+                        officialUrl: https://clang.llvm.org/
 
             - slug: "lowering-and-intermediate-forms"
               name: "lowering と中間形式"
@@ -463,7 +2196,121 @@ domain:
                   aliases:
                     - "SSA"
                     - "static single assignment"
+                  search:
+                    keywords:
+                      - SSA
+                      - static single assignment
+                      - 静的単一代入形式
+                      - phi function
+                      - φ function
+                      - compiler IR
+                      - control flow graph
+                      - dataflow optimization
+                      - SSA form
+                      - def-use chain
+                    commonSignals:
+                      - 変数に一度だけ代入する IR
+                      - phi node / phi function が出る
+                      - def-use chain を使って最適化する
+                      - compiler optimization の内部表現を説明している
+                    antiSignals:
+                      - SSA が Social Security Administration など別略称である
+                      - 単なる immutable variable の説明で IR や phi がない
+                      - 静的解析一般で単一代入形式に触れていない
+                    relatedNames:
+                      - name: LLVM IR
+                        kind: tool
+                        relevance: SSA ベース IR の代表として SSA と強く結び付く。
+                        officialUrl: https://llvm.org/docs/LangRef.html
+                      - name: MLIR
+                        kind: tool
+                        relevance: SSA ベースの多階層 IR として関連する。
+                        officialUrl: https://mlir.llvm.org/
+                      - name: GCC GIMPLE
+                        kind: tool
+                        relevance: GCC の中間表現と SSA 最適化の文脈で出やすい。
+                        officialUrl: https://gcc.gnu.org/
+                      - name: Control Flow Graph
+                        kind: method
+                        relevance: SSA 構築や phi node 配置の前提として関連する。
+
                 - slug: "llvm-ir"
+
+                  search:
+
+                    keywords:
+
+                      - LLVM IR
+
+                      - LLVM intermediate representation
+
+                      - LLVM bitcode
+
+                      - LangRef
+
+                      - IRBuilder
+
+                      - LLVM pass
+
+                      - SSA
+
+                      - target-independent IR
+
+                      - compiler backend
+
+                      - lowering to LLVM
+
+                    commonSignals:
+
+                      - 独自言語を LLVM IR に落とす
+
+                      - LLVM pass で最適化する
+
+                      - .ll や .bc ファイルが出る
+
+                      - IRBuilder や LangRef を参照している
+
+                    antiSignals:
+
+                      - LLVM というコンパイラ群の紹介だけで IR に触れていない
+
+                      - IR が investor relations など別略称である
+
+                      - 中間表現ではなく CPU 命令セットの説明だけである
+
+                    relatedNames:
+
+                      - name: LLVM
+
+                        kind: tool
+
+                        relevance: LLVM IR を定義・利用するコンパイラインフラ本体。
+
+                        officialUrl: https://llvm.org/
+
+                      - name: Clang
+
+                        kind: tool
+
+                        relevance: C/C++ から LLVM IR へ lowering する代表的 front-end。
+
+                        officialUrl: https://clang.llvm.org/
+
+                      - name: llc
+
+                        kind: tool
+
+                        relevance: LLVM IR からターゲットコード生成を行うツールとして関連する。
+
+                        officialUrl: https://llvm.org/docs/CommandGuide/llc.html
+
+                      - name: MLIR
+
+                        kind: tool
+
+                        relevance: LLVM エコシステム内の多階層 IR として比較される。
+
+                        officialUrl: https://mlir.llvm.org/
                   name: "LLVM IR"
                   summary: "LLVM 系ツールチェーンで使われる SSA ベースの中間表現。"
                   whyLearn: "多言語から共通最適化基盤へ接続する代表例として理解価値が高い。"
@@ -489,7 +2336,122 @@ domain:
                   aliases:
                     - "interpreter"
                     - "逐次実行系"
+                  search:
+                    keywords:
+                      - interpreter
+                      - インタプリタ
+                      - bytecode interpreter
+                      - tree-walking interpreter
+                      - eval loop
+                      - REPL
+                      - 逐次実行
+                      - AST interpreter
+                      - virtual machine interpreter
+                      - scripting runtime
+                    commonSignals:
+                      - AST をたどって実行する
+                      - REPL で逐次評価する
+                      - bytecode dispatch loop が出る
+                      - コンパイルせずにスクリプトを実行する
+                    antiSignals:
+                      - 通訳者 interpreter の話である
+                      - 単に言語処理系全体を雑に interpreter と呼んでいるだけ
+                      - JIT や AOT コンパイルの話だけで逐次評価がない
+                    relatedNames:
+                      - name: CPython
+                        kind: platform
+                        relevance: Python の代表的インタプリタ実装として頻出する。
+                        officialUrl: https://www.python.org/
+                      - name: Ruby MRI
+                        kind: platform
+                        relevance: Ruby の標準的インタプリタ実装として関連する。
+                        officialUrl: https://www.ruby-lang.org/
+                      - name: Lua
+                        kind: language
+                        relevance: 埋め込み可能なインタプリタ言語としてよく使われる。
+                        officialUrl: https://www.lua.org/
+                      - name: Crafting Interpreters
+                        kind: other
+                        relevance: インタプリタ実装学習の定番教材として頻出する。
+                        officialUrl: https://craftinginterpreters.com/
+
                 - slug: "virtual-machine"
+
+                  search:
+
+                    keywords:
+
+                      - virtual machine
+
+                      - VM
+
+                      - 仮想機械
+
+                      - runtime VM
+
+                      - bytecode VM
+
+                      - stack machine
+
+                      - register VM
+
+                      - JVM
+
+                      - CLR
+
+                      - Wasm runtime
+
+                    commonSignals:
+
+                      - bytecode を VM が実行する
+
+                      - stack-based VM / register-based VM を比較している
+
+                      - JVM や CLR 上で動く
+
+                      - runtime が GC や JIT を提供する
+
+                    antiSignals:
+
+                      - クラウドの仮想マシン VM だけを指している
+
+                      - VirtualBox や EC2 インスタンスの運用話である
+
+                      - プロセス分離やコンテナだけで言語ランタイムではない
+
+                    relatedNames:
+
+                      - name: JVM
+
+                        kind: platform
+
+                        relevance: バイトコード実行 VM の代表例として頻出する。
+
+                        officialUrl: https://docs.oracle.com/javase/specs/
+
+                      - name: .NET CLR
+
+                        kind: platform
+
+                        relevance: 共通中間言語を実行する VM / runtime として関連する。
+
+                        officialUrl: https://learn.microsoft.com/dotnet/standard/clr
+
+                      - name: BEAM
+
+                        kind: platform
+
+                        relevance: Erlang/Elixir の並行実行 VM として関連する。
+
+                        officialUrl: https://www.erlang.org/
+
+                      - name: Wasmtime
+
+                        kind: platform
+
+                        relevance: WebAssembly runtime の代表例として VM 境界と関係する。
+
+                        officialUrl: https://wasmtime.dev/
                   name: "仮想機械"
                   summary: "中間命令を実行する抽象的な実行環境。"
                   whyLearn: "ランタイム機能、ポータビリティ、JIT の基盤理解に役立つ。"
@@ -505,6 +2467,44 @@ domain:
                   aliases:
                     - "JIT"
                     - "just in time compilation"
+                  search:
+                    keywords:
+                      - JIT
+                      - just-in-time compilation
+                      - JIT compiler
+                      - 実行時コンパイル
+                      - hot path optimization
+                      - tiered compilation
+                      - baseline compiler
+                      - optimizing compiler
+                      - deoptimization
+                      - warmup
+                    commonSignals:
+                      - 実行中にホットパスをネイティブコード化する
+                      - warmup 後に性能が上がる
+                      - deoptimization や inline cache が出る
+                      - 起動時間と定常性能のトレードオフを議論している
+                    antiSignals:
+                      - just in time が在庫管理や生産方式の意味である
+                      - AOT コンパイルだけで実行時最適化がない
+                      - 単にキャッシュするだけでコード生成を伴わない
+                    relatedNames:
+                      - name: V8
+                        kind: platform
+                        relevance: JavaScript JIT と最適化の代表的な実装として頻出する。
+                        officialUrl: https://v8.dev/
+                      - name: HotSpot JVM
+                        kind: platform
+                        relevance: JVM の JIT 最適化と tiered compilation の代表例。
+                        officialUrl: https://openjdk.org/
+                      - name: PyPy
+                        kind: platform
+                        relevance: Python 処理系における JIT の代表例として関連する。
+                        officialUrl: https://www.pypy.org/
+                      - name: LLVM ORC JIT
+                        kind: library
+                        relevance: LLVM を使った JIT 実装の文脈で出やすい。
+                        officialUrl: https://llvm.org/docs/ORCv2.html
 
             - slug: "runtime-and-interoperability"
               name: "ランタイムと相互運用"
@@ -519,7 +2519,122 @@ domain:
                   aliases:
                     - "GC"
                     - "garbage collection"
+                  search:
+                    keywords:
+                      - garbage collection
+                      - GC
+                      - ガベージコレクション
+                      - mark and sweep
+                      - generational GC
+                      - tracing GC
+                      - reference counting
+                      - stop-the-world
+                      - heap allocation
+                      - memory management
+                    commonSignals:
+                      - 不要オブジェクトを自動回収する
+                      - stop-the-world pause が問題になる
+                      - 世代別 GC や mark-sweep を説明している
+                      - ヒープ使用量とレイテンシを調整している
+                    antiSignals:
+                      - ゴミ収集という一般業務の話である
+                      - ログや一時ファイル cleanup だけでメモリ管理ではない
+                      - 手動 free の話だけで自動回収の仕組みがない
+                    relatedNames:
+                      - name: G1 GC
+                        kind: tool
+                        relevance: JVM の代表的な低停止時間 GC として実務で頻出する。
+                        officialUrl: https://docs.oracle.com/en/java/
+                      - name: ZGC
+                        kind: tool
+                        relevance: JVM の低レイテンシ GC として関連する。
+                        officialUrl: https://openjdk.org/
+                      - name: Boehm GC
+                        kind: library
+                        relevance: C/C++ で使われる保守的 GC の代表例。
+                        officialUrl: https://www.hboehm.info/gc/
+                      - name: CPython reference counting
+                        kind: platform
+                        relevance: 参照カウントと cyclic GC の実務例として出やすい。
+                        officialUrl: https://docs.python.org/3/
+
                 - slug: "webassembly"
+
+                  search:
+
+                    keywords:
+
+                      - WebAssembly
+
+                      - Wasm
+
+                      - wasm module
+
+                      - WASI
+
+                      - browser runtime
+
+                      - portable binary
+
+                      - sandbox
+
+                      - wasm32
+
+                      - component model
+
+                      - linear memory
+
+                    commonSignals:
+
+                      - ブラウザ内外で同じバイナリを実行する
+
+                      - wasm32 target にコンパイルする
+
+                      - sandboxed runtime や linear memory が出る
+
+                      - WASI でファイルやネットワークにアクセスする
+
+                    antiSignals:
+
+                      - WebAssembly という名前だけで JavaScript 高速化の俗説を述べている
+
+                      - ブラウザ API 一般の話で Wasm モジュールがない
+
+                      - 単なるバイナリ配布で Wasm runtime に触れていない
+
+                    relatedNames:
+
+                      - name: WebAssembly Core Specification
+
+                        kind: standard
+
+                        relevance: WebAssembly の命令・型・モジュール意味論を定義する中核仕様。
+
+                        officialUrl: https://webassembly.org/specs/
+
+                      - name: WASI
+
+                        kind: standard
+
+                        relevance: ブラウザ外で Wasm を実行するシステムインターフェースとして関連する。
+
+                        officialUrl: https://wasi.dev/
+
+                      - name: Wasmtime
+
+                        kind: platform
+
+                        relevance: サーバーサイド Wasm runtime の代表例。
+
+                        officialUrl: https://wasmtime.dev/
+
+                      - name: Emscripten
+
+                        kind: tool
+
+                        relevance: C/C++ を WebAssembly へコンパイルする定番ツール。
+
+                        officialUrl: https://emscripten.org/
                   name: "WebAssembly"
                   summary: "多言語からターゲット可能な低水準で移植性の高いバイナリ形式。"
                   whyLearn: "ブラウザ内外をまたぐ新しい配布・実行形態を理解できる。"
@@ -535,6 +2650,44 @@ domain:
                   aliases:
                     - "FFI"
                     - "foreign function interface"
+                  search:
+                    keywords:
+                      - FFI
+                      - foreign function interface
+                      - 外部関数インターフェース
+                      - native binding
+                      - C ABI
+                      - JNI
+                      - ctypes
+                      - p/invoke
+                      - language binding
+                      - marshalling
+                    commonSignals:
+                      - C ABI に合わせて関数を公開する
+                      - native library を別言語から呼び出す
+                      - データ marshalling や ownership 境界を説明している
+                      - JNI / ctypes / PInvoke が出る
+                    antiSignals:
+                      - API 連携や HTTP 呼び出しだけでプロセス内言語境界ではない
+                      - 外部サービス連携の話だけでネイティブ関数呼び出しがない
+                      - プラグイン機構だけで ABI やデータ変換がない
+                    relatedNames:
+                      - name: JNI
+                        kind: standard
+                        relevance: Java とネイティブコード接続の代表的 FFI。
+                        officialUrl: https://docs.oracle.com/en/java/
+                      - name: Python ctypes
+                        kind: library
+                        relevance: Python から C ライブラリを呼び出す標準ライブラリ。
+                        officialUrl: https://docs.python.org/3/library/ctypes.html
+                      - name: P/Invoke
+                        kind: platform
+                        relevance: .NET からネイティブ関数を呼び出す仕組みとして関連する。
+                        officialUrl: https://learn.microsoft.com/dotnet/standard/native-interop/pinvoke
+                      - name: cbindgen
+                        kind: tool
+                        relevance: Rust から C ヘッダを生成して FFI 境界を作るツール。
+                        officialUrl: https://github.com/mozilla/cbindgen
 
     - slug: "tooling-build-and-packaging"
       name: "ツールチェーン、ビルド、パッケージング"
@@ -558,7 +2711,122 @@ domain:
                   aliases:
                     - "linter"
                     - "lint"
+                  search:
+                    keywords:
+                      - linter
+                      - lint
+                      - リンタ
+                      - static lint
+                      - code style rule
+                      - ESLint
+                      - RuboCop
+                      - flake8
+                      - Clippy
+                      - golangci-lint
+                    commonSignals:
+                      - スタイル違反や危険な書き方を自動検出する
+                      - .eslintrc や lint rule を設定している
+                      - CI で lint を落とす
+                      - 自動修正 autofix がある
+                    antiSignals:
+                      - 衣類の lint / 糸くずの話である
+                      - フォーマッタだけで診断ルールがない
+                      - テスト失敗や型エラーだけで lint ではない
+                    relatedNames:
+                      - name: ESLint
+                        kind: tool
+                        relevance: JavaScript/TypeScript の lint で最も頻出する。
+                        officialUrl: https://eslint.org/
+                      - name: RuboCop
+                        kind: tool
+                        relevance: Ruby の style / lint / static analysis で広く使われる。
+                        officialUrl: https://rubocop.org/
+                      - name: Clippy
+                        kind: tool
+                        relevance: Rust の lint ツールとして標準的に使われる。
+                        officialUrl: https://doc.rust-lang.org/clippy/
+                      - name: golangci-lint
+                        kind: tool
+                        relevance: Go の複数 linter 統合ツールとして実務で頻出する。
+                        officialUrl: https://golangci-lint.run/
+
                 - slug: "dataflow-analysis"
+
+                  search:
+
+                    keywords:
+
+                      - dataflow analysis
+
+                      - data-flow analysis
+
+                      - データフロー解析
+
+                      - control flow graph
+
+                      - CFG
+
+                      - reaching definitions
+
+                      - liveness analysis
+
+                      - taint analysis
+
+                      - def-use chain
+
+                      - static analysis
+
+                    commonSignals:
+
+                      - 変数定義がどこに到達するかを調べる
+
+                      - tainted input が sink に流れる
+
+                      - control flow graph と def-use chain が出る
+
+                      - 未初期化や不要代入を静的に検出する
+
+                    antiSignals:
+
+                      - データパイプラインや ETL の flow だけを指している
+
+                      - 業務フロー図でコード解析ではない
+
+                      - 単なるログトレースで静的解析ではない
+
+                    relatedNames:
+
+                      - name: LLVM analysis passes
+
+                        kind: tool
+
+                        relevance: コンパイラ最適化のデータフロー解析実装として関連する。
+
+                        officialUrl: https://llvm.org/docs/
+
+                      - name: CodeQL
+
+                        kind: tool
+
+                        relevance: コード上のデータ流や taint 解析をクエリする実務ツール。
+
+                        officialUrl: https://codeql.github.com/
+
+                      - name: Semgrep taint mode
+
+                        kind: tool
+
+                        relevance: 軽量な静的解析で taint flow を扱う文脈で出やすい。
+
+                        officialUrl: https://semgrep.dev/
+
+                      - name: Clang Static Analyzer
+
+                        kind: tool
+
+                        relevance: C/C++/Objective-C のパス探索・データフロー解析で関連する。
+
+                        officialUrl: https://clang-analyzer.llvm.org/
                   name: "データフロー解析"
                   summary: "値がどこから来てどこへ流れるかを追跡する解析。"
                   whyLearn: "未初期化、到達不能、不要代入、汚染追跡の基盤になる。"
@@ -588,6 +2856,45 @@ domain:
                   aliases:
                     - "LSP"
                     - "language server protocol"
+                  search:
+                    keywords:
+                      - Language Server Protocol
+                      - LSP
+                      - language server
+                      - コード補完
+                      - go to definition
+                      - hover
+                      - diagnostics
+                      - JSON-RPC
+                      - editor integration
+                      - IDE features
+                    commonSignals:
+                      - 補完、定義ジャンプ、参照検索を editor に提供する
+                      - language server と client が JSON-RPC で通信する
+                      - diagnostics や hover 情報を返す
+                      - IDE ごとに実装せず共通サーバにする
+                    antiSignals:
+                      - LSP が物流サービスプロバイダなど別略称である
+                      - 単なる REST API サーバで editor integration がない
+                      - コンパイラそのものの話でプロトコル通信がない
+                    relatedNames:
+                      - name: Language Server Protocol
+                        kind: protocol
+                        relevance: エディタと言語サーバ間の共通プロトコルそのもの。
+                        officialUrl: https://microsoft.github.io/language-server-protocol/
+                      - name: VS Code
+                        kind: tool
+                        relevance: LSP 採用エディタとして言語サーバ実装例が豊富。
+                        officialUrl: https://code.visualstudio.com/
+                      - name: clangd
+                        kind: tool
+                        relevance: C/C++ 向け language server の代表例。
+                        officialUrl: https://clangd.llvm.org/
+                      - name: rust-analyzer
+                        kind: tool
+                        relevance: Rust 向け language server として実務で広く使われる。
+                        officialUrl: https://rust-analyzer.github.io/
+
                 - slug: "lsif"
                   name: "LSIF"
                   summary: "コードナビゲーション情報を事前計算して共有するための索引形式。"
@@ -604,6 +2911,39 @@ domain:
                   aliases:
                     - "Tree-sitter"
                     - "incremental parser"
+                  search:
+                    keywords:
+                      - Tree-sitter
+                      - incremental parser
+                      - インクリメンタルパーサ
+                      - concrete syntax tree
+                      - syntax highlighting
+                      - parser generator
+                      - grammar.js
+                      - query capture
+                      - editor parsing
+                    commonSignals:
+                      - 編集のたびに構文木を効率更新する
+                      - grammar.js で言語文法を定義する
+                      - 構文ハイライトや構造検索に使う
+                      - concrete syntax tree と query capture が出る
+                    antiSignals:
+                      - 一般的な tree data structure の話だけである
+                      - parser generator だが incremental parsing に触れていない
+                      - AST 変換ツールとしてだけ説明して CST の話がない
+                    relatedNames:
+                      - name: Tree-sitter
+                        kind: tool
+                        relevance: インクリメンタル構文解析と構文木生成の対象ツールそのもの。
+                        officialUrl: https://tree-sitter.github.io/tree-sitter/
+                      - name: Neovim Treesitter
+                        kind: tool
+                        relevance: エディタ上で Tree-sitter を使う代表的な実務文脈。
+                        officialUrl: https://github.com/nvim-treesitter/nvim-treesitter
+                      - name: Helix editor
+                        kind: tool
+                        relevance: Tree-sitter を構文ハイライトや編集機能に活用するエディタ例。
+                        officialUrl: https://helix-editor.com/
 
         - slug: "builds-and-dependencies"
           name: "ビルドと依存関係"
@@ -630,6 +2970,44 @@ domain:
                   aliases:
                     - "hermetic build"
                     - "閉じたビルド"
+                  search:
+                    keywords:
+                      - hermetic build
+                      - 閉じたビルド
+                      - reproducible build
+                      - sandboxed build
+                      - declared inputs
+                      - remote cache
+                      - pinned toolchain
+                      - deterministic build
+                      - build isolation
+                    commonSignals:
+                      - ホスト環境の状態に依存しない
+                      - 入力と toolchain を明示的に pin する
+                      - remote cache が安全に使える
+                      - sandbox 内で build action を実行する
+                    antiSignals:
+                      - 密閉容器や hermetic sealing の物理的な話である
+                      - Docker を使っているだけで入力固定がない
+                      - CI が安定しているという一般論だけで build isolation がない
+                    relatedNames:
+                      - name: Bazel
+                        kind: tool
+                        relevance: hermetic build と remote cache の代表的なビルドシステム。
+                        officialUrl: https://bazel.build/
+                      - name: Buck2
+                        kind: tool
+                        relevance: 大規模 hermetic build の文脈で Bazel と比較される。
+                        officialUrl: https://buck2.build/
+                      - name: Nix
+                        kind: tool
+                        relevance: 依存を明示した再現可能環境・ビルドの代表例。
+                        officialUrl: https://nixos.org/
+                      - name: rules_oci
+                        kind: tool
+                        relevance: Bazel でコンテナ成果物を再現可能に作る文脈で出やすい。
+                        officialUrl: https://github.com/bazel-contrib/rules_oci
+
                 - slug: "reproducible-build"
                   name: "再現可能ビルド"
                   summary: "同じソースと設定から同一の成果物を生成できる性質。"
@@ -654,7 +3032,122 @@ domain:
                     - "pyproject.toml"
                     - "Cargo.toml"
                     - "pom.xml"
+                  search:
+                    keywords:
+                      - package manifest
+                      - パッケージマニフェスト
+                      - package.json
+                      - pyproject.toml
+                      - Cargo.toml
+                      - pom.xml
+                      - go.mod
+                      - project metadata
+                      - dependencies field
+                      - build-system
+                    commonSignals:
+                      - dependencies / devDependencies / build-system を宣言する
+                      - パッケージ名、バージョン、メタデータを記述する
+                      - manifest と lockfile の違いを説明している
+                      - project metadata や build backend を設定する
+                    antiSignals:
+                      - 政治的な manifest / 宣言文の話である
+                      - Kubernetes manifest だけで言語パッケージではない
+                      - Dockerfile や Compose の設定だけで package metadata ではない
+                    relatedNames:
+                      - name: package.json
+                        kind: standard
+                        relevance: npm パッケージの依存とメタデータを宣言する代表的 manifest。
+                        officialUrl: https://docs.npmjs.com/cli/configuring-npm/package-json
+                      - name: pyproject.toml
+                        kind: standard
+                        relevance: Python パッケージのビルド設定とメタデータ宣言で頻出する。
+                        officialUrl: https://packaging.python.org/en/latest/specifications/pyproject-toml/
+                      - name: Cargo.toml
+                        kind: standard
+                        relevance: Rust の package manifest として依存・metadata を宣言する。
+                        officialUrl: https://doc.rust-lang.org/cargo/reference/manifest.html
+                      - name: Maven POM
+                        kind: standard
+                        relevance: JVM プロジェクトの依存・ビルド・メタデータ宣言として関連する。
+                        officialUrl: https://maven.apache.org/pom.html
+
                 - slug: "dependency-resolution"
+
+                  search:
+
+                    keywords:
+
+                      - dependency resolution
+
+                      - 依存解決
+
+                      - version solving
+
+                      - dependency solver
+
+                      - version constraints
+
+                      - transitive dependency
+
+                      - dependency hell
+
+                      - SAT solver
+
+                      - conflict resolution
+
+                      - package manager
+
+                    commonSignals:
+
+                      - 推移的依存のバージョン競合を解く
+
+                      - version constraint を満たす組み合わせを探す
+
+                      - peer dependency conflict や dependency hell が出る
+
+                      - solver / resolver が lockfile を生成する
+
+                    antiSignals:
+
+                      - 依存関係という語が組織依存や業務依存だけを指す
+
+                      - DI の依存注入だけでパッケージバージョン解決ではない
+
+                      - 単に import できないエラーで依存解決アルゴリズムの話がない
+
+                    relatedNames:
+
+                      - name: PubGrub
+
+                        kind: method
+
+                        relevance: 依存バージョン解決アルゴリズムとして Dart や Poetry の文脈で知られる。
+
+                        officialUrl: https://github.com/dart-lang/pub/blob/master/doc/solver.md
+
+                      - name: npm
+
+                        kind: tool
+
+                        relevance: JavaScript の依存解決と peer dependency conflict で頻出する。
+
+                        officialUrl: https://docs.npmjs.com/
+
+                      - name: Cargo resolver
+
+                        kind: tool
+
+                        relevance: Rust の feature unification と依存解決を学ぶ文脈で関連する。
+
+                        officialUrl: https://doc.rust-lang.org/cargo/reference/resolver.html
+
+                      - name: Maven dependency mediation
+
+                        kind: tool
+
+                        relevance: JVM 依存の推移的解決と競合調停で出やすい。
+
+                        officialUrl: https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html
                   name: "依存解決"
                   summary: "要求された版制約から、共存可能な依存バージョン集合を決める処理。"
                   whyLearn: "依存地獄や更新事故の根本原因を理解できる。"
@@ -671,6 +3164,44 @@ domain:
                     - "package-lock.json"
                     - "Cargo.lock"
                     - "poetry.lock"
+                  search:
+                    keywords:
+                      - lockfile
+                      - lock file
+                      - ロックファイル
+                      - package-lock.json
+                      - yarn.lock
+                      - pnpm-lock.yaml
+                      - Cargo.lock
+                      - poetry.lock
+                      - Gemfile.lock
+                      - resolved dependency tree
+                    commonSignals:
+                      - 依存バージョンを exact に固定する
+                      - CI とローカルで同じ依存ツリーにする
+                      - lockfile を commit すべきか議論している
+                      - manifest から解決された結果を保存する
+                    antiSignals:
+                      - ファイルロックや排他制御の lock file の話である
+                      - DB lock や mutex の話である
+                      - パスワードロックなどセキュリティロックの意味で使っている
+                    relatedNames:
+                      - name: package-lock.json
+                        kind: standard
+                        relevance: npm の解決済み依存ツリーを固定する代表的 lockfile。
+                        officialUrl: https://docs.npmjs.com/cli/configuring-npm/package-lock-json
+                      - name: yarn.lock
+                        kind: standard
+                        relevance: Yarn の依存解決結果を固定する lockfile として頻出する。
+                        officialUrl: https://yarnpkg.com/
+                      - name: Cargo.lock
+                        kind: standard
+                        relevance: Rust の依存解決結果を固定する lockfile として関連する。
+                        officialUrl: https://doc.rust-lang.org/cargo/guide/cargo-toml-vs-cargo-lock.html
+                      - name: poetry.lock
+                        kind: tool
+                        relevance: Python Poetry の依存固定ファイルとして実務でよく出る。
+                        officialUrl: https://python-poetry.org/
 
 edges:
   - from: "static-typing"

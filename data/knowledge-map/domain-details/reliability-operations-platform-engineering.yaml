@@ -26,7 +26,123 @@ domain:
                   aliases:
                     - SLI
                     - service level indicator
+                  search:
+                    keywords:
+                      - SLI
+                      - service level indicator
+                      - サービスレベル指標
+                      - ユーザー体験指標
+                      - reliability metric
+                      - request success ratio
+                      - latency SLI
+                      - availability SLI
+                      - SLO measurement
+                    commonSignals:
+                      - SLI候補や測定対象を議論している
+                      - 成功率、エラー率、遅延分位点をユーザー視点で定義している
+                      - SLOの前提として何を測るかを決めている
+                      - PromQLで可用性や成功率を計算している
+                    antiSignals:
+                      - KPIや事業指標だけでサービス品質の測定ではない
+                      - メトリクス一般の話でユーザー影響や目標値に結びついていない
+                      - SLA条項や契約文面だけを扱っている
+                    relatedNames:
+                      - name: OpenSLO
+                        kind: standard
+                        relevance: SLIやSLOを機械可読な仕様として表現する文脈で一緒に出やすい。
+                        officialUrl: https://openslo.com/
+                      - name: Prometheus
+                        kind: tool
+                        relevance: SLIをメトリクスとして収集・集計する代表的な時系列基盤。
+                        officialUrl: https://prometheus.io/
+                      - name: PromQL
+                        kind: language
+                        relevance: Prometheus上でSLIを計算するクエリ言語として使われる。
+                        officialUrl: https://prometheus.io/docs/prometheus/latest/querying/basics/
+                      - name: Pyrra
+                        kind: tool
+                        relevance: PrometheusベースでSLOとSLIを管理するツールとして参照される。
+                        officialUrl: https://pyrra.dev/
+                      - name: Sloth
+                        kind: tool
+                        relevance: SLO定義からPrometheusルールを生成するツールとして関連する。
+                        officialUrl: https://sloth.dev/
+
                 - slug: service-level-objective
+
+                  search:
+
+                    keywords:
+
+                      - SLO
+
+                      - service level objective
+
+                      - サービスレベル目標
+
+                      - reliability target
+
+                      - availability target
+
+                      - latency objective
+
+                      - SLO target
+
+                      - objective window
+
+                      - target percentage
+
+                    commonSignals:
+
+                      - 99.9パーセントや99.95パーセントなどの目標値を決めている
+
+                      - SLIに対する許容範囲や評価期間を設定している
+
+                      - 可用性と開発速度のトレードオフを議論している
+
+                      - SLO違反やSLO達成率をレビューしている
+
+                    antiSignals:
+
+                      - SLAや契約上の返金条項だけを扱っている
+
+                      - 監視閾値だけでユーザー体験の目標になっていない
+
+                      - OKRのObjectiveでサービス品質目標ではない
+
+                    relatedNames:
+
+                      - name: OpenSLO
+
+                        kind: standard
+
+                        relevance: SLOをYAMLなどで標準的に定義する仕様として関連する。
+
+                        officialUrl: https://openslo.com/
+
+                      - name: Google SRE Workbook
+
+                        kind: method
+
+                        relevance: SLO設計の実務的な手順や考え方で広く参照される。
+
+                        officialUrl: https://sre.google/workbook/implementing-slos/
+
+                      - name: Grafana SLO
+
+                        kind: tool
+
+                        relevance: Grafana環境でSLOを可視化・運用する文脈で出やすい。
+
+                        officialUrl: https://grafana.com/
+
+                      - name: Nobl9
+
+                        kind: service
+
+                        relevance: SLO管理専用サービスとしてSLO運用の比較対象になりやすい。
+
+                        officialUrl: https://www.nobl9.com/
                   name: サービスレベル目標
                   summary: SLIに対して設定する目標値や許容範囲。
                   whyLearn: 信頼性の期待値を曖昧な高品質ではなく数値目標に変えるため。
@@ -50,6 +166,39 @@ domain:
                   aliases:
                     - error budget
                     - 許容障害予算
+                  search:
+                    keywords:
+                      - error budget
+                      - エラーバジェット
+                      - 許容障害予算
+                      - budget remaining
+                      - budget exhaustion
+                      - budget consumption
+                      - unreliability budget
+                      - release freeze
+                      - reliability budget
+                    commonSignals:
+                      - SLOから許容失敗量を逆算している
+                      - リリース停止や信頼性改善優先の判断をしている
+                      - バジェット残量や消費率を追跡している
+                      - 障害後にエラーバジェットが枯渇したと表現している
+                    antiSignals:
+                      - 金銭的な予算やクラウド費用の話だけである
+                      - 単なるエラー件数でSLOとの関係がない
+                      - プロジェクト予算や人員予算の話である
+                    relatedNames:
+                      - name: Google SRE Workbook
+                        kind: method
+                        relevance: エラーバジェットポリシーの代表的な考え方として参照される。
+                        officialUrl: https://sre.google/workbook/error-budget-policy/
+                      - name: OpenSLO
+                        kind: standard
+                        relevance: SLO定義と合わせてエラーバジェット算出の対象になりやすい。
+                        officialUrl: https://openslo.com/
+                      - name: Prometheus Alertmanager
+                        kind: tool
+                        relevance: バジェット消費に基づくアラート通知で使われることが多い。
+                        officialUrl: https://prometheus.io/docs/alerting/latest/alertmanager/
             - slug: user-centered-reliability-dimensions
               name: ユーザー中心の信頼性次元
               summary: 信頼性を可用性だけでなく、応答性や正確さなど複数の性質で捉える。
@@ -104,6 +253,44 @@ domain:
                   aliases:
                     - burn rate
                     - 予算消費率
+                  search:
+                    keywords:
+                      - burn rate
+                      - バーンレート
+                      - error budget burn
+                      - budget burn rate
+                      - 予算消費率
+                      - fast burn
+                      - slow burn
+                      - SLO alerting
+                      - burn rate alert
+                    commonSignals:
+                      - エラーバジェットの消費速度を議論している
+                      - 1時間、6時間、3日など複数窓でSLO違反を検知している
+                      - fast burnやslow burnという表現が出る
+                      - アラート閾値として14.4倍や6倍などを使っている
+                    antiSignals:
+                      - スタートアップの資金燃焼率の話である
+                      - CPU使用率やリソース消費率だけを指している
+                      - 予算消化率だが信頼性目標と関係がない
+                    relatedNames:
+                      - name: Prometheus
+                        kind: tool
+                        relevance: バーンレート計算のPromQL例がよく使われる。
+                        officialUrl: https://prometheus.io/
+                      - name: Alertmanager
+                        kind: tool
+                        relevance: バーンレートアラートの通知・抑制先として関連する。
+                        officialUrl: https://prometheus.io/docs/alerting/latest/alertmanager/
+                      - name: Sloth
+                        kind: tool
+                        relevance: SLO定義からバーンレートアラートルールを生成する用途で使われる。
+                        officialUrl: https://sloth.dev/
+                      - name: Pyrra
+                        kind: tool
+                        relevance: エラーバジェット消費とバーンレートの可視化に使われる。
+                        officialUrl: https://pyrra.dev/
+
                 - slug: error-budget-policy
                   name: エラーバジェットポリシー
                   summary: バジェット超過時のリリース停止や改善優先を定める運用規約。
@@ -172,7 +359,131 @@ domain:
                   aliases:
                     - metric
                     - metrics
+                  search:
+                    keywords:
+                      - metrics
+                      - metric
+                      - メトリクス
+                      - time series
+                      - 時系列データ
+                      - counters gauges histograms
+                      - scrape
+                      - telemetry metrics
+                      - monitoring metrics
+                    commonSignals:
+                      - 時系列の数値を収集・集計している
+                      - counter、gauge、histogramなどの型を選んでいる
+                      - ダッシュボードやアラートの元データとして使っている
+                      - scrape intervalやlabel設計を議論している
+                    antiSignals:
+                      - ビジネスKPIだけで運用テレメトリではない
+                      - ログ本文やイベント詳細の検索が中心である
+                      - 単発の計測値で時系列分析や集約がない
+                    relatedNames:
+                      - name: Prometheus
+                        kind: tool
+                        relevance: メトリクス収集・保存・クエリのデファクトとして広く使われる。
+                        officialUrl: https://prometheus.io/
+                      - name: OpenTelemetry Metrics
+                        kind: standard
+                        relevance: ベンダー中立のメトリクス計装仕様として関連する。
+                        officialUrl: https://opentelemetry.io/docs/concepts/signals/metrics/
+                      - name: Grafana
+                        kind: tool
+                        relevance: メトリクスのダッシュボード化で頻出する可視化ツール。
+                        officialUrl: https://grafana.com/
+                      - name: PromQL
+                        kind: language
+                        relevance: Prometheusメトリクスを検索・集計するクエリ言語。
+                        officialUrl: https://prometheus.io/docs/prometheus/latest/querying/basics/
+                      - name: StatsD
+                        kind: protocol
+                        relevance: アプリケーションメトリクス送信の古典的方式として出る。
+                        officialUrl: https://github.com/statsd/statsd
+
                 - slug: logs
+
+                  search:
+
+                    keywords:
+
+                      - logs
+
+                      - log
+
+                      - structured log
+
+                      - 構造化ログ
+
+                      - application log
+
+                      - JSON logging
+
+                      - log aggregation
+
+                      - log level
+
+                      - correlation id
+
+                    commonSignals:
+
+                      - JSON形式や構造化フィールドでログを出している
+
+                      - error、warn、infoなどログレベルを設計している
+
+                      - trace_idやrequest_idでログを相関している
+
+                      - 集約基盤へログを転送して検索している
+
+                    antiSignals:
+
+                      - メトリクスの数値集計だけで個別イベント記録ではない
+
+                      - 監査ログやセキュリティログだけで運用診断と無関係
+
+                      - 単なるコンソール出力やデバッグprintの話である
+
+                    relatedNames:
+
+                      - name: OpenTelemetry Logs
+
+                        kind: standard
+
+                        relevance: ログ信号をベンダー中立に扱う仕様として関連する。
+
+                        officialUrl: https://opentelemetry.io/docs/concepts/signals/logs/
+
+                      - name: Elasticsearch
+
+                        kind: tool
+
+                        relevance: ログ検索基盤として広く使われる。
+
+                        officialUrl: https://www.elastic.co/elasticsearch
+
+                      - name: Loki
+
+                        kind: tool
+
+                        relevance: Grafana系のログ集約・検索基盤としてよく出る。
+
+                        officialUrl: https://grafana.com/oss/loki/
+
+                      - name: Fluent Bit
+
+                        kind: tool
+
+                        relevance: ログ収集・転送エージェントとして運用基盤で使われる。
+
+                        officialUrl: https://fluentbit.io/
+
+                      - name: Fluentd
+
+                        kind: tool
+
+                        relevance: ログ収集・加工・転送の定番ツールとして関連する。
+
+                        officialUrl: https://www.fluentd.org/
                   name: ログ
                   summary: 離散的なイベントや状態変化の記録。
                   whyLearn: 個別事象や失敗理由の追跡に不可欠だから。
@@ -188,6 +499,48 @@ domain:
                   aliases:
                     - trace
                     - distributed tracing
+                  search:
+                    keywords:
+                      - traces
+                      - trace
+                      - distributed tracing
+                      - 分散トレース
+                      - span
+                      - trace id
+                      - parent span
+                      - request path
+                      - end-to-end tracing
+                    commonSignals:
+                      - spanやtrace_idでリクエスト経路を追っている
+                      - マイクロサービス間の遅延箇所を特定している
+                      - traceparentやcontext propagationを扱っている
+                      - 1リクエストの呼び出しツリーを可視化している
+                    antiSignals:
+                      - ログ検索だけでリクエスト経路の親子関係がない
+                      - メトリクスの時系列グラフだけを見ている
+                      - スタックトレースの話で分散トレースではない
+                    relatedNames:
+                      - name: OpenTelemetry Traces
+                        kind: standard
+                        relevance: 分散トレース計装の中心的なオープン仕様として関連する。
+                        officialUrl: https://opentelemetry.io/docs/concepts/signals/traces/
+                      - name: Jaeger
+                        kind: tool
+                        relevance: 分散トレースの収集・可視化ツールとして広く知られる。
+                        officialUrl: https://www.jaegertracing.io/
+                      - name: Zipkin
+                        kind: tool
+                        relevance: 分散トレーシングの代表的な実装として参照される。
+                        officialUrl: https://zipkin.io/
+                      - name: Grafana Tempo
+                        kind: tool
+                        relevance: 大規模トレース保存基盤としてGrafanaスタックで使われる。
+                        officialUrl: https://grafana.com/oss/tempo/
+                      - name: W3C Trace Context
+                        kind: standard
+                        relevance: サービス間でtraceparentを伝搬する標準として関連する。
+                        officialUrl: https://www.w3.org/TR/trace-context/
+
                 - slug: profiles
                   name: プロファイル
                   summary: コードレベルのCPUやメモリ使用の分布を継続的に捉える記録。
@@ -217,7 +570,111 @@ domain:
                   aliases:
                     - trace context
                     - context propagation
+                  search:
+                    keywords:
+                      - trace context
+                      - トレースコンテキスト
+                      - W3C Trace Context
+                      - traceparent
+                      - tracestate
+                      - context propagation
+                      - distributed context
+                      - span context
+                      - propagation header
+                    commonSignals:
+                      - traceparentヘッダーをHTTPやgRPCで伝搬している
+                      - サービスをまたいで同じリクエストを追跡している
+                      - context propagationが切れてトレースが分断されている
+                      - span contextやparent-child関係を扱っている
+                    antiSignals:
+                      - アプリケーションの設定コンテキストだけを指している
+                      - ユーザーセッションIDだけで分散トレースではない
+                      - ログの相関IDだけで標準ヘッダー伝搬の話がない
+                    relatedNames:
+                      - name: W3C Trace Context
+                        kind: standard
+                        relevance: traceparentとtracestateを定める標準仕様として直接関連する。
+                        officialUrl: https://www.w3.org/TR/trace-context/
+                      - name: OpenTelemetry Context Propagation
+                        kind: standard
+                        relevance: トレース文脈をサービス境界で伝搬する仕組みとして関連する。
+                        officialUrl: https://opentelemetry.io/docs/concepts/context-propagation/
+                      - name: B3 Propagation
+                        kind: protocol
+                        relevance: Zipkin系で使われるトレース伝搬形式として比較対象になる。
+                        officialUrl: https://github.com/openzipkin/b3-propagation
+                      - name: Jaeger Propagation
+                        kind: protocol
+                        relevance: 分散トレース環境での伝搬形式の互換性議論に出る。
+                        officialUrl: https://www.jaegertracing.io/docs/latest/client-libraries/#propagation-format
+
                 - slug: semantic-conventions
+
+                  search:
+
+                    keywords:
+
+                      - semantic conventions
+
+                      - semantic attributes
+
+                      - セマンティック規約
+
+                      - OpenTelemetry semantic conventions
+
+                      - attribute naming
+
+                      - resource attributes
+
+                      - span attributes
+
+                      - metric attributes
+
+                      - telemetry schema
+
+                    commonSignals:
+
+                      - service.nameやhttp.request.methodなどの属性名をそろえている
+
+                      - チーム間でラベルやタグの命名規約を共通化している
+
+                      - OpenTelemetryの属性スキーマに合わせている
+
+                      - ダッシュボードや検索クエリを横断再利用している
+
+                    antiSignals:
+
+                      - 一般的なコーディング命名規則だけの話である
+
+                      - DBスキーマ設計でテレメトリ属性ではない
+
+                      - 自由記述タグだけで意味の標準化がない
+
+                    relatedNames:
+
+                      - name: OpenTelemetry Semantic Conventions
+
+                        kind: standard
+
+                        relevance: テレメトリ属性名と意味を共通化する公式仕様。
+
+                        officialUrl: https://opentelemetry.io/docs/concepts/semantic-conventions/
+
+                      - name: OpenTelemetry Resource
+
+                        kind: standard
+
+                        relevance: service.nameやdeployment.environmentなど共通属性の定義で関連する。
+
+                        officialUrl: https://opentelemetry.io/docs/concepts/resources/
+
+                      - name: OpenTelemetry Collector
+
+                        kind: tool
+
+                        relevance: 属性変換や正規化を行う収集パイプラインとして関連する。
+
+                        officialUrl: https://opentelemetry.io/docs/collector/
                   name: セマンティック規約
                   summary: 属性名や意味を共通化する観測データの命名規約。
                   whyLearn: チームやツールをまたいだ再利用性と検索性を高めるため。
@@ -250,6 +707,40 @@ domain:
                   aliases:
                     - histogram
                     - 分布メトリクス
+                  search:
+                    keywords:
+                      - histogram
+                      - ヒストグラム
+                      - bucket
+                      - latency distribution
+                      - request duration histogram
+                      - Prometheus histogram
+                      - OpenTelemetry histogram
+                      - percentile
+                      - quantile
+                    commonSignals:
+                      - レイテンシ分布やp95、p99を計算している
+                      - bucket境界やleラベルを設計している
+                      - 平均値ではなく分布でSLOを評価している
+                      - histogram_quantileを使っている
+                    antiSignals:
+                      - 統計グラフとしてのヒストグラムだけで運用メトリクスではない
+                      - ログ件数の棒グラフだけを指している
+                      - 分布ではなく単純なカウンタやゲージの話である
+                    relatedNames:
+                      - name: Prometheus Histogram
+                        kind: tool
+                        relevance: bucketベースの分布メトリクスとして頻出する。
+                        officialUrl: https://prometheus.io/docs/practices/histograms/
+                      - name: OpenTelemetry Histogram
+                        kind: standard
+                        relevance: OTLPで分布データを扱うメトリクス型として関連する。
+                        officialUrl: https://opentelemetry.io/docs/specs/otel/metrics/data-model/
+                      - name: PromQL histogram_quantile
+                        kind: language
+                        relevance: Prometheusヒストグラムから分位点を推定する関数として関連する。
+                        officialUrl: https://prometheus.io/docs/prometheus/latest/querying/functions/
+
                 - slug: native-histogram
                   name: ネイティブヒストグラム
                   summary: Prometheus系で分布をより効率的に扱う新しいヒストグラム表現。
@@ -266,6 +757,39 @@ domain:
                   aliases:
                     - sampling
                     - サンプル収集
+                  search:
+                    keywords:
+                      - sampling
+                      - サンプリング
+                      - head sampling
+                      - tail sampling
+                      - trace sampling
+                      - probabilistic sampling
+                      - adaptive sampling
+                      - telemetry cost
+                      - sample rate
+                    commonSignals:
+                      - 全トレースを保存せず一部だけ残している
+                      - head samplingとtail samplingを比較している
+                      - エラー時だけ高い確率で保持する設計をしている
+                      - テレメトリ保存コストと診断精度のトレードオフを扱っている
+                    antiSignals:
+                      - 統計調査の標本抽出だけで運用テレメトリではない
+                      - ログレベル変更だけでサンプル率の話がない
+                      - データベースのサンプリングクエリだけを扱っている
+                    relatedNames:
+                      - name: OpenTelemetry Sampling
+                        kind: standard
+                        relevance: トレース計装でサンプリング方式を定義する文脈で関連する。
+                        officialUrl: https://opentelemetry.io/docs/concepts/sampling/
+                      - name: OpenTelemetry Collector
+                        kind: tool
+                        relevance: tail sampling processorなどでサンプリングを制御できる。
+                        officialUrl: https://opentelemetry.io/docs/collector/
+                      - name: Jaeger
+                        kind: tool
+                        relevance: トレース収集時のサンプリング戦略でよく参照される。
+                        officialUrl: https://www.jaegertracing.io/
             - slug: operational-alert-design
               name: 運用アラート設計
               summary: 症状ベースで通知し、誤検知や重複通知を減らしつつ重大事象を素早く拾う。
@@ -287,6 +811,44 @@ domain:
                   aliases:
                     - MWMBR
                     - multi burn rate alert
+                  search:
+                    keywords:
+                      - multi-window multi-burn-rate alert
+                      - MWMBR
+                      - multi burn rate alert
+                      - 複数ウィンドウ複数バーンレート
+                      - SLO burn alert
+                      - fast burn alert
+                      - slow burn alert
+                      - long window short window
+                      - SRE alerting
+                    commonSignals:
+                      - 短期窓と長期窓をAND条件で組み合わせている
+                      - SLO違反を急激な障害と緩やかな劣化の両方で検知している
+                      - burn rateとalert windowの組み合わせを設計している
+                      - ページャ通知とチケット通知をバーン速度で分けている
+                    antiSignals:
+                      - 単一閾値のCPUアラートだけを扱っている
+                      - SLOやエラーバジェットに基づかないアラートである
+                      - 通知ルーティングだけで検知ロジックの話ではない
+                    relatedNames:
+                      - name: Prometheus
+                        kind: tool
+                        relevance: 複数期間のPromQLルールで実装されることが多い。
+                        officialUrl: https://prometheus.io/
+                      - name: Alertmanager
+                        kind: tool
+                        relevance: 発火したSLOアラートを通知・抑制する代表的なコンポーネント。
+                        officialUrl: https://prometheus.io/docs/alerting/latest/alertmanager/
+                      - name: Google SRE Workbook
+                        kind: method
+                        relevance: SLOアラート設計の代表的な参照元として関連する。
+                        officialUrl: https://sre.google/workbook/alerting-on-slos/
+                      - name: Sloth
+                        kind: tool
+                        relevance: 複数バーンレートのアラートルール生成で参照される。
+                        officialUrl: https://sloth.dev/
+
                 - slug: alert-silence
                   name: アラートサイレンス
                   summary: 一定期間、特定条件のアラート通知を抑止する操作。
@@ -349,7 +911,115 @@ domain:
                   aliases:
                     - cardinality
                     - high cardinality
+                  search:
+                    keywords:
+                      - cardinality
+                      - high cardinality
+                      - カーディナリティ
+                      - label cardinality
+                      - tag cardinality
+                      - time series explosion
+                      - metric label
+                      - label explosion
+                      - observability cost
+                    commonSignals:
+                      - user_idやrequest_idをメトリクスラベルに入れて問題になっている
+                      - 時系列数の爆発やストレージコスト増加を扱っている
+                      - labelやtagの設計を見直している
+                      - Prometheusのメモリ使用量やクエリ遅延が増えている
+                    antiSignals:
+                      - データベースの集合濃度だけで監視ラベルの話ではない
+                      - ログの自由検索でメトリクス時系列数と関係がない
+                      - 単にデータ件数が多いだけでラベル組み合わせの話ではない
+                    relatedNames:
+                      - name: Prometheus Labels
+                        kind: standard
+                        relevance: ラベル値の組み合わせが時系列数を増やす代表的な環境として関連する。
+                        officialUrl: https://prometheus.io/docs/practices/naming/
+                      - name: Grafana Mimir
+                        kind: tool
+                        relevance: 大規模メトリクス保存でカーディナリティ管理が重要になる。
+                        officialUrl: https://grafana.com/oss/mimir/
+                      - name: Thanos
+                        kind: tool
+                        relevance: Prometheus互換の大規模メトリクス基盤で高カーディナリティが論点になる。
+                        officialUrl: https://thanos.io/
+
                 - slug: trace-id
+
+                  search:
+
+                    keywords:
+
+                      - trace id
+
+                      - trace_id
+
+                      - トレースID
+
+                      - correlation id
+
+                      - request id
+
+                      - distributed trace id
+
+                      - log correlation
+
+                      - span id
+
+                      - observability correlation
+
+                    commonSignals:
+
+                      - ログにtrace_idやspan_idを埋め込んでいる
+
+                      - 1つのリクエストを複数サービスで追跡している
+
+                      - correlation idでログとトレースをつないでいる
+
+                      - trace_idが欠落して調査しづらいと述べている
+
+                    antiSignals:
+
+                      - ユーザーIDや注文IDだけでトレース相関ではない
+
+                      - GitのコミットIDやビルドIDを指している
+
+                      - セッションIDだけで分散トレース文脈がない
+
+                    relatedNames:
+
+                      - name: W3C Trace Context
+
+                        kind: standard
+
+                        relevance: traceparent内でtrace-idを伝搬する標準仕様として関連する。
+
+                        officialUrl: https://www.w3.org/TR/trace-context/
+
+                      - name: OpenTelemetry
+
+                        kind: standard
+
+                        relevance: trace_idやspan_idをログ・トレース間で関連付ける基盤として関連する。
+
+                        officialUrl: https://opentelemetry.io/
+
+                      - name: Jaeger
+
+                        kind: tool
+
+                        relevance: trace IDでリクエスト経路を検索する代表的なトレースUI。
+
+                        officialUrl: https://www.jaegertracing.io/
+
+                      - name: Grafana Tempo
+
+                        kind: tool
+
+                        relevance: trace ID検索を中心にしたトレース保存基盤として関連する。
+
+                        officialUrl: https://grafana.com/oss/tempo/
                   name: トレースID
                   summary: 同一リクエスト系列を横断追跡する識別子。
                   whyLearn: ログ、トレース、メトリクス間の相関調査を成立させるため。
@@ -388,7 +1058,111 @@ domain:
                   aliases:
                     - on-call rotation
                     - 当番表
+                  search:
+                    keywords:
+                      - on-call rotation
+                      - オンコールローテーション
+                      - oncall schedule
+                      - primary secondary
+                      - follow-the-sun
+                      - standby duty
+                      - 当番表
+                      - escalation schedule
+                      - pager duty
+                    commonSignals:
+                      - 一次対応者や二次対応者の当番を組んでいる
+                      - 夜間休日のページャ負荷や交代制を議論している
+                      - follow-the-sunやprimary secondaryという表現が出る
+                      - MTTA改善のために通知先を整理している
+                    antiSignals:
+                      - 通常勤務シフト表で障害対応責任ではない
+                      - 担当者一覧だけで緊急呼び出しの仕組みがない
+                      - プロジェクトのタスク当番だけを指している
+                    relatedNames:
+                      - name: PagerDuty
+                        kind: service
+                        relevance: オンコールスケジュールとエスカレーション管理の代表的サービス。
+                        officialUrl: https://www.pagerduty.com/
+                      - name: Opsgenie
+                        kind: service
+                        relevance: オンコール通知とローテーション管理でよく使われる。
+                        officialUrl: https://www.atlassian.com/software/opsgenie
+                      - name: Grafana OnCall
+                        kind: tool
+                        relevance: オープンなオンコール管理ツールとして関連する。
+                        officialUrl: https://grafana.com/products/cloud/oncall/
+                      - name: Slack
+                        kind: tool
+                        relevance: オンコール引き継ぎや通知連携の会話で一緒に出やすい。
+                        officialUrl: https://slack.com/
+
                 - slug: escalation-policy
+
+                  search:
+
+                    keywords:
+
+                      - escalation policy
+
+                      - エスカレーションポリシー
+
+                      - escalation rule
+
+                      - escalation chain
+
+                      - notify next level
+
+                      - paging escalation
+
+                      - 一次対応
+
+                      - 二次対応
+
+                      - 呼び出し規則
+
+                    commonSignals:
+
+                      - 一定時間ackされなければ次の担当へ通知している
+
+                      - 一次対応、二次対応、専門チームへの引き上げを定義している
+
+                      - 重大度ごとに呼び出し先や待ち時間を変えている
+
+                      - オンコール体制の責任境界を決めている
+
+                    antiSignals:
+
+                      - ビジネス上の上長承認フローだけで障害対応ではない
+
+                      - 単なるSlackメンションルールで緊急度や段階がない
+
+                      - チケット優先度だけで呼び出し順序がない
+
+                    relatedNames:
+
+                      - name: PagerDuty Escalation Policies
+
+                        kind: service
+
+                        relevance: エスカレーション順序や待機時間の設定例として頻出する。
+
+                        officialUrl: https://www.pagerduty.com/
+
+                      - name: Opsgenie Escalations
+
+                        kind: service
+
+                        relevance: 応答がない場合の次段通知を設計する文脈で関連する。
+
+                        officialUrl: https://www.atlassian.com/software/opsgenie
+
+                      - name: Alertmanager
+
+                        kind: tool
+
+                        relevance: アラートのルーティングや通知先分岐で関連する。
+
+                        officialUrl: https://prometheus.io/docs/alerting/latest/alertmanager/
                   name: エスカレーションポリシー
                   summary: 一次対応で解決できないときに誰へどの順で引き上げるかの規則。
                   whyLearn: 重大化を防ぐために、迷わず適切な専門家へ接続する必要があるため。
@@ -417,7 +1191,107 @@ domain:
                   aliases:
                     - severity
                     - sev
+                  search:
+                    keywords:
+                      - severity
+                      - sev
+                      - SEV1
+                      - SEV2
+                      - 重大度
+                      - incident severity
+                      - impact level
+                      - user impact
+                      - priority matrix
+                    commonSignals:
+                      - SEV1やP0などで障害の深刻度を分類している
+                      - ユーザー影響や事業影響に応じて対応速度を変えている
+                      - 重大度ごとの通知範囲や会議体を定義している
+                      - インシデント宣言時にseverityを決めている
+                    antiSignals:
+                      - ログレベルのseverityだけでインシデント分類ではない
+                      - 脆弱性CVSSの重大度だけを扱っている
+                      - タスク優先度の話でサービス障害ではない
+                    relatedNames:
+                      - name: Incident Management
+                        kind: method
+                        relevance: インシデント分類と対応体制を決める中心的な概念として関連する。
+                        officialUrl: https://sre.google/resources/practices-and-processes/incident-management-guide/
+                      - name: PagerDuty
+                        kind: service
+                        relevance: 重大度に応じた通知・エスカレーション設定でよく使われる。
+                        officialUrl: https://www.pagerduty.com/
+                      - name: Statuspage
+                        kind: service
+                        relevance: 重大度に応じた外部告知の切り分けで関連する。
+                        officialUrl: https://www.atlassian.com/software/statuspage
+
                 - slug: incident-commander
+
+                  search:
+
+                    keywords:
+
+                      - incident commander
+
+                      - IC
+
+                      - インシデントコマンダー
+
+                      - incident command
+
+                      - incident manager
+
+                      - response lead
+
+                      - command role
+
+                      - incident roles
+
+                      - major incident
+
+                    commonSignals:
+
+                      - 障害対応全体の指揮役を任命している
+
+                      - IC、comms、ops、scribeなどの役割を分けている
+
+                      - 技術調査と意思決定の混線を防ごうとしている
+
+                      - major incidentで指揮系統を立てている
+
+                    antiSignals:
+
+                      - 技術リードやプロジェクトマネージャー一般の話である
+
+                      - 平時の組織長の役職だけを指している
+
+                      - インシデント記録係だけで対応指揮ではない
+
+                    relatedNames:
+
+                      - name: Incident Command System
+
+                        kind: method
+
+                        relevance: 役割分担と指揮系統の元になる考え方として関連する。
+
+                        officialUrl: https://www.fema.gov/emergency-managers/nims/components/incident-command-system
+
+                      - name: Google SRE Incident Management Guide
+
+                        kind: method
+
+                        relevance: インシデント時の役割と指揮構造の実務例として参照される。
+
+                        officialUrl: https://sre.google/resources/practices-and-processes/incident-management-guide/
+
+                      - name: Slack
+
+                        kind: tool
+
+                        relevance: インシデントチャンネルでICが役割割当や状況整理を行う場として使われる。
+
+                        officialUrl: https://slack.com/
                   name: インシデントコマンダー
                   summary: 対応全体の優先順位と役割調整を担う責任者。
                   whyLearn: 技術調査とオペレーション調整を混線させないため。
@@ -482,6 +1356,43 @@ domain:
                   aliases:
                     - runbook
                     - 運用手順書
+                  search:
+                    keywords:
+                      - runbook
+                      - ランブック
+                      - operational runbook
+                      - playbook
+                      - 運用手順書
+                      - remediation steps
+                      - alert runbook
+                      - standard operating procedure
+                      - SOP
+                    commonSignals:
+                      - アラートごとの確認手順や復旧手順を明文化している
+                      - 誰が実行しても同じ対応になるよう手順化している
+                      - 手動対応を自動化する前段として整理している
+                      - runbook linkやplaybook linkがアラートに添付されている
+                    antiSignals:
+                      - 一般的な利用者マニュアルで障害対応手順ではない
+                      - 設計書やADRだけで実行手順がない
+                      - チェックリストだが本番運用や復旧に関係しない
+                    relatedNames:
+                      - name: PagerDuty Runbook Automation
+                        kind: service
+                        relevance: アラート対応手順や自動修復の文脈で出やすい。
+                        officialUrl: https://www.pagerduty.com/
+                      - name: Rundeck
+                        kind: tool
+                        relevance: 運用手順の実行自動化ツールとしてランブックと関連する。
+                        officialUrl: https://www.rundeck.com/
+                      - name: Backstage TechDocs
+                        kind: tool
+                        relevance: ランブックをDocs as Codeで管理・公開する文脈で関連する。
+                        officialUrl: https://backstage.io/docs/features/techdocs/
+                      - name: MkDocs
+                        kind: tool
+                        relevance: 運用手順書をコード管理して公開するツールとして使われる。
+                        officialUrl: https://www.mkdocs.org/
             - slug: stakeholder-communication
               name: 関係者コミュニケーション
               summary: 顧客・社内・経営への説明を、技術調査と切り分けて運用する。
@@ -528,6 +1439,40 @@ domain:
                   aliases:
                     - blameless postmortem
                     - 無過失振り返り
+                  search:
+                    keywords:
+                      - blameless postmortem
+                      - ブレームレスポストモーテム
+                      - post-incident review
+                      - PIR
+                      - incident retrospective
+                      - root cause analysis
+                      - contributing factors
+                      - learning review
+                      - 無過失振り返り
+                    commonSignals:
+                      - 障害後に個人責任ではなく仕組みや判断文脈を振り返っている
+                      - timeline、impact、contributing factors、action itemsを整理している
+                      - post-incident reviewやPIRという表現が出る
+                      - 再発防止と学習文化を同時に扱っている
+                    antiSignals:
+                      - 犯人探しや懲戒判断が中心である
+                      - 単なる障害報告書で学習や改善項目がない
+                      - 医療や法医学のpostmortemでIT運用ではない
+                    relatedNames:
+                      - name: Google SRE Postmortem
+                        kind: method
+                        relevance: ブレームレスな障害振り返りの代表的実践として参照される。
+                        officialUrl: https://sre.google/sre-book/postmortem-culture/
+                      - name: Jeli
+                        kind: service
+                        relevance: インシデント学習やポストモーテム支援サービスとして関連する。
+                        officialUrl: https://www.pagerduty.com/operations-cloud/incident-management/jeli/
+                      - name: Confluence
+                        kind: tool
+                        relevance: ポストモーテム文書の作成・共有先としてよく使われる。
+                        officialUrl: https://www.atlassian.com/software/confluence
+
                 - slug: contributory-factor
                   name: 寄与要因
                   summary: 単一原因ではなく、障害を成立させた複数の背景要因。
@@ -573,6 +1518,39 @@ domain:
                   aliases:
                     - toil
                     - 手作業負債
+                  search:
+                    keywords:
+                      - toil
+                      - トイル
+                      - operational toil
+                      - manual repetitive work
+                      - 手作業負債
+                      - automatable work
+                      - repetitive operations
+                      - toil reduction
+                      - SRE toil
+                    commonSignals:
+                      - 手作業で反復的かつ自動化可能な運用作業を分類している
+                      - toil budgetや運用負荷の削減を議論している
+                      - 毎回同じ手順を人が実行している
+                      - 自動化優先順位を決めるため作業棚卸しをしている
+                    antiSignals:
+                      - 難しいが創造的な設計作業を指している
+                      - 一回限りの移行作業だけで反復性がない
+                      - 単に忙しい作業全般を指している
+                    relatedNames:
+                      - name: Google SRE Toil
+                        kind: method
+                        relevance: トイルの定義と削減方針の代表的な参照元として関連する。
+                        officialUrl: https://sre.google/workbook/eliminating-toil/
+                      - name: Rundeck
+                        kind: tool
+                        relevance: 反復運用作業の自動化先として関連する。
+                        officialUrl: https://www.rundeck.com/
+                      - name: Ansible
+                        kind: tool
+                        relevance: 反復的な運用作業を自動化する構成管理ツールとして関連する。
+                        officialUrl: https://www.ansible.com/
 
     - slug: safe-release-change-and-automation
       name: 安全なリリース、変更、運用自動化
@@ -596,6 +1574,48 @@ domain:
                   aliases:
                     - CI/CD
                     - continuous integration continuous delivery
+                  search:
+                    keywords:
+                      - CI/CD
+                      - continuous integration
+                      - continuous delivery
+                      - continuous deployment
+                      - 継続的インテグレーション
+                      - 継続的デリバリー
+                      - build pipeline
+                      - release automation
+                      - deployment automation
+                    commonSignals:
+                      - pushやpull requestごとにビルド・テストを自動実行している
+                      - ステージングや本番へのデプロイをパイプライン化している
+                      - deployment frequencyやlead timeを改善している
+                      - 手動リリース手順を自動化している
+                    antiSignals:
+                      - 単なるGit運用でビルド・テスト・配布の自動化がない
+                      - ローカル開発環境のセットアップだけを扱っている
+                      - バッチ処理のジョブスケジューラをCI/CDと呼んでいる
+                    relatedNames:
+                      - name: GitHub Actions
+                        kind: tool
+                        relevance: CI/CDワークフローを実装する代表的なホステッドツール。
+                        officialUrl: https://github.com/features/actions
+                      - name: GitLab CI/CD
+                        kind: tool
+                        relevance: リポジトリ統合型のCI/CD基盤として広く使われる。
+                        officialUrl: https://docs.gitlab.com/ci/
+                      - name: Jenkins
+                        kind: tool
+                        relevance: 長く使われている汎用CI/CD自動化サーバー。
+                        officialUrl: https://www.jenkins.io/
+                      - name: Tekton
+                        kind: framework
+                        relevance: KubernetesネイティブなCI/CDパイプライン基盤として関連する。
+                        officialUrl: https://tekton.dev/
+                      - name: Argo CD
+                        kind: tool
+                        relevance: CDやGitOps型デプロイの代表的ツールとして関連する。
+                        officialUrl: https://argo-cd.readthedocs.io/
+
                 - slug: deployment-pipeline
                   name: デプロイパイプライン
                   summary: 成果物を環境ごとに安全に昇格させる一連の流れ。
@@ -612,6 +1632,48 @@ domain:
                   aliases:
                     - artifact repository
                     - binary repository
+                  search:
+                    keywords:
+                      - artifact repository
+                      - binary repository
+                      - アーティファクトリポジトリ
+                      - package registry
+                      - container registry
+                      - build artifact
+                      - release artifact
+                      - immutable artifact
+                      - artifact storage
+                    commonSignals:
+                      - ビルド成果物をバージョン付きで保管している
+                      - 同じ成果物を環境ごとに昇格させている
+                      - container registryやpackage registryをリリース経路に組み込んでいる
+                      - 成果物の再現性や改ざん防止を議論している
+                    antiSignals:
+                      - ソースコードリポジトリだけを指している
+                      - ファイル共有ストレージでビルド成果物の版管理がない
+                      - ドキュメント置き場だけで配布物管理ではない
+                    relatedNames:
+                      - name: Docker Hub
+                        kind: service
+                        relevance: コンテナイメージの公開・保管先として広く使われる。
+                        officialUrl: https://hub.docker.com/
+                      - name: GitHub Packages
+                        kind: service
+                        relevance: パッケージやコンテナ成果物の保管先として関連する。
+                        officialUrl: https://github.com/features/packages
+                      - name: JFrog Artifactory
+                        kind: service
+                        relevance: バイナリ成果物管理の代表的な製品として関連する。
+                        officialUrl: https://jfrog.com/artifactory/
+                      - name: Sonatype Nexus Repository
+                        kind: tool
+                        relevance: 社内アーティファクト管理基盤としてよく使われる。
+                        officialUrl: https://www.sonatype.com/products/sonatype-nexus-repository
+                      - name: OCI Registry
+                        kind: standard
+                        relevance: コンテナイメージやOCIアーティファクト保管の仕様として関連する。
+                        officialUrl: https://opencontainers.org/
+
                 - slug: immutable-artifact
                   name: イミュータブルアーティファクト
                   summary: ビルド後に内容を書き換えない成果物。
@@ -690,6 +1752,43 @@ domain:
                   aliases:
                     - canary
                     - canary deployment
+                  search:
+                    keywords:
+                      - canary release
+                      - canary deployment
+                      - canary rollout
+                      - カナリアリリース
+                      - progressive rollout
+                      - traffic shifting
+                      - canary analysis
+                      - automated rollback
+                      - partial rollout
+                    commonSignals:
+                      - 新バージョンを一部ユーザーや一部トラフィックへ先行適用している
+                      - メトリクスを見て段階的に割合を増やしている
+                      - canary analysisや自動ロールバックを設定している
+                      - 5パーセント、10パーセントなどのtraffic weightを調整している
+                    antiSignals:
+                      - A/Bテストだけでリリース安全性の確認ではない
+                      - ステージング検証だけで本番トラフィックに出していない
+                      - 単なるローリングアップデートで評価停止条件がない
+                    relatedNames:
+                      - name: Argo Rollouts
+                        kind: tool
+                        relevance: Kubernetes上でカナリアやブルーグリーンを実装する代表的ツール。
+                        officialUrl: https://argoproj.github.io/rollouts/
+                      - name: Flagger
+                        kind: tool
+                        relevance: メトリクスに基づく自動カナリア分析で使われる。
+                        officialUrl: https://flagger.app/
+                      - name: Istio
+                        kind: framework
+                        relevance: トラフィック分割によるカナリア配信で使われるサービスメッシュ。
+                        officialUrl: https://istio.io/
+                      - name: Linkerd
+                        kind: framework
+                        relevance: サービスメッシュ経由の段階的トラフィック制御で関連する。
+                        officialUrl: https://linkerd.io/
             - slug: runtime-release-controls
               name: 実行時リリース制御
               summary: 配備とは別に、機能露出や即時停止のスイッチを持つ。
@@ -703,6 +1802,44 @@ domain:
                   aliases:
                     - feature flag
                     - feature toggle
+                  search:
+                    keywords:
+                      - feature flag
+                      - feature toggle
+                      - フィーチャーフラグ
+                      - release toggle
+                      - experiment flag
+                      - kill switch
+                      - flag debt
+                      - targeting rule
+                      - runtime configuration
+                    commonSignals:
+                      - デプロイと機能公開を分離している
+                      - ユーザー属性や割合で機能を出し分けている
+                      - 緊急停止や段階公開のためにフラグを使っている
+                      - 古いフラグの削除やflag debtを議論している
+                    antiSignals:
+                      - 環境変数一般の話で機能露出制御ではない
+                      - CSSやUI表示の単純なON/OFFだけで運用制御ではない
+                      - 権限管理やプラン制御だけでリリース制御と無関係
+                    relatedNames:
+                      - name: OpenFeature
+                        kind: standard
+                        relevance: フィーチャーフラグのベンダー中立API仕様として直接関連する。
+                        officialUrl: https://openfeature.dev/
+                      - name: LaunchDarkly
+                        kind: service
+                        relevance: フィーチャーフラグ管理サービスの代表例として参照される。
+                        officialUrl: https://launchdarkly.com/
+                      - name: Unleash
+                        kind: tool
+                        relevance: オープンソースのフィーチャーフラグ基盤として関連する。
+                        officialUrl: https://www.getunleash.io/
+                      - name: Flipt
+                        kind: tool
+                        relevance: セルフホスト可能なfeature flag管理ツールとして関連する。
+                        officialUrl: https://www.flipt.io/
+
                 - slug: kill-switch
                   name: キルスイッチ
                   summary: 危険機能を即時停止するための緊急無効化手段。
@@ -727,6 +1864,43 @@ domain:
                   aliases:
                     - OpenFeature
                     - open feature
+                  search:
+                    keywords:
+                      - OpenFeature
+                      - open feature
+                      - feature flag standard
+                      - feature flag API
+                      - provider abstraction
+                      - flag evaluation
+                      - evaluation context
+                      - vendor neutral feature flags
+                      - CNCF OpenFeature
+                    commonSignals:
+                      - feature flag SDKをベンダー中立にしたいと述べている
+                      - providerやhook、evaluation contextを扱っている
+                      - フラグ基盤移行時にアプリコードの依存を減らそうとしている
+                      - 複数のフラグサービスを共通APIで扱っている
+                    antiSignals:
+                      - 単なるfeature flag利用でOpenFeature仕様に触れていない
+                      - OpenAPIやOpenTelemetryとの混同
+                      - オープンソース機能一般の話である
+                    relatedNames:
+                      - name: OpenFeature
+                        kind: standard
+                        relevance: 対象Termそのものであり、ベンダー中立のフラグAPI仕様。
+                        officialUrl: https://openfeature.dev/
+                      - name: CNCF
+                        kind: platform
+                        relevance: OpenFeatureがCNCFプロジェクトとして扱われる文脈で関連する。
+                        officialUrl: https://www.cncf.io/
+                      - name: LaunchDarkly
+                        kind: service
+                        relevance: OpenFeature provider経由で接続される代表的フラグサービス。
+                        officialUrl: https://launchdarkly.com/
+                      - name: Unleash
+                        kind: tool
+                        relevance: OpenFeature providerの接続先として比較されやすい。
+                        officialUrl: https://www.getunleash.io/
         - slug: declarative-operations-and-supply-chain
           name: 宣言的運用とサプライチェーン
           summary: 運用対象と変更経路を宣言的・検証可能に管理し、改ざんやドリフトを防ぐ。
@@ -744,7 +1918,123 @@ domain:
                   aliases:
                     - IaC
                     - infrastructure as code
+                  search:
+                    keywords:
+                      - Infrastructure as Code
+                      - IaC
+                      - インフラ as Code
+                      - declarative infrastructure
+                      - Terraform
+                      - plan apply
+                      - infrastructure provisioning
+                      - config drift
+                      - code review infrastructure
+                    commonSignals:
+                      - インフラ変更をGitでレビューしている
+                      - terraform planやapplyで差分適用している
+                      - 手作業で作ったクラウド資源をコード化している
+                      - 環境差分やドリフトを減らそうとしている
+                    antiSignals:
+                      - アプリケーションコードだけでインフラ定義ではない
+                      - 手順書通りに手作業設定しているだけ
+                      - Dockerfileだけでクラウド資源や構成管理の話がない
+                    relatedNames:
+                      - name: Terraform
+                        kind: tool
+                        relevance: IaCの代表的ツールとして最も頻繁に参照される。
+                        officialUrl: https://www.terraform.io/
+                      - name: OpenTofu
+                        kind: tool
+                        relevance: Terraform互換のオープンソースIaCツールとして関連する。
+                        officialUrl: https://opentofu.org/
+                      - name: Pulumi
+                        kind: tool
+                        relevance: 汎用プログラミング言語でIaCを記述するツールとして関連する。
+                        officialUrl: https://www.pulumi.com/
+                      - name: AWS CloudFormation
+                        kind: service
+                        relevance: AWSネイティブの宣言的インフラ管理として関連する。
+                        officialUrl: https://aws.amazon.com/cloudformation/
+                      - name: Ansible
+                        kind: tool
+                        relevance: 構成管理やプロビジョニング自動化でIaC文脈に出る。
+                        officialUrl: https://www.ansible.com/
+
                 - slug: gitops
+
+                  search:
+
+                    keywords:
+
+                      - GitOps
+
+                      - git ops
+
+                      - Git as source of truth
+
+                      - desired state
+
+                      - reconciliation
+
+                      - pull-based deployment
+
+                      - declarative delivery
+
+                      - drift correction
+
+                      - continuous reconciliation
+
+                    commonSignals:
+
+                      - Git上の宣言状態を真実源としている
+
+                      - クラスタ側のエージェントがpullして反映している
+
+                      - 手動変更をドリフトとして検知・修正している
+
+                      - Argo CDやFluxで同期状態を管理している
+
+                    antiSignals:
+
+                      - Gitを使っているだけで自動再収束がない
+
+                      - CIからkubectl applyするだけでGitOps原則に触れていない
+
+                      - ソースコード管理だけで運用状態の宣言ではない
+
+                    relatedNames:
+
+                      - name: OpenGitOps
+
+                        kind: standard
+
+                        relevance: GitOpsの原則を整理したオープンな仕様として関連する。
+
+                        officialUrl: https://opengitops.dev/
+
+                      - name: Argo CD
+
+                        kind: tool
+
+                        relevance: Kubernetes向けGitOps CDの代表的ツール。
+
+                        officialUrl: https://argo-cd.readthedocs.io/
+
+                      - name: Flux
+
+                        kind: tool
+
+                        relevance: CNCF系のGitOps実装として広く使われる。
+
+                        officialUrl: https://fluxcd.io/
+
+                      - name: Kubernetes
+
+                        kind: platform
+
+                        relevance: GitOpsが宣言的状態管理の対象にする代表的プラットフォーム。
+
+                        officialUrl: https://kubernetes.io/
                   name: GitOps
                   summary: Git上の宣言状態を真実源として継続反映する運用モデル。
                   whyLearn: 変更履歴、承認、監査、再現性を一体化しやすいため。
@@ -781,7 +2071,123 @@ domain:
                   aliases:
                     - SBOM
                     - software bill of materials
+                  search:
+                    keywords:
+                      - SBOM
+                      - software bill of materials
+                      - ソフトウェア部品表
+                      - dependency inventory
+                      - component inventory
+                      - CycloneDX
+                      - SPDX
+                      - package metadata
+                      - vulnerability impact
+                    commonSignals:
+                      - 依存ライブラリやコンポーネント一覧を成果物に添付している
+                      - CycloneDXやSPDX形式で出力している
+                      - 脆弱性影響範囲を依存部品表から調べている
+                      - ビルド時やリリース時にSBOMを生成している
+                    antiSignals:
+                      - 単なるpackage-lockやrequirements.txtだけで成果物部品表ではない
+                      - 在庫管理や製造BOMの話でソフトウェアではない
+                      - ライセンス一覧だけでコンポーネント来歴やバージョンがない
+                    relatedNames:
+                      - name: CycloneDX
+                        kind: standard
+                        relevance: SBOMフォーマットの代表的な標準として関連する。
+                        officialUrl: https://cyclonedx.org/
+                      - name: SPDX
+                        kind: standard
+                        relevance: ライセンスとソフトウェア部品情報を表現する代表的標準。
+                        officialUrl: https://spdx.dev/
+                      - name: Syft
+                        kind: tool
+                        relevance: コンテナイメージやファイルシステムからSBOMを生成するツール。
+                        officialUrl: https://github.com/anchore/syft
+                      - name: Trivy
+                        kind: tool
+                        relevance: 脆弱性スキャンとSBOM生成の両方で使われる。
+                        officialUrl: https://trivy.dev/
+                      - name: NTIA Minimum Elements
+                        kind: standard
+                        relevance: SBOMに最低限含める要素の参照として使われる。
+                        officialUrl: https://www.ntia.gov/page/software-bill-materials
+
                 - slug: slsa
+
+                  search:
+
+                    keywords:
+
+                      - SLSA
+
+                      - Supply-chain Levels for Software Artifacts
+
+                      - slsa level
+
+                      - build integrity
+
+                      - supply chain security
+
+                      - provenance
+
+                      - hermetic build
+
+                      - non-falsifiable provenance
+
+                      - secure build pipeline
+
+                    commonSignals:
+
+                      - ビルドの完全性や改ざん耐性をレベルで評価している
+
+                      - provenance、attestation、builder identityを扱っている
+
+                      - CI/CDパイプラインの信頼性を段階的に高めている
+
+                      - SLSA LevelやSLSA Provenanceが出ている
+
+                    antiSignals:
+
+                      - 一般的なセキュリティ成熟度モデルだけで成果物供給網ではない
+
+                      - 脆弱性スキャンだけでビルド来歴の話がない
+
+                      - SLAやSLOとの略称混同
+
+                    relatedNames:
+
+                      - name: SLSA
+
+                        kind: standard
+
+                        relevance: 対象Termそのものであり、ソフトウェアサプライチェーン完全性の枠組み。
+
+                        officialUrl: https://slsa.dev/
+
+                      - name: in-toto
+
+                        kind: standard
+
+                        relevance: サプライチェーンの証跡やattestation表現でSLSAと関連する。
+
+                        officialUrl: https://in-toto.io/
+
+                      - name: Sigstore
+
+                        kind: tool
+
+                        relevance: 成果物署名や来歴検証と組み合わせて使われることが多い。
+
+                        officialUrl: https://www.sigstore.dev/
+
+                      - name: GitHub Actions
+
+                        kind: tool
+
+                        relevance: SLSA provenance生成やCI/CD改善の対象として出やすい。
+
+                        officialUrl: https://github.com/features/actions
                   name: SLSA
                   summary: ビルドや配布の完全性を段階的に高めるサプライチェーン安全性フレームワーク。
                   whyLearn: どこまで対策できているかを共通言語で評価するため。
@@ -805,6 +2211,43 @@ domain:
                   aliases:
                     - Sigstore
                     - cosign
+                  search:
+                    keywords:
+                      - Sigstore
+                      - cosign
+                      - Rekor
+                      - Fulcio
+                      - artifact signing
+                      - keyless signing
+                      - container image signing
+                      - transparency log
+                      - 署名検証
+                    commonSignals:
+                      - cosignでコンテナイメージに署名している
+                      - keyless signingやOIDC identityを使っている
+                      - Rekor transparency logで署名を検証している
+                      - リリース成果物の真正性を検証している
+                    antiSignals:
+                      - 伝統的なGPG署名だけでSigstoreの構成要素が出ない
+                      - TLS証明書運用だけを扱っている
+                      - 電子契約署名の話でソフトウェア成果物ではない
+                    relatedNames:
+                      - name: Cosign
+                        kind: tool
+                        relevance: コンテナイメージや成果物に署名するSigstoreの主要ツール。
+                        officialUrl: https://docs.sigstore.dev/cosign/
+                      - name: Rekor
+                        kind: service
+                        relevance: 署名証跡を記録する透明性ログとしてSigstoreを構成する。
+                        officialUrl: https://docs.sigstore.dev/rekor/
+                      - name: Fulcio
+                        kind: service
+                        relevance: keyless signingで証明書を発行するSigstoreの構成要素。
+                        officialUrl: https://docs.sigstore.dev/fulcio/
+                      - name: SLSA
+                        kind: standard
+                        relevance: 来歴証明と成果物検証の文脈で一緒に使われることが多い。
+                        officialUrl: https://slsa.dev/
 
     - slug: resilience-capacity-and-runtime-operations
       name: レジリエンス、キャパシティ、ランタイム運用
@@ -828,7 +2271,115 @@ domain:
                   aliases:
                     - timeout
                     - request timeout
+                  search:
+                    keywords:
+                      - timeout
+                      - request timeout
+                      - タイムアウト
+                      - deadline
+                      - connection timeout
+                      - read timeout
+                      - client timeout
+                      - server timeout
+                      - deadline exceeded
+                    commonSignals:
+                      - 外部APIや依存サービス呼び出しの待ち時間上限を設定している
+                      - connection timeout、read timeout、deadlineを分けている
+                      - 長時間待機によるスレッドやコネクション枯渇を防いでいる
+                      - retryと合わせてタイムアウト値を設計している
+                    antiSignals:
+                      - ユーザーセッションの有効期限だけを指している
+                      - キャッシュTTLの話でリクエスト待機打ち切りではない
+                      - UIの非表示時間やアニメーション時間だけである
+                    relatedNames:
+                      - name: gRPC Deadline
+                        kind: protocol
+                        relevance: RPC呼び出しの期限設定としてtimeout設計と強く関連する。
+                        officialUrl: https://grpc.io/docs/guides/deadlines/
+                      - name: Envoy
+                        kind: tool
+                        relevance: プロキシ層でのtimeoutやretry制御の実装先として関連する。
+                        officialUrl: https://www.envoyproxy.io/
+                      - name: NGINX
+                        kind: tool
+                        relevance: reverse proxyやgatewayでのtimeout設定として頻出する。
+                        officialUrl: https://nginx.org/
+
                 - slug: retry
+
+                  search:
+
+                    keywords:
+
+                      - retry
+
+                      - リトライ
+
+                      - retry policy
+
+                      - retry storm
+
+                      - idempotency
+
+                      - transient failure
+
+                      - max attempts
+
+                      - retry budget
+
+                      - safe retry
+
+                    commonSignals:
+
+                      - 一時的失敗や503に対して再試行している
+
+                      - idempotencyや重複実行の安全性を議論している
+
+                      - max attempts、backoff、jitterを設定している
+
+                      - retry stormや二次障害を避けようとしている
+
+                    antiSignals:
+
+                      - 手作業で再実行するだけで自動制御ではない
+
+                      - ユーザーがフォーム送信を押し直す話だけである
+
+                      - 恒久的エラーに対して無条件に繰り返しているだけ
+
+                    relatedNames:
+
+                      - name: Envoy Retry Policy
+
+                        kind: tool
+
+                        relevance: サービスメッシュやプロキシでretryを制御する代表例。
+
+                        officialUrl: https://www.envoyproxy.io/
+
+                      - name: gRPC Retry
+
+                        kind: protocol
+
+                        relevance: RPCの再試行設定やサービス設定で関連する。
+
+                        officialUrl: https://grpc.io/docs/guides/retry/
+
+                      - name: Resilience4j
+
+                        kind: library
+
+                        relevance: JVM系でretryやcircuit breakerを実装するライブラリ。
+
+                        officialUrl: https://resilience4j.readme.io/
+
+                      - name: Polly
+
+                        kind: library
+
+                        relevance: .NET系でretryなどのレジリエンスパターンを実装するライブラリ。
+
+                        officialUrl: https://www.pollydocs.org/
                   name: リトライ
                   summary: 一時的失敗時に再試行する制御。
                   whyLearn: 一過性障害には有効だが、設計を誤ると障害を増幅するため。
@@ -852,6 +2403,43 @@ domain:
                   aliases:
                     - circuit breaker
                     - 遮断器パターン
+                  search:
+                    keywords:
+                      - circuit breaker
+                      - サーキットブレーカー
+                      - circuit breaker pattern
+                      - open half-open closed
+                      - failure threshold
+                      - dependency failure
+                      - fallback
+                      - resilience pattern
+                      - fail fast
+                    commonSignals:
+                      - 依存先の失敗率が高いと呼び出しを一時遮断している
+                      - open、half-open、closed状態を扱っている
+                      - fallbackやfail fastで全体影響を減らしている
+                      - downstream障害への押し込みを防いでいる
+                    antiSignals:
+                      - 電気回路の遮断器の話でソフトウェアではない
+                      - 単なるrate limitで失敗率に基づく状態遷移がない
+                      - firewallやネットワーク遮断だけを指している
+                    relatedNames:
+                      - name: Resilience4j
+                        kind: library
+                        relevance: JVM系でサーキットブレーカーを実装する代表的ライブラリ。
+                        officialUrl: https://resilience4j.readme.io/
+                      - name: Hystrix
+                        kind: library
+                        relevance: サーキットブレーカー普及に影響した歴史的ライブラリ。
+                        officialUrl: https://github.com/Netflix/Hystrix
+                      - name: Envoy
+                        kind: tool
+                        relevance: プロキシ層のアウトライヤー検出や遮断制御で関連する。
+                        officialUrl: https://www.envoyproxy.io/
+                      - name: Polly
+                        kind: library
+                        relevance: .NET系でcircuit breakerを実装する代表的ライブラリ。
+                        officialUrl: https://www.pollydocs.org/
             - slug: degradation-and-containment
               name: 縮退と封じ込め
               summary: 全部を守れないときに、重要機能を優先して被害を局所化する。
@@ -873,7 +2461,111 @@ domain:
                   aliases:
                     - rate limiting
                     - throttling
+                  search:
+                    keywords:
+                      - rate limiting
+                      - throttling
+                      - レートリミット
+                      - token bucket
+                      - leaky bucket
+                      - quota exceeded
+                      - 429 Too Many Requests
+                      - request quota
+                      - API rate limit
+                    commonSignals:
+                      - 429 Too Many Requestsを返している
+                      - token bucketやleaky bucketで要求数を制御している
+                      - ユーザー、APIキー、IP単位で上限を設けている
+                      - 過負荷や乱用から依存先を守っている
+                    antiSignals:
+                      - 課金プランの利用上限だけでリアルタイム制御ではない
+                      - CPUスロットリングだけでリクエスト数制御ではない
+                      - アクセス権限拒否であり流量制御ではない
+                    relatedNames:
+                      - name: Envoy
+                        kind: tool
+                        relevance: APIやサービス間通信のレート制限を実装するプロキシとして関連する。
+                        officialUrl: https://www.envoyproxy.io/
+                      - name: NGINX
+                        kind: tool
+                        relevance: エッジやリバースプロキシでのrate limiting設定で頻出する。
+                        officialUrl: https://nginx.org/
+                      - name: Kong Gateway
+                        kind: tool
+                        relevance: API Gatewayのrate limitingプラグイン文脈で関連する。
+                        officialUrl: https://konghq.com/products/kong-gateway
+                      - name: Istio
+                        kind: framework
+                        relevance: サービスメッシュでの流量制御やポリシー適用で関連する。
+                        officialUrl: https://istio.io/
+
                 - slug: load-shedding
+
+                  search:
+
+                    keywords:
+
+                      - load shedding
+
+                      - request dropping
+
+                      - ロードシェディング
+
+                      - overload protection
+
+                      - shed load
+
+                      - admission control
+
+                      - queue overload
+
+                      - fail fast
+
+                      - backpressure
+
+                    commonSignals:
+
+                      - 処理しきれないリクエストを早期に拒否している
+
+                      - キューが伸びる前にadmission controlしている
+
+                      - 503や429で選択的に落として全体崩壊を防いでいる
+
+                      - 優先度の低い処理を捨てて重要経路を守っている
+
+                    antiSignals:
+
+                      - 電力会社の計画停電の話でITサービスではない
+
+                      - 単なるオートスケーリングだけで要求拒否がない
+
+                      - ログ削減やサンプリングの話でリクエスト処理ではない
+
+                    relatedNames:
+
+                      - name: Envoy Overload Manager
+
+                        kind: tool
+
+                        relevance: プロキシ層で過負荷時の要求拒否や制限を行う機能として関連する。
+
+                        officialUrl: https://www.envoyproxy.io/
+
+                      - name: Kubernetes HPA
+
+                        kind: platform
+
+                        relevance: スケールだけでは間に合わない過負荷対策の比較対象になる。
+
+                        officialUrl: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
+
+                      - name: Netflix Concurrency Limits
+
+                        kind: library
+
+                        relevance: 過負荷時の並行数制御や適応的拒否の実装例として関連する。
+
+                        officialUrl: https://github.com/Netflix/concurrency-limits
                   name: ロードシェディング
                   summary: 処理しきれない要求を早期に落として全体崩壊を防ぐ手法。
                   whyLearn: 全件を頑張って遅く失敗するより、選択的に落とす方が健全なため。
@@ -906,7 +2598,119 @@ domain:
                   aliases:
                     - autoscaling
                     - 自動拡縮
+                  search:
+                    keywords:
+                      - autoscaling
+                      - auto scaling
+                      - オートスケーリング
+                      - horizontal scaling
+                      - vertical scaling
+                      - scale out
+                      - scale in
+                      - target tracking
+                      - scaling policy
+                    commonSignals:
+                      - CPUやメモリ、キュー長、リクエスト数に応じて資源を増減している
+                      - scale outやscale inの条件を設計している
+                      - スケール遅延や過剰スケールを問題にしている
+                      - HPA、KEDA、Cluster Autoscalerを比較している
+                    antiSignals:
+                      - 手動でインスタンス数を変更しているだけ
+                      - レスポンシブデザインや画面拡大縮小の話である
+                      - 単なる負荷分散で資源量の自動調整がない
+                    relatedNames:
+                      - name: Kubernetes Horizontal Pod Autoscaler
+                        kind: platform
+                        relevance: KubernetesでPod数を自動調整する代表的な仕組み。
+                        officialUrl: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
+                      - name: KEDA
+                        kind: tool
+                        relevance: イベント駆動でKubernetesワークロードをスケールするツール。
+                        officialUrl: https://keda.sh/
+                      - name: AWS Auto Scaling
+                        kind: service
+                        relevance: AWS上の代表的な自動拡縮サービス。
+                        officialUrl: https://aws.amazon.com/autoscaling/
+                      - name: Cluster Autoscaler
+                        kind: tool
+                        relevance: Kubernetesノード数の自動調整で関連する。
+                        officialUrl: https://github.com/kubernetes/autoscaler
+
                 - slug: horizontal-pod-autoscaler
+
+                  search:
+
+                    keywords:
+
+                      - Horizontal Pod Autoscaler
+
+                      - HPA
+
+                      - HorizontalPodAutoscaler
+
+                      - Kubernetes HPA
+
+                      - Pod autoscaling
+
+                      - metrics-server
+
+                      - custom metrics
+
+                      - target utilization
+
+                      - scaleTargetRef
+
+                    commonSignals:
+
+                      - KubernetesでPod数をCPUやcustom metricsに応じて増減している
+
+                      - minReplicas、maxReplicas、targetCPUUtilizationを設定している
+
+                      - metrics-serverやcustom metrics APIが出ている
+
+                      - スケールの安定化窓やスラッシングを調整している
+
+                    antiSignals:
+
+                      - ノード数の自動調整だけでPod数ではない
+
+                      - Deployment replicasを手動で変更しているだけ
+
+                      - VMのAuto Scaling Groupだけを扱っている
+
+                    relatedNames:
+
+                      - name: Kubernetes HPA
+
+                        kind: platform
+
+                        relevance: 対象Termそのものであり、Pod数を自動調整するKubernetes機能。
+
+                        officialUrl: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
+
+                      - name: metrics-server
+
+                        kind: tool
+
+                        relevance: HPAがCPUやメモリ指標を取得する代表的な基盤。
+
+                        officialUrl: https://github.com/kubernetes-sigs/metrics-server
+
+                      - name: Prometheus Adapter
+
+                        kind: tool
+
+                        relevance: Prometheusのcustom metricsをHPAへ渡すために使われる。
+
+                        officialUrl: https://github.com/kubernetes-sigs/prometheus-adapter
+
+                      - name: KEDA
+
+                        kind: tool
+
+                        relevance: HPAと連携してイベント駆動スケーリングを実現する。
+
+                        officialUrl: https://keda.sh/
                   name: Horizontal Pod Autoscaler
                   summary: KubernetesでPod数を需要に応じて増減させる仕組み。
                   whyLearn: クラウドネイティブ環境での代表的な実装を理解するため。
@@ -943,6 +2747,40 @@ domain:
                   aliases:
                     - requests and limits
                     - resource requests
+                  search:
+                    keywords:
+                      - resource requests and limits
+                      - requests and limits
+                      - Kubernetes requests
+                      - Kubernetes limits
+                      - CPU request
+                      - memory limit
+                      - リソース要求
+                      - リソース上限
+                      - OOMKilled
+                    commonSignals:
+                      - PodやコンテナのCPU request、memory limitを設定している
+                      - OOMKilledやCPU throttlingが発生している
+                      - スケジューリングやノード資源逼迫を議論している
+                      - Guaranteed、Burstable、BestEffortに影響している
+                    antiSignals:
+                      - API利用上限や料金クォータだけを指している
+                      - アプリケーションの入力サイズ制限である
+                      - VMサイズ選定だけでKubernetesのrequests/limitsではない
+                    relatedNames:
+                      - name: Kubernetes Resource Management
+                        kind: platform
+                        relevance: コンテナのrequestsとlimitsを定義する公式機能として関連する。
+                        officialUrl: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+                      - name: Vertical Pod Autoscaler
+                        kind: tool
+                        relevance: requests推奨値や自動調整の文脈で関連する。
+                        officialUrl: https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler
+                      - name: Goldilocks
+                        kind: tool
+                        relevance: VPA推奨値を使ってrequests/limits調整を支援するツール。
+                        officialUrl: https://goldilocks.docs.fairwinds.com/
+
                 - slug: qos-class
                   name: QoSクラス
                   summary: KubernetesがPodの扱い優先度を決める品質クラス。
@@ -959,7 +2797,105 @@ domain:
                   aliases:
                     - PDB
                     - PodDisruptionBudget
+                  search:
+                    keywords:
+                      - PodDisruptionBudget
+                      - PDB
+                      - pod disruption budget
+                      - voluntary disruption
+                      - minAvailable
+                      - maxUnavailable
+                      - eviction
+                      - node drain
+                      - Kubernetes availability
+                    commonSignals:
+                      - node drainやメンテナンス時にPodの同時停止数を制御している
+                      - minAvailableやmaxUnavailableを設定している
+                      - evictionがPDBでブロックされている
+                      - rolling updateやノード更新時の可用性を守っている
+                    antiSignals:
+                      - 障害による非自発的停止だけを扱っている
+                      - Deploymentのreplicas設定だけで中断制御ではない
+                      - 予算という語が出ても金銭やエラーバジェットの話である
+                    relatedNames:
+                      - name: Kubernetes PodDisruptionBudget
+                        kind: platform
+                        relevance: 対象Termそのものであり、自発的中断時のPod可用性を守る機能。
+                        officialUrl: https://kubernetes.io/docs/tasks/run-application/configure-pdb/
+                      - name: kubectl drain
+                        kind: tool
+                        relevance: ノード退避時にPDBの制約を受ける操作として関連する。
+                        officialUrl: https://kubernetes.io/docs/reference/kubectl/
+                      - name: Cluster Autoscaler
+                        kind: tool
+                        relevance: ノード削除時にPDBを考慮するため関連する。
+                        officialUrl: https://github.com/kubernetes/autoscaler
+
                 - slug: readiness-probe
+
+                  search:
+
+                    keywords:
+
+                      - readiness probe
+
+                      - 準備完了プローブ
+
+                      - Kubernetes probe
+
+                      - ready endpoint
+
+                      - service endpoint
+
+                      - health check
+
+                      - liveness probe
+
+                      - startup probe
+
+                    commonSignals:
+
+                      - 起動直後や依存先未接続時にトラフィックを受けないようにしている
+
+                      - readinessとlivenessの違いを議論している
+
+                      - Service endpointsからPodを外す条件を設計している
+
+                      - ローリング更新時のリクエスト失敗を防いでいる
+
+                    antiSignals:
+
+                      - 外形監視のHTTPチェックだけでPodのready状態ではない
+
+                      - liveness probeによる再起動判定だけを指している
+
+                      - アプリのビジネス準備状況でトラフィック制御と関係がない
+
+                    relatedNames:
+
+                      - name: Kubernetes Probes
+
+                        kind: platform
+
+                        relevance: readiness、liveness、startup probeを提供する公式機能。
+
+                        officialUrl: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+
+                      - name: kubelet
+
+                        kind: platform
+
+                        relevance: probeを実行してPod状態に反映するKubernetesコンポーネント。
+
+                        officialUrl: https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/
+
+                      - name: Envoy Health Checks
+
+                        kind: tool
+
+                        relevance: サービスメッシュやプロキシ層のヘルスチェック設計で関連する。
+
+                        officialUrl: https://www.envoyproxy.io/
                   name: Readiness Probe
                   summary: トラフィックを受けてもよい状態かを判定するヘルスチェック。
                   whyLearn: 起動中や劣化中のインスタンスへ誤って配信しないため。
@@ -1000,7 +2936,107 @@ domain:
                   aliases:
                     - RTO
                     - recovery time objective
+                  search:
+                    keywords:
+                      - RTO
+                      - recovery time objective
+                      - 目標復旧時間
+                      - 復旧時間目標
+                      - downtime target
+                      - service restoration time
+                      - business continuity
+                      - disaster recovery objective
+                      - maximum tolerable downtime
+                    commonSignals:
+                      - 何分以内、何時間以内に復旧するかを決めている
+                      - DR戦略やバックアップ設計の投資判断をしている
+                      - 許容停止時間や最大停止時間を事業側と合意している
+                      - failoverやrestoreの目標時間を測っている
+                    antiSignals:
+                      - MTTRの実測平均だけで事前目標ではない
+                      - SLAの可用性パーセントだけで復旧時間が定義されていない
+                      - RPOと混同してデータ損失量を話している
+                    relatedNames:
+                      - name: Disaster Recovery
+                        kind: method
+                        relevance: RTOは災害復旧計画の中心的な目標値として使われる。
+                        officialUrl: https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/
+                      - name: AWS Well-Architected Reliability
+                        kind: method
+                        relevance: 復旧目標やDR戦略を設計する参照体系として関連する。
+                        officialUrl: https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/
+                      - name: Google Cloud Architecture Framework Reliability
+                        kind: method
+                        relevance: 信頼性設計や復旧目標の整理で参照される。
+                        officialUrl: https://cloud.google.com/architecture/framework/reliability
+
                 - slug: recovery-point-objective
+
+                  search:
+
+                    keywords:
+
+                      - RPO
+
+                      - recovery point objective
+
+                      - 目標復旧時点
+
+                      - データ損失許容
+
+                      - data loss objective
+
+                      - backup frequency
+
+                      - replication lag
+
+                      - point-in-time recovery
+
+                      - PITR
+
+                    commonSignals:
+
+                      - どの時点までのデータを失ってよいかを決めている
+
+                      - バックアップ頻度やレプリケーション遅延を設計している
+
+                      - PITRやWALアーカイブで復旧時点を選んでいる
+
+                      - RTOと合わせてDR要件を整理している
+
+                    antiSignals:
+
+                      - 復旧にかかる時間だけを話している
+
+                      - データ保持期間や監査ログ保存期間の話である
+
+                      - SLAの返金条件だけでデータ損失許容がない
+
+                    relatedNames:
+
+                      - name: Point-in-Time Recovery
+
+                        kind: method
+
+                        relevance: RPOを満たすための復旧方式として関連する。
+
+                        officialUrl: https://www.postgresql.org/docs/current/continuous-archiving.html
+
+                      - name: PostgreSQL WAL
+
+                        kind: other
+
+                        relevance: 継続的アーカイブやPITRでRPO設計に関連する。
+
+                        officialUrl: https://www.postgresql.org/docs/current/continuous-archiving.html
+
+                      - name: Velero
+
+                        kind: tool
+
+                        relevance: Kubernetes環境のバックアップ・リストアでRPO議論に出やすい。
+
+                        officialUrl: https://velero.io/
                   name: 目標復旧時点
                   summary: どこまでのデータ損失を許容するかの目標。
                   whyLearn: レプリケーションやバックアップ頻度の設計基準になるため。
@@ -1016,6 +3052,43 @@ domain:
                   aliases:
                     - DR
                     - disaster recovery
+                  search:
+                    keywords:
+                      - disaster recovery
+                      - DR
+                      - 災害復旧
+                      - failover site
+                      - multi-region
+                      - backup restore
+                      - warm standby
+                      - pilot light
+                      - active active
+                    commonSignals:
+                      - リージョン障害や大規模障害からの復旧計画を扱っている
+                      - active-active、warm standby、pilot lightを比較している
+                      - DR drillや復旧演習をしている
+                      - RTO/RPOを満たすための構成を設計している
+                    antiSignals:
+                      - 単一Pod再起動や通常障害対応だけを指している
+                      - バックアップだけで復旧経路や切替計画がない
+                      - 事業継続計画全般でシステム復旧の話がない
+                    relatedNames:
+                      - name: AWS Elastic Disaster Recovery
+                        kind: service
+                        relevance: クラウド上のDR実装例として参照される。
+                        officialUrl: https://aws.amazon.com/disaster-recovery/
+                      - name: Velero
+                        kind: tool
+                        relevance: Kubernetesリソースや永続ボリュームのバックアップ復旧で関連する。
+                        officialUrl: https://velero.io/
+                      - name: Terraform
+                        kind: tool
+                        relevance: DR環境の再構築や複数リージョン構成のIaCで関連する。
+                        officialUrl: https://www.terraform.io/
+                      - name: AWS Well-Architected Reliability
+                        kind: method
+                        relevance: DRパターンとRTO/RPO設計の参照体系として関連する。
+                        officialUrl: https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/
             - slug: resilience-validation
               name: レジリエンス検証
               summary: 実験を通じて、設計した耐障害性が本当に機能するかを確かめる。
@@ -1029,6 +3102,44 @@ domain:
                   aliases:
                     - chaos engineering
                     - 障害実験
+                  search:
+                    keywords:
+                      - chaos engineering
+                      - カオスエンジニアリング
+                      - chaos experiment
+                      - resilience experiment
+                      - failure injection
+                      - hypothesis
+                      - blast radius
+                      - steady state
+                      - controlled experiment
+                    commonSignals:
+                      - 仮説を立てて制御された障害実験をしている
+                      - blast radiusやsteady stateを定義している
+                      - pod kill、network latency、CPU stressなどを注入している
+                      - 本番または本番相当で耐性を検証している
+                    antiSignals:
+                      - 無計画に本番を壊す行為を指している
+                      - 単なる負荷試験で障害仮説や回復性の検証がない
+                      - 開発環境のランダムテストだけで運用学習につながっていない
+                    relatedNames:
+                      - name: LitmusChaos
+                        kind: tool
+                        relevance: Kubernetes向けカオス実験ツールとして広く使われる。
+                        officialUrl: https://litmuschaos.io/
+                      - name: Chaos Mesh
+                        kind: tool
+                        relevance: Kubernetes環境で障害注入を行う代表的ツール。
+                        officialUrl: https://chaos-mesh.org/
+                      - name: Gremlin
+                        kind: service
+                        relevance: 商用のカオスエンジニアリング基盤として参照される。
+                        officialUrl: https://www.gremlin.com/
+                      - name: AWS Fault Injection Service
+                        kind: service
+                        relevance: AWS環境で管理された障害注入実験を行うサービス。
+                        officialUrl: https://aws.amazon.com/fis/
+
                 - slug: game-day
                   name: ゲームデイ
                   summary: 運用・開発・関係者で障害シナリオを演習する訓練。
@@ -1068,6 +3179,48 @@ domain:
                   aliases:
                     - IDP
                     - internal developer platform
+                  search:
+                    keywords:
+                      - internal developer platform
+                      - IDP
+                      - 内部開発者プラットフォーム
+                      - platform engineering
+                      - developer self-service
+                      - golden path
+                      - platform capabilities
+                      - paved road
+                      - developer portal
+                    commonSignals:
+                      - 開発者向けセルフサービス基盤を整備している
+                      - golden pathやpaved roadを提供している
+                      - プラットフォームチームが内部プロダクトとして基盤を運営している
+                      - サービス作成、デプロイ、監視、権限を統合している
+                    antiSignals:
+                      - 単なるKubernetesクラスタや共通インフラだけを指している
+                      - 開発環境PCやIDEの話だけである
+                      - 社外向けPaaS製品の機能説明だけで内部開発者向けではない
+                    relatedNames:
+                      - name: Backstage
+                        kind: framework
+                        relevance: IDPや開発者ポータルの代表的な実装例として関連する。
+                        officialUrl: https://backstage.io/
+                      - name: Humanitec
+                        kind: service
+                        relevance: IDP構築やプラットフォームオーケストレーションの文脈で参照される。
+                        officialUrl: https://humanitec.com/
+                      - name: Port
+                        kind: service
+                        relevance: ソフトウェアカタログやセルフサービスアクションを含むIDP製品として関連する。
+                        officialUrl: https://www.getport.io/
+                      - name: Crossplane
+                        kind: framework
+                        relevance: IDPの裏側でクラウド資源を抽象化提供するコントロールプレーンとして使われる。
+                        officialUrl: https://www.crossplane.io/
+                      - name: CNCF Platforms White Paper
+                        kind: method
+                        relevance: プラットフォームを内部プロダクトとして捉える整理で関連する。
+                        officialUrl: https://tag-app-delivery.cncf.io/whitepapers/platforms/
+
                 - slug: self-service
                   name: セルフサービス
                   summary: 開発者が待ち行列なしで必要な基盤機能を利用できる性質。
@@ -1092,6 +3245,39 @@ domain:
                   aliases:
                     - golden path
                     - recommended path
+                  search:
+                    keywords:
+                      - golden path
+                      - ゴールデンパス
+                      - paved road
+                      - recommended path
+                      - standard workflow
+                      - service onboarding
+                      - platform template
+                      - developer journey
+                      - self-service path
+                    commonSignals:
+                      - 推奨された標準フローでサービスを作成・運用している
+                      - 新規サービス立ち上げ時の最短安全経路を定義している
+                      - テンプレート、CI/CD、監視、権限がセットになっている
+                      - 逸脱は可能だが通常は標準経路を使うという表現がある
+                    antiSignals:
+                      - ユーザージャーニーや導線設計だけで開発者向け標準経路ではない
+                      - 強制的な単一手順で改善余地や利用者体験がない
+                      - 単なるチュートリアルで本番運用能力が含まれない
+                    relatedNames:
+                      - name: Backstage Software Templates
+                        kind: framework
+                        relevance: golden pathをサービス雛形として提供する代表的な仕組み。
+                        officialUrl: https://backstage.io/docs/features/software-templates/
+                      - name: TechDocs
+                        kind: tool
+                        relevance: golden pathの手順や標準をポータルで提示するために使われる。
+                        officialUrl: https://backstage.io/docs/features/techdocs/
+                      - name: Score
+                        kind: standard
+                        relevance: ワークロード要求を標準的に記述することでgolden pathを支えやすい。
+                        officialUrl: https://score.dev/
             - slug: developer-experience-outcomes
               name: 開発者体験の成果
               summary: 標準化の目的を統制ではなく、速度・安全性・認知負荷低減として定義する。
@@ -1138,7 +3324,111 @@ domain:
                   aliases:
                     - developer portal
                     - internal portal
+                  search:
+                    keywords:
+                      - developer portal
+                      - internal developer portal
+                      - 開発者ポータル
+                      - service portal
+                      - platform portal
+                      - software catalog
+                      - self-service actions
+                      - developer homepage
+                      - internal portal
+                    commonSignals:
+                      - 開発者向けにサービス情報やツール入口を集約している
+                      - software catalog、TechDocs、templates、scorecardsが出ている
+                      - セルフサービス操作をポータルから実行している
+                      - 所有者や運用状況を1カ所で見られるようにしている
+                    antiSignals:
+                      - 外部API利用者向けドキュメントサイトだけを指している
+                      - 社内Wikiだけでツール統合やカタログがない
+                      - 顧客向けヘルプセンターで開発者運用基盤ではない
+                    relatedNames:
+                      - name: Backstage
+                        kind: framework
+                        relevance: 開発者ポータル構築の代表的なオープンソースフレームワーク。
+                        officialUrl: https://backstage.io/
+                      - name: Port
+                        kind: service
+                        relevance: 内部開発者ポータル製品としてソフトウェアカタログやアクションを提供する。
+                        officialUrl: https://www.getport.io/
+                      - name: Cortex
+                        kind: service
+                        relevance: サービスカタログやスコアカードを持つ開発者ポータル製品として関連する。
+                        officialUrl: https://www.cortex.io/
+                      - name: TechDocs
+                        kind: tool
+                        relevance: ポータル内でドキュメントを統合表示する機能として関連する。
+                        officialUrl: https://backstage.io/docs/features/techdocs/
+
                 - slug: software-catalog
+
+                  search:
+
+                    keywords:
+
+                      - software catalog
+
+                      - service catalog
+
+                      - ソフトウェアカタログ
+
+                      - service inventory
+
+                      - component catalog
+
+                      - ownership metadata
+
+                      - system model
+
+                      - API catalog
+
+                      - Backstage catalog
+
+                    commonSignals:
+
+                      - サービス、API、ライブラリ、所有者を台帳化している
+
+                      - catalog-info.yamlやowner、system、componentが出ている
+
+                      - 障害時の連絡先や依存関係を探している
+
+                      - 再利用可能な内部コンポーネントを検索している
+
+                    antiSignals:
+
+                      - 商品カタログやECカタログの話である
+
+                      - 単なるリポジトリ一覧で所有者や運用情報がない
+
+                      - CMDB一般で開発者体験やサービス所有が含まれない
+
+                    relatedNames:
+
+                      - name: Backstage Catalog
+
+                        kind: framework
+
+                        relevance: ソフトウェアカタログ実装の代表例として関連する。
+
+                        officialUrl: https://backstage.io/docs/features/software-catalog/
+
+                      - name: Catalog Info YAML
+
+                        kind: standard
+
+                        relevance: Backstageでサービスやコンポーネントを記述するメタデータ形式として関連する。
+
+                        officialUrl: https://backstage.io/docs/features/software-catalog/descriptor-format/
+
+                      - name: OpenAPI
+
+                        kind: standard
+
+                        relevance: APIカタログのメタデータとして一緒に扱われることが多い。
+
+                        officialUrl: https://www.openapis.org/
                   name: ソフトウェアカタログ
                   summary: サービス、API、ライブラリ、所有者などを整理した台帳。
                   whyLearn: 運用責任、依存関係、再利用候補を素早く見つけるため。
@@ -1162,6 +3452,43 @@ domain:
                   aliases:
                     - Backstage
                     - CNCF Backstage
+                  search:
+                    keywords:
+                      - Backstage
+                      - CNCF Backstage
+                      - backstage.io
+                      - developer portal framework
+                      - software catalog
+                      - TechDocs
+                      - scaffolder
+                      - catalog-info.yaml
+                      - internal developer portal
+                    commonSignals:
+                      - catalog-info.yamlでコンポーネントを登録している
+                      - Software Catalog、Scaffolder、TechDocsを組み合わせている
+                      - 内部開発者ポータルをBackstageで構築している
+                      - pluginやentity modelの話が出ている
+                    antiSignals:
+                      - イベント会場の舞台裏という一般語である
+                      - 単なる社内ポータルでBackstage固有機能がない
+                      - Spotifyの事例だけでツール利用の話がない
+                    relatedNames:
+                      - name: Backstage Software Catalog
+                        kind: framework
+                        relevance: Backstageの中心機能でありサービス台帳を提供する。
+                        officialUrl: https://backstage.io/docs/features/software-catalog/
+                      - name: Backstage Software Templates
+                        kind: framework
+                        relevance: 新規サービス作成のスキャフォルディング機能として関連する。
+                        officialUrl: https://backstage.io/docs/features/software-templates/
+                      - name: TechDocs
+                        kind: tool
+                        relevance: Backstage内でDocs as Codeを統合表示する機能。
+                        officialUrl: https://backstage.io/docs/features/techdocs/
+                      - name: CNCF
+                        kind: platform
+                        relevance: BackstageがCNCFプロジェクトとして扱われる文脈で関連する。
+                        officialUrl: https://www.cncf.io/
             - slug: templates-and-docs
               name: テンプレートとドキュメント
               summary: 新規サービス作成と運用知識共有を、再利用可能な部品として提供する。
@@ -1208,7 +3535,119 @@ domain:
                   aliases:
                     - Score
                     - score specification
+                  search:
+                    keywords:
+                      - Score
+                      - score specification
+                      - Score spec
+                      - workload specification
+                      - workload requirements
+                      - platform abstraction
+                      - Humanitec Score
+                      - score-compose
+                      - score-k8s
+                    commonSignals:
+                      - ワークロードの依存資源やポートを環境中立に記述している
+                      - Kubernetesマニフェストを直接書かせず抽象化している
+                      - score.yamlやscore-compose、score-k8sが出ている
+                      - 開発者向けの宣言仕様とプラットフォーム実装を分離している
+                    antiSignals:
+                      - 点数やスコアリング一般の話である
+                      - DORAスコアや成熟度評価だけを指している
+                      - Kubernetes YAMLそのものの話でScore仕様に触れていない
+                    relatedNames:
+                      - name: Score
+                        kind: standard
+                        relevance: 対象Termそのものであり、ワークロード要求を環境中立に記述する仕様。
+                        officialUrl: https://score.dev/
+                      - name: score-compose
+                        kind: tool
+                        relevance: Score定義をDocker Compose向けに変換する実装として関連する。
+                        officialUrl: https://github.com/score-spec/score-compose
+                      - name: score-k8s
+                        kind: tool
+                        relevance: Score定義をKubernetesマニフェストへ変換する実装として関連する。
+                        officialUrl: https://github.com/score-spec/score-k8s
+                      - name: Humanitec
+                        kind: service
+                        relevance: Scoreを活用するプラットフォームオーケストレーションの文脈で出やすい。
+                        officialUrl: https://humanitec.com/
+
                 - slug: crossplane
+
+                  search:
+
+                    keywords:
+
+                      - Crossplane
+
+                      - crossplane.io
+
+                      - cloud-native control plane
+
+                      - composition
+
+                      - composite resource
+
+                      - XRD
+
+                      - managed resources
+
+                      - provider
+
+                      - Kubernetes control plane
+
+                    commonSignals:
+
+                      - XRDやCompositionでクラウド資源を抽象化している
+
+                      - Kubernetes API経由でRDSやVPCなどをプロビジョニングしている
+
+                      - platform teamが独自のComposite Resourceを提供している
+
+                      - managed resourceやprovider設定が出ている
+
+                    antiSignals:
+
+                      - 航空機のcross-planeなど一般語である
+
+                      - TerraformだけでKubernetesコントロールプレーン化していない
+
+                      - 単なるKubernetes Operatorでクラウド資源抽象化がない
+
+                    relatedNames:
+
+                      - name: Crossplane
+
+                        kind: framework
+
+                        relevance: 対象Termそのものであり、Kubernetes APIでクラウド資源を提供する基盤。
+
+                        officialUrl: https://www.crossplane.io/
+
+                      - name: Upbound
+
+                        kind: service
+
+                        relevance: Crossplaneの商用エコシステムやprovider管理で関連する。
+
+                        officialUrl: https://www.upbound.io/
+
+                      - name: Kubernetes CRD
+
+                        kind: platform
+
+                        relevance: Crossplaneが抽象資源をAPIとして提供する土台。
+
+                        officialUrl: https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/
+
+                      - name: Composition
+
+                        kind: pattern
+
+                        relevance: Crossplaneで複数のmanaged resourcesを束ねる主要概念。
+
+                        officialUrl: https://docs.crossplane.io/latest/concepts/compositions/
                   name: Crossplane
                   summary: 宣言的APIでクラウド資源やアプリ基盤を提供するコントロールプレーン基盤。
                   whyLearn: プラットフォームチームが独自APIを構築する代表例だから。
@@ -1245,7 +3684,119 @@ domain:
                   aliases:
                     - policy as code
                     - ポリシーコード化
+                  search:
+                    keywords:
+                      - policy as code
+                      - ポリシー as Code
+                      - policy-as-code
+                      - guardrails
+                      - admission control
+                      - compliance as code
+                      - policy check
+                      - Rego
+                      - CI policy
+                    commonSignals:
+                      - ガードレールや標準規約をコードで検証している
+                      - CIやAdmission Controllerでポリシー違反を止めている
+                      - Rego、ConstraintTemplate、Kyverno Policyが出ている
+                      - KubernetesやTerraformの設定を自動検査している
+                    antiSignals:
+                      - 自然文の社内規程だけで自動検証されない
+                      - アプリケーションビジネスルールだけで運用ガードレールではない
+                      - 単なるLintで組織ポリシーや許可条件がない
+                    relatedNames:
+                      - name: Open Policy Agent
+                        kind: tool
+                        relevance: Policy as Codeを実装する代表的な汎用ポリシーエンジン。
+                        officialUrl: https://www.openpolicyagent.org/
+                      - name: Gatekeeper
+                        kind: tool
+                        relevance: Kubernetes admission controlでOPAポリシーを適用する代表例。
+                        officialUrl: https://open-policy-agent.github.io/gatekeeper/
+                      - name: Kyverno
+                        kind: tool
+                        relevance: Kubernetes向けPolicy as Codeツールとしてよく比較される。
+                        officialUrl: https://kyverno.io/
+                      - name: Conftest
+                        kind: tool
+                        relevance: CIで設定ファイルやIaCをOPAポリシー検証するツール。
+                        officialUrl: https://www.conftest.dev/
+
                 - slug: open-policy-agent
+
+                  search:
+
+                    keywords:
+
+                      - Open Policy Agent
+
+                      - OPA
+
+                      - Rego
+
+                      - policy engine
+
+                      - admission control
+
+                      - authorization policy
+
+                      - Gatekeeper
+
+                      - Conftest
+
+                      - decision API
+
+                    commonSignals:
+
+                      - Regoで許可・拒否条件を書いている
+
+                      - Kubernetes Admission Controllerでポリシーを評価している
+
+                      - OPA sidecarやdecision APIで認可を外出ししている
+
+                      - ConftestでTerraformやKubernetes YAMLを検査している
+
+                    antiSignals:
+
+                      - 一般的なOPAという略語でOpen Policy Agentではない
+
+                      - RBAC設定だけでOPA/Regoが出ていない
+
+                      - 静的解析や単純Lintだけでポリシー判定ではない
+
+                    relatedNames:
+
+                      - name: Open Policy Agent
+
+                        kind: tool
+
+                        relevance: 対象Termそのものであり、汎用ポリシー判定エンジン。
+
+                        officialUrl: https://www.openpolicyagent.org/
+
+                      - name: Rego
+
+                        kind: language
+
+                        relevance: OPAでポリシーを記述する専用言語。
+
+                        officialUrl: https://www.openpolicyagent.org/docs/policy-language/
+
+                      - name: Gatekeeper
+
+                        kind: tool
+
+                        relevance: Kubernetes admission controlにOPAを適用する代表的プロジェクト。
+
+                        officialUrl: https://open-policy-agent.github.io/gatekeeper/
+
+                      - name: Conftest
+
+                        kind: tool
+
+                        relevance: CIでOPA/Regoを使って設定ファイルを検証するツール。
+
+                        officialUrl: https://www.conftest.dev/
                   name: Open Policy Agent
                   summary: スタック横断でポリシー判定を外出しできる汎用ポリシーエンジン。
                   whyLearn: KubernetesやCI/CDに一貫したポリシー適用を行う代表例だから。
@@ -1261,7 +3812,115 @@ domain:
                   aliases:
                     - RBAC
                     - role based access control
+                  search:
+                    keywords:
+                      - RBAC
+                      - role based access control
+                      - role-based access control
+                      - ロールベースアクセス制御
+                      - Kubernetes RBAC
+                      - Role
+                      - ClusterRole
+                      - RoleBinding
+                      - least privilege
+                    commonSignals:
+                      - ユーザーやサービスアカウントにRoleを割り当てている
+                      - RoleBindingやClusterRoleBindingを設定している
+                      - 最小権限や職務分離を設計している
+                      - マルチチームの操作権限を役割で分けている
+                    antiSignals:
+                      - ABACやPBACなど別方式のアクセス制御が主題である
+                      - UI上の表示ロールだけで実際の操作権限ではない
+                      - 組織役職の話でシステム権限管理ではない
+                    relatedNames:
+                      - name: Kubernetes RBAC
+                        kind: platform
+                        relevance: Role、ClusterRole、RoleBindingで権限を管理する代表的実装。
+                        officialUrl: https://kubernetes.io/docs/reference/access-authn-authz/rbac/
+                      - name: AWS IAM
+                        kind: service
+                        relevance: クラウド権限管理でロール設計の比較対象として関連する。
+                        officialUrl: https://aws.amazon.com/iam/
+                      - name: Open Policy Agent
+                        kind: tool
+                        relevance: RBACでは表現しにくい条件付きポリシーの補完として関連する。
+                        officialUrl: https://www.openpolicyagent.org/
+
                 - slug: tenant-isolation
+
+                  search:
+
+                    keywords:
+
+                      - tenant isolation
+
+                      - multi-tenancy
+
+                      - テナント分離
+
+                      - namespace isolation
+
+                      - account isolation
+
+                      - cluster isolation
+
+                      - noisy neighbor
+
+                      - blast radius
+
+                      - resource isolation
+
+                    commonSignals:
+
+                      - 顧客やチームごとにnamespace、account、clusterを分けている
+
+                      - noisy neighborやblast radiusを抑えようとしている
+
+                      - 権限、ネットワーク、資源、障害影響を分離している
+
+                      - 共有基盤でマルチテナント運用を設計している
+
+                    antiSignals:
+
+                      - 単なるアプリ内のtenant_idカラムだけで基盤分離ではない
+
+                      - SaaS課金プランの分類だけを扱っている
+
+                      - 環境分離dev、stg、prodの話だけでテナントではない
+
+                    relatedNames:
+
+                      - name: Kubernetes Namespace
+
+                        kind: platform
+
+                        relevance: チームやテナント単位の論理分離でよく使われる。
+
+                        officialUrl: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+
+                      - name: Kubernetes NetworkPolicy
+
+                        kind: platform
+
+                        relevance: テナント間通信を制御するネットワーク分離手段として関連する。
+
+                        officialUrl: https://kubernetes.io/docs/concepts/services-networking/network-policies/
+
+                      - name: AWS Organizations
+
+                        kind: service
+
+                        relevance: アカウント単位の分離やガードレール設計で関連する。
+
+                        officialUrl: https://aws.amazon.com/organizations/
+
+                      - name: ResourceQuota
+
+                        kind: platform
+
+                        relevance: namespace単位の資源上限でテナント影響を抑えるため関連する。
+
+                        officialUrl: https://kubernetes.io/docs/concepts/policy/resource-quotas/
                   name: テナント分離
                   summary: チームや顧客ごとの資源、権限、障害影響を分ける設計。
                   whyLearn: 共有基盤での安全性、請求、運用責任を分離するため。
@@ -1277,6 +3936,43 @@ domain:
                   aliases:
                     - quota
                     - resource quota
+                  search:
+                    keywords:
+                      - quota
+                      - resource quota
+                      - クォータ
+                      - Kubernetes ResourceQuota
+                      - API quota
+                      - usage limit
+                      - limit range
+                      - namespace quota
+                      - fair sharing
+                    commonSignals:
+                      - namespaceやtenantごとにCPU、メモリ、オブジェクト数の上限を設定している
+                      - API利用回数やクラウドリソース数の上限を管理している
+                      - 共有基盤で公平性や乱用防止を設計している
+                      - quota exceededや上限引き上げ申請が出ている
+                    antiSignals:
+                      - sales quotaや営業目標の話である
+                      - rate limitingと混同して瞬間的なリクエスト速度だけを扱っている
+                      - 単なる容量見積もりで強制上限がない
+                    relatedNames:
+                      - name: Kubernetes ResourceQuota
+                        kind: platform
+                        relevance: namespace単位でCPU、メモリ、オブジェクト数を制限する機能。
+                        officialUrl: https://kubernetes.io/docs/concepts/policy/resource-quotas/
+                      - name: Kubernetes LimitRange
+                        kind: platform
+                        relevance: namespace内のPodやContainer単位の既定値・上限設定で関連する。
+                        officialUrl: https://kubernetes.io/docs/concepts/policy/limit-range/
+                      - name: AWS Service Quotas
+                        kind: service
+                        relevance: クラウドサービス利用上限の管理でquota文脈に出る。
+                        officialUrl: https://aws.amazon.com/servicequotas/
+                      - name: Google Cloud Quotas
+                        kind: service
+                        relevance: クラウドリソースやAPI利用量の上限管理として関連する。
+                        officialUrl: https://cloud.google.com/docs/quotas
 
 edges:
   - from: service-level-indicator

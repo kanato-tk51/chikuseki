@@ -23,18 +23,113 @@ domain:
                   summary: "特定のユーザーが特定の文脈で目標を達成しやすい度合い。"
                   whyLearn: "有効性、効率、満足度で体験を具体的に評価できる。"
                   promptHint: "有効性、効率、満足度を用いて具体例を説明させる。"
+                  search:
+                    keywords:
+                      - ユーザビリティ
+                      - usability
+                      - 使いやすさ
+                      - 有効性
+                      - 効率
+                      - 満足度
+                      - effectiveness
+                      - efficiency
+                      - satisfaction
+                      - usability metrics
+                    commonSignals:
+                      - 有効性・効率・満足度で評価している
+                      - タスク完了率や操作時間を測っている
+                      - 使いやすさの定量・定性評価に触れている
+                      - usability testing や SUS と一緒に出てくる
+                    antiSignals:
+                      - 単に便利・快適という感想だけで評価軸がない
+                      - アクセシビリティ適合だけを指している
+                      - システム性能やレスポンスタイムだけを扱っている
+                    relatedNames:
+                      - name: ISO 9241-11
+                        kind: standard
+                        relevance: ユーザビリティを有効性・効率・満足度と利用文脈で定義する代表的標準。
+                        officialUrl: https://www.iso.org/standard/63500.html
+                      - name: System Usability Scale
+                        kind: method
+                        relevance: 知覚された使いやすさを測る代表的な質問紙尺度。
+                      - name: Nielsen's Usability Heuristics
+                        kind: method
+                        relevance: UI のユーザビリティ問題を専門家レビューで発見する代表的原則群。
                   aliases: ["usability"]
                 - slug: user-experience
                   name: ユーザー体験
                   summary: "利用前、利用中、利用後を通じた知覚や感情を含む総合的な体験。"
                   whyLearn: "操作性だけでなく期待、安心感、継続利用まで視野に入れられる。"
                   promptHint: "ユーザビリティと UX の違いを対比させる。"
+                  search:
+                    keywords:
+                      - ユーザー体験
+                      - UX
+                      - user experience
+                      - 体験設計
+                      - experience design
+                      - 利用前
+                      - 利用中
+                      - 利用後
+                      - customer experience
+                      - perceived experience
+                    commonSignals:
+                      - 利用前・利用中・利用後の期待や感情を扱っている
+                      - 操作性だけでなく信頼感や継続利用を議論している
+                      - プロダクト全体の体験品質を表現している
+                      - CX、journey、touchpoint と一緒に出る
+                    antiSignals:
+                      - UI の見た目だけを UX と呼んでいる
+                      - 単なる満足度アンケートだけで体験全体を扱っていない
+                      - 開発者体験 DX を指している
+                    relatedNames:
+                      - name: ISO 9241-210
+                        kind: standard
+                        relevance: UX と人間中心設計を議論するときの基礎標準として参照される。
+                        officialUrl: https://www.iso.org/standard/77520.html
+                      - name: HEART Framework
+                        kind: framework
+                        relevance: プロダクト利用体験を継続指標として捉える代表的な UX 指標フレームワーク。
+                      - name: Customer Journey Map
+                        kind: method
+                        relevance: 利用前後を含む体験全体を可視化する手法として一緒に扱われる。
                   aliases: ["UX", "user experience"]
                 - slug: context-of-use
                   name: 利用文脈
                   summary: "誰が、何の目的で、どの環境や制約の中で使うかを表す枠組み。"
                   whyLearn: "同じUIでも文脈が違えば良し悪しが変わることを理解できる。"
                   promptHint: "ユーザー、タスク、環境、制約に分けて要約させる。"
+                  search:
+                    keywords:
+                      - 利用文脈
+                      - context of use
+                      - use context
+                      - usage context
+                      - user task environment
+                      - 利用環境
+                      - 利用状況
+                      - 制約条件
+                      - user goals
+                      - operational context
+                    commonSignals:
+                      - 誰が・何のために・どこで・どんな制約で使うかを整理している
+                      - ユーザー、タスク、環境、機器、組織制約を分けている
+                      - 現場観察や業務文脈を前提に設計している
+                    antiSignals:
+                      - 文脈という語が文章の前後関係だけを意味している
+                      - ユーザー属性だけでタスクや環境がない
+                      - 技術スタックの実行環境だけを指している
+                    relatedNames:
+                      - name: ISO 9241-11
+                        kind: standard
+                        relevance: ユーザビリティを利用文脈と結びつけて定義する標準。
+                        officialUrl: https://www.iso.org/standard/63500.html
+                      - name: Contextual Inquiry
+                        kind: method
+                        relevance: 実際の利用文脈を観察しながら理解する代表的調査手法。
+                      - name: Field Study
+                        kind: method
+                        relevance: 現場環境で利用文脈を把握する調査手法として関連が強い。
                   aliases: ["use context", "context of use"]
             - slug: human-centered-design-process
               name: 人間中心設計プロセス
@@ -46,12 +141,73 @@ domain:
                   summary: "インタラクティブシステムの人間中心設計活動を定義する ISO 規格。"
                   whyLearn: "組織や案件をまたいで使える設計プロセスの共通基盤になる。"
                   promptHint: "規格が求める活動をプロジェクト工程に結びつけて説明させる。"
+                  search:
+                    keywords:
+                      - ISO 9241-210
+                      - human-centred design
+                      - human-centered design
+                      - HCD
+                      - 人間中心設計
+                      - インタラクティブシステム
+                      - ergonomics of human-system interaction
+                      - user-centred design process
+                      - HCD process
+                    commonSignals:
+                      - 人間中心設計の活動や原則を標準として説明している
+                      - 利用文脈の理解、要求事項、設計案、評価の反復が並ぶ
+                      - HCD、UCD、human-centred design と併記される
+                    antiSignals:
+                      - ISO 9001 など品質マネジメント一般の話
+                      - ISO 9241 の別パートだけを扱っている
+                      - 単なるデザイン思考の紹介で規格に触れていない
+                    relatedNames:
+                      - name: ISO 9241-210
+                        kind: standard
+                        relevance: 人間中心設計プロセスそのものを定義する対象標準。
+                        officialUrl: https://www.iso.org/standard/77520.html
+                      - name: ISO 9241-11
+                        kind: standard
+                        relevance: ユーザビリティの定義とあわせて参照されやすい。
+                        officialUrl: https://www.iso.org/standard/63500.html
+                      - name: Human-Centered Design
+                        kind: method
+                        relevance: ISO 9241-210 の実務適用時に用いられる設計アプローチ。
                   aliases: ["ISO 9241-210", "human-centred design"]
                 - slug: double-diamond
                   name: ダブルダイヤモンド
                   summary: "発散と収束を繰り返して問題発見と解決案形成を進める設計モデル。"
                   whyLearn: "探索不足なのか、収束不足なのかを会話できるようになる。"
                   promptHint: "Discover、Define、Develop、Deliver を例とともに説明させる。"
+                  search:
+                    keywords:
+                      - ダブルダイヤモンド
+                      - Double Diamond
+                      - Discover Define Develop Deliver
+                      - 発散と収束
+                      - divergent thinking
+                      - convergent thinking
+                      - design process model
+                      - problem space solution space
+                      - Design Council
+                    commonSignals:
+                      - Discover、Define、Develop、Deliver の4段階が出る
+                      - 発散してから収束するという説明がある
+                      - 問題空間と解決空間を分けている
+                    antiSignals:
+                      - 菱形の図形一般を指している
+                      - 宝石やダイヤモンド業界の話
+                      - 開発工程のウォーターフォール図だけを指している
+                    relatedNames:
+                      - name: Design Council Double Diamond
+                        kind: framework
+                        relevance: ダブルダイヤモンドを広く普及させた公式フレームワーク。
+                        officialUrl: https://www.designcouncil.org.uk/resources/the-double-diamond/
+                      - name: Design Thinking
+                        kind: framework
+                        relevance: 問題発見と解決案形成の反復プロセスとして比較されやすい。
+                      - name: Lean UX
+                        kind: method
+                        relevance: 仮説検証型の設計プロセスとして実務で一緒に語られやすい。
                   aliases: ["Double Diamond"]
                 - slug: iterative-design
                   name: 反復設計
@@ -85,6 +241,40 @@ domain:
                   summary: "ユーザーの意図より事業側の都合を優先して誘導や操作を行う設計。"
                   whyLearn: "短期成果と長期信頼のトレードオフを見抜ける。"
                   promptHint: "便利な最適化とダークパターンの境界を説明させる。"
+                  search:
+                    keywords:
+                      - ダークパターン
+                      - dark pattern
+                      - deceptive design
+                      - deceptive pattern
+                      - dark UX
+                      - manipulation
+                      - forced continuity
+                      - confirmshaming
+                      - hidden cost
+                      - choice architecture
+                    commonSignals:
+                      - 解約しにくい、拒否しにくい、同意させられるという文脈
+                      - ユーザーの自律性や選択を損ねる設計の話
+                      - hidden cost、forced action、nagging などのパターン名が出る
+                      - FTC、OECD、EDPB、deceptive design と一緒に出る
+                    antiSignals:
+                      - 単に暗い配色やダークモードを指している
+                      - コンバージョン改善一般を指している
+                      - セキュリティの攻撃パターンだけを扱っている
+                    relatedNames:
+                      - name: FTC Dark Patterns Report
+                        kind: standard
+                        relevance: ダークパターンを消費者保護の観点から整理した公的資料。
+                        officialUrl: https://www.ftc.gov/reports/bringing-dark-patterns-light
+                      - name: OECD Dark Commercial Patterns
+                        kind: standard
+                        relevance: デジタル選択アーキテクチャにおける操作的設計を国際的に整理している。
+                        officialUrl: https://www.oecd.org/en/publications/dark-commercial-patterns_44f5e846-en.html
+                      - name: Deceptive Design
+                        kind: other
+                        relevance: ダークパターンの分類や事例を学ぶときに参照される用語・サイト名。
+                        officialUrl: https://www.deceptive.design/
                   aliases: ["dark pattern", "deceptive design"]
             - slug: cognition-and-mental-models
               name: 認知とメンタルモデル
@@ -96,6 +286,35 @@ domain:
                   summary: "ユーザーがその仕組みをどう理解しているかという内的なモデル。"
                   whyLearn: "ラベルやレイアウトが期待とズレる理由を説明できる。"
                   promptHint: "既存プロダクトの期待が新しいUIにどう影響するか説明させる。"
+                  search:
+                    keywords:
+                      - メンタルモデル
+                      - mental model
+                      - user expectation
+                      - ユーザー期待
+                      - conceptual understanding
+                      - 予測可能性
+                      - system image
+                      - existing knowledge
+                      - learnability
+                    commonSignals:
+                      - ユーザーがどう動くはずだと思っているかを扱っている
+                      - 既存サービスでの経験が新UIの理解に影響する話
+                      - ラベルや分類が期待とズレているという指摘
+                    antiSignals:
+                      - 機械学習モデルやLLMモデルの話
+                      - データモデルやドメインモデルだけを扱っている
+                      - 精神医学的な診断モデルを指している
+                    relatedNames:
+                      - name: Card Sorting
+                        kind: method
+                        relevance: ユーザーの情報分類に関するメンタルモデルを把握するために使われる。
+                      - name: Conceptual Model
+                        kind: method
+                        relevance: 設計側が提示する理解モデルとしてメンタルモデルと比較される。
+                      - name: Journey Map
+                        kind: method
+                        relevance: ユーザーが期待する体験の流れを可視化するときに関連する。
                   aliases: ["mental model"]
                 - slug: conceptual-model
                   name: 概念モデル
@@ -108,6 +327,35 @@ domain:
                   summary: "理解、記憶、判断に必要な心的負担の大きさ。"
                   whyLearn: "選択肢過多や複雑な文言がなぜ離脱を生むか説明できる。"
                   promptHint: "認知負荷を下げる具体的な設計手段を挙げさせる。"
+                  search:
+                    keywords:
+                      - 認知負荷
+                      - cognitive load
+                      - mental effort
+                      - working memory
+                      - information overload
+                      - 選択肢過多
+                      - complexity
+                      - attention
+                      - comprehension burden
+                    commonSignals:
+                      - 選択肢が多すぎる、読む量が多すぎる、判断が難しい
+                      - ワーキングメモリや注意資源に触れている
+                      - 段階的開示や情報の整理で負担を下げる話
+                    antiSignals:
+                      - サーバー負荷やCPU負荷の話
+                      - 単に情報量が多いだけでユーザー理解に触れていない
+                      - 学習理論一般でUIやタスク設計に接続していない
+                    relatedNames:
+                      - name: Hick's Law
+                        kind: method
+                        relevance: 選択肢の数と意思決定時間を結びつける認知負荷関連の法則。
+                      - name: Progressive Disclosure
+                        kind: pattern
+                        relevance: 複雑さを段階的に開示して認知負荷を下げる設計パターン。
+                      - name: Recognition over Recall
+                        kind: pattern
+                        relevance: 記憶負荷を下げるための代表的なユーザビリティ原則。
                   aliases: ["cognitive load"]
     - slug: user-research-and-synthesis
       name: ユーザー調査と統合
@@ -128,12 +376,72 @@ domain:
                   summary: "ユーザーの目的、背景、困りごとを対話で深掘りする調査手法。"
                   whyLearn: "表面化していない制約や判断基準を引き出せる。"
                   promptHint: "良い質問と悪い誘導質問の違いを説明させる。"
+                  search:
+                    keywords:
+                      - ユーザーインタビュー
+                      - user interview
+                      - UX interview
+                      - semi-structured interview
+                      - discovery interview
+                      - research interview
+                      - qualitative interview
+                      - probing question
+                      - non-leading question
+                    commonSignals:
+                      - 半構造化質問や深掘り質問を設計している
+                      - 目的、背景、困りごと、意思決定理由を聞いている
+                      - 誘導質問やバイアスに注意している
+                    antiSignals:
+                      - 採用面接や評価面談の話
+                      - アンケートだけで対話がない
+                      - ユーザーの発話ではなくログ分析のみを扱っている
+                    relatedNames:
+                      - name: Jobs To Be Done Interview
+                        kind: method
+                        relevance: ユーザーの目的や状況を深掘りする実務上よく使われるインタビュー手法。
+                      - name: Dovetail
+                        kind: tool
+                        relevance: インタビュー記録や定性分析を管理するリサーチリポジトリ系ツール。
+                        officialUrl: https://dovetail.com/
+                      - name: User Interviews
+                        kind: service
+                        relevance: ユーザーリクルーティングや調査参加者募集で使われるサービス。
+                        officialUrl: https://www.userinterviews.com/
                   aliases: ["interview", "user interview"]
                 - slug: contextual-inquiry
                   name: コンテクスチュアルインクワイアリ
                   summary: "実際の利用環境で観察しながら質問する調査手法。"
                   whyLearn: "作業の流れや周辺道具、他者との連携まで含めて理解できる。"
                   promptHint: "通常のインタビューでは拾いにくい発見を説明させる。"
+                  search:
+                    keywords:
+                      - コンテクスチュアルインクワイアリ
+                      - contextual inquiry
+                      - contextual interview
+                      - in-context observation
+                      - workplace observation
+                      - 現場観察
+                      - shadowing
+                      - master apprentice model
+                      - situated research
+                    commonSignals:
+                      - 実際の利用環境で作業を見ながら質問している
+                      - 周辺道具、同僚、紙、Excel、業務制約まで観察している
+                      - インタビューと観察を同時に行っている
+                    antiSignals:
+                      - 会議室での通常インタビューのみ
+                      - 画面録画だけで利用環境を見ていない
+                      - 文脈という語が文章解釈だけを指している
+                    relatedNames:
+                      - name: Contextual Design
+                        kind: method
+                        relevance: contextual inquiry を含む現場理解から設計へつなげる方法論。
+                      - name: Field Study
+                        kind: method
+                        relevance: 実利用環境で観察する点で近い調査手法。
+                      - name: Service Blueprint
+                        kind: method
+                        relevance: 現場で観察した前面・背面プロセスを可視化する際に使われる。
                   aliases: ["contextual inquiry"]
                 - slug: field-study
                   name: フィールド調査
@@ -151,12 +459,72 @@ domain:
                   summary: "数日から数週間にわたり、ユーザーの経験を継続的に記録してもらう調査。"
                   whyLearn: "長期利用や繰り返し行動の実態を捉えられる。"
                   promptHint: "インタビューでは取れない時間的知見を説明させる。"
+                  search:
+                    keywords:
+                      - ダイアリースタディ
+                      - diary study
+                      - diary research
+                      - longitudinal study
+                      - longitudinal UX research
+                      - experience sampling
+                      - 継続観察
+                      - 日記調査
+                      - longitudinal diary
+                    commonSignals:
+                      - 数日から数週間にわたって記録してもらう
+                      - 利用直後の感情や状況を日記形式で集める
+                      - 長期利用、習慣、繰り返し行動を調べている
+                    antiSignals:
+                      - 個人の日記アプリの機能説明だけ
+                      - 単発インタビューや単発ユーザーテスト
+                      - ログ収集のみで参加者の自己記録がない
+                    relatedNames:
+                      - name: Dscout
+                        kind: tool
+                        relevance: モバイル日記調査やリモート定性調査で使われる代表的ツール。
+                        officialUrl: https://dscout.com/
+                      - name: Experience Sampling Method
+                        kind: method
+                        relevance: 日常の特定タイミングで経験を記録する近接手法。
+                      - name: Qualtrics
+                        kind: tool
+                        relevance: 継続的な調査票配信や回答収集に使われることがある。
+                        officialUrl: https://www.qualtrics.com/
                   aliases: ["diary study"]
                 - slug: task-analysis
                   name: タスク分析
                   summary: "目標達成までの手順、判断、分岐、依存関係を整理する分析。"
                   whyLearn: "UI単位ではなくタスク全体の難所を明らかにできる。"
                   promptHint: "タスク分析から画面要件へ落とす流れを説明させる。"
+                  search:
+                    keywords:
+                      - タスク分析
+                      - task analysis
+                      - hierarchical task analysis
+                      - HTA
+                      - job task analysis
+                      - workflow analysis
+                      - task decomposition
+                      - user task
+                      - 手順分解
+                    commonSignals:
+                      - 目標達成までの手順、分岐、判断点を分解している
+                      - ユーザータスクを画面要件やフローに変換している
+                      - HTA、workflow、job task と一緒に出る
+                    antiSignals:
+                      - プロジェクト管理のタスク一覧だけ
+                      - 開発チケットの分解だけでユーザー行動がない
+                      - CPUタスクやOSスケジューリングの話
+                    relatedNames:
+                      - name: Hierarchical Task Analysis
+                        kind: method
+                        relevance: 目標をサブタスクや手順へ分解する代表的なタスク分析手法。
+                      - name: Cognitive Task Analysis
+                        kind: method
+                        relevance: 判断や知識利用を含む複雑タスクを分析する手法。
+                      - name: BPMN
+                        kind: standard
+                        relevance: 業務プロセスの可視化とタスク分析が接続する場面で出ることがある。
                   aliases: ["task analysis"]
                 - slug: ethnography
                   name: エスノグラフィ
@@ -178,6 +546,38 @@ domain:
                   summary: "観察や発言を近いテーマごとに束ねてパターンを見出す手法。"
                   whyLearn: "断片的な発見をチームで共有しやすい構造に変えられる。"
                   promptHint: "どういう粒度で束ねると良いかを説明させる。"
+                  search:
+                    keywords:
+                      - アフィニティマップ
+                      - affinity map
+                      - affinity mapping
+                      - affinity diagram
+                      - KJ法
+                      - clustering research findings
+                      - qualitative synthesis
+                      - synthesis wall
+                      - thematic clustering
+                    commonSignals:
+                      - インタビュー発話や観察メモを付箋で分類している
+                      - パターン、テーマ、洞察へまとめている
+                      - KJ法、cluster、synthesis と一緒に出る
+                    antiSignals:
+                      - ネットワーク親和性や化学的親和性の話
+                      - 単なるアイデア出しで調査データの統合がない
+                      - マインドマップ一般を指しているだけ
+                    relatedNames:
+                      - name: Miro
+                        kind: tool
+                        relevance: アフィニティマッピングやワークショップでよく使われるオンラインホワイトボード。
+                        officialUrl: https://miro.com/
+                      - name: FigJam
+                        kind: tool
+                        relevance: UXリサーチ結果の付箋整理や共同分析に使われるホワイトボードツール。
+                        officialUrl: https://www.figma.com/figjam/
+                      - name: Dovetail
+                        kind: tool
+                        relevance: 定性データのタグ付けやテーマ抽出に使われるリサーチ分析ツール。
+                        officialUrl: https://dovetail.com/
                   aliases: ["affinity mapping", "affinity diagram"]
                 - slug: thematic-analysis
                   name: テーマ分析
@@ -201,6 +601,35 @@ domain:
                   summary: "実在ユーザー群を代表する行動特性や目的をまとめたモデル。"
                   whyLearn: "抽象的な対象ユーザーを、意思決定に使える人物像へ変換できる。"
                   promptHint: "良いペルソナとステレオタイプの違いを説明させる。"
+                  search:
+                    keywords:
+                      - ペルソナ
+                      - persona
+                      - user persona
+                      - proto-persona
+                      - research-based persona
+                      - target user archetype
+                      - behavioral archetype
+                      - user segment
+                      - empathy artifact
+                    commonSignals:
+                      - 名前、目的、行動特性、課題を持つ代表ユーザー像がある
+                      - research-based、proto-persona、archetype と一緒に出る
+                      - チームの意思決定やシナリオ作成に使われる
+                    antiSignals:
+                      - マーケティング上の理想顧客像だけで行動根拠がない
+                      - ペルソナ5などゲーム・作品名の話
+                      - 単なる属性セグメントで目的や行動がない
+                    relatedNames:
+                      - name: Persona
+                        kind: method
+                        relevance: 調査にもとづく代表ユーザーモデルそのもの。
+                      - name: Jobs To Be Done
+                        kind: framework
+                        relevance: 人物属性より目的や進捗でユーザーを捉える代替・補完視点。
+                      - name: Empathy Map
+                        kind: method
+                        relevance: ペルソナ理解を補助する軽量な共有アーティファクト。
                   aliases: ["persona"]
                 - slug: scenario
                   name: シナリオ
@@ -233,6 +662,37 @@ domain:
                   summary: "情報を分類するための体系的なカテゴリ構造。"
                   whyLearn: "メニュー、検索、コンテンツ運用の一貫性を保てる。"
                   promptHint: "分類軸が悪いと何が起こるか説明させる。"
+                  search:
+                    keywords:
+                      - タクソノミー
+                      - taxonomy
+                      - classification scheme
+                      - category structure
+                      - controlled vocabulary
+                      - information classification
+                      - 分類体系
+                      - カテゴリ設計
+                      - ontology
+                    commonSignals:
+                      - カテゴリ、分類軸、階層、タグ体系を整理している
+                      - メニュー、検索、フィルタ、ファセットと一緒に出る
+                      - controlled vocabulary や ontology と併記される
+                    antiSignals:
+                      - 生物分類学だけを扱っている
+                      - 価格プランのカテゴリ分けだけで情報構造の話がない
+                      - 単なるタグ一覧で体系性がない
+                    relatedNames:
+                      - name: Controlled Vocabulary
+                        kind: method
+                        relevance: 一貫した分類・ラベル管理のためにタクソノミーと一緒に使われる。
+                      - name: SKOS
+                        kind: standard
+                        relevance: 概念体系や分類語彙を表現する標準として関連する。
+                        officialUrl: https://www.w3.org/TR/skos-reference/
+                      - name: Algolia
+                        kind: service
+                        relevance: 検索やファセット分類でタクソノミー設計と接続しやすい検索サービス。
+                        officialUrl: https://www.algolia.com/
                   aliases: ["taxonomy"]
                 - slug: sitemap
                   name: サイトマップ
@@ -256,12 +716,75 @@ domain:
                   summary: "ユーザーに情報項目を分類してもらい、期待するまとまりを把握する手法。"
                   whyLearn: "ユーザーのメンタルモデルに沿った分類を作りやすい。"
                   promptHint: "オープンとクローズドの使い分けを説明させる。"
+                  search:
+                    keywords:
+                      - カードソーティング
+                      - card sorting
+                      - open card sort
+                      - closed card sort
+                      - hybrid card sort
+                      - IA research
+                      - information architecture test
+                      - mental model research
+                      - category grouping
+                    commonSignals:
+                      - 情報項目をユーザーに分類してもらっている
+                      - open、closed、hybrid のカードソート種別が出る
+                      - IA、taxonomy、mental model と一緒に出る
+                    antiSignals:
+                      - トランプやカードゲームの並べ替え
+                      - ソートアルゴリズムの話
+                      - 既存階層の探索成功率だけを測っている場合は tree-testing 寄り
+                    relatedNames:
+                      - name: OptimalSort
+                        kind: tool
+                        relevance: カードソーティング調査で広く使われる専用ツール。
+                        officialUrl: https://www.optimalworkshop.com/optimalsort/
+                      - name: Optimal Workshop
+                        kind: platform
+                        relevance: IA 調査ツール群としてカードソーティングとツリーテストの両方に関連する。
+                        officialUrl: https://www.optimalworkshop.com/
+                      - name: Miro
+                        kind: tool
+                        relevance: モデレート型カードソートを付箋で行う際に使われることがある。
+                        officialUrl: https://miro.com/
                   aliases: ["card sorting"]
                 - slug: tree-testing
                   name: ツリーテスト
                   summary: "ラベルと階層だけを使って情報が見つかるかを検証する手法。"
                   whyLearn: "画面デザインの影響を除いて IA そのものを評価できる。"
                   promptHint: "カードソーティングとの違いを説明させる。"
+                  search:
+                    keywords:
+                      - ツリーテスト
+                      - tree testing
+                      - reverse card sorting
+                      - treejack
+                      - IA validation
+                      - navigation testing
+                      - findability test
+                      - content hierarchy test
+                      - first click path
+                    commonSignals:
+                      - 画面デザインなしでラベルと階層だけをテストしている
+                      - 指定情報をどのカテゴリから探すかを測っている
+                      - success rate、directness、time on task が出る
+                    antiSignals:
+                      - DOMツリーや構文木のテスト
+                      - 決定木モデルや機械学習の tree test
+                      - 情報項目を自由に分類してもらう調査は card-sorting 寄り
+                    relatedNames:
+                      - name: Treejack
+                        kind: tool
+                        relevance: ツリーテストを実施する代表的な Optimal Workshop のツール。
+                        officialUrl: https://www.optimalworkshop.com/treejack/
+                      - name: Optimal Workshop
+                        kind: platform
+                        relevance: IA検証ツール群としてツリーテストとカードソーティングの両方を提供する。
+                        officialUrl: https://www.optimalworkshop.com/
+                      - name: Card Sorting
+                        kind: method
+                        relevance: 情報構造を作る調査としてツリーテストと比較されやすい。
                   aliases: ["tree testing"]
                 - slug: findability
                   name: 発見可能性
@@ -283,12 +806,74 @@ domain:
                   summary: "ユーザーが一読して理解しやすい明確で簡潔な表現。"
                   whyLearn: "専門用語や行政語を減らし、誤解や離脱を減らせる。"
                   promptHint: "難しい文を平易に書き換えさせる。"
+                  search:
+                    keywords:
+                      - プレーンランゲージ
+                      - plain language
+                      - plain writing
+                      - clear communication
+                      - わかりやすい文章
+                      - readability
+                      - content clarity
+                      - jargon-free
+                      - easy to understand
+                    commonSignals:
+                      - 専門用語を避け、短く明確に書く話
+                      - 読みやすさ、理解しやすさ、行動しやすさを扱っている
+                      - plain writing、clear communication、readability と出る
+                    antiSignals:
+                      - プレーンテキスト形式や text/plain の話
+                      - ブランドトーンだけで理解容易性を扱っていない
+                      - 翻訳品質だけを扱っている
+                    relatedNames:
+                      - name: PlainLanguage.gov
+                        kind: standard
+                        relevance: 公的文書やデジタルサービスで使われるプレーンランゲージの代表的ガイド。
+                        officialUrl: https://www.plainlanguage.gov/
+                      - name: GOV.UK Style Guide
+                        kind: standard
+                        relevance: 明確で一貫した公共サービス向け文章設計の代表例。
+                        officialUrl: https://www.gov.uk/guidance/style-guide
+                      - name: Hemingway Editor
+                        kind: tool
+                        relevance: 英文の簡潔さや読みやすさを点検するツールとして一緒に出やすい。
                   aliases: ["plain language"]
                 - slug: microcopy
                   name: マイクロコピー
                   summary: "ボタン、ラベル、補助文、確認文など短い文言の設計。"
                   whyLearn: "小さな文言が行動と信頼に大きく影響することを理解できる。"
                   promptHint: "良いマイクロコピーの条件を説明させる。"
+                  search:
+                    keywords:
+                      - マイクロコピー
+                      - microcopy
+                      - UX writing
+                      - button copy
+                      - form helper text
+                      - error copy
+                      - confirmation message
+                      - CTA label
+                      - inline help
+                    commonSignals:
+                      - ボタン文言、補助文、確認文、空状態文言を改善している
+                      - CTA、helper text、validation copy と一緒に出る
+                      - 文言がユーザー行動や信頼に影響する話
+                    antiSignals:
+                      - 広告コピーやキャッチコピーだけを扱っている
+                      - 長文コンテンツ記事の編集だけ
+                      - コピー機や複製の copy を指している
+                    relatedNames:
+                      - name: GOV.UK Design System
+                        kind: standard
+                        relevance: ボタン、フォーム、エラーメッセージなど実務的な文言設計例が豊富。
+                        officialUrl: https://design-system.service.gov.uk/
+                      - name: Mailchimp Content Style Guide
+                        kind: standard
+                        relevance: UX writing やトーンの一貫性の例としてよく参照される。
+                        officialUrl: https://styleguide.mailchimp.com/
+                      - name: Content Design
+                        kind: method
+                        relevance: 短い文言だけでなく利用者の目的達成に沿って内容を設計する上位実践。
                   aliases: ["microcopy", "UX writing"]
                 - slug: content-style-guide
                   name: コンテンツスタイルガイド
@@ -306,12 +891,74 @@ domain:
                   summary: "何をどの順番で、どの表現で聞くかを設計すること。"
                   whyLearn: "ユーザーの理解負荷と入力ミスを減らせる。"
                   promptHint: "悪い設問例を改善させる。"
+                  search:
+                    keywords:
+                      - 質問設計
+                      - question design
+                      - form question design
+                      - survey question design
+                      - good questions
+                      - 質問文
+                      - input question
+                      - form design
+                      - questionnaire wording
+                    commonSignals:
+                      - フォームで何をどの順番で聞くかを設計している
+                      - ラベル、補足説明、選択肢、必須/任意を議論している
+                      - 誘導質問、二重質問、曖昧な質問を避ける話
+                    antiSignals:
+                      - インタビュー質問だけでフォーム入力設計に接続していない
+                      - FAQの質問タイトルだけを扱っている
+                      - クイズ問題作成だけを指している
+                    relatedNames:
+                      - name: GOV.UK Designing Good Questions
+                        kind: method
+                        relevance: フォームでユーザーに適切に質問するための実務ガイド。
+                        officialUrl: https://www.gov.uk/service-manual/design/designing-good-questions
+                      - name: Question Protocol
+                        kind: method
+                        relevance: 何をなぜ聞くのかを整理するフォーム設計の実務手法として関連する。
+                      - name: SurveyMonkey
+                        kind: tool
+                        relevance: 調査票設計の文脈で質問文や選択肢設計と一緒に出やすい。
+                        officialUrl: https://www.surveymonkey.com/
                   aliases: ["question design"]
                 - slug: error-message
                   name: エラーメッセージ
                   summary: "何が問題で、どう直せばよいかを伝えるメッセージ。"
                   whyLearn: "失敗をユーザー責任にせず回復可能な体験へ変えられる。"
                   promptHint: "悪いエラーメッセージを改善させる。"
+                  search:
+                    keywords:
+                      - エラーメッセージ
+                      - error message
+                      - validation message
+                      - form validation
+                      - inline error
+                      - error summary
+                      - recovery message
+                      - input error
+                      - validation copy
+                    commonSignals:
+                      - 何が間違っていてどう直すかを伝える文言
+                      - フォーム検証、エラーサマリー、インラインエラーが出る
+                      - ユーザーを責めない回復可能な表現を議論している
+                    antiSignals:
+                      - サーバーログの例外メッセージだけ
+                      - 開発者向けスタックトレースだけ
+                      - HTTPステータスコード一覧だけでユーザー文言がない
+                    relatedNames:
+                      - name: GOV.UK Error Message Component
+                        kind: pattern
+                        relevance: フォームエラーの伝え方を具体的に示す代表的なデザインシステム部品。
+                        officialUrl: https://design-system.service.gov.uk/components/error-message/
+                      - name: USWDS Validation
+                        kind: pattern
+                        relevance: アクセシブルなフォーム検証やエラー表示の実装パターンとして関連する。
+                        officialUrl: https://designsystem.digital.gov/components/validation/
+                      - name: ARIA live regions
+                        kind: standard
+                        relevance: 動的なエラー通知を支援技術へ伝える際に関係する。
                   aliases: ["error message", "validation message"]
                 - slug: progressive-disclosure
                   name: プログレッシブディスクロージャ
@@ -338,6 +985,37 @@ domain:
                   summary: "その対象に対してどのような行為が可能かという性質。"
                   whyLearn: "クリック可能性や操作可能性の設計を考えやすくなる。"
                   promptHint: "実アフォーダンスと見かけの手がかりの違いを説明させる。"
+                  search:
+                    keywords:
+                      - アフォーダンス
+                      - affordance
+                      - perceived affordance
+                      - actual affordance
+                      - 操作可能性
+                      - action possibility
+                      - clickable affordance
+                      - physical affordance
+                      - Norman affordance
+                    commonSignals:
+                      - 押せそう、つかめそう、ドラッグできそうという操作可能性の話
+                      - perceived affordance と signifier の違いを扱っている
+                      - ボタン、リンク、ドラッグハンドルなどの見え方を議論している
+                    antiSignals:
+                      - affordance を単にメリットや提供価値の意味で使っている
+                      - アフォーダブル価格の話
+                      - アクセス権限や capability の技術用語だけを指す
+                    relatedNames:
+                      - name: Don Norman Affordances
+                        kind: other
+                        relevance: HCI とデザインにおける affordance の代表的な議論。
+                        officialUrl: https://jnd.org/affordances-and-design/
+                      - name: Signifier
+                        kind: pattern
+                        relevance: 何ができるかを示す手がかりとして affordance と区別して学ぶ必要がある。
+                      - name: Material Design
+                        kind: framework
+                        relevance: ボタン、カード、影など操作可能性を伝えるUIパターンを体系化している。
+                        officialUrl: https://m3.material.io/
                   aliases: ["affordance"]
                 - slug: signifier
                   name: シグニファイア
@@ -361,12 +1039,73 @@ domain:
                   summary: "対象までの距離と大きさが選択時間に影響するという法則。"
                   whyLearn: "タップ領域や主要CTA配置の判断に使える。"
                   promptHint: "モバイルUIでの具体例を説明させる。"
+                  search:
+                    keywords:
+                      - フィッツの法則
+                      - Fitts's Law
+                      - Fitts law
+                      - target size
+                      - target distance
+                      - pointing time
+                      - touch target
+                      - movement time
+                      - motor control
+                    commonSignals:
+                      - タップ領域やクリック対象の大きさを議論している
+                      - 距離とターゲット幅が操作時間に影響する話
+                      - CTA配置、端・角、親指操作と一緒に出る
+                    antiSignals:
+                      - 法律や法令の law 一般
+                      - 物理学の運動時間だけでUI操作に関係しない
+                      - ボタン色や文言だけの議論
+                    relatedNames:
+                      - name: WCAG Target Size
+                        kind: standard
+                        relevance: タップ対象サイズのアクセシビリティ基準と関連して参照される。
+                        officialUrl: https://www.w3.org/TR/WCAG22/
+                      - name: Material Design Touch Target
+                        kind: pattern
+                        relevance: モバイルUIのタップ領域設計で Fitts の法則と一緒に語られやすい。
+                        officialUrl: https://m3.material.io/
+                      - name: Apple Human Interface Guidelines
+                        kind: standard
+                        relevance: iOS のタッチターゲットや操作領域設計で関連する。
+                        officialUrl: https://developer.apple.com/design/human-interface-guidelines/
                   aliases: ["Fitts's Law", "Fitts law"]
                 - slug: hicks-law
                   name: ヒックの法則
                   summary: "選択肢が増えるほど意思決定に時間がかかるという法則。"
                   whyLearn: "メニューや初回導線で選択肢を絞る理由が分かる。"
                   promptHint: "選択肢を減らす以外の対処も説明させる。"
+                  search:
+                    keywords:
+                      - ヒックの法則
+                      - Hick's Law
+                      - Hick-Hyman Law
+                      - choice overload
+                      - decision time
+                      - 選択肢過多
+                      - decision complexity
+                      - menu choices
+                      - cognitive decision
+                    commonSignals:
+                      - 選択肢が多いほど意思決定に時間がかかる話
+                      - メニュー、プラン選択、初回設定の選択肢を絞る議論
+                      - choice overload、decision time と一緒に出る
+                    antiSignals:
+                      - 人名 Hick だけが出ている
+                      - 選択肢の多さをマーケティング品揃えだけで議論している
+                      - 機械学習の分類問題だけを扱っている
+                    relatedNames:
+                      - name: Progressive Disclosure
+                        kind: pattern
+                        relevance: 選択肢や情報量を段階的に見せて意思決定負荷を下げる設計パターン。
+                      - name: Information Scent
+                        kind: method
+                        relevance: 選択肢を減らすだけでなく、判断しやすい手がかり設計と関連する。
+                      - name: Nielsen's Usability Heuristics
+                        kind: method
+                        relevance: 認知負荷低減や認識優先の原則と一緒に参照される。
                   aliases: ["Hick's Law", "Hick-Hyman Law"]
                 - slug: recognition-over-recall
                   name: 再認優先
@@ -388,12 +1127,75 @@ domain:
                   summary: "ユーザーが目標達成までにたどる主要な画面や分岐の流れ。"
                   whyLearn: "画面単体では見えない詰まりや遠回りを見つけやすい。"
                   promptHint: "タスクフローと画面遷移の関係を説明させる。"
+                  search:
+                    keywords:
+                      - ユーザーフロー
+                      - user flow
+                      - task flow
+                      - screen flow
+                      - flow diagram
+                      - 画面遷移
+                      - conversion flow
+                      - happy path
+                      - edge case flow
+                    commonSignals:
+                      - 開始から完了までの画面・操作・分岐を描いている
+                      - happy path、edge case、drop-off point が出る
+                      - ユーザーの目標達成までの流れを検討している
+                    antiSignals:
+                      - Git flow や開発ブランチ戦略
+                      - データフローやネットワークフローだけ
+                      - 単一画面のレイアウトだけで遷移がない
+                    relatedNames:
+                      - name: Figma
+                        kind: tool
+                        relevance: ユーザーフローやプロトタイプ遷移の設計で広く使われるデザインツール。
+                        officialUrl: https://www.figma.com/
+                      - name: Miro
+                        kind: tool
+                        relevance: 画面横断のフローや分岐を共同設計する際に使われる。
+                        officialUrl: https://miro.com/
+                      - name: BPMN
+                        kind: standard
+                        relevance: 業務フローとユーザーフローの接続を議論する場合に関連する。
                   aliases: ["user flow"]
                 - slug: onboarding
                   name: オンボーディング
                   summary: "初回利用時に価値理解と基本行動を支援する体験設計。"
                   whyLearn: "初回離脱を減らし、継続利用につながる体験を作れる。"
                   promptHint: "説明過多と学習不足のバランスを説明させる。"
+                  search:
+                    keywords:
+                      - オンボーディング
+                      - onboarding
+                      - user onboarding
+                      - first-time user experience
+                      - FTUE
+                      - activation
+                      - product tour
+                      - guided setup
+                      - empty state onboarding
+                    commonSignals:
+                      - 初回利用、価値理解、最初の成功体験を支援している
+                      - product tour、guided setup、activation と一緒に出る
+                      - 初回離脱や初期設定完了率を改善している
+                    antiSignals:
+                      - 社員入社オンボーディングだけ
+                      - APIクライアントのセットアップ手順だけ
+                      - チュートリアル動画だけで体験フローの話がない
+                    relatedNames:
+                      - name: Appcues
+                        kind: tool
+                        relevance: プロダクトツアーやオンボーディング体験を実装する代表的ツール。
+                        officialUrl: https://www.appcues.com/
+                      - name: Pendo
+                        kind: platform
+                        relevance: ユーザーガイドやプロダクト利用分析とオンボーディングで関連する。
+                        officialUrl: https://www.pendo.io/
+                      - name: Intercom Product Tours
+                        kind: tool
+                        relevance: アプリ内ガイドや初回利用支援で使われることがある。
+                        officialUrl: https://www.intercom.com/
                   aliases: ["onboarding"]
                 - slug: empty-state
                   name: エンプティステート
@@ -423,6 +1225,38 @@ domain:
                   summary: "遷移や反応を含めて操作感を確認できる試作品。"
                   whyLearn: "フローや状態変化の分かりにくさを検証しやすい。"
                   promptHint: "低忠実度と高忠実度の使い分けを説明させる。"
+                  search:
+                    keywords:
+                      - インタラクティブプロトタイプ
+                      - interactive prototype
+                      - clickable prototype
+                      - high-fidelity prototype
+                      - lo-fi prototype
+                      - prototyping
+                      - prototype link
+                      - transition
+                      - interaction mockup
+                    commonSignals:
+                      - クリック可能な試作品でユーザーテストしている
+                      - 遷移、状態変化、アニメーション、入力反応を検証している
+                      - Figmaリンク、prototype、clickable と一緒に出る
+                    antiSignals:
+                      - 静止画モックアップだけ
+                      - 実装済み本番機能を指している
+                      - APIプロトタイプや技術検証だけでUX操作がない
+                    relatedNames:
+                      - name: Figma Prototype
+                        kind: tool
+                        relevance: 画面遷移やインタラクションを含むプロトタイプ作成で広く使われる。
+                        officialUrl: https://www.figma.com/
+                      - name: Axure RP
+                        kind: tool
+                        relevance: 条件分岐や複雑なインタラクションを含むプロトタイピングで使われる。
+                        officialUrl: https://www.axure.com/
+                      - name: Framer
+                        kind: tool
+                        relevance: 高忠実度のインタラクティブなWebプロトタイプ作成で使われる。
+                        officialUrl: https://www.framer.com/
                   aliases: ["interactive prototype", "clickable prototype"]
     - slug: accessibility-inclusive-global-ux
       name: アクセシビリティとインクルーシブ・グローバルUX
@@ -443,6 +1277,38 @@ domain:
                   summary: "Web コンテンツのアクセシビリティ要件を定める現行の主要標準。"
                   whyLearn: "実務で最も参照されるアクセシビリティ基準を押さえられる。"
                   promptHint: "なぜ現在は WCAG 2.2 を基準にするのか説明させる。"
+                  search:
+                    keywords:
+                      - WCAG 2.2
+                      - Web Content Accessibility Guidelines 2.2
+                      - WCAG
+                      - アクセシビリティガイドライン
+                      - success criteria
+                      - Level A
+                      - Level AA
+                      - Level AAA
+                      - W3C WAI
+                    commonSignals:
+                      - 達成基準、適合レベル、A/AA/AAA が出る
+                      - Webアクセシビリティ監査や適合チェックをしている
+                      - W3C、WAI、success criteria と一緒に出る
+                    antiSignals:
+                      - WCAG 3.0 のドラフトだけを扱っている
+                      - 一般的な障害者支援制度の話でWeb基準がない
+                      - 色やフォントの好みだけを議論している
+                    relatedNames:
+                      - name: WCAG 2.2
+                        kind: standard
+                        relevance: Webアクセシビリティ要件を定める対象標準。
+                        officialUrl: https://www.w3.org/TR/WCAG22/
+                      - name: W3C WAI
+                        kind: standard
+                        relevance: WCAG や ARIA など Web アクセシビリティ標準を提供する組織。
+                        officialUrl: https://www.w3.org/WAI/
+                      - name: Section 508
+                        kind: standard
+                        relevance: 米国公共調達におけるアクセシビリティ要件として WCAG と関連する。
+                        officialUrl: https://www.section508.gov/
                   aliases: ["WCAG 2.2", "Web Content Accessibility Guidelines 2.2"]
                 - slug: pour
                   name: POUR原則
@@ -455,6 +1321,39 @@ domain:
                   summary: "支援技術に対して役割や状態を伝えるための属性仕様。"
                   whyLearn: "ネイティブ要素だけでは足りない場面で意味づけを補える。"
                   promptHint: "使いすぎが危険な理由も説明させる。"
+                  search:
+                    keywords:
+                      - WAI-ARIA
+                      - ARIA
+                      - Accessible Rich Internet Applications
+                      - aria-label
+                      - aria-labelledby
+                      - aria-describedby
+                      - role attribute
+                      - aria-expanded
+                      - aria-live
+                      - semantic accessibility
+                    commonSignals:
+                      - role、aria-label、aria-expanded などの属性が出る
+                      - カスタムコンポーネントをスクリーンリーダー対応している
+                      - APG、semantic、assistive technology と一緒に出る
+                    antiSignals:
+                      - 音楽のアリアやARIAという固有名詞
+                      - ネイティブHTMLで足りる場面に不要にARIAを足すだけ
+                      - アクセシビリティではなくAPI属性一般の話
+                    relatedNames:
+                      - name: WAI-ARIA
+                        kind: standard
+                        relevance: 支援技術に役割・状態・プロパティを伝える対象仕様。
+                        officialUrl: https://www.w3.org/WAI/standards-guidelines/aria/
+                      - name: ARIA Authoring Practices Guide
+                        kind: standard
+                        relevance: ARIA を使ったアクセシブルなウィジェット実装パターンを示す実践ガイド。
+                        officialUrl: https://www.w3.org/WAI/ARIA/apg/
+                      - name: axe DevTools
+                        kind: tool
+                        relevance: ARIA の誤用やアクセシビリティ問題の検出で使われる自動検査ツール。
+                        officialUrl: https://www.deque.com/axe/devtools/
                   aliases: ["ARIA", "WAI-ARIA"]
             - slug: accessible-operability
               name: 操作可能性の設計
@@ -466,18 +1365,113 @@ domain:
                   summary: "マウスなしでも主要操作が完結できる状態。"
                   whyLearn: "支援技術利用者だけでなく、高速操作や障害時にも効く。"
                   promptHint: "タブ順やスキップの観点を説明させる。"
+                  search:
+                    keywords:
+                      - キーボード操作
+                      - keyboard navigation
+                      - tab order
+                      - Tab key
+                      - skip link
+                      - keyboard accessible
+                      - no mouse
+                      - roving tabindex
+                      - keyboard trap
+                    commonSignals:
+                      - Tab、Shift+Tab、Enter、Space、Escape の操作を確認している
+                      - マウスなしで操作できるかをテストしている
+                      - keyboard trap、skip link、tab order が出る
+                    antiSignals:
+                      - キーボード製品レビュー
+                      - ショートカットキー一覧だけでアクセシビリティの話がない
+                      - ゲーム操作設定だけを指している
+                    relatedNames:
+                      - name: WCAG 2.2 Keyboard Accessible
+                        kind: standard
+                        relevance: キーボードだけで操作可能であることを求める基準に関連する。
+                        officialUrl: https://www.w3.org/TR/WCAG22/
+                      - name: ARIA Authoring Practices Guide
+                        kind: standard
+                        relevance: 複合ウィジェットのキーボード操作パターンを示す。
+                        officialUrl: https://www.w3.org/WAI/ARIA/apg/
+                      - name: Roving tabindex
+                        kind: pattern
+                        relevance: 複合UI内でキーボードフォーカスを制御する代表的パターン。
                   aliases: ["keyboard navigation"]
                 - slug: focus-management
                   name: フォーカス管理
                   summary: "現在操作対象がどこにあるかを適切に制御し可視化すること。"
                   whyLearn: "モーダルや動的UIで迷子になる問題を防げる。"
                   promptHint: "モーダルの開閉で何をすべきか説明させる。"
+                  search:
+                    keywords:
+                      - フォーカス管理
+                      - focus management
+                      - focus order
+                      - focus trap
+                      - visible focus
+                      - focus ring
+                      - return focus
+                      - modal focus
+                      - tabindex
+                    commonSignals:
+                      - モーダルを開いた後にどこへフォーカスするかを議論している
+                      - フォーカスリング、tabindex、return focus が出る
+                      - 動的UIでキーボード利用者が迷子にならないようにしている
+                    antiSignals:
+                      - 集中力やフォーカス時間の生産性の話
+                      - カメラのピント合わせ
+                      - CSSの見た目だけで操作順序を扱っていない
+                    relatedNames:
+                      - name: WAI-ARIA APG Dialog Pattern
+                        kind: pattern
+                        relevance: モーダルダイアログのフォーカス移動や復帰の代表的実装パターン。
+                        officialUrl: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
+                      - name: focus-trap
+                        kind: library
+                        relevance: モーダル内にフォーカスを閉じ込める実装でよく使われるライブラリ。
+                        officialUrl: https://github.com/focus-trap/focus-trap
+                      - name: React Aria
+                        kind: library
+                        relevance: アクセシブルなフォーカス管理を含むUIプリミティブを提供する。
+                        officialUrl: https://react-spectrum.adobe.com/react-aria/
                   aliases: ["focus management"]
                 - slug: accessible-name
                   name: アクセシブルネーム
                   summary: "支援技術が要素をどう読み上げるかを決める名前情報。"
                   whyLearn: "アイコンボタンや複合部品の意味が伝わらない問題を防げる。"
                   promptHint: "見た目のラベルと読み上げ名の違いを説明させる。"
+                  search:
+                    keywords:
+                      - アクセシブルネーム
+                      - accessible name
+                      - accessible name computation
+                      - aria-label
+                      - aria-labelledby
+                      - label element
+                      - alt text
+                      - screen reader name
+                      - name role value
+                    commonSignals:
+                      - アイコンボタンや入力欄の読み上げ名を確認している
+                      - aria-label、label、alt、name role value が出る
+                      - スクリーンリーダーで何と読まれるかを扱っている
+                    antiSignals:
+                      - HTMLのname属性だけで支援技術名を扱っていない
+                      - ファイル名やユーザー名の話
+                      - ブランド名や命名規則だけを指している
+                    relatedNames:
+                      - name: Accessible Name and Description Computation
+                        kind: standard
+                        relevance: 要素のアクセシブルネームがどう決まるかを定義する W3C 仕様。
+                        officialUrl: https://www.w3.org/TR/accname-1.2/
+                      - name: WAI-ARIA
+                        kind: standard
+                        relevance: aria-label や aria-labelledby によって名前を補う場面で関連する。
+                        officialUrl: https://www.w3.org/WAI/standards-guidelines/aria/
+                      - name: Testing Library
+                        kind: library
+                        relevance: getByRole の name オプションでアクセシブルネームを前提にテストを書く。
+                        officialUrl: https://testing-library.com/
                   aliases: ["accessible name"]
         - slug: inclusion-and-globalization
           name: 包摂と国際対応
@@ -493,18 +1487,118 @@ domain:
                   summary: "多様な人を排除しないよう、差異を設計の出発点に置く考え方。"
                   whyLearn: "アクセシビリティを要件消化ではなく価値創出として扱える。"
                   promptHint: "アクセシビリティとの違いと重なりを説明させる。"
+                  search:
+                    keywords:
+                      - インクルーシブデザイン
+                      - inclusive design
+                      - design for exclusion
+                      - inclusive UX
+                      - universal design
+                      - accessibility by design
+                      - edge users
+                      - diverse abilities
+                      - exclusion
+                    commonSignals:
+                      - 平均的ユーザーではなく排除される人から設計を始める
+                      - 永続的・一時的・状況的な障害を扱っている
+                      - accessibility、universal design、diverse abilities と一緒に出る
+                    antiSignals:
+                      - 採用や組織D&Iだけでプロダクト設計に触れていない
+                      - 単に全員向けと書いているだけで具体的な排除分析がない
+                      - 法令遵守チェックだけに閉じている
+                    relatedNames:
+                      - name: Microsoft Inclusive Design
+                        kind: framework
+                        relevance: 排除から学ぶインクルーシブデザインの代表的実務フレームワーク。
+                        officialUrl: https://inclusive.microsoft.design/
+                      - name: Universal Design
+                        kind: framework
+                        relevance: 多様な利用者に配慮する設計思想として比較・関連しやすい。
+                      - name: WCAG 2.2
+                        kind: standard
+                        relevance: デジタル体験の包摂性を実装・評価する際の主要基準。
+                        officialUrl: https://www.w3.org/TR/WCAG22/
                   aliases: ["inclusive design"]
                 - slug: assistive-technology
                   name: 支援技術
                   summary: "スクリーンリーダーや拡大表示など利用を支えるツール。"
                   whyLearn: "設計が実際にどのように解釈されるかを理解できる。"
                   promptHint: "どのような支援技術ユーザーを想定すべきか説明させる。"
+                  search:
+                    keywords:
+                      - 支援技術
+                      - assistive technology
+                      - AT
+                      - screen reader
+                      - スクリーンリーダー
+                      - magnifier
+                      - switch control
+                      - voice control
+                      - Braille display
+                      - text-to-speech
+                    commonSignals:
+                      - スクリーンリーダーや音声操作での利用を確認している
+                      - 支援技術がUIをどう解釈するかを扱っている
+                      - NVDA、JAWS、VoiceOver、TalkBack が出る
+                    antiSignals:
+                      - 医療機器や福祉機器全般だけでデジタルUIに関係しない
+                      - AIアシスタント一般を支援技術と呼んでいるだけ
+                      - 自動化ツールや開発支援ツールの話
+                    relatedNames:
+                      - name: NVDA
+                        kind: tool
+                        relevance: Windowsで広く使われる無料スクリーンリーダー。
+                        officialUrl: https://www.nvaccess.org/
+                      - name: JAWS
+                        kind: tool
+                        relevance: Windows向け商用スクリーンリーダーとしてアクセシビリティ検証で参照される。
+                        officialUrl: https://www.freedomscientific.com/products/software/jaws/
+                      - name: VoiceOver
+                        kind: platform
+                        relevance: Apple製品に組み込まれたスクリーンリーダー。
+                        officialUrl: https://www.apple.com/accessibility/
+                      - name: TalkBack
+                        kind: platform
+                        relevance: Androidで使われるスクリーンリーダー。
+                        officialUrl: https://support.google.com/accessibility/android/answer/6283677
                   aliases: ["AT", "assistive technology"]
                 - slug: color-contrast
                   name: 色コントラスト
                   summary: "文字や重要要素が背景と十分に区別できる度合い。"
                   whyLearn: "見た目の好みではなく可読性と判別性の基礎になる。"
                   promptHint: "色だけに依存しない設計もあわせて説明させる。"
+                  search:
+                    keywords:
+                      - 色コントラスト
+                      - color contrast
+                      - contrast ratio
+                      - WCAG contrast
+                      - text contrast
+                      - non-text contrast
+                      - readability
+                      - luminosity
+                      - foreground background
+                    commonSignals:
+                      - 4.5:1、3:1、contrast ratio などの比率が出る
+                      - 背景色と文字色の可読性を確認している
+                      - 色だけに依存しない表現と一緒に議論される
+                    antiSignals:
+                      - 写真の色調補正や映像コントラストだけ
+                      - ブランドカラー選定だけで可読性基準がない
+                      - ダークモードの好みだけを扱っている
+                    relatedNames:
+                      - name: WCAG 2.2 Contrast
+                        kind: standard
+                        relevance: テキストや非テキスト要素のコントラスト基準として参照される。
+                        officialUrl: https://www.w3.org/TR/WCAG22/
+                      - name: WebAIM Contrast Checker
+                        kind: tool
+                        relevance: 前景色と背景色のコントラスト比を確認する代表的ツール。
+                        officialUrl: https://webaim.org/resources/contrastchecker/
+                      - name: Stark
+                        kind: tool
+                        relevance: デザインツール上でコントラストやアクセシビリティを確認するツール。
+                        officialUrl: https://www.getstark.co/
                   aliases: ["color contrast", "contrast ratio"]
             - slug: internationalization-and-localization
               name: 国際化とローカライズ
@@ -516,6 +1610,43 @@ domain:
                   summary: "多言語、多地域対応しやすい構造で設計・実装すること。"
                   whyLearn: "後からの翻訳対応コストを大きく下げられる。"
                   promptHint: "文字列外出し以外に何が必要か説明させる。"
+                  search:
+                    keywords:
+                      - 国際化
+                      - internationalization
+                      - i18n
+                      - globalization
+                      - locale support
+                      - Unicode
+                      - ICU
+                      - message format
+                      - multilingual UI
+                      - locale-aware
+                    commonSignals:
+                      - 翻訳前提の文字列外出しや locale 対応を扱っている
+                      - 日付、数値、通貨、複数形、文字方向の処理が出る
+                      - i18n、Unicode、ICU、CLDR と一緒に出る
+                    antiSignals:
+                      - 単なる翻訳作業だけで設計・実装の準備がない
+                      - 国際事業展開や海外営業の話だけ
+                      - 多言語コンテンツSEOだけを扱っている
+                    relatedNames:
+                      - name: Unicode
+                        kind: standard
+                        relevance: 多言語テキスト処理の基礎となる文字コード標準。
+                        officialUrl: https://www.unicode.org/
+                      - name: ICU
+                        kind: library
+                        relevance: 日付、数値、メッセージなどの国際化処理で広く使われるライブラリ。
+                        officialUrl: https://icu.unicode.org/
+                      - name: CLDR
+                        kind: standard
+                        relevance: ロケール別の表示形式や言語データを提供する Unicode のデータ標準。
+                        officialUrl: https://cldr.unicode.org/
+                      - name: W3C Internationalization
+                        kind: standard
+                        relevance: Web技術の国際化に関するガイダンスを提供する。
+                        officialUrl: https://www.w3.org/International/
                   aliases: ["i18n", "internationalization"]
                 - slug: localization
                   name: ローカライズ
@@ -548,6 +1679,40 @@ domain:
                   summary: "ユーザーがサービス全体を通じて経験する段階や接点を可視化した図。"
                   whyLearn: "画面ごとでは見えない断絶や感情変化を捉えられる。"
                   promptHint: "フローマップとの違いを説明させる。"
+                  search:
+                    keywords:
+                      - カスタマージャーニーマップ
+                      - customer journey map
+                      - user journey map
+                      - journey mapping
+                      - end-to-end journey
+                      - touchpoint
+                      - pain point
+                      - emotion curve
+                      - service journey
+                    commonSignals:
+                      - 段階、接点、感情、ペインポイントを時系列で整理している
+                      - end-to-end、touchpoint、emotion、journey stage が出る
+                      - 複数チャネルをまたぐ体験を可視化している
+                    antiSignals:
+                      - システムの画面遷移図だけで感情や接点がない
+                      - マーケティングファネルだけを指している
+                      - 旅行の旅程表そのもの
+                    relatedNames:
+                      - name: Journey Map
+                        kind: method
+                        relevance: サービス全体のユーザー体験を時系列に可視化する対象手法。
+                      - name: Service Blueprint
+                        kind: method
+                        relevance: ジャーニーマップの背後にある提供構造を可視化する補完手法。
+                      - name: Miro
+                        kind: tool
+                        relevance: ジャーニーマップの共同作成テンプレートやワークショップでよく使われる。
+                        officialUrl: https://miro.com/
+                      - name: Smaply
+                        kind: tool
+                        relevance: ジャーニーマップやサービスブループリント作成に特化したツール。
+                        officialUrl: https://www.smaply.com/
                   aliases: ["journey map", "customer journey map"]
                 - slug: touchpoint
                   name: タッチポイント
@@ -571,6 +1736,40 @@ domain:
                   summary: "サービス提供に必要な前面と背面の要素を並べて示す図。"
                   whyLearn: "体験課題と内部オペレーションを同時に議論できる。"
                   promptHint: "ジャーニーマップとの違いを説明させる。"
+                  search:
+                    keywords:
+                      - サービスブループリント
+                      - service blueprint
+                      - service blueprinting
+                      - frontstage
+                      - backstage
+                      - line of visibility
+                      - support process
+                      - service evidence
+                      - operations mapping
+                    commonSignals:
+                      - frontstage、backstage、line of visibility が出る
+                      - ユーザー行動と内部プロセスを対応づけている
+                      - people、process、system、evidence を並べている
+                    antiSignals:
+                      - 建築図面や青写真の一般的意味
+                      - ユーザー視点だけのジャーニーマップで内部構造がない
+                      - クラウドインフラの設計図だけを指している
+                    relatedNames:
+                      - name: Service Blueprint
+                        kind: method
+                        relevance: サービス提供の前面・背面構造を可視化する対象手法。
+                      - name: Smaply
+                        kind: tool
+                        relevance: サービスブループリントやジャーニーマップ作成に使われる専用ツール。
+                        officialUrl: https://www.smaply.com/
+                      - name: Miro Service Blueprint Template
+                        kind: tool
+                        relevance: サービスブループリントの共同作成で利用されるテンプレート群。
+                        officialUrl: https://miro.com/
+                      - name: BPMN
+                        kind: standard
+                        relevance: 背後の業務プロセスを詳細化する際に接続しやすい表記法。
                   aliases: ["service blueprint"]
                 - slug: frontstage-backstage
                   name: フロントステージとバックステージ
@@ -598,12 +1797,73 @@ domain:
                   summary: "関係者の役割、影響力、関係性を整理した図。"
                   whyLearn: "設計変更の合意形成や巻き込み対象を見誤りにくい。"
                   promptHint: "影響力と関心の違いを説明させる。"
+                  search:
+                    keywords:
+                      - ステークホルダーマップ
+                      - stakeholder map
+                      - stakeholder mapping
+                      - power interest grid
+                      - influence map
+                      - 関係者マップ
+                      - stakeholder analysis
+                      - RACI
+                      - influence interest matrix
+                    commonSignals:
+                      - 関係者、影響力、関心、責任、巻き込み方を整理している
+                      - power-interest、influence、RACI と一緒に出る
+                      - 合意形成や部門横断の設計変更を扱っている
+                    antiSignals:
+                      - 株主一覧だけを指している
+                      - 顧客セグメントだけで関係者間の影響関係がない
+                      - 地理的な地図だけを扱っている
+                    relatedNames:
+                      - name: Power-Interest Matrix
+                        kind: method
+                        relevance: ステークホルダーの影響力と関心度を整理する代表的手法。
+                      - name: RACI Matrix
+                        kind: method
+                        relevance: 役割と責任分担を整理する際にステークホルダー分析と関連する。
+                      - name: Miro
+                        kind: tool
+                        relevance: 関係者マップを共同で作成するワークショップでよく使われる。
+                        officialUrl: https://miro.com/
                   aliases: ["stakeholder map"]
                 - slug: ecosystem-map
                   name: エコシステムマップ
                   summary: "サービスを取り巻く組織、技術、制度、価値交換を俯瞰する図。"
                   whyLearn: "単一組織では解けない課題を構造的に見られる。"
                   promptHint: "ブループリントとの違いを説明させる。"
+                  search:
+                    keywords:
+                      - エコシステムマップ
+                      - ecosystem map
+                      - service ecosystem map
+                      - system map
+                      - actor map
+                      - value exchange
+                      - ecosystem mapping
+                      - relationship map
+                      - systems thinking
+                    commonSignals:
+                      - 組織、制度、技術、価値交換の関係を俯瞰している
+                      - who is involved、value exchange、system map が出る
+                      - 単一プロダクトではなく周辺エコシステムを扱っている
+                    antiSignals:
+                      - 生態学や自然環境のエコシステムだけ
+                      - ビジネスエコシステムの一般論で体験設計に接続していない
+                      - 依存ライブラリ一覧だけを ecosystem と呼んでいる
+                    relatedNames:
+                      - name: Service Design Tools Ecosystem Map
+                        kind: method
+                        relevance: サービスデザインで使われるエコシステムマップの代表的解説・手法。
+                        officialUrl: https://servicedesigntools.org/tools/ecosystem-map
+                      - name: Systems Map
+                        kind: method
+                        relevance: 複数要素の関係や因果を可視化する近接手法。
+                      - name: Kumu
+                        kind: tool
+                        relevance: 複雑な関係者ネットワークやシステムマップ作成に使われるツール。
+                        officialUrl: https://kumu.io/
                   aliases: ["ecosystem map", "system map"]
                 - slug: service-ecosystem
                   name: サービスエコシステム
@@ -621,6 +1881,36 @@ domain:
                   summary: "ユーザーや関係者を設計プロセスに参加させる実践。"
                   whyLearn: "机上の設計では見落とす現場知を取り込める。"
                   promptHint: "参加型設計の利点と注意点を説明させる。"
+                  search:
+                    keywords:
+                      - 共創
+                      - co-creation
+                      - co-design
+                      - participatory design
+                      - codesign workshop
+                      - stakeholder workshop
+                      - collaborative design
+                      - service design workshop
+                      - design facilitation
+                    commonSignals:
+                      - ユーザーや現場担当者と一緒に設計している
+                      - ワークショップ、参加型、facilitation、codesign が出る
+                      - 関係者の知識や制約を取り込んでいる
+                    antiSignals:
+                      - 共同創業や事業提携だけを指している
+                      - アイデア投票だけで利用者参加がない
+                      - 単なるチーム内ブレストだけ
+                    relatedNames:
+                      - name: Participatory Design
+                        kind: method
+                        relevance: 利用者や関係者を設計に参加させる近接概念。
+                      - name: Design Sprint
+                        kind: method
+                        relevance: 複数関係者で短期間に課題理解・試作・検証を行う実務手法。
+                      - name: Miro
+                        kind: tool
+                        relevance: 共創ワークショップやオンライン共同設計でよく使われる。
+                        officialUrl: https://miro.com/
                   aliases: ["co-creation", "co-design"]
                 - slug: service-standard
                   name: サービス標準
@@ -633,6 +1923,40 @@ domain:
                   summary: "複数チャネルをまたいでも一貫して続けられる体験設計。"
                   whyLearn: "Web、メール、窓口、電話が分断されたサービスを改善できる。"
                   promptHint: "マルチチャネルとの違いを説明させる。"
+                  search:
+                    keywords:
+                      - オムニチャネル
+                      - omnichannel
+                      - omni-channel
+                      - cross-channel
+                      - multichannel
+                      - channel integration
+                      - joined-up experience
+                      - seamless experience
+                      - channel switching
+                    commonSignals:
+                      - Web、メール、電話、店舗、チャットなどを横断している
+                      - チャネル間で状態や文脈が引き継がれる話
+                      - multichannel との違いや joined-up experience を扱っている
+                    antiSignals:
+                      - 単に複数チャネルで配信しているだけ
+                      - マーケティング広告配信だけで体験継続性がない
+                      - 通信チャネルやネットワークチャネルだけを指している
+                    relatedNames:
+                      - name: Service Blueprint
+                        kind: method
+                        relevance: チャネル横断の体験と背後の運用を対応づける際に使われる。
+                      - name: Customer Journey Map
+                        kind: method
+                        relevance: 複数チャネルをまたぐ体験をユーザー視点で可視化する。
+                      - name: Zendesk
+                        kind: service
+                        relevance: 複数チャネルの顧客サポート体験を統合する実務ツールとして出やすい。
+                        officialUrl: https://www.zendesk.com/
+                      - name: Salesforce Service Cloud
+                        kind: platform
+                        relevance: 顧客接点を横断したサービス運用で使われる代表的プラットフォーム。
+                        officialUrl: https://www.salesforce.com/service/
                   aliases: ["omnichannel"]
     - slug: evaluation-measurement-and-design-systems
       name: 評価・計測・デザインシステム
@@ -653,6 +1977,36 @@ domain:
                   summary: "既知の設計原則に照らしてUI上の問題を点検する手法。"
                   whyLearn: "ユーザーテスト前の粗い欠陥発見に向く。"
                   promptHint: "どのような問題を見つけやすいか説明させる。"
+                  search:
+                    keywords:
+                      - ヒューリスティック評価
+                      - heuristic evaluation
+                      - usability inspection
+                      - expert review
+                      - Nielsen heuristics
+                      - UI inspection
+                      - severity rating
+                      - usability heuristics
+                      - expert audit
+                    commonSignals:
+                      - 専門家が原則に照らしてUI問題を洗い出している
+                      - severity rating、heuristics、expert review が出る
+                      - ユーザーテスト前のレビューとして行われている
+                    antiSignals:
+                      - 機械学習や探索アルゴリズムのヒューリスティックだけ
+                      - 一般的なレビューコメントだけで評価原則がない
+                      - 実ユーザー観察のみの場合は usability-test 寄り
+                    relatedNames:
+                      - name: Nielsen's 10 Usability Heuristics
+                        kind: method
+                        relevance: ヒューリスティック評価で最もよく使われる代表的原則群。
+                        officialUrl: https://www.nngroup.com/articles/ten-usability-heuristics/
+                      - name: Cognitive Walkthrough
+                        kind: method
+                        relevance: 専門家評価の別手法として比較されやすい。
+                      - name: UX Audit
+                        kind: method
+                        relevance: UIや体験上の課題を専門家視点で点検する実務活動。
                   aliases: ["heuristic evaluation"]
                 - slug: cognitive-walkthrough
                   name: 認知的ウォークスルー
@@ -676,6 +2030,41 @@ domain:
                   summary: "ユーザーが実際に課題を行う様子を観察して問題点を見つける手法。"
                   whyLearn: "設計意図と実際の行動のズレを直接確認できる。"
                   promptHint: "探索型と検証型の違いを説明させる。"
+                  search:
+                    keywords:
+                      - ユーザビリティテスト
+                      - usability test
+                      - usability testing
+                      - moderated test
+                      - unmoderated test
+                      - remote usability test
+                      - task-based testing
+                      - think aloud
+                      - usability session
+                    commonSignals:
+                      - 参加者にタスクを実行してもらい観察している
+                      - moderated、unmoderated、remote、task success が出る
+                      - プロトタイプや実機でつまずきを確認している
+                    antiSignals:
+                      - 単体テストやE2Eテストなどソフトウェアテストだけ
+                      - アンケートだけで行動観察がない
+                      - 専門家レビューのみで実ユーザーが出てこない
+                    relatedNames:
+                      - name: UserTesting
+                        kind: platform
+                        relevance: リモートユーザビリティテストで広く使われるプラットフォーム。
+                        officialUrl: https://www.usertesting.com/
+                      - name: Maze
+                        kind: tool
+                        relevance: プロトタイプを使った非モデレートテストやUX計測で使われる。
+                        officialUrl: https://maze.co/
+                      - name: Lookback
+                        kind: tool
+                        relevance: モデレート型リモートユーザーテストの録画・観察に使われる。
+                        officialUrl: https://www.lookback.com/
+                      - name: Think-Aloud Protocol
+                        kind: method
+                        relevance: ユーザビリティテスト中に思考を発話してもらう補助手法。
                   aliases: ["usability test", "usability testing"]
                 - slug: think-aloud-protocol
                   name: 思考発話法
@@ -688,6 +2077,42 @@ domain:
                   summary: "標準や実機確認にもとづいてアクセシビリティ課題を点検する活動。"
                   whyLearn: "見落としやすい適合不備を体系的に把握できる。"
                   promptHint: "自動検査と手動検査の役割を説明させる。"
+                  search:
+                    keywords:
+                      - アクセシビリティ監査
+                      - accessibility audit
+                      - accessibility review
+                      - WCAG audit
+                      - a11y audit
+                      - automated accessibility testing
+                      - manual accessibility testing
+                      - conformance check
+                      - screen reader testing
+                    commonSignals:
+                      - WCAG適合、a11y audit、自動検査、手動検査が出る
+                      - スクリーンリーダー、キーボード、コントラストを確認している
+                      - 課題一覧に達成基準や深刻度を付けている
+                    antiSignals:
+                      - セキュリティ監査だけ
+                      - Lighthouse の性能スコアだけ
+                      - デザインレビューでアクセシビリティ基準に触れていない
+                    relatedNames:
+                      - name: axe DevTools
+                        kind: tool
+                        relevance: 自動アクセシビリティ検査で広く使われる代表的ツール。
+                        officialUrl: https://www.deque.com/axe/devtools/
+                      - name: Lighthouse Accessibility
+                        kind: tool
+                        relevance: Chrome系ツールでアクセシビリティの自動検査を行う際に使われる。
+                        officialUrl: https://developer.chrome.com/docs/lighthouse/accessibility/
+                      - name: WAVE
+                        kind: tool
+                        relevance: Webページのアクセシビリティ問題を視覚的に検出するツール。
+                        officialUrl: https://wave.webaim.org/
+                      - name: WCAG 2.2
+                        kind: standard
+                        relevance: 監査観点の基準として最も頻繁に使われる。
+                        officialUrl: https://www.w3.org/TR/WCAG22/
                   aliases: ["accessibility audit"]
         - slug: metrics-and-design-systems
           name: 計測とデザインシステム
@@ -709,6 +2134,36 @@ domain:
                   summary: "10項目で知覚された使いやすさを測る代表的尺度。"
                   whyLearn: "簡便に比較可能なベンチマークを得やすい。"
                   promptHint: "SUS が診断ではなく全体指標である点を説明させる。"
+                  search:
+                    keywords:
+                      - System Usability Scale
+                      - SUS
+                      - SUS score
+                      - SUS questionnaire
+                      - usability questionnaire
+                      - perceived usability
+                      - 10-item scale
+                      - Brooke SUS
+                      - usability benchmark
+                    commonSignals:
+                      - 10項目の質問紙や SUS score を扱っている
+                      - ユーザビリティテスト後の知覚評価をしている
+                      - benchmark、adjective rating、percentile と一緒に出る
+                    antiSignals:
+                      - サスペンションやSUS304など材料規格の話
+                      - システム全体のスケールアウト構成
+                      - 独自満足度アンケートでSUS項目がない
+                    relatedNames:
+                      - name: System Usability Scale
+                        kind: method
+                        relevance: 知覚されたユーザビリティを測る対象尺度。
+                      - name: MeasuringU SUS
+                        kind: other
+                        relevance: SUS の解釈やベンチマークで実務者が参照しやすい情報源。
+                        officialUrl: https://measuringu.com/sus/
+                      - name: Single Ease Question
+                        kind: method
+                        relevance: 個別タスクの容易さを測る尺度として SUS と比較される。
                   aliases: ["SUS", "System Usability Scale"]
                 - slug: single-ease-question
                   name: Single Ease Question
@@ -721,6 +2176,37 @@ domain:
                   summary: "幸福度、関与、導入、継続、タスク成功でUXを測る枠組み。"
                   whyLearn: "単発のテスト結果を継続的なプロダクト指標へつなげられる。"
                   promptHint: "Goals、Signals、Metrics の流れで説明させる。"
+                  search:
+                    keywords:
+                      - HEARTフレームワーク
+                      - HEART framework
+                      - Happiness
+                      - Engagement
+                      - Adoption
+                      - Retention
+                      - Task Success
+                      - Goals Signals Metrics
+                      - UX metrics framework
+                      - user-centered metrics
+                    commonSignals:
+                      - Happiness、Engagement、Adoption、Retention、Task Success が並ぶ
+                      - Goals、Signals、Metrics に分けてUX指標を設計している
+                      - プロダクト利用ログとUX品質を接続している
+                    antiSignals:
+                      - 心臓や医療の heart の話
+                      - エンゲージメント率だけで HEART の5軸がない
+                      - AARRRやNorth Star Metricだけを扱っている
+                    relatedNames:
+                      - name: Google HEART Framework
+                        kind: framework
+                        relevance: Google が提案した大規模プロダクト向けユーザー中心指標フレームワーク。
+                        officialUrl: https://research.google/pubs/measuring-the-user-experience-on-a-large-scale-user-centered-metrics-for-web-applications/
+                      - name: Goals-Signals-Metrics
+                        kind: method
+                        relevance: HEART を具体的な計測指標へ落とすためのプロセス。
+                      - name: AARRR
+                        kind: framework
+                        relevance: 成長指標フレームワークとして HEART と比較されやすい。
                   aliases: ["HEART", "HEART framework"]
             - slug: design-systems-and-operations
               name: デザインシステムと運用
@@ -732,6 +2218,42 @@ domain:
                   summary: "パターン、部品、原則、ガイドを束ねた再利用可能な共通基盤。"
                   whyLearn: "一貫性と開発速度を両立しやすくなる。"
                   promptHint: "単なるUIキットとの違いを説明させる。"
+                  search:
+                    keywords:
+                      - デザインシステム
+                      - design system
+                      - UI system
+                      - design standards
+                      - component guidelines
+                      - pattern library
+                      - design language
+                      - reusable components
+                      - foundations
+                    commonSignals:
+                      - 原則、コンポーネント、パターン、トークン、ガイドラインをまとめている
+                      - 複数チームでUIの一貫性を保つ話
+                      - component library、design token、pattern library と一緒に出る
+                    antiSignals:
+                      - Figmaファイルだけで運用ルールや実装がない
+                      - 単なるブランドガイドラインだけ
+                      - OSや分散システムの system design を指している
+                    relatedNames:
+                      - name: GOV.UK Design System
+                        kind: standard
+                        relevance: 公共サービス向けデザインシステムの代表例。
+                        officialUrl: https://design-system.service.gov.uk/
+                      - name: U.S. Web Design System
+                        kind: standard
+                        relevance: アクセシブルな政府系Webサービス構築の代表的デザインシステム。
+                        officialUrl: https://designsystem.digital.gov/
+                      - name: Material Design
+                        kind: framework
+                        relevance: Google の代表的なデザイン言語・コンポーネント体系。
+                        officialUrl: https://m3.material.io/
+                      - name: Carbon Design System
+                        kind: framework
+                        relevance: IBM の大規模プロダクト向けデザインシステムとして広く参照される。
+                        officialUrl: https://carbondesignsystem.com/
                   aliases: ["design system"]
                 - slug: component-library
                   name: コンポーネントライブラリ
@@ -744,12 +2266,82 @@ domain:
                   summary: "色、余白、文字などの設計判断を再利用可能な変数として表す単位。"
                   whyLearn: "テーマ変更や複数チャネル展開を管理しやすい。"
                   promptHint: "スタイル値の直書きと比較して説明させる。"
+                  search:
+                    keywords:
+                      - デザイントークン
+                      - design token
+                      - design tokens
+                      - tokenized design
+                      - color token
+                      - spacing token
+                      - typography token
+                      - semantic token
+                      - design variables
+                    commonSignals:
+                      - 色、余白、フォントなどを名前付き変数で管理している
+                      - semantic token、alias token、theme token が出る
+                      - Figma変数やCSS custom propertiesと接続している
+                    antiSignals:
+                      - 認証トークンやAPI tokenの話
+                      - 暗号資産やNFTトークンの話
+                      - 変数名だけでデザイン判断を表していない
+                    relatedNames:
+                      - name: Design Tokens Community Group
+                        kind: standard
+                        relevance: デザイントークン形式の標準化を進める W3C コミュニティグループ。
+                        officialUrl: https://www.w3.org/community/design-tokens/
+                      - name: Style Dictionary
+                        kind: tool
+                        relevance: デザイントークンを複数プラットフォーム向けに変換する代表的ツール。
+                        officialUrl: https://amzn.github.io/style-dictionary/
+                      - name: Tokens Studio
+                        kind: tool
+                        relevance: Figma 上でデザイントークンを管理する実務ツール。
+                        officialUrl: https://tokens.studio/
+                      - name: USWDS Design Tokens
+                        kind: standard
+                        relevance: 公共サービス向けデザインシステムでのトークン活用例。
+                        officialUrl: https://designsystem.digital.gov/design-tokens/
                   aliases: ["design token"]
                 - slug: designops
                   name: DesignOps
                   summary: "設計の人、プロセス、道具、運用を整えて価値を拡張する実践。"
                   whyLearn: "UX を属人的活動ではなく継続運用できる組織能力に変えられる。"
                   promptHint: "デザインシステムだけでは足りない理由を説明させる。"
+                  search:
+                    keywords:
+                      - DesignOps
+                      - design operations
+                      - デザインオペレーション
+                      - design workflow
+                      - design governance
+                      - design maturity
+                      - research operations
+                      - ReOps
+                      - design process operations
+                    commonSignals:
+                      - デザインプロセス、ツール、責任分担、ガバナンスを整えている
+                      - デザインシステム運用、リサーチ運用、成熟度が出る
+                      - 属人的な設計活動を組織能力にする話
+                    antiSignals:
+                      - DevOpsだけを扱っていてデザイン活動がない
+                      - デザイナーの採用広報だけ
+                      - Figma管理だけでプロセスや組織運用に触れていない
+                    relatedNames:
+                      - name: DesignOps
+                        kind: method
+                        relevance: 設計組織の人・プロセス・ツール・運用を整える対象実践。
+                      - name: ResearchOps
+                        kind: method
+                        relevance: ユーザーリサーチの参加者管理、知見管理、運用を扱う近接実践。
+                      - name: Zeroheight
+                        kind: tool
+                        relevance: デザインシステム文書化と運用に使われるツール。
+                        officialUrl: https://zeroheight.com/
+                      - name: Storybook
+                        kind: tool
+                        relevance: コンポーネントのドキュメント化と開発運用でデザインシステムと接続する。
+                        officialUrl: https://storybook.js.org/
                   aliases: ["DesignOps", "design operations"]
 
 edges:

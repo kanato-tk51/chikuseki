@@ -12,6 +12,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { listKnowledgeDomains } from "@/features/knowledge-map/queries";
+import { KnowledgeLinkerForm } from "@/features/knowledge-linker/components/knowledge-linker-form";
+import { listKnowledgeLinksForEntity } from "@/features/knowledge-linker/queries";
 import { listNotesByResourceId } from "@/features/notes/queries";
 import { learningNoteTypeLabels } from "@/features/notes/validators";
 import { DeleteResourceForm } from "@/features/resources/components/delete-resource-form";
@@ -80,13 +83,31 @@ function TextBlock({ title, value }: { title: string; value: string | null }) {
   );
 }
 
+function resourceKnowledgeText(resource: NonNullable<Awaited<ReturnType<typeof getResourceById>>>) {
+  return [
+    resource.title,
+    resource.sourceName,
+    resource.author,
+    resource.url,
+    resource.summary,
+    resource.memo,
+  ]
+    .filter((value): value is string => Boolean(value && value.trim()))
+    .join("\n\n");
+}
+
 export default async function ResourceDetailPage({
   params,
 }: ResourceDetailPageProps) {
   const { id } = await params;
-  const [resource, notes] = await Promise.all([
+  const [resource, notes, domains, linkedKnowledgeNodes] = await Promise.all([
     getResourceById(id),
     listNotesByResourceId(id),
+    listKnowledgeDomains(),
+    listKnowledgeLinksForEntity({
+      entityType: "resource",
+      entityId: id,
+    }),
   ]);
 
   if (!resource) {
@@ -197,6 +218,27 @@ export default async function ResourceDetailPage({
           <TextBlock title="Summary" value={resource.summary} />
           <TextBlock title="Memo" value={resource.memo} />
         </div>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Knowledge Links</CardTitle>
+            <CardDescription>
+              この Resource を Knowledge Map のノードに接続する
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <KnowledgeLinkerForm
+              domains={domains}
+              initialText={resourceKnowledgeText(resource)}
+              targetEntity={{
+                entityType: "resource",
+                entityId: resource.id,
+                label: resource.title,
+              }}
+              linkedNodes={linkedKnowledgeNodes}
+            />
+          </CardContent>
+        </Card>
 
         <Card>
           <CardHeader className="gap-3 sm:flex sm:items-start sm:justify-between">

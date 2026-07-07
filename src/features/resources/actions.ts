@@ -2,10 +2,10 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { eq } from "drizzle-orm";
+import { and, eq, or } from "drizzle-orm";
 
 import { getDb } from "@/db/client";
-import { resources } from "@/db/schema";
+import { entityLinks, knowledgeEntityLinks, resources } from "@/db/schema";
 import {
   type ResourceFormState,
   readResourceFormData,
@@ -107,8 +107,35 @@ export async function deleteResourceAction(formData: FormData) {
     redirect("/resources");
   }
 
-  await getDb().delete(resources).where(eq(resources.id, parsedId.data));
+  await getDb().transaction(async (tx) => {
+    await tx
+      .delete(entityLinks)
+      .where(
+        or(
+          and(
+            eq(entityLinks.fromType, "resource"),
+            eq(entityLinks.fromId, parsedId.data),
+          ),
+          and(
+            eq(entityLinks.toType, "resource"),
+            eq(entityLinks.toId, parsedId.data),
+          ),
+        ),
+      );
+
+    await tx
+      .delete(knowledgeEntityLinks)
+      .where(
+        and(
+          eq(knowledgeEntityLinks.entityType, "resource"),
+          eq(knowledgeEntityLinks.entityId, parsedId.data),
+        ),
+      );
+
+    await tx.delete(resources).where(eq(resources.id, parsedId.data));
+  });
 
   revalidatePath("/resources");
+  revalidatePath("/knowledge-map");
   redirect("/resources");
 }

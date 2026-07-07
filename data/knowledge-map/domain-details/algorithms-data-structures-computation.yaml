@@ -26,7 +26,123 @@ domain:
                   aliases:
                     - "static array"
                     - "contiguous array"
+                  search:
+                    keywords:
+                      - 配列
+                      - array
+                      - static array
+                      - contiguous array
+                      - contiguous memory
+                      - random access
+                      - index access
+                      - 固定長配列
+                      - 連続メモリ
+                    commonSignals:
+                      - インデックスで O(1) にアクセスする
+                      - メモリ上に連続配置される
+                      - 要素番号で参照する
+                      - キャッシュ局所性が高い
+                    antiSignals:
+                      - JavaScript Array のような可変長コレクションだけを指す場合
+                      - 数学の行列やベクトルだけを指している場合
+                      - JSON 配列の構文説明だけの場合
+                    relatedNames:
+                      - name: C array
+                        kind: language
+                        relevance: C言語では配列とポインタ、連続メモリの関係を学ぶ代表例として出やすい。
+                      - name: NumPy ndarray
+                        kind: library
+                        relevance: 多次元配列と連続メモリ、ベクトル化処理の文脈で配列概念と強く結びつく。
+                        officialUrl: https://numpy.org/doc/stable/reference/arrays.ndarray.html
+                      - name: Java array
+                        kind: language
+                        relevance: 固定長配列とコレクションの違いを説明する際によく使われる。
+
                 - slug: "dynamic-array"
+
+                  search:
+
+                    keywords:
+
+                      - 動的配列
+
+                      - dynamic array
+
+                      - resizable array
+
+                      - growable array
+
+                      - 可変長配列
+
+                      - amortized append
+
+                      - capacity doubling
+
+                      - 再確保
+
+                      - vector
+
+                      - ArrayList
+
+                    commonSignals:
+
+                      - append が平均 O(1)
+
+                      - capacity と size が分かれている
+
+                      - 容量が足りないと再確保する
+
+                      - 末尾追加は速いが途中挿入はずらしが必要
+
+                    antiSignals:
+
+                      - リンクで要素をつなぐ説明が中心の場合
+
+                      - 単なる固定長 array の説明だけの場合
+
+                      - 配列風 API を持つが内部が木やハッシュの場合
+
+                    relatedNames:
+
+                      - name: std::vector
+
+                        kind: library
+
+                        relevance: C++で動的配列の代表的な標準コンテナとして出やすい。
+
+                        officialUrl: https://en.cppreference.com/w/cpp/container/vector
+
+                      - name: Java ArrayList
+
+                        kind: library
+
+                        relevance: Javaで可変長配列の内部動作を説明する定番例である。
+
+                        officialUrl: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html
+
+                      - name: Rust Vec
+
+                        kind: library
+
+                        relevance: Rustで所有権と容量管理を含む動的配列として頻出する。
+
+                        officialUrl: https://doc.rust-lang.org/std/vec/struct.Vec.html
+
+                      - name: Go slice
+
+                        kind: language
+
+                        relevance: 配列ビューと容量拡張の挙動を学ぶ実務的な例になる。
+
+                        officialUrl: https://go.dev/blog/slices-intro
+
+                      - name: Python list
+
+                        kind: language
+
+                        relevance: Pythonでは list が実質的な動的配列として使われる。
+
+                        officialUrl: https://docs.python.org/3/tutorial/datastructures.html
                   name: "動的配列"
                   summary: "再確保を用いてサイズを伸縮できる配列ベースの可変長構造。"
                   whyLearn: "実務で多用される vector や ArrayList の内部原理を理解できる。"
@@ -42,6 +158,37 @@ domain:
                   aliases:
                     - "singly linked list"
                     - "doubly linked list"
+                  search:
+                    keywords:
+                      - 連結リスト
+                      - linked list
+                      - singly linked list
+                      - doubly linked list
+                      - node pointer
+                      - next pointer
+                      - prev pointer
+                      - ポインタ連結
+                    commonSignals:
+                      - ノードが next を持つ
+                      - 先頭への挿入削除が速い
+                      - ランダムアクセスが遅い
+                      - ポインタをたどって走査する
+                    antiSignals:
+                      - Webリンク一覧やハイパーリンクの話の場合
+                      - 単なるリスト型・配列リストを指す場合
+                      - 隣接リストとしてグラフ表現だけを話している場合
+                    relatedNames:
+                      - name: std::list
+                        kind: library
+                        relevance: C++で双方向連結リストを表す標準コンテナとして出やすい。
+                        officialUrl: https://en.cppreference.com/w/cpp/container/list
+                      - name: java.util.LinkedList
+                        kind: library
+                        relevance: Javaで連結リストとDeque実装の関係を学ぶ際に使われる。
+                        officialUrl: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/LinkedList.html
+                      - name: Linux list_head
+                        kind: library
+                        relevance: Linuxカーネル内で侵入型連結リストの代表例として知られる。
 
             - slug: "stack-queue-and-deque"
               name: "スタック、キュー、両端キュー"
@@ -62,6 +209,39 @@ domain:
                   promptHint: "BFS がキューを使う理由を説明する。"
                   aliases:
                     - "FIFO"
+                  search:
+                    keywords:
+                      - キュー
+                      - queue
+                      - FIFO
+                      - first in first out
+                      - enqueue
+                      - dequeue
+                      - 待ち行列
+                      - FIFO queue
+                    commonSignals:
+                      - 先入れ先出し
+                      - enqueue / dequeue 操作
+                      - BFS の frontier 管理
+                      - タスクを到着順に処理する
+                    antiSignals:
+                      - 分散メッセージング製品の運用だけが主題の場合
+                      - 優先度付きキューの話でFIFOではない場合
+                      - CPUスケジューリングの詳細だけを扱う場合
+                    relatedNames:
+                      - name: java.util.Queue
+                        kind: library
+                        relevance: Javaの標準的なキュー抽象としてFIFO操作の説明に出やすい。
+                        officialUrl: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Queue.html
+                      - name: Python collections.deque
+                        kind: library
+                        relevance: Pythonで効率的なキュー実装としてよく使われる。
+                        officialUrl: https://docs.python.org/3/library/collections.html#collections.deque
+                      - name: RabbitMQ
+                        kind: service
+                        relevance: メッセージキュー文脈ではFIFOや配送順序と関連して登場しやすい。
+                        officialUrl: https://www.rabbitmq.com/
+
                 - slug: "deque"
                   name: "両端キュー"
                   summary: "先頭と末尾の両方で挿入削除できるデータ構造。"
@@ -87,7 +267,114 @@ domain:
                   aliases:
                     - "hash map"
                     - "dictionary"
+                  search:
+                    keywords:
+                      - ハッシュテーブル
+                      - hash table
+                      - hash map
+                      - dictionary
+                      - associative array
+                      - hash function
+                      - key-value lookup
+                      - 連想配列
+                    commonSignals:
+                      - キーから値を O(1) 平均で取得する
+                      - ハッシュ関数と衝突処理
+                      - load factor を調整する
+                      - 辞書・Map・Set の内部構造
+                    antiSignals:
+                      - 暗号ハッシュだけが主題の場合
+                      - 順序付き Map の範囲検索が主題の場合
+                      - URLのハッシュフラグメントだけを指す場合
+                    relatedNames:
+                      - name: Java HashMap
+                        kind: library
+                        relevance: Javaでハッシュテーブル型の代表実装として頻出する。
+                        officialUrl: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/HashMap.html
+                      - name: std::unordered_map
+                        kind: library
+                        relevance: C++でハッシュベース辞書を使う標準コンテナとして出やすい。
+                        officialUrl: https://en.cppreference.com/w/cpp/container/unordered_map
+                      - name: Python dict
+                        kind: language
+                        relevance: Pythonで辞書型とハッシュテーブルの関係を学ぶ定番例である。
+                        officialUrl: https://docs.python.org/3/library/stdtypes.html#mapping-types-dict
+                      - name: Go map
+                        kind: language
+                        relevance: Goの組み込み連想配列としてハッシュテーブル文脈で登場する。
+                        officialUrl: https://go.dev/blog/maps
+                      - name: Redis Hash
+                        kind: service
+                        relevance: Key-value保存やフィールド辞書の実務文脈で関連して出やすい。
+                        officialUrl: https://redis.io/docs/latest/develop/data-types/hashes/
+
                 - slug: "open-addressing"
+
+                  search:
+
+                    keywords:
+
+                      - オープンアドレッシング
+
+                      - open addressing
+
+                      - probing
+
+                      - linear probing
+
+                      - quadratic probing
+
+                      - double hashing
+
+                      - Robin Hood hashing
+
+                      - クラスタリング
+
+                    commonSignals:
+
+                      - 衝突時に次の空きスロットを探す
+
+                      - linear probing を使う
+
+                      - 削除で tombstone が必要になる
+
+                      - キャッシュ局所性がよい
+
+                    antiSignals:
+
+                      - バケットごとにリストを持つ説明の場合
+
+                      - ネットワークのアドレス割当の話の場合
+
+                      - 郵便住所や物理アドレスの話の場合
+
+                    relatedNames:
+
+                      - name: SwissTable
+
+                        kind: library
+
+                        relevance: 高性能なオープンアドレッシング系ハッシュテーブル実装として知られる。
+
+                      - name: Abseil flat_hash_map
+
+                        kind: library
+
+                        relevance: SwissTable系の実装としてプロービングと局所性の文脈で出やすい。
+
+                        officialUrl: https://abseil.io/docs/cpp/guides/container
+
+                      - name: CPython dict
+
+                        kind: language
+
+                        relevance: Python辞書の実装詳細でオープンアドレッシングが話題になることがある。
+
+                      - name: Robin Hood hashing
+
+                        kind: method
+
+                        relevance: プローブ長を均す衝突処理方式として関連が強い。
                   name: "オープンアドレッシング"
                   summary: "衝突時に表の別スロットを探索して配置するハッシュ法。"
                   whyLearn: "メモリ局所性と消去処理の難しさを理解できる。"
@@ -115,7 +402,101 @@ domain:
                   promptHint: "二分探索木が退化する入力例を挙げる。"
                   aliases:
                     - "BST"
+                  search:
+                    keywords:
+                      - 二分探索木
+                      - binary search tree
+                      - BST
+                      - ordered tree
+                      - inorder traversal
+                      - tree rotation
+                      - 探索木
+                      - 退化木
+                    commonSignals:
+                      - 左部分木は小さく右部分木は大きい
+                      - in-order traversal で昇順になる
+                      - ソート済み入力で退化する
+                      - 探索・挿入・削除の木構造
+                    antiSignals:
+                      - バイナリファイルの検索
+                      - 二分探索だけで木構造が出てこない場合
+                      - 決定木や分類木の機械学習文脈だけの場合
+                    relatedNames:
+                      - name: TreeMap
+                        kind: library
+                        relevance: Javaでは順序付きMapの背景として探索木や平衡木が出やすい。
+                        officialUrl: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/TreeMap.html
+                      - name: std::map
+                        kind: library
+                        relevance: C++の順序付き連想コンテナで探索木系の実装理解につながる。
+                        officialUrl: https://en.cppreference.com/w/cpp/container/map
+                      - name: AVL tree
+                        kind: method
+                        relevance: BSTの退化問題を解く自己平衡木の代表例として比較される。
+
                 - slug: "red-black-tree"
+
+                  search:
+
+                    keywords:
+
+                      - 赤黒木
+
+                      - red-black tree
+
+                      - RB tree
+
+                      - self-balancing BST
+
+                      - black height
+
+                      - tree rotation
+
+                      - ordered map
+
+                      - 平衡二分探索木
+
+                    commonSignals:
+
+                      - 赤と黒の色制約
+
+                      - 回転で高さを保つ
+
+                      - 最悪 O(log n) の探索更新
+
+                      - ordered map / ordered set の実装
+
+                    antiSignals:
+
+                      - 赤黒のUIテーマや色名だけの場合
+
+                      - 単なる二分探索木で平衡制約がない場合
+
+                      - B木やAVL木が主題の場合
+
+                    relatedNames:
+
+                      - name: std::map
+
+                        kind: library
+
+                        relevance: C++標準ライブラリの順序付き連想コンテナ実装として赤黒木が言及されやすい。
+
+                        officialUrl: https://en.cppreference.com/w/cpp/container/map
+
+                      - name: Java TreeMap
+
+                        kind: library
+
+                        relevance: JavaのTreeMapは赤黒木実装としてよく参照される。
+
+                        officialUrl: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/TreeMap.html
+
+                      - name: Linux rbtree
+
+                        kind: library
+
+                        relevance: Linuxカーネル内で赤黒木が使われる実務的な例である。
                   name: "赤黒木"
                   summary: "色制約によって木の高さを抑える自己平衡二分探索木。"
                   whyLearn: "標準ライブラリの ordered map や set の実装理解に役立つ。"
@@ -129,6 +510,45 @@ domain:
                   promptHint: "B木が通常の二分探索木よりディスク向きな理由を説明する。"
                   aliases:
                     - "B tree"
+                  search:
+                    keywords:
+                      - B木
+                      - B tree
+                      - B-tree
+                      - B+ tree
+                      - multiway search tree
+                      - database index
+                      - page-oriented index
+                      - 外部記憶
+                    commonSignals:
+                      - ディスクページ単位でノードを読む
+                      - 高分岐で木の高さを低くする
+                      - DBインデックスや範囲検索
+                      - B+ tree のリーフ連結
+                    antiSignals:
+                      - 二分探索木の B と誤認している場合
+                      - B-tree 音楽・組織名など固有名詞の場合
+                      - 単なるファイルシステム運用の話の場合
+                    relatedNames:
+                      - name: B+ tree
+                        kind: method
+                        relevance: データベース索引ではB木よりB+木として説明されることが多い。
+                      - name: InnoDB
+                        kind: tool
+                        relevance: MySQLのストレージエンジンでB+木インデックスの文脈に出やすい。
+                        officialUrl: https://dev.mysql.com/doc/refman/8.4/en/innodb-storage-engine.html
+                      - name: SQLite
+                        kind: tool
+                        relevance: 組み込みDBのB-treeストレージ実装として学習対象になりやすい。
+                        officialUrl: https://www.sqlite.org/
+                      - name: PostgreSQL btree index
+                        kind: tool
+                        relevance: RDBMSの標準的なインデックス方式としてB-treeが出やすい。
+                        officialUrl: https://www.postgresql.org/docs/current/indexes-types.html
+                      - name: LMDB
+                        kind: tool
+                        relevance: B+木を用いるキーバリューストアとして実装学習に使われる。
+                        officialUrl: https://www.symas.com/lmdb
 
         - slug: "priority-and-range-structures"
           name: "優先度と範囲クエリ"
@@ -146,7 +566,110 @@ domain:
                   promptHint: "二分ヒープが配列で実装しやすい理由を説明する。"
                   aliases:
                     - "heap"
+                  search:
+                    keywords:
+                      - 二分ヒープ
+                      - binary heap
+                      - min heap
+                      - max heap
+                      - heap property
+                      - sift up
+                      - sift down
+                      - 配列ヒープ
+                    commonSignals:
+                      - 親が子より小さいまたは大きい
+                      - 配列で完全二分木を表す
+                      - extract-min / extract-max
+                      - heapify する
+                    antiSignals:
+                      - メモリヒープ領域だけを指す場合
+                      - ヒープダンプやGCの話だけの場合
+                      - 優先度ではなくソート済み配列を使う場合
+                    relatedNames:
+                      - name: Python heapq
+                        kind: library
+                        relevance: Pythonで二分ヒープを直接扱う標準ライブラリとして頻出する。
+                        officialUrl: https://docs.python.org/3/library/heapq.html
+                      - name: std::make_heap
+                        kind: library
+                        relevance: C++で配列をヒープ化する標準アルゴリズムとして関連する。
+                        officialUrl: https://en.cppreference.com/w/cpp/algorithm/make_heap
+                      - name: Java PriorityQueue
+                        kind: library
+                        relevance: Javaの優先度付きキュー実装として二分ヒープの説明に出やすい。
+                        officialUrl: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/PriorityQueue.html
+
                 - slug: "priority-queue"
+
+                  search:
+
+                    keywords:
+
+                      - 優先度付きキュー
+
+                      - priority queue
+
+                      - PQ
+
+                      - min-priority queue
+
+                      - max-priority queue
+
+                      - extract-min
+
+                      - decrease-key
+
+                      - top K
+
+                    commonSignals:
+
+                      - 最小または最大の要素を優先的に取り出す
+
+                      - タスクの優先度順処理
+
+                      - Dijkstra で frontier を管理する
+
+                      - top K を効率よく取る
+
+                    antiSignals:
+
+                      - FIFOキューだけを指す場合
+
+                      - メッセージキュー製品の運用だけの場合
+
+                      - 優先順位付けのビジネス判断だけの場合
+
+                    relatedNames:
+
+                      - name: Python heapq
+
+                        kind: library
+
+                        relevance: 優先度付きキューを軽量に実装する際によく使われる。
+
+                        officialUrl: https://docs.python.org/3/library/heapq.html
+
+                      - name: Java PriorityQueue
+
+                        kind: library
+
+                        relevance: Javaで優先度付きキューそのものの標準実装として出る。
+
+                        officialUrl: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/PriorityQueue.html
+
+                      - name: std::priority_queue
+
+                        kind: library
+
+                        relevance: C++で最大ヒープベースの優先度付きキューとして使われる。
+
+                        officialUrl: https://en.cppreference.com/w/cpp/container/priority_queue
+
+                      - name: Dijkstra's algorithm
+
+                        kind: method
+
+                        relevance: 最短路探索で次に確定する頂点を選ぶために使われる。
                   name: "優先度付きキュー"
                   summary: "最小値や最大値の取り出しを主目的とする抽象データ型。"
                   whyLearn: "ヒープをどの問題に適用すべきかを言葉として整理できる。"
@@ -173,7 +696,98 @@ domain:
                   promptHint: "区間和と一点更新をセグメント木で処理する利点を説明する。"
                   aliases:
                     - "range tree"
+                  search:
+                    keywords:
+                      - セグメント木
+                      - segment tree
+                      - range query
+                      - range update
+                      - lazy propagation
+                      - 区間クエリ
+                      - 区間集約
+                      - RMQ
+                    commonSignals:
+                      - 区間和・区間最小値を O(log n) で処理する
+                      - 遅延伝播を使う
+                      - 範囲更新と範囲取得
+                      - 配列を木状に分割する
+                    antiSignals:
+                      - 画像セグメンテーションの木モデルの場合
+                      - マーケティングの顧客セグメントの話の場合
+                      - 単なる範囲検索で木構造が出てこない場合
+                    relatedNames:
+                      - name: AtCoder Library
+                        kind: library
+                        relevance: 競技プログラミングでセグメント木実装としてよく参照される。
+                        officialUrl: https://atcoder.github.io/ac-library/production/document_en/segtree.html
+                      - name: Lazy propagation
+                        kind: method
+                        relevance: 区間更新を効率化するセグメント木の代表的な拡張である。
+                      - name: Fenwick tree
+                        kind: method
+                        relevance: 点更新・累積和系の軽量代替として比較されやすい。
+
                 - slug: "fenwick-tree"
+
+                  search:
+
+                    keywords:
+
+                      - Fenwick 木
+
+                      - Fenwick tree
+
+                      - binary indexed tree
+
+                      - BIT
+
+                      - prefix sum
+
+                      - 累積和
+
+                      - lowbit
+
+                      - 点更新
+
+                    commonSignals:
+
+                      - prefix sum を O(log n) で更新取得する
+
+                      - i += i & -i のような lowbit 操作
+
+                      - 転倒数を数える
+
+                      - BIT と略される
+
+                    antiSignals:
+
+                      - bit 演算一般だけを指す場合
+
+                      - セグメント木の話だけでFenwickが出ない場合
+
+                      - Fenwickという人名だけの場合
+
+                    relatedNames:
+
+                      - name: Binary Indexed Tree
+
+                        kind: method
+
+                        relevance: Fenwick木の別名として資料や実装でよく使われる。
+
+                      - name: AtCoder Library
+
+                        kind: library
+
+                        relevance: fenwick_tree 実装があり、学習者が実務的に検索しやすい。
+
+                        officialUrl: https://atcoder.github.io/ac-library/production/document_en/fenwicktree.html
+
+                      - name: Inversion count
+
+                        kind: method
+
+                        relevance: 転倒数計算の代表的な応用としてFenwick木が使われる。
                   name: "Fenwick 木"
                   summary: "累積和系の区間集計を配列ベースで効率よく行う構造。"
                   whyLearn: "実装が軽く、ログ計算量で prefix sum を扱える。"
@@ -211,7 +825,101 @@ domain:
                   aliases:
                     - "Big O"
                     - "O notation"
+                  search:
+                    keywords:
+                      - オーダー記法
+                      - Big O
+                      - O notation
+                      - asymptotic notation
+                      - Theta notation
+                      - Omega notation
+                      - 計算量
+                      - 漸近記法
+                    commonSignals:
+                      - O(n log n) や O(1) で性能を表す
+                      - 入力サイズ n に対する増え方
+                      - 最悪計算量・平均計算量
+                      - 定数倍を無視する
+                    antiSignals:
+                      - ビッグオー記号を数学表記としてだけ使う場合
+                      - Oリングや化学記号の O の話の場合
+                      - 実測ベンチマークだけで漸近評価がない場合
+                    relatedNames:
+                      - name: CLRS
+                        kind: other
+                        relevance: アルゴリズム解析とBig Oの標準的な教科書として頻出する。
+                      - name: Theta notation
+                        kind: method
+                        relevance: 上界と下界が一致する漸近評価としてBig Oと一緒に学ぶ。
+                      - name: Omega notation
+                        kind: method
+                        relevance: 下界評価としてBig Oとの比較に必ず出やすい。
+
                 - slug: "amortized-analysis"
+
+                  search:
+
+                    keywords:
+
+                      - 償却解析
+
+                      - amortized analysis
+
+                      - amortized cost
+
+                      - aggregate method
+
+                      - accounting method
+
+                      - potential method
+
+                      - 平均償却
+
+                      - 操作列
+
+                    commonSignals:
+
+                      - 最悪の単発操作ではなく操作列全体で見る
+
+                      - append はたまに高いが平均的には安い
+
+                      - potential function を使って証明する
+
+                      - amortized O(1) と書かれる
+
+                    antiSignals:
+
+                      - 会計上の減価償却だけの場合
+
+                      - 単純な平均ケース解析だけの場合
+
+                      - ローン返済や金融の償却表の話の場合
+
+                    relatedNames:
+
+                      - name: Potential method
+
+                        kind: method
+
+                        relevance: 償却解析の代表的な証明手法として頻出する。
+
+                      - name: Accounting method
+
+                        kind: method
+
+                        relevance: 操作ごとに仮想コストを割り当てる償却解析の定番手法である。
+
+                      - name: Dynamic array
+
+                        kind: method
+
+                        relevance: appendの平均O(1)を説明する代表例として使われる。
+
+                      - name: Splay tree
+
+                        kind: method
+
+                        relevance: 操作列全体で性能を評価する自己調整木の例として関連する。
                   name: "償却解析"
                   summary: "単発ではなく操作列全体で平均コストを評価する解析法。"
                   whyLearn: "動的配列や自己調整構造の妥当な性能評価に必要になる。"
@@ -238,6 +946,39 @@ domain:
                   promptHint: "還元が『難しさの伝播』になる理由を説明する。"
                   aliases:
                     - "reduction"
+                  search:
+                    keywords:
+                      - 問題還元
+                      - reduction
+                      - problem reduction
+                      - many-one reduction
+                      - Karp reduction
+                      - polynomial reduction
+                      - 難しさの証明
+                      - 変換
+                    commonSignals:
+                      - A を B に多項式時間で変換する
+                      - この問題が解ければ元の問題も解ける
+                      - NP完全性を示すために還元する
+                      - 既知の難問から変換する
+                    antiSignals:
+                      - リファクタリングでコード量を減らす話の場合
+                      - 画像や次元の削減だけを指す場合
+                      - コスト削減のビジネス文脈だけの場合
+                    relatedNames:
+                      - name: SAT
+                        kind: method
+                        relevance: NP完全性の還元先・還元元として非常によく使われる。
+                      - name: 3-SAT
+                        kind: method
+                        relevance: 多くのNP完全性証明で中間問題として登場する。
+                      - name: Cook-Levin theorem
+                        kind: method
+                        relevance: SATがNP完全であることを示す還元の基礎として関連する。
+                      - name: Karp's 21 problems
+                        kind: other
+                        relevance: 問題還元で多くの組合せ問題のNP完全性を示した古典的文脈である。
+
                 - slug: "decision-tree-model"
                   name: "決定木モデル"
                   summary: "比較ベース手法の情報獲得過程を木で表す計算モデル。"
@@ -270,6 +1011,36 @@ domain:
                   promptHint: "分治法が有効な問題構造を説明する。"
                   aliases:
                     - "D&C"
+                  search:
+                    keywords:
+                      - 分治法
+                      - divide and conquer
+                      - divide-and-conquer
+                      - 分割統治
+                      - recursive decomposition
+                      - merge step
+                      - subproblem
+                      - combine
+                    commonSignals:
+                      - 問題を小問題に分けて解く
+                      - 再帰的に解いて結果をマージする
+                      - 漸化式で計算量を評価する
+                      - combine step がある
+                    antiSignals:
+                      - 政治的な分断統治の話の場合
+                      - 単なるタスク分担で再帰構造がない場合
+                      - クラスタ分割だけが目的の場合
+                    relatedNames:
+                      - name: Mergesort
+                        kind: method
+                        relevance: 分割・再帰・統合の流れを示す代表的な分治アルゴリズムである。
+                      - name: Quicksort
+                        kind: method
+                        relevance: 分割を中心にした分治ソートとして頻出する。
+                      - name: MapReduce
+                        kind: framework
+                        relevance: 厳密な分治法ではないが、大規模処理で分割統合の発想を学ぶ関連語になる。
+
                 - slug: "master-theorem"
                   name: "マスター定理"
                   summary: "典型的な分治漸化式の漸近解を素早く見積もる定理。"
@@ -284,6 +1055,38 @@ domain:
                   promptHint: "貪欲法が正しくなる条件をどう見抜くか説明する。"
                   aliases:
                     - "greedy method"
+                  search:
+                    keywords:
+                      - 貪欲法
+                      - greedy algorithm
+                      - greedy method
+                      - local optimum
+                      - 局所最適
+                      - exchange argument
+                      - cut property
+                      - 近視眼的選択
+                    commonSignals:
+                      - その時点で最良の選択をする
+                      - 交換引数で正しさを示す
+                      - 局所最適が大域最適になる条件
+                      - 高速だが正当性証明が必要
+                    antiSignals:
+                      - ビジネス上の強欲・欲張りという形容だけの場合
+                      - ヒューリスティックで保証を全く議論しない場合
+                      - 単なる優先順位付けでアルゴリズムではない場合
+                    relatedNames:
+                      - name: Kruskal's algorithm
+                        kind: method
+                        relevance: 最小全域木で貪欲法が正しく働く代表例である。
+                      - name: Prim's algorithm
+                        kind: method
+                        relevance: MSTを構成するもう一つの貪欲アルゴリズムとして関連する。
+                      - name: Huffman coding
+                        kind: method
+                        relevance: 貪欲選択で最適な接頭符号を作る古典的な例である。
+                      - name: Interval scheduling
+                        kind: method
+                        relevance: 貪欲法の正当性を学ぶ代表的なスケジューリング問題である。
 
             - slug: "dynamic-programming-and-state-search"
               name: "動的計画法と状態探索"
@@ -297,6 +1100,39 @@ domain:
                   promptHint: "DP の状態・遷移・初期条件をどう設計するか説明する。"
                   aliases:
                     - "DP"
+                  search:
+                    keywords:
+                      - 動的計画法
+                      - dynamic programming
+                      - DP
+                      - state transition
+                      - 状態遷移
+                      - optimal substructure
+                      - overlapping subproblems
+                      - DP table
+                    commonSignals:
+                      - 状態と遷移を定義する
+                      - 同じ部分問題を再利用する
+                      - dp[i][j] のような表を作る
+                      - 最適部分構造がある
+                    antiSignals:
+                      - Data Protection や DisplayPort の DP 略称の場合
+                      - 単なる動的な計画変更の話の場合
+                      - メモリキャッシュだけで最適化構造がない場合
+                    relatedNames:
+                      - name: Viterbi algorithm
+                        kind: method
+                        relevance: 系列推定で動的計画法を使う代表的なアルゴリズムである。
+                      - name: Levenshtein distance
+                        kind: method
+                        relevance: 編集距離をDPで求める実務的な文字列処理例である。
+                      - name: Bellman equation
+                        kind: method
+                        relevance: 最適制御や強化学習におけるDP的な再帰関係として関連する。
+                      - name: Knapsack problem
+                        kind: method
+                        relevance: 制約付き最適化でDPを学ぶ定番問題である。
+
                 - slug: "memoization"
                   name: "メモ化"
                   summary: "再帰的計算の結果を保存し、同じ部分問題を再計算しない技法。"
@@ -311,6 +1147,40 @@ domain:
                   promptHint: "バックトラッキングと DP の違いを説明する。"
                   aliases:
                     - "DFS search"
+                  search:
+                    keywords:
+                      - バックトラッキング
+                      - backtracking
+                      - constraint search
+                      - 探索木
+                      - 枝刈り
+                      - pruning
+                      - combinatorial search
+                      - 全探索
+                    commonSignals:
+                      - 候補を試してダメなら戻る
+                      - 再帰で組合せを列挙する
+                      - 枝刈りで探索空間を削る
+                      - N-Queens や数独を解く
+                    antiSignals:
+                      - Git の backtrack のような履歴操作だけの場合
+                      - UIで前の画面に戻るだけの場合
+                      - DPで状態を保存して再利用する話が中心の場合
+                    relatedNames:
+                      - name: N-Queens
+                        kind: method
+                        relevance: バックトラッキングの典型例として教材で頻出する。
+                      - name: Sudoku solver
+                        kind: tool
+                        relevance: 制約充足をバックトラックで解く実装例として分かりやすい。
+                      - name: OR-Tools CP-SAT
+                        kind: tool
+                        relevance: 制約最適化の実務ツールとして探索と枝刈りの学習につながる。
+                        officialUrl: https://developers.google.com/optimization/cp/cp_solver
+                      - name: Z3
+                        kind: tool
+                        relevance: 制約解決の文脈で探索・枝刈りの発展形として関連する。
+                        officialUrl: https://github.com/Z3Prover/z3
 
     - slug: "ordering-searching-string-processing"
       name: "順序付け、探索、文字列処理"
@@ -333,7 +1203,101 @@ domain:
                   promptHint: "クイックソートが速い理由と遅くなる条件を説明する。"
                   aliases:
                     - "quick sort"
+                  search:
+                    keywords:
+                      - クイックソート
+                      - quicksort
+                      - quick sort
+                      - pivot
+                      - partition
+                      - in-place sort
+                      - randomized quicksort
+                      - median-of-three
+                    commonSignals:
+                      - pivot を選んで左右に分ける
+                      - partition 関数を実装する
+                      - 平均 O(n log n) だが最悪 O(n^2)
+                      - in-place に整列する
+                    antiSignals:
+                      - ソート済みデータの一般論だけの場合
+                      - クイック検索や高速化という形容だけの場合
+                      - 安定ソートが必須でマージソートが主題の場合
+                    relatedNames:
+                      - name: std::sort
+                        kind: library
+                        relevance: C++の実装ではintrosort系としてquicksortとの比較文脈で出やすい。
+                        officialUrl: https://en.cppreference.com/w/cpp/algorithm/sort
+                      - name: Introsort
+                        kind: method
+                        relevance: Quicksortの最悪ケースを避ける実用的なハイブリッドソートである。
+                      - name: Hoare partition scheme
+                        kind: method
+                        relevance: Quicksortの古典的な分割方式として関連が強い。
+                      - name: Lomuto partition scheme
+                        kind: method
+                        relevance: Quicksortの学習用実装でよく使われる分割方式である。
+
                 - slug: "mergesort"
+
+                  search:
+
+                    keywords:
+
+                      - マージソート
+
+                      - mergesort
+
+                      - merge sort
+
+                      - stable sort
+
+                      - external sort
+
+                      - merge step
+
+                      - 分治ソート
+
+                      - two-way merge
+
+                    commonSignals:
+
+                      - 左右に分割してマージする
+
+                      - 安定ソートが必要
+
+                      - 外部ソートや巨大ファイルの整列
+
+                      - 追加メモリを使う
+
+                    antiSignals:
+
+                      - Git merge やブランチ統合だけの場合
+
+                      - データ統合のETL処理だけの場合
+
+                      - 不安定なin-place partitionが中心の場合
+
+                    relatedNames:
+
+                      - name: Timsort
+
+                        kind: method
+
+                        relevance: 安定ソートとして実用言語で採用され、マージ処理と関連して学ばれる。
+
+                      - name: External merge sort
+
+                        kind: method
+
+                        relevance: ディスク上の大量データを整列する実務的なマージソート応用である。
+
+                      - name: Java Arrays.sort
+
+                        kind: library
+
+                        relevance: オブジェクト配列の安定ソート実装を調べる際に関連する。
+
+                        officialUrl: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Arrays.html
                   name: "マージソート"
                   summary: "分割した列を整列してからマージする安定な分治ソート。"
                   whyLearn: "安定性と外部整列との相性を理解できる。"
@@ -360,7 +1324,103 @@ domain:
                   promptHint: "二分探索で closed interval と half-open interval をどう使い分けるか説明する。"
                   aliases:
                     - "bisection"
+                  search:
+                    keywords:
+                      - 二分探索
+                      - binary search
+                      - bisection
+                      - lower_bound
+                      - upper_bound
+                      - bisect
+                      - monotonic predicate
+                      - 境界探索
+                    commonSignals:
+                      - ソート済み配列を半分ずつ絞る
+                      - low / high / mid を更新する
+                      - 境界条件でバグる
+                      - 単調な条件を満たす最小値を探す
+                    antiSignals:
+                      - 二分木探索の話で配列や単調性が出ない場合
+                      - バイナリファイル検索だけの場合
+                      - A/Bテストの二分割だけを指す場合
+                    relatedNames:
+                      - name: std::lower_bound
+                        kind: library
+                        relevance: C++で二分探索による境界探索の代表APIとして出やすい。
+                        officialUrl: https://en.cppreference.com/w/cpp/algorithm/lower_bound
+                      - name: Python bisect
+                        kind: library
+                        relevance: Pythonでソート済み列への二分探索・挿入位置検索に使われる。
+                        officialUrl: https://docs.python.org/3/library/bisect.html
+                      - name: Java Arrays.binarySearch
+                        kind: library
+                        relevance: Javaで配列の二分探索を行う標準APIである。
+                        officialUrl: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Arrays.html
+                      - name: Parametric search
+                        kind: method
+                        relevance: 単調性を使って答えそのものを二分探索する文脈で関連する。
+
                 - slug: "quickselect"
+
+                  search:
+
+                    keywords:
+
+                      - Quickselect
+
+                      - quick select
+
+                      - selection algorithm
+
+                      - k-th order statistic
+
+                      - nth element
+
+                      - median selection
+
+                      - partition selection
+
+                      - top K
+
+                    commonSignals:
+
+                      - k番目に小さい要素を探す
+
+                      - 中央値だけ必要で全体ソートしない
+
+                      - partition を使って片側だけ再帰する
+
+                      - order statistic と呼ばれる
+
+                    antiSignals:
+
+                      - Quicksort全体の説明だけの場合
+
+                      - SQL SELECT の高速化だけの場合
+
+                      - UIで項目を素早く選ぶ話の場合
+
+                    relatedNames:
+
+                      - name: std::nth_element
+
+                        kind: library
+
+                        relevance: C++でk番目要素や部分順序を得る標準アルゴリズムとして関連する。
+
+                        officialUrl: https://en.cppreference.com/w/cpp/algorithm/nth_element
+
+                      - name: Median of medians
+
+                        kind: method
+
+                        relevance: 線形時間選択の理論的保証を学ぶ比較対象として出やすい。
+
+                      - name: Top-K query
+
+                        kind: method
+
+                        relevance: 全ソートせず必要な順位だけを求める応用文脈で関連する。
                   name: "Quickselect"
                   summary: "分割を使って k 番目要素だけを効率よく見つける選択アルゴリズム。"
                   whyLearn: "トップK、中央値、順位抽出でソート不要の発想を持てる。"
@@ -374,6 +1434,42 @@ domain:
                   promptHint: "skip list が平衡木の代替になる理由を説明する。"
                   aliases:
                     - "skiplist"
+                  search:
+                    keywords:
+                      - スキップリスト
+                      - skip list
+                      - skiplist
+                      - probabilistic data structure
+                      - level pointer
+                      - ordered set
+                      - random level
+                      - 確率的平衡
+                    commonSignals:
+                      - ランダムな高さのリンクを持つ
+                      - 平衡木の代替として使う
+                      - 平均 O(log n) の検索挿入削除
+                      - ordered set を確率的に管理する
+                    antiSignals:
+                      - リストの項目をスキップ表示するUIの話の場合
+                      - 単なるページ送り・スキップ操作の場合
+                      - リンクリストだが多段レベルがない場合
+                    relatedNames:
+                      - name: Redis Sorted Set
+                        kind: tool
+                        relevance: Redisのsorted set実装文脈でskip listが言及されることがある。
+                        officialUrl: https://redis.io/docs/latest/develop/data-types/sorted-sets/
+                      - name: LevelDB skiplist
+                        kind: tool
+                        relevance: LSM tree系ストレージのmemtable実装例として関連する。
+                        officialUrl: https://github.com/google/leveldb
+                      - name: RocksDB
+                        kind: tool
+                        relevance: LevelDB由来の構造を持つストレージエンジンとしてskip list文脈に出る。
+                        officialUrl: https://rocksdb.org/
+                      - name: ConcurrentSkipListMap
+                        kind: library
+                        relevance: Javaで並行順序付きMapとしてskip list実装を学ぶ例になる。
+                        officialUrl: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ConcurrentSkipListMap.html
 
         - slug: "string-indexing-and-matching"
           name: "文字列インデックスと照合"
@@ -391,7 +1487,103 @@ domain:
                   promptHint: "Trie が hash table より有利な検索条件を説明する。"
                   aliases:
                     - "prefix tree"
+                  search:
+                    keywords:
+                      - Trie
+                      - トライ木
+                      - prefix tree
+                      - 接頭辞木
+                      - prefix search
+                      - autocomplete
+                      - dictionary tree
+                      - 文字列辞書
+                    commonSignals:
+                      - prefix 検索やオートコンプリート
+                      - 文字ごとに辺をたどる
+                      - 共通接頭辞を共有する
+                      - 辞書語を木で保持する
+                    antiSignals:
+                      - try/catch の try の綴り違いの場合
+                      - 木構造ではなく単なる文字列比較の場合
+                      - ハッシュで完全一致検索だけをする場合
+                    relatedNames:
+                      - name: Patricia trie
+                        kind: method
+                        relevance: Trieを圧縮した代表構造として関連する。
+                      - name: Aho-Corasick
+                        kind: method
+                        relevance: 複数パターン照合でTrieを基礎構造として使う。
+                      - name: Lucene FST
+                        kind: library
+                        relevance: 検索エンジンの辞書圧縮や補完でTrie系発想と近い。
+                        officialUrl: https://lucene.apache.org/
+                      - name: IP routing table
+                        kind: protocol
+                        relevance: 最長接頭辞一致の実務例としてTrieが使われる。
+
                 - slug: "radix-tree"
+
+                  search:
+
+                    keywords:
+
+                      - Radix Tree
+
+                      - compressed trie
+
+                      - Patricia trie
+
+                      - 基数木
+
+                      - 圧縮Trie
+
+                      - prefix compression
+
+                      - adaptive radix tree
+
+                    commonSignals:
+
+                      - 単一路を圧縮する
+
+                      - prefix を共有してメモリを節約する
+
+                      - Patricia trie と比較される
+
+                      - IPルーティングやキー索引
+
+                    antiSignals:
+
+                      - radix sort の話だけの場合
+
+                      - 数値の基数変換だけの場合
+
+                      - 通常のTrieで圧縮が出ない場合
+
+                    relatedNames:
+
+                      - name: Patricia trie
+
+                        kind: method
+
+                        relevance: Radix Treeの代表的な圧縮Trieとしてよく比較される。
+
+                      - name: Adaptive Radix Tree
+
+                        kind: method
+
+                        relevance: データベースやインメモリ索引で使われる高性能なradix系構造である。
+
+                      - name: Linux XArray
+
+                        kind: library
+
+                        relevance: Linuxカーネルのradix tree後継として関連する。
+
+                      - name: IP longest prefix match
+
+                        kind: protocol
+
+                        relevance: ルーティングで接頭辞圧縮木が使われる代表的な応用である。
                   name: "Radix Tree"
                   summary: "単一路を圧縮して Trie の空間効率を改善した構造。"
                   whyLearn: "文字列インデックスで圧縮表現が効く理由を理解できる。"
@@ -418,7 +1610,97 @@ domain:
                   promptHint: "KMP が再比較を避ける仕組みを説明する。"
                   aliases:
                     - "KMP"
+                  search:
+                    keywords:
+                      - KMP
+                      - KMP法
+                      - Knuth-Morris-Pratt
+                      - prefix function
+                      - failure function
+                      - partial match table
+                      - 文字列照合
+                      - 線形時間検索
+                    commonSignals:
+                      - 失敗関数を作る
+                      - 同じ文字を何度も比較しない
+                      - パターンの接頭辞と接尾辞を使う
+                      - O(n+m) の文字列検索
+                    antiSignals:
+                      - KMPという企業名・プロジェクト名の場合
+                      - 正規表現エンジン全般の話だけの場合
+                      - ハッシュを使うRabin-Karpが主題の場合
+                    relatedNames:
+                      - name: Prefix function
+                        kind: method
+                        relevance: KMPの前処理で使う中心的な配列として出やすい。
+                      - name: Z algorithm
+                        kind: method
+                        relevance: 線形時間文字列照合の比較対象としてよく一緒に学ばれる。
+                      - name: Aho-Corasick
+                        kind: method
+                        relevance: 失敗リンクを使う多パターン照合としてKMPと関連する。
+
                 - slug: "rabin-karp"
+
+                  search:
+
+                    keywords:
+
+                      - Rabin-Karp
+
+                      - Rabin-Karp法
+
+                      - rolling hash
+
+                      - 文字列ハッシュ
+
+                      - hash matching
+
+                      - substring search
+
+                      - fingerprint
+
+                      - 偽陽性
+
+                    commonSignals:
+
+                      - 部分文字列のハッシュをずらしながら計算する
+
+                      - ハッシュ一致後に実文字列を確認する
+
+                      - 複数パターン検索に使う
+
+                      - rolling hash と一緒に出る
+
+                    antiSignals:
+
+                      - 一般的な暗号ハッシュだけの場合
+
+                      - KMPの失敗関数が主題の場合
+
+                      - Rabin暗号やKarp単独の論文名だけの場合
+
+                    relatedNames:
+
+                      - name: Rolling hash
+
+                        kind: method
+
+                        relevance: Rabin-Karpの中核となるハッシュ更新手法である。
+
+                      - name: Rsync
+
+                        kind: tool
+
+                        relevance: ローリングチェックサムで差分検出する関連文脈として出やすい。
+
+                        officialUrl: https://rsync.samba.org/
+
+                      - name: Content-defined chunking
+
+                        kind: method
+
+                        relevance: ローリングハッシュを使ったチャンク境界検出で関連する。
                   name: "Rabin-Karp 法"
                   summary: "文字列ハッシュを使って候補位置を高速に絞る照合手法。"
                   whyLearn: "ハッシュが文字列照合にも使えることを理解できる。"
@@ -432,6 +1714,39 @@ domain:
                   promptHint: "Suffix Array が部分文字列検索に使える理由を説明する。"
                   aliases:
                     - "SA"
+                  search:
+                    keywords:
+                      - 接尾辞配列
+                      - suffix array
+                      - SA
+                      - suffix sorting
+                      - LCP array
+                      - substring search
+                      - full-text index
+                      - 接尾辞
+                    commonSignals:
+                      - 全接尾辞を辞書順に並べる
+                      - LCP と一緒に使う
+                      - 部分文字列検索を二分探索で行う
+                      - 全文索引やゲノム検索
+                    antiSignals:
+                      - ファイル拡張子 suffix の話だけの場合
+                      - 通常の配列ソートだけの場合
+                      - suffix tree が主題で配列化していない場合
+                    relatedNames:
+                      - name: LCP array
+                        kind: method
+                        relevance: Suffix Arrayと組み合わせて最長共通接頭辞や高速検索に使われる。
+                      - name: Burrows-Wheeler Transform
+                        kind: method
+                        relevance: 圧縮索引やFM-indexの文脈で接尾辞配列と強く関連する。
+                      - name: FM-index
+                        kind: method
+                        relevance: 全文検索やゲノム検索で使われる接尾辞配列系の圧縮索引である。
+                      - name: Bowtie
+                        kind: tool
+                        relevance: ゲノム配列検索でFM-indexを使う代表的なツールとして関連する。
+                        officialUrl: http://bowtie-bio.sourceforge.net/index.shtml
 
     - slug: "graph-algorithms-network-optimization"
       name: "グラフアルゴリズムとネットワーク最適化"
@@ -454,7 +1769,95 @@ domain:
                   promptHint: "BFS が無重みグラフの最短路に使える理由を説明する。"
                   aliases:
                     - "BFS"
+                  search:
+                    keywords:
+                      - 幅優先探索
+                      - breadth-first search
+                      - BFS
+                      - level order
+                      - unweighted shortest path
+                      - graph traversal
+                      - frontier
+                      - レベル順探索
+                    commonSignals:
+                      - キューを使って探索する
+                      - 距離が近い順に訪問する
+                      - 無重みグラフの最短路
+                      - level-order traversal と呼ばれる
+                    antiSignals:
+                      - ファイルシステムの幅広い検索という比喩だけの場合
+                      - 重み付き最短路でDijkstraが主題の場合
+                      - 深さ優先探索の再帰実装が主題の場合
+                    relatedNames:
+                      - name: NetworkX bfs_tree
+                        kind: library
+                        relevance: PythonでBFSを実装・可視化する際に使われやすい。
+                        officialUrl: https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.traversal.breadth_first_search.bfs_tree.html
+                      - name: Lee algorithm
+                        kind: method
+                        relevance: 格子上の最短経路探索でBFSを使う古典的手法である。
+
                 - slug: "depth-first-search"
+
+                  search:
+
+                    keywords:
+
+                      - 深さ優先探索
+
+                      - depth-first search
+
+                      - DFS
+
+                      - graph traversal
+
+                      - recursive search
+
+                      - discovery time
+
+                      - finish time
+
+                      - back edge
+
+                    commonSignals:
+
+                      - 再帰またはスタックで深く進む
+
+                      - 発見時刻と終了時刻を記録する
+
+                      - 閉路検出やトポロジカルソート
+
+                      - バックエッジを見つける
+
+                    antiSignals:
+
+                      - 分散ファイルシステム DFS の略称の場合
+
+                      - 深い検索という比喩だけの場合
+
+                      - 幅優先探索のキュー処理が中心の場合
+
+                    relatedNames:
+
+                      - name: NetworkX dfs_tree
+
+                        kind: library
+
+                        relevance: PythonでDFSを試す際に使われやすいグラフライブラリ関数である。
+
+                        officialUrl: https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.traversal.depth_first_search.dfs_tree.html
+
+                      - name: Tarjan's algorithm
+
+                        kind: method
+
+                        relevance: SCCや関節点検出でDFSの時刻情報を使う代表的手法である。
+
+                      - name: Recursive descent
+
+                        kind: method
+
+                        relevance: 探索を深く進めて戻る発想が構文解析にも関連する。
                   name: "深さ優先探索"
                   summary: "可能な限り深く進んでから戻るグラフ走査法。"
                   whyLearn: "連結判定、トポロジカルソート、SCC などの基礎になる。"
@@ -468,6 +1871,41 @@ domain:
                   promptHint: "トポロジカルソートが可能な条件を説明する。"
                   aliases:
                     - "topo sort"
+                  search:
+                    keywords:
+                      - トポロジカルソート
+                      - topological sort
+                      - topo sort
+                      - DAG
+                      - dependency order
+                      - Kahn algorithm
+                      - 依存関係解決
+                      - 有向非巡回グラフ
+                    commonSignals:
+                      - DAG の頂点を依存順に並べる
+                      - 入次数が0のノードから処理する
+                      - 循環依存を検出する
+                      - ビルド順序やジョブ順序を決める
+                    antiSignals:
+                      - 位相幾何のトポロジーだけの場合
+                      - 通常の数値ソートや文字列ソートの場合
+                      - 循環グラフで順序付けできないことが主題でない場合
+                    relatedNames:
+                      - name: Kahn's algorithm
+                        kind: method
+                        relevance: 入次数を使うトポロジカルソートの代表的実装である。
+                      - name: Make
+                        kind: tool
+                        relevance: ビルド依存関係を順序解決する実務例として関連する。
+                        officialUrl: https://www.gnu.org/software/make/
+                      - name: Airflow DAG
+                        kind: platform
+                        relevance: ジョブ依存グラフをDAGとして扱う実務文脈で出やすい。
+                        officialUrl: https://airflow.apache.org/
+                      - name: Gradle
+                        kind: tool
+                        relevance: タスク依存関係の順序解決でトポロジカル順序の発想が関係する。
+                        officialUrl: https://gradle.org/
 
             - slug: "connectivity-and-spanning"
               name: "連結性と全域構造"
@@ -481,7 +1919,98 @@ domain:
                   promptHint: "SCC を求めると何が分かるのかを説明する。"
                   aliases:
                     - "SCC"
+                  search:
+                    keywords:
+                      - 強連結成分
+                      - strongly connected components
+                      - SCC
+                      - mutual reachability
+                      - Tarjan algorithm
+                      - Kosaraju algorithm
+                      - condensation graph
+                      - 有向グラフ
+                    commonSignals:
+                      - 相互到達可能な頂点集合
+                      - 依存循環をまとめる
+                      - condensation graph を作る
+                      - Tarjan または Kosaraju が出る
+                    antiSignals:
+                      - 無向グラフの連結成分だけの場合
+                      - SCCがソースコード管理や別略称の場合
+                      - 単に強く接続されたネットワークという比喩だけの場合
+                    relatedNames:
+                      - name: Tarjan's algorithm
+                        kind: method
+                        relevance: SCCを線形時間で求める代表的なDFSベース手法である。
+                      - name: Kosaraju's algorithm
+                        kind: method
+                        relevance: 二回のDFSでSCCを求める古典的な方法として頻出する。
+                      - name: NetworkX strongly_connected_components
+                        kind: library
+                        relevance: PythonでSCCを実務的に計算する際の関数名として検索に効く。
+                        officialUrl: https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.components.strongly_connected_components.html
+
                 - slug: "union-find"
+
+                  search:
+
+                    keywords:
+
+                      - Union-Find
+
+                      - union find
+
+                      - disjoint set union
+
+                      - DSU
+
+                      - 素集合データ構造
+
+                      - path compression
+
+                      - union by rank
+
+                      - connected components
+
+                    commonSignals:
+
+                      - find と union 操作
+
+                      - path compression で高速化する
+
+                      - 同じ集合に属するか判定する
+
+                      - Kruskal 法で使う
+
+                    antiSignals:
+
+                      - 労働組合 union の話の場合
+
+                      - SQL UNION の集合演算だけの場合
+
+                      - ファイルシステム union mount の話だけの場合
+
+                    relatedNames:
+
+                      - name: Disjoint Set Union
+
+                        kind: method
+
+                        relevance: Union-Findの別名として競技プログラミングや教材で頻出する。
+
+                      - name: Kruskal's algorithm
+
+                        kind: method
+
+                        relevance: MST構築で辺追加時の閉路判定にUnion-Findを使う。
+
+                      - name: AtCoder Library DSU
+
+                        kind: library
+
+                        relevance: Union-Findの実用的な実装例として学習者が参照しやすい。
+
+                        officialUrl: https://atcoder.github.io/ac-library/production/document_en/dsu.html
                   name: "Union-Find"
                   summary: "互いに素な集合の併合と代表元取得を効率化する構造。"
                   whyLearn: "連結判定や Kruskal 法の核心になる。"
@@ -496,6 +2025,36 @@ domain:
                   promptHint: "最小全域木と最短路木の違いを説明する。"
                   aliases:
                     - "MST"
+                  search:
+                    keywords:
+                      - 最小全域木
+                      - minimum spanning tree
+                      - MST
+                      - Kruskal
+                      - Prim
+                      - spanning tree
+                      - network design
+                      - cut property
+                    commonSignals:
+                      - 全頂点をつなぎ総重みを最小にする
+                      - Kruskal や Prim を使う
+                      - 閉路を作らないように辺を選ぶ
+                      - ネットワーク敷設コスト
+                    antiSignals:
+                      - 最短路木と混同している場合
+                      - 単なる木構造の最小値探索の場合
+                      - MSTがMicrosoft Teamsなど別略称の場合
+                    relatedNames:
+                      - name: Kruskal's algorithm
+                        kind: method
+                        relevance: MSTを辺の重み順に貪欲に構成する代表手法である。
+                      - name: Prim's algorithm
+                        kind: method
+                        relevance: MSTを頂点集合を広げながら構成する代表手法である。
+                      - name: NetworkX minimum_spanning_tree
+                        kind: library
+                        relevance: PythonでMSTを計算する実用的な関数名として検索に効く。
+                        officialUrl: https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.tree.mst.minimum_spanning_tree.html
 
         - slug: "shortest-paths-flows-and-matchings"
           name: "最短路、流量、マッチング"
@@ -513,7 +2072,101 @@ domain:
                   promptHint: "Dijkstra 法が負辺を扱いにくい理由を説明する。"
                   aliases:
                     - "Dijkstra"
+                  search:
+                    keywords:
+                      - Dijkstra
+                      - Dijkstra法
+                      - Dijkstra's algorithm
+                      - single-source shortest path
+                      - nonnegative weights
+                      - priority queue
+                      - edge relaxation
+                      - 最短路
+                    commonSignals:
+                      - 非負の辺重みが前提
+                      - 優先度付きキューで最小距離の頂点を選ぶ
+                      - 辺緩和を繰り返す
+                      - 単一始点最短路を求める
+                    antiSignals:
+                      - 負の辺がありBellman-Fordが必要な場合
+                      - 無重みグラフでBFSだけが主題の場合
+                      - 人物名としてDijkstraだけが出る場合
+                    relatedNames:
+                      - name: NetworkX shortest_path
+                        kind: library
+                        relevance: PythonでDijkstraを含む最短路計算を試す際に出やすい。
+                        officialUrl: https://networkx.org/documentation/stable/reference/algorithms/shortest_paths.html
+                      - name: pgRouting
+                        kind: tool
+                        relevance: PostGIS上で道路網の最短経路を扱う実務ツールとして関連する。
+                        officialUrl: https://pgrouting.org/
+                      - name: OSRM
+                        kind: service
+                        relevance: 経路探索エンジンの文脈で最短路アルゴリズムと関連して出る。
+                        officialUrl: https://project-osrm.org/
+                      - name: A* search
+                        kind: method
+                        relevance: ヒューリスティックを加えた最短路探索として比較されやすい。
+
                 - slug: "bellman-ford-algorithm"
+
+                  search:
+
+                    keywords:
+
+                      - Bellman-Ford
+
+                      - Bellman-Ford法
+
+                      - negative edge
+
+                      - negative cycle
+
+                      - edge relaxation
+
+                      - shortest path
+
+                      - 負閉路
+
+                      - 距離ベクトル
+
+                    commonSignals:
+
+                      - 負の辺を含む最短路
+
+                      - V-1 回すべての辺を緩和する
+
+                      - 負閉路を検出する
+
+                      - Dijkstra では扱えないケース
+
+                    antiSignals:
+
+                      - Bellman方程式や強化学習だけの話の場合
+
+                      - 非負重みだけでDijkstraが主題の場合
+
+                      - Ford-Fulkersonの最大流が主題の場合
+
+                    relatedNames:
+
+                      - name: Distance-vector routing
+
+                        kind: protocol
+
+                        relevance: Bellman-Fordの発想がルーティングプロトコルの距離ベクトル方式に関連する。
+
+                      - name: RIP
+
+                        kind: protocol
+
+                        relevance: 距離ベクトル型ルーティングの代表プロトコルとして関連する。
+
+                      - name: Johnson's algorithm
+
+                        kind: method
+
+                        relevance: 負辺を含む全点対最短路でBellman-Fordを前処理に使う。
                   name: "Bellman-Ford 法"
                   summary: "辺緩和を反復して負辺を含む最短路を扱えるアルゴリズム。"
                   whyLearn: "負閉路検出まで含めた重み付き最短路の理解に役立つ。"
@@ -528,6 +2181,40 @@ domain:
                   aliases:
                     - "A star"
                     - "A*"
+                  search:
+                    keywords:
+                      - A*
+                      - A star
+                      - A* 探索
+                      - A-star search
+                      - heuristic search
+                      - admissible heuristic
+                      - pathfinding
+                      - f-score
+                    commonSignals:
+                      - g(n)+h(n) で評価する
+                      - ヒューリスティックで探索範囲を絞る
+                      - 経路探索・pathfinding
+                      - admissible / consistent heuristic
+                    antiSignals:
+                      - Aスター評価やランク表記だけの場合
+                      - AI全般で探索アルゴリズムが出ない場合
+                      - 単なるDijkstraでヒューリスティックがない場合
+                    relatedNames:
+                      - name: Recast Navigation
+                        kind: library
+                        relevance: ゲームやシミュレーションのナビメッシュ経路探索でA*文脈に出やすい。
+                        officialUrl: https://github.com/recastnavigation/recastnavigation
+                      - name: Unity NavMesh
+                        kind: framework
+                        relevance: ゲーム開発で経路探索やA*の学習につながる実務的な関連名である。
+                        officialUrl: https://docs.unity3d.com/Manual/nav-NavigationSystem.html
+                      - name: Manhattan distance
+                        kind: method
+                        relevance: グリッド上A*のヒューリスティックとしてよく使われる。
+                      - name: Dijkstra's algorithm
+                        kind: method
+                        relevance: ヒューリスティックなしの特殊ケースとして比較される。
 
             - slug: "flow-cut-and-matching"
               name: "流量、カット、マッチング"
@@ -541,6 +2228,40 @@ domain:
                   promptHint: "最大流問題がどのような業務問題に写像できるか示す。"
                   aliases:
                     - "maximum flow"
+                  search:
+                    keywords:
+                      - 最大流
+                      - maximum flow
+                      - max flow
+                      - flow network
+                      - capacity
+                      - augmenting path
+                      - residual graph
+                      - source sink
+                    commonSignals:
+                      - 容量制約付きの流れを最大化する
+                      - 残余グラフを更新する
+                      - source から sink へ流す
+                      - 最大流最小カット定理
+                    antiSignals:
+                      - データフロー図だけの場合
+                      - 最大トラフィック量の観測だけで最適化しない場合
+                      - ETLのflowやワークフローだけの場合
+                    relatedNames:
+                      - name: Ford-Fulkerson
+                        kind: method
+                        relevance: 増加路を使う最大流アルゴリズムの基本形として頻出する。
+                      - name: Edmonds-Karp
+                        kind: method
+                        relevance: BFSで増加路を選ぶ最大流の代表的な多項式時間アルゴリズムである。
+                      - name: Dinic's algorithm
+                        kind: method
+                        relevance: 実装されることが多い高速な最大流アルゴリズムとして関連する。
+                      - name: OR-Tools
+                        kind: tool
+                        relevance: ネットワークフローや割当最適化の実務ツールとして関連する。
+                        officialUrl: https://developers.google.com/optimization
+
                 - slug: "min-cut"
                   name: "最小カット"
                   summary: "始点と終点を分離する辺容量和を最小化する問題。"
@@ -555,6 +2276,40 @@ domain:
                   promptHint: "二部マッチングを現実の割当問題に例える。"
                   aliases:
                     - "matching"
+                  search:
+                    keywords:
+                      - 二部マッチング
+                      - bipartite matching
+                      - maximum matching
+                      - assignment problem
+                      - Hungarian algorithm
+                      - Hopcroft-Karp
+                      - augmenting path
+                      - 二部グラフ
+                    commonSignals:
+                      - 人とタスクを重複なく割り当てる
+                      - 二部グラフで最大マッチングを求める
+                      - augmenting path を探す
+                      - assignment problem として定式化する
+                    antiSignals:
+                      - 文字列マッチングや正規表現の照合だけの場合
+                      - 推薦マッチングのビジネス説明だけでグラフがない場合
+                      - 一般グラフマッチングが主題の場合
+                    relatedNames:
+                      - name: Hopcroft-Karp algorithm
+                        kind: method
+                        relevance: 二部グラフの最大マッチングを高速に求める代表手法である。
+                      - name: Hungarian algorithm
+                        kind: method
+                        relevance: 重み付き割当問題の定番アルゴリズムとして関連する。
+                      - name: NetworkX bipartite
+                        kind: library
+                        relevance: Pythonで二部グラフとマッチングを扱う際に出やすい。
+                        officialUrl: https://networkx.org/documentation/stable/reference/algorithms/bipartite.html
+                      - name: OR-Tools
+                        kind: tool
+                        relevance: 業務上の割当最適化問題を実装するツールとして関連する。
+                        officialUrl: https://developers.google.com/optimization
 
     - slug: "complexity-approximation-randomized-streaming"
       name: "複雑性、近似、乱択・ストリーミング"
@@ -584,7 +2339,104 @@ domain:
                   promptHint: "NP 完全と NP hard の違いを説明する。"
                   aliases:
                     - "NPC"
+                  search:
+                    keywords:
+                      - NP完全
+                      - NP-complete
+                      - NPC
+                      - NP completeness
+                      - SAT
+                      - 3-SAT
+                      - polynomial reduction
+                      - decision problem
+                    commonSignals:
+                      - NPに属し、NP-hardでもある
+                      - 多項式時間還元で示す
+                      - SATや3-SATから還元する
+                      - P=NPなら多項式時間で解ける
+                    antiSignals:
+                      - NPだけ、NP-hardだけを説明している場合
+                      - 完全性という一般語だけの場合
+                      - 最適化版で決定問題として定式化していない場合
+                    relatedNames:
+                      - name: SAT
+                        kind: method
+                        relevance: NP完全性の中心例としてほぼ必ず登場する。
+                      - name: 3-SAT
+                        kind: method
+                        relevance: NP完全性証明の還元元として頻出する。
+                      - name: CLIQUE
+                        kind: method
+                        relevance: Karpの古典的NP完全問題の一つとして関連する。
+                      - name: Cook-Levin theorem
+                        kind: method
+                        relevance: SATのNP完全性を示す基礎定理として関連が強い。
+
                 - slug: "np-hard"
+
+                  search:
+
+                    keywords:
+
+                      - NP困難
+
+                      - NP-hard
+
+                      - NP hardness
+
+                      - computational hardness
+
+                      - intractable
+
+                      - optimization problem
+
+                      - 多項式時間還元
+
+                      - 厳密解困難
+
+                    commonSignals:
+
+                      - 厳密最適化が計算的に難しい
+
+                      - 既知のNP完全問題から還元する
+
+                      - 近似やヒューリスティックを検討する
+
+                      - 指数時間になる可能性が高い
+
+                    antiSignals:
+
+                      - NP-completeとの区別が主題でない場合
+
+                      - 単に難しいという形容だけの場合
+
+                      - 統計のノンパラメトリック NP の略称の場合
+
+                    relatedNames:
+
+                      - name: Traveling Salesman Problem
+
+                        kind: method
+
+                        relevance: NP困難な最適化問題の代表例として頻出する。
+
+                      - name: Knapsack problem
+
+                        kind: method
+
+                        relevance: 厳密解・擬多項式・近似の違いを学ぶ定番問題である。
+
+                      - name: Set cover
+
+                        kind: method
+
+                        relevance: 貪欲近似とNP困難性を同時に学ぶ代表問題である。
+
+                      - name: Vehicle Routing Problem
+
+                        kind: method
+
+                        relevance: 実務の配送最適化でNP困難性が現れやすい。
                   name: "NP 困難"
                   summary: "NP の全問題以上に難しいと考えられる問題群。"
                   whyLearn: "最適化問題や近似問題の難しさを議論する起点になる。"
@@ -604,6 +2456,39 @@ domain:
                   promptHint: "近似比があるとレビューで何が説明しやすくなるか述べる。"
                   aliases:
                     - "performance ratio"
+                  search:
+                    keywords:
+                      - 近似比
+                      - approximation ratio
+                      - performance ratio
+                      - approximation guarantee
+                      - factor approximation
+                      - 近似保証
+                      - 最適解との比
+                      - worst-case guarantee
+                    commonSignals:
+                      - 最適解の何倍以内かを保証する
+                      - 2-approximation のように書く
+                      - ヒューリスティックではなく保証を持つ
+                      - 最悪ケースでの解品質を評価する
+                    antiSignals:
+                      - モデル予測の近似誤差だけの場合
+                      - A/Bテストの比率やCVRだけの場合
+                      - 保証のない経験的スコアだけの場合
+                    relatedNames:
+                      - name: Set cover greedy approximation
+                        kind: method
+                        relevance: 近似比を持つ貪欲アルゴリズムの代表例として出やすい。
+                      - name: Vertex cover 2-approximation
+                        kind: method
+                        relevance: 定数近似比を学ぶ典型的な問題である。
+                      - name: Christofides algorithm
+                        kind: method
+                        relevance: TSP近似アルゴリズムの代表例として近似比文脈に出る。
+                      - name: PTAS
+                        kind: method
+                        relevance: 任意精度の近似保証を議論するときに近似比と一緒に出る。
+
                 - slug: "ptas"
                   name: "PTAS"
                   summary: "任意の精度 ε に対して高精度近似を返す多項式時間近似方式。"
@@ -635,7 +2520,104 @@ domain:
                   promptHint: "乱択アルゴリズムを使う利点と注意点を説明する。"
                   aliases:
                     - "probabilistic algorithm"
+                  search:
+                    keywords:
+                      - 乱択アルゴリズム
+                      - randomized algorithm
+                      - probabilistic algorithm
+                      - Monte Carlo algorithm
+                      - Las Vegas algorithm
+                      - expected time
+                      - high probability
+                      - randomized quicksort
+                    commonSignals:
+                      - 乱数を使って期待計算量を改善する
+                      - 高確率で正しい
+                      - Monte Carlo と Las Vegas を区別する
+                      - ランダムサンプリングを使う
+                    antiSignals:
+                      - 機械学習の乱数シードだけの場合
+                      - 暗号乱数生成だけが主題の場合
+                      - A/Bテストのランダム割付だけの場合
+                    relatedNames:
+                      - name: Monte Carlo algorithm
+                        kind: method
+                        relevance: 誤答確率を許す乱択アルゴリズムの分類として頻出する。
+                      - name: Las Vegas algorithm
+                        kind: method
+                        relevance: 常に正しいが実行時間が乱数に依存する分類として関連する。
+                      - name: Reservoir sampling
+                        kind: method
+                        relevance: ストリームからランダムサンプルを取る実務的な乱択手法である。
+                      - name: Randomized Quicksort
+                        kind: method
+                        relevance: ピボット選択の乱択化で平均性能を安定させる例として出やすい。
+
                 - slug: "online-algorithm"
+
+                  search:
+
+                    keywords:
+
+                      - オンラインアルゴリズム
+
+                      - online algorithm
+
+                      - online computation
+
+                      - 逐次到着
+
+                      - unknown future
+
+                      - paging problem
+
+                      - ski rental
+
+                      - online scheduling
+
+                    commonSignals:
+
+                      - 将来の入力を知らずに決定する
+
+                      - リクエストが一つずつ到着する
+
+                      - offline optimum と比較する
+
+                      - キャッシュ置換やスケジューリング
+
+                    antiSignals:
+
+                      - Webサービスがオンラインであるという意味だけの場合
+
+                      - オンライン学習だけで競合分析が出ない場合
+
+                      - 全入力が事前に分かるバッチ処理の場合
+
+                    relatedNames:
+
+                      - name: Paging problem
+
+                        kind: method
+
+                        relevance: オンラインアルゴリズムと競合比を学ぶ代表問題である。
+
+                      - name: Ski rental problem
+
+                        kind: method
+
+                        relevance: 将来が不明な購入・レンタル判断の定番例として出やすい。
+
+                      - name: LRU
+
+                        kind: method
+
+                        relevance: ページ置換やキャッシュで使われる代表的なオンライン戦略である。
+
+                      - name: Online scheduling
+
+                        kind: method
+
+                        relevance: ジョブが逐次到着するスケジューリング問題として関連する。
                   name: "オンラインアルゴリズム"
                   summary: "入力が逐次到着し、将来を知らずに意思決定するアルゴリズム。"
                   whyLearn: "キャッシュ、スケジューリング、配信制御の理解に役立つ。"
@@ -649,6 +2631,38 @@ domain:
                   promptHint: "競合比がオンラインアルゴリズムの評価で重要な理由を説明する。"
                   aliases:
                     - "competitive analysis"
+                  search:
+                    keywords:
+                      - 競合比
+                      - competitive ratio
+                      - competitive analysis
+                      - online algorithm analysis
+                      - offline optimum
+                      - worst-case ratio
+                      - paging
+                      - ski rental
+                    commonSignals:
+                      - オンライン解をオフライン最適解と比べる
+                      - 最悪ケースで何倍以内かを評価する
+                      - competitive analysis と書かれる
+                      - キャッシュやページング問題
+                    antiSignals:
+                      - 競合企業との比較や市場シェアの話の場合
+                      - 近似比だけでオンライン入力がない場合
+                      - スポーツの勝率や競争率の話の場合
+                    relatedNames:
+                      - name: LRU
+                        kind: method
+                        relevance: キャッシュ置換の競合分析で代表的に扱われる戦略である。
+                      - name: Paging problem
+                        kind: method
+                        relevance: 競合比の定義と評価を学ぶ定番問題である。
+                      - name: Ski rental problem
+                        kind: method
+                        relevance: 簡潔なオンライン意思決定例として競合比を説明しやすい。
+                      - name: k-server problem
+                        kind: method
+                        relevance: オンラインアルゴリズム研究の代表的な問題として関連する。
 
             - slug: "probabilistic-summaries"
               name: "確率的要約構造"
@@ -662,7 +2676,112 @@ domain:
                   promptHint: "Bloom Filter の偽陽性と偽陰性の性質を説明する。"
                   aliases:
                     - "Bloom filter"
+                  search:
+                    keywords:
+                      - Bloom Filter
+                      - ブルームフィルタ
+                      - probabilistic set
+                      - approximate membership
+                      - false positive
+                      - no false negative
+                      - bit array
+                    commonSignals:
+                      - 偽陽性はあるが偽陰性はない
+                      - 集合に含まれるかを省メモリで判定する
+                      - 複数のハッシュ関数とビット配列
+                      - キャッシュミスやディスクアクセスを減らす
+                    antiSignals:
+                      - Bloomという人名や花の開花の話の場合
+                      - 正確な集合保持が必要なHashSetの話の場合
+                      - 機械学習のBloomモデルなど別固有名詞の場合
+                    relatedNames:
+                      - name: Guava BloomFilter
+                        kind: library
+                        relevance: JavaでBloom Filterを実装利用する際によく参照される。
+                        officialUrl: https://guava.dev/releases/snapshot-jre/api/docs/com/google/common/hash/BloomFilter.html
+                      - name: RedisBloom
+                        kind: tool
+                        relevance: Redis上でBloom Filterを使う実務的なモジュールとして出やすい。
+                        officialUrl: https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/
+                      - name: Cuckoo filter
+                        kind: method
+                        relevance: 削除可能な近似メンバーシップ構造として比較されやすい。
+                      - name: RocksDB Bloom filter
+                        kind: tool
+                        relevance: LSM treeで不要なディスク読み取りを避ける用途として関連する。
+                        officialUrl: https://github.com/facebook/rocksdb/wiki/RocksDB-Bloom-Filter
+
                 - slug: "count-min-sketch"
+
+                  search:
+
+                    keywords:
+
+                      - Count-Min Sketch
+
+                      - count min sketch
+
+                      - CMS
+
+                      - frequency estimation
+
+                      - heavy hitters
+
+                      - data stream summary
+
+                      - approximate count
+
+                      - 頻度推定
+
+                    commonSignals:
+
+                      - 頻度を近似的に数える
+
+                      - heavy hitter を検出する
+
+                      - 幅と深さを持つカウンタ配列
+
+                      - 過大推定の性質がある
+
+                    antiSignals:
+
+                      - スケッチ・図面作成ツールの話の場合
+
+                      - distinct count が主題でHyperLogLogが適切な場合
+
+                      - 正確なカウンタMapだけを使う場合
+
+                    relatedNames:
+
+                      - name: Twitter Algebird
+
+                        kind: library
+
+                        relevance: ストリーム集計の代数的データ構造としてCount-Min Sketchが出やすい。
+
+                        officialUrl: https://twitter.github.io/algebird/
+
+                      - name: RedisBloom CMS
+
+                        kind: tool
+
+                        relevance: RedisでCount-Min Sketchを使う実務的な機能名として関連する。
+
+                        officialUrl: https://redis.io/docs/latest/develop/data-types/probabilistic/count-min-sketch/
+
+                      - name: Stream-lib
+
+                        kind: library
+
+                        relevance: Java系のストリーム要約構造実装として学習候補になりやすい。
+
+                        officialUrl: https://github.com/addthis/stream-lib
+
+                      - name: Heavy hitters
+
+                        kind: method
+
+                        relevance: 頻出項目検出の代表課題としてCount-Min Sketchと強く関連する。
                   name: "Count-Min Sketch"
                   summary: "データストリーム中の頻度を小メモリで近似推定する要約構造。"
                   whyLearn: "頻出項目監視や流量集計の基礎になる。"
@@ -676,6 +2795,46 @@ domain:
                   promptHint: "HyperLogLog が distinct counting に向く理由を説明する。"
                   aliases:
                     - "HLL"
+                  search:
+                    keywords:
+                      - HyperLogLog
+                      - HLL
+                      - cardinality estimation
+                      - distinct count
+                      - approx_count_distinct
+                      - probabilistic counting
+                      - 基数推定
+                      - ユニーク数推定
+                    commonSignals:
+                      - ユニークユーザー数を省メモリで推定する
+                      - distinct count を近似する
+                      - HLL register を使う
+                      - approx_count_distinct が出る
+                    antiSignals:
+                      - 頻度推定が主題でCount-Min Sketchが適切な場合
+                      - ログログプロットや対数関数の話の場合
+                      - 正確なCOUNT DISTINCTを小規模データで使うだけの場合
+                    relatedNames:
+                      - name: Redis HyperLogLog
+                        kind: tool
+                        relevance: PFADD/PFCOUNTでHyperLogLogを使う代表的な実務例である。
+                        officialUrl: https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/
+                      - name: BigQuery APPROX_COUNT_DISTINCT
+                        kind: service
+                        relevance: 大規模分析で近似distinct countを使う実務文脈として関連する。
+                        officialUrl: https://cloud.google.com/bigquery/docs/reference/standard-sql/approximate_aggregate_functions
+                      - name: Presto approx_distinct
+                        kind: tool
+                        relevance: SQL分析エンジンでHLL系近似集計として出やすい。
+                        officialUrl: https://prestodb.io/docs/current/functions/aggregate.html
+                      - name: Apache DataSketches
+                        kind: library
+                        relevance: 確率的スケッチ構造の実装群としてHLL学習の周辺に出る。
+                        officialUrl: https://datasketches.apache.org/
+                      - name: PostgreSQL hll extension
+                        kind: tool
+                        relevance: PostgreSQLでHLLによる近似ユニーク数集計を行う実装例である。
+                        officialUrl: https://github.com/citusdata/postgresql-hll
 
 edges:
   - from: "binary-search-tree"

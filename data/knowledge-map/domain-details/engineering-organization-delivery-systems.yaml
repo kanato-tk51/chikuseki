@@ -26,7 +26,113 @@ domain:
                   aliases:
                     - stream-aligned team
                     - value stream team
+                  search:
+                    keywords:
+                      - stream-aligned team
+                      - value stream team
+                      - ストリームアラインドチーム
+                      - 価値流チーム
+                      - product team ownership
+                      - end-to-end ownership
+                      - cross-functional team
+                      - Team Topologies
+                      - fast flow
+                    commonSignals:
+                      - 顧客価値に沿ってチームを分ける
+                      - end-to-end で機能を届ける
+                      - チームが価値流を所有する
+                      - 職能別チームからプロダクトチームへ移行する
+                    antiSignals:
+                      - 単にアジャイルチームや開発チームと呼んでいるだけ
+                      - 組織図上の部署名だけで価値流が示されていない
+                      - ストリーム処理やデータストリームの話
+                    relatedNames:
+                      - name: Team Topologies
+                        kind: method
+                        relevance: ストリームに沿ったチーム設計を定義する代表的な組織設計手法。
+                        officialUrl: https://teamtopologies.com/
+                      - name: Value Stream Mapping
+                        kind: method
+                        relevance: 価値の流れを可視化し、チーム境界を検討するときに一緒に使われやすい。
+                      - name: Domain-Driven Design
+                        kind: method
+                        relevance: 業務能力や境界づけられたコンテキストに沿ってチームを切る判断に関係する。
+
                 - slug: platform-team
+
+                  search:
+
+                    keywords:
+
+                      - platform team
+
+                      - internal platform team
+
+                      - プラットフォームチーム
+
+                      - platform engineering
+
+                      - developer platform
+
+                      - internal developer platform
+
+                      - IDP
+
+                      - shared services team
+
+                      - enablement platform
+
+                    commonSignals:
+
+                      - 共通基盤を社内プロダクトとして提供する
+
+                      - 開発者向けセルフサービスを整備する
+
+                      - stream-aligned team の認知負荷を下げる
+
+                      - paved road や golden path を提供する
+
+                    antiSignals:
+
+                      - 単なるインフラ運用チームの説明だけ
+
+                      - 外部クラウドサービスの製品紹介だけ
+
+                      - プラットフォームビジネスやマーケットプレイスの話
+
+                    relatedNames:
+
+                      - name: CNCF Platform Engineering Maturity Model
+
+                        kind: standard
+
+                        relevance: platform engineering の成熟度や組織運営を整理する参照モデル。
+
+                        officialUrl: https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/
+
+                      - name: Backstage
+
+                        kind: platform
+
+                        relevance: プラットフォームチームが提供する developer portal の代表的な実装。
+
+                        officialUrl: https://backstage.io/
+
+                      - name: Humanitec
+
+                        kind: platform
+
+                        relevance: Internal Developer Platform の具体例として実務資料でよく言及される。
+
+                        officialUrl: https://humanitec.com/
+
+                      - name: Kratix
+
+                        kind: platform
+
+                        relevance: プラットフォーム機能を Kubernetes 上で提供する platform engineering ツール。
+
+                        officialUrl: https://kratix.io/
                   name: プラットフォームチーム
                   summary: 他チームの開発を加速する共通基盤や内部サービスを提供するチーム。
                   whyLearn: 共通化と自律性のバランスを取る組織設計を考える起点になる。
@@ -42,7 +148,99 @@ domain:
                   aliases:
                     - enabling team
                     - capability team
+                  search:
+                    keywords:
+                      - enabling team
+                      - イネイブリングチーム
+                      - enablement team
+                      - capability building
+                      - capability transfer
+                      - coaching team
+                      - temporary support
+                      - adoption support
+                      - team enablement
+                    commonSignals:
+                      - 支援後にチームが自走できるようにする
+                      - 一時的に伴走して能力移転する
+                      - 新しい技術やプラクティスの導入を支援する
+                      - 運用代行ではなく学習支援をする
+                    antiSignals:
+                      - 恒久的な作業代行チームの話
+                      - ヘルプデスクや問い合わせ窓口だけの説明
+                      - enable という英単語が機能フラグの有効化を指している
+                    relatedNames:
+                      - name: Team Topologies
+                        kind: method
+                        relevance: enabling team を基本チームタイプの一つとして定義する主要手法。
+                        officialUrl: https://teamtopologies.com/
+                      - name: Communities of Practice
+                        kind: method
+                        relevance: 能力移転や横断学習の継続的な受け皿として併用されやすい。
+                      - name: Agile Coaching
+                        kind: method
+                        relevance: チームの自律化を支援する実践として enabling team と関連する。
+
                 - slug: complicated-subsystem-team
+
+                  search:
+
+                    keywords:
+
+                      - complicated subsystem team
+
+                      - 複雑サブシステムチーム
+
+                      - specialist subsystem team
+
+                      - specialized team
+
+                      - complex subsystem
+
+                      - expert team
+
+                      - algorithm team
+
+                      - high expertise subsystem
+
+                    commonSignals:
+
+                      - 高度な専門知識が必要なサブシステム
+
+                      - 他チームが日常的に理解するには重すぎる
+
+                      - 画像処理、検索、最適化、決済基盤などの専門領域を独立チームが持つ
+
+                      - stream-aligned team から複雑性を隔離する
+
+                    antiSignals:
+
+                      - 単に規模が大きいだけのコンポーネント
+
+                      - 汎用的な共通基盤を提供する platform team の話
+
+                      - 外注先やベンダーチームを指しているだけ
+
+                    relatedNames:
+
+                      - name: Team Topologies
+
+                        kind: method
+
+                        relevance: 複雑サブシステムチームを基本チームタイプとして扱う主要手法。
+
+                        officialUrl: https://teamtopologies.com/
+
+                      - name: Domain-Driven Design
+
+                        kind: method
+
+                        relevance: 複雑な専門領域を境界づける判断で関連しやすい。
+
+                      - name: Bounded Context
+
+                        kind: pattern
+
+                        relevance: 専門性の高いサブシステムを独立した責務境界として扱う際に関係する。
                   name: 複雑サブシステムチーム
                   summary: 高度に専門的で、他チームが日常的に抱えるには重すぎる領域を担当するチーム。
                   whyLearn: 難所をどこで隔離し、どこで抽象化するかの判断に使える。
@@ -71,6 +269,38 @@ domain:
                   aliases:
                     - X-as-a-Service
                     - service interaction
+                  search:
+                    keywords:
+                      - X-as-a-Service
+                      - XaaS
+                      - service interaction
+                      - as a service
+                      - サービス型相互作用
+                      - self-service interface
+                      - productized capability
+                      - API contract
+                      - service contract
+                    commonSignals:
+                      - 問い合わせなしで利用できるサービス境界
+                      - 利用者向けの契約やドキュメントがある
+                      - チームが能力をサービスとして提供する
+                      - サポートモデルや利用入口が定義されている
+                    antiSignals:
+                      - SaaS や PaaS など外部販売サービスの市場分類だけ
+                      - 単に API があるだけでチーム間契約がない
+                      - クラウド料金プランの話
+                    relatedNames:
+                      - name: Team Topologies
+                        kind: method
+                        relevance: チーム間相互作用モードとして X-as-a-Service を扱う代表的手法。
+                        officialUrl: https://teamtopologies.com/
+                      - name: Platform as a Product
+                        kind: method
+                        relevance: X-as-a-Service 型の提供を利用者向けプロダクトとして設計する考え方。
+                      - name: Service Level Agreement
+                        kind: standard
+                        relevance: サービス提供時の期待値や責任境界を定義するときに関連する。
+
                 - slug: facilitating-interaction
                   name: ファシリテーティング相互作用
                   summary: あるチームが別チームの能力獲得を促すために伴走する相互作用。
@@ -96,7 +326,101 @@ domain:
                   aliases:
                     - value stream
                     - flow of value
+                  search:
+                    keywords:
+                      - value stream
+                      - バリューストリーム
+                      - 価値流
+                      - value stream mapping
+                      - VSM
+                      - flow of value
+                      - request to value
+                      - concept to cash
+                      - lead time analysis
+                    commonSignals:
+                      - 要求から価値提供までの流れを可視化する
+                      - 待ち時間と処理時間を分ける
+                      - 部門横断の流れを改善する
+                      - concept to cash や idea to production を測る
+                    antiSignals:
+                      - 企業価値や株主価値の一般論
+                      - データストリーム処理の話
+                      - 単なるロードマップや機能一覧
+                    relatedNames:
+                      - name: Value Stream Mapping
+                        kind: method
+                        relevance: 価値流の工程、待ち、ボトルネックを可視化する代表的手法。
+                      - name: Lean
+                        kind: method
+                        relevance: 価値流とムダの削減を扱う基礎的な考え方。
+                      - name: Kanban
+                        kind: method
+                        relevance: 価値流上の WIP やフローを可視化・制御する実務手法。
+                        officialUrl: https://kanban.university/
+
                 - slug: fracture-plane
+
+                  search:
+
+                    keywords:
+
+                      - fracture plane
+
+                      - フラクチャープレーン
+
+                      - split boundary
+
+                      - team boundary
+
+                      - architecture boundary
+
+                      - domain boundary
+
+                      - bounded context split
+
+                      - decomposition heuristic
+
+                      - service split
+
+                    commonSignals:
+
+                      - どの軸でチームやサービスを分割するか
+
+                      - 顧客、業務能力、変更頻度、リスクで境界を検討する
+
+                      - モノリス分割やチーム再編の切れ目を探す
+
+                      - stream-aligned team の境界を決める
+
+                    antiSignals:
+
+                      - 地質学や材料工学の破断面の話
+
+                      - 単なる組織図の階層分割
+
+                      - フロントエンドとバックエンドの機械的分割だけ
+
+                    relatedNames:
+
+                      - name: Team Topologies
+
+                        kind: method
+
+                        relevance: チームやシステムの自然な分割軸として fracture plane を扱う。
+
+                        officialUrl: https://teamtopologies.com/
+
+                      - name: Domain-Driven Design
+
+                        kind: method
+
+                        relevance: 業務能力や bounded context に基づく境界設計で関連する。
+
+                      - name: Bounded Context
+
+                        kind: pattern
+
+                        relevance: ソフトウェアとチームの境界を切る代表的な設計概念。
                   name: フラクチャープレーン
                   summary: チームやシステムを分割するときに使う自然な切れ目。
                   whyLearn: 地理や職能で雑に割るのではなく、意味のある境界で分けられる。
@@ -112,6 +436,37 @@ domain:
                   aliases:
                     - cognitive load
                     - team cognitive load
+                  search:
+                    keywords:
+                      - cognitive load
+                      - team cognitive load
+                      - 認知負荷
+                      - extraneous cognitive load
+                      - intrinsic cognitive load
+                      - context overload
+                      - mental load
+                      - knowledge burden
+                      - operational burden
+                    commonSignals:
+                      - チームが抱える文脈が多すぎる
+                      - 開発、運用、ドメイン知識を同時に持ちすぎている
+                      - 認知負荷を下げるために platform を作る
+                      - 新人が立ち上がるまで時間がかかる
+                    antiSignals:
+                      - 個人の集中力や勉強法だけの話
+                      - CPU やメモリ使用率などシステム負荷の話
+                      - 単なる業務量や残業時間だけ
+                    relatedNames:
+                      - name: Team Topologies
+                        kind: method
+                        relevance: チーム設計で認知負荷を中心概念として扱う代表的手法。
+                        officialUrl: https://teamtopologies.com/
+                      - name: Cognitive Load Theory
+                        kind: method
+                        relevance: 認知負荷を理解する心理学・教育工学上の基礎理論。
+                      - name: Platform Engineering
+                        kind: method
+                        relevance: stream-aligned team の認知負荷を下げる実践として関連する。
             - slug: team-interface-design
               name: チームインターフェース設計
               summary: チームへの依頼のされ方、責務、接点を可視化する。
@@ -125,7 +480,107 @@ domain:
                   aliases:
                     - Team API
                     - team interface
+                  search:
+                    keywords:
+                      - Team API
+                      - team interface
+                      - チームAPI
+                      - チームインターフェース
+                      - team contract
+                      - interaction contract
+                      - operating agreement
+                      - team boundary documentation
+                      - service interface
+                    commonSignals:
+                      - チームのミッション、提供物、窓口を明文化する
+                      - 他チームがどう依頼すればよいかを書く
+                      - チーム間の期待応答やサポート範囲を定義する
+                      - interaction mode を明確にする
+                    antiSignals:
+                      - REST API や GraphQL API など技術APIだけの説明
+                      - 個人のプロフィールや連絡先一覧だけ
+                      - API Gateway や API 管理製品の話だけ
+                    relatedNames:
+                      - name: Team API Template
+                        kind: tool
+                        relevance: Team Topologies の考え方に基づく Team API 記述テンプレート。
+                        officialUrl: https://github.com/TeamTopologies/Team-API-template
+                      - name: Team Topologies
+                        kind: method
+                        relevance: Team API をチーム間相互作用の明確化手段として提案する。
+                        officialUrl: https://teamtopologies.com/
+                      - name: Backstage
+                        kind: platform
+                        relevance: チームやサービスの所有権・接点情報を見える化するポータルとして関連する。
+                        officialUrl: https://backstage.io/
+
                 - slug: service-ownership
+
+                  search:
+
+                    keywords:
+
+                      - service ownership
+
+                      - サービスオーナーシップ
+
+                      - service owner
+
+                      - component owner
+
+                      - code ownership
+
+                      - ownership model
+
+                      - ownership metadata
+
+                      - responsible team
+
+                      - on-call owner
+
+                    commonSignals:
+
+                      - このサービスの責任チームは誰か
+
+                      - owner が不明で問い合わせ先が分からない
+
+                      - コンポーネントごとに担当チームを設定する
+
+                      - 障害対応や変更判断の責任を明確にする
+
+                    antiSignals:
+
+                      - プロダクトオーナーの一般論だけ
+
+                      - 法的所有権や知的財産の話
+
+                      - ファイル所有者やUNIX権限の話だけ
+
+                    relatedNames:
+
+                      - name: Backstage Software Catalog
+
+                        kind: platform
+
+                        relevance: サービスの所有者やメタデータを管理する代表的なソフトウェアカタログ。
+
+                        officialUrl: https://backstage.io/docs/features/software-catalog/
+
+                      - name: CODEOWNERS
+
+                        kind: tool
+
+                        relevance: リポジトリ内のコード所有者を明示しレビュー責任に接続する仕組み。
+
+                        officialUrl: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+                      - name: PagerDuty
+
+                        kind: service
+
+                        relevance: サービス所有者やオンコール責任と結びつくインシデント管理サービス。
+
+                        officialUrl: https://www.pagerduty.com/
                   name: サービスオーナーシップ
                   summary: サービスやコンポーネントに対する最終責任を持つ主体の明確化。
                   whyLearn: 障害や改善の責任が曖昧なままになるのを防ぐ。
@@ -141,6 +596,38 @@ domain:
                   aliases:
                     - engagement model
                     - operating agreement
+                  search:
+                    keywords:
+                      - engagement model
+                      - エンゲージメントモデル
+                      - operating agreement
+                      - support model
+                      - intake process
+                      - request model
+                      - service request
+                      - team intake
+                      - collaboration agreement
+                    commonSignals:
+                      - 依頼窓口、優先順位、期待応答を決める
+                      - 割り込み依頼を制御する
+                      - 他チームからの支援リクエストを管理する
+                      - 例外対応やエスカレーション経路を定義する
+                    antiSignals:
+                      - 顧客エンゲージメントやマーケティング施策の話
+                      - SNS の engagement rate
+                      - 契約締結や営業プロセスだけの話
+                    relatedNames:
+                      - name: Service Level Agreement
+                        kind: standard
+                        relevance: 依頼対応の期待値や優先順位を定義する際に参照される。
+                      - name: Jira Service Management
+                        kind: service
+                        relevance: 依頼受付やサポートモデルを実装するツールとして使われやすい。
+                        officialUrl: https://www.atlassian.com/software/jira/service-management
+                      - name: Backstage
+                        kind: platform
+                        relevance: チームやサービスへの依頼入口を開発者ポータルに統合する際に関連する。
+                        officialUrl: https://backstage.io/
 
     - slug: delivery-flow-and-release-system
       name: デリバリーフローとリリースシステム
@@ -164,7 +651,102 @@ domain:
                   aliases:
                     - WIP limit
                     - work in progress limit
+                  search:
+                    keywords:
+                      - WIP limit
+                      - work in progress limit
+                      - WIP 制限
+                      - 仕掛かり制限
+                      - Kanban WIP
+                      - work item limit
+                      - flow control
+                      - pull system
+                      - Little's Law
+                    commonSignals:
+                      - 同時着手が多すぎて完了しない
+                      - レビュー待ちやテスト待ちに上限を置く
+                      - カンバン列に WIP 上限を設定する
+                      - pull 型で仕事を流す
+                    antiSignals:
+                      - WIP が会計上の仕掛品を意味しているだけ
+                      - 個人のタスク管理術だけ
+                      - 作業量を増やすための稼働率管理
+                    relatedNames:
+                      - name: Kanban
+                        kind: method
+                        relevance: WIP 制限を中心的なフロー制御として使う代表的手法。
+                        officialUrl: https://kanban.university/
+                      - name: Little's Law
+                        kind: method
+                        relevance: WIP、スループット、リードタイムの関係を説明する法則。
+                      - name: Jira
+                        kind: tool
+                        relevance: カンバンボード上で WIP 制限を設定・可視化する実務ツール。
+                        officialUrl: https://www.atlassian.com/software/jira
+
                 - slug: batch-size
+
+                  search:
+
+                    keywords:
+
+                      - batch size
+
+                      - バッチサイズ
+
+                      - small batch
+
+                      - change size
+
+                      - release size
+
+                      - small changes
+
+                      - one piece flow
+
+                      - pull request size
+
+                      - deployment batch
+
+                    commonSignals:
+
+                      - PR が大きすぎてレビューできない
+
+                      - 大きなリリースを小さく分割する
+
+                      - 変更サイズを小さくして失敗影響を下げる
+
+                      - 一括投入ではなく小さく流す
+
+                    antiSignals:
+
+                      - 機械学習のミニバッチサイズ
+
+                      - SQL やETLのバッチ処理件数だけ
+
+                      - 夜間バッチジョブの運用話だけ
+
+                    relatedNames:
+
+                      - name: Lean
+
+                        kind: method
+
+                        relevance: 小さなバッチとフロー効率を重視する基礎的な改善思想。
+
+                      - name: Continuous Delivery
+
+                        kind: method
+
+                        relevance: 小さな変更を頻繁に安全に流す実践として batch size と関係する。
+
+                      - name: Trunk-Based Development
+
+                        kind: method
+
+                        relevance: 短命な変更を小さく統合する開発スタイルとして関連する。
+
+                        officialUrl: https://trunkbaseddevelopment.com/
                   name: バッチサイズ
                   summary: 一回でまとめて扱う変更や作業単位の大きさ。
                   whyLearn: 変更を小さくするほどリスクと待ち時間を下げやすい。
@@ -226,7 +808,119 @@ domain:
                   aliases:
                     - CI
                     - continuous integration
+                  search:
+                    keywords:
+                      - continuous integration
+                      - CI
+                      - 継続的インテグレーション
+                      - build automation
+                      - automated test
+                      - mainline integration
+                      - CI server
+                      - merge validation
+                      - integration build
+                    commonSignals:
+                      - push や pull request で自動テストが走る
+                      - main branch の健全性を保つ
+                      - ビルド、テスト、静的解析を自動化する
+                      - 統合の遅れやマージ衝突を減らす
+                    antiSignals:
+                      - CI が corporate identity を意味している
+                      - 単なる定期バッチ実行
+                      - 手動デプロイ手順だけの話
+                    relatedNames:
+                      - name: GitHub Actions
+                        kind: service
+                        relevance: CI パイプラインを実装する代表的なホステッド自動化サービス。
+                        officialUrl: https://github.com/features/actions
+                      - name: Jenkins
+                        kind: tool
+                        relevance: CI/CD の代表的な自動化サーバー。
+                        officialUrl: https://www.jenkins.io/
+                      - name: CircleCI
+                        kind: service
+                        relevance: CI ワークフローを構築する広く使われるクラウドサービス。
+                        officialUrl: https://circleci.com/
+                      - name: GitLab CI/CD
+                        kind: service
+                        relevance: GitLab に統合された CI/CD 実装として実務でよく使われる。
+                        officialUrl: https://docs.gitlab.com/ci/
+                      - name: Trunk-Based Development
+                        kind: method
+                        relevance: 頻繁な mainline 統合を支える分岐戦略として併用される。
+                        officialUrl: https://trunkbaseddevelopment.com/
+
                 - slug: trunk-based-development
+
+                  search:
+
+                    keywords:
+
+                      - trunk-based development
+
+                      - TBD
+
+                      - トランクベース開発
+
+                      - mainline development
+
+                      - short-lived branches
+
+                      - release from trunk
+
+                      - branch by abstraction
+
+                      - long-lived branch
+
+                      - GitFlow comparison
+
+                    commonSignals:
+
+                      - 長期ブランチを避ける
+
+                      - main または trunk に頻繁に統合する
+
+                      - GitFlow から trunk-based へ移行する
+
+                      - branch by abstraction や feature flag を使う
+
+                    antiSignals:
+
+                      - 木構造データの trunk という意味だけ
+
+                      - Git の基本的なブランチ操作説明だけ
+
+                      - リリースブランチを長期間運用する話
+
+                    relatedNames:
+
+                      - name: Trunk-Based Development
+
+                        kind: method
+
+                        relevance: トランクベース開発の実践やパターンを整理する代表的リファレンス。
+
+                        officialUrl: https://trunkbaseddevelopment.com/
+
+                      - name: Git
+
+                        kind: tool
+
+                        relevance: ブランチ戦略を実装する分散バージョン管理システム。
+
+                        officialUrl: https://git-scm.com/
+
+                      - name: GitFlow
+
+                        kind: method
+
+                        relevance: 長めの分岐を使う代表的ブランチ戦略として比較対象になりやすい。
+
+                      - name: Feature Toggles
+
+                        kind: pattern
+
+                        relevance: 未完成機能を trunk に統合しつつ公開を分離するために併用される。
                   name: トランクベース開発
                   summary: 主幹ブランチ中心で短命な分岐だけを使う開発スタイル。
                   whyLearn: 長期分岐による統合コストと流れの悪化を減らせる。
@@ -255,7 +949,127 @@ domain:
                   aliases:
                     - CD
                     - continuous delivery
+                  search:
+                    keywords:
+                      - continuous delivery
+                      - CD
+                      - 継続的デリバリー
+                      - release readiness
+                      - releasable state
+                      - deployment automation
+                      - continuous deployment
+                      - delivery pipeline
+                      - production release
+                    commonSignals:
+                      - いつでもリリース可能な状態に保つ
+                      - デプロイ自動化とリリース判断を分ける
+                      - deployment pipeline を通して検証する
+                      - 手動リリースイベントを通常運転に変える
+                    antiSignals:
+                      - CD が compact disc を意味している
+                      - continuous deployment と完全に同義として扱っているだけ
+                      - 単なる納品管理や配送業務の話
+                    relatedNames:
+                      - name: Continuous Delivery
+                        kind: method
+                        relevance: いつでもリリース可能な状態を保つための代表的な実践体系。
+                        officialUrl: https://continuousdelivery.com/
+                      - name: Martin Fowler Continuous Delivery
+                        kind: method
+                        relevance: continuous delivery と continuous deployment の違いを説明する代表的参照。
+                        officialUrl: https://martinfowler.com/bliki/ContinuousDelivery.html
+                      - name: Jenkins
+                        kind: tool
+                        relevance: 継続的デリバリーのパイプライン実装で広く使われる自動化サーバー。
+                        officialUrl: https://www.jenkins.io/
+                      - name: Spinnaker
+                        kind: platform
+                        relevance: 継続的デリバリー向けのデプロイ管理プラットフォームとして知られる。
+                        officialUrl: https://spinnaker.io/
+
                 - slug: deployment-pipeline
+
+                  search:
+
+                    keywords:
+
+                      - deployment pipeline
+
+                      - delivery pipeline
+
+                      - デプロイメントパイプライン
+
+                      - release pipeline
+
+                      - CI/CD pipeline
+
+                      - build-test-deploy
+
+                      - promotion pipeline
+
+                      - staged rollout
+
+                      - pipeline gate
+
+                    commonSignals:
+
+                      - ビルド、テスト、ステージング、本番の段階を通る
+
+                      - pipeline gate や approval gate がある
+
+                      - 成果物を環境間で promote する
+
+                      - デプロイ手順を自動化している
+
+                    antiSignals:
+
+                      - データパイプラインやETL処理の話
+
+                      - 営業パイプラインの話
+
+                      - 単発のシェルスクリプト実行だけ
+
+                    relatedNames:
+
+                      - name: Jenkins Pipeline
+
+                        kind: tool
+
+                        relevance: デプロイメントパイプラインをコードとして記述する代表的実装。
+
+                        officialUrl: https://www.jenkins.io/doc/book/pipeline/
+
+                      - name: GitHub Actions
+
+                        kind: service
+
+                        relevance: CI/CD パイプラインをワークフローとして実装するサービス。
+
+                        officialUrl: https://github.com/features/actions
+
+                      - name: GitLab CI/CD
+
+                        kind: service
+
+                        relevance: build-test-deploy の段階を定義できる統合 CI/CD 機能。
+
+                        officialUrl: https://docs.gitlab.com/ci/
+
+                      - name: Argo CD
+
+                        kind: tool
+
+                        relevance: Kubernetes への GitOps 型デプロイを担う代表的ツール。
+
+                        officialUrl: https://argo-cd.readthedocs.io/
+
+                      - name: Tekton
+
+                        kind: tool
+
+                        relevance: Kubernetes ネイティブな CI/CD パイプライン構築ツール。
+
+                        officialUrl: https://tekton.dev/
                   name: デプロイメントパイプライン
                   summary: 変更が段階的な検証を通って本番へ進む仕組み。
                   whyLearn: 速いフィードバックと高い信頼性の両立点を設計できる。
@@ -271,6 +1085,43 @@ domain:
                   aliases:
                     - feature flag
                     - feature toggle
+                  search:
+                    keywords:
+                      - feature flag
+                      - feature toggle
+                      - フィーチャーフラグ
+                      - フィーチャートグル
+                      - release toggle
+                      - kill switch
+                      - dark launch
+                      - gradual rollout
+                      - flag debt
+                    commonSignals:
+                      - デプロイと公開を分離する
+                      - 一部ユーザーだけに機能を出す
+                      - kill switch で機能を無効化する
+                      - フラグの削除漏れや flag debt が問題になる
+                    antiSignals:
+                      - 国旗やUIアイコンとしての flag
+                      - コマンドライン引数の flag だけ
+                      - コンパイラフラグやビルドオプションだけ
+                    relatedNames:
+                      - name: LaunchDarkly
+                        kind: service
+                        relevance: フィーチャーフラグ管理の代表的な商用サービス。
+                        officialUrl: https://launchdarkly.com/
+                      - name: Unleash
+                        kind: tool
+                        relevance: オープンソースの feature flag 管理ツールとして使われる。
+                        officialUrl: https://www.getunleash.io/
+                      - name: OpenFeature
+                        kind: standard
+                        relevance: フィーチャーフラグのベンダーニュートラルな API 標準。
+                        officialUrl: https://openfeature.dev/
+                      - name: Flipt
+                        kind: tool
+                        relevance: セルフホスト可能な feature flag 管理ツール。
+                        officialUrl: https://www.flipt.io/
 
     - slug: metrics-and-feedback-systems
       name: 計測とフィードバックシステム
@@ -294,7 +1145,107 @@ domain:
                   aliases:
                     - deployment frequency
                     - DF
+                  search:
+                    keywords:
+                      - deployment frequency
+                      - DF
+                      - デプロイ頻度
+                      - deploy frequency
+                      - release frequency
+                      - DORA metrics
+                      - Four Keys
+                      - software delivery performance
+                      - production deployment
+                    commonSignals:
+                      - 本番へのデプロイ回数を測る
+                      - 週次、日次、オンデマンドでリリースする
+                      - DORA の速度指標として扱う
+                      - 変更を小さく頻繁に届ける
+                    antiSignals:
+                      - デプロイ手順そのものの説明だけ
+                      - 頻度ではなくデプロイ成功率の話
+                      - モバイルアプリのストア公開回数だけで開発組織指標と無関係
+                    relatedNames:
+                      - name: DORA
+                        kind: method
+                        relevance: deployment frequency をソフトウェアデリバリー性能指標の一つとして扱う。
+                        officialUrl: https://dora.dev/
+                      - name: Four Keys
+                        kind: tool
+                        relevance: DORA 指標を収集・可視化する Google Cloud 発の実装例。
+                        officialUrl: https://github.com/dora-team/fourkeys
+                      - name: Google Cloud DORA
+                        kind: service
+                        relevance: DORA の研究・レポート・測定ガイドを提供する主要情報源。
+                        officialUrl: https://cloud.google.com/devops
+
                 - slug: lead-time-for-changes
+
+                  search:
+
+                    keywords:
+
+                      - lead time for changes
+
+                      - change lead time
+
+                      - 変更のリードタイム
+
+                      - commit to production
+
+                      - code commit to deploy
+
+                      - DORA lead time
+
+                      - cycle time
+
+                      - delivery lead time
+
+                      - flow time
+
+                    commonSignals:
+
+                      - コミットから本番反映までの時間を測る
+
+                      - レビュー待ち、テスト待ち、デプロイ待ちに分解する
+
+                      - cycle time と比較される
+
+                      - 価値提供までの遅さを分析する
+
+                    antiSignals:
+
+                      - 営業リード獲得の lead time
+
+                      - 製造・物流の納期だけ
+
+                      - アイデア発案から仕様確定までだけでコード変更に接続していない
+
+                    relatedNames:
+
+                      - name: DORA
+
+                        kind: method
+
+                        relevance: lead time for changes をソフトウェアデリバリー性能指標の一つとして扱う。
+
+                        officialUrl: https://dora.dev/
+
+                      - name: LinearB
+
+                        kind: service
+
+                        relevance: 変更のリードタイムや開発フロー指標を可視化するツールとして言及されやすい。
+
+                        officialUrl: https://linearb.io/
+
+                      - name: Pluralsight Flow
+
+                        kind: service
+
+                        relevance: cycle time や delivery flow を分析する開発組織向けツール。
+
+                        officialUrl: https://www.pluralsight.com/product/flow
                   name: 変更のリードタイム
                   summary: 変更がコミットから本番到達までにかかる時間。
                   whyLearn: アイデアから価値提供までの遅さを測れる。
@@ -310,7 +1261,115 @@ domain:
                   aliases:
                     - change failure rate
                     - CFR
+                  search:
+                    keywords:
+                      - change failure rate
+                      - CFR
+                      - 変更失敗率
+                      - deployment failure rate
+                      - failed deployment
+                      - rollback rate
+                      - hotfix rate
+                      - DORA stability
+                      - production incident caused by change
+                    commonSignals:
+                      - デプロイ後にロールバックやホットフィックスが必要になる
+                      - 本番変更がインシデントを引き起こす
+                      - 速度指標と安定性指標を一緒に見る
+                      - 変更サイズや検証不足が失敗率に影響する
+                    antiSignals:
+                      - 単体テストの失敗率だけ
+                      - A/B テストの失敗やビジネス施策の失敗
+                      - 障害件数全般で変更起因か不明
+                    relatedNames:
+                      - name: DORA
+                        kind: method
+                        relevance: change failure rate を安定性指標の一つとして扱う。
+                        officialUrl: https://dora.dev/
+                      - name: Sentry
+                        kind: service
+                        relevance: 本番エラー検知により変更失敗を把握するツールとして関連する。
+                        officialUrl: https://sentry.io/
+                      - name: PagerDuty
+                        kind: service
+                        relevance: 変更起因のインシデント検知や復旧プロセスと結びつきやすい。
+                        officialUrl: https://www.pagerduty.com/
+
                 - slug: time-to-restore-service
+
+                  search:
+
+                    keywords:
+
+                      - time to restore service
+
+                      - MTTR
+
+                      - restore time
+
+                      - 復旧時間
+
+                      - mean time to restore
+
+                      - incident recovery time
+
+                      - service restoration
+
+                      - DORA stability
+
+                      - rollback time
+
+                    commonSignals:
+
+                      - 障害から正常状態へ戻す時間を測る
+
+                      - rollback や roll forward で復旧する
+
+                      - 検知から復旧までの流れを分解する
+
+                      - MTTR を DORA 指標として扱う
+
+                    antiSignals:
+
+                      - ハードウェア修理時間だけ
+
+                      - 平均解決時間が問い合わせ対応の話だけ
+
+                      - サービス業の顧客復旧対応でソフトウェア運用と無関係
+
+                    relatedNames:
+
+                      - name: DORA
+
+                        kind: method
+
+                        relevance: time to restore service を安定性指標の一つとして扱う。
+
+                        officialUrl: https://dora.dev/
+
+                      - name: Google SRE
+
+                        kind: method
+
+                        relevance: サービス復旧、インシデント対応、信頼性改善の代表的実践体系。
+
+                        officialUrl: https://sre.google/
+
+                      - name: PagerDuty
+
+                        kind: service
+
+                        relevance: インシデント対応と復旧時間の計測に使われやすい。
+
+                        officialUrl: https://www.pagerduty.com/
+
+                      - name: Statuspage
+
+                        kind: service
+
+                        relevance: サービス停止や復旧状況の共有と関連する。
+
+                        officialUrl: https://www.atlassian.com/software/statuspage
                   name: 復旧時間
                   summary: 失敗した変更や障害から正常状態へ戻すまでの時間。
                   whyLearn: 安定性を回復力として見る視点を持てる。
@@ -331,6 +1390,38 @@ domain:
                   aliases:
                     - throughput
                     - flow throughput
+                  search:
+                    keywords:
+                      - throughput
+                      - flow throughput
+                      - スループット
+                      - delivery throughput
+                      - completed work items
+                      - output rate
+                      - shipped changes
+                      - flow metrics
+                      - delivery rate
+                    commonSignals:
+                      - 一定期間に完了した作業数を測る
+                      - 忙しさではなく完了量を見る
+                      - WIP や lead time と一緒に分析する
+                      - flow metrics の一部として扱う
+                    antiSignals:
+                      - ネットワーク帯域やDB性能のスループットだけ
+                      - 個人のコミット数だけを生産性として扱う
+                      - 売上スループットの会計用語だけ
+                    relatedNames:
+                      - name: Kanban
+                        kind: method
+                        relevance: 完了作業量やフロー指標として throughput を扱いやすい。
+                        officialUrl: https://kanban.university/
+                      - name: Little's Law
+                        kind: method
+                        relevance: WIP、リードタイム、スループットの関係を理解するために使われる。
+                      - name: Flow Framework
+                        kind: method
+                        relevance: ソフトウェアデリバリーのフロー指標として throughput と関連する。
+
                 - slug: stability
                   name: 安定性
                   summary: 変更を継続的に届けながら事故や劣化を抑えられている状態。
@@ -347,6 +1438,36 @@ domain:
                   aliases:
                     - feedback loop
                     - learning loop
+                  search:
+                    keywords:
+                      - feedback loop
+                      - フィードバックループ
+                      - learning loop
+                      - fast feedback
+                      - build-measure-learn
+                      - inspect and adapt
+                      - continuous improvement loop
+                      - signal latency
+                      - feedback latency
+                    commonSignals:
+                      - 結果が学習材料として戻るまでが遅い
+                      - 自動テストやレビューで早く気づく
+                      - 顧客利用データから改善する
+                      - inspect and adapt のサイクルを回す
+                    antiSignals:
+                      - 音響ハウリングや制御工学のループだけ
+                      - ユーザーからの単発コメントだけ
+                      - フィードバック面談だけでシステム改善につながっていない
+                    relatedNames:
+                      - name: Lean Startup
+                        kind: method
+                        relevance: build-measure-learn の学習ループとして feedback loop が頻出する。
+                      - name: Continuous Delivery
+                        kind: method
+                        relevance: 自動テストや本番観測による高速フィードバックと関連する。
+                      - name: Retrospective
+                        kind: method
+                        relevance: チームの改善フィードバックを得る定期的な実践。
         - slug: developer-productivity-and-devex
           name: 生産性と DevEx
           summary: 人間中心の成果、働きやすさ、摩擦を扱う。
@@ -364,6 +1485,37 @@ domain:
                   aliases:
                     - satisfaction and well-being
                     - satisfaction
+                  search:
+                    keywords:
+                      - satisfaction and well-being
+                      - developer satisfaction
+                      - developer well-being
+                      - 満足度とウェルビーイング
+                      - developer burnout
+                      - engineering happiness
+                      - SPACE framework
+                      - DevEx survey
+                      - employee engagement
+                    commonSignals:
+                      - 開発者満足度サーベイを取る
+                      - バーンアウトや疲弊を測る
+                      - 生産性指標に人間中心の観点を入れる
+                      - 開発体験が悪くモチベーションが下がる
+                    antiSignals:
+                      - 顧客満足度やNPSだけ
+                      - 福利厚生施策だけで開発フローと無関係
+                      - 個人の健康相談だけ
+                    relatedNames:
+                      - name: SPACE Framework
+                        kind: method
+                        relevance: 開発者生産性を満足度とウェルビーイングを含めて多面的に測る枠組み。
+                      - name: Developer Experience
+                        kind: method
+                        relevance: 開発者の体験や摩擦を改善対象として扱う考え方。
+                      - name: Microsoft DevEx Research
+                        kind: other
+                        relevance: SPACE や DevEx 研究の文脈でよく参照される。
+
                 - slug: performance
                   name: パフォーマンス
                   summary: 組織やチームが求める成果を達成できているかの次元。
@@ -409,7 +1561,106 @@ domain:
                   aliases:
                     - toil
                     - repetitive manual work
+                  search:
+                    keywords:
+                      - toil
+                      - トイル
+                      - operational toil
+                      - repetitive manual work
+                      - manual repetitive tasks
+                      - toil reduction
+                      - automation candidate
+                      - SRE toil
+                      - undifferentiated heavy lifting
+                    commonSignals:
+                      - 繰り返しの手作業で時間が消える
+                      - 自動化できるが毎回人が対応している
+                      - 開発者の割り込み作業が多い
+                      - toil budget や toil reduction を議論している
+                    antiSignals:
+                      - 一度きりの移行作業
+                      - 価値の高い探索や設計作業
+                      - 土木や肉体労働としての toil
+                    relatedNames:
+                      - name: Google SRE
+                        kind: method
+                        relevance: toil を信頼性運用で削減すべき手作業として定義・普及させた実践体系。
+                        officialUrl: https://sre.google/
+                      - name: Runbook Automation
+                        kind: method
+                        relevance: 繰り返し手作業を自動化する実践として toil reduction と関連する。
+                      - name: Ansible
+                        kind: tool
+                        relevance: 手作業の自動化に使われる代表的な構成管理・自動化ツール。
+                        officialUrl: https://www.ansible.com/
+
                 - slug: time-to-first-commit
+
+                  search:
+
+                    keywords:
+
+                      - time to first commit
+
+                      - TTFC
+
+                      - 初回コミットまでの時間
+
+                      - onboarding time
+
+                      - developer onboarding
+
+                      - first pull request
+
+                      - first meaningful commit
+
+                      - environment setup time
+
+                      - new hire ramp-up
+
+                    commonSignals:
+
+                      - 新メンバーが最初のPRを出すまで時間がかかる
+
+                      - 開発環境セットアップで詰まる
+
+                      - 権限、ドキュメント、テンプレートがオンボーディングを遅らせる
+
+                      - first commit や first PR を DevEx 指標にする
+
+                    antiSignals:
+
+                      - Git の初回コミット方法のチュートリアルだけ
+
+                      - プロジェクト初回コミットの履歴の話だけ
+
+                      - 採用から入社までの人事リードタイム
+
+                    relatedNames:
+
+                      - name: Backstage Software Templates
+
+                        kind: tool
+
+                        relevance: 新規サービス作成や初回変更の立ち上がりを短縮する導線として関連する。
+
+                        officialUrl: https://backstage.io/docs/features/software-templates/
+
+                      - name: Dev Containers
+
+                        kind: tool
+
+                        relevance: 開発環境セットアップ時間を短縮する標準化手段。
+
+                        officialUrl: https://containers.dev/
+
+                      - name: GitHub Codespaces
+
+                        kind: service
+
+                        relevance: 新メンバーがすぐ開発を始めるためのクラウド開発環境として関連する。
+
+                        officialUrl: https://github.com/features/codespaces
                   name: 初回コミットまでの時間
                   summary: 新メンバーや新環境が最初の有意味な変更を出すまでの時間。
                   whyLearn: オンボーディング摩擦の代表指標として使いやすい。
@@ -425,6 +1676,38 @@ domain:
                   aliases:
                     - self-service success rate
                     - self-service completion rate
+                  search:
+                    keywords:
+                      - self-service success rate
+                      - self-service completion rate
+                      - セルフサービス成功率
+                      - developer self-service
+                      - portal task completion
+                      - platform adoption
+                      - self-service workflow
+                      - golden path success
+                      - no-ticket workflow
+                    commonSignals:
+                      - チケットを切らずに開発者が完了できる
+                      - portal 上のタスク完了率を測る
+                      - platform の採用率や成功率を測る
+                      - セルフサービス化したのに問い合わせが減らない
+                    antiSignals:
+                      - ECサイトや銀行の顧客セルフサービスだけ
+                      - FAQ閲覧数だけ
+                      - 成功率ではなく単なる利用回数だけ
+                    relatedNames:
+                      - name: Backstage
+                        kind: platform
+                        relevance: 開発者セルフサービスの入口となるポータルとして関連する。
+                        officialUrl: https://backstage.io/
+                      - name: Internal Developer Platform
+                        kind: platform
+                        relevance: セルフサービスで共通能力を提供する対象として関連する。
+                      - name: Humanitec
+                        kind: platform
+                        relevance: セルフサービス型のプラットフォーム体験を提供する IDP 製品。
+                        officialUrl: https://humanitec.com/
 
     - slug: platform-engineering-and-developer-experience
       name: プラットフォームエンジニアリングと開発者体験
@@ -448,7 +1731,113 @@ domain:
                   aliases:
                     - internal developer platform
                     - IDP
+                  search:
+                    keywords:
+                      - internal developer platform
+                      - IDP
+                      - 内部開発者プラットフォーム
+                      - developer platform
+                      - platform engineering
+                      - self-service platform
+                      - paved road
+                      - platform capabilities
+                      - cloud native platform
+                    commonSignals:
+                      - 開発者がインフラやデプロイをセルフサービスで扱う
+                      - platform capabilities を標準化して提供する
+                      - golden path や developer portal を持つ
+                      - platform engineering の中心成果物として語られる
+                    antiSignals:
+                      - 外部顧客向けプラットフォーム製品の話
+                      - 単なる Kubernetes クラスタ管理だけ
+                      - 社内ポータルのリンク集だけ
+                    relatedNames:
+                      - name: CNCF Platforms White Paper
+                        kind: standard
+                        relevance: internal platform の目的や構成要素を整理するクラウドネイティブ領域の参照文書。
+                        officialUrl: https://tag-app-delivery.cncf.io/whitepapers/platforms/
+                      - name: Backstage
+                        kind: platform
+                        relevance: IDP のポータル・カタログ層として広く使われる。
+                        officialUrl: https://backstage.io/
+                      - name: Humanitec
+                        kind: platform
+                        relevance: IDP 製品として platform engineering 文脈でよく言及される。
+                        officialUrl: https://humanitec.com/
+                      - name: Crossplane
+                        kind: tool
+                        relevance: クラウドリソースを Kubernetes API として提供する IDP 構成要素になりやすい。
+                        officialUrl: https://www.crossplane.io/
+                      - name: Kubernetes
+                        kind: platform
+                        relevance: IDP の基盤ランタイムや抽象化対象として使われやすい。
+                        officialUrl: https://kubernetes.io/
+
                 - slug: platform-as-a-product
+
+                  search:
+
+                    keywords:
+
+                      - platform as a product
+
+                      - platform product mindset
+
+                      - Platform as Product
+
+                      - プラットフォームをプロダクトとして扱う
+
+                      - internal product
+
+                      - platform roadmap
+
+                      - platform adoption
+
+                      - platform user research
+
+                      - developer customer
+
+                    commonSignals:
+
+                      - 開発者を内部顧客として扱う
+
+                      - platform roadmap や adoption metric を持つ
+
+                      - 強制ではなく使われるプロダクトとして設計する
+
+                      - platform PM や user research が登場する
+
+                    antiSignals:
+
+                      - 外部販売するプラットフォーム事業の話だけ
+
+                      - 技術標準の強制だけ
+
+                      - プロダクトマネジメント一般論で platform 利用者が出てこない
+
+                    relatedNames:
+
+                      - name: CNCF Platform Engineering Maturity Model
+
+                        kind: standard
+
+                        relevance: platform を product mindset で運営する観点を含む成熟度モデル。
+
+                        officialUrl: https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/
+
+                      - name: Team Topologies
+
+                        kind: method
+
+                        relevance: platform-as-a-product を platform team の重要な考え方として扱う。
+
+                        officialUrl: https://teamtopologies.com/
+
+                      - name: Product Management
+
+                        kind: method
+
+                        relevance: 利用者調査、ロードマップ、採用指標を platform 運営に持ち込むため関連する。
                   name: Platform as a Product
                   summary: platform を利用者、価値提案、採用、改善サイクルを持つ製品として扱う姿勢。
                   whyLearn: platform を中央集権的な標準押しつけにしないため。
@@ -477,6 +1866,39 @@ domain:
                   aliases:
                     - golden path
                     - preferred path
+                  search:
+                    keywords:
+                      - golden path
+                      - ゴールデンパス
+                      - paved path
+                      - recommended path
+                      - standard workflow
+                      - developer journey
+                      - paved road
+                      - happy path
+                      - reference implementation
+                    commonSignals:
+                      - よくある作業に標準ルートを用意する
+                      - 新規サービス作成をテンプレート化する
+                      - 推奨構成を最短経路にする
+                      - platform adoption を高める導線として語られる
+                    antiSignals:
+                      - Web画面上の happy path テストだけ
+                      - キャリアパスや学習パスの一般論
+                      - 強制標準で例外や対象外が定義されていない
+                    relatedNames:
+                      - name: Backstage Software Templates
+                        kind: tool
+                        relevance: ゴールデンパスを新規サービス作成テンプレートとして実装する代表例。
+                        officialUrl: https://backstage.io/docs/features/software-templates/
+                      - name: Paved Road
+                        kind: pattern
+                        relevance: 正しいやり方を楽なやり方にする関連パターン。
+                      - name: Cookiecutter
+                        kind: tool
+                        relevance: 標準構成のプロジェクト雛形を生成するツールとして関連する。
+                        officialUrl: https://www.cookiecutter.io/
+
                 - slug: paved-road
                   name: Paved Road
                   summary: 推奨された実装・運用方法を、実際に使いやすい形で提供する実践。
@@ -493,6 +1915,43 @@ domain:
                   aliases:
                     - guardrail
                     - policy guardrail
+                  search:
+                    keywords:
+                      - guardrail
+                      - policy guardrail
+                      - ガードレール
+                      - hard guardrail
+                      - soft guardrail
+                      - policy as code
+                      - paved road governance
+                      - compliance guardrail
+                      - secure by default
+                    commonSignals:
+                      - 自由度を残しつつ危険な操作を防ぐ
+                      - policy as code で標準違反を検出する
+                      - secure by default なテンプレートを提供する
+                      - hard guardrail と soft guidance を分ける
+                    antiSignals:
+                      - 道路や階段の物理的な手すり
+                      - AI安全性の一般的なガードレールだけで開発組織と無関係
+                      - ルール文書だけで実行可能な制約がない
+                    relatedNames:
+                      - name: Open Policy Agent
+                        kind: tool
+                        relevance: policy as code による技術的ガードレール実装でよく使われる。
+                        officialUrl: https://www.openpolicyagent.org/
+                      - name: Conftest
+                        kind: tool
+                        relevance: OPA ポリシーを使って設定や IaC を検証するガードレール実装。
+                        officialUrl: https://www.conftest.dev/
+                      - name: Kyverno
+                        kind: tool
+                        relevance: Kubernetes 上のポリシーガードレールを実装するツール。
+                        officialUrl: https://kyverno.io/
+                      - name: HashiCorp Sentinel
+                        kind: tool
+                        relevance: Terraform などで policy as code を実装する仕組みとして関連する。
+                        officialUrl: https://developer.hashicorp.com/sentinel
         - slug: portals-and-automation
           name: ポータルと自動化
           summary: 発見性と標準化をツールで支える。
@@ -510,7 +1969,117 @@ domain:
                   aliases:
                     - developer portal
                     - internal developer portal
+                  search:
+                    keywords:
+                      - developer portal
+                      - internal developer portal
+                      - IDP portal
+                      - デベロッパーポータル
+                      - developer hub
+                      - service portal
+                      - platform portal
+                      - software catalog UI
+                      - self-service portal
+                    commonSignals:
+                      - サービス、ドキュメント、テンプレートを一つの入口に集約する
+                      - 開発者向けセルフサービスの入口を作る
+                      - software catalog と TechDocs が統合されている
+                      - portal がリンク集で終わっているという課題
+                    antiSignals:
+                      - 外部開発者向け API ポータルだけ
+                      - 単なる社内Wikiやリンク集
+                      - 顧客ポータルやサポートポータルの話
+                    relatedNames:
+                      - name: Backstage
+                        kind: platform
+                        relevance: internal developer portal の代表的なオープンソース実装。
+                        officialUrl: https://backstage.io/
+                      - name: Port
+                        kind: platform
+                        relevance: internal developer portal 製品として実務で使われる。
+                        officialUrl: https://www.getport.io/
+                      - name: Cortex
+                        kind: platform
+                        relevance: サービスカタログやスコアカードを持つ developer portal 製品。
+                        officialUrl: https://www.cortex.io/
+                      - name: Spotify Portal for Backstage
+                        kind: service
+                        relevance: Backstage を商用サービスとして利用する選択肢。
+                        officialUrl: https://backstage.spotify.com/
+
                 - slug: software-catalog
+
+                  search:
+
+                    keywords:
+
+                      - software catalog
+
+                      - service catalog
+
+                      - ソフトウェアカタログ
+
+                      - service inventory
+
+                      - component catalog
+
+                      - system catalog
+
+                      - ownership metadata
+
+                      - catalog-info.yaml
+
+                      - dependency graph
+
+                    commonSignals:
+
+                      - どのサービスを誰が所有しているか管理する
+
+                      - サービス一覧、依存関係、ライフサイクルを可視化する
+
+                      - catalog-info.yaml や entity metadata が出てくる
+
+                      - owner や system、component、resource を登録する
+
+                    antiSignals:
+
+                      - 商品カタログやECの商品一覧
+
+                      - APIカタログだけで所有権やサービスメタデータがない
+
+                      - ソフトウェア製品比較サイトの一覧
+
+                    relatedNames:
+
+                      - name: Backstage Software Catalog
+
+                        kind: platform
+
+                        relevance: ソフトウェアカタログの代表的な実装で、所有権やメタデータを管理する。
+
+                        officialUrl: https://backstage.io/docs/features/software-catalog/
+
+                      - name: Cortex
+
+                        kind: platform
+
+                        relevance: サービスカタログ、スコアカード、所有権管理を提供する開発者向けプラットフォーム。
+
+                        officialUrl: https://www.cortex.io/
+
+                      - name: OpsLevel
+
+                        kind: platform
+
+                        relevance: サービス所有権や成熟度管理を扱う service catalog 製品。
+
+                        officialUrl: https://www.opslevel.com/
+
+                      - name: catalog-info.yaml
+
+                        kind: other
+
+                        relevance: Backstage でコンポーネントメタデータを記述する代表的なファイル形式。
                   name: ソフトウェアカタログ
                   summary: サービス、ライブラリ、データパイプラインなどの所有権とメタデータを管理する仕組み。
                   whyLearn: 所有権不明と依存関係不明を減らせる。
@@ -526,6 +2095,39 @@ domain:
                   aliases:
                     - ownership metadata
                     - owner metadata
+                  search:
+                    keywords:
+                      - ownership metadata
+                      - owner metadata
+                      - オーナーシップメタデータ
+                      - service owner metadata
+                      - catalog owner
+                      - CODEOWNERS
+                      - component owner
+                      - team metadata
+                      - machine-readable ownership
+                    commonSignals:
+                      - owner フィールドを YAML に書く
+                      - サービスの責任チームを機械可読にする
+                      - カタログから所有者へ連絡できる
+                      - 依存関係やライフサイクルと一緒に管理する
+                    antiSignals:
+                      - ファイルシステムの所有者権限だけ
+                      - 法務上の所有者情報
+                      - メタデータ一般で ownership が出てこない
+                    relatedNames:
+                      - name: Backstage catalog-info.yaml
+                        kind: other
+                        relevance: サービスやコンポーネントの owner を機械可読に記述する代表的形式。
+                        officialUrl: https://backstage.io/docs/features/software-catalog/descriptor-format/
+                      - name: CODEOWNERS
+                        kind: tool
+                        relevance: コード領域のレビュー責任者を機械可読に指定する仕組み。
+                        officialUrl: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+                      - name: GitHub Teams
+                        kind: service
+                        relevance: ownership metadata の所有者としてチームを表す際によく使われる。
+                        officialUrl: https://docs.github.com/en/organizations/organizing-members-into-teams/about-teams
             - slug: workflow-automation
               name: ワークフロー自動化
               summary: 標準の立ち上げと知識更新を自動化して摩擦を下げる。
@@ -539,7 +2141,119 @@ domain:
                   aliases:
                     - software template
                     - scaffolding template
+                  search:
+                    keywords:
+                      - software template
+                      - scaffolding template
+                      - ソフトウェアテンプレート
+                      - project template
+                      - service template
+                      - Backstage template
+                      - cookiecutter
+                      - yeoman generator
+                      - starter kit
+                    commonSignals:
+                      - 新規サービス作成時に標準構成を生成する
+                      - テンプレートに CI、監視、README、Dockerfile を埋め込む
+                      - scaffolding で初期設定を自動化する
+                      - golden path を実装する
+                    antiSignals:
+                      - PowerPoint や文書テンプレートだけ
+                      - デザインテンプレートやUIテーマだけ
+                      - コード断片のスニペットだけでプロジェクト生成ではない
+                    relatedNames:
+                      - name: Backstage Software Templates
+                        kind: tool
+                        relevance: 開発者ポータルから標準的なサービス雛形を生成する代表機能。
+                        officialUrl: https://backstage.io/docs/features/software-templates/
+                      - name: Cookiecutter
+                        kind: tool
+                        relevance: プロジェクト雛形生成に広く使われるテンプレートツール。
+                        officialUrl: https://www.cookiecutter.io/
+                      - name: Yeoman
+                        kind: tool
+                        relevance: Web 開発などで使われるコードジェネレータの代表例。
+                        officialUrl: https://yeoman.io/
+                      - name: Copier
+                        kind: tool
+                        relevance: プロジェクトテンプレート生成・更新に使われるツール。
+                        officialUrl: https://copier.readthedocs.io/
+
                 - slug: techdocs
+
+                  search:
+
+                    keywords:
+
+                      - TechDocs
+
+                      - docs as code
+
+                      - docs-like-code
+
+                      - ドキュメント as code
+
+                      - Backstage TechDocs
+
+                      - MkDocs
+
+                      - documentation portal
+
+                      - Markdown docs
+
+                      - developer documentation
+
+                    commonSignals:
+
+                      - Markdown をコードリポジトリで管理する
+
+                      - docs-as-code でレビューやCIに載せる
+
+                      - Backstage の entity page にドキュメントを表示する
+
+                      - ドキュメントをポータルやカタログと連携する
+
+                    antiSignals:
+
+                      - 一般名詞としての technical documentation だけ
+
+                      - Word やPDFの手動管理だけ
+
+                      - TechDocs という別製品名で Backstage と無関係
+
+                    relatedNames:
+
+                      - name: Backstage TechDocs
+
+                        kind: tool
+
+                        relevance: Backstage に統合された docs-as-code 型ドキュメント機能。
+
+                        officialUrl: https://backstage.io/docs/features/techdocs/
+
+                      - name: MkDocs
+
+                        kind: tool
+
+                        relevance: TechDocs のドキュメント生成基盤として使われる静的サイトジェネレータ。
+
+                        officialUrl: https://www.mkdocs.org/
+
+                      - name: Material for MkDocs
+
+                        kind: tool
+
+                        relevance: 技術ドキュメントサイト構築で広く使われる MkDocs テーマ。
+
+                        officialUrl: https://squidfunk.github.io/mkdocs-material/
+
+                      - name: Diátaxis
+
+                        kind: method
+
+                        relevance: ドキュメントをチュートリアル、How-to、説明、リファレンスに整理する枠組み。
+
+                        officialUrl: https://diataxis.fr/
                   name: TechDocs
                   summary: コードと同じ流れで管理・公開される docs-as-code 型ドキュメント。
                   whyLearn: ドキュメントを開発フローに組み込み、更新しやすくできる。
@@ -555,6 +2269,47 @@ domain:
                   aliases:
                     - AI coding assistant
                     - coding copilot
+                  search:
+                    keywords:
+                      - AI coding assistant
+                      - coding copilot
+                      - AI コーディングアシスタント
+                      - code generation
+                      - AI pair programming
+                      - code review assistant
+                      - LLM coding tool
+                      - agentic coding
+                      - developer AI tools
+                    commonSignals:
+                      - AI がコード補完やテスト生成を支援する
+                      - コーディングエージェントや pair programming が出てくる
+                      - チーム標準を AI に守らせる
+                      - AI 導入後のレビューや生産性測定を議論する
+                    antiSignals:
+                      - AI一般やチャットボットだけで開発支援に触れていない
+                      - 画像生成AIや音声AIの話
+                      - 単なる静的解析ツールだけ
+                    relatedNames:
+                      - name: GitHub Copilot
+                        kind: service
+                        relevance: AI コーディング支援の代表的な商用サービス。
+                        officialUrl: https://github.com/features/copilot
+                      - name: Cursor
+                        kind: tool
+                        relevance: AI 支援エディタとして実務で広く言及される。
+                        officialUrl: https://cursor.com/
+                      - name: JetBrains AI Assistant
+                        kind: tool
+                        relevance: IDE 統合型の AI コーディング支援として関連する。
+                        officialUrl: https://www.jetbrains.com/ai/
+                      - name: Claude Code
+                        kind: tool
+                        relevance: エージェント型コーディング支援ツールとして開発現場で使われる。
+                        officialUrl: https://www.anthropic.com/claude-code
+                      - name: OpenAI Codex
+                        kind: service
+                        relevance: コード生成・編集支援の代表的な AI 系サービスとして関連する。
+                        officialUrl: https://openai.com/codex/
 
     - slug: governance-and-decision-systems
       name: ガバナンスと意思決定システム
@@ -578,7 +2333,105 @@ domain:
                   aliases:
                     - Conway's Law
                     - Conway law
+                  search:
+                    keywords:
+                      - Conway's Law
+                      - Conway law
+                      - コンウェイの法則
+                      - communication structure
+                      - organization mirrors architecture
+                      - socio-technical architecture
+                      - system design organization
+                      - Mel Conway
+                      - architecture follows organization
+                    commonSignals:
+                      - 組織のコミュニケーション構造がシステム構造に反映される
+                      - チーム境界とサービス境界が似ている
+                      - アーキテクチャ問題の背後に組織構造がある
+                      - モノリス分割と組織再編を一緒に考える
+                    antiSignals:
+                      - Conway という地名や人物名だけ
+                      - ゲーム・ライフゲームの Conway
+                      - 法律やコンプライアンスの law だけ
+                    relatedNames:
+                      - name: Mel Conway
+                        kind: other
+                        relevance: Conway's Law の原典となる考え方を提示した人物。
+                        officialUrl: https://www.melconway.com/
+                      - name: Inverse Conway Maneuver
+                        kind: method
+                        relevance: Conway's Law を前提に組織構造を意図的に変える実践。
+                      - name: Team Topologies
+                        kind: method
+                        relevance: Conway's Law を組織設計とアーキテクチャ整合の中心原理として扱う。
+                        officialUrl: https://teamtopologies.com/
+                      - name: Microservices
+                        kind: pattern
+                        relevance: チーム境界とサービス境界の関係を考える際によく比較される。
+
                 - slug: inverse-conway-maneuver
+
+                  search:
+
+                    keywords:
+
+                      - Inverse Conway Maneuver
+
+                      - reverse Conway
+
+                      - インバースコンウェイ
+
+                      - 逆コンウェイ
+
+                      - organization design for architecture
+
+                      - architecture-aligned teams
+
+                      - team restructuring
+
+                      - desired architecture
+
+                      - socio-technical design
+
+                    commonSignals:
+
+                      - 望ましいアーキテクチャに合わせてチームを再編する
+
+                      - 組織構造を変えてシステム境界を変える
+
+                      - Conway's Law を逆向きに利用する
+
+                      - team topology と service boundary を合わせる
+
+                    antiSignals:
+
+                      - 単なる組織再編でアーキテクチャとの関係がない
+
+                      - リバースエンジニアリングの話
+
+                      - Conway's Law の説明だけで意図的再設計がない
+
+                    relatedNames:
+
+                      - name: Team Topologies
+
+                        kind: method
+
+                        relevance: Inverse Conway Maneuver を実践的なチーム設計に接続する代表的手法。
+
+                        officialUrl: https://teamtopologies.com/
+
+                      - name: Conway's Law
+
+                        kind: method
+
+                        relevance: Inverse Conway Maneuver の前提となる原則。
+
+                      - name: Domain-Driven Design
+
+                        kind: method
+
+                        relevance: 望ましいアーキテクチャ境界を業務境界から導く際に併用されやすい。
                   name: インバースコンウェイ・マヌーバ
                   summary: 望ましいアーキテクチャに向けて組織構造を意図的に変えるアプローチ。
                   whyLearn: 組織変更をアーキテクチャ戦略として使える。
@@ -594,6 +2447,38 @@ domain:
                   aliases:
                     - sociotechnical system
                     - socio-technical system
+                  search:
+                    keywords:
+                      - sociotechnical system
+                      - socio-technical system
+                      - 社会技術システム
+                      - social technical system
+                      - people process technology
+                      - human and technical system
+                      - organizational system design
+                      - joint optimization
+                      - work system
+                    commonSignals:
+                      - 人、プロセス、ツール、ソフトウェアを一体で見る
+                      - 技術問題と組織問題を切り分けすぎない
+                      - 局所最適ではなく全体システムを改善する
+                      - 社会的要因がシステム品質に影響する
+                    antiSignals:
+                      - 社会問題一般でソフトウェア開発と無関係
+                      - 技術スタックの一覧だけ
+                      - 組織文化論だけで技術システムが出てこない
+                    relatedNames:
+                      - name: Team Topologies
+                        kind: method
+                        relevance: チーム、相互作用、技術境界を社会技術システムとして扱う実践。
+                        officialUrl: https://teamtopologies.com/
+                      - name: DevOps
+                        kind: method
+                        relevance: 人、プロセス、技術を統合してデリバリーを改善する実践として関連する。
+                      - name: SRE
+                        kind: method
+                        relevance: 技術システムと運用組織を一体として信頼性を改善する実践。
+                        officialUrl: https://sre.google/
             - slug: decision-rights
               name: 意思決定権限
               summary: 誰が決め、誰が意見し、誰が実行するかを整理する。
@@ -607,6 +2492,38 @@ domain:
                   aliases:
                     - DACI
                     - decision framework
+                  search:
+                    keywords:
+                      - DACI
+                      - Driver Approver Contributor Informed
+                      - DACI decision framework
+                      - DACI意思決定
+                      - decision roles
+                      - decision owner
+                      - approver
+                      - contributor informed
+                      - decision accountability
+                    commonSignals:
+                      - Driver と Approver を明確にする
+                      - 意思決定が会議で止まる
+                      - Contributor と Informed を分ける
+                      - 誰が決めるかを明文化する
+                    antiSignals:
+                      - Daci という人名や企業名
+                      - RACI のタイプミス
+                      - タスク実行責任だけで意思決定権限の話ではない
+                    relatedNames:
+                      - name: Atlassian DACI
+                        kind: method
+                        relevance: DACI を実務向けに説明・テンプレート化した代表的な参照。
+                        officialUrl: https://www.atlassian.com/team-playbook/plays/daci
+                      - name: RACI
+                        kind: method
+                        relevance: 役割分担を整理する近いフレームワークとして比較される。
+                      - name: RAPID
+                        kind: method
+                        relevance: 意思決定権限モデルとして DACI と比較されやすい。
+
                 - slug: raci
                   name: RACI
                   summary: Responsible、Accountable、Consulted、Informed で責務を整理する枠組み。
@@ -640,6 +2557,39 @@ domain:
                   aliases:
                     - OKR
                     - Objectives and Key Results
+                  search:
+                    keywords:
+                      - OKR
+                      - Objectives and Key Results
+                      - 目標と主要な結果
+                      - objective key result
+                      - outcome goals
+                      - goal setting
+                      - quarterly OKR
+                      - OKR alignment
+                      - measurable outcomes
+                    commonSignals:
+                      - Objective と Key Result を設定する
+                      - 活動量ではなく成果で目標を書く
+                      - 四半期ごとに OKR をレビューする
+                      - 組織、チーム、個人の目標を整列する
+                    antiSignals:
+                      - KPI と完全に同義として扱っているだけ
+                      - 単なるTODOリストやプロジェクト計画
+                      - OKR という文字列が別の略称として使われている
+                    relatedNames:
+                      - name: What Matters
+                        kind: method
+                        relevance: OKR の学習リソースとしてよく参照される公式的な情報源。
+                        officialUrl: https://www.whatmatters.com/
+                      - name: Google re:Work OKRs
+                        kind: method
+                        relevance: OKR の運用例や設定方法を説明する代表的リソース。
+                        officialUrl: https://rework.withgoogle.com/guides/set-goals-with-okrs/
+                      - name: Measure What Matters
+                        kind: other
+                        relevance: OKR の普及に大きく寄与した書籍・考え方。
+
                 - slug: quarterly-planning
                   name: 四半期計画
                   summary: 近い期間の優先事項と容量配分を揃える定期計画。
@@ -669,7 +2619,119 @@ domain:
                   aliases:
                     - ADR
                     - architecture decision record
+                  search:
+                    keywords:
+                      - Architecture Decision Record
+                      - ADR
+                      - architecture decision
+                      - architectural decision record
+                      - アーキテクチャ決定記録
+                      - design decision record
+                      - context decision consequences
+                      - MADR
+                      - decision log
+                    commonSignals:
+                      - context, decision, consequences を記録する
+                      - 重要な設計判断の履歴を残す
+                      - ADR-0001 のような番号付き文書
+                      - 同じ設計議論を繰り返さないために残す
+                    antiSignals:
+                      - ADR が American Depositary Receipt を意味している
+                      - 単なる議事録やメモ
+                      - 詳細設計書全体を ADR と呼んでいるだけ
+                    relatedNames:
+                      - name: ADR GitHub Organization
+                        kind: tool
+                        relevance: ADR のテンプレートや資料をまとめた参照リポジトリ群。
+                        officialUrl: https://adr.github.io/
+                      - name: Markdown Architectural Decision Records
+                        kind: method
+                        relevance: Markdown で ADR を管理する軽量な形式。
+                        officialUrl: https://adr.github.io/madr/
+                      - name: AWS ADR Prescriptive Guidance
+                        kind: method
+                        relevance: ADR の導入プロセスとテンプレートを説明するクラウド実務向けガイド。
+                        officialUrl: https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/
+                      - name: arc42
+                        kind: standard
+                        relevance: ソフトウェアアーキテクチャ文書化の体系として ADR と併用されることがある。
+                        officialUrl: https://arc42.org/
+
                 - slug: request-for-comments
+
+                  search:
+
+                    keywords:
+
+                      - Request for Comments
+
+                      - RFC
+
+                      - RFC process
+
+                      - design RFC
+
+                      - engineering RFC
+
+                      - RFC template
+
+                      - asynchronous decision
+
+                      - proposal document
+
+                      - cross-team proposal
+
+                    commonSignals:
+
+                      - 大きな変更案を文書にしてコメントを集める
+
+                      - 非同期にフィードバックを求める
+
+                      - 横断的な設計変更や方針変更を提案する
+
+                      - proposal、motivation、alternatives が書かれている
+
+                    antiSignals:
+
+                      - ネットワーク標準の RFC 番号だけで組織意思決定の話ではない
+
+                      - 単なるコメント依頼メール
+
+                      - RFP や見積依頼との混同
+
+                    relatedNames:
+
+                      - name: Internet RFC
+
+                        kind: standard
+
+                        relevance: RFC という形式の原典的な標準文書文化。
+
+                        officialUrl: https://www.rfc-editor.org/
+
+                      - name: InnerSource Commons RFC Pattern
+
+                        kind: method
+
+                        relevance: 組織内の横断意思決定に RFC を使うパターン。
+
+                        officialUrl: https://patterns.innersourcecommons.org/p/transparent-cross-team-decision-making-using-rfcs
+
+                      - name: Rust RFCs
+
+                        kind: method
+
+                        relevance: オープンな設計提案プロセスの代表例として参考にされる。
+
+                        officialUrl: https://github.com/rust-lang/rfcs
+
+                      - name: Kubernetes Enhancement Proposals
+
+                        kind: method
+
+                        relevance: 大規模OSSでの変更提案プロセスとして engineering RFC と近い。
+
+                        officialUrl: https://github.com/kubernetes/enhancements
                   name: Request for Comments
                   summary: 大きな変更案を文書化し、広く非同期にフィードバックを集める仕組み。
                   whyLearn: 横断的変更を透明に進めやすくなる。
@@ -708,6 +2770,39 @@ domain:
                   aliases:
                     - psychological safety
                     - team safety
+                  search:
+                    keywords:
+                      - psychological safety
+                      - 心理的安全性
+                      - team psychological safety
+                      - interpersonal risk
+                      - safe to speak up
+                      - blame-free
+                      - learning behavior
+                      - Project Aristotle
+                      - Amy Edmondson
+                    commonSignals:
+                      - 失敗や無知を隠さず話せる
+                      - 対人リスクを取れる
+                      - レトロで本音が出ない
+                      - blame-free や no blame が出てくる
+                    antiSignals:
+                      - 単に仲が良い、優しい職場という話
+                      - 雇用の安全保障や身体的安全の話
+                      - 責任追及を一切しないことと誤解している
+                    relatedNames:
+                      - name: Google re:Work Team Effectiveness
+                        kind: method
+                        relevance: 心理的安全性を効果的なチームの重要因子として説明する代表的リソース。
+                        officialUrl: https://rework.withgoogle.com/guides/understand-team-effectiveness/
+                      - name: Amy Edmondson
+                        kind: other
+                        relevance: 心理的安全性研究で中心的に参照される研究者。
+                        officialUrl: https://amycedmondson.com/
+                      - name: Project Aristotle
+                        kind: other
+                        relevance: Google のチーム有効性研究として心理的安全性と一緒に言及される。
+
                 - slug: dependability
                   name: 信頼性
                   summary: メンバーが互いに約束を果たすと期待できる状態。
@@ -770,7 +2865,104 @@ domain:
                   aliases:
                     - retrospective
                     - retro
+                  search:
+                    keywords:
+                      - retrospective
+                      - retro
+                      - レトロスペクティブ
+                      - 振り返り
+                      - sprint retrospective
+                      - agile retrospective
+                      - team reflection
+                      - inspect and adapt
+                      - continuous improvement meeting
+                    commonSignals:
+                      - Keep Problem Try や KPT で振り返る
+                      - スプリントの終わりに改善アクションを決める
+                      - チームの働き方を見直す
+                      - 心理的安全性が低く発言が出ない
+                    antiSignals:
+                      - 過去の出来事を懐かしむ retrospective 展示や記事
+                      - プロジェクト完了報告だけで改善アクションがない
+                      - 個人の反省文だけ
+                    relatedNames:
+                      - name: Agile Retrospectives
+                        kind: method
+                        relevance: レトロスペクティブの実践を体系化した代表的な手法・書籍。
+                      - name: Scrum
+                        kind: framework
+                        relevance: Sprint Retrospective を公式イベントとして持つフレームワーク。
+                        officialUrl: https://www.scrum.org/
+                      - name: EasyRetro
+                        kind: tool
+                        relevance: チーム振り返りに使われるオンラインボードツール。
+                        officialUrl: https://easyretro.io/
+                      - name: Miro
+                        kind: tool
+                        relevance: リモートでのレトロスペクティブボードとしてよく使われる。
+                        officialUrl: https://miro.com/
+
                 - slug: after-action-review
+
+                  search:
+
+                    keywords:
+
+                      - After Action Review
+
+                      - AAR
+
+                      - after-action review
+
+                      - アフターアクションレビュー
+
+                      - 事後レビュー
+
+                      - what was expected
+
+                      - what actually happened
+
+                      - lessons learned
+
+                      - structured debrief
+
+                    commonSignals:
+
+                      - 期待していたこと、実際に起きたこと、差分、学びを問う
+
+                      - イベント直後に構造化して振り返る
+
+                      - lessons learned を次の行動に変える
+
+                      - 訓練やリリース後の debrief を行う
+
+                    antiSignals:
+
+                      - 年次報告書や after action report の提出だけ
+
+                      - 障害の責任追及会議
+
+                      - 単なる議事録で期待と実際の差分がない
+
+                    relatedNames:
+
+                      - name: U.S. Army After Action Review
+
+                        kind: method
+
+                        relevance: AAR の代表的な原型として知られる構造化された振り返り手法。
+
+                      - name: Incident Review
+
+                        kind: method
+
+                        relevance: 期待と実際の差分から学ぶ点で AAR と近い。
+
+                      - name: Postmortem
+
+                        kind: method
+
+                        relevance: 事故やイベント後に学習を抽出する実践として比較されやすい。
                   name: After Action Review
                   summary: 期待と実際の差分から学ぶ構造化された振り返り手法。
                   whyLearn: 事実と学習を分けて整理しやすい。
@@ -799,7 +2991,109 @@ domain:
                   aliases:
                     - InnerSource
                     - internal open source
+                  search:
+                    keywords:
+                      - InnerSource
+                      - internal open source
+                      - インナーソース
+                      - 社内オープンソース
+                      - open collaboration
+                      - trusted committer
+                      - InnerSource patterns
+                      - contribution model
+                      - cross-team contribution
+                    commonSignals:
+                      - 社内でOSSのように pull request を受け付ける
+                      - trusted committer や contribution guideline がある
+                      - チーム外からコード貢献できる
+                      - RFC や公開リポジトリで横断協働する
+                    antiSignals:
+                      - 外部OSS活動だけ
+                      - 単なる社内共有ライブラリで貢献モデルがない
+                      - ソースコード公開ではなくナレッジ共有だけ
+                    relatedNames:
+                      - name: InnerSource Commons
+                        kind: method
+                        relevance: InnerSource のパターンや実践をまとめる代表的コミュニティ。
+                        officialUrl: https://innersourcecommons.org/
+                      - name: InnerSource Patterns
+                        kind: method
+                        relevance: InnerSource を組織に導入するための具体的パターン集。
+                        officialUrl: https://patterns.innersourcecommons.org/
+                      - name: GitHub
+                        kind: service
+                        relevance: 社内リポジトリの公開、Issue、Pull Request による協働基盤として使われやすい。
+                        officialUrl: https://github.com/
+                      - name: GitLab
+                        kind: service
+                        relevance: 社内OSS型の貢献フローを運用するプラットフォームとして使われやすい。
+                        officialUrl: https://about.gitlab.com/
+
                 - slug: community-of-practice
+
+                  search:
+
+                    keywords:
+
+                      - community of practice
+
+                      - CoP
+
+                      - コミュニティ・オブ・プラクティス
+
+                      - 実践共同体
+
+                      - practice community
+
+                      - guild
+
+                      - chapter
+
+                      - knowledge sharing community
+
+                      - cross-functional learning
+
+                    commonSignals:
+
+                      - 共通の実践テーマを持つ人が横断的に集まる
+
+                      - フロントエンド、SRE、QA などの横断コミュニティ
+
+                      - ナレッジ共有、標準作り、相談会を行う
+
+                      - ライン組織とは別の学習回路を作る
+
+                    antiSignals:
+
+                      - 一般的なユーザーコミュニティやファンコミュニティ
+
+                      - 単発の勉強会だけ
+
+                      - 組織内の正式チームとして責任を持つだけで学習共同体ではない
+
+                    relatedNames:
+
+                      - name: Wenger-Trayner Communities of Practice
+
+                        kind: method
+
+                        relevance: Community of Practice の理論的基礎としてよく参照される。
+
+                        officialUrl: https://www.wenger-trayner.com/introduction-to-communities-of-practice/
+
+                      - name: InnerSource Commons
+
+                        kind: method
+
+                        relevance: 横断的な実践共有や貢献文化づくりで CoP と関連する。
+
+                        officialUrl: https://innersourcecommons.org/
+
+                      - name: Agile Guild
+
+                        kind: method
+
+                        relevance: 実践共同体の企業内呼称として guild と比較される。
                   name: コミュニティ・オブ・プラクティス
                   summary: 共通の実践領域を持つ人々が学び合う横断コミュニティ。
                   whyLearn: ライン組織とは別の学習回路を持てる。

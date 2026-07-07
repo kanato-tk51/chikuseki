@@ -25,7 +25,112 @@ domain:
                   promptHint: ISAとマイクロアーキテクチャの違いを具体例で説明して。
                   aliases:
                     - ISA
+                  search:
+                    keywords:
+                      - ISA
+                      - 命令セット
+                      - 命令セットアーキテクチャ
+                      - instruction set architecture
+                      - CPU instruction
+                      - register architecture
+                      - addressing mode
+                      - x86-64
+                      - AArch64
+                      - RISC-V
+                    commonSignals:
+                      - アセンブリ命令やレジスタ名が出てくる
+                      - x86、ARM、RISC-Vの比較がある
+                      - コンパイラターゲットやバイナリ互換性の話がある
+                      - 命令、レジスタ、アドレッシング方式が同時に言及される
+                    antiSignals:
+                      - 単にAPI仕様やアプリケーション仕様をISAと呼んでいるだけ
+                      - マイクロサービスのアーキテクチャの話だけでCPU命令が出ない
+                      - CPU製品名だけで命令セットの説明がない
+                    relatedNames:
+                      - name: x86-64
+                        kind: standard
+                        relevance: 実務サーバやPCで広く使われる代表的なISAファミリ。
+                      - name: AArch64
+                        kind: standard
+                        relevance: ARM 64-bit環境の命令セットとしてクラウドやモバイルで頻出する。
+                      - name: RISC-V
+                        kind: standard
+                        relevance: オープンISAとしてコンピュータアーキテクチャ学習で比較対象になりやすい。
+                        officialUrl: https://riscv.org/
+                      - name: LLVM
+                        kind: tool
+                        relevance: コンパイラバックエンドがISA差分を吸収・生成する代表的ツールチェーン。
+                        officialUrl: https://llvm.org/
+
                 - slug: privilege-level
+
+                  search:
+
+                    keywords:
+
+                      - 特権レベル
+
+                      - privilege level
+
+                      - ring 0
+
+                      - ring 3
+
+                      - user mode
+
+                      - kernel mode
+
+                      - supervisor mode
+
+                      - protection ring
+
+                      - user space
+
+                      - kernel space
+
+                    commonSignals:
+
+                      - ユーザーモードとカーネルモードの切り替えが出る
+
+                      - 権限昇格、保護リング、特権命令が言及される
+
+                      - システムコールや例外でカーネルへ入る話がある
+
+                      - OSがハードウェア資源を保護する説明がある
+
+                    antiSignals:
+
+                      - IAMロールやRBACなどアプリ権限管理だけの話
+
+                      - 管理者権限やsudoの運用手順だけでCPU特権に触れない
+
+                      - セキュリティ組織上の権限分掌だけの話
+
+                    relatedNames:
+
+                      - name: POSIX
+
+                        kind: standard
+
+                        relevance: ユーザープログラムとOSインターフェースの境界理解で一緒に出やすい。
+
+                        officialUrl: https://pubs.opengroup.org/onlinepubs/9799919799/
+
+                      - name: Linux kernel
+
+                        kind: platform
+
+                        relevance: ユーザー空間とカーネル空間の代表的な実装文脈。
+
+                        officialUrl: https://www.kernel.org/
+
+                      - name: RISC-V Privileged Architecture
+
+                        kind: standard
+
+                        relevance: 特権モードを明示的に学ぶためのISA仕様。
+
+                        officialUrl: https://docs.riscv.org/
                   name: 特権レベル
                   summary: ユーザー空間とカーネル空間のように実行権限を段階化する仕組み。
                   whyLearn: 保護境界、システムコール、例外処理の前提が分かる。
@@ -40,6 +145,37 @@ domain:
                   aliases:
                     - interrupt
                     - exception
+                  search:
+                    keywords:
+                      - 割り込み
+                      - 例外
+                      - interrupt
+                      - exception
+                      - trap
+                      - fault
+                      - IRQ
+                      - page fault
+                      - timer interrupt
+                      - interrupt handler
+                    commonSignals:
+                      - page faultやsegmentation faultの説明がある
+                      - I/O完了通知やタイマ割り込みが出る
+                      - interrupt handler、trap handler、例外ベクタが出る
+                      - 通常の命令列からカーネル処理へ制御が移る話がある
+                    antiSignals:
+                      - JavaやPythonの例外処理だけの話
+                      - 割り込みを単に会議や作業中断の意味で使っている
+                      - アプリケーションのエラー通知だけでCPUやOSの制御移譲がない
+                    relatedNames:
+                      - name: APIC
+                        kind: other
+                        relevance: x86系で割り込み配送を扱う際によく出るハードウェア機構。
+                      - name: Linux signal
+                        kind: method
+                        relevance: 例外やイベント通知をユーザー空間へ伝えるOS機構として関連する。
+                      - name: MMU
+                        kind: other
+                        relevance: ページフォールトなどメモリ例外の理解で一緒に出る。
             - slug: parallel-execution-techniques
               name: 並列実行技法
               summary: 命令レベルやデータレベルでCPUの実効性能を高めるための技法。
@@ -66,6 +202,41 @@ domain:
                   promptHint: SIMDが有効な処理と不向きな処理を比較して。
                   aliases:
                     - vectorization
+                  search:
+                    keywords:
+                      - SIMD
+                      - vectorization
+                      - ベクトル化
+                      - single instruction multiple data
+                      - AVX
+                      - SSE
+                      - NEON
+                      - vector instruction
+                      - data parallelism
+                      - auto-vectorization
+                    commonSignals:
+                      - 複数データを一命令で処理する説明がある
+                      - 画像処理、数値計算、配列処理の高速化が出る
+                      - AVX、SSE、NEON、ベクトル命令が出る
+                      - auto-vectorizationやcompiler optimizationが言及される
+                    antiSignals:
+                      - ベクトルDBやembeddingのベクトルだけの話
+                      - SVGなど画像形式としてのvectorだけの話
+                      - 並列処理一般でCPU命令レベルの話がない
+                    relatedNames:
+                      - name: AVX2
+                        kind: standard
+                        relevance: x86系でSIMD最適化を調べる際に頻出する命令拡張。
+                      - name: AVX-512
+                        kind: standard
+                        relevance: 高性能計算やサーバ向け最適化で話題になるSIMD拡張。
+                      - name: ARM NEON
+                        kind: standard
+                        relevance: ARM系で使われる代表的なSIMD命令拡張。
+                      - name: NumPy
+                        kind: library
+                        relevance: 内部でベクトル化・ネイティブ実装による高速化が話題になりやすい。
+                        officialUrl: https://numpy.org/
         - slug: memory-hierarchy-and-shared-memory
           name: メモリ階層と共有メモリ
           summary: キャッシュ、局所性、整合性、NUMAのようなメモリ性能と意味論を扱う。
@@ -82,6 +253,40 @@ domain:
                   promptHint: キャッシュラインサイズが設計に与える影響を説明して。
                   aliases:
                     - cache block
+                  search:
+                    keywords:
+                      - キャッシュライン
+                      - cache line
+                      - cache block
+                      - cache alignment
+                      - cache miss
+                      - L1 cache
+                      - L2 cache
+                      - memory alignment
+                      - line size
+                      - prefetch
+                    commonSignals:
+                      - cache missやcache hit率が言及される
+                      - データ構造のメモリ配置やalignmentの話がある
+                      - false sharingやpaddingと一緒に出る
+                      - 64-byte cache lineなど具体的サイズが出る
+                    antiSignals:
+                      - HTTPキャッシュやCDNキャッシュだけの話
+                      - Redisなどアプリケーションキャッシュの話だけ
+                      - キャッシュ削除やブラウザキャッシュの操作手順だけ
+                    relatedNames:
+                      - name: perf
+                        kind: tool
+                        relevance: キャッシュミスやCPUイベントを観測するLinux性能解析ツールとして関連する。
+                      - name: Valgrind Cachegrind
+                        kind: tool
+                        relevance: キャッシュ挙動を分析する学習・解析ツールとして関連する。
+                        officialUrl: https://valgrind.org/
+                      - name: Intel VTune Profiler
+                        kind: tool
+                        relevance: CPUキャッシュやメモリ階層のボトルネック解析に使われる。
+                        officialUrl: https://www.intel.com/content/www/us/en/developer/tools/oneapi/vtune-profiler.html
+
                 - slug: locality
                   name: 局所性
                   summary: 近い時間や近い場所のデータを再利用しやすい性質。
@@ -97,6 +302,38 @@ domain:
                   promptHint: false sharing が起きる例と避け方を説明して。
                   aliases:
                     - false sharing
+                  search:
+                    keywords:
+                      - false sharing
+                      - フォールスシェアリング
+                      - cache line contention
+                      - cache line bouncing
+                      - padding
+                      - cache alignment
+                      - multi-thread contention
+                      - shared cache line
+                      - CPU cache invalidation
+                      - hot counter
+                    commonSignals:
+                      - 複数スレッドで別変数なのに性能が落ちる説明がある
+                      - paddingやcache line alignmentで改善する話がある
+                      - atomic counterやhot fieldの競合が出る
+                      - cache line invalidationが頻発する文脈
+                    antiSignals:
+                      - 単なるデータ競合やrace conditionだけでキャッシュラインに触れない
+                      - 共有メモリを使っているだけで性能問題がない
+                      - SNSのシェアやファイル共有の話
+                    relatedNames:
+                      - name: Java Contended
+                        kind: language
+                        relevance: JVMでfalse sharingを避けるためのアノテーション文脈で出ることがある。
+                      - name: JMH
+                        kind: tool
+                        relevance: Javaのマイクロベンチマークでfalse sharing検証に使われる。
+                        officialUrl: https://openjdk.org/projects/code-tools/jmh/
+                      - name: perf c2c
+                        kind: tool
+                        relevance: キャッシュライン競合や共有メモリ競合の解析で使われる。
             - slug: shared-memory-semantics
               name: 共有メモリ意味論
               summary: 複数コアから見たメモリ可視性と整合性のルールを扱う。
@@ -109,7 +346,103 @@ domain:
                   promptHint: コヒーレンスと一貫性モデルの違いを説明して。
                   aliases:
                     - coherence
+                  search:
+                    keywords:
+                      - キャッシュコヒーレンス
+                      - cache coherence
+                      - coherence protocol
+                      - MESI
+                      - MOESI
+                      - cache invalidation
+                      - shared memory multiprocessor
+                      - snooping
+                      - directory protocol
+                      - write invalidate
+                    commonSignals:
+                      - 複数CPUキャッシュで同じメモリ値をどう揃えるかの話
+                      - MESIやinvalid state、shared stateが出る
+                      - 共有変数更新が他コアへ伝わる仕組みの説明
+                      - cache coherenceとmemory consistencyの違いを扱う文脈
+                    antiSignals:
+                      - データベースの一貫性だけの話
+                      - 分散システムの整合性モデルだけの話
+                      - HTTPキャッシュの無効化だけの話
+                    relatedNames:
+                      - name: MESI protocol
+                        kind: protocol
+                        relevance: キャッシュコヒーレンスを説明する代表的プロトコル。
+                      - name: MOESI protocol
+                        kind: protocol
+                        relevance: MESIの拡張としてマルチコアキャッシュの説明で出る。
+                      - name: ARM ACE
+                        kind: standard
+                        relevance: ARM系SoCのキャッシュコヒーレント相互接続で言及される。
+
                 - slug: numa
+
+                  search:
+
+                    keywords:
+
+                      - NUMA
+
+                      - Non-Uniform Memory Access
+
+                      - 非均一メモリアクセス
+
+                      - NUMA node
+
+                      - memory locality
+
+                      - CPU socket
+
+                      - numa balancing
+
+                      - node affinity
+
+                      - remote memory access
+
+                      - numactl
+
+                    commonSignals:
+
+                      - CPUソケット間でメモリアクセス遅延が違う話
+
+                      - numactl、node affinity、CPU pinningが出る
+
+                      - 大規模サーバやDBでメモリ配置が性能に影響する話
+
+                      - remote NUMA accessやlocal memoryが言及される
+
+                    antiSignals:
+
+                      - 数値計算ライブラリNumPyの略記と混同している
+
+                      - ノードという語だけでメモリ階層の話がない
+
+                      - Kubernetes Nodeの配置だけでCPUソケットやメモリ局所性が出ない
+
+                    relatedNames:
+
+                      - name: numactl
+
+                        kind: tool
+
+                        relevance: NUMAノードへのCPU・メモリ配置を制御する代表的ツール。
+
+                      - name: hwloc
+
+                        kind: library
+
+                        relevance: CPUトポロジやNUMA配置を検出するライブラリとして関連する。
+
+                        officialUrl: https://www.open-mpi.org/projects/hwloc/
+
+                      - name: Linux NUMA balancing
+
+                        kind: platform
+
+                        relevance: Linuxの自動NUMA最適化機構として実務調査で出やすい。
                   name: NUMA
                   summary: メモリアクセス遅延がCPUソケットやノード位置に依存する構成。
                   whyLearn: 大規模サーバで配置とスレッド親和性が重要な理由が分かる。
@@ -123,6 +456,40 @@ domain:
                   promptHint: 強い一貫性モデルと弱い一貫性モデルを比較して。
                   aliases:
                     - memory model
+                  search:
+                    keywords:
+                      - メモリ一貫性モデル
+                      - memory consistency model
+                      - memory model
+                      - sequential consistency
+                      - relaxed memory
+                      - acquire release
+                      - memory fence
+                      - memory barrier
+                      - atomic ordering
+                      - happens-before
+                    commonSignals:
+                      - acquire、release、sequential consistencyが出る
+                      - atomic操作やmemory fenceの必要性が説明される
+                      - 並行実行時の観測順序が問題になる
+                      - happens-beforeやvolatileの意味が話題になる
+                    antiSignals:
+                      - データベースの整合性モデルだけの話
+                      - キャッシュ容量やメモリ使用量だけの話
+                      - メモリリークやGCの話だけで順序保証がない
+                    relatedNames:
+                      - name: C++ memory model
+                        kind: standard
+                        relevance: acquire/releaseやatomic orderingの代表的な言語仕様文脈。
+                      - name: Java Memory Model
+                        kind: language
+                        relevance: happens-beforeやvolatileの理解で頻出するメモリモデル。
+                      - name: Rust atomics
+                        kind: language
+                        relevance: Ordering型によるメモリ順序指定が実務学習で関連する。
+                      - name: RISC-V RVWMO
+                        kind: standard
+                        relevance: ISAレベルの弱いメモリ順序モデルとして比較に使われる。
 
     - slug: operating-systems-and-resource-management
       name: オペレーティングシステムと資源管理
@@ -171,7 +538,116 @@ domain:
                   promptHint: スケジューラ設計で公平性と応答性が衝突する場面を説明して。
                   aliases:
                     - cpu scheduler
+                  search:
+                    keywords:
+                      - スケジューラ
+                      - CPU scheduler
+                      - process scheduler
+                      - task scheduler
+                      - CFS
+                      - EEVDF
+                      - run queue
+                      - time slice
+                      - scheduling latency
+                      - preemption
+                    commonSignals:
+                      - CPU時間の配分や公平性の話がある
+                      - run queue、preemption、time sliceが出る
+                      - レイテンシとスループットのトレードオフが語られる
+                      - Linux CFSやEEVDFへの言及がある
+                    antiSignals:
+                      - cronやジョブスケジューラだけの話
+                      - Kubernetes schedulerだけでCPU時間配分の話がない
+                      - カレンダー予定調整の意味のscheduler
+                    relatedNames:
+                      - name: Completely Fair Scheduler
+                        kind: method
+                        relevance: Linuxの代表的CPUスケジューラとして実務・学習で頻出する。
+                      - name: EEVDF
+                        kind: method
+                        relevance: Linuxスケジューラの近年の設計変更を理解する関連語。
+                      - name: schedtool
+                        kind: tool
+                        relevance: Linuxのスケジューリングポリシー確認・変更で使われることがある。
+                      - name: chrt
+                        kind: tool
+                        relevance: リアルタイムスケジューリングポリシーの確認・設定で関連する。
+
                 - slug: cgroup
+
+                  search:
+
+                    keywords:
+
+                      - Cgroup
+
+                      - cgroups
+
+                      - control group
+
+                      - cgroup v2
+
+                      - CPU quota
+
+                      - memory limit
+
+                      - blkio
+
+                      - cpu.max
+
+                      - memory.max
+
+                      - container resource limit
+
+                    commonSignals:
+
+                      - CPUやメモリのlimit、quota、throttlingが出る
+
+                      - DockerやKubernetesのリソース制限が話題になる
+
+                      - cgroup v1/v2やcpu.max、memory.maxが出る
+
+                      - プロセスグループ単位の資源制御が説明される
+
+                    antiSignals:
+
+                      - Unix groupやユーザーグループ管理だけの話
+
+                      - コンテナ一般の話で資源制限が出ない
+
+                      - セキュリティグループやIAMグループの話
+
+                    relatedNames:
+
+                      - name: systemd
+
+                        kind: platform
+
+                        relevance: Linux上でcgroup階層管理とサービス管理に密接に関わる。
+
+                        officialUrl: https://systemd.io/
+
+                      - name: Docker
+
+                        kind: platform
+
+                        relevance: コンテナのCPU・メモリ制限でcgroupを利用する代表的基盤。
+
+                        officialUrl: https://www.docker.com/
+
+                      - name: Kubernetes Resource Requests and Limits
+
+                        kind: platform
+
+                        relevance: Podの資源制御が下位でcgroupに結び付く。
+
+                      - name: Linux cgroup v2
+
+                        kind: platform
+
+                        relevance: 現代Linuxの統一cgroup階層として実務で重要。
+
+                        officialUrl: https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v2.html
                   name: Cgroup
                   summary: プロセス群に対してCPU、メモリ、I/Oなどの資源制御をかける機構。
                   whyLearn: コンテナの資源制限やノイズ抑制の基礎になる。
@@ -185,6 +661,41 @@ domain:
                   promptHint: Namespaceが分離する対象を例で説明して。
                   aliases:
                     - linux namespace
+                  search:
+                    keywords:
+                      - Namespace
+                      - Linux namespace
+                      - 名前空間
+                      - mount namespace
+                      - PID namespace
+                      - network namespace
+                      - user namespace
+                      - uts namespace
+                      - ipc namespace
+                      - container isolation
+                    commonSignals:
+                      - PID、mount、networkなど見える世界を分ける話
+                      - コンテナがホストと別のプロセス一覧を見る説明
+                      - unshareやnsenterが出る
+                      - network namespaceで仮想NICを分ける話
+                    antiSignals:
+                      - プログラミング言語の名前空間だけの話
+                      - Kubernetes NamespaceだけでLinux namespaceに触れない
+                      - DNS名前空間やXML namespaceの話
+                    relatedNames:
+                      - name: unshare
+                        kind: tool
+                        relevance: Linux namespaceを手元で作成・確認する代表的コマンド。
+                      - name: nsenter
+                        kind: tool
+                        relevance: 既存namespaceへ入ってデバッグする際に使われる。
+                      - name: Docker
+                        kind: platform
+                        relevance: コンテナ隔離の土台としてLinux namespaceを利用する。
+                        officialUrl: https://www.docker.com/
+                      - name: Kubernetes Namespace
+                        kind: platform
+                        relevance: 同じnamespaceでもKubernetesの論理分離概念と比較されやすい。
         - slug: virtual-memory-and-io
           name: 仮想記憶とI/O
           summary: アドレス空間、ページング、メモリ写像、同期I/Oと非同期I/Oを扱う。
@@ -201,7 +712,110 @@ domain:
                   promptHint: 仮想記憶がOS設計に与える利点を説明して。
                   aliases:
                     - virtual memory
+                  search:
+                    keywords:
+                      - 仮想記憶
+                      - virtual memory
+                      - virtual address
+                      - address space
+                      - page table
+                      - MMU
+                      - TLB
+                      - memory protection
+                      - demand paging
+                      - copy-on-write
+                    commonSignals:
+                      - 仮想アドレスと物理アドレスの変換が出る
+                      - ページテーブル、TLB、MMUが言及される
+                      - プロセスごとのアドレス空間の説明がある
+                      - copy-on-writeやforkのメモリ共有が出る
+                    antiSignals:
+                      - 仮想マシンのメモリ割り当てだけの話
+                      - アプリのメモリ使用量グラフだけでアドレス変換がない
+                      - クラウド仮想サーバの話だけでOSメモリ管理に触れない
+                    relatedNames:
+                      - name: MMU
+                        kind: other
+                        relevance: 仮想アドレスから物理アドレスへの変換を担うハードウェア機構。
+                      - name: TLB
+                        kind: other
+                        relevance: アドレス変換を高速化するキャッシュとして仮想記憶の学習で頻出する。
+                      - name: Linux procfs
+                        kind: platform
+                        relevance: /proc/pid/mapsなどでプロセスの仮想アドレス空間を観察できる。
+                      - name: ASLR
+                        kind: method
+                        relevance: 仮想アドレス空間のランダム化としてメモリ保護と関連する。
+
                 - slug: paging
+
+                  search:
+
+                    keywords:
+
+                      - ページング
+
+                      - paging
+
+                      - demand paging
+
+                      - page fault
+
+                      - page table
+
+                      - swap
+
+                      - page cache
+
+                      - page replacement
+
+                      - major fault
+
+                      - minor fault
+
+                    commonSignals:
+
+                      - page fault、major fault、minor faultが出る
+
+                      - swap in/outやメモリ不足による遅延が説明される
+
+                      - ページ単位のメモリ管理やページテーブルの話がある
+
+                      - demand pagingやpage replacementが言及される
+
+                    antiSignals:
+
+                      - Webページのページネーションだけの話
+
+                      - データベースのページサイズだけでOS仮想記憶が出ない
+
+                      - ランディングページやページビューの話
+
+                    relatedNames:
+
+                      - name: vmstat
+
+                        kind: tool
+
+                        relevance: ページングやswap傾向を確認するLinuxツールとして関連する。
+
+                      - name: sar
+
+                        kind: tool
+
+                        relevance: ページフォールトやメモリ統計の時系列確認に使われる。
+
+                      - name: perf
+
+                        kind: tool
+
+                        relevance: page faultイベントやメモリ関連性能解析に利用される。
+
+                      - name: Linux OOM killer
+
+                        kind: platform
+
+                        relevance: メモリ不足やページング悪化の文脈で一緒に出やすい。
                   name: ページング
                   summary: メモリをページ単位で管理し必要時に読み込む方式。
                   whyLearn: スワップやページフォールトの遅延要因を理解できる。
@@ -215,6 +829,40 @@ domain:
                   promptHint: mmapとread/writeの使い分けを説明して。
                   aliases:
                     - memory map
+                  search:
+                    keywords:
+                      - mmap
+                      - memory map
+                      - memory-mapped file
+                      - メモリマップ
+                      - shared memory
+                      - zero copy
+                      - MAP_SHARED
+                      - MAP_PRIVATE
+                      - anonymous mapping
+                      - page fault
+                    commonSignals:
+                      - ファイルをメモリアドレス空間へ写像する説明
+                      - MAP_SHARED、MAP_PRIVATE、anonymous mappingが出る
+                      - read/writeとの性能比較やzero-copyの話
+                      - 共有メモリIPCの文脈
+                    antiSignals:
+                      - 地図アプリやmapデータ構造の話
+                      - JavaScriptのArray.mapなど関数名のmap
+                      - 単なるメモリ確保でファイル写像がない
+                    relatedNames:
+                      - name: POSIX mmap
+                        kind: standard
+                        relevance: mmapのAPI仕様として参照される標準インターフェース。
+                        officialUrl: https://pubs.opengroup.org/onlinepubs/9799919799/
+                      - name: Linux man-pages
+                        kind: platform
+                        relevance: mmapのフラグや挙動確認でよく参照される。
+                        officialUrl: https://man7.org/linux/man-pages/
+                      - name: LMDB
+                        kind: library
+                        relevance: メモリマップドファイルを活用する代表的な組み込みDB。
+                        officialUrl: https://www.symas.com/lmdb
             - slug: readiness-and-async-io
               name: レディネス通知と非同期I/O
               summary: 多数のI/O待ちを効率良く扱うためのOS機構を扱う。
@@ -234,7 +882,114 @@ domain:
                   promptHint: epollが高並行サーバで使われる理由を説明して。
                   aliases:
                     - epoll
+                  search:
+                    keywords:
+                      - epoll
+                      - epoll_wait
+                      - epoll_ctl
+                      - I/O event notification
+                      - readiness notification
+                      - non-blocking socket
+                      - event loop
+                      - edge-triggered
+                      - level-triggered
+                      - high concurrency server
+                    commonSignals:
+                      - 多数のソケットやFDを1スレッドで監視する話
+                      - epoll_wait、epoll_ctl、non-blocking I/Oが出る
+                      - level-triggeredとedge-triggeredの比較がある
+                      - C10K問題や高並行サーバの説明
+                    antiSignals:
+                      - 世論調査pollや投票pollの話
+                      - ブラウザイベントやUIイベントだけの話
+                      - async/awaitだけでOSのFD監視が出ない
+                    relatedNames:
+                      - name: nginx
+                        kind: tool
+                        relevance: 高並行ネットワークサーバでepoll利用例として頻出する。
+                        officialUrl: https://nginx.org/
+                      - name: libevent
+                        kind: library
+                        relevance: epollなど複数OSのイベント通知を抽象化するライブラリ。
+                        officialUrl: https://libevent.org/
+                      - name: libuv
+                        kind: library
+                        relevance: Node.jsなどで使われるイベントループ基盤として関連する。
+                        officialUrl: https://libuv.org/
+                      - name: Node.js
+                        kind: platform
+                        relevance: イベントループと非同期I/Oの実務文脈で一緒に出やすい。
+                        officialUrl: https://nodejs.org/
+
                 - slug: io-uring
+
+                  search:
+
+                    keywords:
+
+                      - io_uring
+
+                      - uring
+
+                      - asynchronous I/O
+
+                      - async io
+
+                      - submission queue
+
+                      - completion queue
+
+                      - SQE
+
+                      - CQE
+
+                      - zero-copy
+
+                      - Linux AIO
+
+                    commonSignals:
+
+                      - submission queueとcompletion queueが出る
+
+                      - epollや従来AIOとの比較がある
+
+                      - 低syscallオーバーヘッドや共有リングの話
+
+                      - 高性能ストレージI/OやネットワークI/Oの文脈
+
+                    antiSignals:
+
+                      - 単なるリングバッファの話でLinux I/Oがない
+
+                      - async/await一般論だけでio_uring APIが出ない
+
+                      - WebSocketやイベントループだけの話
+
+                    relatedNames:
+
+                      - name: liburing
+
+                        kind: library
+
+                        relevance: io_uringをCから扱うための代表的ライブラリ。
+
+                        officialUrl: https://github.com/axboe/liburing
+
+                      - name: Linux kernel
+
+                        kind: platform
+
+                        relevance: io_uringはLinux固有の非同期I/O機構として実装される。
+
+                        officialUrl: https://www.kernel.org/
+
+                      - name: Seastar
+
+                        kind: framework
+
+                        relevance: 高性能I/Oフレームワークでio_uring対応が話題になりやすい。
+
+                        officialUrl: https://seastar.io/
                   name: io_uring
                   summary: 共有リングを使って低オーバーヘッドな非同期I/Oを行うLinux機構。
                   whyLearn: 現代の高性能I/Oパスと既存手法との差を理解できる。
@@ -271,6 +1026,40 @@ domain:
                   promptHint: ジャーナリングが何を守り何を犠牲にするか説明して。
                   aliases:
                     - journal
+                  search:
+                    keywords:
+                      - ジャーナリング
+                      - journaling
+                      - journal
+                      - write-ahead log
+                      - WAL
+                      - filesystem journal
+                      - crash recovery
+                      - ext4 journal
+                      - metadata journaling
+                      - ordered mode
+                    commonSignals:
+                      - クラッシュ後のメタデータ整合性回復が出る
+                      - write-ahead logやjournal commitが言及される
+                      - ext4、XFS、ordered/writeback/data modeが出る
+                      - fsyncや永続化順序と一緒に語られる
+                    antiSignals:
+                      - 日記や研究ジャーナルの話
+                      - アプリケーションログ出力だけの話
+                      - 監査ログやアクセスログだけでクラッシュ回復がない
+                    relatedNames:
+                      - name: ext4
+                        kind: platform
+                        relevance: Linuxでジャーナリングを学ぶ代表的ファイルシステム。
+                      - name: XFS
+                        kind: platform
+                        relevance: ジャーナリングファイルシステムの代表例として比較される。
+                      - name: PostgreSQL WAL
+                        kind: method
+                        relevance: ファイルシステム外でもwrite-ahead loggingの考え方として関連する。
+                      - name: fsck
+                        kind: tool
+                        relevance: クラッシュ後整合性確認・修復の文脈で一緒に出る。
             - slug: storage-devices-and-redundancy
               name: ストレージ装置と冗長化
               summary: ブロックデバイス、SSD時代のI/O、冗長化方式を扱う。
@@ -290,6 +1079,44 @@ domain:
                   promptHint: SATA世代と比べたNVMeの利点を説明して。
                   aliases:
                     - NVM Express
+                  search:
+                    keywords:
+                      - NVMe
+                      - NVM Express
+                      - NVMe SSD
+                      - PCIe SSD
+                      - submission queue
+                      - completion queue
+                      - NVMe namespace
+                      - NVMe-oF
+                      - IOPS
+                      - low latency storage
+                    commonSignals:
+                      - PCIe接続SSDや高IOPS低遅延ストレージの話
+                      - submission/completion queueが出る
+                      - SATA SSDとの比較がある
+                      - nvme-cliやNVMe namespaceが言及される
+                    antiSignals:
+                      - NVMを単に不揮発性メモリ一般の意味で使っているだけ
+                      - オブジェクトストレージやS3の話だけ
+                      - データベースのnamespaceとNVMe namespaceを混同している
+                    relatedNames:
+                      - name: NVM Express
+                        kind: standard
+                        relevance: NVMe仕様を策定する標準化団体・仕様名。
+                        officialUrl: https://nvmexpress.org/
+                      - name: nvme-cli
+                        kind: tool
+                        relevance: LinuxでNVMeデバイスの確認・管理に使う代表的ツール。
+                        officialUrl: https://github.com/linux-nvme/nvme-cli
+                      - name: SPDK
+                        kind: framework
+                        relevance: ユーザー空間ストレージ高速化でNVMeと一緒に出やすい。
+                        officialUrl: https://spdk.io/
+                      - name: NVMe over Fabrics
+                        kind: protocol
+                        relevance: NVMeをネットワーク越しに拡張する仕様として関連する。
+
                 - slug: raid
                   name: RAID
                   summary: 複数ディスクをまとめて冗長性や性能を得る構成技法。
@@ -319,7 +1146,111 @@ domain:
                   promptHint: IPアドレスがMACアドレスとどう違うか説明して。
                   aliases:
                     - IP
+                  search:
+                    keywords:
+                      - IPアドレス
+                      - IP address
+                      - IPv4
+                      - IPv6
+                      - private address
+                      - public address
+                      - loopback
+                      - CIDR
+                      - host address
+                      - network address
+                    commonSignals:
+                      - 192.168.x.x、10.x.x.x、127.0.0.1などのアドレスが出る
+                      - IPv4/IPv6やprivate/public addressの比較がある
+                      - ネットワーク到達性やホスト識別の話
+                      - IPとMACアドレスの違いを説明している
+                    antiSignals:
+                      - IPを知的財産の意味で使っている
+                      - APIアドレスやURLだけでIP層の話がない
+                      - 地理的な住所やメールアドレスの話
+                    relatedNames:
+                      - name: IPv4
+                        kind: protocol
+                        relevance: 現在も広く使われるIPアドレス体系。
+                      - name: IPv6
+                        kind: protocol
+                        relevance: 大きなアドレス空間を持つ現代のIP仕様。
+                      - name: iproute2
+                        kind: tool
+                        relevance: LinuxでIPアドレスや経路を確認・設定する代表的ツール群。
+                      - name: IANA IPv4 Special-Purpose Address Registry
+                        kind: standard
+                        relevance: 特殊用途アドレスの確認で参照される公式レジストリ。
+                        officialUrl: https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xhtml
+
                 - slug: subnet-cidr
+
+                  search:
+
+                    keywords:
+
+                      - サブネット
+
+                      - CIDR
+
+                      - subnet
+
+                      - CIDR notation
+
+                      - prefix length
+
+                      - network prefix
+
+                      - subnet mask
+
+                      - VPC CIDR
+
+                      - /24
+
+                      - address allocation
+
+                    commonSignals:
+
+                      - /24や/16などプレフィックス長が出る
+
+                      - VPCやサブネット設計、IPレンジ分割が話題
+
+                      - subnet maskやnetwork addressが説明される
+
+                      - ACLやルートテーブルと一緒にCIDRが出る
+
+                    antiSignals:
+
+                      - CSSやデザインのprefixの話
+
+                      - サブネットという語だけでIPアドレス範囲が出ない
+
+                      - 組織の部署分割を比喩的にsubnetと呼ぶだけ
+
+                    relatedNames:
+
+                      - name: RFC 4632
+
+                        kind: standard
+
+                        relevance: CIDRによるインターネットアドレス割り当ての基礎仕様。
+
+                        officialUrl: https://www.rfc-editor.org/rfc/rfc4632
+
+                      - name: AWS VPC
+
+                        kind: service
+
+                        relevance: クラウドネットワーク設計でCIDR設計が頻出する。
+
+                        officialUrl: https://aws.amazon.com/vpc/
+
+                      - name: Terraform
+
+                        kind: tool
+
+                        relevance: cidrsubnet関数などIaCでCIDR計算がよく出る。
+
+                        officialUrl: https://www.terraform.io/
                   name: サブネットとCIDR
                   summary: アドレス空間を接頭辞長で分割して管理する方式。
                   whyLearn: ネットワーク分割やACL設計の基礎になる。
@@ -333,6 +1264,40 @@ domain:
                   promptHint: デフォルトルートの役割を説明して。
                   aliases:
                     - route table
+                  search:
+                    keywords:
+                      - ルーティングテーブル
+                      - routing table
+                      - route table
+                      - default route
+                      - gateway
+                      - next hop
+                      - longest prefix match
+                      - route lookup
+                      - ip route
+                      - static route
+                    commonSignals:
+                      - default gatewayやnext hopが出る
+                      - ip route、route -n、netstat -rnの出力がある
+                      - longest prefix matchの説明がある
+                      - VPCやサブネット間通信の経路設定が話題
+                    antiSignals:
+                      - アプリ内ルーティングやURLルーティングだけの話
+                      - React RouterやNext.js routingだけの話
+                      - 配送ルートや営業ルートなど物理移動の話
+                    relatedNames:
+                      - name: iproute2
+                        kind: tool
+                        relevance: Linuxでルーティングテーブルを確認・変更する標準的ツール。
+                      - name: BGP
+                        kind: protocol
+                        relevance: 経路制御の代表的プロトコルでルーティングテーブル生成に関わる。
+                      - name: AWS Route Table
+                        kind: service
+                        relevance: クラウドVPC内の経路制御で同名概念として頻出する。
+                      - name: traceroute
+                        kind: tool
+                        relevance: 実際の経路確認や到達性調査で一緒に使われる。
             - slug: path-and-edge-constraints
               name: 経路上の制約と境界装置
               summary: MTU、アドレス変換、L2解決のような実務上の制約を扱う。
@@ -345,7 +1310,112 @@ domain:
                   promptHint: MTUミスマッチで何が起きるか説明して。
                   aliases:
                     - Maximum Transmission Unit
+                  search:
+                    keywords:
+                      - MTU
+                      - Maximum Transmission Unit
+                      - 最大転送単位
+                      - packet fragmentation
+                      - PMTU
+                      - path MTU discovery
+                      - MSS
+                      - jumbo frame
+                      - ICMP fragmentation needed
+                      - black hole MTU
+                    commonSignals:
+                      - fragmentationやDF bitが出る
+                      - 特定サイズ以上の通信だけ失敗する
+                      - VPN、VXLAN、overlayでパケットサイズ問題が出る
+                      - MSS clampingやjumbo frameが言及される
+                    antiSignals:
+                      - 単なるファイルサイズ制限の話
+                      - HTTP request sizeやアップロード上限の話だけ
+                      - メートル法単位や重量単位のMTUではない話
+                    relatedNames:
+                      - name: Path MTU Discovery
+                        kind: method
+                        relevance: 経路上のMTUを発見する仕組みとして直接関連する。
+                      - name: ICMP
+                        kind: protocol
+                        relevance: PMTU発見や到達性診断で重要な制御メッセージを運ぶ。
+                      - name: ping
+                        kind: tool
+                        relevance: DFビットやサイズ指定でMTU問題の切り分けに使われる。
+                      - name: VXLAN
+                        kind: protocol
+                        relevance: オーバーレイによるヘッダ増加でMTU問題が起きやすい。
+
                 - slug: nat
+
+                  search:
+
+                    keywords:
+
+                      - NAT
+
+                      - Network Address Translation
+
+                      - ネットワークアドレス変換
+
+                      - SNAT
+
+                      - DNAT
+
+                      - PAT
+
+                      - NAT gateway
+
+                      - port forwarding
+
+                      - conntrack
+
+                      - NAT traversal
+
+                    commonSignals:
+
+                      - private IPから外部へ出る通信の話
+
+                      - port forwardingやSNAT/DNATが出る
+
+                      - conntrackやiptables nat tableが言及される
+
+                      - P2PやWebRTCでNAT越えが問題になる
+
+                    antiSignals:
+
+                      - 自然言語処理のNATなど別略語
+
+                      - アドレス変換ではなくDNS名解決だけの話
+
+                      - ロードバランサ一般の話でIP/port変換がない
+
+                    relatedNames:
+
+                      - name: iptables
+
+                        kind: tool
+
+                        relevance: LinuxでNATルールを設定する代表的ツール。
+
+                      - name: nftables
+
+                        kind: tool
+
+                        relevance: 現代LinuxでNATやフィルタリングを扱う後継的ツール。
+
+                      - name: AWS NAT Gateway
+
+                        kind: service
+
+                        relevance: クラウドでプライベートサブネットから外向き通信を出す代表サービス。
+
+                        officialUrl: https://aws.amazon.com/vpc/
+
+                      - name: STUN
+
+                        kind: protocol
+
+                        relevance: NAT越えの通信で使われる代表的プロトコル。
                   name: NAT
                   summary: アドレスやポートを書き換えて到達性を中継する仕組み。
                   whyLearn: 内外向き通信、ポート競合、到達性制約を理解できる。
@@ -375,7 +1445,114 @@ domain:
                   promptHint: TCPが提供する保証とコストを説明して。
                   aliases:
                     - Transmission Control Protocol
+                  search:
+                    keywords:
+                      - TCP
+                      - Transmission Control Protocol
+                      - three-way handshake
+                      - SYN
+                      - ACK
+                      - FIN
+                      - retransmission
+                      - congestion window
+                      - TCP socket
+                      - head-of-line blocking
+                    commonSignals:
+                      - SYN/SYN-ACK/ACKの3-way handshakeが出る
+                      - 再送、順序保証、輻輳制御が同時に説明される
+                      - TCP socketやconnection resetが話題になる
+                      - packet captureでACKやwindow sizeを見る文脈
+                    antiSignals:
+                      - TCPを単に通信一般の意味で雑に使っている
+                      - HTTPだけの話で輸送層の保証に触れない
+                      - TCP/IPという語だけでTCP固有の説明がない
+                    relatedNames:
+                      - name: RFC 9293
+                        kind: standard
+                        relevance: TCPの現在の統合仕様として参照される。
+                        officialUrl: https://www.rfc-editor.org/rfc/rfc9293
+                      - name: Wireshark
+                        kind: tool
+                        relevance: TCPハンドシェイクや再送をパケットレベルで観察する代表ツール。
+                        officialUrl: https://www.wireshark.org/
+                      - name: tcpdump
+                        kind: tool
+                        relevance: TCPパケット解析や障害調査で頻出するCLIツール。
+                      - name: BBR
+                        kind: method
+                        relevance: TCP輻輳制御アルゴリズムとして性能議論で出やすい。
+
                 - slug: udp
+
+                  search:
+
+                    keywords:
+
+                      - UDP
+
+                      - User Datagram Protocol
+
+                      - datagram
+
+                      - connectionless
+
+                      - best effort
+
+                      - packet loss
+
+                      - UDP socket
+
+                      - DNS over UDP
+
+                      - RTP
+
+                      - UDP hole punching
+
+                    commonSignals:
+
+                      - connectionlessやdatagramが出る
+
+                      - パケット損失や順序保証なしが説明される
+
+                      - DNS、ゲーム、音声、動画、QUICの土台として出る
+
+                      - UDP hole punchingやNAT traversalが話題
+
+                    antiSignals:
+
+                      - UDPを企業名や製品略称として使っている
+
+                      - Web API通信一般でUDPの特徴に触れない
+
+                      - TCPとの比較がなく単に高速と言っているだけ
+
+                    relatedNames:
+
+                      - name: RFC 768
+
+                        kind: standard
+
+                        relevance: UDPの基本仕様。
+
+                        officialUrl: https://www.rfc-editor.org/rfc/rfc768
+
+                      - name: QUIC
+
+                        kind: protocol
+
+                        relevance: UDP上に構築される現代的な信頼性付き輸送プロトコル。
+
+                      - name: DNS
+
+                        kind: protocol
+
+                        relevance: 伝統的にUDPを利用する代表的アプリケーションプロトコル。
+
+                      - name: RTP
+
+                        kind: protocol
+
+                        relevance: 音声・動画リアルタイム通信でUDPと一緒に出やすい。
                   name: UDP
                   summary: 低オーバーヘッドでベストエフォート配送を行うコネクションレス輸送。
                   whyLearn: DNS、音声、ゲーム、QUICの土台を理解できる。
@@ -389,6 +1566,43 @@ domain:
                   promptHint: QUICがTCPより有利になる条件を説明して。
                   aliases:
                     - QUIC
+                  search:
+                    keywords:
+                      - QUIC
+                      - HTTP/3
+                      - UDP-based transport
+                      - stream multiplexing
+                      - 0-RTT
+                      - connection migration
+                      - TLS 1.3
+                      - packet number
+                      - QUIC stream
+                      - loss recovery
+                    commonSignals:
+                      - UDP上の多重化された暗号化輸送が出る
+                      - HTTP/3、0-RTT、connection migrationが言及される
+                      - TCP head-of-line blockingとの比較がある
+                      - TLS 1.3がQUICに統合される説明
+                    antiSignals:
+                      - quickという一般形容詞の誤記
+                      - HTTP/3だけで輸送層QUICの特徴が出ない
+                      - UDPを使うだけの独自プロトコル
+                    relatedNames:
+                      - name: RFC 9000
+                        kind: standard
+                        relevance: QUIC transportの中核仕様。
+                        officialUrl: https://www.rfc-editor.org/rfc/rfc9000
+                      - name: HTTP/3
+                        kind: protocol
+                        relevance: QUIC上でHTTP意味論を運ぶ代表的利用例。
+                      - name: quiche
+                        kind: library
+                        relevance: CloudflareによるQUIC/HTTP/3実装として関連する。
+                        officialUrl: https://github.com/cloudflare/quiche
+                      - name: ngtcp2
+                        kind: library
+                        relevance: QUICプロトコル実装として学習・実験で使われる。
+                        officialUrl: https://github.com/ngtcp2/ngtcp2
             - slug: control-and-reliability
               name: 制御と信頼性機構
               summary: 通信品質を保つための流量制御、輻輳制御、再送の仕組みを扱う。
@@ -431,7 +1645,125 @@ domain:
                   promptHint: DNSが分散システムとして設計されている理由を説明して。
                   aliases:
                     - Domain Name System
+                  search:
+                    keywords:
+                      - DNS
+                      - Domain Name System
+                      - 名前解決
+                      - resolver
+                      - authoritative server
+                      - recursive resolver
+                      - A record
+                      - AAAA record
+                      - CNAME
+                      - TTL
+                    commonSignals:
+                      - A/AAAA/CNAME/MX/TXTなどDNSレコードが出る
+                      - TTL、キャッシュ、recursive resolverの話がある
+                      - 名前は引けるが接続できないなど到達性切り分け
+                      - Kubernetes Service名やCoreDNSが出る
+                    antiSignals:
+                      - DNSを単にドメイン購入やレジストラ管理だけで扱う
+                      - URLルーティングやHTTP Hostヘッダだけの話
+                      - 社内用語のDNSでDomain Name Systemではない
+                    relatedNames:
+                      - name: RFC 1034
+                        kind: standard
+                        relevance: DNSの概念と構造を定義する基本RFC。
+                        officialUrl: https://www.rfc-editor.org/rfc/rfc1034
+                      - name: RFC 1035
+                        kind: standard
+                        relevance: DNSのプロトコルと実装仕様を定義する基本RFC。
+                        officialUrl: https://www.rfc-editor.org/rfc/rfc1035
+                      - name: BIND
+                        kind: tool
+                        relevance: 権威DNSサーバ実装として長く使われる。
+                        officialUrl: https://www.isc.org/bind/
+                      - name: CoreDNS
+                        kind: tool
+                        relevance: Kubernetesクラスタ内DNSとして頻出する。
+                        officialUrl: https://coredns.io/
+                      - name: dig
+                        kind: tool
+                        relevance: DNSレコード確認や障害調査の定番CLIツール。
+
                 - slug: tls
+
+                  search:
+
+                    keywords:
+
+                      - TLS
+
+                      - Transport Layer Security
+
+                      - TLS 1.3
+
+                      - SSL
+
+                      - HTTPS
+
+                      - handshake
+
+                      - cipher suite
+
+                      - certificate
+
+                      - ALPN
+
+                      - mTLS
+
+                    commonSignals:
+
+                      - TLS handshakeやcipher suiteが出る
+
+                      - 証明書検証失敗、期限切れ、SAN不一致の話
+
+                      - HTTPS、mTLS、ALPN、SNIが言及される
+
+                      - OpenSSLコマンドで接続確認している
+
+                    antiSignals:
+
+                      - トランスポート層一般の話で暗号化がない
+
+                      - SSLという語だけで現代TLSの文脈がない
+
+                      - アプリ認可やログイン認証だけの話
+
+                    relatedNames:
+
+                      - name: RFC 8446
+
+                        kind: standard
+
+                        relevance: TLS 1.3の仕様として参照される。
+
+                        officialUrl: https://www.rfc-editor.org/rfc/rfc8446
+
+                      - name: OpenSSL
+
+                        kind: library
+
+                        relevance: TLS実装・証明書操作で最も広く見かけるツールキットの一つ。
+
+                        officialUrl: https://www.openssl.org/
+
+                      - name: Let's Encrypt
+
+                        kind: service
+
+                        relevance: TLS証明書発行の実務で頻出するCAサービス。
+
+                        officialUrl: https://letsencrypt.org/
+
+                      - name: curl
+
+                        kind: tool
+
+                        relevance: TLS接続確認や証明書エラー調査でよく使われる。
+
+                        officialUrl: https://curl.se/
                   name: TLS
                   summary: 通信路の暗号化、完全性、相手認証を提供するプロトコル。
                   whyLearn: 平文通信の危険とHTTPSの前提を理解できる。
@@ -452,6 +1784,44 @@ domain:
                   promptHint: HTTPのメソッドとステータスコードの役割を説明して。
                   aliases:
                     - Hypertext Transfer Protocol
+                  search:
+                    keywords:
+                      - HTTP
+                      - Hypertext Transfer Protocol
+                      - request response
+                      - HTTP method
+                      - status code
+                      - header
+                      - cache-control
+                      - proxy
+                      - REST
+                      - keep-alive
+                    commonSignals:
+                      - GET/POST/PUT/DELETEやstatus codeが出る
+                      - header、body、cache-control、content-typeが話題
+                      - proxy、reverse proxy、HTTP cacheの説明がある
+                      - curlでAPI疎通確認している
+                    antiSignals:
+                      - URLやWebページの話だけでHTTPメッセージが出ない
+                      - gRPCやWebSocketだけでHTTP層の意味論に触れない
+                      - TLSやTCPだけの話でHTTPメソッドがない
+                    relatedNames:
+                      - name: RFC 9110
+                        kind: standard
+                        relevance: HTTP semanticsの現行仕様として参照される。
+                        officialUrl: https://www.rfc-editor.org/rfc/rfc9110
+                      - name: curl
+                        kind: tool
+                        relevance: HTTPリクエスト確認やデバッグの定番CLIツール。
+                        officialUrl: https://curl.se/
+                      - name: Postman
+                        kind: tool
+                        relevance: HTTP APIの試験・探索で広く使われるツール。
+                        officialUrl: https://www.postman.com/
+                      - name: nginx
+                        kind: tool
+                        relevance: HTTPリバースプロキシやWebサーバとして頻出する。
+                        officialUrl: https://nginx.org/
         - slug: web-protocol-evolution
           name: Webプロトコルの進化
           summary: Web通信が性能と多重化の都合でどう進化してきたかを扱う。
@@ -468,7 +1838,117 @@ domain:
                   promptHint: HTTP/1.1とHTTP/2の差を説明して。
                   aliases:
                     - h2
+                  search:
+                    keywords:
+                      - HTTP/2
+                      - h2
+                      - stream multiplexing
+                      - HPACK
+                      - binary framing
+                      - server push
+                      - head-of-line blocking
+                      - HTTP/2 frame
+                      - prioritization
+                      - single connection
+                    commonSignals:
+                      - 単一TCP接続上の多重化が出る
+                      - HPACKやbinary frameが言及される
+                      - HTTP/1.1とのコネクション数比較がある
+                      - gRPC over HTTP/2が出る
+                    antiSignals:
+                      - HTTP/3やQUICの話だけ
+                      - HTTPステータスコード一般の話だけ
+                      - ブラウザ表示速度だけでプロトコル機構が出ない
+                    relatedNames:
+                      - name: RFC 9113
+                        kind: standard
+                        relevance: HTTP/2の現行仕様として参照される。
+                        officialUrl: https://www.rfc-editor.org/rfc/rfc9113
+                      - name: HPACK
+                        kind: protocol
+                        relevance: HTTP/2のヘッダ圧縮方式として関連する。
+                      - name: gRPC
+                        kind: framework
+                        relevance: 多くの実装でHTTP/2をトランスポートとして利用する。
+                        officialUrl: https://grpc.io/
+                      - name: nghttp2
+                        kind: library
+                        relevance: HTTP/2実装・検証でよく使われるライブラリとツール。
+                        officialUrl: https://nghttp2.org/
+
                 - slug: http-3
+
+                  search:
+
+                    keywords:
+
+                      - HTTP/3
+
+                      - h3
+
+                      - QUIC
+
+                      - QPACK
+
+                      - HTTP over QUIC
+
+                      - 0-RTT
+
+                      - connection migration
+
+                      - stream multiplexing
+
+                      - UDP transport
+
+                      - Alt-Svc
+
+                    commonSignals:
+
+                      - HTTP semantics over QUICの説明がある
+
+                      - UDP、QUIC、TLS 1.3が一緒に出る
+
+                      - HTTP/2とのhead-of-line blocking比較がある
+
+                      - Alt-Svcやh3がレスポンスヘッダに出る
+
+                    antiSignals:
+
+                      - HTTP/2の多重化だけの話
+
+                      - 単にWebが速いという話でQUICが出ない
+
+                      - HTTPステータスコード一般の話
+
+                    relatedNames:
+
+                      - name: RFC 9114
+
+                        kind: standard
+
+                        relevance: HTTP/3の仕様として参照される。
+
+                        officialUrl: https://www.rfc-editor.org/rfc/rfc9114
+
+                      - name: QUIC
+
+                        kind: protocol
+
+                        relevance: HTTP/3が利用する基盤輸送プロトコル。
+
+                      - name: QPACK
+
+                        kind: protocol
+
+                        relevance: HTTP/3のヘッダ圧縮方式として関連する。
+
+                      - name: Cloudflare
+
+                        kind: service
+
+                        relevance: HTTP/3の実運用や解説で頻出するCDN事業者。
+
+                        officialUrl: https://www.cloudflare.com/
                   name: HTTP/3
                   summary: QUIC上でHTTP意味論を運ぶ新しいWeb通信プロトコル。
                   whyLearn: モバイルや高遅延環境での接続体験改善を理解できる。
@@ -504,7 +1984,102 @@ domain:
                   promptHint: Lamport clock が表せる順序と表せない順序を説明して。
                   aliases:
                     - logical clock
+                  search:
+                    keywords:
+                      - Lamport clock
+                      - logical clock
+                      - 論理時計
+                      - happened-before
+                      - Lamport timestamp
+                      - causal order
+                      - distributed event ordering
+                      - partial order
+                      - scalar clock
+                      - Leslie Lamport
+                    commonSignals:
+                      - happened-before関係や因果順序が出る
+                      - 物理時計ではなく論理時計で順序を扱う説明
+                      - 分散ログやイベント順序付けの文脈
+                      - scalar timestampでイベントを比較する話
+                    antiSignals:
+                      - NTPや物理時刻同期だけの話
+                      - タイムスタンプをDB更新時刻として使うだけ
+                      - ベクトル時計だけでLamport clockに触れない
+                    relatedNames:
+                      - name: Time, Clocks, and the Ordering of Events
+                        kind: other
+                        relevance: Lamport clockの原典として分散システム学習で参照される論文。
+                      - name: vector clock
+                        kind: method
+                        relevance: Lamport clockの限界を補う比較対象として頻出する。
+                      - name: TLA+
+                        kind: tool
+                        relevance: Lamportによる形式仕様ツールとして分散アルゴリズム文脈で関連する。
+                        officialUrl: https://lamport.azurewebsites.net/tla/tla.html
+
                 - slug: vector-clock
+
+                  search:
+
+                    keywords:
+
+                      - Vector clock
+
+                      - vector timestamp
+
+                      - ベクトル時計
+
+                      - causal history
+
+                      - concurrent update
+
+                      - version vector
+
+                      - dotted version vector
+
+                      - conflict detection
+
+                      - causal consistency
+
+                      - distributed versioning
+
+                    commonSignals:
+
+                      - 同時更新や競合検出の話がある
+
+                      - version vectorやcausal historyが出る
+
+                      - Lamport clockより詳細な因果関係を扱う説明
+
+                      - 分散DBやレプリカ間のバージョン管理が話題
+
+                    antiSignals:
+
+                      - 数学のベクトルやembeddingの話
+
+                      - ベクトルDBや近傍探索の話だけ
+
+                      - 単純な更新日時比較だけで因果関係がない
+
+                    relatedNames:
+
+                      - name: Dynamo
+
+                        kind: other
+
+                        relevance: 分散ストアでバージョンベクトル利用例として学習文脈に出やすい。
+
+                      - name: Riak
+
+                        kind: platform
+
+                        relevance: vector clockやsiblingsの実務例として知られる分散KVストア。
+
+                      - name: CRDT
+
+                        kind: method
+
+                        relevance: 因果関係や競合解決を扱うデータ型として関連する。
                   name: Vector clock
                   summary: 各ノードの因果関係をより詳細に表現する論理時計の拡張。
                   whyLearn: 同時並行更新や競合検出を理解しやすくなる。
@@ -544,6 +2119,43 @@ domain:
                   promptHint: Split Brain を避ける典型策を説明して。
                   aliases:
                     - network partition dual primary
+                  search:
+                    keywords:
+                      - Split Brain
+                      - split-brain
+                      - network partition dual primary
+                      - dual primary
+                      - quorum loss
+                      - fencing
+                      - STONITH
+                      - cluster partition
+                      - leader conflict
+                      - brain split
+                    commonSignals:
+                      - ネットワーク分断で両系がprimaryになる話
+                      - quorum、fencing、STONITHが出る
+                      - HAクラスタやDBレプリケーションの二重書き込み問題
+                      - leaderが複数いる状態が説明される
+                    antiSignals:
+                      - 人間の認知や組織分断の比喩だけ
+                      - 単なるデータ不整合で分断や二重primaryがない
+                      - 脳科学や医療用語としてのsplit brain
+                    relatedNames:
+                      - name: Pacemaker
+                        kind: tool
+                        relevance: HAクラスタでsplit brain対策やfencingが頻出する。
+                        officialUrl: https://clusterlabs.org/pacemaker/
+                      - name: STONITH
+                        kind: method
+                        relevance: split brain回避のために故障ノードを強制隔離する代表手法。
+                      - name: etcd
+                        kind: platform
+                        relevance: quorum喪失やリーダ選出の文脈でsplit brain対策が話題になりやすい。
+                        officialUrl: https://etcd.io/
+                      - name: ZooKeeper
+                        kind: platform
+                        relevance: 分散協調基盤としてsplit brain回避の説明で頻出する。
+                        officialUrl: https://zookeeper.apache.org/
         - slug: consistency-replication-and-consensus
           name: 一貫性、複製、合意
           summary: 複製データの振る舞いと、その上での合意形成を扱う。
@@ -560,7 +2172,112 @@ domain:
                   promptHint: 線形化可能性と最終的整合性を比較して。
                   aliases:
                     - linearizability
+                  search:
+                    keywords:
+                      - 線形化可能性
+                      - linearizability
+                      - atomic consistency
+                      - real-time order
+                      - single-copy illusion
+                      - strong consistency
+                      - concurrent object
+                      - compare-and-swap
+                      - distributed register
+                      - operation history
+                    commonSignals:
+                      - 操作が実時間順序に沿った単一履歴に見える話
+                      - strong consistencyやatomic registerが出る
+                      - Jepsen testやhistory checkerが出る
+                      - concurrent objectの正しさを議論している
+                    antiSignals:
+                      - 線形代数やlinear regressionの話
+                      - eventual consistencyだけで強い整合性の話がない
+                      - 単に処理を直列化する実装詳細だけで外部観測保証がない
+                    relatedNames:
+                      - name: Jepsen
+                        kind: tool
+                        relevance: 分散システムのlinearizability検証でよく知られるテスト手法・ツール群。
+                        officialUrl: https://jepsen.io/
+                      - name: Knossos
+                        kind: tool
+                        relevance: Jepsenで線形化可能性検査に使われることがあるライブラリ。
+                      - name: Raft
+                        kind: method
+                        relevance: 線形化可能な読み書き実装の基盤として使われることが多い。
+
                 - slug: eventual-consistency
+
+                  search:
+
+                    keywords:
+
+                      - 最終的整合性
+
+                      - eventual consistency
+
+                      - eventual convergence
+
+                      - BASE
+
+                      - stale read
+
+                      - read repair
+
+                      - anti-entropy
+
+                      - conflict resolution
+
+                      - causal consistency
+
+                      - replication lag
+
+                    commonSignals:
+
+                      - stale readやreplication lagが許容される話
+
+                      - write後すぐに別レプリカで読めない説明
+
+                      - read repair、anti-entropy、conflict resolutionが出る
+
+                      - 可用性と低遅延の代わりに一時的不整合を許す文脈
+
+                    antiSignals:
+
+                      - 単なるDBトランザクション整合性の話
+
+                      - 強整合だけを扱っている
+
+                      - 結果整合という言葉を業務KPIの整合程度に使っているだけ
+
+                    relatedNames:
+
+                      - name: Amazon Dynamo
+
+                        kind: other
+
+                        relevance: eventual consistencyの代表的な分散ストア設計例として頻出する。
+
+                      - name: Cassandra
+
+                        kind: platform
+
+                        relevance: 調整可能な整合性と最終的整合性の文脈でよく出る分散DB。
+
+                        officialUrl: https://cassandra.apache.org/
+
+                      - name: DynamoDB
+
+                        kind: service
+
+                        relevance: eventual consistencyとstrong consistencyの読み取り選択で実務に出る。
+
+                        officialUrl: https://aws.amazon.com/dynamodb/
+
+                      - name: CRDT
+
+                        kind: method
+
+                        relevance: 収束性を持つ分散データ型として最終的整合性と関連する。
                   name: 最終的整合性
                   summary: 競合が収束すれば最終的には同じ状態に近づく整合性モデル。
                   whyLearn: 分散可用性を得る代わりに何を失うかを理解できる。
@@ -574,6 +2291,41 @@ domain:
                   promptHint: CAP定理が誤解されやすい点を説明して。
                   aliases:
                     - CAP theorem
+                  search:
+                    keywords:
+                      - CAP定理
+                      - CAP theorem
+                      - consistency availability partition tolerance
+                      - Brewer theorem
+                      - network partition
+                      - CP system
+                      - AP system
+                      - partition tolerance
+                      - PACELC
+                      - distributed tradeoff
+                    commonSignals:
+                      - C、A、Pを同時に満たせないという説明
+                      - network partition時のCP/AP選択が出る
+                      - CAPの誤解やPACELCへの言及がある
+                      - 分散DBの整合性と可用性のトレードオフを議論している
+                    antiSignals:
+                      - キャップ、帽子、上限capの一般語
+                      - CAPを認証プロトコルや資格名として使っている
+                      - 単一DBのACIDだけで分断耐性が出ない
+                    relatedNames:
+                      - name: Brewer's conjecture
+                        kind: other
+                        relevance: CAP定理の元になった問題提起として関連する。
+                      - name: Gilbert and Lynch proof
+                        kind: other
+                        relevance: CAP定理の形式的証明として学習文脈で参照される。
+                      - name: PACELC
+                        kind: method
+                        relevance: CAPの通常時レイテンシと整合性のトレードオフを補う枠組み。
+                      - name: Jepsen
+                        kind: tool
+                        relevance: 分散DBの整合性・可用性の実証的検証でCAP議論と一緒に出やすい。
+                        officialUrl: https://jepsen.io/
             - slug: quorum-and-consensus
               name: クォーラムと合意形成
               summary: 複数ノードの過半や規則に基づいて正しい決定を得る仕組みを扱う。
@@ -586,6 +2338,43 @@ domain:
                   promptHint: Quorumがなぜ安全性に効くか説明して。
                   aliases:
                     - quorum
+                  search:
+                    keywords:
+                      - Quorum
+                      - クォーラム
+                      - majority quorum
+                      - read quorum
+                      - write quorum
+                      - quorum read
+                      - quorum write
+                      - quorum consensus
+                      - quorum loss
+                      - voting
+                    commonSignals:
+                      - 過半数ノードが必要という説明
+                      - read quorum/write quorumの設定が出る
+                      - quorum lossやmajority failureが話題
+                      - レプリカ数と整合性・可用性の関係を議論している
+                    antiSignals:
+                      - 会議の定足数だけの話
+                      - 投票制度の話だけで分散システムが出ない
+                      - Kubernetes quorumではなく単なる台数表現
+                    relatedNames:
+                      - name: Raft
+                        kind: method
+                        relevance: 過半数クォーラムでログコミットとリーダ選出を行う合意アルゴリズム。
+                      - name: Paxos
+                        kind: method
+                        relevance: クォーラム交差性が安全性の中核になる合意アルゴリズム。
+                      - name: Cassandra consistency level QUORUM
+                        kind: platform
+                        relevance: 読み書きクォーラムを実務設定として学べる代表例。
+                        officialUrl: https://cassandra.apache.org/
+                      - name: etcd
+                        kind: platform
+                        relevance: quorum喪失が可用性に直結する分散KVストア。
+                        officialUrl: https://etcd.io/
+
                 - slug: paxos
                   name: Paxos
                   summary: 故障下でも合意を形成する古典的なコンセンサスアルゴリズム群。
@@ -600,6 +2389,43 @@ domain:
                   promptHint: Raftの役割分担をPaxosと比較して説明して。
                   aliases:
                     - Raft
+                  search:
+                    keywords:
+                      - Raft
+                      - Raft consensus
+                      - leader election
+                      - log replication
+                      - AppendEntries
+                      - RequestVote
+                      - term
+                      - commit index
+                      - replicated log
+                      - consensus algorithm
+                    commonSignals:
+                      - leader electionやlog replicationが出る
+                      - AppendEntries、RequestVote、termが言及される
+                      - etcdやConsulの内部合意として出る
+                      - replicated state machineの説明がある
+                    antiSignals:
+                      - raftをいかだやゲーム名として使っている
+                      - リーダー選出一般だけでログ複製が出ない
+                      - Paxos比較だけでRaft固有語がない
+                    relatedNames:
+                      - name: etcd
+                        kind: platform
+                        relevance: Raftを利用する代表的な分散KVストア。
+                        officialUrl: https://etcd.io/
+                      - name: Consul
+                        kind: platform
+                        relevance: サービスディスカバリやKVでRaftを使う代表的ツール。
+                        officialUrl: https://www.consul.io/
+                      - name: TiKV
+                        kind: platform
+                        relevance: Raftベースの分散KVとして実務例に出やすい。
+                        officialUrl: https://tikv.org/
+                      - name: LogCabin
+                        kind: tool
+                        relevance: Raft作者らによる実装例として学習文脈で出る。
         - slug: partitioning-messaging-and-scaleout
           name: 分割、メッセージング、スケールアウト
           summary: データや負荷を分散し、流量を制御しながら全体を伸ばす考え方を扱う。
@@ -616,7 +2442,116 @@ domain:
                   promptHint: シャーディングが難しくなる場面を説明して。
                   aliases:
                     - sharding
+                  search:
+                    keywords:
+                      - シャーディング
+                      - sharding
+                      - shard key
+                      - partition key
+                      - horizontal partitioning
+                      - data partitioning
+                      - resharding
+                      - hot shard
+                      - shard rebalancing
+                      - cross-shard transaction
+                    commonSignals:
+                      - shard keyやpartition keyの選び方が出る
+                      - hot shardやrebalanceが問題になる
+                      - クロスシャードクエリやトランザクションが話題
+                      - 水平分割で単一ノード限界を超える説明
+                    antiSignals:
+                      - ガラス片やゲームアイテムのshard
+                      - 単なるテーブル分割で複数ノード分散がない
+                      - レプリケーションだけでデータ分割がない
+                    relatedNames:
+                      - name: MongoDB Sharding
+                        kind: platform
+                        relevance: シャーディングの実務例として公式概念が整っている。
+                        officialUrl: https://www.mongodb.com/docs/manual/sharding/
+                      - name: Vitess
+                        kind: platform
+                        relevance: MySQLの水平分割・シャーディング基盤として広く知られる。
+                        officialUrl: https://vitess.io/
+                      - name: Citus
+                        kind: platform
+                        relevance: PostgreSQLを分散・シャーディングする実務基盤として関連する。
+                        officialUrl: https://www.citusdata.com/
+                      - name: Cassandra
+                        kind: platform
+                        relevance: パーティションキーでデータを分散配置する代表的分散DB。
+                        officialUrl: https://cassandra.apache.org/
+
                 - slug: consistent-hashing
+
+                  search:
+
+                    keywords:
+
+                      - 一貫ハッシュ
+
+                      - consistent hashing
+
+                      - hash ring
+
+                      - virtual node
+
+                      - vnode
+
+                      - ring-based partitioning
+
+                      - ketama
+
+                      - rendezvous hashing
+
+                      - rebalancing
+
+                      - node churn
+
+                    commonSignals:
+
+                      - hash ringやvirtual nodeが出る
+
+                      - ノード追加削除時の再配置量を減らす説明
+
+                      - キャッシュサーバや分散ストレージのキー配置が話題
+
+                      - ketamaやtoken ringが言及される
+
+                    antiSignals:
+
+                      - 通常のハッシュテーブルだけの話
+
+                      - 暗号学的ハッシュの安全性だけの話
+
+                      - 一貫性という語だけで配置アルゴリズムが出ない
+
+                    relatedNames:
+
+                      - name: Memcached ketama
+
+                        kind: method
+
+                        relevance: consistent hashingの実務利用例としてよく知られる。
+
+                      - name: Cassandra token ring
+
+                        kind: platform
+
+                        relevance: 一貫ハッシュに近いリング分割モデルの代表例。
+
+                        officialUrl: https://cassandra.apache.org/
+
+                      - name: Dynamo
+
+                        kind: other
+
+                        relevance: consistent hashingを使う分散ストア設計の古典例。
+
+                      - name: Rendezvous Hashing
+
+                        kind: method
+
+                        relevance: 再配置量を抑える代替的な分散配置手法として比較される。
                   name: 一貫ハッシュ
                   summary: ノード追加削除時の再配置量を抑える分散配置手法。
                   whyLearn: キャッシュや分散ストレージの再配置コストを理解できる。
@@ -642,7 +2577,122 @@ domain:
                   promptHint: メッセージキューを使う利点と欠点を説明して。
                   aliases:
                     - queue
+                  search:
+                    keywords:
+                      - メッセージキュー
+                      - message queue
+                      - queue
+                      - broker
+                      - producer consumer
+                      - consumer group
+                      - dead letter queue
+                      - retry queue
+                      - at-least-once
+                      - visibility timeout
+                    commonSignals:
+                      - producer/consumerやbrokerが出る
+                      - DLQ、retry、visibility timeoutが言及される
+                      - 非同期処理やバッファリングの説明がある
+                      - at-least-onceや重複処理の話が出る
+                    antiSignals:
+                      - プログラミングのデータ構造queueだけ
+                      - Pub/Subだけでキューとしての消費モデルがない
+                      - タスク管理の待ち行列を比喩的に言っているだけ
+                    relatedNames:
+                      - name: RabbitMQ
+                        kind: platform
+                        relevance: メッセージキューの代表的ブローカ実装。
+                        officialUrl: https://www.rabbitmq.com/
+                      - name: Amazon SQS
+                        kind: service
+                        relevance: マネージドキューの代表的サービス。
+                        officialUrl: https://aws.amazon.com/sqs/
+                      - name: Apache Kafka
+                        kind: platform
+                        relevance: ログ型メッセージングとしてキューとの比較で頻出する。
+                        officialUrl: https://kafka.apache.org/
+                      - name: NATS
+                        kind: platform
+                        relevance: 軽量メッセージング基盤として実務で見かける。
+                        officialUrl: https://nats.io/
+
                 - slug: pub-sub
+
+                  search:
+
+                    keywords:
+
+                      - Publish-Subscribe
+
+                      - Pub/Sub
+
+                      - pubsub
+
+                      - event bus
+
+                      - topic
+
+                      - subscription
+
+                      - fan-out
+
+                      - event streaming
+
+                      - producer subscriber
+
+                      - brokered messaging
+
+                    commonSignals:
+
+                      - topic、subscription、fan-outが出る
+
+                      - 発行者と購読者を疎結合にする説明
+
+                      - イベント配信やイベントバスが話題
+
+                      - MQTT、Kafka、Pub/Subサービスが出る
+
+                    antiSignals:
+
+                      - 雑誌購読やメール購読だけの話
+
+                      - キューだけで複数購読者へのfan-outがない
+
+                      - 単なるObserverパターンのローカル実装だけ
+
+                    relatedNames:
+
+                      - name: Google Cloud Pub/Sub
+
+                        kind: service
+
+                        relevance: マネージドPub/Subの代表的サービス。
+
+                        officialUrl: https://cloud.google.com/pubsub
+
+                      - name: Apache Kafka
+
+                        kind: platform
+
+                        relevance: topicとconsumer groupを持つイベントストリーミング基盤として関連する。
+
+                        officialUrl: https://kafka.apache.org/
+
+                      - name: NATS
+
+                        kind: platform
+
+                        relevance: Pub/Subモデルを持つ軽量メッセージング基盤。
+
+                        officialUrl: https://nats.io/
+
+                      - name: MQTT
+
+                        kind: protocol
+
+                        relevance: IoT領域で広く使われるPub/Sub型プロトコル。
+
+                        officialUrl: https://mqtt.org/
                   name: Publish-Subscribe
                   summary: 発行者と購読者を疎結合に接続するイベント配信モデル。
                   whyLearn: ファンアウトとイベント駆動設計の理解に役立つ。
@@ -656,6 +2706,44 @@ domain:
                   promptHint: Backpressureがないと何が起きるか説明して。
                   aliases:
                     - back pressure
+                  search:
+                    keywords:
+                      - Backpressure
+                      - back pressure
+                      - バックプレッシャー
+                      - flow control
+                      - reactive streams
+                      - overload control
+                      - slow consumer
+                      - bounded queue
+                      - demand signal
+                      - rate limiting
+                    commonSignals:
+                      - slow consumerや下流が詰まる話
+                      - bounded queue、drop、throttle、rate limitが出る
+                      - Reactive Streamsやdemand signalが言及される
+                      - キュー肥大化やメモリ枯渇を防ぐ文脈
+                    antiSignals:
+                      - TCP flow controlだけでアプリ・ストリーム処理の圧力制御がない
+                      - 心理的プレッシャーや組織圧力の話
+                      - 単なるリトライやタイムアウトだけの話
+                    relatedNames:
+                      - name: Reactive Streams
+                        kind: standard
+                        relevance: backpressureを明示的に扱う非同期ストリーム仕様。
+                        officialUrl: https://www.reactive-streams.org/
+                      - name: Akka Streams
+                        kind: framework
+                        relevance: backpressure付きストリーム処理の代表的フレームワーク。
+                        officialUrl: https://doc.akka.io/docs/akka/current/stream/
+                      - name: Project Reactor
+                        kind: framework
+                        relevance: Reactive Streams実装としてbackpressure文脈で頻出する。
+                        officialUrl: https://projectreactor.io/
+                      - name: Node.js Streams
+                        kind: platform
+                        relevance: streamのwrite戻り値やdrainイベントでbackpressureを扱う。
+                        officialUrl: https://nodejs.org/api/stream.html
 
     - slug: virtualization-containers-and-cloud-runtime
       name: 仮想化、コンテナ、クラウド実行環境
@@ -685,6 +2773,45 @@ domain:
                   promptHint: KVMがLinuxでVM基盤として機能する仕組みを説明して。
                   aliases:
                     - Kernel-based Virtual Machine
+                  search:
+                    keywords:
+                      - KVM
+                      - Kernel-based Virtual Machine
+                      - Linux KVM
+                      - hardware virtualization
+                      - VT-x
+                      - AMD-V
+                      - QEMU
+                      - libvirt
+                      - vCPU
+                      - KVM module
+                    commonSignals:
+                      - Linux上でVMを動かす話
+                      - /dev/kvm、kvm_intel、kvm_amdが出る
+                      - QEMUやlibvirtと一緒に出る
+                      - VT-xやAMD-Vなどハードウェア仮想化支援が話題
+                    antiSignals:
+                      - KubernetesのKVMではなくK8sの略記と混同している
+                      - 単なるVMサービス利用でKVM実装が出ない
+                      - KVMスイッチなど物理切替器の話
+                    relatedNames:
+                      - name: QEMU
+                        kind: tool
+                        relevance: KVMと組み合わせてVMデバイスエミュレーションや起動を担う。
+                        officialUrl: https://www.qemu.org/
+                      - name: libvirt
+                        kind: tool
+                        relevance: KVM/QEMU VM管理の抽象化API・ツールとして頻出する。
+                        officialUrl: https://libvirt.org/
+                      - name: virt-manager
+                        kind: tool
+                        relevance: KVM仮想マシンをGUIで管理する代表的ツール。
+                        officialUrl: https://virt-manager.org/
+                      - name: Proxmox VE
+                        kind: platform
+                        relevance: KVMを利用する仮想化プラットフォームとして実務で見かける。
+                        officialUrl: https://www.proxmox.com/
+
                 - slug: virtual-machine
                   name: 仮想マシン
                   summary: 仮想化されたハードウェア上で独立したOSとして動く実行単位。
@@ -704,6 +2831,42 @@ domain:
                   promptHint: Virtioがなぜ仮想環境で重要か説明して。
                   aliases:
                     - virtio
+                  search:
+                    keywords:
+                      - Virtio
+                      - paravirtualized I/O
+                      - 準仮想化I/O
+                      - virtio-net
+                      - virtio-blk
+                      - virtio-scsi
+                      - vhost
+                      - vhost-net
+                      - virtqueue
+                    commonSignals:
+                      - VMの仮想NICや仮想ディスク性能の話
+                      - virtio-net、virtio-blk、virtqueueが出る
+                      - 準仮想化ドライバやguest driverが言及される
+                      - QEMU/KVM環境のI/O高速化が話題
+                    antiSignals:
+                      - 仮想化一般の話でvirtioデバイスが出ない
+                      - VirtualBoxやVMwareの固有ドライバだけの話
+                      - virtueなど英単語の誤検出
+                    relatedNames:
+                      - name: OASIS Virtio
+                        kind: standard
+                        relevance: Virtioデバイス仕様の標準化文脈で参照される。
+                        officialUrl: https://docs.oasis-open.org/virtio/
+                      - name: QEMU
+                        kind: tool
+                        relevance: virtioデバイスをVMへ提供する代表的実装。
+                        officialUrl: https://www.qemu.org/
+                      - name: KVM
+                        kind: platform
+                        relevance: Linux仮想化環境でvirtioが広く使われる。
+                      - name: vhost-net
+                        kind: platform
+                        relevance: virtio-netの高速化機構として関連する。
+
                 - slug: virtual-switch
                   name: 仮想スイッチ
                   summary: 仮想NIC間のL2転送やポリシー適用を行うソフトウェアスイッチ。
@@ -718,6 +2881,42 @@ domain:
                   promptHint: オーバーレイネットワークの利点と欠点を説明して。
                   aliases:
                     - tunnel network
+                  search:
+                    keywords:
+                      - オーバーレイネットワーク
+                      - overlay network
+                      - tunnel network
+                      - VXLAN
+                      - GRE
+                      - Geneve
+                      - encapsulation
+                      - CNI overlay
+                      - pod network
+                      - underlay network
+                    commonSignals:
+                      - underlay上に論理ネットワークを重ねる説明
+                      - VXLAN、Geneve、encapsulationが出る
+                      - Pod間通信やCNIネットワークの話
+                      - MTUが小さくなる、ヘッダが増えるという記述
+                    antiSignals:
+                      - 画像やUIのoverlay表示の話
+                      - DNS overlayやファイルシステムoverlayだけの話
+                      - VPN一般の話で仮想ネットワーク構成が出ない
+                    relatedNames:
+                      - name: VXLAN
+                        kind: protocol
+                        relevance: オーバーレイネットワークで最もよく見かけるカプセル化方式の一つ。
+                      - name: Geneve
+                        kind: protocol
+                        relevance: 仮想ネットワークの拡張可能なカプセル化プロトコルとして関連する。
+                      - name: Flannel
+                        kind: tool
+                        relevance: KubernetesでVXLANオーバーレイを使う代表的CNI実装。
+                        officialUrl: https://github.com/flannel-io/flannel
+                      - name: Calico
+                        kind: platform
+                        relevance: Kubernetesネットワークでoverlay/underlayの選択肢として頻出する。
+                        officialUrl: https://www.tigera.io/project-calico/
         - slug: container-runtime-and-images
           name: コンテナランタイムとイメージ
           summary: コンテナをどう表現し、実行し、配備するかを扱う。
@@ -734,6 +2933,49 @@ domain:
                   promptHint: コンテナが軽量だと言われる理由を説明して。
                   aliases:
                     - container
+                  search:
+                    keywords:
+                      - コンテナ
+                      - container
+                      - Linux container
+                      - container image
+                      - container runtime
+                      - namespace
+                      - cgroup
+                      - rootfs
+                      - OCI
+                      - Docker container
+                    commonSignals:
+                      - image、runtime、rootfs、namespace、cgroupが一緒に出る
+                      - Dockerfileやcontainer imageの話がある
+                      - VMとの違いや軽量性が説明される
+                      - コンテナ単位でプロセスを隔離して実行する文脈
+                    antiSignals:
+                      - HTML containerやCSS container queryの話
+                      - 物流コンテナや入れ物としてのcontainer
+                      - Kubernetes Podだけでコンテナの実行境界に触れない
+                    relatedNames:
+                      - name: Docker
+                        kind: platform
+                        relevance: コンテナ利用を普及させた代表的プラットフォーム。
+                        officialUrl: https://www.docker.com/
+                      - name: containerd
+                        kind: platform
+                        relevance: Kubernetesなどで使われる代表的コンテナランタイム。
+                        officialUrl: https://containerd.io/
+                      - name: runc
+                        kind: tool
+                        relevance: OCI Runtime仕様に基づいてコンテナを起動する代表的実装。
+                        officialUrl: https://github.com/opencontainers/runc
+                      - name: Podman
+                        kind: tool
+                        relevance: daemonlessなコンテナ管理ツールとして実務で見かける。
+                        officialUrl: https://podman.io/
+                      - name: OCI
+                        kind: standard
+                        relevance: コンテナイメージとランタイムの標準仕様を定める。
+                        officialUrl: https://opencontainers.org/
+
                 - slug: oci-image
                   name: OCI Image
                   summary: コンテナのファイルシステムや設定を配布する標準化された形式。
@@ -767,6 +3009,43 @@ domain:
                   promptHint: Serviceが必要な理由をPodの可変性から説明して。
                   aliases:
                     - Service
+                  search:
+                    keywords:
+                      - Kubernetes Service
+                      - K8s Service
+                      - Service
+                      - ClusterIP
+                      - NodePort
+                      - LoadBalancer
+                      - service discovery
+                      - kube-proxy
+                      - endpoint
+                      - DNS service name
+                    commonSignals:
+                      - ClusterIP、NodePort、LoadBalancerが出る
+                      - Pod IPが変わっても安定名でアクセスする説明
+                      - kube-proxy、Endpoints、EndpointSliceが言及される
+                      - svc.cluster.localやCoreDNSが出る
+                    antiSignals:
+                      - 一般的なWebサービスやSaaSの話
+                      - Kubernetes DeploymentだけでService公開が出ない
+                      - systemd serviceなどOSサービス管理の話
+                    relatedNames:
+                      - name: Kubernetes
+                        kind: platform
+                        relevance: Serviceオブジェクトを提供するコンテナオーケストレーション基盤。
+                        officialUrl: https://kubernetes.io/
+                      - name: CoreDNS
+                        kind: tool
+                        relevance: Kubernetes Service名のDNS解決で使われる代表的コンポーネント。
+                        officialUrl: https://coredns.io/
+                      - name: kube-proxy
+                        kind: platform
+                        relevance: Serviceの仮想IPや負荷分散ルール実装に関わるKubernetesコンポーネント。
+                      - name: EndpointSlice
+                        kind: platform
+                        relevance: Serviceが転送対象Podを把握するための関連Kubernetesリソース。
+
                 - slug: kubernetes-deployment
                   name: Kubernetes Deployment
                   summary: Pod群の望ましい状態とローリング更新を宣言的に管理するオブジェクト。

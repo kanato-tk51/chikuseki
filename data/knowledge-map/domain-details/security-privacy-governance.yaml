@@ -25,7 +25,100 @@ domain:
                   promptHint: "何を守り、誰がどう壊し、どこで防ぐかで考える。"
                   aliases:
                     - "Threat Modeling"
+                  search:
+                    keywords:
+                      - 脅威モデリング
+                      - Threat Modeling
+                      - threat model
+                      - セキュリティ設計レビュー
+                      - abuse case
+                      - misuse case
+                      - data flow diagram
+                      - DFD
+                      - trust boundary
+                    commonSignals:
+                      - 設計図やDFDを見ながら脅威を洗い出す
+                      - 攻撃者視点で仕様レビューする
+                      - trust boundaryやassetを列挙している
+                      - abuse caseやmisuse caseを検討している
+                    antiSignals:
+                      - 単なるバグ修正や脆弱性スキャン結果だけの話
+                      - 障害影響分析やSLO設計だけを扱う話
+                      - 事業リスク分析のみで攻撃者やシステム境界が出ない話
+                    relatedNames:
+                      - name: OWASP Threat Modeling Project
+                        kind: framework
+                        relevance: アプリケーション設計時の脅威モデリング手法や教材を整理する代表的なOWASPプロジェクト。
+                        officialUrl: https://owasp.org/www-project-threat-modeling/
+                      - name: Microsoft Threat Modeling Tool
+                        kind: tool
+                        relevance: DFDとSTRIDEを使った脅威列挙でよく使われる設計支援ツール。
+                      - name: PASTA
+                        kind: method
+                        relevance: リスク中心で脅威を分析する脅威モデリング手法としてSTRIDEと比較される。
+                      - name: LINDDUN
+                        kind: method
+                        relevance: プライバシー観点の脅威モデリングでよく参照される手法。
+
                 - slug: stride
+
+                  search:
+
+                    keywords:
+
+                      - STRIDE
+
+                      - ストライド
+
+                      - Spoofing
+
+                      - Tampering
+
+                      - Repudiation
+
+                      - Information Disclosure
+
+                      - Denial of Service
+
+                      - Elevation of Privilege
+
+                      - 脅威分類
+
+                    commonSignals:
+
+                      - Spoofing Tampering Repudiation の頭文字
+
+                      - 6カテゴリで脅威を洗い出す
+
+                      - DFDの各要素に脅威カテゴリを当てる
+
+                    antiSignals:
+
+                      - strideという英単語が歩幅の意味で使われている
+
+                      - 脅威分類ではなく単なるセキュリティ一般論
+
+                      - DoSだけなど単一カテゴリの説明に閉じている
+
+                    relatedNames:
+
+                      - name: Microsoft Threat Modeling Tool
+
+                        kind: tool
+
+                        relevance: STRIDEを前提に脅威を生成・整理する代表的なツール。
+
+                      - name: Data Flow Diagram
+
+                        kind: method
+
+                        relevance: STRIDEではDFD上のプロセス、データストア、データフローに脅威を対応づけることが多い。
+
+                      - name: Elevation of Privilege
+
+                        kind: tool
+
+                        relevance: Microsoftが公開したSTRIDE学習用カードゲームとして知られる。
                   name: "STRIDE"
                   summary: "脅威を六つの観点で整理する代表的な分類法。"
                   whyLearn: "脅威列挙の抜け漏れを減らしやすい。"
@@ -51,7 +144,107 @@ domain:
                   promptHint: "外部公開面、管理面、依存先、内部横移動面を列挙する。"
                   aliases:
                     - "Attack Surface"
+                  search:
+                    keywords:
+                      - 攻撃面
+                      - Attack Surface
+                      - external exposure
+                      - exposed service
+                      - asset discovery
+                      - attack surface management
+                      - ASM
+                      - EASM
+                      - public endpoint
+                    commonSignals:
+                      - 外部公開APIや管理画面を棚卸しする
+                      - 不要なポートやサブドメインを閉じる
+                      - インターネット露出資産を発見する
+                      - 攻撃者が触れられる入口を減らす
+                    antiSignals:
+                      - UIの表面や画面面積の話
+                      - 単なるコード複雑度の話
+                      - 内部の抽象設計だけで到達可能性に触れない話
+                    relatedNames:
+                      - name: Nmap
+                        kind: tool
+                        relevance: 公開ポートや到達可能なサービスの把握に使われる代表的なスキャンツール。
+                      - name: Shodan
+                        kind: service
+                        relevance: インターネット露出資産の発見や攻撃面把握でよく使われる検索サービス。
+                      - name: Censys
+                        kind: service
+                        relevance: 証明書や公開サービスの可視化を通じて外部攻撃面を調べるサービス。
+                      - name: OWASP Amass
+                        kind: tool
+                        relevance: ドメインやサブドメインの列挙で攻撃面の棚卸しに使われる。
+
                 - slug: mitre-attck
+
+                  search:
+
+                    keywords:
+
+                      - MITRE ATT&CK
+
+                      - ATT&CK
+
+                      - attack matrix
+
+                      - adversary tactics
+
+                      - techniques
+
+                      - sub-techniques
+
+                      - TTP mapping
+
+                      - 脅威インテリジェンス
+
+                      - 攻撃者行動
+
+                    commonSignals:
+
+                      - T1059やTA0001のようなATT&CK IDが出る
+
+                      - 攻撃者の戦術と技術にマッピングする
+
+                      - 検知ルールのカバレッジをATT&CKで評価する
+
+                    antiSignals:
+
+                      - 単にattackという単語だけが出る
+
+                      - 攻撃木やSTRIDEの分類だけを扱う
+
+                      - 脆弱性IDのCVEだけを列挙している
+
+                    relatedNames:
+
+                      - name: ATT&CK Navigator
+
+                        kind: tool
+
+                        relevance: ATT&CKの戦術・技術をマトリクス上で可視化し、カバレッジ管理に使うツール。
+
+                        officialUrl: https://attack.mitre.org/
+
+                      - name: MITRE CALDERA
+
+                        kind: tool
+
+                        relevance: ATT&CKに基づく攻撃エミュレーションや演習で使われる。
+
+                      - name: STIX
+
+                        kind: standard
+
+                        relevance: 脅威インテリジェンスを機械可読に表現する標準でATT&CKデータとも関連する。
+
+                      - name: TAXII
+
+                        kind: protocol
+
+                        relevance: 脅威インテリジェンス共有のプロトコルとしてATT&CKデータ利用時に出やすい。
                   name: "MITRE ATT&CK"
                   summary: "現実の攻撃者行動を戦術・技術で整理した知識ベース。"
                   whyLearn: "検知、演習、優先順位付けに共通言語を持てる。"
@@ -81,6 +274,39 @@ domain:
                   promptHint: "この主体に本当に必要な権限だけかを確認する。"
                   aliases:
                     - "Least Privilege"
+                  search:
+                    keywords:
+                      - 最小権限
+                      - Least Privilege
+                      - least-privileged access
+                      - 権限最小化
+                      - need-to-know
+                      - permission boundary
+                      - deny by default
+                      - JIT access
+                    commonSignals:
+                      - 必要な権限だけを付与する
+                      - 過剰権限や管理者権限を削る
+                      - deny by defaultで許可を足す
+                      - 侵害時のblast radiusを小さくする
+                    antiSignals:
+                      - 権限ではなく計算資源の最小化の話
+                      - UX上の権限説明だけで実際のアクセス制御がない
+                      - 単なる職位や人事制度の話
+                    relatedNames:
+                      - name: RBAC
+                        kind: pattern
+                        relevance: ロール単位で最小権限を実装する代表的な権限モデル。
+                      - name: ABAC
+                        kind: pattern
+                        relevance: 属性条件を使って最小権限を細かく表現するモデル。
+                      - name: AWS IAM
+                        kind: service
+                        relevance: ポリシーで最小権限を設計する実務例として頻出する。
+                      - name: Kubernetes RBAC
+                        kind: platform
+                        relevance: クラスタ内権限を最小化する代表的な実装対象。
+
                 - slug: defense-in-depth
                   name: "多層防御"
                   summary: "複数の防御層を重ねて単一点突破を防ぐ考え方。"
@@ -122,6 +348,39 @@ domain:
                   aliases:
                     - "ZTA"
                     - "Zero Trust"
+                  search:
+                    keywords:
+                      - ゼロトラスト
+                      - Zero Trust
+                      - Zero Trust Architecture
+                      - ZTA
+                      - never trust always verify
+                      - continuous verification
+                      - context-aware access
+                      - ZTNA
+                      - device posture
+                    commonSignals:
+                      - 社内ネットワークだから信頼する前提をやめる
+                      - ユーザー、端末、場所、リスクで動的に判定する
+                      - VPN中心からアプリ単位アクセスへ移る
+                    antiSignals:
+                      - 単なるVPN製品の置き換えだけの話
+                      - ネットワーク分離だけで継続的検証がない
+                      - ゼロリスクという意味で使っている
+                    relatedNames:
+                      - name: NIST SP 800-207
+                        kind: standard
+                        relevance: ゼロトラストアーキテクチャを体系的に説明する代表的なNIST文書。
+                        officialUrl: https://csrc.nist.gov/pubs/sp/800/207/final
+                      - name: BeyondCorp
+                        kind: framework
+                        relevance: 企業ネットワーク境界に依存しないアクセス設計の先行事例として参照される。
+                      - name: ZTNA
+                        kind: pattern
+                        relevance: ゼロトラストの考え方をネットワークアクセス製品・構成に落とした分類。
+                      - name: mTLS
+                        kind: protocol
+                        relevance: サービス間で相互認証を行うゼロトラスト構成の部品として使われる。
 
     - slug: application-api-client-security
       name: "アプリケーション、API、クライアントの保護"
@@ -144,7 +403,101 @@ domain:
                   promptHint: "許可すべき入力を定義し、境界で検証する。"
                   aliases:
                     - "Input Validation"
+                  search:
+                    keywords:
+                      - 入力検証
+                      - Input Validation
+                      - allowlist validation
+                      - schema validation
+                      - 型検証
+                      - 境界検証
+                      - バリデーション
+                      - canonicalization
+                    commonSignals:
+                      - API境界で型や形式を検証する
+                      - allowlistで受け付ける値を定義する
+                      - 不正な長さや文字種を拒否する
+                    antiSignals:
+                      - フォームの必須項目チェックだけでセキュリティ観点がない
+                      - 出力エスケープやサニタイズだけを扱っている
+                      - DB制約だけで入力境界の話がない
+                    relatedNames:
+                      - name: JSON Schema
+                        kind: standard
+                        relevance: JSON入力の構造や型を検証するために広く使われる仕様。
+                      - name: Zod
+                        kind: library
+                        relevance: TypeScriptでスキーマ定義と入力検証を同時に扱うライブラリ。
+                      - name: Joi
+                        kind: library
+                        relevance: Node.jsアプリで入力スキーマ検証に使われる代表的ライブラリ。
+                      - name: OWASP Input Validation Cheat Sheet
+                        kind: standard
+                        relevance: 入力検証の設計方針を整理した実務向け参照資料。
+
                 - slug: output-encoding
+
+                  search:
+
+                    keywords:
+
+                      - 出力エンコーディング
+
+                      - Output Encoding
+
+                      - contextual encoding
+
+                      - HTML escaping
+
+                      - XSS prevention
+
+                      - 属性エスケープ
+
+                      - URL encoding
+
+                      - JavaScript encoding
+
+                    commonSignals:
+
+                      - HTML本文、属性、URL、JavaScriptでエスケープを分ける
+
+                      - XSSを防ぐために出力時に安全化する
+
+                      - ユーザー入力を画面表示する前にエンコードする
+
+                    antiSignals:
+
+                      - 文字コード変換だけの話
+
+                      - 入力検証だけで出力文脈が出ない
+
+                      - 暗号化やハッシュ化をencodingと呼んでいる
+
+                    relatedNames:
+
+                      - name: OWASP Java Encoder
+
+                        kind: library
+
+                        relevance: 文脈別の安全な出力エンコーディングを提供するOWASPライブラリ。
+
+                      - name: DOMPurify
+
+                        kind: library
+
+                        relevance: HTMLサニタイズでXSS対策に使われ、出力安全化の文脈で併記されやすい。
+
+                      - name: Trusted Types
+
+                        kind: standard
+
+                        relevance: DOM XSSを防ぐためのブラウザ側安全化機構として関連する。
+
+                      - name: React JSX escaping
+
+                        kind: framework
+
+                        relevance: Reactの自動エスケープは出力エンコーディング理解の実務例になる。
                   name: "出力エンコーディング"
                   summary: "出力先の文脈に合わせて危険文字を安全化する方法。"
                   whyLearn: "XSS などの表示文脈依存の事故を防ぎやすい。"
@@ -159,6 +512,37 @@ domain:
                   aliases:
                     - "Prepared Statement"
                     - "Parameterized Query"
+                  search:
+                    keywords:
+                      - パラメータ化クエリ
+                      - Parameterized Query
+                      - Prepared Statement
+                      - bind variable
+                      - バインド変数
+                      - SQL injection prevention
+                      - ORM parameter binding
+                      - プリペアドステートメント
+                    commonSignals:
+                      - 文字列連結ではなくプレースホルダに値を渡す
+                      - SQLインジェクションを防ぐために値と命令を分離する
+                      - bind parameterやprepared statementが出ている
+                    antiSignals:
+                      - URLクエリパラメータの一般的な話
+                      - GraphQLのqueryという語だけが出る
+                      - キャッシュ用のクエリキーの話
+                    relatedNames:
+                      - name: JDBC PreparedStatement
+                        kind: library
+                        relevance: JavaでSQLインジェクション対策として使われる代表的なプリペアド文API。
+                      - name: psycopg
+                        kind: library
+                        relevance: PythonからPostgreSQLへ安全にパラメータを渡す例でよく出る。
+                      - name: SQLAlchemy
+                        kind: library
+                        relevance: Python ORMやクエリビルダでバインドパラメータを扱う。
+                      - name: Prisma
+                        kind: library
+                        relevance: TypeScript系アプリでORMの安全なクエリ生成の例として出やすい。
             - slug: request-and-browser-controls
               name: "リクエストとブラウザ制御"
               summary: "ブラウザの自動送信やスクリプト実行に起因するリスクを抑える。"
@@ -180,6 +564,40 @@ domain:
                   aliases:
                     - "CSP"
                     - "Content Security Policy"
+                  search:
+                    keywords:
+                      - CSP
+                      - Content Security Policy
+                      - コンテンツセキュリティポリシー
+                      - script-src
+                      - default-src
+                      - nonce
+                      - hash-source
+                      - CSP report
+                      - ブラウザ防御
+                    commonSignals:
+                      - script-srcやdefault-srcを設定する
+                      - nonce付きscriptだけを許可する
+                      - CSP違反レポートを収集する
+                      - inline scriptを禁止する
+                    antiSignals:
+                      - クラウドサービスプロバイダーのCSP
+                      - 通信事業者や契約種別としてのCSP
+                      - 単なるHTTPヘッダ一覧で実行制御が出ない
+                    relatedNames:
+                      - name: CSP Level 3
+                        kind: standard
+                        relevance: Content Security Policyの現在の仕様群としてブラウザ制御の基準になる。
+                      - name: Trusted Types
+                        kind: standard
+                        relevance: CSPと組み合わせてDOM XSS対策に使われるブラウザ機構。
+                      - name: Helmet
+                        kind: library
+                        relevance: Node.js/ExpressでCSPなどのセキュリティヘッダを設定する定番ライブラリ。
+                      - name: Report-To
+                        kind: standard
+                        relevance: CSP違反レポートの収集や移行監視で関連して出る。
+
                 - slug: same-site-cookie
                   name: "SameSite Cookie"
                   summary: "Cookie の送信条件をクロスサイト文脈で制御する属性。"
@@ -204,6 +622,36 @@ domain:
                   aliases:
                     - "BOLA"
                     - "Broken Object Level Authorization"
+                  search:
+                    keywords:
+                      - BOLA
+                      - Broken Object Level Authorization
+                      - IDOR
+                      - Insecure Direct Object Reference
+                      - object-level authorization
+                      - オブジェクト単位認可
+                      - 他人のID
+                      - API authorization flaw
+                    commonSignals:
+                      - URLやJSON内のidを変えると他人のデータが見える
+                      - 所有者チェックやtenant checkが抜けている
+                      - APIごとにオブジェクト所有関係を検証する
+                    antiSignals:
+                      - ログインしていないアクセスだけを問題にしている
+                      - SQLインジェクションなど入力処理の話
+                      - 権限ロール設計だけで個別オブジェクトの話がない
+                    relatedNames:
+                      - name: OWASP API Security Top 10
+                        kind: standard
+                        relevance: BOLAはAPIセキュリティで特に重視される代表的リスクとして扱われる。
+                        officialUrl: https://owasp.org/API-Security/
+                      - name: Zanzibar
+                        kind: pattern
+                        relevance: オブジェクトや関係に基づく細粒度認可の代表的な設計例として関連する。
+                      - name: ReBAC
+                        kind: pattern
+                        relevance: 所有者や共有関係に基づく認可でBOLA対策と強く関連する。
+
                 - slug: broken-function-level-authorization
                   name: "BFLA"
                   summary: "機能単位の認可不足で本来できない操作が実行できる問題。"
@@ -231,6 +679,39 @@ domain:
                   promptHint: "モバイルで守るべき保存、通信、認証、逆解析耐性を点検する。"
                   aliases:
                     - "MASVS"
+                  search:
+                    keywords:
+                      - OWASP MASVS
+                      - MASVS
+                      - Mobile Application Security Verification Standard
+                      - モバイルアプリセキュリティ
+                      - MASTG
+                      - mobile app testing
+                      - reverse engineering resistance
+                      - secure mobile storage
+                    commonSignals:
+                      - モバイルアプリの保存、通信、認証、改ざん耐性を検証する
+                      - MASTGやMASVS-L1/L2/Rに沿ってレビューする
+                      - 端末内トークンや証明書ピンニングを確認する
+                    antiSignals:
+                      - 一般的なWebアプリ検証だけの話
+                      - モバイルUIデザインやストア申請だけの話
+                      - OS自体のカーネル防御だけを扱う話
+                    relatedNames:
+                      - name: OWASP MASTG
+                        kind: standard
+                        relevance: MASVSの要件を検証するためのモバイルアプリテストガイド。
+                        officialUrl: https://mas.owasp.org/
+                      - name: MobSF
+                        kind: tool
+                        relevance: モバイルアプリの静的・動的解析でよく使われるOSSツール。
+                      - name: Android Keystore
+                        kind: platform
+                        relevance: Androidで鍵や資格情報を安全に扱うためMASVSの保存要件と関連する。
+                      - name: iOS Keychain
+                        kind: platform
+                        relevance: iOSで資格情報や秘密を保護する実務上の主要機構。
+
                 - slug: secure-local-storage
                   name: "安全なローカル保存"
                   summary: "端末内に保存する資格情報やデータを保護する設計。"
@@ -268,7 +749,107 @@ domain:
                   aliases:
                     - "MFA"
                     - "Multi-Factor Authentication"
+                  search:
+                    keywords:
+                      - MFA
+                      - 多要素認証
+                      - Multi-Factor Authentication
+                      - 2FA
+                      - 二要素認証
+                      - TOTP
+                      - HOTP
+                      - phishing-resistant MFA
+                      - authenticator app
+                    commonSignals:
+                      - パスワードに加えて別要素を要求する
+                      - SMS OTPから認証アプリやFIDOへ移行する
+                      - フィッシング耐性MFAを導入する
+                    antiSignals:
+                      - 単なる複数ログイン方法の提供
+                      - メールアドレス確認だけでログイン時の追加要素がない
+                      - 認可スコープやロールの話
+                    relatedNames:
+                      - name: FIDO2
+                        kind: standard
+                        relevance: フィッシング耐性の高いMFAとしてWebAuthnやCTAPと一緒に出る。
+                      - name: WebAuthn
+                        kind: standard
+                        relevance: 公開鍵ベースの強力な認証要素としてMFAの実装に使われる。
+                        officialUrl: https://www.w3.org/TR/webauthn-3/
+                      - name: TOTP
+                        kind: standard
+                        relevance: 認証アプリで生成するワンタイムコード方式として広く使われる。
+                      - name: NIST SP 800-63B
+                        kind: standard
+                        relevance: 認証器や認証保証レベルを考える際の主要参照文書。
+
                 - slug: passkey
+
+                  search:
+
+                    keywords:
+
+                      - パスキー
+
+                      - Passkey
+
+                      - passwordless
+
+                      - FIDO credential
+
+                      - discoverable credential
+
+                      - synced passkey
+
+                      - platform authenticator
+
+                      - フィッシング耐性
+
+                    commonSignals:
+
+                      - パスワードレスログインを導入する
+
+                      - 端末の生体認証やPINでサインインする
+
+                      - FIDO資格情報をアカウントに登録する
+
+                    antiSignals:
+
+                      - 単なるパスワードマネージャー保存の話
+
+                      - APIキーや秘密鍵をpasskeyと呼んでいるだけ
+
+                      - SMS認証コードだけの話
+
+                    relatedNames:
+
+                      - name: FIDO2
+
+                        kind: standard
+
+                        relevance: パスキーの基盤となるFIDO認証標準群。
+
+                        officialUrl: https://fidoalliance.org/passkeys/
+
+                      - name: WebAuthn
+
+                        kind: standard
+
+                        relevance: Webでパスキー登録・認証を行うための標準API。
+
+                        officialUrl: https://www.w3.org/TR/webauthn-3/
+
+                      - name: CTAP2
+
+                        kind: protocol
+
+                        relevance: ブラウザと認証器の通信に使われるFIDO2の構成要素。
+
+                      - name: Credential Manager API
+
+                        kind: platform
+
+                        relevance: AndroidやWebでパスキー管理・サインイン導線に関連するAPI。
                   name: "パスキー"
                   summary: "端末の生体認証や PIN と連動する FIDO ベース認証情報。"
                   whyLearn: "フィッシング耐性と UX を両立しやすい。"
@@ -283,6 +864,39 @@ domain:
                   aliases:
                     - "Web Authentication"
                     - "WebAuthn"
+                  search:
+                    keywords:
+                      - WebAuthn
+                      - Web Authentication
+                      - PublicKeyCredential
+                      - Relying Party
+                      - RP ID
+                      - authenticator
+                      - attestation
+                      - assertion
+                      - FIDO2
+                    commonSignals:
+                      - navigator.credentials.create や get を使う
+                      - challenge、credentialId、RP IDを検証する
+                      - attestation objectやauthenticator dataが出る
+                    antiSignals:
+                      - OAuthやOIDCだけで公開鍵認証が出ない
+                      - 単なるBasic認証の話
+                      - Webの認証一般でWebAuthn APIが出ない
+                    relatedNames:
+                      - name: W3C WebAuthn
+                        kind: standard
+                        relevance: WebAuthnそのものの標準仕様。
+                        officialUrl: https://www.w3.org/TR/webauthn-3/
+                      - name: CTAP2
+                        kind: protocol
+                        relevance: 外部認証器とクライアントの通信に関わるFIDO2プロトコル。
+                      - name: SimpleWebAuthn
+                        kind: library
+                        relevance: WebAuthnの登録・認証処理を実装しやすくするJavaScript/TypeScriptライブラリ。
+                      - name: YubiKey
+                        kind: tool
+                        relevance: WebAuthn対応の外部認証器として実装・検証例によく出る。
             - slug: federated-protocols-and-tokens
               name: "連携プロトコルとトークン"
               summary: "外部 ID 連携や認可委譲で使う標準を扱う。"
@@ -296,7 +910,108 @@ domain:
                   aliases:
                     - "OAuth2"
                     - "OAuth 2.0"
+                  search:
+                    keywords:
+                      - OAuth 2.0
+                      - OAuth2
+                      - authorization framework
+                      - access token
+                      - refresh token
+                      - scope
+                      - authorization code flow
+                      - client credentials
+                      - resource server
+                    commonSignals:
+                      - アクセストークンでAPIアクセスを委譲する
+                      - 認可サーバー、リソースサーバー、クライアントが出る
+                      - scopeやredirect_uriを設計している
+                    antiSignals:
+                      - ログイン認証そのものをOAuthだけで説明している
+                      - OpenID ConnectのIDトークンだけが主題
+                      - APIキー発行だけで認可フローがない
+                    relatedNames:
+                      - name: RFC 6749
+                        kind: standard
+                        relevance: OAuth 2.0 Authorization Frameworkの基本仕様。
+                        officialUrl: https://www.rfc-editor.org/rfc/rfc6749
+                      - name: RFC 9700
+                        kind: standard
+                        relevance: OAuth 2.0の現在のセキュリティベストプラクティスとして重要。
+                        officialUrl: https://www.rfc-editor.org/rfc/rfc9700
+                      - name: PKCE
+                        kind: protocol
+                        relevance: 認可コードフローを安全にするためOAuth 2.0実装で頻出する。
+                      - name: DPoP
+                        kind: protocol
+                        relevance: トークンを鍵に束縛してBearerトークンの悪用を抑える仕組み。
+
                 - slug: openid-connect
+
+                  search:
+
+                    keywords:
+
+                      - OpenID Connect
+
+                      - OIDC
+
+                      - ID Token
+
+                      - identity layer
+
+                      - claims
+
+                      - userinfo endpoint
+
+                      - discovery document
+
+                      - JWKS
+
+                      - nonce
+
+                    commonSignals:
+
+                      - IDトークンを検証してユーザー認証する
+
+                      - issuer、audience、nonce、claimsを確認する
+
+                      - SSOやIdP連携をOIDCで行う
+
+                    antiSignals:
+
+                      - OAuth 2.0のアクセストークン委譲だけの話
+
+                      - OpenID 2.0など古い仕様の話
+
+                      - 単なるログイン画面実装でIDトークンが出ない
+
+                    relatedNames:
+
+                      - name: OpenID Connect Core 1.0
+
+                        kind: standard
+
+                        relevance: OIDCの中核仕様で、IDトークンや認証フローを定義する。
+
+                        officialUrl: https://openid.net/specs/openid-connect-core-1_0.html
+
+                      - name: JWT
+
+                        kind: standard
+
+                        relevance: IDトークンの表現形式としてOIDC実装で頻出する。
+
+                      - name: JWKS
+
+                        kind: standard
+
+                        relevance: IDトークン署名検証用の公開鍵配布形式として使われる。
+
+                      - name: Keycloak
+
+                        kind: tool
+
+                        relevance: OIDCプロバイダやSSO基盤の実装例として広く使われる。
                   name: "OpenID Connect"
                   summary: "OAuth 2.0 の上に認証レイヤーを載せた標準。"
                   whyLearn: "認可と認証の違いを混同しにくくなる。"
@@ -312,6 +1027,38 @@ domain:
                   aliases:
                     - "PKCE"
                     - "Proof Key for Code Exchange"
+                  search:
+                    keywords:
+                      - PKCE
+                      - Proof Key for Code Exchange
+                      - code verifier
+                      - code challenge
+                      - S256
+                      - authorization code interception
+                      - public client
+                      - OAuth PKCE
+                    commonSignals:
+                      - code_verifierとcode_challengeを生成する
+                      - SPAやモバイルアプリで認可コードフローを使う
+                      - 認可コード横取り攻撃を防ぐ
+                    antiSignals:
+                      - OAuthのclient_secretだけを扱うサーバーサイド実装
+                      - 認証コードをメールで送る話
+                      - 暗号鍵交換一般の話でOAuthが出ない
+                    relatedNames:
+                      - name: RFC 7636
+                        kind: standard
+                        relevance: PKCEを定義するIETF RFC。
+                        officialUrl: https://www.rfc-editor.org/rfc/rfc7636
+                      - name: OAuth 2.0 Authorization Code Flow
+                        kind: protocol
+                        relevance: PKCEが組み込まれる主要なOAuthフロー。
+                      - name: OAuth 2.0 for Native Apps
+                        kind: standard
+                        relevance: ネイティブアプリでPKCE利用が重要になる文脈で参照される。
+                      - name: RFC 9700
+                        kind: standard
+                        relevance: OAuth 2.0のセキュリティベストプラクティスでPKCE利用が重視される。
         - slug: authorization-and-secret-lifecycle
           name: "認可と秘密のライフサイクル"
           summary: "権限モデルとシークレット運用を扱う。"
@@ -329,7 +1076,105 @@ domain:
                   aliases:
                     - "RBAC"
                     - "Role-Based Access Control"
+                  search:
+                    keywords:
+                      - RBAC
+                      - Role-Based Access Control
+                      - ロールベースアクセス制御
+                      - role
+                      - permission
+                      - role assignment
+                      - 権限ロール
+                      - 職務分掌
+                    commonSignals:
+                      - 管理者、編集者、閲覧者のようなロールを設計する
+                      - roleにpermissionを束ねてuserへ割り当てる
+                      - 職務ごとに権限を管理する
+                    antiSignals:
+                      - 組織上の役職名だけでシステム権限がない
+                      - 属性条件や関係グラフだけが主題
+                      - OAuthのscopeだけでロール設計が出ない
+                    relatedNames:
+                      - name: Kubernetes RBAC
+                        kind: platform
+                        relevance: Role、ClusterRole、Bindingで権限を定義する代表的なRBAC実装。
+                      - name: PostgreSQL Roles
+                        kind: platform
+                        relevance: DB権限管理でロールを使う実務例として頻出する。
+                      - name: Casbin
+                        kind: library
+                        relevance: RBACやABACなど複数のアクセス制御モデルを実装できるライブラリ。
+                      - name: AWS IAM Role
+                        kind: service
+                        relevance: クラウド権限をロール単位で付与する実務例として関連する。
+
                 - slug: attribute-based-access-control
+
+                  search:
+
+                    keywords:
+
+                      - ABAC
+
+                      - Attribute-Based Access Control
+
+                      - 属性ベースアクセス制御
+
+                      - policy decision point
+
+                      - PDP
+
+                      - policy enforcement point
+
+                      - PEP
+
+                      - context-aware policy
+
+                      - 条件付きアクセス
+
+                    commonSignals:
+
+                      - ユーザー属性、リソース属性、環境条件で許可判定する
+
+                      - 部署、時刻、端末状態、データ分類を条件にする
+
+                      - PDP/PEPやpolicy-as-codeが出る
+
+                    antiSignals:
+
+                      - 単純なロール一覧だけの話
+
+                      - データ分析のattributeや特徴量の話
+
+                      - CSS属性やHTML属性の話
+
+                    relatedNames:
+
+                      - name: XACML
+
+                        kind: standard
+
+                        relevance: ABACポリシー表現と評価の標準として知られる。
+
+                      - name: Open Policy Agent
+
+                        kind: tool
+
+                        relevance: 属性や文脈に基づくポリシー評価を実装する汎用ポリシーエンジン。
+
+                        officialUrl: https://www.openpolicyagent.org/
+
+                      - name: Rego
+
+                        kind: language
+
+                        relevance: OPAでABAC的なアクセス制御ポリシーを記述する言語。
+
+                      - name: Cedar
+
+                        kind: language
+
+                        relevance: アプリケーション認可ポリシーを記述する言語としてABAC/ReBAC文脈で出る。
                   name: "ABAC"
                   summary: "主体、資源、環境属性に基づいて権限判定するモデル。"
                   whyLearn: "状況依存の細かい制御に向く。"
@@ -357,7 +1202,102 @@ domain:
                   promptHint: "この権限は人ではなくワークロードに紐づくべきかで考える。"
                   aliases:
                     - "Service Account"
+                  search:
+                    keywords:
+                      - サービスアカウント
+                      - Service Account
+                      - machine identity
+                      - workload identity
+                      - non-human identity
+                      - NHI
+                      - client credentials
+                      - service principal
+                      - bot account
+                    commonSignals:
+                      - 人ではなくアプリやジョブに権限を付ける
+                      - CI/CDやバッチがAPIを呼ぶための資格情報
+                      - workload identityやservice principalが出る
+                    antiSignals:
+                      - 一般ユーザーアカウントの問い合わせ
+                      - 顧客サポート用アカウントだけの話
+                      - 会計上のservice accountという意味
+                    relatedNames:
+                      - name: Kubernetes ServiceAccount
+                        kind: platform
+                        relevance: Podやワークロードに紐づく機械IDの代表的な実装。
+                      - name: SPIFFE
+                        kind: standard
+                        relevance: ワークロードIDを標準的に表現するための仕様として関連する。
+                      - name: OAuth Client Credentials Grant
+                        kind: protocol
+                        relevance: サービス間認可でサービスアカウントに近い主体を扱うフロー。
+                      - name: Google Cloud Service Account
+                        kind: service
+                        relevance: クラウド環境で機械IDを扱う実務例として頻出する。
+
                 - slug: privileged-access-management
+
+                  search:
+
+                    keywords:
+
+                      - PAM
+
+                      - Privileged Access Management
+
+                      - 特権アクセス管理
+
+                      - admin account
+
+                      - break-glass account
+
+                      - just-in-time access
+
+                      - session recording
+
+                      - privilege elevation
+
+                    commonSignals:
+
+                      - 管理者権限の貸し出しや承認を管理する
+
+                      - 特権セッションを記録する
+
+                      - break-glassアカウントを統制する
+
+                    antiSignals:
+
+                      - 一般ユーザーのログイン認証だけの話
+
+                      - RBACのロール設計だけで特権運用がない
+
+                      - パスワード管理ツール一般の話
+
+                    relatedNames:
+
+                      - name: Just-in-Time Access
+
+                        kind: pattern
+
+                        relevance: 必要な時だけ一時的に特権を付与するPAMの重要パターン。
+
+                      - name: CyberArk
+
+                        kind: service
+
+                        relevance: PAM製品カテゴリの代表例として実務資料でよく出る。
+
+                      - name: Teleport
+
+                        kind: tool
+
+                        relevance: SSHやKubernetesなどの特権アクセスを証跡付きで管理するツール。
+
+                      - name: sudo
+
+                        kind: tool
+
+                        relevance: Unix系で特権昇格を制御・監査する基本ツール。
                   name: "PAM"
                   summary: "高権限アカウントの発行、利用、監査を統制する仕組み。"
                   whyLearn: "管理者権限の乱用や漏えいの被害を抑えられる。"
@@ -372,6 +1312,37 @@ domain:
                   promptHint: "漏えい時に素早く切り替えられる設計かを確認する。"
                   aliases:
                     - "Secret Rotation"
+                  search:
+                    keywords:
+                      - シークレットローテーション
+                      - Secret Rotation
+                      - credential rotation
+                      - key rotation
+                      - token rotation
+                      - API key rotation
+                      - secret lifecycle
+                      - 自動ローテーション
+                    commonSignals:
+                      - 漏えい時にAPIキーを切り替える
+                      - 長寿命トークンを短寿命化する
+                      - 古いsecretと新しいsecretを並行運用して切り替える
+                    antiSignals:
+                      - 暗号鍵ローテーションだけでアプリ資格情報が出ない
+                      - 単なるパスワード変更ルール
+                      - ログローテーションや証明書更新だけの話
+                    relatedNames:
+                      - name: HashiCorp Vault
+                        kind: tool
+                        relevance: 動的シークレット発行やローテーションの実装例としてよく使われる。
+                      - name: AWS Secrets Manager
+                        kind: service
+                        relevance: DB認証情報などの自動ローテーションを提供するマネージドサービス。
+                      - name: External Secrets Operator
+                        kind: tool
+                        relevance: Kubernetesで外部シークレット管理基盤と連携する際に出る。
+                      - name: Kubernetes Secrets
+                        kind: platform
+                        relevance: クラスタ内シークレット管理とローテーション課題で頻出する。
 
     - slug: cryptography-key-management
       name: "暗号と鍵管理"
@@ -395,6 +1366,40 @@ domain:
                   aliases:
                     - "AES"
                     - "Advanced Encryption Standard"
+                  search:
+                    keywords:
+                      - AES
+                      - Advanced Encryption Standard
+                      - 共通鍵暗号
+                      - symmetric encryption
+                      - AES-128
+                      - AES-256
+                      - AES-GCM
+                      - AES-CBC
+                      - block cipher
+                    commonSignals:
+                      - 保存データをAES-256で暗号化する
+                      - AES-GCMやIV/nonceの扱いが出る
+                      - 共通鍵で暗号化・復号する
+                    antiSignals:
+                      - AESという会社名や株式ティッカー
+                      - ハッシュ関数や署名をAESと混同している
+                      - 暗号化一般で具体的なAES方式が出ない
+                    relatedNames:
+                      - name: FIPS 197
+                        kind: standard
+                        relevance: AESを定義するNIST標準。
+                        officialUrl: https://csrc.nist.gov/pubs/fips/197/final
+                      - name: AES-GCM
+                        kind: method
+                        relevance: AESを使った認証付き暗号方式として現代的実装で頻出する。
+                      - name: OpenSSL
+                        kind: library
+                        relevance: AESを含む暗号機能を提供する代表的な暗号ライブラリ。
+                      - name: Web Crypto API
+                        kind: platform
+                        relevance: ブラウザでAES-GCMなどを使う際の標準API。
+
                 - slug: secure-hash-algorithm-256
                   name: "SHA-256"
                   summary: "メッセージダイジェストを生成する代表的なハッシュ関数。"
@@ -421,6 +1426,40 @@ domain:
                   promptHint: "コスト設定、ソルト、移行計画まで含めて考える。"
                   aliases:
                     - "Argon2id"
+                  search:
+                    keywords:
+                      - Argon2id
+                      - Argon2
+                      - password hashing
+                      - パスワードハッシュ
+                      - memory-hard function
+                      - salt
+                      - pepper
+                      - PHC winner
+                      - offline cracking
+                    commonSignals:
+                      - パスワードを平文ではなくメモリハードにハッシュ化する
+                      - time cost、memory cost、parallelismを設定する
+                      - bcryptやPBKDF2から移行する
+                    antiSignals:
+                      - 一般的な暗号化方式として扱っている
+                      - ファイルチェックサム用ハッシュの話
+                      - MFAや認証フローだけの話
+                    relatedNames:
+                      - name: RFC 9106
+                        kind: standard
+                        relevance: Argon2の仕様を説明するIETF RFC。
+                        officialUrl: https://www.rfc-editor.org/rfc/rfc9106
+                      - name: libsodium
+                        kind: library
+                        relevance: Argon2idベースのパスワードハッシュAPIを提供する代表的ライブラリ。
+                      - name: bcrypt
+                        kind: method
+                        relevance: 古くから使われるパスワードハッシュ方式でArgon2idと比較されやすい。
+                      - name: OWASP Password Storage Cheat Sheet
+                        kind: standard
+                        relevance: パスワード保存方式の推奨でArgon2idがよく言及される。
+
                 - slug: digital-signature
                   name: "デジタル署名"
                   summary: "署名者の真正性とデータ完全性を検証する仕組み。"
@@ -453,7 +1492,105 @@ domain:
                   aliases:
                     - "TLS"
                     - "Transport Layer Security"
+                  search:
+                    keywords:
+                      - TLS
+                      - Transport Layer Security
+                      - TLS 1.3
+                      - HTTPS
+                      - mTLS
+                      - certificate chain
+                      - cipher suite
+                      - handshake
+                      - HSTS
+                    commonSignals:
+                      - HTTPS証明書やcipher suiteを設定する
+                      - TLS 1.2からTLS 1.3へ移行する
+                      - クライアント証明書でmTLSを行う
+                    antiSignals:
+                      - Thread Local StorageのTLS
+                      - 通信暗号化ではなく物流や保険のTLS略語
+                      - アプリ層の認可だけで通信路保護がない
+                    relatedNames:
+                      - name: RFC 8446
+                        kind: standard
+                        relevance: TLS 1.3を定義するIETF RFC。
+                        officialUrl: https://www.rfc-editor.org/rfc/rfc8446
+                      - name: OpenSSL
+                        kind: library
+                        relevance: TLSの実装・証明書検証・鍵管理で広く使われるライブラリ。
+                      - name: Let's Encrypt
+                        kind: service
+                        relevance: TLS証明書の自動発行・更新で広く使われる認証局サービス。
+                      - name: ACME
+                        kind: protocol
+                        relevance: 証明書の自動発行・更新を行うプロトコルとしてTLS運用で出る。
+
                 - slug: public-key-infrastructure
+
+                  search:
+
+                    keywords:
+
+                      - PKI
+
+                      - Public Key Infrastructure
+
+                      - 公開鍵基盤
+
+                      - certificate authority
+
+                      - CA
+
+                      - certificate chain
+
+                      - OCSP
+
+                      - CRL
+
+                      - certificate lifecycle
+
+                    commonSignals:
+
+                      - CAが証明書を発行し信頼チェーンを作る
+
+                      - 証明書失効をOCSPやCRLで確認する
+
+                      - 社内CAやプライベートPKIを構築する
+
+                    antiSignals:
+
+                      - 公開鍵暗号の数学だけの話
+
+                      - 単一のTLS証明書設定だけでCA運用が出ない
+
+                      - APIキー配布の話
+
+                    relatedNames:
+
+                      - name: X.509
+
+                        kind: standard
+
+                        relevance: PKIで公開鍵と主体を結びつける証明書形式。
+
+                      - name: CA/Browser Forum
+
+                        kind: standard
+
+                        relevance: 公開Web PKIの証明書発行ルールで重要な業界団体。
+
+                      - name: ACME
+
+                        kind: protocol
+
+                        relevance: 証明書発行を自動化するプロトコルとしてPKI運用に関わる。
+
+                      - name: EJBCA
+
+                        kind: tool
+
+                        relevance: プライベートCAや証明書管理に使われるOSS系PKI実装。
                   name: "PKI"
                   summary: "公開鍵証明書を発行・管理・失効する信頼基盤。"
                   whyLearn: "証明書運用や相互認証の理解に不可欠。"
@@ -489,6 +1626,38 @@ domain:
                   aliases:
                     - "HSM"
                     - "Hardware Security Module"
+                  search:
+                    keywords:
+                      - HSM
+                      - Hardware Security Module
+                      - ハードウェアセキュリティモジュール
+                      - key custody
+                      - key isolation
+                      - PKCS#11
+                      - FIPS 140
+                      - tamper resistant
+                    commonSignals:
+                      - 秘密鍵を平文で外へ出さない
+                      - 鍵生成や署名を専用装置内で行う
+                      - FIPS認証済み暗号モジュールを要求する
+                    antiSignals:
+                      - ハードウェア監視モジュールなど別分野のHSM
+                      - 単なるKMS API利用で専用暗号モジュールが出ない
+                      - 通常のファイル暗号化だけの話
+                    relatedNames:
+                      - name: PKCS#11
+                        kind: standard
+                        relevance: HSMや暗号トークンを操作するAPI仕様として広く使われる。
+                      - name: FIPS 140-3
+                        kind: standard
+                        relevance: 暗号モジュールのセキュリティ要件としてHSM評価で参照される。
+                      - name: AWS CloudHSM
+                        kind: service
+                        relevance: クラウド上でHSMを利用する代表的なマネージドサービス。
+                      - name: YubiHSM
+                        kind: tool
+                        relevance: 小型HSMとして署名鍵や秘密鍵保護の実装例に出る。
+
                 - slug: cryptographic-agility
                   name: "暗号アジリティ"
                   summary: "暗号アルゴリズムや鍵長を後から移行しやすくする設計。"
@@ -513,6 +1682,40 @@ domain:
                   aliases:
                     - "PQC"
                     - "Post-Quantum Cryptography"
+                  search:
+                    keywords:
+                      - PQC
+                      - Post-Quantum Cryptography
+                      - 耐量子計算機暗号
+                      - quantum-resistant
+                      - quantum-safe
+                      - crypto agility
+                      - harvest now decrypt later
+                      - HNDL
+                      - PQC migration
+                    commonSignals:
+                      - 量子計算機に備えて暗号方式を移行する
+                      - harvest now decrypt laterリスクを評価する
+                      - ML-KEMやML-DSAへの対応を検討する
+                    antiSignals:
+                      - 量子コンピュータそのもののハードウェア研究
+                      - 単なる強い暗号という表現だけ
+                      - ブロックチェーンの量子耐性トークン宣伝だけ
+                    relatedNames:
+                      - name: ML-KEM
+                        kind: standard
+                        relevance: NIST標準化された耐量子鍵カプセル化方式。
+                      - name: ML-DSA
+                        kind: standard
+                        relevance: NIST標準化された耐量子デジタル署名方式。
+                      - name: SLH-DSA
+                        kind: standard
+                        relevance: NIST標準化されたハッシュベース耐量子署名方式。
+                      - name: NIST Post-Quantum Cryptography Project
+                        kind: standard
+                        relevance: PQC標準化と移行情報の中心的な公式プロジェクト。
+                        officialUrl: https://csrc.nist.gov/projects/post-quantum-cryptography
+
                 - slug: ml-kem
                   name: "ML-KEM"
                   summary: "NIST 標準化された耐量子 KEM。"
@@ -550,6 +1753,37 @@ domain:
                   aliases:
                     - "PII"
                     - "Personally Identifiable Information"
+                  search:
+                    keywords:
+                      - PII
+                      - Personally Identifiable Information
+                      - 個人識別情報
+                      - personal data
+                      - 個人データ
+                      - 個人情報
+                      - sensitive personal data
+                      - PHI
+                      - special category data
+                    commonSignals:
+                      - 単独または組合せで個人を識別できる
+                      - メールアドレス、電話番号、端末ID、住所を分類する
+                      - 個人データの棚卸しやデータマッピングを行う
+                    antiSignals:
+                      - 匿名集計値だけを扱っている
+                      - 会社情報や法人識別子だけの話
+                      - PIIという略称が別分野で使われている
+                    relatedNames:
+                      - name: GDPR
+                        kind: standard
+                        relevance: personal dataの概念や処理原則の参照元として頻出する。
+                      - name: NIST Privacy Framework
+                        kind: framework
+                        relevance: PIIを含むプライバシーリスク管理の枠組みとして関連する。
+                        officialUrl: https://www.nist.gov/privacy-framework
+                      - name: HIPAA PHI
+                        kind: standard
+                        relevance: 医療文脈の保護対象情報としてPIIと比較・併記されやすい。
+
                 - slug: data-classification
                   name: "データ分類"
                   summary: "データを機密性や規制性に応じて等級分けすること。"
@@ -585,6 +1819,36 @@ domain:
                   aliases:
                     - "Data Minimisation"
                     - "Data Minimization"
+                  search:
+                    keywords:
+                      - データ最小化
+                      - Data Minimization
+                      - Data Minimisation
+                      - 必要最小限
+                      - collect less data
+                      - privacy by default
+                      - purpose limitation
+                      - field reduction
+                      - data minimization principle
+                    commonSignals:
+                      - 本当に必要な項目だけ収集する
+                      - 位置情報を詳細ではなく粗い粒度にする
+                      - 使わない個人データを削除または収集しない
+                    antiSignals:
+                      - ストレージコスト削減だけが目的
+                      - データ圧縮や画像サイズ削減の話
+                      - 分析精度向上の特徴量選択だけの話
+                    relatedNames:
+                      - name: GDPR Article 5
+                        kind: standard
+                        relevance: データ最小化を含む個人データ処理原則の参照元として頻出する。
+                      - name: Privacy by Design
+                        kind: pattern
+                        relevance: データ最小化はプライバシーを設計に組み込む主要な実践。
+                      - name: Data Retention Policy
+                        kind: pattern
+                        relevance: 集める量だけでなく保持期間を最小化する運用と関連する。
+
                 - slug: retention-policy
                   name: "保持ポリシー"
                   summary: "データの保存期間と削除条件を定める方針。"
@@ -616,6 +1880,39 @@ domain:
                   aliases:
                     - "DPIA"
                     - "Data Protection Impact Assessment"
+                  search:
+                    keywords:
+                      - DPIA
+                      - Data Protection Impact Assessment
+                      - データ保護影響評価
+                      - privacy impact assessment
+                      - PIA
+                      - high risk processing
+                      - 個人リスク評価
+                      - 比例性
+                      - necessity assessment
+                    commonSignals:
+                      - 高リスク処理を開始する前に評価する
+                      - 必要性、比例性、リスク、緩和策を整理する
+                      - 新機能やデータ利用変更のプライバシー影響を見る
+                    antiSignals:
+                      - 単なるセキュリティ脆弱性診断
+                      - 事業インパクト分析だけで個人への影響が出ない
+                      - 法務レビューだけで技術的・運用的緩和策がない
+                    relatedNames:
+                      - name: GDPR Article 35
+                        kind: standard
+                        relevance: DPIAの実施要件を定める代表的な法規範として参照される。
+                      - name: NIST PRAM
+                        kind: method
+                        relevance: プライバシーリスクを体系的に評価するためのNIST手法。
+                      - name: LINDDUN
+                        kind: method
+                        relevance: プライバシー脅威を洗い出してDPIAのリスク評価に使える。
+                      - name: ICO DPIA Guidance
+                        kind: standard
+                        relevance: DPIA実施手順の実務資料としてよく参照される。
+
                 - slug: privacy-risk-assessment-methodology
                   name: "プライバシーリスク評価法"
                   summary: "個人への問題発生可能性と影響を評価する枠組み。"
@@ -693,6 +1990,41 @@ domain:
                   promptHint: "ノイズ量、集計用途、累積利用をセットで考える。"
                   aliases:
                     - "Differential Privacy"
+                  search:
+                    keywords:
+                      - 差分プライバシー
+                      - Differential Privacy
+                      - DP
+                      - epsilon
+                      - privacy budget
+                      - noise mechanism
+                      - Laplace mechanism
+                      - Gaussian mechanism
+                      - privacy loss
+                    commonSignals:
+                      - epsilonやprivacy budgetを設定する
+                      - 集計値にノイズを加えて個人の寄与を隠す
+                      - 匿名化ではなく数学的なプライバシー保証を議論する
+                    antiSignals:
+                      - 単なるデータマスキングや仮名化
+                      - ノイズ除去や信号処理の話
+                      - 個人情報を削除しただけで保証パラメータがない
+                    relatedNames:
+                      - name: OpenDP
+                        kind: library
+                        relevance: 差分プライバシーを実装・検証するためのOSSライブラリ。
+                        officialUrl: https://opendp.org/
+                      - name: Google Differential Privacy Library
+                        kind: library
+                        relevance: 差分プライバシーの集計処理を実装するためのライブラリ。
+                      - name: NIST SP 800-226
+                        kind: standard
+                        relevance: 差分プライバシー保証を評価するためのNISTガイド。
+                        officialUrl: https://csrc.nist.gov/pubs/sp/800/226/final
+                      - name: DP-SGD
+                        kind: method
+                        relevance: 機械学習で差分プライバシーを使う代表的な訓練手法。
+
                 - slug: homomorphic-encryption
                   name: "準同型暗号"
                   summary: "復号せずに暗号文のまま計算できる暗号技術。"
@@ -731,6 +2063,42 @@ domain:
                   aliases:
                     - "NIST CSF"
                     - "CSF 2.0"
+                  search:
+                    keywords:
+                      - NIST CSF
+                      - CSF 2.0
+                      - Cybersecurity Framework
+                      - Govern
+                      - Identify
+                      - Protect
+                      - Detect
+                      - Respond
+                      - Recover
+                      - Profile
+                      - Implementation Tier
+                    commonSignals:
+                      - Govern, Identify, Protect, Detect, Respond, Recoverで整理する
+                      - CSF ProfileやTarget Profileを作る
+                      - 経営層とサイバーリスクを対話する
+                    antiSignals:
+                      - NISTの個別暗号標準だけの話
+                      - フレームワークではなく特定製品の設定手順
+                      - 一般的なsecurity frameworkという表現だけ
+                    relatedNames:
+                      - name: NIST CSF 2.0
+                        kind: framework
+                        relevance: サイバーリスク管理の高位アウトカムを整理する中核フレームワーク。
+                        officialUrl: https://csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-csf-20/final
+                      - name: NIST RMF
+                        kind: framework
+                        relevance: CSFより詳細なリスク管理プロセスと統制選択に接続される。
+                      - name: NIST SP 800-53
+                        kind: standard
+                        relevance: CSFの高位アウトカムを具体的な統制に落とす際に参照される。
+                      - name: CIS Controls
+                        kind: framework
+                        relevance: CSFとのマッピングや実装優先度付けで併用される。
+
                 - slug: nist-sp-800-53
                   name: "NIST SP 800-53"
                   summary: "security と privacy の詳細な control catalog。"
@@ -746,6 +2114,40 @@ domain:
                   aliases:
                     - "ISO 27001"
                     - "ISMS"
+                  search:
+                    keywords:
+                      - ISO/IEC 27001
+                      - ISO 27001
+                      - ISMS
+                      - information security management system
+                      - Annex A
+                      - Statement of Applicability
+                      - SoA
+                      - 内部監査
+                      - 継続的改善
+                    commonSignals:
+                      - ISMS認証や審査に向けた管理策を整える
+                      - Annex Aの適用可否をSoAにまとめる
+                      - 情報セキュリティ方針、リスクアセスメント、内部監査が出る
+                    antiSignals:
+                      - ISOという一般的な標準化団体だけの話
+                      - 品質管理ISO 9001の話
+                      - 個別の暗号方式やWeb脆弱性だけの話
+                    relatedNames:
+                      - name: ISO/IEC 27002
+                        kind: standard
+                        relevance: ISO/IEC 27001の管理策を実装する際のガイダンスとして関連する。
+                        officialUrl: https://www.iso.org/standard/75652.html
+                      - name: ISO/IEC 27701
+                        kind: standard
+                        relevance: プライバシー情報管理をISO 27001系に拡張する標準。
+                        officialUrl: https://www.iso.org/standard/27701
+                      - name: Statement of Applicability
+                        kind: method
+                        relevance: 適用する管理策と除外理由を明示するISMS文書。
+                      - name: PDCA
+                        kind: method
+                        relevance: ISMSの継続的改善サイクルとして説明される。
             - slug: risk-and-control-operations
               name: "リスクと統制運用"
               summary: "リスク記録、統制対応、第三者評価を運用に組み込む。"
@@ -789,6 +2191,41 @@ domain:
                   promptHint: "準備、保護、良いソフト作成、脆弱性対応の流れで見る。"
                   aliases:
                     - "SSDF"
+                  search:
+                    keywords:
+                      - SSDF
+                      - Secure Software Development Framework
+                      - NIST SP 800-218
+                      - secure SDLC
+                      - セキュア開発
+                      - Prepare the Organization
+                      - Protect the Software
+                      - Produce Well-Secured Software
+                      - Respond to Vulnerabilities
+                    commonSignals:
+                      - SDLCにセキュリティ要求やレビューを組み込む
+                      - PO, PS, PW, RVの実践群が出る
+                      - 安全なソフトウェア開発プロセスを標準化する
+                    antiSignals:
+                      - 単発の脆弱性診断だけの話
+                      - 一般的なアジャイル開発プロセスだけの話
+                      - サプライチェーンだけで開発実践全体が出ない
+                    relatedNames:
+                      - name: NIST SP 800-218
+                        kind: standard
+                        relevance: SSDFを定義するNIST文書。
+                        officialUrl: https://csrc.nist.gov/pubs/sp/800/218/final
+                      - name: OWASP SAMM
+                        kind: framework
+                        relevance: セキュア開発の成熟度評価・改善でSSDFと比較される。
+                        officialUrl: https://owasp.org/www-project-samm/
+                      - name: SLSA
+                        kind: framework
+                        relevance: ビルドやサプライチェーンの保証を強化する観点でSSDFと接続する。
+                      - name: DevSecOps
+                        kind: pattern
+                        relevance: セキュア開発実践をCI/CDやチーム運用に組み込む文脈で出る。
+
                 - slug: samm
                   name: "OWASP SAMM"
                   summary: "ソフトウェアセキュリティ成熟度を評価・改善するモデル。"
@@ -815,7 +2252,102 @@ domain:
                   promptHint: "この機能に必要な security 要求を先に言語化する。"
                   aliases:
                     - "ASVS"
+                  search:
+                    keywords:
+                      - OWASP ASVS
+                      - ASVS
+                      - Application Security Verification Standard
+                      - security requirements
+                      - verification level
+                      - L1 L2 L3
+                      - アプリケーションセキュリティ検証
+                      - Web application security requirements
+                    commonSignals:
+                      - セキュリティ要件をL1/L2/L3で定義する
+                      - 認証、セッション、アクセス制御などの検証項目を洗い出す
+                      - ペネトレーションテストの基準としてASVSを使う
+                    antiSignals:
+                      - OWASP Top 10だけを参照している
+                      - 単なるQAテスト項目表
+                      - モバイル専用のMASVSだけの話
+                    relatedNames:
+                      - name: OWASP ASVS
+                        kind: standard
+                        relevance: WebアプリとAPIのセキュリティ要求・検証項目を整理する標準。
+                        officialUrl: https://owasp.org/www-project-application-security-verification-standard/
+                      - name: OWASP Top 10
+                        kind: standard
+                        relevance: ASVSより意識啓発寄りのWebアプリ主要リスク一覧として併用される。
+                      - name: OWASP Cheat Sheet Series
+                        kind: standard
+                        relevance: ASVS項目の具体的実装方法を調べる際に参照される。
+                      - name: MASVS
+                        kind: standard
+                        relevance: モバイルアプリ向けの検証標準としてASVSと比較される。
+
                 - slug: static-application-security-testing
+
+                  search:
+
+                    keywords:
+
+                      - SAST
+
+                      - Static Application Security Testing
+
+                      - 静的解析
+
+                      - static code analysis
+
+                      - source code scanning
+
+                      - security scanner
+
+                      - CI security gate
+
+                      - taint analysis
+
+                    commonSignals:
+
+                      - CIでコードをスキャンして脆弱性候補を検出する
+
+                      - taint analysisで入力から危険sinkへの流れを見る
+
+                      - SASTルールの誤検知や抑制を管理する
+
+                    antiSignals:
+
+                      - DASTやペネトレーションテストだけの話
+
+                      - コードフォーマッタやlintだけでセキュリティがない
+
+                      - 実行時監視やWAFの話
+
+                    relatedNames:
+
+                      - name: CodeQL
+
+                        kind: tool
+
+                        relevance: コードクエリによる高度な静的解析でSAST文脈に頻出する。
+
+                      - name: Semgrep
+
+                        kind: tool
+
+                        relevance: ルールベースの軽量な静的解析をCIに組み込みやすいツール。
+
+                      - name: SonarQube
+
+                        kind: tool
+
+                        relevance: 品質とセキュリティの静的解析で広く使われるプラットフォーム。
+
+                      - name: Bandit
+
+                        kind: tool
+
+                        relevance: Pythonコードのセキュリティ静的解析で使われる。
                   name: "SAST"
                   summary: "ソースコードやバイトコードを解析して問題を検出する手法。"
                   whyLearn: "早い段階での自動検出に向く。"
@@ -854,6 +2386,41 @@ domain:
                   aliases:
                     - "SBOM"
                     - "Software Bill of Materials"
+                  search:
+                    keywords:
+                      - SBOM
+                      - Software Bill of Materials
+                      - ソフトウェア部品表
+                      - component inventory
+                      - dependency inventory
+                      - CycloneDX
+                      - SPDX
+                      - VEX
+                      - software transparency
+                    commonSignals:
+                      - 依存ライブラリやコンポーネント一覧を生成する
+                      - CycloneDXやSPDX形式で出力する
+                      - 脆弱性影響調査のために部品表を使う
+                    antiSignals:
+                      - 製造業の物理部品表だけの話
+                      - package.jsonやrequirements.txtだけでSBOM形式がない
+                      - 単なる在庫管理のBOM
+                    relatedNames:
+                      - name: CycloneDX
+                        kind: standard
+                        relevance: SBOM表現形式として広く使われる標準。
+                        officialUrl: https://cyclonedx.org/
+                      - name: SPDX
+                        kind: standard
+                        relevance: ライセンスや部品情報を含むSBOM標準として使われる。
+                        officialUrl: https://spdx.dev/
+                      - name: Syft
+                        kind: tool
+                        relevance: コンテナやコードベースからSBOMを生成するOSSツール。
+                      - name: Dependency-Track
+                        kind: tool
+                        relevance: SBOMを取り込み脆弱性やライセンスリスクを継続管理するツール。
+
                 - slug: provenance-attestation
                   name: "来歴アテステーション"
                   summary: "どのソースがどのビルドで成果物になったかを示す証跡。"
@@ -869,6 +2436,38 @@ domain:
                   promptHint: "署名、証明書、透明性ログをどう連携させるかで考える。"
                   aliases:
                     - "Sigstore"
+                  search:
+                    keywords:
+                      - Sigstore
+                      - cosign
+                      - Rekor
+                      - Fulcio
+                      - keyless signing
+                      - artifact signing
+                      - transparency log
+                      - ソフトウェア署名
+                    commonSignals:
+                      - cosignでコンテナイメージに署名する
+                      - keyless signingや透明性ログを使う
+                      - Fulcio証明書とRekorログで検証する
+                    antiSignals:
+                      - 一般的な電子署名だけでSigstore構成要素がない
+                      - Git commit署名だけの話
+                      - 証明書管理一般の話
+                    relatedNames:
+                      - name: Cosign
+                        kind: tool
+                        relevance: コンテナイメージやアーティファクト署名に使うSigstoreの主要ツール。
+                        officialUrl: https://www.sigstore.dev/
+                      - name: Fulcio
+                        kind: service
+                        relevance: Sigstoreの短期証明書発行コンポーネント。
+                      - name: Rekor
+                        kind: service
+                        relevance: Sigstoreの透明性ログとして署名イベントの検証に使われる。
+                      - name: OIDC
+                        kind: protocol
+                        relevance: keyless signingで署名者IDを証明するために使われる。
             - slug: build-pipeline-hardening
               name: "ビルドパイプライン強化"
               summary: "依存解決、ビルド再現性、改ざん耐性を高める。"
@@ -881,6 +2480,40 @@ domain:
                   promptHint: "署名、来歴、ビルド隔離をどのレベルまで満たすかで考える。"
                   aliases:
                     - "SLSA"
+                  search:
+                    keywords:
+                      - SLSA
+                      - Supply-chain Levels for Software Artifacts
+                      - supply chain security
+                      - provenance
+                      - build integrity
+                      - build level
+                      - tamper resistance
+                      - artifact provenance
+                    commonSignals:
+                      - ビルド来歴を生成して検証する
+                      - SLSA levelやprovenance predicateが出る
+                      - CI/CDの改ざん耐性を高める
+                    antiSignals:
+                      - 一般的なサプライチェーン物流の話
+                      - SBOMだけでビルド来歴や保証レベルがない
+                      - 単なるCI高速化やデプロイ自動化の話
+                    relatedNames:
+                      - name: SLSA
+                        kind: framework
+                        relevance: ソフトウェアサプライチェーンの段階的な保証レベルを定義する枠組み。
+                        officialUrl: https://slsa.dev/
+                      - name: in-toto
+                        kind: framework
+                        relevance: ソフトウェア供給網のステップと証跡を記録・検証する仕様。
+                        officialUrl: https://in-toto.io/
+                      - name: Sigstore
+                        kind: tool
+                        relevance: SLSA provenanceやアーティファクト署名の実装で併用されやすい。
+                      - name: Tekton Chains
+                        kind: tool
+                        relevance: Kubernetes系CI/CDで来歴署名を生成する実装例として出る。
+
                 - slug: reproducible-builds
                   name: "再現可能ビルド"
                   summary: "同じ入力から同じ成果物を得られるビルド特性。"
@@ -912,7 +2545,104 @@ domain:
                   aliases:
                     - "CVE"
                     - "Common Vulnerabilities and Exposures"
+                  search:
+                    keywords:
+                      - CVE
+                      - Common Vulnerabilities and Exposures
+                      - CVE ID
+                      - CVE Record
+                      - CNA
+                      - publicly disclosed vulnerability
+                      - 脆弱性識別子
+                      - CVE番号
+                    commonSignals:
+                      - CVE-2024-xxxxのような識別子が出る
+                      - 公開脆弱性を一意に参照する
+                      - CVE RecordやCNAが出る
+                    antiSignals:
+                      - 脆弱性の種類分類だけならCWEの可能性が高い
+                      - 深刻度スコアだけならCVSSの可能性が高い
+                      - 社内チケット番号やバグIDだけの話
+                    relatedNames:
+                      - name: CVE Program
+                        kind: standard
+                        relevance: 公開脆弱性の識別子を採番・管理する公式プログラム。
+                        officialUrl: https://www.cve.org/
+                      - name: NVD
+                        kind: service
+                        relevance: CVEにCVSSや影響製品などの追加情報を付与する代表的データベース。
+                      - name: CNA
+                        kind: other
+                        relevance: CVE IDを割り当てる認定組織としてCVE運用に関わる。
+                      - name: GHSA
+                        kind: service
+                        relevance: GitHub上のセキュリティアドバイザリでCVEと併記されやすい。
+
                 - slug: common-weakness-enumeration
+
+                  search:
+
+                    keywords:
+
+                      - CWE
+
+                      - Common Weakness Enumeration
+
+                      - weakness class
+
+                      - 脆弱性分類
+
+                      - ソフトウェア弱点
+
+                      - CWE Top 25
+
+                      - root cause
+
+                      - CWE ID
+
+                    commonSignals:
+
+                      - CWE-79やCWE-89のような弱点IDが出る
+
+                      - CVEの根本原因を弱点クラスで分類する
+
+                      - CWE Top 25で学習項目を整理する
+
+                    antiSignals:
+
+                      - 個別の公開脆弱性IDだけならCVE
+
+                      - 深刻度点数だけならCVSS
+
+                      - 攻撃者行動マトリクスだけならMITRE ATT&CK
+
+                    relatedNames:
+
+                      - name: CWE
+
+                        kind: standard
+
+                        relevance: ソフトウェアやハードウェアの弱点種別を整理する公式分類。
+
+                        officialUrl: https://cwe.mitre.org/
+
+                      - name: CWE Top 25
+
+                        kind: standard
+
+                        relevance: 危険度と頻度の高い弱点を学ぶために使われるランキング。
+
+                      - name: OWASP Top 10
+
+                        kind: standard
+
+                        relevance: WebアプリリスクとCWE分類が対応づけられることが多い。
+
+                      - name: CAPEC
+
+                        kind: standard
+
+                        relevance: 攻撃パターン分類としてCWEの弱点分類と併用される。
                   name: "CWE"
                   summary: "脆弱性の背景にある弱点種別を表す分類。"
                   whyLearn: "個別 CVE を根本原因レベルで学習できる。"
@@ -928,6 +2658,39 @@ domain:
                   aliases:
                     - "CVSS"
                     - "Common Vulnerability Scoring System"
+                  search:
+                    keywords:
+                      - CVSS
+                      - Common Vulnerability Scoring System
+                      - CVSS v4.0
+                      - base score
+                      - temporal score
+                      - environmental score
+                      - severity rating
+                      - attack vector
+                      - 脆弱性深刻度
+                    commonSignals:
+                      - CVSS 9.8 Criticalのようなスコアが出る
+                      - AV, AC, PR, UIなどのベクトルを評価する
+                      - Base scoreとEnvironmental scoreを分ける
+                    antiSignals:
+                      - CVE番号だけでスコアがない
+                      - 事業リスク評価だけでCVSSメトリクスがない
+                      - 脆弱性分類のCWEをスコアと混同している
+                    relatedNames:
+                      - name: FIRST CVSS
+                        kind: standard
+                        relevance: CVSS仕様を管理する公式組織と仕様ページ。
+                        officialUrl: https://www.first.org/cvss/
+                      - name: NVD CVSS Calculator
+                        kind: tool
+                        relevance: CVSSベクトルやスコア確認に使われる代表的なツール。
+                      - name: EPSS
+                        kind: method
+                        relevance: 悪用可能性予測としてCVSSと比較される脆弱性優先度指標。
+                      - name: CVSS Vector String
+                        kind: standard
+                        relevance: AV:N/AC:Lのようにメトリクスを機械可読に表す形式。
             - slug: prioritization-and-disclosure
               name: "優先順位付けと開示運用"
               summary: "現実の悪用状況と開示窓口を踏まえて対応を進める。"
@@ -949,6 +2712,39 @@ domain:
                   aliases:
                     - "KEV"
                     - "KEV Catalog"
+                  search:
+                    keywords:
+                      - KEV
+                      - KEV Catalog
+                      - Known Exploited Vulnerabilities
+                      - CISA KEV
+                      - exploited in the wild
+                      - 実悪用
+                      - 悪用確認済み脆弱性
+                      - remediation due date
+                    commonSignals:
+                      - 実際に悪用されているCVEを優先対応する
+                      - CISA KEVに載っているか確認する
+                      - CVSSだけでなくexploit in the wildを考慮する
+                    antiSignals:
+                      - 理論上の脆弱性一覧だけ
+                      - 脆弱性スコアだけで悪用実績がない
+                      - 社内独自の既知課題リスト
+                    relatedNames:
+                      - name: CISA KEV Catalog
+                        kind: service
+                        relevance: 実際に悪用が確認された脆弱性を公開する公式カタログ。
+                        officialUrl: https://www.cisa.gov/known-exploited-vulnerabilities-catalog
+                      - name: EPSS
+                        kind: method
+                        relevance: 悪用可能性予測としてKEVと一緒に優先順位付けで使われる。
+                      - name: NVD
+                        kind: service
+                        relevance: KEV掲載CVEの詳細情報やCVSS確認先として併用される。
+                      - name: BOD 22-01
+                        kind: standard
+                        relevance: 米国連邦機関向けにKEV対応期限を定めた指令として関連する。
+
                 - slug: vulnerability-disclosure-policy
                   name: "VDP"
                   summary: "外部からの脆弱性報告を受け付ける方針と窓口。"
@@ -974,6 +2770,40 @@ domain:
                   aliases:
                     - "IR Playbook"
                     - "Incident Response Playbook"
+                  search:
+                    keywords:
+                      - IR Playbook
+                      - Incident Response Playbook
+                      - インシデント対応プレイブック
+                      - runbook
+                      - security incident
+                      - 初動対応
+                      - escalation
+                      - containment steps
+                      - incident commander
+                    commonSignals:
+                      - ランサムウェアや情報漏えい時の手順を定義する
+                      - 誰が判断し、誰にエスカレーションするかを書く
+                      - 封じ込め、証跡保全、連絡、復旧の手順を並べる
+                    antiSignals:
+                      - 通常運用の作業手順書だけ
+                      - 障害対応だけでセキュリティ事象がない
+                      - ポストモーテムだけで初動手順がない
+                    relatedNames:
+                      - name: NIST SP 800-61
+                        kind: standard
+                        relevance: インシデント対応プロセスの代表的なNISTガイド。
+                        officialUrl: https://csrc.nist.gov/pubs/sp/800/61/r3/final
+                      - name: SANS PICERL
+                        kind: method
+                        relevance: Preparation, Identification, Containment, Eradication, Recovery, Lessons Learnedの対応モデル。
+                      - name: SOAR
+                        kind: tool
+                        relevance: 対応プレイブックを自動化・半自動化するセキュリティ運用基盤。
+                      - name: SIEM
+                        kind: tool
+                        relevance: 検知・分析からプレイブック起動へつながるログ分析基盤。
+
                 - slug: detection-and-analysis
                   name: "検知と分析"
                   summary: "異常を見つけ、真偽と影響を判断する工程。"

@@ -26,6 +26,41 @@ domain:
                   aliases:
                     - "ER model"
                     - "ER図"
+                  search:
+                    keywords:
+                      - ERモデル
+                      - ER図
+                      - ERD
+                      - entity relationship diagram
+                      - conceptual data model
+                      - entity
+                      - relationship
+                      - cardinality
+                      - crow's foot notation
+                      - データモデリング
+                    commonSignals:
+                      - エンティティ、属性、関係、多重度を整理している
+                      - 「ユーザーと注文の関係」「顧客と契約の関係」のような業務概念の整理
+                      - ERD、crow's foot、one-to-many、many-to-many という記述
+                      - 実装前にテーブル候補や関係性を図示している
+                    antiSignals:
+                      - SQLのJOIN最適化や実行計画だけの話はERモデルではない
+                      - UMLクラス図のみでDB設計に触れていない場合は誤爆しやすい
+                      - APIリソース設計だけで永続データ構造を扱っていない場合
+                    relatedNames:
+                      - name: Mermaid ER diagram
+                        kind: tool
+                        relevance: ER図をテキストで記述してドキュメント化するときによく使われる。
+                        officialUrl: https://mermaid.js.org/syntax/entityRelationshipDiagram.html
+                      - name: PlantUML ER diagram
+                        kind: tool
+                        relevance: 設計ドキュメント上でER図をコード管理したい場面で一緒に出やすい。
+                        officialUrl: https://plantuml.com/ie-diagram
+                      - name: dbdiagram.io
+                        kind: tool
+                        relevance: ER図やテーブル定義を軽量に共有する実務ツールとして参照される。
+                        officialUrl: https://dbdiagram.io/
+
                 - slug: "functional-dependency"
                   name: "関数従属性"
                   summary: "ある属性集合が別の属性を一意に決める関係。"
@@ -42,7 +77,38 @@ domain:
                   aliases:
                     - "正規形"
                     - "normal forms"
-
+                  search:
+                    keywords:
+                      - 正規化
+                      - normalization
+                      - normal form
+                      - 1NF
+                      - 2NF
+                      - 3NF
+                      - BCNF
+                      - denormalization
+                      - update anomaly
+                      - 冗長性
+                      - 更新不整合
+                    commonSignals:
+                      - テーブル分割、冗長列、更新不整合を議論している
+                      - 1NF、2NF、3NF、BCNF のどれかが登場する
+                      - 同じ情報が複数箇所に保存されるリスクを扱っている
+                      - denormalized table と normalized table を比較している
+                    antiSignals:
+                      - 機械学習の特徴量正規化や標準化の話は対象外
+                      - テキスト正規化、Unicode正規化、住所正規化は別文脈
+                      - パフォーマンス目的の非正規化だけで正規形に触れない場合は弱い
+                    relatedNames:
+                      - name: Third Normal Form
+                        kind: method
+                        relevance: 実務的なRDB設計で最も頻繁に参照される正規形の一つ。
+                      - name: Boyce-Codd Normal Form
+                        kind: method
+                        relevance: 関数従属性に基づくより厳密な正規化を議論するときに出る。
+                      - name: Kimball dimensional modeling
+                        kind: method
+                        relevance: 分析用途では正規化と対比される非正規化寄りの設計として出やすい。
             - slug: "schema-and-integrity-constraints"
               name: "スキーマと整合性制約"
               summary: "データベースが機械的に守るべき制約を扱う。"
@@ -56,7 +122,109 @@ domain:
                   aliases:
                     - "PK"
                     - "主キー"
+                  search:
+                    keywords:
+                      - 主キー
+                      - PK
+                      - primary key
+                      - surrogate key
+                      - natural key
+                      - composite key
+                      - identifier
+                      - record identity
+                      - UUID
+                      - auto increment
+                    commonSignals:
+                      - レコードを一意に識別する列を決めている
+                      - UUID、連番ID、自然キー、複合キーを比較している
+                      - 「このテーブルのID設計」「識別子の安定性」を議論している
+                      - primary key constraint や PK violation が登場する
+                    antiSignals:
+                      - APIキーや暗号鍵の話は主キーではない
+                      - Redis key の命名だけでRDBの行識別に触れていない場合
+                      - キーボードのprimary keyのような一般語の誤用
+                    relatedNames:
+                      - name: UUID
+                        kind: standard
+                        relevance: 分散環境やアプリ側ID生成で主キー候補として頻繁に使われる。
+                      - name: ULID
+                        kind: standard
+                        relevance: ソート可能な一意IDとして主キー設計の比較対象に出やすい。
+                        officialUrl: https://github.com/ulid/spec
+                      - name: Snowflake ID
+                        kind: pattern
+                        relevance: 時刻情報を含む分散ID生成方式として主キー設計で参照される。
+
                 - slug: "foreign-key"
+
+
+                  search:
+
+                    keywords:
+
+                      - 外部キー
+
+                      - FK
+
+                      - foreign key
+
+                      - referential integrity
+
+                      - 参照整合性
+
+                      - cascade delete
+
+                      - ON DELETE
+
+                      - ON UPDATE
+
+                      - orphan record
+
+                      - parent child table
+
+                    commonSignals:
+
+                      - 親子テーブル、参照先、参照元、削除時挙動を議論している
+
+                      - orphan rows、cascade、restrict、set null が出る
+
+                      - DB制約として関連の正しさを守るかどうかを検討している
+
+                      - 外部キー制約を貼るかアプリ側で担保するかを比較している
+
+                    antiSignals:
+
+                      - 外部APIキー、外部サービスの認証キーは対象外
+
+                      - 単なるJOIN条件だけで参照制約の話がない場合は弱い
+
+                      - NoSQLの埋め込み設計で参照整合性を扱わない場合
+
+                    relatedNames:
+
+                      - name: PostgreSQL Foreign Keys
+
+                        kind: tool
+
+                        relevance: RDBで外部キー制約や削除時挙動を確認する実務例としてよく出る。
+
+                        officialUrl: https://www.postgresql.org/docs/current/ddl-constraints.html
+
+                      - name: Prisma referential actions
+
+                        kind: framework
+
+                        relevance: ORMで外部キーや削除時アクションを扱うときに関連して出やすい。
+
+                        officialUrl: https://www.prisma.io/docs/orm/prisma-schema/data-model/relations/referential-actions
+
+                      - name: SQLAlchemy relationships
+
+                        kind: library
+
+                        relevance: アプリ側の関連定義とDB外部キー制約の対応を考えるときに出る。
+
+                        officialUrl: https://docs.sqlalchemy.org/
                   name: "外部キー"
                   summary: "他表の主キーや一意キーへの参照制約。"
                   whyLearn: "参照整合性を DB で守るかどうかは、障害時のデータ破損リスクに直結する。"
@@ -97,7 +265,109 @@ domain:
                   promptHint: "ACID の各要素が破られると何が起こるかを具体例で問う。"
                   aliases:
                     - "ACID特性"
+                  search:
+                    keywords:
+                      - ACID
+                      - ACID特性
+                      - atomicity
+                      - consistency
+                      - isolation
+                      - durability
+                      - transaction guarantee
+                      - database transaction
+                      - commit
+                      - rollback
+                    commonSignals:
+                      - commit、rollback、transaction boundary を扱っている
+                      - 原子性、一貫性、独立性、永続性を説明している
+                      - 障害時に途中まで書かれたデータをどう扱うかを議論している
+                      - 複数更新を一つの処理単位にまとめる話
+                    antiSignals:
+                      - 酸性・アルカリ性など化学のacidは対象外
+                      - BASEやCAPだけでDBトランザクション保証に触れない場合
+                      - 一般的な「信頼性が高い」という形容だけでは弱い
+                    relatedNames:
+                      - name: PostgreSQL Transactions
+                        kind: tool
+                        relevance: ACIDトランザクションの挙動を実務で確認する代表的なRDBとして出る。
+                        officialUrl: https://www.postgresql.org/docs/current/tutorial-transactions.html
+                      - name: InnoDB
+                        kind: tool
+                        relevance: MySQLでACIDや行ロックを扱う主要ストレージエンジンとして出やすい。
+                        officialUrl: https://dev.mysql.com/doc/refman/8.4/en/innodb-storage-engine.html
+                      - name: SQLite Transactions
+                        kind: tool
+                        relevance: ローカルDBや組み込みDBでACIDを説明するときの比較対象になる。
+                        officialUrl: https://www.sqlite.org/lang_transaction.html
+
                 - slug: "mvcc"
+
+
+                  search:
+
+                    keywords:
+
+                      - MVCC
+
+                      - 多版同時実行制御
+
+                      - Multi-Version Concurrency Control
+
+                      - snapshot isolation
+
+                      - row version
+
+                      - transaction visibility
+
+                      - xmin
+
+                      - vacuum
+
+                      - consistent read
+
+                      - read/write conflict
+
+                    commonSignals:
+
+                      - 読み取りと書き込みがブロックしない理由を説明している
+
+                      - snapshot、row version、visibility、vacuum が登場する
+
+                      - PostgreSQLのxmin/xmaxやtransaction id wraparoundの話
+
+                      - ロックではなく版管理で同時実行を扱う文脈
+
+                    antiSignals:
+
+                      - Gitのバージョン管理だけの話は対象外
+
+                      - API versioningやschema versioningだけの話
+
+                      - 単なるキャッシュの古い値参照はMVCCとは限らない
+
+                    relatedNames:
+
+                      - name: PostgreSQL MVCC
+
+                        kind: tool
+
+                        relevance: MVCCの実装・VACUUM・可視性を学ぶ代表的な実務DBとして出る。
+
+                        officialUrl: https://www.postgresql.org/docs/current/mvcc-intro.html
+
+                      - name: InnoDB MVCC
+
+                        kind: tool
+
+                        relevance: MySQLでundo logやconsistent readを含むMVCCを扱うときに関連する。
+
+                        officialUrl: https://dev.mysql.com/doc/refman/8.4/en/innodb-multi-versioning.html
+
+                      - name: Snapshot Isolation
+
+                        kind: method
+
+                        relevance: MVCCが提供する読み取り一貫性や分離レベルの説明で一緒に出る。
                   name: "MVCC"
                   summary: "多版同時実行制御により、読取りと書込みの競合を減らす仕組み。"
                   whyLearn: "ロックだけでなく版管理で整合性を保つ発想を理解すると、性能と安全性の両立を考えやすい。"
@@ -133,6 +403,41 @@ domain:
                   aliases:
                     - "B-tree"
                     - "B木インデックス"
+                  search:
+                    keywords:
+                      - B木インデックス
+                      - B-tree
+                      - B+tree
+                      - database index
+                      - range scan
+                      - index scan
+                      - composite index
+                      - leftmost prefix
+                      - balanced tree
+                      - インデックス設計
+                    commonSignals:
+                      - 範囲検索、前方一致、ORDER BY、WHERE句とindexの相性を議論している
+                      - composite index、leftmost prefix、index scan が出る
+                      - slow query の改善でindex追加を検討している
+                      - B-tree と hash index の比較がある
+                    antiSignals:
+                      - DOM treeや構文木など一般的なtree構造だけの話は対象外
+                      - 機械学習のdecision treeは別概念
+                      - 全文検索インデックスやベクトルインデックスだけの話は弱い
+                    relatedNames:
+                      - name: PostgreSQL B-Tree Indexes
+                        kind: tool
+                        relevance: RDBの標準的なB-treeインデックス挙動を確認する代表例として出る。
+                        officialUrl: https://www.postgresql.org/docs/current/indexes-types.html
+                      - name: MySQL InnoDB Indexes
+                        kind: tool
+                        relevance: clustered indexや複合インデックスを含めたB-tree設計でよく参照される。
+                        officialUrl: https://dev.mysql.com/doc/refman/8.4/en/innodb-index-types.html
+                      - name: SQLite Query Planner
+                        kind: tool
+                        relevance: 軽量DBでインデックス利用と検索計画を理解する教材として出る。
+                        officialUrl: https://www.sqlite.org/queryplanner.html
+
                 - slug: "covering-index"
                   name: "カバリングインデックス"
                   summary: "必要列が index 内で完結し、表本体参照を減らせるインデックス。"
@@ -149,7 +454,110 @@ domain:
                   aliases:
                     - "execution plan"
                     - "実行計画"
+                  search:
+                    keywords:
+                      - 実行計画
+                      - query plan
+                      - execution plan
+                      - EXPLAIN
+                      - EXPLAIN ANALYZE
+                      - cost-based optimizer
+                      - full table scan
+                      - index scan
+                      - cardinality estimation
+                      - SQL tuning
+                    commonSignals:
+                      - EXPLAINやEXPLAIN ANALYZEの出力を読んでいる
+                      - sequential scan、index scan、hash join、nested loop が並ぶ
+                      - estimated rows と actual rows の差を分析している
+                      - slow query の原因を実行計画から探している
+                    antiSignals:
+                      - プロジェクト計画や実行計画書の一般語は対象外
+                      - SQLを書いているだけでplan確認がない場合は弱い
+                      - アプリの処理フロー図だけでDB実行計画に触れていない場合
+                    relatedNames:
+                      - name: PostgreSQL EXPLAIN
+                        kind: tool
+                        relevance: 実行計画を読む代表的なコマンドとしてSQLチューニングで頻出する。
+                        officialUrl: https://www.postgresql.org/docs/current/sql-explain.html
+                      - name: MySQL EXPLAIN
+                        kind: tool
+                        relevance: MySQLのクエリ計画確認やインデックス利用確認で出やすい。
+                        officialUrl: https://dev.mysql.com/doc/refman/8.4/en/explain.html
+                      - name: BigQuery Query Plan
+                        kind: service
+                        relevance: DWH上のスキャン量やステージ別処理を確認する文脈で出る。
+                        officialUrl: https://cloud.google.com/bigquery/docs/query-plan-explanation
+
                 - slug: "join-algorithm"
+
+                  search:
+
+                    keywords:
+
+                      - 結合アルゴリズム
+
+                      - join algorithm
+
+                      - nested loop join
+
+                      - hash join
+
+                      - merge join
+
+                      - join order
+
+                      - join strategy
+
+                      - broadcast join
+
+                      - shuffle join
+
+                      - sort merge join
+
+                    commonSignals:
+
+                      - hash join、merge join、nested loop のどれが選ばれたかを議論している
+
+                      - 結合順序、片側テーブルのサイズ、インデックス有無を見ている
+
+                      - broadcast join や shuffle join のコストを扱っている
+
+                      - 大きなテーブル同士のJOINが遅い原因分析
+
+                    antiSignals:
+
+                      - プログラミング言語の配列結合や文字列joinだけの話
+
+                      - SQLのJOIN構文説明だけで実行方式に触れない場合
+
+                      - データ統合のjoinではなく組織統合の比喩表現
+
+                    relatedNames:
+
+                      - name: PostgreSQL Join Strategies
+
+                        kind: tool
+
+                        relevance: nested loop、hash join、merge joinを実行計画で比較する代表的なRDBとして出る。
+
+                        officialUrl: https://www.postgresql.org/docs/current/using-explain.html
+
+                      - name: Spark SQL Join Strategies
+
+                        kind: framework
+
+                        relevance: 分散処理でbroadcast joinやshuffle joinを扱うときに関連する。
+
+                        officialUrl: https://spark.apache.org/docs/latest/sql-performance-tuning.html
+
+                      - name: Trino Join Distribution
+
+                        kind: tool
+
+                        relevance: 分散SQLでjoin distributionや大規模結合を考えるときに出る。
+
+                        officialUrl: https://trino.io/docs/current/optimizer/cost-based-optimizations.html
                   name: "結合アルゴリズム"
                   summary: "nested loop、hash join、merge join などの結合実行方式。"
                   whyLearn: "結合順序や index の効果を、join algorithm の観点で説明できる。"
@@ -181,7 +589,111 @@ domain:
                   aliases:
                     - "fact"
                     - "事実テーブル"
+                  search:
+                    keywords:
+                      - ファクトテーブル
+                      - fact table
+                      - fact
+                      - measure
+                      - metric event
+                      - transaction fact
+                      - periodic snapshot fact
+                      - accumulating snapshot
+                      - Kimball
+                      - dimensional model
+                    commonSignals:
+                      - 売上、注文、クリック、イベントなどの計測値を中心テーブルにしている
+                      - grain、measure、dimension key が一緒に出る
+                      - factless fact、transaction fact、snapshot fact の議論
+                      - DWHやデータマートで中心となるテーブルを設計している
+                    antiSignals:
+                      - 一般的な「事実」やファクトチェックの話は対象外
+                      - RDBの業務テーブルを何でもfact tableと呼んでいるだけの場合
+                      - メトリクス定義だけでテーブル構造に触れていない場合は弱い
+                    relatedNames:
+                      - name: Kimball Dimensional Modeling
+                        kind: method
+                        relevance: fact tableの粒度や種類を説明する事実上の標準的な体系として出る。
+                        officialUrl: https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/
+                      - name: dbt
+                        kind: tool
+                        relevance: factモデルをSQL変換として管理する実務ツールとして一緒に出やすい。
+                        officialUrl: https://www.getdbt.com/
+                      - name: Looker
+                        kind: platform
+                        relevance: factとdimensionをBIの探索モデルへ接続する文脈で出る。
+                        officialUrl: https://cloud.google.com/looker
+
                 - slug: "dimension-table"
+
+
+                  search:
+
+                    keywords:
+
+                      - ディメンションテーブル
+
+                      - dimension table
+
+                      - dimension
+
+                      - attribute
+
+                      - descriptive context
+
+                      - surrogate key
+
+                      - conformed dimension
+
+                      - slowly changing dimension
+
+                      - lookup table
+
+                      - analysis axis
+
+                    commonSignals:
+
+                      - dim_user、dim_customer、dim_date のようなモデル名が出る
+
+                      - factを説明する属性、分析軸、カテゴリを扱っている
+
+                      - SCDやsurrogate keyをdimension側で管理している
+
+                      - BIで切り口として使う列を整理している
+
+                    antiSignals:
+
+                      - 物理学や数学の次元の話は対象外
+
+                      - 配列の次元やテンソルshapeだけの話
+
+                      - 単なるコード上のenumや設定値だけで分析軸に触れない場合
+
+                    relatedNames:
+
+                      - name: Kimball Conformed Dimension
+
+                        kind: method
+
+                        relevance: 複数factで共有するdimension設計を学ぶときに一緒に出る。
+
+                        officialUrl: https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/
+
+                      - name: dbt
+
+                        kind: tool
+
+                        relevance: dim_customerやdim_dateなどのdimensionモデルを作る実務で頻出する。
+
+                        officialUrl: https://www.getdbt.com/
+
+                      - name: LookML
+
+                        kind: language
+
+                        relevance: dimensionやmeasureをBIセマンティクスとして定義する場面で出る。
+
+                        officialUrl: https://cloud.google.com/looker/docs/lookml-terms-and-concepts
                   name: "ディメンションテーブル"
                   summary: "fact を解釈するための属性や文脈を保持するテーブル。"
                   whyLearn: "文脈と計測値を分けると、再利用しやすい分析軸を作れる。"
@@ -197,7 +709,103 @@ domain:
                   aliases:
                     - "スター型スキーマ"
                     - "star model"
+                  search:
+                    keywords:
+                      - スタースキーマ
+                      - star schema
+                      - star model
+                      - snowflake schema
+                      - dimensional schema
+                      - fact dimension
+                      - BI model
+                      - data mart
+                      - OLAP schema
+                      - denormalized analytics
+                    commonSignals:
+                      - 中心にfact、周辺にdimensionを置く図や説明がある
+                      - snowflake schemaとの比較が出る
+                      - BI、データマート、集計しやすいスキーマ設計を扱っている
+                      - 正規化より分析利便性を優先する話
+                    antiSignals:
+                      - 星型のUIやグラフィック表現だけの話は対象外
+                      - GraphQL schemaやJSON schemaだけの話
+                      - 占星術や評価の星マークに関する文脈
+                    relatedNames:
+                      - name: Kimball Star Schema
+                        kind: method
+                        relevance: star schemaの設計原則やDWH実務で最も頻繁に参照される体系。
+                        officialUrl: https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/
+                      - name: Microsoft Analysis Services
+                        kind: platform
+                        relevance: star schemaをOLAP/BIモデルに接続する実務文脈で出る。
+                        officialUrl: https://learn.microsoft.com/en-us/analysis-services/
+                      - name: Power BI
+                        kind: platform
+                        relevance: star schema設計が推奨されるBIモデリング文脈で出やすい。
+                        officialUrl: https://powerbi.microsoft.com/
+
                 - slug: "grain"
+
+
+                  search:
+
+                    keywords:
+
+                      - 粒度
+
+                      - grain
+
+                      - data grain
+
+                      - fact grain
+
+                      - row granularity
+
+                      - one row per
+
+                      - observation unit
+
+                      - aggregation level
+
+                      - 二重計上
+
+                      - 集計粒度
+
+                    commonSignals:
+
+                      - 「1行が何を表すか」「one row per ...」を明示している
+
+                      - 日次、月次、ユーザー単位、注文明細単位などの集計単位を比較している
+
+                      - fact tableの二重計上や重複集計を避ける議論
+
+                      - metricの分母や集計レベルが曖昧という指摘
+
+                    antiSignals:
+
+                      - 画像解像度や粒子サイズなど物理的な粒度の話
+
+                      - プロジェクトタスクの粒度だけでデータ行の意味に触れない場合
+
+                      - ログレベルの細かさだけを扱う場合は弱い
+
+                    relatedNames:
+
+                      - name: Kimball Four-Step Dimensional Design
+
+                        kind: method
+
+                        relevance: grainを宣言する工程が次元モデリングの中核として扱われる。
+
+                        officialUrl: https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/
+
+                      - name: dbt Metrics
+
+                        kind: tool
+
+                        relevance: メトリクス定義のtime grainや集計粒度を明示する文脈で出る。
+
+                        officialUrl: https://docs.getdbt.com/docs/build/metrics-overview
                   name: "粒度"
                   summary: "一行が何を表すかという最小観測単位。"
                   whyLearn: "grain を誤ると、二重計上や曖昧な集計が起きやすい。"
@@ -219,6 +827,41 @@ domain:
                   aliases:
                     - "SCD"
                     - "slowly changing dimension"
+                  search:
+                    keywords:
+                      - SCD
+                      - slowly changing dimension
+                      - 緩やかに変化するディメンション
+                      - SCD Type 1
+                      - SCD Type 2
+                      - SCD Type 3
+                      - effective date
+                      - current flag
+                      - historical attribute
+                      - dimension history
+                    commonSignals:
+                      - 顧客属性や組織属性の過去値を保持するか議論している
+                      - valid_from、valid_to、is_current、effective_date が登場する
+                      - Type 1上書きとType 2履歴追加を比較している
+                      - 過去時点のレポートを再現したいという要件
+                    antiSignals:
+                      - 一般的な設定履歴や監査ログだけでdimension設計に触れない場合
+                      - Git履歴やアプリバージョン履歴の話
+                      - 時系列factのスナップショットだけで属性履歴を扱わない場合
+                    relatedNames:
+                      - name: Kimball SCD
+                        kind: method
+                        relevance: SCD Type 1/2/3などの設計パターンを説明する代表的な体系。
+                        officialUrl: https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/
+                      - name: dbt snapshots
+                        kind: tool
+                        relevance: SCD Type 2風の履歴管理をSQLモデルとして実装するときに出やすい。
+                        officialUrl: https://docs.getdbt.com/docs/build/snapshots
+                      - name: Delta Lake MERGE
+                        kind: tool
+                        relevance: SCD更新をlakehouse上でmerge処理する実務文脈で関連する。
+                        officialUrl: https://docs.delta.io/latest/delta-update.html
+
                 - slug: "conformed-dimension"
                   name: "共通ディメンション"
                   summary: "複数 fact で共有され、横断分析の軸となる dimension。"
@@ -252,6 +895,45 @@ domain:
                   promptHint: "CSV ではなく Parquet を使う利点を問う。"
                   aliases:
                     - "Apache Parquet"
+                  search:
+                    keywords:
+                      - Parquet
+                      - Apache Parquet
+                      - parquet file
+                      - columnar file format
+                      - 列指向ファイル
+                      - row group
+                      - predicate pushdown
+                      - compression encoding
+                      - data lake file
+                      - analytics file format
+                    commonSignals:
+                      - CSVよりも圧縮効率や列選択スキャンを重視している
+                      - S3やGCS上のデータレイクにparquetを置いている
+                      - row group、predicate pushdown、column statistics が出る
+                      - Spark、DuckDB、Pandas、PyArrowでparquetを読む話
+                    antiSignals:
+                      - 寄木細工のparquet flooringは対象外
+                      - 単なるファイル拡張子一覧で分析用途に触れない場合
+                      - JSONやCSV変換だけで列指向性に触れない場合は弱い
+                    relatedNames:
+                      - name: Apache Parquet
+                        kind: standard
+                        relevance: Parquet形式そのものの公式プロジェクトとして参照される。
+                        officialUrl: https://parquet.apache.org/
+                      - name: Apache Arrow
+                        kind: standard
+                        relevance: 列指向データ表現や分析処理の相互運用で一緒に出やすい。
+                        officialUrl: https://arrow.apache.org/
+                      - name: DuckDB
+                        kind: tool
+                        relevance: ローカル分析でParquetを直接SQLクエリする文脈で頻出する。
+                        officialUrl: https://duckdb.org/
+                      - name: PyArrow
+                        kind: library
+                        relevance: PythonでParquetを読み書きするときの代表的ライブラリ。
+                        officialUrl: https://arrow.apache.org/docs/python/
+
                 - slug: "columnar-storage"
                   name: "列指向ストレージ"
                   summary: "列ごとにデータを並べて保持し、集計読み取りに強い保存方式。"
@@ -268,7 +950,6 @@ domain:
                   aliases:
                     - "partition pruning"
                     - "パーティション除外"
-
             - slug: "table-formats-and-time-travel"
               name: "テーブルフォーマットとタイムトラベル"
               summary: "ファイル集合を一つのテーブルとして管理する仕組みを扱う。"
@@ -281,7 +962,123 @@ domain:
                   promptHint: "Iceberg が単なる Parquet 集合とどう違うかを問う。"
                   aliases:
                     - "Iceberg"
+                  search:
+                    keywords:
+                      - Apache Iceberg
+                      - Iceberg
+                      - open table format
+                      - iceberg table
+                      - snapshot isolation
+                      - manifest file
+                      - hidden partitioning
+                      - schema evolution
+                      - lakehouse table
+                      - object storage table
+                    commonSignals:
+                      - Parquetファイル群にテーブルメタデータやsnapshotを持たせる話
+                      - manifest、snapshot、partition spec、catalog が出る
+                      - Delta LakeやApache Hudiとの比較
+                      - S3上の分析テーブルでschema evolutionやtime travelを扱っている
+                    antiSignals:
+                      - 氷山の比喩や自然地理のicebergは対象外
+                      - 単なるParquet保存だけでIceberg metadataに触れない場合
+                      - ElasticsearchのindexやRDBテーブルだけの話
+                    relatedNames:
+                      - name: Apache Iceberg
+                        kind: standard
+                        relevance: 大規模分析テーブルを管理するopen table formatの公式プロジェクト。
+                        officialUrl: https://iceberg.apache.org/
+                      - name: Apache Spark
+                        kind: framework
+                        relevance: Icebergテーブルの読み書きエンジンとして実務で頻繁に使われる。
+                        officialUrl: https://spark.apache.org/
+                      - name: Trino
+                        kind: tool
+                        relevance: Icebergをクエリする分散SQLエンジンとしてよく一緒に出る。
+                        officialUrl: https://trino.io/
+                      - name: Apache Flink
+                        kind: framework
+                        relevance: streaming/batch両方でIcebergと連携する処理基盤として出る。
+                        officialUrl: https://flink.apache.org/
+
                 - slug: "delta-lake"
+
+
+                  search:
+
+                    keywords:
+
+                      - Delta Lake
+
+                      - Delta
+
+                      - delta table
+
+                      - transaction log
+
+                      - _delta_log
+
+                      - lakehouse
+
+                      - ACID on data lake
+
+                      - MERGE INTO
+
+                      - time travel
+
+                      - schema enforcement
+
+                    commonSignals:
+
+                      - _delta_log、transaction log、MERGE INTO が出る
+
+                      - data lake上でupdate/delete/upsertを安全に行う話
+
+                      - Databricks、Spark、lakehouse、medallion architecture と一緒に出る
+
+                      - time travelやschema enforcementをDeltaテーブルで扱っている
+
+                    antiSignals:
+
+                      - 数学の差分記号deltaだけの話は対象外
+
+                      - git diffや差分同期の一般論だけの場合
+
+                      - Delta航空や地名のDeltaは誤爆
+
+                    relatedNames:
+
+                      - name: Delta Lake
+
+                        kind: standard
+
+                        relevance: lakehouse上でACIDやtransaction logを提供する公式プロジェクト。
+
+                        officialUrl: https://delta.io/
+
+                      - name: Databricks
+
+                        kind: platform
+
+                        relevance: Delta Lakeの実務採用や運用機能と強く結びついて登場する。
+
+                        officialUrl: https://www.databricks.com/
+
+                      - name: Apache Spark
+
+                        kind: framework
+
+                        relevance: Delta Lakeの主要な処理エンジンとして読み書きで頻出する。
+
+                        officialUrl: https://spark.apache.org/
+
+                      - name: delta-rs
+
+                        kind: library
+
+                        relevance: Rust/Python環境でDelta Lakeを扱う実装として関連する。
+
+                        officialUrl: https://delta-io.github.io/delta-rs/
                   name: "Delta Lake"
                   summary: "ACID と transaction log を備えた lakehouse 向け storage framework。"
                   whyLearn: "object storage 上で update / delete / merge をどう成立させるかを理解できる。"
@@ -296,7 +1093,47 @@ domain:
                   promptHint: "この schema 変更は互換か破壊的かを問う。"
                   aliases:
                     - "schema evolution"
+                  search:
+                    keywords:
+                      - スキーマ進化
+                      - schema evolution
+                      - schema change
+                      - backward compatibility
+                      - forward compatibility
+                      - breaking change
+                      - add column
+                      - rename column
+                      - type widening
+                      - schema drift
+                    commonSignals:
+                      - 上流テーブルやイベントの列追加・型変更が下流を壊す話
+                      - backward compatible、breaking change、schema registry が出る
+                      - add/drop/rename column の互換性を確認している
+                      - データ契約やCDCイベントのスキーマ変更を扱っている
+                    antiSignals:
+                      - UIデザインの進化や組織構造変更の一般論
+                      - DBマイグレーションだけで下流互換性に触れない場合は弱い
+                      - GraphQL schema変更だけでデータパイプラインに関係しない場合
+                    relatedNames:
+                      - name: Avro Schema Evolution
+                        kind: standard
+                        relevance: 互換性ルールを持つスキーマ進化の代表例として出る。
+                        officialUrl: https://avro.apache.org/docs/
+                      - name: Confluent Schema Registry
+                        kind: tool
+                        relevance: Kafkaイベントのschema compatibilityを管理する実務ツールとして関連する。
+                        officialUrl: https://docs.confluent.io/platform/current/schema-registry/
+                      - name: Apache Iceberg
+                        kind: standard
+                        relevance: 分析テーブルの列追加・削除・renameを安全に扱う文脈で出る。
+                        officialUrl: https://iceberg.apache.org/
+                      - name: Protocol Buffers
+                        kind: standard
+                        relevance: フィールド番号を使った互換性管理でschema evolutionと関連する。
+                        officialUrl: https://protobuf.dev/
+
                 - slug: "time-travel"
+
                   name: "タイムトラベル"
                   summary: "過去 snapshot を参照して再現性のある分析を行う機能。"
                   whyLearn: "再計算や障害調査で、過去時点の状態を検証できる。"
@@ -326,7 +1163,131 @@ domain:
                   promptHint: "ETL と ELT の違いを、責務とコストの観点で比較させる。"
                   aliases:
                     - "Extract Transform Load"
+                  search:
+                    keywords:
+                      - ETL
+                      - Extract Transform Load
+                      - 抽出変換ロード
+                      - data integration
+                      - staging
+                      - batch pipeline
+                      - data warehouse load
+                      - transform before load
+                      - ETL job
+                      - legacy ETL
+                    commonSignals:
+                      - sourceから抽出し、加工してからDWHへロードしている
+                      - staging area、batch job、nightly load が出る
+                      - 変換ロジックがロード前の処理基盤に置かれている
+                      - ELTとの比較で責務分担を議論している
+                    antiSignals:
+                      - ELTと表記が似ているため順序を逆に扱う文脈に注意
+                      - 単なるAPIデータ取得だけで変換・ロードがない場合
+                      - イベントストリーミングのみでバッチ変換に触れない場合
+                    relatedNames:
+                      - name: Informatica PowerCenter
+                        kind: tool
+                        relevance: 伝統的なETLツールの代表例として企業データ統合で出やすい。
+                        officialUrl: https://www.informatica.com/products/data-integration/powercenter.html
+                      - name: Talend
+                        kind: tool
+                        relevance: GUIベースのETL/データ統合ツールとして実務文脈で出る。
+                        officialUrl: https://www.talend.com/
+                      - name: Apache NiFi
+                        kind: tool
+                        relevance: データフローの抽出・変換・配送を扱うOSSとしてETL文脈で出る。
+                        officialUrl: https://nifi.apache.org/
+                      - name: AWS Glue
+                        kind: service
+                        relevance: クラウド上のETLジョブ・カタログ・変換処理でよく使われる。
+                        officialUrl: https://aws.amazon.com/glue/
+
                 - slug: "elt"
+
+
+                  search:
+
+                    keywords:
+
+                      - ELT
+
+                      - Extract Load Transform
+
+                      - 抽出ロード変換
+
+                      - transform in warehouse
+
+                      - modern data stack
+
+                      - warehouse-native transformation
+
+                      - raw layer
+
+                      - dbt model
+
+                      - cloud data warehouse
+
+                      - ELT pipeline
+
+                    commonSignals:
+
+                      - raw dataを先にDWHやlakehouseへロードしている
+
+                      - 変換処理をdbtやSQL modelとして後段に置いている
+
+                      - modern data stack、warehouse-native、raw/staging/mart layers が出る
+
+                      - ETLからELTへの移行を議論している
+
+                    antiSignals:
+
+                      - ETLと混同して変換がロード前にある場合
+
+                      - 単なるデータコピーで後段変換がない場合は弱い
+
+                      - フロントエンドのELTという別略語が使われる場合
+
+                    relatedNames:
+
+                      - name: dbt
+
+                        kind: tool
+
+                        relevance: DWH内でSQL変換を行うELTの代表的な実務ツールとして出る。
+
+                        officialUrl: https://www.getdbt.com/
+
+                      - name: Fivetran
+
+                        kind: service
+
+                        relevance: SaaSやDBからDWHへロードするELT構成で頻出する。
+
+                        officialUrl: https://www.fivetran.com/
+
+                      - name: Airbyte
+
+                        kind: tool
+
+                        relevance: オープンソースのデータ同期ツールとしてELTパイプラインで使われる。
+
+                        officialUrl: https://airbyte.com/
+
+                      - name: Snowflake
+
+                        kind: platform
+
+                        relevance: ロード後にDWH側で変換するELTの代表的な実行先として出る。
+
+                        officialUrl: https://www.snowflake.com/
+
+                      - name: BigQuery
+
+                        kind: service
+
+                        relevance: SQL変換をDWH側で実行するELT構成で頻繁に使われる。
+
+                        officialUrl: https://cloud.google.com/bigquery
                   name: "ELT"
                   summary: "抽出、ロード後に保存先側で変換する方式。"
                   whyLearn: "modern warehouse / lakehouse の設計前提を理解しやすくなる。"
@@ -355,7 +1316,47 @@ domain:
                   aliases:
                     - "CDC"
                     - "change data capture"
+                  search:
+                    keywords:
+                      - CDC
+                      - change data capture
+                      - 変更データキャプチャ
+                      - database log
+                      - WAL
+                      - binlog
+                      - oplog
+                      - replication slot
+                      - incremental sync
+                      - change stream
+                    commonSignals:
+                      - insert/update/deleteを差分イベントとして下流へ流している
+                      - WAL、binlog、oplog、replication slot が出る
+                      - 全件同期ではなく増分同期・低遅延同期を扱っている
+                      - DebeziumやKafka Connectのコネクタ設定が出る
+                    antiSignals:
+                      - Centers for Disease ControlのCDCは対象外
+                      - 単なるupdated_atポーリングだけでログベース変更捕捉に触れない場合
+                      - Git差分やファイル差分同期だけの話
+                    relatedNames:
+                      - name: Debezium
+                        kind: tool
+                        relevance: DBログベースCDCの代表的なOSSプラットフォームとして最も関連が強い。
+                        officialUrl: https://debezium.io/
+                      - name: Kafka Connect
+                        kind: framework
+                        relevance: CDCイベントをKafkaへ流すコネクタ基盤として一緒に使われる。
+                        officialUrl: https://kafka.apache.org/documentation/#connect
+                      - name: PostgreSQL Logical Replication
+                        kind: protocol
+                        relevance: PostgreSQLのWALから変更を捕捉するCDC実装で出る。
+                        officialUrl: https://www.postgresql.org/docs/current/logical-replication.html
+                      - name: MySQL Binary Log
+                        kind: protocol
+                        relevance: MySQLの更新ログを使ったCDCで頻繁に登場する。
+                        officialUrl: https://dev.mysql.com/doc/refman/8.4/en/binary-log.html
+
                 - slug: "upsert"
+
                   name: "upsert"
                   summary: "存在すれば更新、なければ挿入する書き込みパターン。"
                   whyLearn: "差分同期や idempotent write の基本を支える。"
@@ -371,7 +1372,119 @@ domain:
                   aliases:
                     - "idempotent write"
                     - "冪等"
+                  search:
+                    keywords:
+                      - 冪等性
+                      - idempotency
+                      - idempotent
+                      - idempotent write
+                      - retry safe
+                      - replay safe
+                      - exactly-once effect
+                      - deduplication key
+                      - idempotency key
+                      - duplicate handling
+                    commonSignals:
+                      - retry、replay、再実行しても二重反映しない設計を扱っている
+                      - idempotency key、deduplication key、request id が出る
+                      - pipeline backfillやAPI再送の安全性を議論している
+                      - 同じイベントを複数回処理しても結果を一回分にする話
+                    antiSignals:
+                      - 数学の冪等演算だけでシステム再実行性に触れない場合
+                      - 単に「同じ結果」と言うだけで副作用や書き込みがない場合
+                      - キャッシュヒットの話だけでは冪等性とは限らない
+                    relatedNames:
+                      - name: Idempotency-Key Header
+                        kind: pattern
+                        relevance: API再試行で重複実行を避ける代表的な実装パターンとして出る。
+                      - name: Stripe Idempotent Requests
+                        kind: service
+                        relevance: 決済APIでidempotency keyを実務的に説明する代表例として参照される。
+                        officialUrl: https://docs.stripe.com/api/idempotent_requests
+                      - name: Kafka Exactly-Once Semantics
+                        kind: framework
+                        relevance: ストリーム処理で再送と重複処理を制御する文脈で関連する。
+                        officialUrl: https://kafka.apache.org/documentation/
+                      - name: UPSERT
+                        kind: pattern
+                        relevance: 冪等な差分反映を実装する基本パターンとして一緒に出やすい。
+
                 - slug: "debezium"
+
+
+                  search:
+
+                    keywords:
+
+                      - Debezium
+
+                      - CDC platform
+
+                      - Debezium connector
+
+                      - Kafka Connect
+
+                      - PostgreSQL connector
+
+                      - MySQL connector
+
+                      - SQL Server connector
+
+                      - change event
+
+                      - transaction log streaming
+
+                      - outbox event router
+
+                    commonSignals:
+
+                      - debezium-connector、slot.name、publication、binlog filename が出る
+
+                      - DBの変更をKafka topicへ流している
+
+                      - snapshot mode、initial snapshot、incremental snapshot を扱っている
+
+                      - Outbox Event RouterやCDC connectorの設定がある
+
+                    antiSignals:
+
+                      - Debeziumという名称がない一般的なCDC説明のみの場合はchange-data-captureの方が適切
+
+                      - Kafka producerをアプリから直接呼ぶだけの構成
+
+                      - 単なるDBレプリケーションで下流イベント化しない場合
+
+                    relatedNames:
+
+                      - name: Debezium
+
+                        kind: tool
+
+                        relevance: CDCを実装する対象ツールそのものであり、コネクタ設定や運用で中心になる。
+
+                        officialUrl: https://debezium.io/
+
+                      - name: Kafka Connect
+
+                        kind: framework
+
+                        relevance: Debeziumコネクタを実行しKafkaへ変更イベントを流す基盤として使われる。
+
+                        officialUrl: https://kafka.apache.org/documentation/#connect
+
+                      - name: PostgreSQL Logical Decoding
+
+                        kind: protocol
+
+                        relevance: PostgreSQLからDebeziumが変更を取得する仕組みとして関連する。
+
+                        officialUrl: https://www.postgresql.org/docs/current/logicaldecoding.html
+
+                      - name: Outbox Pattern
+
+                        kind: pattern
+
+                        relevance: Debeziumでアプリイベントを安全に発行する設計としてよく組み合わされる。
                   name: "Debezium"
                   summary: "CDC の代表的な open-source プラットフォーム。"
                   whyLearn: "CDC を具体的にどう実装するかを連想できるデファクト語彙になる。"
@@ -396,7 +1509,43 @@ domain:
                   aliases:
                     - "Directed Acyclic Graph"
                     - "有向非巡回グラフ"
+                  search:
+                    keywords:
+                      - DAG
+                      - Directed Acyclic Graph
+                      - 有向非巡回グラフ
+                      - workflow DAG
+                      - task dependency
+                      - pipeline dependency
+                      - topological order
+                      - orchestration graph
+                      - Airflow DAG
+                      - dependency graph
+                    commonSignals:
+                      - タスク間の依存関係をグラフで表している
+                      - upstream/downstream、topological sort、cycle detection が出る
+                      - Airflowのdag_idやtask dependencyを書いている
+                      - pipelineの再実行範囲や順序制御を議論している
+                    antiSignals:
+                      - 金融のDAGや暗号資産のDAGだけの話
+                      - 一般的なグラフ理論だけでworkflowやpipelineに触れない場合
+                      - 循環依存を含む任意グラフの話
+                    relatedNames:
+                      - name: Apache Airflow DAG
+                        kind: tool
+                        relevance: データパイプラインをDAGとして定義する代表的な実務ツール。
+                        officialUrl: https://airflow.apache.org/docs/
+                      - name: Dagster
+                        kind: tool
+                        relevance: データ資産やジョブの依存関係をDAGとして扱う現代的なオーケストレーター。
+                        officialUrl: https://dagster.io/
+                      - name: Prefect
+                        kind: tool
+                        relevance: Pythonワークフローの依存関係や実行制御でDAGに近い概念が出る。
+                        officialUrl: https://www.prefect.io/
+
                 - slug: "backfill"
+
                   name: "バックフィル"
                   summary: "過去期間の欠損や再計算を埋め戻す処理。"
                   whyLearn: "履歴再計算が普通に起こる前提で pipeline を設計できる。"
@@ -419,7 +1568,43 @@ domain:
                   promptHint: "Airflow が単なる cron とどう違うかを問う。"
                   aliases:
                     - "Airflow"
-
+                  search:
+                    keywords:
+                      - Apache Airflow
+                      - Airflow
+                      - workflow orchestration
+                      - DAG
+                      - operator
+                      - scheduler
+                      - task instance
+                      - sensor
+                      - backfill
+                      - data pipeline orchestration
+                    commonSignals:
+                      - dag_id、operator、sensor、scheduler、executor が出る
+                      - PythonでDAGを定義し、定期実行や依存制御をしている
+                      - backfill、catchup、task retry、SLAs を議論している
+                      - cronとの違いやワークフロー監視を扱っている
+                    antiSignals:
+                      - 空気の流れや換気のairflowは対象外
+                      - 単なるcron設定だけでAirflow固有概念がない場合
+                      - KubernetesやSparkだけの実行でworkflow orchestrationに触れない場合
+                    relatedNames:
+                      - name: Apache Airflow
+                        kind: tool
+                        relevance: workflow orchestrationを実装する対象ツールそのもの。
+                        officialUrl: https://airflow.apache.org/
+                      - name: Astronomer
+                        kind: platform
+                        relevance: Airflow運用やマネージド環境でよく一緒に出る。
+                        officialUrl: https://www.astronomer.io/
+                      - name: Google Cloud Composer
+                        kind: service
+                        relevance: Airflowのマネージドサービスとしてクラウド運用文脈で出る。
+                        officialUrl: https://cloud.google.com/composer
+                      - name: KubernetesPodOperator
+                        kind: tool
+                        relevance: AirflowからKubernetes上の処理を実行する実務パターンで出る。
             - slug: "stream-processing-time-semantics"
               name: "ストリーム処理と時間意味論"
               summary: "連続到着データを、どの時刻概念でどう集計するかを扱う。"
@@ -432,7 +1617,116 @@ domain:
                   promptHint: "Kafka を queue とだけ理解すると何を見落とすかを問う。"
                   aliases:
                     - "Kafka"
+                  search:
+                    keywords:
+                      - Apache Kafka
+                      - Kafka
+                      - distributed log
+                      - event streaming
+                      - topic
+                      - partition
+                      - offset
+                      - consumer group
+                      - producer
+                      - broker
+                      - Kafka Streams
+                    commonSignals:
+                      - topic、partition、offset、consumer group、broker が出る
+                      - queueではなくログとしてイベントを保持する説明がある
+                      - producer/consumer構成やstream processingを扱っている
+                      - CDC、event sourcing、real-time pipeline と一緒に出る
+                    antiSignals:
+                      - 作家フランツ・カフカの文学文脈は対象外
+                      - 単なるメッセージキュー一般でKafka固有語がない場合は弱い
+                      - HTTPリクエスト処理だけでイベントログに触れない場合
+                    relatedNames:
+                      - name: Apache Kafka
+                        kind: platform
+                        relevance: イベントストリーミングと分散ログの中心的な公式プロジェクト。
+                        officialUrl: https://kafka.apache.org/
+                      - name: Confluent Platform
+                        kind: platform
+                        relevance: Kafkaの商用運用、Schema Registry、Connectを含む実務基盤として出る。
+                        officialUrl: https://www.confluent.io/
+                      - name: Kafka Connect
+                        kind: framework
+                        relevance: Kafkaと外部システムを接続するデータ統合基盤として頻出する。
+                        officialUrl: https://kafka.apache.org/documentation/#connect
+                      - name: Kafka Streams
+                        kind: library
+                        relevance: Kafka上でイベント処理や集計を実装するライブラリとして関連する。
+                        officialUrl: https://kafka.apache.org/documentation/streams/
+
                 - slug: "event-time"
+
+
+                  search:
+
+                    keywords:
+
+                      - イベント時刻
+
+                      - event time
+
+                      - processing time
+
+                      - ingestion time
+
+                      - occurrence time
+
+                      - timestamp semantics
+
+                      - late event
+
+                      - out-of-order event
+
+                      - time attribute
+
+                      - event timestamp
+
+                    commonSignals:
+
+                      - 発生時刻と処理時刻を区別している
+
+                      - 遅延到着、順序入れ替わり、late data が出る
+
+                      - event timestampを基準にウィンドウ集計している
+
+                      - ingestion timeでは正しくない集計の話
+
+                    antiSignals:
+
+                      - Google Calendarなど予定時刻の一般的な話
+
+                      - created_atの保存だけでstream処理の時刻意味論に触れない場合
+
+                      - ログの受信時刻だけを扱い発生時刻と比較しない場合
+
+                    relatedNames:
+
+                      - name: Apache Flink Event Time
+
+                        kind: framework
+
+                        relevance: event timeとwatermarkを明示的に扱う代表的なstream processing基盤。
+
+                        officialUrl: https://nightlies.apache.org/flink/flink-docs-stable/docs/concepts/time/
+
+                      - name: Spark Structured Streaming
+
+                        kind: framework
+
+                        relevance: event-time windowingやwatermarkを扱う実務フレームワークとして出る。
+
+                        officialUrl: https://spark.apache.org/docs/latest/streaming/index.html
+
+                      - name: Kafka Streams
+
+                        kind: library
+
+                        relevance: レコードtimestampを使ったevent-time処理で一緒に出る。
+
+                        officialUrl: https://kafka.apache.org/documentation/streams/
                   name: "イベント時刻"
                   summary: "処理時刻ではなく、出来事が実際に発生した時刻。"
                   whyLearn: "遅延到着データがあるとき、正しい集計の軸を選べる。"
@@ -448,7 +1742,110 @@ domain:
                   aliases:
                     - "watermark"
                     - "遅延許容閾値"
+                  search:
+                    keywords:
+                      - ウォーターマーク
+                      - watermark
+                      - event-time watermark
+                      - late data
+                      - allowed lateness
+                      - out-of-order data
+                      - state cleanup
+                      - window close
+                      - streaming threshold
+                      - lateness bound
+                    commonSignals:
+                      - late dataをいつ締め切るかを議論している
+                      - allowed lateness、state cleanup、window close が出る
+                      - SparkやFlinkのwithWatermark設定が登場する
+                      - 結果確定と遅延許容のトレードオフを扱っている
+                    antiSignals:
+                      - 画像や文書の透かし文字のwatermarkは対象外
+                      - Kafkaのhigh watermarkだけでevent-timeに触れない場合は別概念
+                      - バッチ処理の日次締めだけでstreamingの遅延処理に触れない場合
+                    relatedNames:
+                      - name: Apache Flink Watermarks
+                        kind: framework
+                        relevance: watermarkをstreamingの中核概念として扱う代表的なフレームワーク。
+                        officialUrl: https://nightlies.apache.org/flink/flink-docs-stable/docs/concepts/time/
+                      - name: Spark Structured Streaming Watermarking
+                        kind: framework
+                        relevance: 遅延データとstate管理を扱う実務的なwatermark実装として出る。
+                        officialUrl: https://spark.apache.org/docs/latest/streaming/index.html
+                      - name: Kafka Streams Grace Period
+                        kind: library
+                        relevance: event-time windowで遅延到着をどこまで受けるかの設計で関連する。
+                        officialUrl: https://kafka.apache.org/documentation/streams/
+
                 - slug: "windowing"
+
+                  search:
+
+                    keywords:
+
+                      - ウィンドウ集計
+
+                      - windowing
+
+                      - time window
+
+                      - tumbling window
+
+                      - sliding window
+
+                      - hopping window
+
+                      - session window
+
+                      - rolling aggregation
+
+                      - event-time window
+
+                      - stream aggregation
+
+                    commonSignals:
+
+                      - 5分ごと、1時間ごと、直近7日などの時間窓で集計している
+
+                      - tumbling、sliding、hopping、session window が出る
+
+                      - window closeやlate eventの扱いを議論している
+
+                      - real-time dashboardやstream aggregationの設計
+
+                    antiSignals:
+
+                      - OSのウィンドウやブラウザwindowオブジェクトは対象外
+
+                      - SQL window functionのみで時間窓集計に触れない場合は別Term
+
+                      - 期間フィルタだけで集計窓の意味論がない場合
+
+                    relatedNames:
+
+                      - name: Apache Flink Windows
+
+                        kind: framework
+
+                        relevance: tumbling/sliding/session windowを体系的に扱うstream processing基盤。
+
+                        officialUrl: https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/datastream/operators/windows/
+
+                      - name: Spark Structured Streaming Window Operations
+
+                        kind: framework
+
+                        relevance: streaming DataFrameで時間窓集計を実装する代表的な方法。
+
+                        officialUrl: https://spark.apache.org/docs/latest/streaming/index.html
+
+                      - name: Kafka Streams Windowing
+
+                        kind: library
+
+                        relevance: Kafka上でwindowed aggregationを実装するときに頻出する。
+
+                        officialUrl: https://kafka.apache.org/documentation/streams/
                   name: "ウィンドウ集計"
                   summary: "時間単位でイベントを区切って集計する手法。"
                   whyLearn: "リアルタイム集計の設計で基本となる。"
@@ -464,7 +1861,40 @@ domain:
                   aliases:
                     - "exactly once"
                     - "一回だけ処理"
-
+                  search:
+                    keywords:
+                      - Exactly-once処理
+                      - exactly once
+                      - exactly-once semantics
+                      - EOS
+                      - at-least-once
+                      - at-most-once
+                      - end-to-end exactly once
+                      - transactional sink
+                      - duplicate suppression
+                      - idempotent producer
+                    commonSignals:
+                      - at-least-once、at-most-once、exactly-onceを比較している
+                      - checkpoint、transactional sink、idempotent producer が出る
+                      - 再試行時の重複処理や欠損を避ける話
+                      - end-to-end保証はsinkまで含むという議論
+                    antiSignals:
+                      - 「一度だけ実行する」運用手順の一般表現
+                      - バッチ処理を単に1回走らせるだけの話
+                      - exactly onceと称していてもsink側冪等性に触れていない場合は注意
+                    relatedNames:
+                      - name: Kafka Exactly-Once Semantics
+                        kind: framework
+                        relevance: exactly-once処理保証を説明する代表的なstreaming基盤として出る。
+                        officialUrl: https://kafka.apache.org/documentation/
+                      - name: Flink Checkpointing
+                        kind: framework
+                        relevance: 分散ストリーム処理でexactly-once state/sinkを実現する仕組みとして関連する。
+                        officialUrl: https://nightlies.apache.org/flink/flink-docs-stable/docs/concepts/stateful-stream-processing/
+                      - name: Spark Structured Streaming
+                        kind: framework
+                        relevance: checkpointやidempotent sinkを含むend-to-end保証の議論で出る。
+                        officialUrl: https://spark.apache.org/docs/latest/streaming/index.html
     - slug: "analytics-metrics-decision-support"
       name: "分析、指標、意思決定支援"
       summary: "分析クエリ、行動分析、KPI、metric 定義の共有を扱う。"
@@ -494,7 +1924,110 @@ domain:
                   aliases:
                     - "OVER句"
                     - "window function"
+                  search:
+                    keywords:
+                      - ウィンドウ関数
+                      - window function
+                      - OVER句
+                      - PARTITION BY
+                      - ROW_NUMBER
+                      - RANK
+                      - LAG
+                      - LEAD
+                      - running total
+                      - rolling average
+                    commonSignals:
+                      - OVER、PARTITION BY、ORDER BYを使うSQLがある
+                      - row_number、rank、lag、lead、累積和を計算している
+                      - GROUP BYでは行が潰れるためwindow functionを使う説明
+                      - ユーザーごとの直前イベントやランキングを求めている
+                    antiSignals:
+                      - stream processingのtime windowだけの話はwindowingの方が適切
+                      - GUIのwindowやブラウザwindowオブジェクトは対象外
+                      - 単純なGROUP BY集計のみでOVER句がない場合
+                    relatedNames:
+                      - name: PostgreSQL Window Functions
+                        kind: tool
+                        relevance: SQL window functionの標準的な実装例として参照される。
+                        officialUrl: https://www.postgresql.org/docs/current/tutorial-window.html
+                      - name: BigQuery Analytic Functions
+                        kind: service
+                        relevance: DWHで分析SQLを書くときにwindow functionが頻出する。
+                        officialUrl: https://cloud.google.com/bigquery/docs/reference/standard-sql/window-function-calls
+                      - name: Snowflake Window Functions
+                        kind: service
+                        relevance: 分析DWH上で順位・累積・前後比較を行う文脈で出る。
+                        officialUrl: https://docs.snowflake.com/en/sql-reference/functions-analytic
+
                 - slug: "materialized-view"
+
+                  search:
+
+                    keywords:
+
+                      - マテリアライズドビュー
+
+                      - materialized view
+
+                      - materialized table
+
+                      - precomputed query
+
+                      - refresh
+
+                      - incremental refresh
+
+                      - query cache
+
+                      - aggregate table
+
+                      - freshness
+
+                      - view maintenance
+
+                    commonSignals:
+
+                      - 重い集計結果を保存してクエリを高速化している
+
+                      - refresh interval、incremental refresh、staleness が出る
+
+                      - viewとtableの中間的な扱いを議論している
+
+                      - BIダッシュボード用の事前集計を設計している
+
+                    antiSignals:
+
+                      - 通常のSQL viewだけで保存済み結果がない場合
+
+                      - ブラウザのviewやMVCのviewは対象外
+
+                      - キャッシュ一般の話でDBオブジェクトとしてのviewに触れない場合
+
+                    relatedNames:
+
+                      - name: PostgreSQL Materialized Views
+
+                        kind: tool
+
+                        relevance: RDBでmaterialized viewを作成・refreshする代表的な実装として出る。
+
+                        officialUrl: https://www.postgresql.org/docs/current/rules-materializedviews.html
+
+                      - name: BigQuery Materialized Views
+
+                        kind: service
+
+                        relevance: DWH上で事前集計と自動更新を扱う文脈で頻出する。
+
+                        officialUrl: https://cloud.google.com/bigquery/docs/materialized-views-intro
+
+                      - name: Snowflake Dynamic Tables
+
+                        kind: service
+
+                        relevance: materialized viewに近い継続的変換・freshness管理で比較される。
+
+                        officialUrl: https://docs.snowflake.com/en/user-guide/dynamic-tables-about
                   name: "マテリアライズドビュー"
                   summary: "計算済み結果を保存して再利用する view。"
                   whyLearn: "重い集計の高速化と freshness のトレードオフを設計できる。"
@@ -508,7 +2041,6 @@ domain:
                   promptHint: "OLTP と OLAP の workload の違いを問う。"
                   aliases:
                     - "Online Analytical Processing"
-
             - slug: "funnel-cohort-and-retention-analysis"
               name: "ファネル、コホート、リテンション分析"
               summary: "ユーザー行動の推移や継続を理解する分析技法を扱う。"
@@ -522,7 +2054,111 @@ domain:
                   aliases:
                     - "ファネル"
                     - "conversion funnel"
+                  search:
+                    keywords:
+                      - ファネル分析
+                      - funnel analysis
+                      - conversion funnel
+                      - step conversion
+                      - drop-off
+                      - activation funnel
+                      - onboarding funnel
+                      - checkout funnel
+                      - step completion
+                      - conversion rate
+                    commonSignals:
+                      - signup → activation → purchase のような連続ステップを追っている
+                      - conversion rate、drop-off、step completion が出る
+                      - どのステップでユーザーが離脱するかを分析している
+                      - onboardingやcheckoutの摩擦点を探している
+                    antiSignals:
+                      - 営業ファネルの一般論だけでプロダクト行動データがない場合
+                      - 単一ページのCVRだけで連続ステップがない場合
+                      - 漏斗という物理器具の話
+                    relatedNames:
+                      - name: Amplitude Funnels
+                        kind: service
+                        relevance: プロダクト分析でファネル到達率を可視化する代表的なツールとして出る。
+                        officialUrl: https://amplitude.com/
+                      - name: Mixpanel Funnels
+                        kind: service
+                        relevance: イベントベースのファネル分析ツールとして実務で頻繁に使われる。
+                        officialUrl: https://mixpanel.com/
+                      - name: Google Analytics Funnel Exploration
+                        kind: service
+                        relevance: Web/アプリ分析でファネル離脱を見るツールとして出る。
+                        officialUrl: https://analytics.google.com/
+
                 - slug: "cohort-analysis"
+
+
+                  search:
+
+                    keywords:
+
+                      - コホート分析
+
+                      - cohort analysis
+
+                      - cohort
+
+                      - acquisition cohort
+
+                      - signup cohort
+
+                      - monthly cohort
+
+                      - retention cohort
+
+                      - vintage analysis
+
+                      - cohort table
+
+                      - cohort retention
+
+                    commonSignals:
+
+                      - 登録月別、初回購入月別、導入月別にユーザーを追っている
+
+                      - cohort table、retention by cohort、vintage が出る
+
+                      - 全体平均ではなく起点が同じ集団で比較している
+
+                      - 新規ユーザー群ごとの継続率やLTVを見ている
+
+                    antiSignals:
+
+                      - 医学・疫学のコホート研究だけでプロダクト分析に触れない場合
+
+                      - セグメント分析一般で時間起点がない場合
+
+                      - 一時点のユーザー属性分類だけの話
+
+                    relatedNames:
+
+                      - name: Amplitude Cohorts
+
+                        kind: service
+
+                        relevance: 行動条件や初回利用日でユーザー群を作って分析する文脈で出る。
+
+                        officialUrl: https://amplitude.com/
+
+                      - name: Mixpanel Cohorts
+
+                        kind: service
+
+                        relevance: プロダクト分析でユーザー群を保存し比較する実務ツールとして関連する。
+
+                        officialUrl: https://mixpanel.com/
+
+                      - name: Google Analytics Audiences
+
+                        kind: service
+
+                        relevance: ユーザー群を定義して行動を比較するWeb分析文脈で出る。
+
+                        officialUrl: https://analytics.google.com/
                   name: "コホート分析"
                   summary: "同じ起点を持つ集団を時間で追う分析。"
                   whyLearn: "全体平均では見えない改善や劣化を cohort 単位で見分けられる。"
@@ -538,7 +2174,42 @@ domain:
                   aliases:
                     - "retention"
                     - "継続率曲線"
+                  search:
+                    keywords:
+                      - リテンション曲線
+                      - retention curve
+                      - retention rate
+                      - user retention
+                      - cohort retention
+                      - survival curve
+                      - D1 retention
+                      - D7 retention
+                      - D30 retention
+                      - churn curve
+                    commonSignals:
+                      - D1、D7、D30 retentionや継続率の時系列を見ている
+                      - cohort別に曲線が寝るか落ち続けるかを解釈している
+                      - churn、returning users、stickiness が出る
+                      - プロダクトが定着しているかを曲線で判断している
+                    antiSignals:
+                      - 従業員定着率のHR文脈だけの場合
+                      - 単一月の継続率だけで曲線や時間推移がない場合
+                      - 画像保持やメモリ保持など技術的retentionの別文脈
+                    relatedNames:
+                      - name: Amplitude Retention
+                        kind: service
+                        relevance: D1/D7/D30などの継続率曲線を可視化するプロダクト分析ツールとして出る。
+                        officialUrl: https://amplitude.com/
+                      - name: Mixpanel Retention
+                        kind: service
+                        relevance: cohort別retentionやreturning behaviorを分析する実務ツールとして関連する。
+                        officialUrl: https://mixpanel.com/
+                      - name: Kaplan-Meier Curve
+                        kind: method
+                        relevance: 継続・離脱を時間で扱う統計的曲線として比較対象に出る。
+
                 - slug: "sessionization"
+
                   name: "セッション化"
                   summary: "連続イベントを一まとまりの訪問や利用単位に変換する処理。"
                   whyLearn: "event 列から行動単位を定義しないと、product analytics の解釈がぶれやすい。"
@@ -563,7 +2234,108 @@ domain:
                   promptHint: "KPI と参考指標をどう分けるかを問う。"
                   aliases:
                     - "Key Performance Indicator"
+                  search:
+                    keywords:
+                      - KPI
+                      - Key Performance Indicator
+                      - 重要業績評価指標
+                      - product KPI
+                      - business metric
+                      - leading indicator
+                      - lagging indicator
+                      - target metric
+                      - scorecard
+                      - KPI tree
+                    commonSignals:
+                      - 事業やプロダクトの成功を測る主要指標を決めている
+                      - target、baseline、actual、leading/lagging indicator が出る
+                      - ダッシュボードやscorecardで継続監視している
+                      - KPIツリーやOKRとの紐付けを議論している
+                    antiSignals:
+                      - 単なるログ件数や任意の数値をKPIと呼んでいるだけの場合
+                      - 個人評価制度だけでデータ定義や計測に触れない場合
+                      - KGIやOKRのみで継続監視指標の話がない場合
+                    relatedNames:
+                      - name: OKR
+                        kind: method
+                        relevance: 目標と主要結果を指標へ接続する文脈でKPIと一緒に出る。
+                      - name: Balanced Scorecard
+                        kind: method
+                        relevance: 組織や事業の複数観点を指標化する体系として関連する。
+                      - name: Looker
+                        kind: platform
+                        relevance: KPIダッシュボードや指標定義を共有するBI基盤として出る。
+                        officialUrl: https://cloud.google.com/looker
+                      - name: Tableau
+                        kind: platform
+                        relevance: KPI可視化やモニタリングダッシュボードでよく使われる。
+                        officialUrl: https://www.tableau.com/
+
                 - slug: "north-star-metric"
+
+                  search:
+
+                    keywords:
+
+                      - ノーススターメトリクス
+
+                      - North Star Metric
+
+                      - NSM
+
+                      - North Star Framework
+
+                      - product value metric
+
+                      - input metrics
+
+                      - metric tree
+
+                      - activation metric
+
+                      - product-led growth
+
+                      - core value metric
+
+                    commonSignals:
+
+                      - 顧客価値を代表する単一指標を探している
+
+                      - input metrics、metric tree、value delivered が出る
+
+                      - チーム横断で施策を揃える指標を設計している
+
+                      - Weekly Active Usersなどの単純利用指標では不十分という議論
+
+                    antiSignals:
+
+                      - 北極星や天文学の話は対象外
+
+                      - 会社のスローガンだけで測定可能な指標がない場合
+
+                      - KPI一般の話で「顧客価値の中心指標」に触れない場合
+
+                    relatedNames:
+
+                      - name: Amplitude North Star Framework
+
+                        kind: framework
+
+                        relevance: North Star Metricの実務フレームワークとして最もよく参照される。
+
+                        officialUrl: https://amplitude.com/north-star
+
+                      - name: Metric Tree
+
+                        kind: method
+
+                        relevance: North Starを入力指標へ分解する方法として一緒に出やすい。
+
+                      - name: Product-Led Growth
+
+                        kind: method
+
+                        relevance: プロダクト価値と成長を単一指標へ接続する文脈で関連する。
                   name: "ノーススターメトリクス"
                   summary: "顧客価値の中核を表す、全体を導く代表指標。"
                   whyLearn: "施策を個別最適ではなく価値の中心線に結びつけられる。"
@@ -572,6 +2344,7 @@ domain:
                     - "NSM"
                     - "North Star Metric"
                 - slug: "guardrail-metric"
+
                   name: "ガードレール指標"
                   summary: "主指標改善の裏で悪化してはいけない副作用監視指標。"
                   whyLearn: "成長や最適化が品質や信頼を壊していないかを見張れる。"
@@ -579,6 +2352,38 @@ domain:
                   aliases:
                     - "safety metric"
                     - "ガードレール"
+                  search:
+                    keywords:
+                      - ガードレール指標
+                      - guardrail metric
+                      - safety metric
+                      - counter metric
+                      - degradation metric
+                      - constraint metric
+                      - quality guardrail
+                      - harm metric
+                      - rollback metric
+                      - experiment guardrail
+                    commonSignals:
+                      - 主指標が改善しても悪化してはいけない指標を定義している
+                      - latency、error rate、churn、complaint rate など副作用監視が出る
+                      - experimentやrolloutの停止条件を指標で決めている
+                      - safety metricやcounter metricという表現がある
+                    antiSignals:
+                      - 道路のガードレールや物理的安全設備の話
+                      - 単なる補助KPIで副作用監視の意味がない場合
+                      - セキュリティガードレールだけで計測指標に触れない場合
+                    relatedNames:
+                      - name: Online Controlled Experiments
+                        kind: method
+                        relevance: A/Bテストで主指標改善の副作用を監視する文脈で頻出する。
+                      - name: SLO
+                        kind: method
+                        relevance: 信頼性やレイテンシを守る技術的ガードレール指標として関連する。
+                      - name: Feature Flag Rollout
+                        kind: pattern
+                        relevance: 段階的リリースで悪化時に停止・rollbackする判断と結びつく。
+
                 - slug: "heart-framework"
                   name: "HEARTフレームワーク"
                   summary: "Happiness、Engagement、Adoption、Retention、Task Success で UX を測る枠組み。"
@@ -608,7 +2413,47 @@ domain:
                   aliases:
                     - "semantic layer"
                     - "意味定義層"
+                  search:
+                    keywords:
+                      - セマンティックレイヤー
+                      - semantic layer
+                      - metrics layer
+                      - semantic model
+                      - business metrics
+                      - governed metrics
+                      - metric store
+                      - dimensions and measures
+                      - headless BI
+                      - consistency layer
+                    commonSignals:
+                      - 売上や継続率の定義をBIツール横断で揃えようとしている
+                      - metrics、dimensions、entities、measures を共通層に定義している
+                      - headless BI、metric store、semantic model が出る
+                      - 同じSQLでも部署ごとに数字が違う問題を扱っている
+                    antiSignals:
+                      - 自然言語処理の意味解析だけの話は対象外
+                      - フロントエンドのセマンティックHTMLだけの話
+                      - 単なるデータ辞書でmetric計算やBI接続に触れない場合
+                    relatedNames:
+                      - name: dbt Semantic Layer
+                        kind: tool
+                        relevance: semantic layerをSQLモデルとmetric定義で実装する代表例として出る。
+                        officialUrl: https://docs.getdbt.com/docs/use-dbt-semantic-layer/dbt-sl
+                      - name: LookML
+                        kind: language
+                        relevance: BIのsemantic modelとしてdimensionやmeasureを定義する代表的言語。
+                        officialUrl: https://cloud.google.com/looker/docs/lookml-terms-and-concepts
+                      - name: Cube
+                        kind: framework
+                        relevance: headless BIやmetrics APIを提供するsemantic layer実装として関連する。
+                        officialUrl: https://cube.dev/
+                      - name: AtScale
+                        kind: platform
+                        relevance: エンタープライズsemantic layer製品として比較文脈で出る。
+                        officialUrl: https://www.atscale.com/
+
                 - slug: "metric-definition"
+
                   name: "指標定義"
                   summary: "指標名、計算式、粒度、フィルタ、時間基準を含む定義。"
                   whyLearn: "指標の衝突は計算以前に定義の衝突で起きると理解できる。"
@@ -632,7 +2477,44 @@ domain:
                   aliases:
                     - "MetricFlow"
                     - "dbt SL"
-
+                  search:
+                    keywords:
+                      - dbt Semantic Layer
+                      - dbt SL
+                      - MetricFlow
+                      - dbt metrics
+                      - semantic models
+                      - metrics YAML
+                      - dbt semantic manifest
+                      - dbt Cloud
+                      - metric_time
+                      - dbt sl query
+                    commonSignals:
+                      - semantic_models、metrics、entities、dimensionsをYAMLで定義している
+                      - MetricFlowやdbt sl queryが出る
+                      - dbt project内で売上や継続率などのmetricを中央定義している
+                      - BIツールからdbtのmetricを参照する話
+                    antiSignals:
+                      - dbtの通常モデル変換だけでSemantic Layerに触れない場合
+                      - 一般的なsemantic layerでdbt固有語がない場合はsemantic-layerの方が適切
+                      - dbt testsやsourcesだけの話は別文脈
+                    relatedNames:
+                      - name: dbt Semantic Layer
+                        kind: tool
+                        relevance: 対象Termそのものであり、dbt上でmetric定義を中央管理する機能。
+                        officialUrl: https://docs.getdbt.com/docs/use-dbt-semantic-layer/dbt-sl
+                      - name: MetricFlow
+                        kind: tool
+                        relevance: dbt Semantic Layerのクエリ生成とmetric解決を担う中核コンポーネント。
+                        officialUrl: https://docs.getdbt.com/docs/build/about-metricflow
+                      - name: dbt Core
+                        kind: tool
+                        relevance: semantic modelの元になるSQLモデルや変換管理と関連する。
+                        officialUrl: https://docs.getdbt.com/docs/core/about-core-setup
+                      - name: Tableau
+                        kind: platform
+                        relevance: dbt Semantic Layerで定義したmetricを下流BIから利用する文脈で出る。
+                        officialUrl: https://www.tableau.com/
     - slug: "experimentation-causal-learning"
       name: "実験と因果学習"
       summary: "変化の原因を見分けるための実験設計、推定、オンライン運用を扱う。"
@@ -663,6 +2545,43 @@ domain:
                   aliases:
                     - "ランダム化"
                     - "random assignment"
+                  search:
+                    keywords:
+                      - ランダム割付
+                      - randomization
+                      - random assignment
+                      - randomized experiment
+                      - treatment assignment
+                      - control group
+                      - random seed
+                      - assignment unit
+                      - stratified randomization
+                      - bias reduction
+                    commonSignals:
+                      - ユーザーやセッションをcontrol/treatmentに確率的に割り当てている
+                      - selection biasや交絡を減らす目的が説明されている
+                      - assignment unit、random seed、bucket、hashing が出る
+                      - A/Bテストの群分けや実験単位を設計している
+                    antiSignals:
+                      - ランダムなUI演出や乱数生成だけの話
+                      - サンプリングだけで介入割付がない場合は弱い
+                      - シャッフルやロードバランシングのランダム選択だけの文脈
+                    relatedNames:
+                      - name: Randomized Controlled Trial
+                        kind: method
+                        relevance: ランダム割付を用いて因果効果を推定する基本的な実験設計。
+                      - name: A/B Testing
+                        kind: method
+                        relevance: プロダクト実験でユーザーをcontrol/treatmentへ割り当てる文脈で出る。
+                      - name: Optimizely
+                        kind: platform
+                        relevance: Web/プロダクト実験の割付機能を持つ代表的な実験プラットフォーム。
+                        officialUrl: https://www.optimizely.com/
+                      - name: Statsig
+                        kind: platform
+                        relevance: feature flagと実験割付を組み合わせる実務ツールとして関連する。
+                        officialUrl: https://www.statsig.com/
+
                 - slug: "blocking"
                   name: "ブロッキング"
                   summary: "重要なばらつき要因ごとに層を作って比較する設計。"
@@ -679,7 +2598,39 @@ domain:
                   aliases:
                     - "MDE"
                     - "minimum detectable effect"
-
+                  search:
+                    keywords:
+                      - 最小検出効果
+                      - MDE
+                      - minimum detectable effect
+                      - detectable lift
+                      - effect size
+                      - sample size
+                      - power analysis
+                      - experiment duration
+                      - baseline conversion rate
+                      - practical significance
+                    commonSignals:
+                      - 何%のliftを検出したいかを事前に決めている
+                      - sample size、baseline conversion、power、alpha が一緒に出る
+                      - 実験期間が現実的かをMDEから見積もっている
+                      - 統計的有意性だけでなく実務的に意味のある差を議論している
+                    antiSignals:
+                      - 機械学習モデルの最小誤差だけの話
+                      - 観測された効果量だけで事前設計に触れない場合
+                      - 「最小変更」やUI差分のサイズの話
+                    relatedNames:
+                      - name: Power Analysis
+                        kind: method
+                        relevance: MDE、検出力、サンプルサイズを一緒に設計する統計的手法。
+                      - name: Evan Miller A/B Test Calculator
+                        kind: tool
+                        relevance: MDEやサンプルサイズを直感的に計算する実務者向けツールとして出る。
+                        officialUrl: https://www.evanmiller.org/ab-testing/sample-size.html
+                      - name: Statsig Power Analysis
+                        kind: platform
+                        relevance: 実験プラットフォーム上でMDEや必要期間を見積もる文脈で関連する。
+                        officialUrl: https://www.statsig.com/
             - slug: "statistical-inference-for-experiments"
               name: "実験の統計的推論"
               summary: "観測差を不確実性込みで解釈する方法を扱う。"
@@ -694,6 +2645,7 @@ domain:
                     - "CI"
                     - "confidence interval"
                 - slug: "p-value"
+
                   name: "p値"
                   summary: "観測結果が特定のモデルとどの程度両立しにくいかを示す量。"
                   whyLearn: "よく誤解される指標なので、正しく扱えないと意思決定を誤りやすい。"
@@ -701,7 +2653,104 @@ domain:
                   aliases:
                     - "p-value"
                     - "p値"
+                  search:
+                    keywords:
+                      - p値
+                      - p-value
+                      - p value
+                      - statistical significance
+                      - null hypothesis
+                      - hypothesis test
+                      - alpha level
+                      - significance level
+                      - p < 0.05
+                      - 有意確率
+                    commonSignals:
+                      - p < 0.05、有意差、帰無仮説、alpha が出る
+                      - A/Bテスト結果を有意かどうか判断している
+                      - p値が効果の大きさや真である確率ではないと説明している
+                      - confidence intervalとの比較がある
+                    antiSignals:
+                      - 製品価格のp値や記号pの一般使用
+                      - p99 latencyなどのパーセンタイルは別概念
+                      - 有意義という日本語だけで統計的有意性がない場合
+                    relatedNames:
+                      - name: Null Hypothesis Significance Testing
+                        kind: method
+                        relevance: p値を使う伝統的な仮説検定の枠組みとして出る。
+                      - name: ASA Statement on p-values
+                        kind: standard
+                        relevance: p値の誤解や解釈上の注意を説明するときに参照される。
+                        officialUrl: https://www.amstat.org/asa/files/pdfs/P-ValueStatement.pdf
+                      - name: A/B Testing
+                        kind: method
+                        relevance: 実験結果の有意性判定でp値が頻繁に使われる。
+
                 - slug: "statistical-power"
+
+                  search:
+
+                    keywords:
+
+                      - 統計的検出力
+
+                      - statistical power
+
+                      - power
+
+                      - type II error
+
+                      - beta
+
+                      - sample size calculation
+
+                      - power analysis
+
+                      - underpowered experiment
+
+                      - false negative
+
+                      - effect detection
+
+                    commonSignals:
+
+                      - 実験がunderpoweredかどうかを議論している
+
+                      - power、beta、type II error、sample size が出る
+
+                      - 「有意差なし」を差がないと解釈してよいか検討している
+
+                      - MDEや実験期間の見積もりをしている
+
+                    antiSignals:
+
+                      - 計算機の電力やCPU powerの話は対象外
+
+                      - 統計と関係ない「影響力」「権限」のpower
+
+                      - p値だけの話で検出力やサンプルサイズに触れない場合
+
+                    relatedNames:
+
+                      - name: Power Analysis
+
+                        kind: method
+
+                        relevance: 検出力、効果量、サンプルサイズ、alphaを設計する中心的手法。
+
+                      - name: G*Power
+
+                        kind: tool
+
+                        relevance: 統計的検出力やサンプルサイズを計算する代表的なツール。
+
+                        officialUrl: https://www.psychologie.hhu.de/arbeitsgruppen/allgemeine-psychologie-und-arbeitspsychologie/gpower
+
+                      - name: CUPED
+
+                        kind: method
+
+                        relevance: 分散削減によって同じサンプル数で検出力を上げる手法として関連する。
                   name: "統計的検出力"
                   summary: "実際に差があるときに検出できる確率。"
                   whyLearn: "不検出を『差がない』と誤解しないために必要。"
@@ -759,7 +2808,44 @@ domain:
                   aliases:
                     - "feature toggle"
                     - "flag"
-
+                  search:
+                    keywords:
+                      - フィーチャーフラグ
+                      - feature flag
+                      - feature toggle
+                      - release toggle
+                      - experiment flag
+                      - rollout
+                      - kill switch
+                      - gradual rollout
+                      - targeting rule
+                      - flag debt
+                    commonSignals:
+                      - 機能をデプロイ後に有効化・無効化している
+                      - gradual rollout、targeting、kill switch が出る
+                      - A/Bテストやexperiment assignmentと結びついている
+                      - flag cleanupやflag debtを議論している
+                    antiSignals:
+                      - CLIのコマンドラインフラグだけの話
+                      - 国旗やUIアイコンのflag
+                      - 環境変数だけでユーザー別配信やrollout制御がない場合
+                    relatedNames:
+                      - name: LaunchDarkly
+                        kind: service
+                        relevance: feature flag管理と段階的rolloutの代表的なSaaSとして頻出する。
+                        officialUrl: https://launchdarkly.com/
+                      - name: OpenFeature
+                        kind: standard
+                        relevance: feature flagのベンダー中立API標準として関連する。
+                        officialUrl: https://openfeature.dev/
+                      - name: Unleash
+                        kind: tool
+                        relevance: OSS feature flag管理ツールとして実務で出やすい。
+                        officialUrl: https://www.getunleash.io/
+                      - name: Statsig
+                        kind: platform
+                        relevance: feature flagと実験分析を組み合わせるプラットフォームとして関連する。
+                        officialUrl: https://www.statsig.com/
             - slug: "trustworthiness-and-variance-reduction"
               name: "信頼性確保と分散削減"
               summary: "実験結果を信じられる状態にするための検査と改善を扱う。"
@@ -773,7 +2859,112 @@ domain:
                   aliases:
                     - "SRM"
                     - "sample ratio mismatch"
+                  search:
+                    keywords:
+                      - サンプル比不一致
+                      - SRM
+                      - sample ratio mismatch
+                      - allocation mismatch
+                      - expected traffic split
+                      - observed traffic split
+                      - experiment quality check
+                      - assignment bug
+                      - logging bias
+                      - A/B test sanity check
+                    commonSignals:
+                      - 50/50のはずが実測で51/49や大きな偏りになっている
+                      - assignment、logging、filtering、exposure event のバグを疑っている
+                      - A/Bテストの事前健全性チェックでSRMを確認している
+                      - expected allocationとobserved allocationを比較している
+                    antiSignals:
+                      - サンプルサイズ不足だけで割当比のずれがない場合
+                      - 施策効果でコンバージョン率が変わった話はSRMではない
+                      - データセットのクラス不均衡だけで実験割当に関係しない場合
+                    relatedNames:
+                      - name: Online Controlled Experiments
+                        kind: method
+                        relevance: SRMが実験の健全性チェックとして扱われる主要な文脈。
+                      - name: Experimentation Platform
+                        kind: platform
+                        relevance: Microsoft ExPなど大規模実験基盤の信頼性チェックでSRMが頻出する。
+                      - name: Chi-squared Test
+                        kind: method
+                        relevance: 期待割当比と観測割当比のずれを検定する方法として使われる。
+
                 - slug: "cuped"
+
+
+                  search:
+
+                    keywords:
+
+                      - CUPED
+
+                      - Controlled-experiment Using Pre-Experiment Data
+
+                      - variance reduction
+
+                      - pre-experiment covariate
+
+                      - covariate adjustment
+
+                      - control variate
+
+                      - experiment sensitivity
+
+                      - metric variance
+
+                      - A/B test variance reduction
+
+                      - pre-period metric
+
+                    commonSignals:
+
+                      - 事前期間の行動指標を共変量として使っている
+
+                      - variance reduction、sensitivity、pre-period metric が出る
+
+                      - 同じトラフィックでより小さい効果を検出したい話
+
+                      - A/Bテストのmetricを補正して標準誤差を下げる文脈
+
+                    antiSignals:
+
+                      - cupという単語やカップ戦の話は対象外
+
+                      - 共変量調整一般で実験の分散削減に触れない場合は弱い
+
+                      - post-treatment variableを使った不適切な補正の話は注意
+
+                    relatedNames:
+
+                      - name: CUPED
+
+                        kind: method
+
+                        relevance: 事前期間データを使ってオンライン実験の分散を下げる対象手法そのもの。
+
+                      - name: Control Variates
+
+                        kind: method
+
+                        relevance: CUPEDの統計的背景として使われる分散削減手法。
+
+                      - name: Statsig CUPED
+
+                        kind: platform
+
+                        relevance: 実験プラットフォームでCUPEDを実装する実務例として出る。
+
+                        officialUrl: https://docs.statsig.com/
+
+                      - name: Microsoft ExP
+
+                        kind: platform
+
+                        relevance: CUPEDや大規模実験の分散削減研究でよく参照される。
+
+                        officialUrl: https://www.microsoft.com/en-us/research/group/experimentation-platform-exp/
                   name: "CUPED"
                   summary: "事前データを用いて分散を減らし、感度を上げる手法。"
                   whyLearn: "同じトラフィックでも学習速度を高められる。"
@@ -859,6 +3050,7 @@ domain:
                     - "data expectation"
                     - "期待値テスト"
                 - slug: "schema-test"
+
                   name: "スキーマテスト"
                   summary: "列存在、型、制約、互換性を検査するテスト。"
                   whyLearn: "上流変更による壊れ方の多くは schema drift に起因する。"
@@ -882,7 +3074,44 @@ domain:
                   aliases:
                     - "GX"
                     - "Great Expectations"
-
+                  search:
+                    keywords:
+                      - Great Expectations
+                      - GX
+                      - data quality
+                      - expectation suite
+                      - checkpoint
+                      - data docs
+                      - validator
+                      - expectation store
+                      - datasource
+                      - data asset
+                    commonSignals:
+                      - Expectation Suite、Checkpoint、Data Docs が出る
+                      - expect_column_values_to_not_be_null のようなexpectation名がある
+                      - pipelineでデータ品質チェックを自動実行している
+                      - GX Coreやvalidator設定を扱っている
+                    antiSignals:
+                      - 「大きな期待」という一般表現は対象外
+                      - データ品質一般でGreat Expectations固有語がない場合はexpectation-testの方が適切
+                      - 単なるpytestやアプリケーションテストの話
+                    relatedNames:
+                      - name: Great Expectations
+                        kind: tool
+                        relevance: Expectationベースのデータ品質検査を実装する対象OSSそのもの。
+                        officialUrl: https://greatexpectations.io/
+                      - name: Soda Core
+                        kind: tool
+                        relevance: データ品質チェックをコード化するOSSとして比較されることが多い。
+                        officialUrl: https://www.soda.io/
+                      - name: Deequ
+                        kind: library
+                        relevance: Spark上でデータ品質検査を行うライブラリとして比較対象になる。
+                        officialUrl: https://github.com/awslabs/deequ
+                      - name: dbt tests
+                        kind: tool
+                        relevance: SQLモデル上の品質テストとしてGreat Expectationsと比較されやすい。
+                        officialUrl: https://docs.getdbt.com/docs/build/data-tests
         - slug: "metadata-lineage-and-discovery"
           name: "メタデータ、リネージ、発見性"
           summary: "データの意味、由来、依存関係を追跡し、再利用可能にする。"
@@ -901,6 +3130,7 @@ domain:
                     - "catalog"
                     - "データ台帳"
                 - slug: "business-glossary"
+
                   name: "ビジネス用語集"
                   summary: "売上、顧客、契約などの意味を業務語彙として定義する仕組み。"
                   whyLearn: "SQL が合っていても用語の意味が違えば、数字は揃わない。"
@@ -916,6 +3146,45 @@ domain:
                   aliases:
                     - "lineage"
                     - "系譜情報"
+                  search:
+                    keywords:
+                      - データリネージ
+                      - data lineage
+                      - lineage
+                      - column-level lineage
+                      - table-level lineage
+                      - upstream downstream
+                      - impact analysis
+                      - dependency graph
+                      - data flow
+                      - transformation history
+                    commonSignals:
+                      - このテーブルや指標がどの上流データから来たかを追跡している
+                      - upstream/downstream、impact analysis、dependency graph が出る
+                      - column-level lineageやjob run lineageを扱っている
+                      - 変更影響調査や障害原因調査でデータの流れを見ている
+                    antiSignals:
+                      - 家系や血統のlineageは対象外
+                      - 単なるER図で変換処理や流れに触れない場合
+                      - ログトレースだけでデータ資産の依存関係を扱わない場合
+                    relatedNames:
+                      - name: OpenLineage
+                        kind: standard
+                        relevance: lineage metadataをツール横断で収集・交換する代表的な標準。
+                        officialUrl: https://openlineage.io/
+                      - name: Marquez
+                        kind: tool
+                        relevance: OpenLineage互換のlineage metadata管理ツールとして関連する。
+                        officialUrl: https://marquezproject.ai/
+                      - name: DataHub
+                        kind: platform
+                        relevance: データカタログ上でlineageや影響分析を扱うOSSとして出る。
+                        officialUrl: https://datahubproject.io/
+                      - name: OpenMetadata
+                        kind: platform
+                        relevance: catalog、lineage、qualityを統合管理するOSSとして関連する。
+                        officialUrl: https://open-metadata.org/
+
                 - slug: "provenance"
                   name: "来歴"
                   summary: "データの生成・変換・利用履歴の記録。"
@@ -938,7 +3207,46 @@ domain:
                   aliases:
                     - "data contract"
                     - "データ契約"
+                  search:
+                    keywords:
+                      - データコントラクト
+                      - data contract
+                      - data contracts
+                      - producer consumer contract
+                      - schema contract
+                      - data SLA
+                      - data product
+                      - contract testing
+                      - breaking change
+                      - schema compatibility
+                    commonSignals:
+                      - producerとconsumerの間でschema、品質、SLA、意味を合意している
+                      - 破壊的変更を検知するcontract testを設計している
+                      - data product、owner、SLO、compatibility rules が出る
+                      - 上流変更で下流が壊れないように契約を定義している
+                    antiSignals:
+                      - 法務契約一般でデータ項目や品質に触れない場合
+                      - API contractだけでデータセットやパイプラインに関係しない場合
+                      - 単なるスキーマ定義でproducer/consumer責務がない場合
+                    relatedNames:
+                      - name: Open Data Contract Standard
+                        kind: standard
+                        relevance: data contractをYAML等で形式化する代表的なオープン標準として関連する。
+                        officialUrl: https://bitol-io.github.io/open-data-contract-standard/
+                      - name: Data Contract Specification
+                        kind: standard
+                        relevance: データ契約を記述・検証する実務仕様として比較対象に出る。
+                        officialUrl: https://datacontract.com/
+                      - name: Pact
+                        kind: tool
+                        relevance: consumer-driven contract testingの考え方がdata contractの説明で参照される。
+                        officialUrl: https://pact.io/
+                      - name: Data Mesh
+                        kind: method
+                        relevance: data productとproducer responsibilityの文脈でdata contractがよく登場する。
+
                 - slug: "openlineage"
+
                   name: "OpenLineage"
                   summary: "lineage metadata の収集と交換のための open standard。"
                   whyLearn: "lineage をツール横断で扱う発想を持てる。"

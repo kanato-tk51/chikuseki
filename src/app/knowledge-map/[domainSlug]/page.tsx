@@ -29,6 +29,8 @@ import {
 import {
   knowledgeNodeLevelLabels,
 } from "@/features/knowledge-map/validators";
+import { listKnowledgeLinkedEntitiesForNode } from "@/features/knowledge-linker/queries";
+import { knowledgeLinkableEntityTypeLabels } from "@/features/knowledge-linker/validators";
 
 export const dynamic = "force-dynamic";
 
@@ -189,6 +191,7 @@ export default async function KnowledgeDomainPage({
   }
 
   const selected = overview.selectedNode;
+  const linkedEntities = await listKnowledgeLinkedEntitiesForNode(selected.id);
   const returnTo = `/knowledge-map/${domainSlug}?node=${selected.slug}`;
   const searchResults =
     q.length > 0
@@ -464,6 +467,51 @@ export default async function KnowledgeDomainPage({
                 ) : (
                   <div className="rounded-lg border border-dashed border-border p-4 text-sm text-muted-foreground">
                     関連 edge はありません
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Linked Learning Assets</CardTitle>
+                <CardDescription>
+                  {linkedEntities.length} Resources / Notes / Questions
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                {linkedEntities.length > 0 ? (
+                  <div className="divide-y divide-border">
+                    {linkedEntities.map((entity) => (
+                      <Link
+                        key={`${entity.type}-${entity.id}-${entity.relationType}`}
+                        href={entity.href}
+                        className="grid gap-2 px-1 py-3 text-sm transition-colors hover:bg-muted/40 sm:grid-cols-[130px_minmax(220px,1fr)]"
+                      >
+                        <div className="flex flex-wrap items-center gap-2">
+                          <Badge variant="outline">
+                            {knowledgeLinkableEntityTypeLabels[entity.type]}
+                          </Badge>
+                          <span className="text-xs text-muted-foreground">
+                            {entity.relationType}
+                          </span>
+                        </div>
+                        <div className="min-w-0 space-y-1">
+                          <div className="truncate font-medium">
+                            {entity.title}
+                          </div>
+                          {entity.detail ? (
+                            <p className="line-clamp-1 text-xs text-muted-foreground">
+                              {entity.detail}
+                            </p>
+                          ) : null}
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="rounded-lg border border-dashed border-border p-4 text-sm text-muted-foreground">
+                    このノードに接続された Resource / Note / Question はまだありません
                   </div>
                 )}
               </CardContent>

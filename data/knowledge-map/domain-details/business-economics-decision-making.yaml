@@ -26,7 +26,112 @@ domain:
                   aliases:
                     - Value Proposition
                     - UVP
+                  search:
+                    keywords:
+                      - 価値提案
+                      - Value Proposition
+                      - UVP
+                      - unique value proposition
+                      - customer value
+                      - jobs to be done
+                      - pains and gains
+                      - differentiation
+                      - 顧客便益
+                      - 選ばれる理由
+                    commonSignals:
+                      - 誰に何の価値を届けるかを説明している
+                      - 顧客の痛み、利得、ジョブを整理している
+                      - 選ばれる理由や差別化を短く表現している
+                      - LP、ピッチ資料、営業資料の冒頭メッセージとして出る
+                    antiSignals:
+                      - 企業理念や価値観だけを述べている
+                      - 提案書や見積書のproposalという一般語
+                      - 機能一覧だけで顧客便益が書かれていない
+                    relatedNames:
+                      - name: Value Proposition Canvas
+                        kind: framework
+                        relevance: 顧客のJobs、Pain、Gainと提供価値を照合する代表的な実務フレームワーク。
+                        officialUrl: https://www.strategyzer.com/library/the-value-proposition-canvas
+                      - name: Jobs To Be Done
+                        kind: framework
+                        relevance: 顧客が片付けたい仕事から価値提案を定義する際によく使われる。
+                      - name: Business Model Canvas
+                        kind: framework
+                        relevance: 価値提案を顧客セグメントや収益モデルと接続して整理する。
+                        officialUrl: https://www.strategyzer.com/library/the-business-model-canvas
+                      - name: Lean Canvas
+                        kind: framework
+                        relevance: スタートアップ文脈で問題、解決策、独自価値提案を一枚で整理する。
+
                 - slug: willingness-to-pay
+
+                  search:
+
+                    keywords:
+
+                      - 支払意思額
+
+                      - Willingness to Pay
+
+                      - WTP
+
+                      - price sensitivity
+
+                      - reservation price
+
+                      - 価格感度
+
+                      - 許容価格
+
+                      - 支払許容額
+
+                      - price research
+
+                      - willingness to pay survey
+
+                    commonSignals:
+
+                      - この価格なら買うか、いくらなら高いかを尋ねている
+
+                      - 価格感度、許容価格、支払上限を調査している
+
+                      - 値上げ余地やディスカウント耐性を議論している
+
+                      - 代替手段と比較して払える金額を推定している
+
+                    antiSignals:
+
+                      - 決済手段や支払方法の話だけ
+
+                      - 請求書の支払期限や入金確認の話
+
+                      - 単なる予算額で、価値に対する支払意向ではない
+
+                    relatedNames:
+
+                      - name: Van Westendorp Price Sensitivity Meter
+
+                        kind: method
+
+                        relevance: 高すぎる、安すぎるなどの質問から許容価格帯を推定する価格調査手法。
+
+                      - name: Gabor-Granger Method
+
+                        kind: method
+
+                        relevance: 複数価格に対する購入意向から需要と価格の関係を推定する。
+
+                      - name: Conjoint Analysis
+
+                        kind: method
+
+                        relevance: 機能や価格の組み合わせに対する選好から支払意思額を推定する。
+
+                      - name: MaxDiff
+
+                        kind: method
+
+                        relevance: 選好順位を通じて価値ドライバーを把握し、価格調査の補助に使われる。
                   name: 支払意思額
                   summary: 顧客がその価値に対して支払ってよいと感じる上限金額。
                   whyLearn: 値付けやディスカウントの妥当性を考える基準になるため。
@@ -54,7 +159,120 @@ domain:
                   aliases:
                     - BMC
                     - Business Model Canvas
+                  search:
+                    keywords:
+                      - ビジネスモデルキャンバス
+                      - Business Model Canvas
+                      - BMC
+                      - key partners
+                      - key activities
+                      - customer segments
+                      - channels
+                      - revenue streams
+                      - cost structure
+                      - 事業モデル図
+                      - ビジネスモデル設計
+                    commonSignals:
+                      - 九つのブロックで事業を整理している
+                      - 顧客セグメント、価値提案、チャネル、収益源、コスト構造が並んでいる
+                      - 新規事業や既存事業の構造を一枚で比較している
+                      - Canvas、BMC、Lean Canvasという語が出ている
+                    antiSignals:
+                      - HTML canvasやCanvas APIの話
+                      - Canvas LMSなど教育プラットフォームの話
+                      - 単なる図解テンプレートで事業構造を扱っていない
+                    relatedNames:
+                      - name: Business Model Canvas
+                        kind: framework
+                        relevance: 事業構造を九つのブロックで整理する中心的なフレームワーク。
+                        officialUrl: https://www.strategyzer.com/library/the-business-model-canvas
+                      - name: Value Proposition Canvas
+                        kind: framework
+                        relevance: BMCの価値提案と顧客セグメントを詳細化する補助フレーム。
+                        officialUrl: https://www.strategyzer.com/library/the-value-proposition-canvas
+                      - name: Lean Canvas
+                        kind: framework
+                        relevance: スタートアップ向けに課題、解決策、指標、優位性を強調した派生キャンバス。
+                      - name: Strategyzer
+                        kind: tool
+                        relevance: Business Model CanvasやValue Proposition Canvasの実務テンプレート提供元としてよく参照される。
+                        officialUrl: https://www.strategyzer.com/
+
                 - slug: revenue-model
+
+                  search:
+
+                    keywords:
+
+                      - 収益モデル
+
+                      - Revenue Model
+
+                      - monetization model
+
+                      - revenue stream
+
+                      - recurring revenue
+
+                      - transaction fee
+
+                      - take rate
+
+                      - licensing revenue
+
+                      - ads model
+
+                      - 売上発生条件
+
+                    commonSignals:
+
+                      - 売上がどのタイミングで発生するかを議論している
+
+                      - サブスク、従量、手数料、広告、ライセンスの比較がある
+
+                      - 単発売上か継続売上かを分けている
+
+                      - take rate、revenue stream、monetizationという語が出る
+
+                    antiSignals:
+
+                      - 会計上の収益認識だけを扱っている
+
+                      - 売上実績の報告だけで発生メカニズムがない
+
+                      - 価格表の金額だけで課金構造を扱っていない
+
+                    relatedNames:
+
+                      - name: Stripe Billing
+
+                        kind: service
+
+                        relevance: サブスクリプションや従量課金の収益モデル実装でよく使われる。
+
+                        officialUrl: https://stripe.com/billing
+
+                      - name: Zuora
+
+                        kind: platform
+
+                        relevance: サブスクリプション管理や継続課金モデルの実務で知られる。
+
+                        officialUrl: https://www.zuora.com/
+
+                      - name: Chargebee
+
+                        kind: service
+
+                        relevance: SaaSの課金、請求、収益モデル管理で使われる。
+
+                        officialUrl: https://www.chargebee.com/
+
+                      - name: Marketplace Take Rate
+
+                        kind: pattern
+
+                        relevance: マーケットプレイス型収益モデルで取引額に対する手数料率として使われる。
                   name: 収益モデル
                   summary: 売上がどの単位で、いつ、どの条件で発生するかを定める仕組み。
                   whyLearn: 成長しても売上の質が悪い構造を避けるため。
@@ -68,6 +286,43 @@ domain:
                   promptHint: この事業のコスト構造はスケールでどこが効率化し、どこが比例費になるかを整理して。
                   aliases:
                     - Cost Structure
+                  search:
+                    keywords:
+                      - コスト構造
+                      - Cost Structure
+                      - fixed cost
+                      - variable cost
+                      - unit cost
+                      - cost driver
+                      - operating leverage
+                      - cloud cost
+                      - COGS
+                      - 原価構造
+                    commonSignals:
+                      - 固定費と変動費を分解している
+                      - ユーザー数や処理量が増えたときの単位コストを見ている
+                      - 粗利、COGS、クラウド原価、サポート原価の話がある
+                      - スケール時に効率化する費用と比例する費用を分けている
+                    antiSignals:
+                      - 単なる経費一覧で事業モデルとの関係がない
+                      - 技術的なデータ構造のcostだけ
+                      - コスト削減施策だけで固定費・変動費の構造を扱っていない
+                    relatedNames:
+                      - name: FinOps
+                        kind: framework
+                        relevance: クラウド利用費を事業価値と結びつけて管理する実務フレームワーク。
+                        officialUrl: https://www.finops.org/
+                      - name: AWS Cost Explorer
+                        kind: tool
+                        relevance: クラウド費用の費目や利用量を把握しコスト構造を分析する。
+                        officialUrl: https://aws.amazon.com/aws-cost-management/aws-cost-explorer/
+                      - name: CloudZero
+                        kind: platform
+                        relevance: SaaSやクラウドサービスのユニットコスト分析で使われる。
+                        officialUrl: https://www.cloudzero.com/
+                      - name: Activity-Based Costing
+                        kind: method
+                        relevance: 活動ごとのコストドライバーを見て原価を配賦する方法。
 
         - slug: competition-and-defensibility
           name: 競争と防御可能性
@@ -86,7 +341,112 @@ domain:
                   aliases:
                     - Five Forces
                     - Porter's Five Forces
+                  search:
+                    keywords:
+                      - ファイブフォース
+                      - Five Forces
+                      - Porter's Five Forces
+                      - 競争要因
+                      - industry structure
+                      - buyer power
+                      - supplier power
+                      - threat of substitutes
+                      - threat of new entrants
+                      - rivalry
+                    commonSignals:
+                      - 買い手、売り手、代替、参入、既存競争を分けている
+                      - 業界の魅力度や利益率の構造を分析している
+                      - 競合比較だけでなく交渉力や参入障壁も扱っている
+                      - Porter、five forces、競争圧力という語がある
+                    antiSignals:
+                      - 物理のforceや力学の話
+                      - force-directed graphなど可視化アルゴリズムの話
+                      - 営業の押し込み力やforceという一般語
+                    relatedNames:
+                      - name: Porter's Five Forces
+                        kind: framework
+                        relevance: 業界の利益構造を五つの競争圧力で分析する中心フレーム。
+                      - name: Value Chain Analysis
+                        kind: framework
+                        relevance: 業界構造と自社活動の競争優位を接続して見る際に併用される。
+                      - name: PESTEL Analysis
+                        kind: framework
+                        relevance: 外部環境分析としてFive Forcesの前後で使われることが多い。
+                      - name: SWOT Analysis
+                        kind: framework
+                        relevance: 業界圧力の分析結果を自社の強み・弱みと整理する際に併用される。
+
                 - slug: market-definition
+
+                  search:
+
+                    keywords:
+
+                      - 市場定義
+
+                      - Market Definition
+
+                      - relevant market
+
+                      - product market
+
+                      - geographic market
+
+                      - SSNIP
+
+                      - hypothetical monopolist test
+
+                      - substitutability
+
+                      - market boundary
+
+                      - 代替可能性
+
+                    commonSignals:
+
+                      - どこまでを同じ市場とみなすかを議論している
+
+                      - 代替可能性、地理的範囲、顧客セグメントを切っている
+
+                      - 競合が誰か、シェアをどう測るかを定義している
+
+                      - SSNIP、relevant market、market boundaryが出る
+
+                    antiSignals:
+
+                      - 市場規模の数字だけで競争範囲を定義していない
+
+                      - マーケティング施策の市場という一般語
+
+                      - 株式市場や金融市場の価格変動だけ
+
+                    relatedNames:
+
+                      - name: SSNIP Test
+
+                        kind: method
+
+                        relevance: 価格上昇に対する代替行動から市場範囲を定義する手法。
+
+                      - name: Hypothetical Monopolist Test
+
+                        kind: method
+
+                        relevance: 競争法や市場分析で関連市場を検討する代表的な考え方。
+
+                      - name: DOJ/FTC Merger Guidelines
+
+                        kind: standard
+
+                        relevance: 米国競争当局による市場定義や競争分析の参照枠組み。
+
+                        officialUrl: https://www.justice.gov/atr/merger-guidelines
+
+                      - name: EU Market Definition Notice
+
+                        kind: standard
+
+                        relevance: EU競争法における関連市場定義の実務的な参照資料。
                   name: 市場定義
                   summary: 代替可能性や地理範囲を踏まえて競争の単位を定めること。
                   whyLearn: 競争相手やシェアの見方を誤らないため。
@@ -120,7 +480,110 @@ domain:
                   aliases:
                     - Two-Sided Market
                     - Multi-Sided Platform
+                  search:
+                    keywords:
+                      - マルチサイドプラットフォーム
+                      - Multi-Sided Platform
+                      - two-sided market
+                      - platform business
+                      - indirect network effects
+                      - marketplace
+                      - platform economics
+                      - cross-side network effects
+                      - chicken and egg problem
+                      - プラットフォーム市場
+                    commonSignals:
+                      - 売り手と買い手、開発者と利用者など複数面が出る
+                      - 片側の利用者増加がもう片側の価値を上げる
+                      - マーケットプレイス、プラットフォーム手数料、流動性を議論している
+                      - chicken and egg problemやcross-side network effectsが出る
+                    antiSignals:
+                      - 単なるSaaS基盤や技術プラットフォームの話
+                      - multi-tenant architectureだけを扱っている
+                      - 複数機能を持つ製品という意味のplatform
+                    relatedNames:
+                      - name: Two-Sided Market
+                        kind: pattern
+                        relevance: 売り手と買い手など複数の利用者面を結ぶ市場構造として使われる。
+                      - name: Marketplace
+                        kind: pattern
+                        relevance: 供給側と需要側を仲介する代表的なマルチサイド事業形態。
+                      - name: Platform Canvas
+                        kind: framework
+                        relevance: プラットフォームの参加者、価値交換、ネットワーク効果を整理する。
+                      - name: Rochet-Tirole Platform Economics
+                        kind: method
+                        relevance: 両面市場の価格構造や外部性を理解する学術的な基礎として参照される。
+
                 - slug: network-effects
+
+                  search:
+
+                    keywords:
+
+                      - ネットワーク効果
+
+                      - Network Effects
+
+                      - direct network effect
+
+                      - indirect network effect
+
+                      - viral loop
+
+                      - marketplace liquidity
+
+                      - Metcalfe's law
+
+                      - critical mass
+
+                      - winner-takes-most
+
+                      - cold start problem
+
+                    commonSignals:
+
+                      - ユーザーが増えるほど既存ユーザーの価値が上がる
+
+                      - 直接型、間接型、ローカルネットワーク効果を区別している
+
+                      - critical mass、liquidity、cold startが出る
+
+                      - 利用者増が参入障壁や価格決定力につながる
+
+                    antiSignals:
+
+                      - TCP/IPやネットワーク障害の話
+
+                      - SNSの単なるフォロワー数報告だけ
+
+                      - 通信速度やレイテンシだけを扱っている
+
+                    relatedNames:
+
+                      - name: Metcalfe's Law
+
+                        kind: method
+
+                        relevance: ネットワークの価値が接続数に応じて増えるという説明でよく参照される。
+
+                      - name: Cold Start Problem
+
+                        kind: pattern
+
+                        relevance: ネットワーク効果が立ち上がる前に価値が不足する問題として出る。
+
+                      - name: Marketplace Liquidity
+
+                        kind: pattern
+
+                        relevance: 需要と供給の密度が高まるほど価値が増す市場で重要な概念。
+
+                      - name: Viral Coefficient
+
+                        kind: method
+
+                        relevance: 利用者が利用者を呼ぶ効果を定量化する際に関連する。
                   name: ネットワーク効果
                   summary: 利用者数の増加が既存利用者の価値を高める現象。
                   whyLearn: 成長がそのまま参入障壁や価格決定力につながる条件を理解するため。
@@ -135,7 +598,110 @@ domain:
                   aliases:
                     - Switching Costs
                     - Lock-in
+                  search:
+                    keywords:
+                      - スイッチングコスト
+                      - Switching Costs
+                      - lock-in
+                      - vendor lock-in
+                      - migration cost
+                      - data portability
+                      - exit cost
+                      - retraining cost
+                      - integration lock-in
+                      - 乗り換え障壁
+                    commonSignals:
+                      - 乗り換えが難しい理由をデータ、運用、学習、契約で分けている
+                      - 移行費用、再教育、連携張り替え、契約縛りを議論している
+                      - 解約率や価格耐性の背景としてlock-inが出る
+                      - migration plan、exit cost、data exportが出る
+                    antiSignals:
+                      - プログラミングのswitch文やswitch case
+                      - ネットワークスイッチ機器のコスト
+                      - 単なるUI切り替えやトグル操作の話
+                    relatedNames:
+                      - name: Vendor Lock-in
+                        kind: pattern
+                        relevance: 特定ベンダーからの移行が難しくなる典型的なスイッチングコストの形。
+                      - name: Data Portability
+                        kind: pattern
+                        relevance: データ移行のしやすさが乗り換え負担を左右する。
+                      - name: API Integration
+                        kind: protocol
+                        relevance: 深い連携や依存APIが移行コストを高めることが多い。
+                      - name: Single Sign-On
+                        kind: protocol
+                        relevance: 認証連携が組織運用に深く入ると移行負担に影響する。
+
                 - slug: economies-of-scale
+
+                  search:
+
+                    keywords:
+
+                      - 規模の経済
+
+                      - Economies of Scale
+
+                      - scale economies
+
+                      - unit cost decline
+
+                      - fixed cost leverage
+
+                      - minimum efficient scale
+
+                      - operating leverage
+
+                      - scale advantage
+
+                      - experience curve
+
+                      - 単位コスト低下
+
+                    commonSignals:
+
+                      - 規模拡大で単位コストが下がると述べている
+
+                      - 固定費を多くの顧客や取引でならす話
+
+                      - スケールメリット、平均費用、限界費用が出る
+
+                      - 市場シェア拡大がコスト優位につながると議論している
+
+                    antiSignals:
+
+                      - システムのスケーラビリティだけで費用の話がない
+
+                      - 単なる大量販売の話で単位コスト低下がない
+
+                      - 組織人数が増えたという記述だけ
+
+                    relatedNames:
+
+                      - name: Learning Curve
+
+                        kind: method
+
+                        relevance: 累積生産や経験による単位コスト低下を説明する補助概念。
+
+                      - name: Experience Curve
+
+                        kind: framework
+
+                        relevance: 規模や経験がコスト優位に変わる構造を分析する際に使われる。
+
+                      - name: Minimum Efficient Scale
+
+                        kind: method
+
+                        relevance: 平均費用が十分に低くなる最小規模を考える際に関連する。
+
+                      - name: Operating Leverage
+
+                        kind: method
+
+                        relevance: 固定費が大きい事業で売上増加が利益率に与える影響を見る。
                   name: 規模の経済
                   summary: 事業規模の拡大に伴って単位当たりコストが下がる性質。
                   whyLearn: シェア拡大が利益率改善にどう結びつくかを判断するため。
@@ -165,7 +731,122 @@ domain:
                   aliases:
                     - Subscription Pricing
                     - Recurring Pricing
+                  search:
+                    keywords:
+                      - サブスクリプション課金
+                      - Subscription Pricing
+                      - recurring pricing
+                      - monthly plan
+                      - annual plan
+                      - SaaS subscription
+                      - recurring revenue
+                      - renewal
+                      - MRR
+                      - subscription billing
+                    commonSignals:
+                      - 月額、年額、更新、解約、継続課金の話
+                      - MRR、ARR、renewal、subscription billingが出る
+                      - 定期利用権に対して課金している
+                      - プラン変更、アップグレード、ダウングレードがある
+                    antiSignals:
+                      - ニュースレター購読など課金がないsubscribe
+                      - 一回払いのライセンス販売だけ
+                      - 単なる定期タスクやcronの話
+                    relatedNames:
+                      - name: Stripe Billing
+                        kind: service
+                        relevance: サブスクリプション請求、プラン管理、更新課金の実装で広く使われる。
+                        officialUrl: https://stripe.com/billing
+                      - name: Chargebee
+                        kind: service
+                        relevance: SaaSのサブスク管理、請求、税務連携に使われる。
+                        officialUrl: https://www.chargebee.com/
+                      - name: Zuora Billing
+                        kind: platform
+                        relevance: エンタープライズ向けサブスクリプション管理で知られる。
+                        officialUrl: https://www.zuora.com/
+                      - name: Recurly
+                        kind: service
+                        relevance: 継続課金とサブスクリプションライフサイクル管理で使われる。
+                        officialUrl: https://recurly.com/
+
                 - slug: usage-based-pricing
+
+                  search:
+
+                    keywords:
+
+                      - 使用量ベース課金
+
+                      - Usage-Based Pricing
+
+                      - UBP
+
+                      - consumption pricing
+
+                      - metered billing
+
+                      - pay as you go
+
+                      - API usage billing
+
+                      - credits
+
+                      - overage billing
+
+                      - 従量課金
+
+                    commonSignals:
+
+                      - API回数、トークン数、GB、リクエスト数、処理時間で課金している
+
+                      - metered billing、pay as you go、creditsという語が出る
+
+                      - 利用量増加と売上増加を連動させたい話
+
+                      - 使用量イベント、請求単位、メータリング精度を議論している
+
+                    antiSignals:
+
+                      - 利用分析だけで請求や価格が関係しない
+
+                      - 使用率、稼働率、CPU使用率だけの運用監視
+
+                      - 無料枠の使用量制限だけで課金がない
+
+                    relatedNames:
+
+                      - name: Stripe Metered Billing
+
+                        kind: service
+
+                        relevance: 使用量イベントをもとに従量課金を実装する代表的な請求サービス。
+
+                        officialUrl: https://docs.stripe.com/billing/subscriptions/usage-based
+
+                      - name: Metronome
+
+                        kind: platform
+
+                        relevance: APIやAIプロダクトの使用量課金、メータリング、請求設計に使われる。
+
+                        officialUrl: https://metronome.com/
+
+                      - name: OpenMeter
+
+                        kind: tool
+
+                        relevance: 使用量イベントを計測し、従量課金やクォータ管理につなげるオープンソース系ツール。
+
+                        officialUrl: https://openmeter.io/
+
+                      - name: FinOps
+
+                        kind: framework
+
+                        relevance: クラウド利用量とコストを顧客価値や価格に接続する際に関連する。
+
+                        officialUrl: https://www.finops.org/
                   name: 使用量ベース課金
                   summary: API 回数、データ量、処理量など実際の消費量に応じて課金するモデル。
                   whyLearn: コストと価値の連動を作りやすく、AI や開発者向け商材で重要だから。
@@ -180,7 +861,112 @@ domain:
                   promptHint: 固定費部分と従量部分をどう分けると顧客にも自社にも無理がないか説明して。
                   aliases:
                     - Hybrid Pricing
+                  search:
+                    keywords:
+                      - ハイブリッド課金
+                      - Hybrid Pricing
+                      - base fee plus usage
+                      - platform fee
+                      - fixed plus variable pricing
+                      - subscription plus consumption
+                      - committed spend
+                      - usage bundle
+                      - minimum fee
+                      - 固定費プラス従量
+                    commonSignals:
+                      - 基本料金と従量料金を組み合わせている
+                      - 最低コミット、無料枠、超過課金が同時に出る
+                      - 予見可能性と価値連動を両立したいと述べている
+                      - subscription plus usageやbase fee plus usageが出る
+                    antiSignals:
+                      - ハイブリッドクラウドやハイブリッドアプリの話
+                      - 複数販売チャネルの併用だけ
+                      - 価格ではなく勤務形態のhybrid
+                    relatedNames:
+                      - name: Committed Spend
+                        kind: pattern
+                        relevance: 固定的な最低利用額と従量部分を組み合わせる設計でよく出る。
+                      - name: Bundled Usage
+                        kind: pattern
+                        relevance: 一定利用量を基本料金に含め、超過分を従量課金する方式。
+                      - name: Stripe Billing
+                        kind: service
+                        relevance: 固定料金、従量料金、段階料金を組み合わせた請求設計に使われる。
+                        officialUrl: https://stripe.com/billing
+                      - name: AWS Savings Plans
+                        kind: service
+                        relevance: 最低コミットと従量利用の組み合わせを理解する参考例として使われる。
+                        officialUrl: https://aws.amazon.com/savingsplans/
+
                 - slug: outcome-based-pricing
+
+                  search:
+
+                    keywords:
+
+                      - 成果連動課金
+
+                      - Outcome-Based Pricing
+
+                      - performance-based pricing
+
+                      - success fee
+
+                      - value sharing
+
+                      - pay for performance
+
+                      - savings share
+
+                      - gainsharing
+
+                      - result-based pricing
+
+                      - 成果報酬
+
+                    commonSignals:
+
+                      - 成果、削減額、改善率に応じて課金する
+
+                      - success fee、gainsharing、pay for performanceが出る
+
+                      - 成果測定や因果帰属の難しさを議論している
+
+                      - 導入効果の一部を報酬として受け取る契約
+
+                    antiSignals:
+
+                      - OKRやKPIの成果管理だけで課金がない
+
+                      - 成果物納品型の請負契約だけ
+
+                      - キャンペーン成果のレポートで料金連動がない
+
+                    relatedNames:
+
+                      - name: Gainsharing
+
+                        kind: pattern
+
+                        relevance: 顧客の削減額や改善成果を事業者と分配する成果連動契約の形。
+
+                      - name: Success Fee
+
+                        kind: pattern
+
+                        relevance: 成果達成時に報酬が発生する契約条件としてよく使われる。
+
+                      - name: Service Level Agreement
+
+                        kind: standard
+
+                        relevance: 成果や品質を契約上どう測るかの前提として関連する。
+
+                      - name: OKR
+
+                        kind: framework
+
+                        relevance: 成果定義の言語として参照されることがあるが、課金と混同しない注意が必要。
                   name: 成果連動課金
                   summary: 利用量ではなく、達成成果や節約額などの結果に紐づける課金方式。
                   whyLearn: 高い価値獲得余地がある一方、計測と責任分界が難しいため。
@@ -199,6 +985,41 @@ domain:
                   promptHint: この商材を価値ベースで値付けするなら、顧客便益をどう金額換算するか説明して。
                   aliases:
                     - Value-Based Pricing
+                  search:
+                    keywords:
+                      - 価値ベース価格設定
+                      - Value-Based Pricing
+                      - value pricing
+                      - customer value pricing
+                      - economic value estimation
+                      - EVC
+                      - price to value
+                      - monetized value
+                      - ROI pricing
+                      - 顧客価値ベース
+                    commonSignals:
+                      - 顧客の得る便益を金額換算している
+                      - 原価ではなくROI、削減額、増収効果から価格を決めている
+                      - value metric、WTP、EVCが一緒に出る
+                      - 値引きではなく価値訴求で価格を正当化している
+                    antiSignals:
+                      - 企業価値や株価評価のvaluationだけ
+                      - 価値観ベースの経営判断
+                      - values.yamlやvalue objectなど技術用語のvalue
+                    relatedNames:
+                      - name: Economic Value to the Customer
+                        kind: method
+                        relevance: 顧客が得る経済価値を金額化して価格根拠を作る方法。
+                      - name: Conjoint Analysis
+                        kind: method
+                        relevance: 顧客がどの属性に価値を感じるかを価格設計に反映する。
+                      - name: Van Westendorp Price Sensitivity Meter
+                        kind: method
+                        relevance: 支払意思額や許容価格帯を調査する補助手法。
+                      - name: Monetizing Innovation
+                        kind: other
+                        relevance: 価値と支払意思額を先に検証する価格設計の文脈でよく参照される書籍。
+
                 - slug: cost-plus-pricing
                   name: 原価積み上げ価格設定
                   summary: 原価に一定のマージンを上乗せして価格を決める方法。
@@ -213,6 +1034,42 @@ domain:
                   promptHint: このプロダクトの価値指標はユーザー数、利用量、成果のどれが最も自然か説明して。
                   aliases:
                     - Value Metric
+                  search:
+                    keywords:
+                      - 価値指標
+                      - Value Metric
+                      - billing metric
+                      - pricing metric
+                      - usage metric
+                      - unit of value
+                      - seats
+                      - API calls
+                      - credits
+                      - billable event
+                    commonSignals:
+                      - 何を1単位として請求するかを議論している
+                      - seat、API call、credit、GB、transactionなどが候補になっている
+                      - 顧客価値と原価のどちらに近い指標かを比較している
+                      - billable eventやpricing metricという語がある
+                    antiSignals:
+                      - KPIやプロダクト指標だけで請求単位ではない
+                      - 技術的なメトリクス監視だけ
+                      - 価値観や評価基準の一般論
+                    relatedNames:
+                      - name: Billable Event
+                        kind: pattern
+                        relevance: 何を請求対象のイベントとして扱うかを定義する価値指標の実装単位。
+                      - name: Metered Billing
+                        kind: pattern
+                        relevance: 使用量を請求単位に変換する際に価値指標が必要になる。
+                      - name: OpenMeter
+                        kind: tool
+                        relevance: 使用量イベントを価値指標として集計し課金へ接続する。
+                        officialUrl: https://openmeter.io/
+                      - name: Stripe Usage Records
+                        kind: service
+                        relevance: 使用量ベース課金で請求対象の単位を記録する実装に使われる。
+                        officialUrl: https://docs.stripe.com/billing/subscriptions/usage-based
 
         - slug: packaging-and-commercial-terms
           name: パッケージングと商流条件
@@ -231,7 +1088,117 @@ domain:
                   aliases:
                     - Tiering
                     - Plan Tiers
+                  search:
+                    keywords:
+                      - ティアリング
+                      - Tiering
+                      - plan tiers
+                      - good better best
+                      - pricing tiers
+                      - package tiers
+                      - freemium
+                      - enterprise plan
+                      - pricing page
+                      - プラン設計
+                    commonSignals:
+                      - Free、Pro、Business、Enterpriseなどのプラン差がある
+                      - 機能、利用量、サポート、SLAでプランを分けている
+                      - 価格表やpricing pageの設計を議論している
+                      - アップグレード導線やプラン間差分の話
+                    antiSignals:
+                      - インフラのストレージ階層やネットワーク階層だけ
+                      - 顧客ランクの運用だけで価格設計がない
+                      - 組織階層や役職階層の話
+                    relatedNames:
+                      - name: Good-Better-Best Pricing
+                        kind: pattern
+                        relevance: 複数プランを段階的に設計する典型的な価格パッケージング手法。
+                      - name: Freemium
+                        kind: pattern
+                        relevance: 無料プランから有料ティアへ移行させる設計でよく使われる。
+                      - name: Enterprise Plan
+                        kind: pattern
+                        relevance: 上位顧客向けに機能、サポート、契約条件を分離するティアとして現れる。
+                      - name: Stripe Pricing Table
+                        kind: tool
+                        relevance: SaaSの価格プラン表示や選択UIの実装で使われる。
+                        officialUrl: https://docs.stripe.com/payments/checkout/pricing-table
+
                 - slug: feature-gating
+
+                  search:
+
+                    keywords:
+
+                      - 機能ゲーティング
+
+                      - Feature Gating
+
+                      - feature entitlement
+
+                      - entitlements
+
+                      - paywall
+
+                      - plan limits
+
+                      - feature flag
+
+                      - permission gating
+
+                      - upgrade prompt
+
+                      - 機能制限
+
+                    commonSignals:
+
+                      - 上位プランでだけ使える機能を制御している
+
+                      - entitlement、paywall、feature flag、plan limitが出る
+
+                      - アップセルのために機能制限を設計している
+
+                      - 無料枠と有料枠で機能差を作っている
+
+                    antiSignals:
+
+                      - リリース管理のfeature flagだけで価格やプランが関係しない
+
+                      - 権限管理やRBACだけで商用パッケージングがない
+
+                      - API rate limitだけで機能差がない
+
+                    relatedNames:
+
+                      - name: OpenFeature
+
+                        kind: standard
+
+                        relevance: 機能フラグの標準化に関する仕様で、ゲーティング実装と隣接する。
+
+                        officialUrl: https://openfeature.dev/
+
+                      - name: LaunchDarkly
+
+                        kind: service
+
+                        relevance: 機能フラグや段階リリースを使った機能制御で広く使われる。
+
+                        officialUrl: https://launchdarkly.com/
+
+                      - name: Unleash
+
+                        kind: tool
+
+                        relevance: オープンソースの機能フラグ管理としてプラン別機能制御にも使われる。
+
+                        officialUrl: https://www.getunleash.io/
+
+                      - name: Entitlement Management
+
+                        kind: pattern
+
+                        relevance: 顧客契約やプランに応じて利用可能機能を制御する設計パターン。
                   name: 機能ゲーティング
                   summary: 価格帯ごとに使える機能や上限制約を分ける設計。
                   whyLearn: 価値の高い機能を上位プランへ結び直しやすくするため。
@@ -259,6 +1226,43 @@ domain:
                   aliases:
                     - Minimum Commitment
                     - Commit
+                  search:
+                    keywords:
+                      - 最低コミット
+                      - Minimum Commitment
+                      - committed spend
+                      - minimum spend
+                      - minimum contract value
+                      - take-or-pay
+                      - commit contract
+                      - annual commitment
+                      - committed use
+                      - 最低利用額
+                    commonSignals:
+                      - 年間最低利用額や最低購入量を契約で決めている
+                      - commit、committed spend、minimum spendが出る
+                      - 導入初期の採算性を確保したい話
+                      - 割引と引き換えに利用量や金額を約束している
+                    antiSignals:
+                      - チームのコミットメントや約束という一般語
+                      - Git commitの話
+                      - 目標達成への心理的コミットだけ
+                    relatedNames:
+                      - name: Take-or-Pay Contract
+                        kind: pattern
+                        relevance: 一定量を使わなくても支払い義務が発生する最低コミット契約の典型。
+                      - name: Committed Use Discount
+                        kind: pattern
+                        relevance: 一定利用を約束する代わりに割引を受けるクラウドやSaaSの商流で出る。
+                      - name: AWS Savings Plans
+                        kind: service
+                        relevance: 継続利用コミットと割引の組み合わせを理解する参考例。
+                        officialUrl: https://aws.amazon.com/savingsplans/
+                      - name: Google Cloud Committed Use Discounts
+                        kind: service
+                        relevance: 使用量コミットによる価格条件の実務例として関連する。
+                        officialUrl: https://cloud.google.com/docs/cuds
+
                 - slug: overage
                   name: オーバーエイジ
                   summary: 契約上限を超えた利用に対して追加料金を課す仕組み。
@@ -274,6 +1278,44 @@ domain:
                   aliases:
                     - Spend Cap
                     - Billing Cap
+                  search:
+                    keywords:
+                      - 予算上限
+                      - Spend Cap
+                      - billing cap
+                      - budget cap
+                      - usage limit
+                      - cost guardrail
+                      - hard limit
+                      - budget alert
+                      - cost control
+                      - 請求上限
+                    commonSignals:
+                      - 想定外請求を避けるために上限やアラートを設定している
+                      - budget cap、billing cap、hard limit、usage limitが出る
+                      - 従量課金の導入不安を下げる文脈
+                      - 予算超過時に停止、通知、制限をかける話
+                    antiSignals:
+                      - 単なる社内予算編成で顧客請求や利用上限がない
+                      - Kubernetes resource limitなど技術的制限だけ
+                      - 支出削減一般の話で上限制御がない
+                    relatedNames:
+                      - name: AWS Budgets
+                        kind: service
+                        relevance: クラウド費用の予算上限やアラート設定の実務例。
+                        officialUrl: https://aws.amazon.com/aws-cost-management/aws-budgets/
+                      - name: Google Cloud Budgets
+                        kind: service
+                        relevance: 予算とアラートで利用コストを管理するクラウドの代表機能。
+                        officialUrl: https://cloud.google.com/billing/docs/how-to/budgets
+                      - name: Stripe Billing Thresholds
+                        kind: service
+                        relevance: 請求額や使用量に応じた制御・通知の実装と関連する。
+                        officialUrl: https://docs.stripe.com/billing/subscriptions/thresholds
+                      - name: FinOps
+                        kind: framework
+                        relevance: 予算、アラート、利用量管理を通じてクラウド支出を統制する。
+                        officialUrl: https://www.finops.org/
 
     - slug: financial-observability-unit-economics
       name: 財務把握とユニットエコノミクス
@@ -297,6 +1339,44 @@ domain:
                   aliases:
                     - P&L
                     - Income Statement
+                  search:
+                    keywords:
+                      - 損益計算書
+                      - Income Statement
+                      - P&L
+                      - profit and loss
+                      - statement of profit or loss
+                      - revenue
+                      - operating income
+                      - EBITDA
+                      - gross profit
+                      - 費用と利益
+                    commonSignals:
+                      - 売上、売上原価、販管費、営業利益、純利益が並ぶ
+                      - P&L、profit and loss、operating incomeが出る
+                      - 一定期間の収益性を見ている
+                      - 粗利率、営業利益率、EBITDAを議論している
+                    antiSignals:
+                      - キャッシュの出入りだけを扱う
+                      - 貸借対照表の資産負債だけ
+                      - プロジェクト単体の損益見積りで会計書類ではない
+                    relatedNames:
+                      - name: IFRS
+                        kind: standard
+                        relevance: 国際的な財務報告基準として損益計算書の表示に関係する。
+                        officialUrl: https://www.ifrs.org/issued-standards/
+                      - name: IAS 1
+                        kind: standard
+                        relevance: 財務諸表の表示に関するIFRS基準で、損益計算書の表示にも関係する。
+                        officialUrl: https://www.ifrs.org/issued-standards/list-of-standards/ias-1-presentation-of-financial-statements/
+                      - name: US GAAP
+                        kind: standard
+                        relevance: 米国会計基準で損益計算書や利益指標の表示に関わる。
+                      - name: XBRL
+                        kind: standard
+                        relevance: 財務諸表データを機械可読にするための標準形式。
+                        officialUrl: https://www.xbrl.org/
+
                 - slug: balance-sheet
                   name: 貸借対照表
                   summary: ある時点の資産、負債、資本の状態を表す計算書。
@@ -313,6 +1393,41 @@ domain:
                   aliases:
                     - C/F
                     - Cash Flow Statement
+                  search:
+                    keywords:
+                      - キャッシュフロー計算書
+                      - Cash Flow Statement
+                      - C/F
+                      - operating cash flow
+                      - investing cash flow
+                      - financing cash flow
+                      - free cash flow
+                      - direct method
+                      - indirect method
+                      - 現金増減
+                    commonSignals:
+                      - 営業、投資、財務のキャッシュフローを分けている
+                      - 黒字だが資金繰りが厳しい理由を扱っている
+                      - free cash flow、operating cash flowが出る
+                      - 売上や利益と現金回収のズレを議論している
+                    antiSignals:
+                      - 収益性だけを扱う損益計算書の話
+                      - 現金決済や支払方法だけ
+                      - システムのデータフローやワークフロー図
+                    relatedNames:
+                      - name: IAS 7
+                        kind: standard
+                        relevance: IFRSにおけるキャッシュフロー計算書の表示基準。
+                        officialUrl: https://www.ifrs.org/issued-standards/list-of-standards/ias-7-statement-of-cash-flows.html/
+                      - name: Free Cash Flow
+                        kind: method
+                        relevance: 営業キャッシュフローから投資支出を引いた資金創出力の指標として関連する。
+                      - name: Direct Method
+                        kind: method
+                        relevance: 営業キャッシュフローを現金収入・支出の総額で表示する方法。
+                      - name: Indirect Method
+                        kind: method
+                        relevance: 純利益から非資金項目や運転資本変動を調整して表示する方法。
             - slug: revenue-recognition-and-revenue-quality
               name: 収益認識と売上の質
               summary: いつ売上とみなすか、継続収益をどう読むかを扱う。
@@ -326,7 +1441,113 @@ domain:
                   aliases:
                     - Revenue Recognition
                     - IFRS 15
+                  search:
+                    keywords:
+                      - 収益認識
+                      - Revenue Recognition
+                      - IFRS 15
+                      - ASC 606
+                      - performance obligation
+                      - transaction price
+                      - contract liability
+                      - standalone selling price
+                      - revenue from contracts
+                      - 売上計上
+                    commonSignals:
+                      - 契約、履行義務、取引価格、売上計上時点を扱っている
+                      - IFRS 15、ASC 606、performance obligationが出る
+                      - 受注、請求、入金、売上認識のズレを議論している
+                      - SaaSの前受けや複数年契約の売上処理
+                    antiSignals:
+                      - 営業上の売上目標だけ
+                      - 請求書発行や入金消込だけで会計認識がない
+                      - プロダクト利用イベントの認識だけ
+                    relatedNames:
+                      - name: IFRS 15
+                        kind: standard
+                        relevance: 顧客との契約から生じる収益認識の国際会計基準。
+                        officialUrl: https://www.ifrs.org/issued-standards/list-of-standards/ifrs-15-revenue-from-contracts-with-customers/
+                      - name: ASC 606
+                        kind: standard
+                        relevance: 米国会計基準における顧客契約収益の認識基準。
+                      - name: Performance Obligation
+                        kind: method
+                        relevance: 収益をいつ認識するかを判断する契約上の履行義務。
+                      - name: Standalone Selling Price
+                        kind: method
+                        relevance: 複数要素契約で取引価格を配分する際に使われる考え方。
+
                 - slug: deferred-revenue
+
+                  search:
+
+                    keywords:
+
+                      - 繰延収益
+
+                      - Deferred Revenue
+
+                      - unearned revenue
+
+                      - contract liability
+
+                      - prepaid subscription
+
+                      - advance billing
+
+                      - 前受収益
+
+                      - SaaS deferred revenue
+
+                      - revenue backlog
+
+                      - 未履行義務
+
+                    commonSignals:
+
+                      - 年払いで入金済みだが月次で売上認識している
+
+                      - 前受収益、contract liability、unearned revenueが出る
+
+                      - 請求額と会計売上の差を説明している
+
+                      - SaaSのキャッシュ先行や未履行義務を扱っている
+
+                    antiSignals:
+
+                      - 単なる売掛金や未収入金の話
+
+                      - バックログ一般で会計上の前受けがない
+
+                      - 遅延やdeferredという技術用語だけ
+
+                    relatedNames:
+
+                      - name: IFRS 15
+
+                        kind: standard
+
+                        relevance: 前受け対価をいつ収益認識するかの基準として関連する。
+
+                        officialUrl: https://www.ifrs.org/issued-standards/list-of-standards/ifrs-15-revenue-from-contracts-with-customers/
+
+                      - name: ASC 606
+
+                        kind: standard
+
+                        relevance: 米国会計基準で契約負債や前受収益を扱う際に参照される。
+
+                      - name: Contract Liability
+
+                        kind: method
+
+                        relevance: 顧客から受け取ったがまだ履行していない義務を表す会計概念。
+
+                      - name: Subscription Billing
+
+                        kind: pattern
+
+                        relevance: 年払いSaaSなどで前受けと売上認識のズレが生じやすい。
                   name: 繰延収益
                   summary: 先に受け取ったが、まだ売上として認識していない金額。
                   whyLearn: SaaS の前受け収益やキャッシュ先行の見方に直結するため。
@@ -342,7 +1563,117 @@ domain:
                   aliases:
                     - ARR
                     - Annual Recurring Revenue
+                  search:
+                    keywords:
+                      - 年間経常収益
+                      - ARR
+                      - Annual Recurring Revenue
+                      - recurring revenue
+                      - subscription revenue
+                      - contracted ARR
+                      - new ARR
+                      - expansion ARR
+                      - churned ARR
+                      - SaaS metrics
+                    commonSignals:
+                      - 継続契約を年換算して事業規模を見ている
+                      - new ARR、expansion ARR、churned ARRが出る
+                      - 単発売上を除いてサブスク売上を集計している
+                      - SaaSの成長率やRule of 40と一緒に出る
+                    antiSignals:
+                      - 年間売上高全体で、単発売上やサービス費を含めている
+                      - 会計上のrevenueとARRを混同している
+                      - ARRという別略語、例えばarithmetic return rate
+                    relatedNames:
+                      - name: ChartMogul
+                        kind: tool
+                        relevance: SaaSのARR、MRR、チャーン、リテンション分析で使われる。
+                        officialUrl: https://chartmogul.com/
+                      - name: Maxio
+                        kind: platform
+                        relevance: SaaSのサブスクリプション財務、請求、ARR分析で使われる。
+                        officialUrl: https://www.maxio.com/
+                      - name: Stripe Revenue Recognition
+                        kind: service
+                        relevance: サブスクリプション売上と収益認識を管理する際に関連する。
+                        officialUrl: https://stripe.com/revenue-recognition
+                      - name: Bessemer Cloud Metrics
+                        kind: framework
+                        relevance: SaaSやクラウド企業の成長指標としてARRを中心に扱う。
+
                 - slug: bookings
+
+                  search:
+
+                    keywords:
+
+                      - ブッキング
+
+                      - Bookings
+
+                      - order bookings
+
+                      - signed contract value
+
+                      - TCV
+
+                      - ACV
+
+                      - backlog
+
+                      - new bookings
+
+                      - renewal bookings
+
+                      - 受注額
+
+                    commonSignals:
+
+                      - 契約締結や受注時点の金額を見ている
+
+                      - bookings、ACV、TCV、backlogが出る
+
+                      - 売上認識より早い先行指標として扱っている
+
+                      - 新規受注、更新受注、拡張受注を分けている
+
+                    antiSignals:
+
+                      - ホテルや会議室の予約というbooking
+
+                      - 会計売上そのものを指している
+
+                      - 単なる商談パイプラインで契約済みではない
+
+                    relatedNames:
+
+                      - name: ACV
+
+                        kind: method
+
+                        relevance: 年間契約価値としてBookingsやARRとの違いを整理する際に使われる。
+
+                      - name: TCV
+
+                        kind: method
+
+                        relevance: 複数年契約の総契約価値をBookingsとして見る際に関連する。
+
+                      - name: Salesforce
+
+                        kind: platform
+
+                        relevance: 受注、商談、契約金額を管理するCRMとしてBookings指標と接続しやすい。
+
+                        officialUrl: https://www.salesforce.com/
+
+                      - name: HubSpot CRM
+
+                        kind: service
+
+                        relevance: 商談ステージや受注管理を通じてBookingsを追跡する実務で使われる。
+
+                        officialUrl: https://www.hubspot.com/products/crm
                   name: ブッキング
                   summary: 契約締結ベースで捉える受注額で、売上認識より早いことが多い指標。
                   whyLearn: 成長の先行指標として useful だが、会計売上とは違うことを理解するため。
@@ -373,7 +1704,112 @@ domain:
                   promptHint: この商品・機能の限界利益はプラスか、その根拠を説明して。
                   aliases:
                     - Contribution Margin
+                  search:
+                    keywords:
+                      - 限界利益
+                      - Contribution Margin
+                      - marginal contribution
+                      - variable cost
+                      - unit economics
+                      - contribution profit
+                      - contribution margin ratio
+                      - variable margin
+                      - 固定費回収
+                      - 変動費控除後利益
+                    commonSignals:
+                      - 売上から変動費を引いて固定費回収に使う金額を見ている
+                      - 限界利益率、変動費、損益分岐点が一緒に出る
+                      - 1顧客、1取引、1注文ごとの採算を見ている
+                      - 広告投資や割引後の採算を判断している
+                    antiSignals:
+                      - 粗利率と完全に同義として扱っているが変動費定義がない
+                      - 限界費用だけで利益を扱っていない
+                      - 寄付やcontributionという一般語
+                    relatedNames:
+                      - name: Break-Even Analysis
+                        kind: method
+                        relevance: 限界利益を使って固定費を回収する売上水準を計算する。
+                      - name: Unit Economics
+                        kind: framework
+                        relevance: 顧客や取引単位の採算を見る際に限界利益が重要になる。
+                      - name: Activity-Based Costing
+                        kind: method
+                        relevance: 変動費や直接費をより正確に把握するために関連する。
+                      - name: Gross Margin
+                        kind: method
+                        relevance: 限界利益と粗利の違いを比較して費用構造を理解する。
+
                 - slug: gross-margin
+
+                  search:
+
+                    keywords:
+
+                      - 粗利率
+
+                      - Gross Margin
+
+                      - Gross Profit Margin
+
+                      - gross profit
+
+                      - COGS
+
+                      - cost of revenue
+
+                      - service gross margin
+
+                      - SaaS gross margin
+
+                      - 売上総利益率
+
+                      - 原価率
+
+                    commonSignals:
+
+                      - 売上総利益を売上で割っている
+
+                      - COGS、cost of revenue、原価率が出る
+
+                      - SaaSやAIの推論コストが粗利を圧迫する話
+
+                      - 粗利率改善、原価改善、価格耐性を議論している
+
+                    antiSignals:
+
+                      - 営業利益率や純利益率の話だけ
+
+                      - marginというCSS余白の話
+
+                      - 売上総額だけで原価を扱っていない
+
+                    relatedNames:
+
+                      - name: Cost of Goods Sold
+
+                        kind: method
+
+                        relevance: 粗利率の分母・分子を定義するうえで売上原価の把握が必要になる。
+
+                      - name: Cost of Revenue
+
+                        kind: method
+
+                        relevance: SaaSやサービス事業で提供原価を整理する際に使われる。
+
+                      - name: Cloud Cost Management
+
+                        kind: framework
+
+                        relevance: クラウド原価が粗利率に直結するSaaSやAIプロダクトで重要。
+
+                      - name: FinOps
+
+                        kind: framework
+
+                        relevance: クラウド利用コストを事業単位の粗利改善に接続する。
+
+                        officialUrl: https://www.finops.org/
                   name: 粗利率
                   summary: 売上総利益を売上で割った、商品・サービス提供段階の収益性指標。
                   whyLearn: 原価改善余地と価格耐性を比較しやすくするため。
@@ -388,6 +1824,40 @@ domain:
                   promptHint: この事業の損益分岐点はどこにあり、何を動かすと下がるか説明して。
                   aliases:
                     - Break-Even Point
+                  search:
+                    keywords:
+                      - 損益分岐点
+                      - Break-Even Point
+                      - break-even analysis
+                      - BEP
+                      - fixed cost coverage
+                      - contribution margin
+                      - units to break even
+                      - break-even sales
+                      - 損益分岐売上
+                      - 黒字化ライン
+                    commonSignals:
+                      - 売上と費用が等しくなる点を計算している
+                      - 固定費、変動費、限界利益率が一緒に出る
+                      - 何件売れば黒字化するかを逆算している
+                      - BEP、break-even sales、黒字化ラインが出る
+                    antiSignals:
+                      - 単なる黒字化目標で計算構造がない
+                      - システム障害のbreak pointやデバッガのbreakpoint
+                      - ブレイクスルーや成長転換点の一般表現
+                    relatedNames:
+                      - name: Break-Even Analysis
+                        kind: method
+                        relevance: 売上、固定費、変動費から損益ゼロの水準を計算する手法。
+                      - name: Contribution Margin
+                        kind: method
+                        relevance: 損益分岐点を計算するための中心的な利益概念。
+                      - name: Excel Goal Seek
+                        kind: tool
+                        relevance: 目標利益や損益分岐売上を逆算する簡易ツールとして使われる。
+                      - name: Sensitivity Analysis
+                        kind: method
+                        relevance: 価格、数量、変動費の変化が損益分岐点に与える影響を確認する。
             - slug: recurring-revenue-and-growth-efficiency
               name: 継続収益と成長効率
               summary: 顧客獲得・維持・拡張を経済指標で捉える。
@@ -401,7 +1871,114 @@ domain:
                   aliases:
                     - CAC
                     - Customer Acquisition Cost
+                  search:
+                    keywords:
+                      - 顧客獲得コスト
+                      - CAC
+                      - Customer Acquisition Cost
+                      - acquisition cost
+                      - sales and marketing cost
+                      - paid acquisition
+                      - blended CAC
+                      - paid CAC
+                      - CAC by channel
+                      - 新規顧客獲得費用
+                    commonSignals:
+                      - 新規顧客を獲得するための販売・マーケ費用を割っている
+                      - blended CAC、paid CAC、CAC by channelが出る
+                      - 広告費、営業人件費、リード数、成約数を結びつけている
+                      - LTV/CACやCAC Paybackと一緒に議論している
+                    antiSignals:
+                      - CACという認証局や証明書の略称
+                      - 既存顧客維持費だけ
+                      - 単なる広告クリック単価で顧客獲得まで見ていない
+                    relatedNames:
+                      - name: Google Ads
+                        kind: service
+                        relevance: 広告費から新規顧客獲得効率を測る際の代表的なチャネル。
+                        officialUrl: https://ads.google.com/
+                      - name: Meta Ads
+                        kind: service
+                        relevance: 有料獲得チャネルのCAC計算でよく使われる。
+                        officialUrl: https://www.facebook.com/business/ads
+                      - name: HubSpot
+                        kind: platform
+                        relevance: マーケティング、リード、商談を通じた獲得コスト分析に使われる。
+                        officialUrl: https://www.hubspot.com/
+                      - name: Salesforce
+                        kind: platform
+                        relevance: 営業費用や商談データと顧客獲得を接続するCRMとして使われる。
+                        officialUrl: https://www.salesforce.com/
+
                 - slug: cac-payback-period
+
+                  search:
+
+                    keywords:
+
+                      - CAC回収期間
+
+                      - CAC Payback
+
+                      - CAC Payback Period
+
+                      - months to recover CAC
+
+                      - sales efficiency
+
+                      - gross margin payback
+
+                      - payback period
+
+                      - acquisition payback
+
+                      - 顧客獲得費用回収
+
+                      - SaaS efficiency
+
+                    commonSignals:
+
+                      - 顧客獲得費用を何ヶ月で回収するかを計算している
+
+                      - gross margin adjusted paybackやmonths to recoverが出る
+
+                      - CAC、ARPA、粗利率、チャーンを合わせて見ている
+
+                      - 成長投資の回収速度を議論している
+
+                    antiSignals:
+
+                      - 一般的な投資回収期間で顧客獲得費用がない
+
+                      - 広告費の即時ROASだけ
+
+                      - 返金やキャッシュバックのpayback
+
+                    relatedNames:
+
+                      - name: OpenView SaaS Benchmarks
+
+                        kind: framework
+
+                        relevance: CAC PaybackをSaaS効率指標としてベンチマークする実務資料でよく参照される。
+
+                      - name: Bessemer Cloud Benchmarks
+
+                        kind: framework
+
+                        relevance: SaaSやクラウド企業の成長効率指標としてCAC Paybackを扱う。
+
+                      - name: LTV/CAC
+
+                        kind: method
+
+                        relevance: CAC回収期間と並んで顧客獲得投資の効率を見る代表指標。
+
+                      - name: Gross Margin
+
+                        kind: method
+
+                        relevance: CAC Paybackは粗利ベースで回収月数を計算することが多い。
                   name: CAC 回収期間
                   summary: 顧客獲得にかかった費用を粗利ベースで回収するまでの期間。
                   whyLearn: 成長のための投資がどれだけ早く回収されるかを見るため。
@@ -417,7 +1994,115 @@ domain:
                   aliases:
                     - NRR
                     - Net Revenue Retention
+                  search:
+                    keywords:
+                      - 純収益維持率
+                      - NRR
+                      - Net Revenue Retention
+                      - NDR
+                      - Net Dollar Retention
+                      - expansion revenue
+                      - contraction
+                      - churn
+                      - retention cohort
+                      - dollar retention
+                    commonSignals:
+                      - 既存顧客コホートの売上が解約・縮小・拡張込みでどう変わったかを見ている
+                      - NRR、NDR、expansion、contraction、churnが出る
+                      - 100%超えの既存顧客成長を説明している
+                      - SaaSの維持率やCustomer Successの文脈
+                    antiSignals:
+                      - ユーザー数の継続率だけで売上金額を見ていない
+                      - GRRだけで拡張売上を含めていない
+                      - ネットワーク機器のNRRなど別略語
+                    relatedNames:
+                      - name: Net Dollar Retention
+                        kind: method
+                        relevance: NRRと同義または近い概念としてSaaSで広く使われる。
+                      - name: ChartMogul
+                        kind: tool
+                        relevance: NRR、MRR、チャーン、拡張売上をコホートで分析する。
+                        officialUrl: https://chartmogul.com/
+                      - name: Stripe Billing Analytics
+                        kind: service
+                        relevance: サブスクリプション収益の維持率や拡張を分析する実務ツール。
+                        officialUrl: https://docs.stripe.com/billing/subscriptions/analytics
+                      - name: Gainsight
+                        kind: platform
+                        relevance: Customer Success文脈で既存顧客の維持・拡張を管理する。
+                        officialUrl: https://www.gainsight.com/
+
                 - slug: gross-revenue-retention
+
+                  search:
+
+                    keywords:
+
+                      - 粗収益維持率
+
+                      - GRR
+
+                      - Gross Revenue Retention
+
+                      - gross dollar retention
+
+                      - logo churn excluded expansion
+
+                      - revenue churn
+
+                      - retention without upsell
+
+                      - contraction churn
+
+                      - renewal base
+
+                      - 既存売上維持率
+
+                    commonSignals:
+
+                      - 拡張売上を除いて既存売上の維持だけを見ている
+
+                      - GRR、gross dollar retention、revenue churnが出る
+
+                      - NRRは高いが解約や縮小が隠れているという議論
+
+                      - 既存契約の更新率や縮小率を確認している
+
+                    antiSignals:
+
+                      - NRRと同じものとして拡張売上を含めている
+
+                      - 顧客数の維持率だけ
+
+                      - 粗利率Gross Marginの話
+
+                    relatedNames:
+
+                      - name: Gross Dollar Retention
+
+                        kind: method
+
+                        relevance: GRRと同義に使われることが多く、拡張を除いた売上維持を見る。
+
+                      - name: Revenue Churn
+
+                        kind: method
+
+                        relevance: GRRの悪化要因として解約や縮小による売上減少を測る。
+
+                      - name: ChartMogul
+
+                        kind: tool
+
+                        relevance: GRR、NRR、MRRチャーンを分析するSaaSメトリクスツール。
+
+                        officialUrl: https://chartmogul.com/
+
+                      - name: Cohort Analysis
+
+                        kind: method
+
+                        relevance: 既存顧客群の維持状況を期間別に追うために使われる。
                   name: 粗収益維持率
                   summary: 拡張売上を除き、既存売上の維持率だけを見る指標。
                   whyLearn: 拡張に隠れた解約・縮小の深刻さを確認するため。
@@ -432,6 +2117,40 @@ domain:
                   promptHint: Rule of 40 が高くても危険な会社はありうるか、どの条件でそうなるか説明して。
                   aliases:
                     - Rule of 40
+                  search:
+                    keywords:
+                      - ルールオブフォーティ
+                      - Rule of 40
+                      - SaaS Rule of 40
+                      - growth plus profitability
+                      - ARR growth
+                      - EBITDA margin
+                      - free cash flow margin
+                      - SaaS efficiency
+                      - growth efficiency
+                      - 40% rule
+                    commonSignals:
+                      - 成長率と利益率を足して40%以上かを見る
+                      - ARR growth、EBITDA margin、FCF marginが出る
+                      - SaaS企業の成長と収益性のバランスを評価している
+                      - Rule of Xやgrowth efficiencyとの比較がある
+                    antiSignals:
+                      - 40という数値が出るだけ
+                      - 個人の習慣や生活ルールの40
+                      - 利益率や成長率のどちらか一方だけ
+                    relatedNames:
+                      - name: Bessemer Cloud Benchmarks
+                        kind: framework
+                        relevance: SaaSやクラウド企業の成長効率指標としてRule of 40がよく扱われる。
+                      - name: Rule of X
+                        kind: framework
+                        relevance: 成長率と収益性の重み付けを変えるRule of 40の派生指標。
+                      - name: McKinsey SaaS Rule of 40
+                        kind: other
+                        relevance: SaaS企業価値と成長・収益性の関係を説明する資料で参照される。
+                      - name: EBITDA Margin
+                        kind: method
+                        relevance: Rule of 40の収益性側の入力として使われることが多い。
 
     - slug: investment-appraisal-resource-allocation
       name: 投資判断と資源配分
@@ -455,6 +2174,43 @@ domain:
                   aliases:
                     - CBA
                     - Cost-Benefit Analysis
+                  search:
+                    keywords:
+                      - 費用便益分析
+                      - Cost-Benefit Analysis
+                      - CBA
+                      - benefit-cost ratio
+                      - BCR
+                      - economic appraisal
+                      - social cost benefit analysis
+                      - monetized benefits
+                      - appraisal
+                      - 費用対便益
+                    commonSignals:
+                      - 便益と費用を金額換算して比較している
+                      - BCR、NPV、discounting、monetized benefitsが出る
+                      - 複数施策の総合価値を横断比較している
+                      - 公共投資、政策評価、事業ケースの文脈
+                    antiSignals:
+                      - 費用対効果という一般語だけで便益の貨幣換算がない
+                      - ROIだけの簡易計算
+                      - コスト削減額だけを見て便益全体を扱っていない
+                    relatedNames:
+                      - name: HM Treasury Green Book
+                        kind: standard
+                        relevance: 公共投資や政策評価における費用便益分析の代表的な公式ガイダンス。
+                        officialUrl: https://www.gov.uk/government/publications/the-green-book-appraisal-and-evaluation-in-central-government
+                      - name: OMB Circular A-94
+                        kind: standard
+                        relevance: 米国連邦政府の費用便益分析と割引率の公式ガイダンス。
+                        officialUrl: https://www.whitehouse.gov/omb/information-resources/guidance/circulars/
+                      - name: Benefit-Cost Ratio
+                        kind: method
+                        relevance: 費用に対する便益の倍率としてCBAで使われる指標。
+                      - name: Social Discount Rate
+                        kind: method
+                        relevance: 公共的便益や将来便益を現在価値化する際に使われる。
+
                 - slug: cost-effectiveness-analysis
                   name: 費用効果分析
                   summary: 効果を金額換算しにくい場合に、一定効果あたり費用で比較する方法。
@@ -471,6 +2227,42 @@ domain:
                   aliases:
                     - NPV
                     - Net Present Value
+                  search:
+                    keywords:
+                      - 正味現在価値
+                      - NPV
+                      - Net Present Value
+                      - discounted cash flow
+                      - DCF
+                      - present value
+                      - future cash flow
+                      - discount rate
+                      - capital budgeting
+                      - 投資評価
+                    commonSignals:
+                      - 将来キャッシュフローを割引率で現在価値化している
+                      - NPV、DCF、discount rate、terminal valueが出る
+                      - 投資案の採択・棄却を価値額で判断している
+                      - ExcelのNPV、XNPVやPython財務計算を使っている
+                    antiSignals:
+                      - ページビューPVやNet Promoter Valueなど別略語
+                      - 割引前の単純な累計利益だけ
+                      - 現在価値ではなく会計利益だけを見ている
+                    relatedNames:
+                      - name: Discounted Cash Flow
+                        kind: method
+                        relevance: 将来キャッシュフローを割引いて現在価値にするNPVの基礎手法。
+                      - name: Excel NPV
+                        kind: tool
+                        relevance: 投資案のNPVを簡易計算する表計算関数として使われる。
+                        officialUrl: https://support.microsoft.com/office/npv-function-8672cb67-2576-4d07-b67b-ac28acf2a568
+                      - name: XNPV
+                        kind: tool
+                        relevance: 日付が不規則なキャッシュフローの現在価値計算で使われる。
+                      - name: numpy-financial
+                        kind: library
+                        relevance: PythonでNPVやIRRなどの財務計算を行うために使われる。
+                        officialUrl: https://numpy.org/numpy-financial/
             - slug: capital-budgeting-core-terms
               name: 資本予算の基本語彙
               summary: 投資を採択・棄却する際の基本的な数理を扱う。
@@ -484,7 +2276,114 @@ domain:
                   aliases:
                     - IRR
                     - Internal Rate of Return
+                  search:
+                    keywords:
+                      - 内部収益率
+                      - IRR
+                      - Internal Rate of Return
+                      - XIRR
+                      - capital budgeting
+                      - discount rate where NPV equals zero
+                      - investment return
+                      - project IRR
+                      - hurdle rate comparison
+                      - 投資利回り
+                    commonSignals:
+                      - NPVがゼロになる割引率を求めている
+                      - IRR、XIRR、MIRR、hurdle rateが出る
+                      - 投資案の利回りを比較している
+                      - 初期投資と将来キャッシュフローの系列がある
+                    antiSignals:
+                      - internal rateという技術的なレート制限
+                      - ROIと同じ意味で単純利益率だけを出している
+                      - 複数符号変化のキャッシュフローでIRR解釈を無視している
+                    relatedNames:
+                      - name: Excel IRR
+                        kind: tool
+                        relevance: 等間隔キャッシュフローのIRRを計算する表計算関数。
+                        officialUrl: https://support.microsoft.com/office/irr-function-64925eaa-9988-495b-b290-3ad0c163c1bc
+                      - name: Excel XIRR
+                        kind: tool
+                        relevance: 不規則な日付のキャッシュフローに対するIRR計算で使われる。
+                      - name: Modified Internal Rate of Return
+                        kind: method
+                        relevance: 再投資率などIRRの弱点を補う派生指標。
+                      - name: numpy-financial
+                        kind: library
+                        relevance: PythonでIRRやNPVを計算するために使われる。
+                        officialUrl: https://numpy.org/numpy-financial/
+
                 - slug: discount-rate
+
+                  search:
+
+                    keywords:
+
+                      - 割引率
+
+                      - Discount Rate
+
+                      - cost of capital
+
+                      - WACC
+
+                      - risk-free rate
+
+                      - risk premium
+
+                      - social discount rate
+
+                      - hurdle rate
+
+                      - present value
+
+                      - 資本コスト
+
+                    commonSignals:
+
+                      - 将来価値を現在価値に直す率を設定している
+
+                      - WACC、risk premium、risk-free rateが出る
+
+                      - 投資リスクや資本コストを反映している
+
+                      - NPV、DCF、CBAと一緒に出る
+
+                    antiSignals:
+
+                      - 値引率、割引クーポン、ディスカウント販売だけ
+
+                      - API rate limitや通信レート
+
+                      - 会計上の減価償却率だけ
+
+                    relatedNames:
+
+                      - name: WACC
+
+                        kind: method
+
+                        relevance: 企業の資本コストとして投資評価の割引率に使われる。
+
+                      - name: CAPM
+
+                        kind: method
+
+                        relevance: 株主資本コストを推定する代表的な財務モデル。
+
+                      - name: OMB Circular A-94
+
+                        kind: standard
+
+                        relevance: 公共投資評価の割引率ガイダンスとして参照される。
+
+                        officialUrl: https://www.whitehouse.gov/omb/information-resources/guidance/circulars/
+
+                      - name: Yield Curve
+
+                        kind: method
+
+                        relevance: リスクフリーレートや期間構造を考える際の基礎になる。
                   name: 割引率
                   summary: 将来価値を現在価値へ変換する際に使う率。
                   whyLearn: 不確実性、資本コスト、機会費用の見積もりが判断に直結するため。
@@ -516,6 +2415,43 @@ domain:
                   aliases:
                     - LCC
                     - Life-Cycle Cost
+                  search:
+                    keywords:
+                      - ライフサイクルコスト
+                      - Life-Cycle Cost
+                      - LCC
+                      - total cost of ownership
+                      - TCO
+                      - whole life cost
+                      - maintenance cost
+                      - operating cost
+                      - decommissioning cost
+                      - 導入運用保守費用
+                    commonSignals:
+                      - 導入費だけでなく運用、保守、更新、廃止まで含めている
+                      - TCO、whole life cost、maintenance costが出る
+                      - クラウド移行やシステム導入の総所有コストを比較している
+                      - 初期費用が安くても長期費用が高いという議論
+                    antiSignals:
+                      - 初期見積りだけ
+                      - 製品寿命やリリースサイクルの話だけで費用がない
+                      - ライフサイクルアセスメントの環境影響だけ
+                    relatedNames:
+                      - name: Total Cost of Ownership
+                        kind: framework
+                        relevance: 導入から運用、保守、廃止までの総費用を考える近接概念。
+                      - name: ISO 15686-5
+                        kind: standard
+                        relevance: 建築・資産分野のライフサイクルコストに関する標準として参照される。
+                      - name: FinOps
+                        kind: framework
+                        relevance: クラウドサービスの継続利用コストをライフサイクルで管理する際に関連する。
+                        officialUrl: https://www.finops.org/
+                      - name: GAO Cost Estimating and Assessment Guide
+                        kind: standard
+                        relevance: プログラムやシステムのライフサイクルコスト見積りの実務ガイド。
+                        officialUrl: https://www.gao.gov/products/gao-20-195g
+
                 - slug: bottom-up-estimate
                   name: ボトムアップ見積り
                   summary: 作業項目や部品を積み上げて作る詳細見積り。
@@ -563,6 +2499,40 @@ domain:
                   promptHint: この案件は一括投資より段階投資にすべきか、実物オプションの観点で説明して。
                   aliases:
                     - Real Options
+                  search:
+                    keywords:
+                      - 実物オプション
+                      - Real Options
+                      - real option valuation
+                      - staged investment
+                      - option to expand
+                      - option to abandon
+                      - option to defer
+                      - managerial flexibility
+                      - uncertainty value
+                      - 段階投資
+                    commonSignals:
+                      - 延期、拡張、中止、段階投資の柔軟性に価値を置いている
+                      - 一括投資ではなく小さく始めて学習する話
+                      - option to expand、option to abandonが出る
+                      - 静的NPVでは評価しきれない不確実性を扱っている
+                    antiSignals:
+                      - 金融オプション取引だけ
+                      - ソフトウェアの設定オプションや選択肢一般
+                      - 単なるPoCで将来の意思決定権を評価していない
+                    relatedNames:
+                      - name: Real Options Valuation
+                        kind: method
+                        relevance: 事業投資の延期、拡張、中止の柔軟性を価値評価する方法。
+                      - name: Decision Tree Analysis
+                        kind: method
+                        relevance: 段階的な意思決定と不確実な結果を評価する際に併用される。
+                      - name: Black-Scholes Model
+                        kind: method
+                        relevance: 金融オプション評価の基礎として実物オプションの説明に参照される。
+                      - name: Stage-Gate Process
+                        kind: framework
+                        relevance: 不確実性の高い投資を段階的に進める管理フレームとして関連する。
 
     - slug: decision-making-under-uncertainty
       name: 意思決定と不確実性管理
@@ -586,7 +2556,110 @@ domain:
                   aliases:
                     - Expected Value
                     - EV
+                  search:
+                    keywords:
+                      - 期待値
+                      - Expected Value
+                      - EV
+                      - expected monetary value
+                      - EMV
+                      - probability weighted value
+                      - payoff
+                      - decision tree
+                      - risk neutral
+                      - 確率加重平均
+                    commonSignals:
+                      - 各シナリオの結果に確率を掛けて合計している
+                      - EV、EMV、probability weightedが出る
+                      - 不確実な投資案や施策を平均価値で比較している
+                      - payoff、probability、decision treeが一緒に出る
+                    antiSignals:
+                      - 電気自動車EVの話
+                      - 期待という日常語だけ
+                      - 最頻値や中央値だけで確率加重平均ではない
+                    relatedNames:
+                      - name: Expected Monetary Value
+                        kind: method
+                        relevance: 事業やプロジェクト判断で金額結果を確率加重して比較する方法。
+                      - name: Decision Tree Analysis
+                        kind: method
+                        relevance: 複数の結果と確率を木構造で表し期待値を計算する。
+                      - name: Bayes' Theorem
+                        kind: method
+                        relevance: 事前確率と観測情報を更新して期待値計算に反映する。
+                      - name: Probability Tree
+                        kind: method
+                        relevance: 条件付き確率を含む期待値計算を可視化する。
+
                 - slug: base-rate
+
+                  search:
+
+                    keywords:
+
+                      - ベースレート
+
+                      - Base Rate
+
+                      - reference class
+
+                      - reference class forecasting
+
+                      - outside view
+
+                      - prior probability
+
+                      - base rate neglect
+
+                      - historical average
+
+                      - comparable projects
+
+                      - 事前確率
+
+                    commonSignals:
+
+                      - 類似案件の過去実績や平均を参照している
+
+                      - outside view、reference class、priorが出る
+
+                      - 自分たちの案件だけ特別と考えないよう補正している
+
+                      - 見積り、成功率、解約率、採用率の事前確率を置いている
+
+                    antiSignals:
+
+                      - 基本料金やbase rate pricingの話
+
+                      - 為替や金利の基準レートだけ
+
+                      - 個別ケースの詳細だけで参照集団がない
+
+                    relatedNames:
+
+                      - name: Reference Class Forecasting
+
+                        kind: method
+
+                        relevance: 類似案件の実績分布を使って見積りや予測を補正する方法。
+
+                      - name: Outside View
+
+                        kind: method
+
+                        relevance: 個別事情より類似事例の平均を重視して判断する考え方。
+
+                      - name: Bayesian Prior
+
+                        kind: method
+
+                        relevance: 新しい証拠を得る前の事前確率としてベースレートと関係する。
+
+                      - name: Base Rate Neglect
+
+                        kind: pattern
+
+                        relevance: ベースレートを無視して判断を誤る認知バイアス。
                   name: ベースレート
                   summary: 類似案件全体で見たときの事前確率や平均的な発生率。
                   whyLearn: 自分の案件だけ特別だと思い込む誤りを減らすため。
@@ -613,6 +2686,41 @@ domain:
                   promptHint: この計画に計画錯誤が入りやすい根拠を、過去実績と比較して説明して。
                   aliases:
                     - Planning Fallacy
+                  search:
+                    keywords:
+                      - 計画錯誤
+                      - Planning Fallacy
+                      - optimism bias
+                      - schedule overrun
+                      - cost overrun
+                      - reference class forecasting
+                      - outside view
+                      - underestimation
+                      - project delay
+                      - 見積り過小
+                    commonSignals:
+                      - 予定より遅れる、予算を超える、見積りが甘いという話
+                      - planning fallacy、optimism bias、outside viewが出る
+                      - 過去実績と比較して計画を補正している
+                      - スケジュールやコストの過小見積りを扱っている
+                    antiSignals:
+                      - 単なる計画変更で見積りバイアスの話がない
+                      - 楽観的な雰囲気やモチベーションの話だけ
+                      - 遅延の原因が外部災害などで見積り錯誤と関係しない
+                    relatedNames:
+                      - name: Reference Class Forecasting
+                        kind: method
+                        relevance: 類似案件の実績から計画錯誤を補正する代表的な方法。
+                      - name: Optimism Bias Adjustment
+                        kind: method
+                        relevance: 初期見積りの楽観性を費用や期間に上乗せして補正する。
+                      - name: Premortem
+                        kind: method
+                        relevance: 失敗を事前に想定して計画の楽観性を下げるレビュー手法。
+                      - name: HM Treasury Green Book Optimism Bias
+                        kind: standard
+                        relevance: 公共投資評価で楽観バイアス補正を扱う公式ガイダンス。
+
                 - slug: sunk-cost-fallacy
                   name: 埋没費用の誤謬
                   summary: すでに回収不能な投下コストに引きずられて撤退できなくなる誤り。
@@ -644,7 +2752,111 @@ domain:
                   promptHint: この事業ケースで最も感度が高い変数は何か、その理由を説明して。
                   aliases:
                     - Sensitivity Analysis
+                  search:
+                    keywords:
+                      - 感度分析
+                      - Sensitivity Analysis
+                      - sensitivity table
+                      - tornado chart
+                      - what-if analysis
+                      - one-way sensitivity
+                      - two-way sensitivity
+                      - key driver
+                      - assumption testing
+                      - 変数感度
+                    commonSignals:
+                      - 価格、CVR、解約率、原価などの前提を動かして結果を見ている
+                      - tornado chart、what-if、one-way sensitivityが出る
+                      - どの変数がNPVや利益に効くかを確認している
+                      - ベースケースから上下に振った表がある
+                    antiSignals:
+                      - 感度という心理的な敏感さだけ
+                      - センサー感度やカメラ感度の話
+                      - 単なるシナリオ名だけで変数別の影響を見ていない
+                    relatedNames:
+                      - name: Tornado Chart
+                        kind: method
+                        relevance: 複数変数の影響度を可視化する感度分析の代表的な図。
+                      - name: Excel Data Table
+                        kind: tool
+                        relevance: 1変数・2変数の感度分析を表計算で行う際によく使われる。
+                      - name: SALib
+                        kind: library
+                        relevance: PythonでSobol法などの感度分析を行うライブラリ。
+                        officialUrl: https://salib.readthedocs.io/
+                      - name: What-If Analysis
+                        kind: method
+                        relevance: 前提を変えたときの結果変化を確認する広い分析手法。
+
                 - slug: scenario-analysis
+
+                  search:
+
+                    keywords:
+
+                      - シナリオ分析
+
+                      - Scenario Analysis
+
+                      - downside case
+
+                      - upside case
+
+                      - base case
+
+                      - bear case
+
+                      - bull case
+
+                      - stress scenario
+
+                      - strategic scenario planning
+
+                      - 複数ケース分析
+
+                    commonSignals:
+
+                      - 強気、中立、弱気など複数ケースを比較している
+
+                      - base case、bull case、bear case、downsideが出る
+
+                      - 複数前提をまとめて変えて結果を見ている
+
+                      - 市場変化や規制変化など構造的な将来像を扱う
+
+                    antiSignals:
+
+                      - ユーザーストーリーや利用シナリオだけ
+
+                      - 単一の予測ケースしかない
+
+                      - テストシナリオで事業・財務の不確実性を扱っていない
+
+                    relatedNames:
+
+                      - name: Scenario Planning
+
+                        kind: method
+
+                        relevance: 複数の将来像を構造化して戦略や投資判断を検討する方法。
+
+                      - name: Stress Testing
+
+                        kind: method
+
+                        relevance: 厳しい前提下で事業や財務が耐えられるかを見る手法。
+
+                      - name: Three-Statement Model
+
+                        kind: method
+
+                        relevance: 財務予測でBase、Upside、Downsideのケースを比較する際に使われる。
+
+                      - name: Monte Carlo Simulation
+
+                        kind: method
+
+                        relevance: シナリオ分析より連続的な確率分布で不確実性を扱う比較対象。
                   name: シナリオ分析
                   summary: 複数の前提をまとめて変え、異なる将来像ごとの結果を比較する方法。
                   whyLearn: 単変数の揺れだけでは捉えられない構造的変化を扱えるため。
@@ -658,6 +2870,43 @@ domain:
                   promptHint: この案件でモンテカルロを回すなら、どの変数を分布で置くべきか説明して。
                   aliases:
                     - Monte Carlo Simulation
+                  search:
+                    keywords:
+                      - モンテカルロシミュレーション
+                      - Monte Carlo Simulation
+                      - probability distribution
+                      - stochastic simulation
+                      - random sampling
+                      - risk distribution
+                      - percentile
+                      - simulation model
+                      - tail risk
+                      - 確率分布シミュレーション
+                    commonSignals:
+                      - 入力を確率分布で置き、多数回試行して結果分布を出している
+                      - percentile、P50、P90、tail riskが出る
+                      - NPV、コスト、スケジュールの不確実性を分布で評価している
+                      - random sampling、stochastic、simulationが出る
+                    antiSignals:
+                      - モナコやMonte Carlo地域の話
+                      - 単一ケースのシミュレーションで確率分布がない
+                      - A/Bテストのランダム割付だけ
+                    relatedNames:
+                      - name: NumPy
+                        kind: library
+                        relevance: Pythonで乱数生成やシミュレーション配列計算を行う基礎ライブラリ。
+                        officialUrl: https://numpy.org/
+                      - name: SciPy
+                        kind: library
+                        relevance: 確率分布や統計計算を使ったモンテカルロ分析で利用される。
+                        officialUrl: https://scipy.org/
+                      - name: PyMC
+                        kind: library
+                        relevance: 確率モデルやベイズ推論を含むシミュレーションで使われる。
+                        officialUrl: https://www.pymc.io/
+                      - name: '@RISK'
+                        kind: tool
+                        relevance: 表計算上でモンテカルロシミュレーションを行う商用ツールとして知られる。
             - slug: risk-governance
               name: リスク統治
               summary: リスクを洗い出し、優先順位を付け、受容範囲を明確にする。
@@ -670,6 +2919,44 @@ domain:
                   promptHint: この案件の risk register に最低限入れるべきリスクを挙げて。
                   aliases:
                     - Risk Register
+                  search:
+                    keywords:
+                      - リスク登録簿
+                      - Risk Register
+                      - risk log
+                      - RAID log
+                      - risk owner
+                      - likelihood impact
+                      - mitigation plan
+                      - residual risk
+                      - risk matrix
+                      - リスク一覧
+                    commonSignals:
+                      - リスク、発生確率、影響度、対応策、責任者を一覧にしている
+                      - risk owner、mitigation、residual riskが出る
+                      - RAID logやrisk matrixと一緒に出る
+                      - プロジェクトや事業ケースのリスク管理表
+                    antiSignals:
+                      - 単なる障害一覧やバグリスト
+                      - セキュリティリスクだけで事業判断のリスク管理がない
+                      - リスクという一般語だけで所有者や対応策がない
+                    relatedNames:
+                      - name: ISO 31000
+                        kind: standard
+                        relevance: リスクマネジメントの原則と枠組みに関する国際標準。
+                        officialUrl: https://www.iso.org/iso-31000-risk-management.html
+                      - name: COSO ERM
+                        kind: framework
+                        relevance: エンタープライズリスク管理の代表的なフレームワーク。
+                        officialUrl: https://www.coso.org/
+                      - name: RAID Log
+                        kind: tool
+                        relevance: Risks、Assumptions、Issues、Dependenciesを一覧管理する実務フォーマット。
+                      - name: Jira
+                        kind: tool
+                        relevance: プロジェクトリスクや対応策を課題として管理する実務で使われる。
+                        officialUrl: https://www.atlassian.com/software/jira
+
                 - slug: optimism-bias
                   name: 楽観バイアス補正
                   summary: 初期見積りが楽観的になる前提で、費用や期間に補正を入れる考え方。
@@ -707,7 +2994,117 @@ domain:
                   aliases:
                     - GTM
                     - Go-to-Market
+                  search:
+                    keywords:
+                      - Go-to-Market
+                      - GTM
+                      - go-to-market strategy
+                      - market launch
+                      - sales motion
+                      - distribution channel
+                      - target segment
+                      - positioning
+                      - launch plan
+                      - 市場投入戦略
+                    commonSignals:
+                      - 誰に、何を、どのチャネルで届けるかを設計している
+                      - GTM、sales motion、launch plan、positioningが出る
+                      - セグメント、チャネル、メッセージ、販売動線を接続している
+                      - 新製品ローンチや市場投入の計画
+                    antiSignals:
+                      - Google Tag ManagerのGTM
+                      - 市場投入後の個別広告運用だけ
+                      - プロダクト仕様だけで販売・流通がない
+                    relatedNames:
+                      - name: AARRR
+                        kind: framework
+                        relevance: 獲得、活性化、維持、紹介、収益化をGTM後の成長導線として見る。
+                      - name: HubSpot
+                        kind: platform
+                        relevance: マーケティング、営業、CRMをつなぐGTM実行基盤として使われる。
+                        officialUrl: https://www.hubspot.com/
+                      - name: Salesforce
+                        kind: platform
+                        relevance: 営業主導GTMの商談管理やパイプライン管理で広く使われる。
+                        officialUrl: https://www.salesforce.com/
+                      - name: Product Marketing Alliance
+                        kind: other
+                        relevance: ポジショニング、メッセージング、ローンチなどGTM実務の学習資源として知られる。
+                        officialUrl: https://www.productmarketingalliance.com/
+
                 - slug: product-led-growth
+
+                  search:
+
+                    keywords:
+
+                      - プロダクト主導成長
+
+                      - Product-Led Growth
+
+                      - PLG
+
+                      - self-serve onboarding
+
+                      - free trial
+
+                      - freemium
+
+                      - product-qualified lead
+
+                      - PQL
+
+                      - activation
+
+                      - product-led sales
+
+                    commonSignals:
+
+                      - 無料トライアルやフリーミアムから製品体験で転換させる
+
+                      - PLG、PQL、self-serve onboarding、activationが出る
+
+                      - 営業前にユーザーが価値体験を完了している
+
+                      - プロダクト利用データを獲得や拡張に使っている
+
+                    antiSignals:
+
+                      - プロダクトマネジメント一般の話
+
+                      - 単なる無料トライアルで利用データや自己完結性を見ていない
+
+                      - 営業主導で製品体験が補助に留まる
+
+                    relatedNames:
+
+                      - name: Product-Led Growth
+
+                        kind: framework
+
+                        relevance: 製品体験を獲得、活性化、拡張の中心に置く成長モデル。
+
+                      - name: Product-Qualified Lead
+
+                        kind: method
+
+                        relevance: 利用行動から営業対象を判断するPLG特有のリード概念。
+
+                      - name: Amplitude
+
+                        kind: platform
+
+                        relevance: プロダクト利用データからactivationやPQLを分析する。
+
+                        officialUrl: https://amplitude.com/
+
+                      - name: Mixpanel
+
+                        kind: platform
+
+                        relevance: PLGに必要な利用行動、ファネル、リテンション分析で使われる。
+
+                        officialUrl: https://mixpanel.com/
                   name: プロダクト主導成長
                   summary: 製品体験そのものを獲得、転換、拡張の主要エンジンにする成長様式。
                   whyLearn: 低 CAC と高いプロダクト起点の拡張が可能かを判断するため。

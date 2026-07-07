@@ -26,7 +26,93 @@ domain:
                   aliases:
                     - stakeholder
                     - 利害関係者
+                  search:
+                    keywords:
+                      - stakeholder
+                      - 利害関係者
+                      - ステークホルダー
+                      - stakeholder analysis
+                      - stakeholder map
+                      - user role
+                      - sponsor
+                      - domain expert
+                      - product owner
+                    commonSignals:
+                      - 誰が承認するか、誰が影響を受けるかを洗い出している
+                      - 利用者、運用者、管理者、監査者、スポンサーなどの役割が並ぶ
+                      - 要求の出所や意思決定者を特定している
+                    antiSignals:
+                      - 株主や投資家だけを指しており、ソフトウェア要求の関係者ではない
+                      - 単なるユーザー数や市場セグメントの話で、要求や受け入れ条件に接続していない
+                    relatedNames:
+                      - name: RACI
+                        kind: method
+                        relevance: 責任分担や承認者を整理するときにステークホルダー分析と一緒に使われやすい。
+                      - name: Stakeholder Map
+                        kind: method
+                        relevance: 影響度や関心度で関係者を整理するための代表的な可視化手法。
+                      - name: BABOK
+                        kind: standard
+                        relevance: ビジネス分析や要求引き出しの文脈でステークホルダー分類と一緒に参照されやすい。
+                        officialUrl: https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/
+
                 - slug: use-case
+
+                  search:
+
+                    keywords:
+
+                      - use case
+
+                      - ユースケース
+
+                      - ユースケース記述
+
+                      - actor
+
+                      - primary actor
+
+                      - main success scenario
+
+                      - alternate flow
+
+                      - exception flow
+
+                      - precondition
+
+                      - postcondition
+
+                      - UML use case
+
+                    commonSignals:
+
+                      - アクター、基本フロー、代替フロー、例外フローが書かれている
+
+                      - 利用者の目的とシステム応答をシナリオとして整理している
+
+                      - 事前条件や事後条件を含む要求記述がある
+
+                    antiSignals:
+
+                      - 導入事例やマーケティング上の利用例を use case と呼んでいるだけ
+
+                      - business case や投資判断の話で、利用者とシステムの相互作用ではない
+
+                    relatedNames:
+
+                      - name: UML
+
+                        kind: standard
+
+                        relevance: ユースケース図やアクター表現の標準的な記法として頻出する。
+
+                        officialUrl: https://www.omg.org/spec/UML/
+
+                      - name: Use Case 2.0
+
+                        kind: method
+
+                        relevance: ユースケースをアジャイルな要求単位として扱う文脈で参照される。
                   name: ユースケース
                   summary: 利用者とシステムの相互作用を目的単位で記述する要求表現。
                   whyLearn: システムが何を実現すべきかを利用文脈と結び付けて捉えられる。
@@ -42,6 +128,37 @@ domain:
                   aliases:
                     - user story
                     - ストーリー
+                  search:
+                    keywords:
+                      - user story
+                      - ユーザーストーリー
+                      - As a
+                      - I want
+                      - so that
+                      - INVEST
+                      - story point
+                      - epic
+                      - product backlog item
+                      - acceptance criteria
+                    commonSignals:
+                      - As a role, I want goal, so that benefit の形式で書かれている
+                      - エピックを小さなストーリーへ分割している
+                      - ストーリーポイントや受け入れ基準と一緒に出てくる
+                    antiSignals:
+                      - SNSのストーリー投稿や物語の意味で使われている
+                      - 実装タスクだけが書かれており、利用者価値や目的が表現されていない
+                    relatedNames:
+                      - name: INVEST
+                        kind: method
+                        relevance: ユーザーストーリーの品質を点検する代表的なチェック観点。
+                      - name: Scrum
+                        kind: method
+                        relevance: プロダクトバックログ項目としてユーザーストーリーが扱われることが多い。
+                        officialUrl: https://scrumguides.org/
+                      - name: Jira
+                        kind: tool
+                        relevance: エピック、ストーリー、サブタスクを管理する実務ツールとして頻出する。
+                        officialUrl: https://www.atlassian.com/software/jira
             - slug: requirements-specification
               name: 要求仕様化
               summary: 発見した要求を曖昧さの少ない形で仕様に落とし込む技法群。
@@ -55,7 +172,98 @@ domain:
                   aliases:
                     - SRS
                     - software requirements specification
+                  search:
+                    keywords:
+                      - SRS
+                      - software requirements specification
+                      - ソフトウェア要求仕様書
+                      - 要求仕様書
+                      - requirement specification
+                      - functional requirement
+                      - shall statement
+                      - requirements document
+                      - requirement ID
+                      - requirements baseline
+                    commonSignals:
+                      - shall、must、should の書き分けが議論されている
+                      - 要求ID、制約、前提、例外、優先度が文書化されている
+                      - 要求から設計やテストへ接続する基準文書として扱われている
+                    antiSignals:
+                      - PRDや事業要件だけで、ソフトウェア要求として検証可能に書かれていない
+                      - API仕様やDBスキーマだけを指しており、要求の根拠や振る舞いがない
+                    relatedNames:
+                      - name: ISO/IEC/IEEE 29148
+                        kind: standard
+                        relevance: 要求工学と要求仕様の情報項目を扱う代表的な標準。
+                        officialUrl: https://www.iso.org/standard/72089.html
+                      - name: IEEE 830
+                        kind: standard
+                        relevance: 古いSRS文脈で今も資料や会話ログに残りやすい歴史的な規格名。
+                      - name: DOORS Next
+                        kind: tool
+                        relevance: 要求仕様、トレーサビリティ、変更履歴を管理するツールとして出現しやすい。
+
                 - slug: nonfunctional-requirement
+
+                  search:
+
+                    keywords:
+
+                      - NFR
+
+                      - non-functional requirement
+
+                      - 非機能要求
+
+                      - 品質要求
+
+                      - quality requirement
+
+                      - performance requirement
+
+                      - availability requirement
+
+                      - reliability requirement
+
+                      - maintainability requirement
+
+                      - security requirement
+
+                    commonSignals:
+
+                      - 性能、可用性、保守性、信頼性、使用性などの条件が列挙されている
+
+                      - 応答時間、稼働率、復旧時間など測定可能な基準が出てくる
+
+                      - 機能一覧とは別に品質条件として整理されている
+
+                    antiSignals:
+
+                      - 単に非機能という見出しだけで、測定条件や受け入れ条件がない
+
+                      - インフラ設定や運用ルールだけで、ソフトウェアへの要求として表現されていない
+
+                    relatedNames:
+
+                      - name: ISO/IEC 25010
+
+                        kind: standard
+
+                        relevance: 品質特性を分類する基準として非機能要求の整理に使われる。
+
+                        officialUrl: https://www.iso.org/standard/78176.html
+
+                      - name: SQuaRE
+
+                        kind: standard
+
+                        relevance: システム・ソフトウェア品質要求と評価を扱うISO/IEC 25000系列の総称。
+
+                      - name: Quality Attribute Scenario
+
+                        kind: method
+
+                        relevance: 非機能要求を測定可能な状況と応答に分解するときに使われる。
                   name: 非機能要求
                   summary: 機能そのものではなく、性能、信頼性、保守性など振る舞いの質を定める要求。
                   whyLearn: 非機能要求は設計やアーキテクチャの早い段階から判断を拘束する。
@@ -72,6 +280,36 @@ domain:
                   aliases:
                     - acceptance criteria
                     - 受入基準
+                  search:
+                    keywords:
+                      - acceptance criteria
+                      - 受け入れ基準
+                      - 受入基準
+                      - completion criteria
+                      - done when
+                      - Given When Then
+                      - pass/fail condition
+                      - Definition of Done
+                      - UAT criteria
+                    commonSignals:
+                      - Given-When-Then で条件と期待結果が書かれている
+                      - チケットやストーリーに完了判定条件が付いている
+                      - PO、QA、顧客による受け入れ判断に接続されている
+                    antiSignals:
+                      - 単なる作業完了報告で、観測可能な合格条件がない
+                      - プロジェクト全体のリリース承認条件だけで、個別要求の受け入れ条件ではない
+                    relatedNames:
+                      - name: Gherkin
+                        kind: language
+                        relevance: 受け入れ基準をGiven-When-Then形式で記述する際に頻出する。
+                        officialUrl: https://cucumber.io/docs/gherkin/
+                      - name: Cucumber
+                        kind: framework
+                        relevance: 受け入れ基準を実行可能仕様として扱う文脈でよく使われる。
+                        officialUrl: https://cucumber.io/docs/
+                      - name: BDD
+                        kind: method
+                        relevance: ふるまいを例で合意し、受け入れ基準へ落とす実践として関連が強い。
         - slug: requirements-management-and-validation
           name: 要求の管理と妥当性確認
           summary: 変更や追跡を制御しながら、要求が本当に正しいかを確かめるためのまとまり。
@@ -89,6 +327,36 @@ domain:
                   aliases:
                     - RTM
                     - requirements traceability matrix
+                  search:
+                    keywords:
+                      - traceability matrix
+                      - requirements traceability matrix
+                      - RTM
+                      - トレーサビリティマトリクス
+                      - 要求トレーサビリティ
+                      - bidirectional traceability
+                      - requirement-to-test
+                      - coverage matrix
+                      - impact analysis
+                    commonSignals:
+                      - 要求IDとテストケースIDの対応表がある
+                      - 要求から設計、実装、テストまでのリンクを追っている
+                      - 変更時の影響範囲やテスト不足を確認している
+                    antiSignals:
+                      - データリネージや血統管理の話で、要求との対応関係ではない
+                      - 単にチケット番号があるだけで、双方向追跡や対応表になっていない
+                    relatedNames:
+                      - name: ISO/IEC/IEEE 29148
+                        kind: standard
+                        relevance: 要求の追跡可能性や要求情報項目を扱う標準として関連が強い。
+                        officialUrl: https://www.iso.org/standard/72089.html
+                      - name: DOORS Next
+                        kind: tool
+                        relevance: 要求、設計、テストのリンク管理に使われる代表的な要求管理ツール。
+                      - name: Jira
+                        kind: tool
+                        relevance: 要求、課題、テストケースをチケットで相互参照する運用で出現しやすい。
+
                 - slug: requirements-baseline
                   name: 要求ベースライン
                   summary: 一定時点で合意された要求の基準状態。
@@ -105,6 +373,35 @@ domain:
                   aliases:
                     - CR
                     - 変更依頼
+                  search:
+                    keywords:
+                      - change request
+                      - CR
+                      - 変更要求
+                      - 変更依頼
+                      - change control
+                      - impact assessment
+                      - change approval
+                      - scope change
+                      - change log
+                    commonSignals:
+                      - 要求や仕様の追加、修正、削除を正式な依頼として扱っている
+                      - 影響範囲、コスト、優先度、承認者が書かれている
+                      - 変更ログや承認履歴と一緒に出てくる
+                    antiSignals:
+                      - Gitの差分やPull Requestそのものだけを指している
+                      - 単なる改善アイデアで、影響評価や承認プロセスがない
+                    relatedNames:
+                      - name: Change Control Board
+                        kind: method
+                        relevance: 正式な変更要求の評価と承認を行う会議体として一緒に現れやすい。
+                      - name: ITIL Change Enablement
+                        kind: method
+                        relevance: 運用やサービス管理寄りの変更統制文脈で参照されやすい。
+                        officialUrl: https://www.axelos.com/certifications/itil-service-management
+                      - name: Jira
+                        kind: tool
+                        relevance: 変更要求を課題として記録し、承認や実装差分へ接続する実務で使われる。
             - slug: requirements-validation-techniques
               name: 要求の妥当性確認技法
               summary: 要求が本当に必要で、理解可能で、受け入れ可能かを確かめる技法群。
@@ -173,6 +470,37 @@ domain:
                   aliases:
                     - ADR
                     - architecture decision record
+                  search:
+                    keywords:
+                      - ADR
+                      - architecture decision record
+                      - architecture decision log
+                      - アーキテクチャ決定記録
+                      - 技術選定記録
+                      - decision rationale
+                      - context decision consequences
+                      - Nygard ADR
+                      - docs/adr
+                    commonSignals:
+                      - Context、Decision、Consequences の構成がある
+                      - 'status: proposed、accepted、deprecated のような状態がある'
+                      - リポジトリ内の adr ディレクトリや決定ログに言及している
+                    antiSignals:
+                      - 単なる議事録や会議メモで、決定と根拠が独立していない
+                      - 技術比較表だけで、採択した判断と影響が記録されていない
+                    relatedNames:
+                      - name: Lightweight Architecture Decision Records
+                        kind: method
+                        relevance: 軽量ADRの実践名として記事や会話で参照されやすい。
+                        officialUrl: https://www.thoughtworks.com/radar/techniques/lightweight-architecture-decision-records
+                      - name: MADR
+                        kind: pattern
+                        relevance: Markdown ADR テンプレートとしてリポジトリ内のADR運用に出現しやすい。
+                        officialUrl: https://adr.github.io/madr/
+                      - name: arc42
+                        kind: method
+                        relevance: アーキテクチャ文書の中で設計判断や根拠を整理するテンプレートとして併用されやすい。
+                        officialUrl: https://arc42.org/
             - slug: quality-attribute-driven-evaluation
               name: 品質属性駆動の評価
               summary: 性能や変更容易性などの品質属性からアーキテクチャを評価する技法群。
@@ -186,7 +514,101 @@ domain:
                   aliases:
                     - quality attribute
                     - quality characteristic
+                  search:
+                    keywords:
+                      - quality attribute
+                      - quality characteristic
+                      - 品質属性
+                      - 品質特性
+                      - availability
+                      - modifiability
+                      - performance
+                      - reliability
+                      - maintainability
+                      - usability
+                      - testability
+                    commonSignals:
+                      - 性能、可用性、変更容易性、信頼性などの設計上の質が議論されている
+                      - 機能要件ではなく、どのように良く動くべきかを分類している
+                      - 品質属性間のトレードオフが話題になっている
+                    antiSignals:
+                      - 単なる形容詞として良い品質と言っているだけ
+                      - SLAやKPIだけで、ソフトウェア構造や品質特性に接続していない
+                    relatedNames:
+                      - name: ISO/IEC 25010
+                        kind: standard
+                        relevance: ソフトウェア品質特性を分類する代表的な標準。
+                        officialUrl: https://www.iso.org/standard/78176.html
+                      - name: SQuaRE
+                        kind: standard
+                        relevance: 品質要求と品質評価を体系化するISO/IEC 25000系列として関連が強い。
+                      - name: Quality Attribute Workshop
+                        kind: method
+                        relevance: 重要な品質属性を関係者で抽出し優先順位付けするための手法。
+
                 - slug: scenario
+
+                  search:
+
+                    keywords:
+
+                      - quality attribute scenario
+
+                      - 品質属性シナリオ
+
+                      - scenario
+
+                      - stimulus
+
+                      - response
+
+                      - response measure
+
+                      - environment
+
+                      - artifact
+
+                      - availability scenario
+
+                      - modifiability scenario
+
+                    commonSignals:
+
+                      - source、stimulus、environment、artifact、response、response measure に分解している
+
+                      - 品質要求を具体的な事象と期待応答で書いている
+
+                      - 性能や可用性を測定可能なシナリオに落としている
+
+                    antiSignals:
+
+                      - ユーザーストーリーや業務シナリオだけで、品質属性の刺激と応答ではない
+
+                      - 単なる障害事例やテストケースで、品質評価用の構造になっていない
+
+                    relatedNames:
+
+                      - name: ATAM
+
+                        kind: method
+
+                        relevance: 品質属性シナリオを使ってアーキテクチャのトレードオフを評価する代表手法。
+
+                        officialUrl: https://www.sei.cmu.edu/library/architecture-tradeoff-analysis-method-atam/
+
+                      - name: Quality Attribute Workshop
+
+                        kind: method
+
+                        relevance: 品質属性シナリオを関係者と作るワークショップ手法として関連が強い。
+
+                      - name: ISO/IEC 25010
+
+                        kind: standard
+
+                        relevance: シナリオで扱う品質属性の語彙を整理する参照先として使われる。
+
+                        officialUrl: https://www.iso.org/standard/78176.html
                   name: シナリオ
                   summary: 品質属性を具体的な刺激、環境、応答で表現する記述。
                   whyLearn: 抽象的な品質要求を、評価やテストが可能な形に変換できる。
@@ -202,6 +624,34 @@ domain:
                   aliases:
                     - Architecture Tradeoff Analysis Method
                     - ATAM
+                  search:
+                    keywords:
+                      - ATAM
+                      - Architecture Tradeoff Analysis Method
+                      - アーキテクチャトレードオフ分析
+                      - utility tree
+                      - sensitivity point
+                      - tradeoff point
+                      - scenario prioritization
+                      - quality attribute scenario
+                    commonSignals:
+                      - utility tree を作り、品質属性シナリオを優先順位付けしている
+                      - 感度点やトレードオフ点を洗い出している
+                      - アーキテクチャのリスク、非リスク、感度点が評価結果として出てくる
+                    antiSignals:
+                      - 単なる pros/cons 比較や技術選定表
+                      - A/Bテストやプロダクト実験のトレードオフ分析
+                    relatedNames:
+                      - name: SEI ATAM
+                        kind: method
+                        relevance: ATAMの一次参照として最も安定した情報源。
+                        officialUrl: https://www.sei.cmu.edu/library/architecture-tradeoff-analysis-method-atam/
+                      - name: Quality Attribute Workshop
+                        kind: method
+                        relevance: ATAMと近接して使われる品質属性抽出の手法。
+                      - name: Utility Tree
+                        kind: method
+                        relevance: ATAMで品質属性とシナリオを整理し優先順位付けする中心的な成果物。
         - slug: modularity-and-design-principles
           name: モジュール性と設計原則
           summary: 変更しやすく理解しやすい構造を作るための分割原理と設計原則のまとまり。
@@ -219,7 +669,93 @@ domain:
                   aliases:
                     - coupling
                     - 結合
+                  search:
+                    keywords:
+                      - coupling
+                      - 結合度
+                      - 密結合
+                      - 疎結合
+                      - tight coupling
+                      - loose coupling
+                      - dependency direction
+                      - temporal coupling
+                      - afferent coupling
+                      - efferent coupling
+                    commonSignals:
+                      - 変更が波及する、差し替えにくい、テストしにくいという記述がある
+                      - 依存グラフ、import関係、循環依存が問題視されている
+                      - 外部サービスや具象実装への直接依存がレビューされている
+                    antiSignals:
+                      - 機械工学や電気回路の coupling を指している
+                      - 単にサービス同士が連携しているだけで、設計上の依存の強さを示していない
+                    relatedNames:
+                      - name: Stable Dependencies Principle
+                        kind: pattern
+                        relevance: 依存方向とモジュール安定性を議論するときに結合度と近接して扱われる。
+                      - name: Dependency Inversion Principle
+                        kind: pattern
+                        relevance: 具体実装への密結合を避ける設計原則として関連が強い。
+                      - name: JDepend
+                        kind: tool
+                        relevance: Javaの依存関係や結合度を測る古典的な分析ツールとして出現しやすい。
+
                 - slug: cohesion
+
+                  search:
+
+                    keywords:
+
+                      - cohesion
+
+                      - 凝集度
+
+                      - high cohesion
+
+                      - low cohesion
+
+                      - functional cohesion
+
+                      - single responsibility
+
+                      - reason to change
+
+                      - 責務分割
+
+                      - responsibility clustering
+
+                    commonSignals:
+
+                      - 一つのクラスやモジュールが複数責務を抱えている
+
+                      - reason to change が複数あるという表現がある
+
+                      - 関連しない処理が同じファイルやパッケージに混在している
+
+                    antiSignals:
+
+                      - チームの一体感や social cohesion の話
+
+                      - 画面デザインの統一感やブランド一貫性の話
+
+                    relatedNames:
+
+                      - name: Single Responsibility Principle
+
+                        kind: pattern
+
+                        relevance: 凝集度を実務的に説明するときに最も一緒に語られやすい原則。
+
+                      - name: GRASP
+
+                        kind: method
+
+                        relevance: 責務割り当てや高凝集を扱うオブジェクト設計原則群として関連する。
+
+                      - name: LCOM
+
+                        kind: method
+
+                        relevance: クラスの凝集度を測るメトリクス名としてコード品質分析で出現する。
                   name: 凝集度
                   summary: モジュール内部の責務がどれだけ一貫してまとまっているかを表す概念。
                   whyLearn: 凝集度が高いと責務が明確で変更理由も揃いやすい。
@@ -256,7 +792,93 @@ domain:
                   aliases:
                     - DIP
                     - dependency inversion principle
+                  search:
+                    keywords:
+                      - DIP
+                      - dependency inversion principle
+                      - 依存性逆転の原則
+                      - depend on abstractions
+                      - abstraction layer
+                      - interface dependency
+                      - inversion of control
+                      - IoC
+                      - dependency injection
+                    commonSignals:
+                      - 上位モジュールが下位の具象実装に直接依存していることを問題視している
+                      - interface、port、adapter、DI container が出てくる
+                      - テスト容易性や差し替え容易性のために抽象へ依存させている
+                    antiSignals:
+                      - 依存関係の向きを図示しているだけで、抽象への依存に関する話ではない
+                      - 制御の反転やDIライブラリの使い方だけで、設計原則が議論されていない
+                    relatedNames:
+                      - name: SOLID
+                        kind: method
+                        relevance: DIPはSOLID原則の一部として説明されることが多い。
+                      - name: Dependency Injection
+                        kind: pattern
+                        relevance: DIPを実装上支える代表的な依存注入パターンとして一緒に現れる。
+                      - name: Spring Framework
+                        kind: framework
+                        relevance: IoCコンテナやDIの実務例として頻出する。
+                        officialUrl: https://spring.io/projects/spring-framework
+
                 - slug: layered-architecture
+
+                  search:
+
+                    keywords:
+
+                      - layered architecture
+
+                      - レイヤードアーキテクチャ
+
+                      - n-tier architecture
+
+                      - 3-tier architecture
+
+                      - presentation layer
+
+                      - application layer
+
+                      - domain layer
+
+                      - infrastructure layer
+
+                      - dependency rule
+
+                    commonSignals:
+
+                      - presentation、application、domain、infrastructure などの層が分かれている
+
+                      - 依存方向や層越しのアクセス禁止が議論されている
+
+                      - controller、service、repository などの責務配置が話題になる
+
+                    antiSignals:
+
+                      - ネットワークのOSI参照モデルやクラウドの階層構成だけを指している
+
+                      - 単なるフォルダ分けで、依存方向や責務の制約がない
+
+                    relatedNames:
+
+                      - name: Clean Architecture
+
+                        kind: pattern
+
+                        relevance: 依存方向と層分割を比較する文脈で一緒に現れやすい。
+
+                      - name: Hexagonal Architecture
+
+                        kind: pattern
+
+                        relevance: 層構造とポート・アダプタ構造の比較対象として関連が強い。
+
+                      - name: Domain-Driven Design
+
+                        kind: method
+
+                        relevance: domain layer や application layer の責務分割で併用されやすい。
                   name: レイヤードアーキテクチャ
                   summary: 責務ごとに層を分け、依存方向を制約する代表的な構造スタイル。
                   whyLearn: 関心分離と変更範囲の局所化を理解する基本例になる。
@@ -287,7 +909,101 @@ domain:
                   aliases:
                     - unit test
                     - ユニットテスト
+                  search:
+                    keywords:
+                      - unit test
+                      - 単体テスト
+                      - ユニットテスト
+                      - UT
+                      - xUnit
+                      - test fixture
+                      - isolated test
+                      - deterministic test
+                      - fast feedback
+                    commonSignals:
+                      - 単一関数、単一クラス、単一モジュールの振る舞いを検証している
+                      - mock、stub、fixture を使って外部依存を置き換えている
+                      - ローカルで高速かつ頻繁に実行されるテストとして扱われている
+                    antiSignals:
+                      - 実DBや実ネットワーク前提の重いテスト
+                      - 手動QAや探索的テストを単体テストと呼んでいる
+                    relatedNames:
+                      - name: JUnit
+                        kind: framework
+                        relevance: xUnit系の単体テストフレームワークとして最も広く見かける。
+                        officialUrl: https://junit.org/junit5/
+                      - name: pytest
+                        kind: framework
+                        relevance: Pythonの単体テスト文脈で代表的な具体名。
+                        officialUrl: https://docs.pytest.org/
+                      - name: Vitest
+                        kind: framework
+                        relevance: JavaScriptやTypeScriptの高速な単体テスト実行で実務上よく現れる。
+                        officialUrl: https://vitest.dev/
+
                 - slug: integration-test
+
+                  search:
+
+                    keywords:
+
+                      - integration test
+
+                      - 結合テスト
+
+                      - 統合テスト
+
+                      - component integration
+
+                      - service integration
+
+                      - API integration
+
+                      - database integration
+
+                      - contract boundary
+
+                      - slice test
+
+                    commonSignals:
+
+                      - DB、メッセージブローカー、外部APIとの接続を含む
+
+                      - 複数コンポーネント間の境界や契約を確認している
+
+                      - 単体テストより環境セットアップが重い
+
+                    antiSignals:
+
+                      - 画面から全システムを通すE2Eテスト
+
+                      - 単一オブジェクトの孤立テスト
+
+                    relatedNames:
+
+                      - name: Testcontainers
+
+                        kind: library
+
+                        relevance: 実DBやミドルウェアを使う結合テストで頻出する。
+
+                        officialUrl: https://testcontainers.com/
+
+                      - name: WireMock
+
+                        kind: tool
+
+                        relevance: 外部HTTP依存をスタブ化する結合テストでよく使われる。
+
+                        officialUrl: https://wiremock.org/
+
+                      - name: Pact
+
+                        kind: tool
+
+                        relevance: サービス間契約の不一致を検証するConsumer-Driven Contract Testingで使われる。
+
+                        officialUrl: https://docs.pact.io/
                   name: 結合テスト
                   summary: 複数要素の接続や相互作用を検証するテスト。
                   whyLearn: 単体では見えない契約不一致や結合不良を見つけられる。
@@ -303,6 +1019,36 @@ domain:
                   aliases:
                     - system test
                     - 総合テスト
+                  search:
+                    keywords:
+                      - system test
+                      - システムテスト
+                      - 総合テスト
+                      - E2E
+                      - end-to-end test
+                      - full stack test
+                      - black-box system testing
+                      - staging test
+                    commonSignals:
+                      - UIからバックエンドまで通しで検証している
+                      - staging環境や本番相当環境で全体要求を確認している
+                      - 複数サブシステムをまとめてブラックボックス確認している
+                    antiSignals:
+                      - 単なるAPI結合テスト
+                      - ビジネス承認だけで、システム全体の検証活動ではない
+                    relatedNames:
+                      - name: Playwright
+                        kind: framework
+                        relevance: 現代のWebアプリケーションE2Eテストでよく使われる。
+                        officialUrl: https://playwright.dev/
+                      - name: Selenium
+                        kind: framework
+                        relevance: ブラウザ自動化によるシステムテストの古典的かつ広い具体名。
+                        officialUrl: https://www.selenium.dev/
+                      - name: Cypress
+                        kind: framework
+                        relevance: フロントエンドを含むE2Eテスト実装で頻出する。
+                        officialUrl: https://www.cypress.io/
             - slug: black-box-test-design
               name: ブラックボックス系テスト設計
               summary: 実装詳細ではなく入出力や仕様からテストケースを導く技法群。
@@ -316,7 +1062,85 @@ domain:
                   aliases:
                     - equivalence partitioning
                     - 同値クラス分割
+                  search:
+                    keywords:
+                      - equivalence partitioning
+                      - equivalence class partitioning
+                      - 同値分割
+                      - 同値クラス分割
+                      - valid partition
+                      - invalid partition
+                      - representative value
+                      - black-box test design
+                    commonSignals:
+                      - 入力を同じ振る舞いになるグループに分けている
+                      - 有効同値クラスと無効同値クラスを整理している
+                      - 代表値を選んでケース数を減らしている
+                    antiSignals:
+                      - クラスタリングや統計的な分類だけの話
+                      - 入力範囲を列挙しているだけで同じ扱いのクラスに分けていない
+                    relatedNames:
+                      - name: ISTQB Glossary
+                        kind: standard
+                        relevance: テスト設計技法の用語定義として参照されやすい。
+                        officialUrl: https://glossary.istqb.org/
+                      - name: ISO/IEC/IEEE 29119
+                        kind: standard
+                        relevance: ソフトウェアテストプロセスやテスト技法の標準文脈で関連する。
+
                 - slug: boundary-value-analysis
+
+                  search:
+
+                    keywords:
+
+                      - BVA
+
+                      - boundary value analysis
+
+                      - 境界値分析
+
+                      - 境界値テスト
+
+                      - boundary testing
+
+                      - min max value
+
+                      - off-by-one
+
+                      - edge case
+
+                      - limit value
+
+                    commonSignals:
+
+                      - 最小値、最大値、その直前直後をテストしている
+
+                      - 境界付近や切り替わり条件で不具合が出やすいと説明している
+
+                      - off-by-one error を疑っている
+
+                    antiSignals:
+
+                      - システム境界やネットワーク境界の設計の話
+
+                      - 極端値を試しているだけで、許容範囲の境界を分析していない
+
+                    relatedNames:
+
+                      - name: ISTQB Glossary
+
+                        kind: standard
+
+                        relevance: 境界値分析の用語定義とテスト技法分類で参照される。
+
+                        officialUrl: https://glossary.istqb.org/
+
+                      - name: ISO/IEC/IEEE 29119
+
+                        kind: standard
+
+                        relevance: ブラックボックス系テスト設計技法を扱う標準文脈で関連する。
                   name: 境界値分析
                   summary: 境界付近で不具合が出やすいことを利用するテスト設計手法。
                   whyLearn: 少ないケースで高い発見力を得やすい。
@@ -332,6 +1156,36 @@ domain:
                   aliases:
                     - decision table testing
                     - 条件組合せテスト
+                  search:
+                    keywords:
+                      - decision table testing
+                      - デシジョンテーブルテスト
+                      - 条件組合せテスト
+                      - decision table
+                      - condition action table
+                      - business rule
+                      - rule coverage
+                      - combination testing
+                    commonSignals:
+                      - 条件と期待結果を表で整理している
+                      - 業務ルールや複雑なif分岐の組み合わせを検証している
+                      - 未検証の条件組み合わせを探している
+                    antiSignals:
+                      - 単なる意思決定メモや比較表
+                      - SQLのテーブルやDB設計の話
+                    relatedNames:
+                      - name: DMN
+                        kind: standard
+                        relevance: 業務ルールやデシジョンテーブルを標準記法として扱う文脈で関連する。
+                        officialUrl: https://www.omg.org/spec/DMN/
+                      - name: Drools
+                        kind: tool
+                        relevance: ルールエンジンの条件組合せや業務ルール検証で出現しやすい。
+                        officialUrl: https://www.drools.org/
+                      - name: ISTQB Glossary
+                        kind: standard
+                        relevance: テスト設計技法としてのデシジョンテーブルを定義する参照先。
+                        officialUrl: https://glossary.istqb.org/
         - slug: automation-and-broader-verification
           name: 自動化と広義の検証
           summary: テスト実行を自動化し、静的解析や形式的手法まで含めて品質を確かめるまとまり。
@@ -349,7 +1203,101 @@ domain:
                   aliases:
                     - automated testing
                     - 自動テスト
+                  search:
+                    keywords:
+                      - test automation
+                      - automated testing
+                      - テスト自動化
+                      - 自動テスト
+                      - test runner
+                      - test suite
+                      - flaky test
+                      - test report
+                      - automation framework
+                    commonSignals:
+                      - テスト実行、判定、レポート生成を機械的に繰り返している
+                      - CIパイプラインでテストスイートを自動実行している
+                      - flaky test やメンテナンスコストが話題になっている
+                    antiSignals:
+                      - 手順書に従う手動テスト
+                      - RPAで業務操作を自動化しているだけで、テスト判定がない
+                    relatedNames:
+                      - name: Selenium
+                        kind: framework
+                        relevance: ブラウザ操作の自動テストで長く使われる代表的フレームワーク。
+                        officialUrl: https://www.selenium.dev/
+                      - name: Robot Framework
+                        kind: framework
+                        relevance: キーワード駆動の受け入れテスト自動化でよく使われる。
+                        officialUrl: https://robotframework.org/
+                      - name: Allure Report
+                        kind: tool
+                        relevance: 自動テスト結果の可視化やレポート生成で出現しやすい。
+                        officialUrl: https://allurereport.org/
+
                 - slug: continuous-integration
+
+                  search:
+
+                    keywords:
+
+                      - CI
+
+                      - continuous integration
+
+                      - 継続的インテグレーション
+
+                      - mainline integration
+
+                      - build on every commit
+
+                      - green build
+
+                      - status checks
+
+                      - commit stage
+
+                      - pipeline
+
+                    commonSignals:
+
+                      - pushやPull Requestごとにbuild/testが走る
+
+                      - 失敗したpipelineを直してmainをgreenに保つ
+
+                      - merge gate、required status checks、commit stage が出てくる
+
+                    antiSignals:
+
+                      - 夜間バッチ的な一括ビルドだけ
+
+                      - continuous delivery/deploymentだけを指し、頻繁な統合がない
+
+                    relatedNames:
+
+                      - name: Jenkins
+
+                        kind: tool
+
+                        relevance: CIサーバーの代表名として検索候補生成に効く。
+
+                        officialUrl: https://www.jenkins.io/
+
+                      - name: GitHub Actions
+
+                        kind: service
+
+                        relevance: 現代のSaaS型CI実装で高頻度に現れる具体名。
+
+                        officialUrl: https://docs.github.com/actions
+
+                      - name: GitLab CI/CD
+
+                        kind: service
+
+                        relevance: GitLab上でのCIパイプライン運用を示す具体名。
+
+                        officialUrl: https://docs.gitlab.com/ci/
                   name: 継続的インテグレーション
                   summary: 頻繁な統合と自動ビルド、自動テストで統合不良を早期に検出する実践。
                   whyLearn: 統合を後回しにせず、小さな差分で品質を確かめ続けられる。
@@ -365,7 +1313,102 @@ domain:
                   aliases:
                     - test coverage
                     - 網羅率
+                  search:
+                    keywords:
+                      - coverage
+                      - test coverage
+                      - code coverage
+                      - カバレッジ
+                      - 網羅率
+                      - line coverage
+                      - branch coverage
+                      - statement coverage
+                      - coverage threshold
+                      - coverage report
+                    commonSignals:
+                      - xx% covered や uncovered lines が出てくる
+                      - line、branch、function coverage のレポートがある
+                      - coverage threshold や quality gate と一緒に議論されている
+                    antiSignals:
+                      - 市場カバレッジや監視範囲の意味で使われている
+                      - カバレッジが高いことだけを品質保証の十分条件として扱っている
+                    relatedNames:
+                      - name: JaCoCo
+                        kind: tool
+                        relevance: JavaやJVMのカバレッジ計測で定番の具体名。
+                        officialUrl: https://www.jacoco.org/jacoco/
+                      - name: coverage.py
+                        kind: tool
+                        relevance: Pythonのカバレッジ計測で頻出する。
+                        officialUrl: https://coverage.readthedocs.io/
+                      - name: Istanbul
+                        kind: tool
+                        relevance: JavaScriptのコードカバレッジ計測で代表的な名前。
+                        officialUrl: https://istanbul.js.org/
+
                 - slug: ai-assisted-test-generation
+
+                  search:
+
+                    keywords:
+
+                      - AI test generation
+
+                      - LLM-based test generation
+
+                      - AI支援テスト生成
+
+                      - 生成AI テスト
+
+                      - unit test generation
+
+                      - test case generation
+
+                      - prompt generated tests
+
+                      - AI coding assistant
+
+                      - oracle problem
+
+                    commonSignals:
+
+                      - LLMやAI coding assistantがテストケースやテストコードを提案している
+
+                      - 生成されたテストの妥当性、アサーション、仕様適合性をレビューしている
+
+                      - 既存コードからユニットテストを自動生成している
+
+                    antiSignals:
+
+                      - AIでテスト計画の文章を要約しているだけ
+
+                      - 生成されたテストを仕様確認なしに正解として扱っている
+
+                    relatedNames:
+
+                      - name: GitHub Copilot
+
+                        kind: service
+
+                        relevance: テストコード候補を生成するAIコーディング支援として実務でよく現れる。
+
+                        officialUrl: https://github.com/features/copilot
+
+                      - name: EvoSuite
+
+                        kind: tool
+
+                        relevance: Java向けの自動単体テスト生成ツールとして研究と実務の橋渡しになる。
+
+                        officialUrl: https://www.evosuite.org/
+
+                      - name: Diffblue Cover
+
+                        kind: tool
+
+                        relevance: Javaの単体テスト生成ツールとしてAI支援テスト生成の具体例になる。
+
+                        officialUrl: https://www.diffblue.com/products/cover/
                   name: AI支援テスト生成
                   summary: 生成AIを使ってテストケースやテストコードの候補を作る実践。
                   whyLearn: テスト作成の初速を上げられる一方、妥当性確認の重要性も学べる。
@@ -386,7 +1429,104 @@ domain:
                   aliases:
                     - static analysis
                     - lint
+                  search:
+                    keywords:
+                      - static analysis
+                      - 静的解析
+                      - lint
+                      - linter
+                      - code scanning
+                      - AST rule
+                      - dataflow analysis
+                      - code smell detection
+                      - quality gate
+                      - SAST
+                    commonSignals:
+                      - コードを実行せずに規約違反や潜在欠陥を検出している
+                      - lint error、rule violation、quality gate がCIに出る
+                      - AST、CFG、data flow、code scanning が出てくる
+                    antiSignals:
+                      - runtime log analysis やAPMの話
+                      - SASTだけをセキュリティ専用に語っており、コード品質一般に接続していない
+                    relatedNames:
+                      - name: ESLint
+                        kind: tool
+                        relevance: JavaScriptやTypeScriptの静的解析とlintで強い手掛かりになる。
+                        officialUrl: https://eslint.org/
+                      - name: SonarQube
+                        kind: tool
+                        relevance: 言語横断の静的解析、コードスメル、品質ゲートの文脈で頻出する。
+                        officialUrl: https://www.sonarsource.com/products/sonarqube/
+                      - name: CodeQL
+                        kind: tool
+                        relevance: コードをクエリ可能なデータとして解析する静的解析ツールとして関連する。
+                        officialUrl: https://codeql.github.com/
+
                 - slug: fuzz-testing
+
+                  search:
+
+                    keywords:
+
+                      - fuzz testing
+
+                      - fuzzing
+
+                      - ファズテスト
+
+                      - ファジング
+
+                      - coverage-guided fuzzing
+
+                      - malformed input
+
+                      - random input generation
+
+                      - corpus
+
+                      - crasher
+
+                      - sanitizer
+
+                    commonSignals:
+
+                      - crasher、corpus、seed input、sanitizer が出てくる
+
+                      - parser、decoder、protocol handler に異常入力を投げている
+
+                      - coverage-guided や continuous fuzzing が話題になる
+
+                    antiSignals:
+
+                      - fuzzy search や曖昧検索の話
+
+                      - UIを適当に触る探索的テストを fuzz と呼んでいるだけ
+
+                    relatedNames:
+
+                      - name: OSS-Fuzz
+
+                        kind: service
+
+                        relevance: 継続的ファジングの実務とOSS文脈で定番の具体名。
+
+                        officialUrl: https://google.github.io/oss-fuzz/
+
+                      - name: libFuzzer
+
+                        kind: tool
+
+                        relevance: coverage-guided fuzzing のエンジン名として頻出する。
+
+                        officialUrl: https://llvm.org/docs/LibFuzzer.html
+
+                      - name: AFL++
+
+                        kind: tool
+
+                        relevance: カバレッジ誘導ファジングの代表的ツールとして広く見かける。
+
+                        officialUrl: https://aflplus.plus/
                   name: ファズテスト
                   summary: 大量または異常系の入力を与えて、クラッシュや脆弱な振る舞いを見つける手法。
                   whyLearn: 想定外入力への頑健性を効率よく確認できる。
@@ -403,6 +1543,36 @@ domain:
                     - formal methods
                     - model checking
                     - 定理証明
+                  search:
+                    keywords:
+                      - formal verification
+                      - formal methods
+                      - 形式的検証
+                      - model checking
+                      - theorem proving
+                      - specification language
+                      - invariant
+                      - temporal logic
+                      - proof obligation
+                    commonSignals:
+                      - 不変条件や時相論理で性質を記述している
+                      - モデル検査や定理証明で性質の成立を確認している
+                      - テストではなく仕様モデルに対する反例探索や証明が話題になる
+                    antiSignals:
+                      - 手動レビューを形式的と表現しているだけ
+                      - 型チェックや単体テストだけで、数学的モデルや証明がない
+                    relatedNames:
+                      - name: TLA+
+                        kind: language
+                        relevance: 並行・分散システムの仕様記述とモデル検査で頻出する形式手法。
+                      - name: Alloy
+                        kind: language
+                        relevance: 構造的なモデルの制約検査に使われる軽量形式手法として関連する。
+                        officialUrl: https://alloytools.org/
+                      - name: Coq
+                        kind: tool
+                        relevance: 定理証明による厳密な検証の具体名として現れやすい。
+                        officialUrl: https://coq.inria.fr/
 
     - slug: configuration-management-build-and-release-quality
       name: 構成管理、ビルド、リリース品質
@@ -426,7 +1596,99 @@ domain:
                   aliases:
                     - VCS
                     - version control
+                  search:
+                    keywords:
+                      - VCS
+                      - version control
+                      - バージョン管理
+                      - source control
+                      - SCM
+                      - repository
+                      - commit
+                      - branch
+                      - merge
+                      - diff
+                      - tag
+                    commonSignals:
+                      - commit history、branch、merge conflict、revert が出てくる
+                      - repo、clone、tag、blame などGit系語彙がある
+                      - 変更履歴の保存と共同編集の文脈で語られる
+                    antiSignals:
+                      - アプリや文書の版番号だけを指している
+                      - package versioning の話だけで変更履歴管理がない
+                    relatedNames:
+                      - name: Git
+                        kind: tool
+                        relevance: 現代のソースコードバージョン管理の事実上の標準名。
+                        officialUrl: https://git-scm.com/
+                      - name: Subversion
+                        kind: tool
+                        relevance: 集中型VCSやレガシーな構成管理文脈で今も現れる。
+                        officialUrl: https://subversion.apache.org/
+                      - name: Mercurial
+                        kind: tool
+                        relevance: Git以外の分散VCSを示す比較候補として有効。
+                        officialUrl: https://www.mercurial-scm.org/
+
                 - slug: trunk-based-development
+
+                  search:
+
+                    keywords:
+
+                      - trunk-based development
+
+                      - TBD
+
+                      - トランクベース開発
+
+                      - mainline development
+
+                      - short-lived branch
+
+                      - merge to main
+
+                      - release from trunk
+
+                      - branch by abstraction
+
+                      - keep trunk green
+
+                    commonSignals:
+
+                      - mainやtrunkへ頻繁に小さくマージしている
+
+                      - 長寿命feature branchやmerge hellを避ける話がある
+
+                      - CI、small batch、keep trunk green と一緒に出てくる
+
+                    antiSignals:
+
+                      - mainブランチが存在するだけ
+
+                      - GitFlowや長寿命リリースブランチを中心にした運用
+
+                    relatedNames:
+
+                      - name: Trunk Based Development
+
+                        kind: method
+
+                        relevance: 用語そのものの解説サイトがあり、実務例と反パターンがまとまっている。
+
+                        officialUrl: https://trunkbaseddevelopment.com/
+
+                      - name: Branch by Abstraction
+
+                        kind: pattern
+
+                        relevance: 長寿命ブランチを避けて段階移行するための併用パターン。
+
+                      - name: Feature Flags
+
+                        kind: pattern
+
+                        relevance: 未完成変更を主幹へ安全に統合するために一緒に使われやすい。
                   name: トランクベース開発
                   summary: 長寿命ブランチを避け、短い差分を主幹に頻繁に統合する開発スタイル。
                   whyLearn: 統合リスクを小さく保ち、CI と相性の良い流れを作れる。
@@ -442,6 +1704,38 @@ domain:
                   aliases:
                     - PR
                     - merge request
+                  search:
+                    keywords:
+                      - pull request
+                      - PR
+                      - プルリクエスト
+                      - merge request
+                      - MR
+                      - code review
+                      - review comment
+                      - approval
+                      - request changes
+                      - branch protection
+                    commonSignals:
+                      - 差分、レビューコメント、approval、request changes がある
+                      - merge前に設計や実装の論点を確認している
+                      - required reviewers や branch protection と一緒に語られる
+                    antiSignals:
+                      - Gitのpullコマンドだけを指している
+                      - レビューなしの単なるブランチマージ
+                    relatedNames:
+                      - name: GitHub Pull Requests
+                        kind: service
+                        relevance: プルリクエスト運用の代表的な具体名として頻出する。
+                        officialUrl: https://docs.github.com/pull-requests
+                      - name: GitLab Merge Requests
+                        kind: service
+                        relevance: merge request という名称で同種の変更提案とレビューを扱う。
+                        officialUrl: https://docs.gitlab.com/user/project/merge_requests/
+                      - name: Gerrit
+                        kind: tool
+                        relevance: 厳密なコードレビュー運用の文脈で出現しやすい。
+                        officialUrl: https://www.gerritcodereview.com/
             - slug: configuration-identification-and-baselines
               name: 構成識別とベースライン
               summary: 何を管理対象とみなし、どの状態を基準とするかを定める技法群。
@@ -471,6 +1765,36 @@ domain:
                   aliases:
                     - semver
                     - semantic versioning
+                  search:
+                    keywords:
+                      - semantic versioning
+                      - semver
+                      - セマンティックバージョニング
+                      - MAJOR.MINOR.PATCH
+                      - breaking change
+                      - backward compatible
+                      - pre-release
+                      - build metadata
+                      - versioning scheme
+                    commonSignals:
+                      - major、minor、patch の上げ分け基準を決めている
+                      - API互換性やbreaking change policyが話題になる
+                      - release noteやpackage publishとセットで出てくる
+                    antiSignals:
+                      - Git commit hashやbuild numberだけ
+                      - カレンダーバージョニングをSemVerと混同している
+                    relatedNames:
+                      - name: Semantic Versioning
+                        kind: standard
+                        relevance: SemVerの正式仕様として最も重要な関連名。
+                        officialUrl: https://semver.org/
+                      - name: Conventional Commits
+                        kind: standard
+                        relevance: コミットメッセージからSemVer運用へ接続するときによく併用される。
+                        officialUrl: https://www.conventionalcommits.org/en/v1.0.0/
+                      - name: CalVer
+                        kind: pattern
+                        relevance: バージョニング方式の比較対象として一緒に現れやすい。
         - slug: build-and-release-quality
           name: ビルドとリリース品質
           summary: 成果物を再現可能に組み立て、品質ゲートを通して安全に供給するためのまとまり。
@@ -488,6 +1812,39 @@ domain:
                   aliases:
                     - automated build
                     - build pipeline
+                  search:
+                    keywords:
+                      - build automation
+                      - ビルド自動化
+                      - automated build
+                      - build pipeline
+                      - build script
+                      - build tool
+                      - dependency resolution
+                      - packaging
+                      - artifact generation
+                      - reproducible build
+                    commonSignals:
+                      - one command build、依存解決、artifact出力の話がある
+                      - CIからbuild scriptが起動される
+                      - incremental build、remote cache、build graph が出てくる
+                    antiSignals:
+                      - Docker imageのビルドだけを指している
+                      - 手元で一度だけ行うコンパイル手順で、継続的な自動化ではない
+                    relatedNames:
+                      - name: Gradle
+                        kind: tool
+                        relevance: JVMやAndroid文脈のビルド自動化を示す代表的な具体名。
+                        officialUrl: https://gradle.org/
+                      - name: Apache Maven
+                        kind: tool
+                        relevance: POMやbuild lifecycleなどの固有語でビルド自動化を発見しやすい。
+                        officialUrl: https://maven.apache.org/
+                      - name: Bazel
+                        kind: tool
+                        relevance: 大規模、多言語、monorepoのビルド自動化で強いシグナルになる。
+                        officialUrl: https://bazel.build/
+
                 - slug: dependency-lockfile
                   name: 依存ロックファイル
                   summary: 解決済みの依存バージョンを固定して再現性を高めるファイル。
@@ -517,7 +1874,100 @@ domain:
                   aliases:
                     - gate
                     - quality check
+                  search:
+                    keywords:
+                      - quality gate
+                      - 品質ゲート
+                      - quality check
+                      - gate condition
+                      - merge gate
+                      - release gate
+                      - coverage threshold
+                      - static analysis gate
+                      - required checks
+                    commonSignals:
+                      - 次工程やmerge前に満たすべき条件が定義されている
+                      - coverage、lint、test、security scan の通過が必須条件になっている
+                      - gate failed や required checks が出てくる
+                    antiSignals:
+                      - QA担当者の承認だけで、明確な条件や自動判定がない
+                      - ビジネス上の稟議ゲートだけを指している
+                    relatedNames:
+                      - name: SonarQube Quality Gate
+                        kind: tool
+                        relevance: 静的解析やカバレッジ条件をゲート化する実務例として頻出する。
+                        officialUrl: https://docs.sonarsource.com/sonarqube-server/latest/quality-standards-administration/managing-quality-gates/
+                      - name: GitHub Branch Protection
+                        kind: service
+                        relevance: required status checksやレビュー承認をmerge gateにする運用で現れる。
+                        officialUrl: https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches
+                      - name: GitLab Approval Rules
+                        kind: service
+                        relevance: マージ前の承認やパイプライン条件を品質ゲートにする文脈で関連する。
+
                 - slug: continuous-delivery
+
+                  search:
+
+                    keywords:
+
+                      - CD
+
+                      - continuous delivery
+
+                      - 継続的デリバリー
+
+                      - release pipeline
+
+                      - deployable state
+
+                      - deployment pipeline
+
+                      - release readiness
+
+                      - production-like environment
+
+                      - manual approval
+
+                    commonSignals:
+
+                      - いつでも本番投入可能な状態を保つと説明している
+
+                      - ビルド、テスト、パッケージ、リリース準備がパイプライン化されている
+
+                      - deployable artifact、release candidate、manual approval が出てくる
+
+                    antiSignals:
+
+                      - continuous deployment と混同し、常に自動本番反映することだけを指している
+
+                      - CIだけで、リリース可能状態の維持やデリバリー工程がない
+
+                    relatedNames:
+
+                      - name: Jenkins
+
+                        kind: tool
+
+                        relevance: ビルド、テスト、デリバリーの自動化パイプラインで広く使われる。
+
+                        officialUrl: https://www.jenkins.io/
+
+                      - name: GoCD
+
+                        kind: tool
+
+                        relevance: 継続的デリバリーのパイプライン可視化と実践で知られるツール。
+
+                        officialUrl: https://www.gocd.org/
+
+                      - name: Continuous Delivery Foundation
+
+                        kind: platform
+
+                        relevance: 継続的デリバリー関連プロジェクトの業界団体として安定した関連名。
+
+                        officialUrl: https://cd.foundation/
                   name: 継続的デリバリー
                   summary: 本番投入可能な状態を継続的に保ち、出荷判断を容易にする実践。
                   whyLearn: リリース頻度を上げつつ変更リスクを小さくしやすい。
@@ -556,7 +2006,102 @@ domain:
                   aliases:
                     - refactoring
                     - リファクタ
+                  search:
+                    keywords:
+                      - refactoring
+                      - リファクタリング
+                      - リファクタ
+                      - behavior-preserving transformation
+                      - extract method
+                      - rename
+                      - move method
+                      - inline variable
+                      - code cleanup
+                      - restructuring existing code
+                    commonSignals:
+                      - 外部振る舞いを変えずに内部構造を改善すると書かれている
+                      - extract、inline、move、rename などの小さな変換が連続している
+                      - テストを安全網にして構造改善している
+                    antiSignals:
+                      - 新機能追加や仕様変更が主目的
+                      - 全面rewriteやre-platformingをリファクタリングと呼んでいる
+                    relatedNames:
+                      - name: Refactoring Catalog
+                        kind: pattern
+                        relevance: Fowler系の具体的なリファクタリング手法名が会話ログから見つかりやすい。
+                        officialUrl: https://refactoring.com/catalog/
+                      - name: OpenRewrite
+                        kind: tool
+                        relevance: 大規模な自動リファクタリングや移行で出現しやすい。
+                        officialUrl: https://docs.openrewrite.org/
+                      - name: IntelliJ IDEA
+                        kind: tool
+                        relevance: IDEの安全なrenameやextract methodなどの操作として頻出する。
+                        officialUrl: https://www.jetbrains.com/idea/
+
                 - slug: code-smell
+
+                  search:
+
+                    keywords:
+
+                      - code smell
+
+                      - コードスメル
+
+                      - 設計臭
+
+                      - bad smell
+
+                      - long method
+
+                      - duplicated code
+
+                      - large class
+
+                      - feature envy
+
+                      - shotgun surgery
+
+                      - primitive obsession
+
+                    commonSignals:
+
+                      - long method、duplicated code、large classなどのsmell名が出る
+
+                      - バグではないが将来問題になりそうな兆候として扱われている
+
+                      - refactoringの契機としてレビューで指摘されている
+
+                    antiSignals:
+
+                      - 実害のあるdefectやsecurity vulnerabilityそのもの
+
+                      - 一般的な悪臭の比喩として使われている
+
+                    relatedNames:
+
+                      - name: SonarQube
+
+                        kind: tool
+
+                        relevance: code smellを検出し可視化するツールとして資料に出やすい。
+
+                        officialUrl: https://www.sonarsource.com/products/sonarqube/
+
+                      - name: Refactoring Catalog
+
+                        kind: pattern
+
+                        relevance: コードスメルから具体的なリファクタリング手法へ接続するときに使われる。
+
+                        officialUrl: https://refactoring.com/catalog/
+
+                      - name: Martin Fowler
+
+                        kind: other
+
+                        relevance: code smellの背景説明や例示で頻出する名前。
                   name: コードスメル
                   summary: 問題の直接証拠ではないが、設計劣化を示唆する兆候。
                   whyLearn: 将来の保守コストが上がりそうな箇所を早めに見つけられる。
@@ -572,6 +2117,36 @@ domain:
                   aliases:
                     - regression test
                     - リグレッションテスト
+                  search:
+                    keywords:
+                      - regression test
+                      - 回帰テスト
+                      - リグレッションテスト
+                      - non-regression
+                      - bug reproduction test
+                      - rerun test suite
+                      - prevent reintroduction
+                      - change risk
+                      - existing behavior
+                    commonSignals:
+                      - 修正した不具合に対して再発防止テストを追加している
+                      - 変更後に既存テストを再実行して壊れていないか確認している
+                      - 影響範囲に応じてテストスイートを選んでいる
+                    antiSignals:
+                      - 統計のregression analysisを指している
+                      - 性能回帰だけで機能回帰や既存振る舞いの保護ではない
+                    relatedNames:
+                      - name: CI
+                        kind: method
+                        relevance: 変更のたびに回帰確認を自動実行する運用と強く結び付く。
+                      - name: JUnit
+                        kind: framework
+                        relevance: バグ修正後に再発防止の単体回帰テストを追加する文脈で出現しやすい。
+                        officialUrl: https://junit.org/junit5/
+                      - name: Playwright
+                        kind: framework
+                        relevance: 画面操作の回帰テストスイートでよく使われる。
+                        officialUrl: https://playwright.dev/
             - slug: maintainability-analysis
               name: 保守性分析
               summary: 変更しやすさや理解しやすさを指標や関係性から評価する技法群。
@@ -585,7 +2160,97 @@ domain:
                   aliases:
                     - maintainability
                     - 修正容易性
+                  search:
+                    keywords:
+                      - maintainability
+                      - 保守性
+                      - 修正容易性
+                      - modifiability
+                      - changeability
+                      - readability
+                      - testability
+                      - analyzability
+                      - maintainability index
+                      - technical debt
+                    commonSignals:
+                      - 変更理由の局所化、理解容易性、テスト容易性が議論されている
+                      - 保守コストや将来の変更容易性を評価している
+                      - complexity、duplication、code smell、technical debt と一緒に出る
+                    antiSignals:
+                      - 運用保守の契約やサポート体制だけの話
+                      - コードや構造の変更容易性に接続していない
+                    relatedNames:
+                      - name: ISO/IEC 25010
+                        kind: standard
+                        relevance: 保守性を品質特性として分類する代表的な標準。
+                        officialUrl: https://www.iso.org/standard/78176.html
+                      - name: Maintainability Index
+                        kind: method
+                        relevance: 保守性をコードメトリクスとして扱うときに出現しやすい。
+                      - name: SonarQube
+                        kind: tool
+                        relevance: 保守性、コードスメル、技術的負債を可視化するツールとして関連が強い。
+                        officialUrl: https://www.sonarsource.com/products/sonarqube/
+
                 - slug: cyclomatic-complexity
+
+                  search:
+
+                    keywords:
+
+                      - cyclomatic complexity
+
+                      - 循環的複雑度
+
+                      - McCabe complexity
+
+                      - decision points
+
+                      - branch count
+
+                      - complexity threshold
+
+                      - control flow graph
+
+                      - path count
+
+                      - complexity warning
+
+                    commonSignals:
+
+                      - if、switch、loopが増えすぎて複雑度が閾値超過している
+
+                      - 分岐の分解や関数抽出が議論されている
+
+                      - lintや静的解析でcomplexity warningが出ている
+
+                    antiSignals:
+
+                      - Big-Oなど計算量の複雑度
+
+                      - 組織やシステム全体の複雑性についての一般論
+
+                    relatedNames:
+
+                      - name: McCabe
+
+                        kind: method
+
+                        relevance: 循環的複雑度の由来として資料や説明に出現しやすい。
+
+                      - name: ESLint complexity rule
+
+                        kind: tool
+
+                        relevance: JavaScript/TypeScriptで複雑度の閾値警告を出す具体的なルール。
+
+                        officialUrl: https://eslint.org/docs/latest/rules/complexity
+
+                      - name: Cognitive Complexity
+
+                        kind: method
+
+                        relevance: 循環的複雑度と比較される読みやすさ寄りの複雑度指標。
                   name: 循環的複雑度
                   summary: 制御フローの分岐の多さから複雑さを測る代表的指標。
                   whyLearn: テスト難易度や理解しづらさの兆候を捉えやすい。
@@ -618,6 +2283,38 @@ domain:
                   aliases:
                     - technical debt
                     - TD
+                  search:
+                    keywords:
+                      - technical debt
+                      - 技術的負債
+                      - tech debt
+                      - TD
+                      - debt principal
+                      - debt interest
+                      - architecture debt
+                      - debt backlog
+                      - remediation cost
+                      - debt register
+                    commonSignals:
+                      - 後で返す、利息が増える、短期の近道という比喩がある
+                      - debt backlog、debt inventory、remediation plan が出てくる
+                      - 短期速度と長期保守コストのトレードオフが話題になる
+                    antiSignals:
+                      - 単なる未着手タスクやバックログの山
+                      - 財務上の借入や会計上の負債
+                    relatedNames:
+                      - name: SEI Technical Debt
+                        kind: method
+                        relevance: 技術的負債を体系的に管理する研究と実践の参照先として関連が強い。
+                        officialUrl: https://sei.cmu.edu/projects/managing-technical-debt-with-data-driven-analysis/
+                      - name: SonarQube
+                        kind: tool
+                        relevance: コードスメルと修正コストを技術的負債として可視化する実務文脈で出やすい。
+                        officialUrl: https://www.sonarsource.com/products/sonarqube/
+                      - name: Architecture Debt
+                        kind: method
+                        relevance: 局所コードではなく構造判断に残る負債を示す語として関連する。
+
                 - slug: interest-metaphor
                   name: 利息メタファ
                   summary: 技術的負債が時間経過とともに追加コストを生むという捉え方。
@@ -647,6 +2344,35 @@ domain:
                   aliases:
                     - strangler pattern
                     - strangler fig
+                  search:
+                    keywords:
+                      - strangler fig pattern
+                      - strangler pattern
+                      - ストラングラーフィグパターン
+                      - legacy modernization
+                      - incremental migration
+                      - gradual replacement
+                      - facade around legacy
+                      - routing new functionality
+                      - monolith migration
+                    commonSignals:
+                      - 旧システムの外側に新しい機能を追加して徐々に置き換えている
+                      - ルーティングやFacadeで新旧実装を共存させている
+                      - big bang rewrite を避ける文脈で語られている
+                    antiSignals:
+                      - 単なるマイクロサービス化の一般論
+                      - 旧システムを一括で捨てる全面刷新
+                    relatedNames:
+                      - name: Strangler Fig Application
+                        kind: pattern
+                        relevance: レガシーシステムを段階的に置き換える代表的なパターン名。
+                      - name: Reverse Proxy
+                        kind: pattern
+                        relevance: 旧新システムへのルーティングを切り替える実装手段として一緒に出やすい。
+                      - name: API Gateway
+                        kind: pattern
+                        relevance: 段階移行時に旧新機能への入口を制御する境界として関連する。
+
                 - slug: branch-by-abstraction
                   name: 抽象化による分岐
                   summary: 抽象レイヤを介して新旧実装を共存させながら切り替える手法。
@@ -686,6 +2412,38 @@ domain:
                   aliases:
                     - software lifecycle
                     - SDLC
+                  search:
+                    keywords:
+                      - software life cycle
+                      - software lifecycle
+                      - SDLC
+                      - ソフトウェアライフサイクル
+                      - life cycle process
+                      - development phase
+                      - operation
+                      - maintenance
+                      - retirement
+                      - acquisition
+                    commonSignals:
+                      - 企画、要求、設計、実装、テスト、運用、保守、退役が並ぶ
+                      - 工程やプロセス間の入力、出力、責任を整理している
+                      - SDLCやlife cycle processという語が使われている
+                    antiSignals:
+                      - 製品ライフサイクルや顧客ライフサイクルだけの話
+                      - 単一スプリントや一回のリリース作業だけを指している
+                    relatedNames:
+                      - name: ISO/IEC/IEEE 12207
+                        kind: standard
+                        relevance: ソフトウェアライフサイクルプロセスを定義する代表的な標準。
+                        officialUrl: https://www.iso.org/standard/90219.html
+                      - name: SWEBOK
+                        kind: standard
+                        relevance: ソフトウェア工学の知識体系としてライフサイクル全体の語彙に接続する。
+                        officialUrl: https://www.computer.org/education/bodies-of-knowledge/software-engineering/v4
+                      - name: V-model
+                        kind: method
+                        relevance: ライフサイクル内で開発成果物と検証活動の対応を示す代表モデル。
+
                 - slug: incremental-development
                   name: インクリメンタル開発
                   summary: 価値や機能を小さな増分に分けて段階的に提供する進め方。
@@ -702,6 +2460,37 @@ domain:
                   aliases:
                     - V-model
                     - V字工程
+                  search:
+                    keywords:
+                      - V-model
+                      - V字モデル
+                      - V字工程
+                      - verification and validation
+                      - test level mapping
+                      - requirements validation
+                      - system test
+                      - acceptance test
+                      - left side right side
+                    commonSignals:
+                      - 左側の開発工程と右側の検証工程を対応付けている
+                      - 要求に対する受け入れテスト、設計に対する統合テストが対応している
+                      - verification と validation を区別している
+                    antiSignals:
+                      - V字回復や売上推移のグラフ
+                      - ウォーターフォールと同義として雑に使われ、検証対応の議論がない
+                    relatedNames:
+                      - name: Automotive SPICE
+                        kind: standard
+                        relevance: 車載ソフトウェアなどでV字モデル的な工程とプロセス評価が一緒に現れやすい。
+                        officialUrl: https://www.automotivespice.com/
+                      - name: ISO/IEC/IEEE 12207
+                        kind: standard
+                        relevance: ライフサイクルプロセスの標準としてV字モデルと比較されやすい。
+                        officialUrl: https://www.iso.org/standard/90219.html
+                      - name: ISTQB
+                        kind: standard
+                        relevance: テストレベルや検証活動の説明でV字モデルが参照されることが多い。
+                        officialUrl: https://www.istqb.org/
             - slug: quality-focused-delivery-practices
               name: 品質志向のデリバリー実践
               summary: 開発の流れの中に品質確認を埋め込むための実践群。
@@ -715,7 +2504,95 @@ domain:
                   aliases:
                     - DevOps
                     - 開発運用協調
+                  search:
+                    keywords:
+                      - DevOps
+                      - 開発運用協調
+                      - development operations
+                      - CI/CD
+                      - deployment pipeline
+                      - feedback loop
+                      - automation
+                      - collaboration
+                      - CALMS
+                      - value stream
+                    commonSignals:
+                      - 開発から運用までの待ち時間や手戻りを減らす話がある
+                      - CI/CD、自動化、監視、フィードバックループが一緒に出る
+                      - 速度と安定性を同時に改善する文脈で語られる
+                    antiSignals:
+                      - 単にインフラ担当者や運用担当者をDevOpsと呼んでいる
+                      - ツール導入だけで、開発と運用の協調やフィードバック改善がない
+                    relatedNames:
+                      - name: DORA
+                        kind: method
+                        relevance: DevOpsの成果をデリバリー性能として測る代表的な研究・指標群。
+                        officialUrl: https://dora.dev/
+                      - name: The DevOps Handbook
+                        kind: other
+                        relevance: DevOps実践の原則やプラクティスの参照として会話に出やすい。
+                      - name: Jenkins
+                        kind: tool
+                        relevance: DevOpsの自動化やCI/CDパイプラインの具体例として頻出する。
+                        officialUrl: https://www.jenkins.io/
+
                 - slug: shift-left-testing
+
+                  search:
+
+                    keywords:
+
+                      - shift-left testing
+
+                      - shift left
+
+                      - シフトレフトテスト
+
+                      - 左シフト
+
+                      - early testing
+
+                      - early defect detection
+
+                      - test earlier
+
+                      - prevent defects
+
+                      - static checks in CI
+
+                    commonSignals:
+
+                      - 後工程で見つかる欠陥を要求、設計、実装直後に前倒し検出しようとしている
+
+                      - 静的解析、単体テスト、レビューを早い段階に入れている
+
+                      - 手戻りコスト削減や早期フィードバックが話題になる
+
+                    antiSignals:
+
+                      - 単にスケジュールを前倒しするだけ
+
+                      - 左側に図を寄せる、UI配置を左にするという意味
+
+                    relatedNames:
+
+                      - name: DevSecOps
+
+                        kind: method
+
+                        relevance: セキュリティ検査の前倒しを含むシフトレフトの実践として一緒に現れやすい。
+
+                      - name: SAST
+
+                        kind: method
+
+                        relevance: 実行前に欠陥や脆弱性を検出する前倒し検査として関連が強い。
+
+                      - name: CI
+
+                        kind: method
+
+                        relevance: 早期検出を継続的に実行する場としてシフトレフトと結び付く。
                   name: シフトレフトテスト
                   summary: 品質確認を後工程ではなく前倒しして行う考え方。
                   whyLearn: 欠陥の早期発見と手戻りコスト低減につながる。
@@ -731,6 +2608,35 @@ domain:
                   aliases:
                     - DoD
                     - Definition of Done
+                  search:
+                    keywords:
+                      - Definition of Done
+                      - DoD
+                      - 完了の定義
+                      - done criteria
+                      - team agreement
+                      - Scrum done
+                      - quality checklist
+                      - acceptance criteria
+                      - ready for release
+                    commonSignals:
+                      - テスト、レビュー、ドキュメント、デプロイ準備など完了条件が列挙されている
+                      - 実装完了とリリース可能状態を区別している
+                      - チーム共通の品質チェックリストとして扱われている
+                    antiSignals:
+                      - 個別要求の受け入れ基準だけを指している
+                      - 担当者の主観的な完了宣言だけで共通条件がない
+                    relatedNames:
+                      - name: Scrum Guide
+                        kind: standard
+                        relevance: Definition of Doneを明示的に扱う代表的なScrumの参照元。
+                        officialUrl: https://scrumguides.org/
+                      - name: Definition of Ready
+                        kind: method
+                        relevance: 作業開始条件と完了条件の対比として一緒に出やすい。
+                      - name: Acceptance Criteria
+                        kind: method
+                        relevance: 個別ストーリーの受け入れ条件と、チーム共通の完了条件を比較する文脈で関連する。
         - slug: quality-management-and-continuous-improvement
           name: 品質管理と継続改善
           summary: 品質を保証し、測定し、改善ループを回すためのまとまり。
@@ -748,6 +2654,37 @@ domain:
                   aliases:
                     - QA
                     - quality assurance
+                  search:
+                    keywords:
+                      - QA
+                      - quality assurance
+                      - 品質保証
+                      - process assurance
+                      - quality planning
+                      - audit
+                      - review process
+                      - prevent defects
+                      - software quality assurance
+                    commonSignals:
+                      - 品質を作り込むための工程、標準、レビュー、監査が議論されている
+                      - 不具合検出ではなく、不具合を出にくくする仕組みを扱っている
+                      - QA plan、process audit、quality policy が出てくる
+                    antiSignals:
+                      - テスター個人やテスト実行だけをQAと呼んでいる
+                      - 成果物の検査結果だけで、工程や仕組みの保証に触れていない
+                    relatedNames:
+                      - name: ISO 9001
+                        kind: standard
+                        relevance: 品質マネジメントシステムの一般標準として品質保証文脈で参照される。
+                        officialUrl: https://www.iso.org/iso-9001-quality-management.html
+                      - name: IEEE 730
+                        kind: standard
+                        relevance: ソフトウェア品質保証計画の規格名として専門文書に現れる。
+                      - name: CMMI
+                        kind: method
+                        relevance: プロセス能力と品質保証活動を組織改善として扱う文脈で関連する。
+                        officialUrl: https://cmmiinstitute.com/
+
                 - slug: quality-control
                   name: 品質管理
                   summary: 成果物や結果を検査し、規準との差を把握して是正する活動。
@@ -793,6 +2730,35 @@ domain:
                   aliases:
                     - DORA
                     - delivery metrics
+                  search:
+                    keywords:
+                      - DORA
+                      - DORA metrics
+                      - DORAメトリクス
+                      - delivery metrics
+                      - deployment frequency
+                      - lead time for changes
+                      - change failure rate
+                      - failed deployment recovery time
+                      - software delivery performance
+                    commonSignals:
+                      - デプロイ頻度、変更リードタイム、変更失敗率、復旧時間を測っている
+                      - 速度と安定性を同時に改善する指標として使っている
+                      - DevOpsや継続的デリバリーの改善状況を測定している
+                    antiSignals:
+                      - Doraという人名やキャラクター名
+                      - 単なる生産性指標で、変更フローと安定性の両面を測っていない
+                    relatedNames:
+                      - name: DORA
+                        kind: method
+                        relevance: ソフトウェアデリバリー性能を測定する代表的な研究・実践の名称。
+                        officialUrl: https://dora.dev/
+                      - name: Four Keys
+                        kind: tool
+                        relevance: DORAメトリクス収集の実装例としてGoogleの文脈で出現しやすい。
+                      - name: Accelerate
+                        kind: other
+                        relevance: DORAメトリクスの背景となる研究や書籍名として頻出する。
 
 edges:
   - from: stakeholder

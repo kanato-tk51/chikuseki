@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { and, eq, or } from "drizzle-orm";
 
 import { getDb } from "@/db/client";
-import { entityLinks, learningNotes } from "@/db/schema";
+import { entityLinks, knowledgeEntityLinks, learningNotes } from "@/db/schema";
 import {
   type NoteFormState,
   noteFormSchema,
@@ -124,11 +124,21 @@ export async function deleteNoteAction(formData: FormData) {
       );
 
     await tx
+      .delete(knowledgeEntityLinks)
+      .where(
+        and(
+          eq(knowledgeEntityLinks.entityType, "learning_note"),
+          eq(knowledgeEntityLinks.entityId, parsedId.data),
+        ),
+      );
+
+    await tx
       .delete(learningNotes)
       .where(eq(learningNotes.id, parsedId.data));
   });
 
   revalidatePath("/notes");
   revalidatePath("/questions");
+  revalidatePath("/knowledge-map");
   redirect("/notes");
 }

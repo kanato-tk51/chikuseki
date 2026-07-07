@@ -25,6 +25,44 @@ domain:
                   promptHint: 何を一つの集まりとして扱うと問題設定が明確になるかを問うときに使う。
                   aliases:
                     - set
+                  search:
+                    keywords:
+                      - 集合
+                      - set
+                      - element
+                      - membership
+                      - collection
+                      - distinct values
+                      - データ集合
+                      - 許可集合
+                      - 状態集合
+                    commonSignals:
+                      - 要素が属するかどうかを議論している
+                      - 重複を無視した対象の集まりを扱っている
+                      - 和集合や共通部分のような集合演算が出てくる
+                      - 対象範囲や母集団を定義している
+                    antiSignals:
+                      - データベースの設定値や config set のような動詞としての set
+                      - setTimeout や setter などプログラミング用語の一部
+                      - 集合住宅や集合写真など数学的集合でない日本語表現
+                    relatedNames:
+                      - name: Python set
+                        kind: language
+                        relevance: 集合演算をプログラミング上で直接扱う代表的な組み込み型として出てくる。
+                        officialUrl: https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset
+                      - name: Java Set
+                        kind: language
+                        relevance: 重複しない要素集合を表す標準コレクションとして出てくる。
+                        officialUrl: https://docs.oracle.com/javase/8/docs/api/java/util/Set.html
+                      - name: SQL DISTINCT
+                        kind: language
+                        relevance: 重複排除された値集合を得る文脈で集合概念と一緒に出てくる。
+                        officialUrl: https://www.postgresql.org/docs/current/sql-select.html
+                      - name: Redis Set
+                        kind: tool
+                        relevance: 重複しないメンバー集合を扱うデータ構造として出てくる。
+                        officialUrl: https://redis.io/docs/latest/develop/data-types/sets/
+
                 - slug: subset
                   name: 部分集合
                   summary: ある集合の要素だけで構成される集合。
@@ -58,7 +96,118 @@ domain:
                   promptHint: どの対象どうしがどう結び付くのかを形式化するときに使う。
                   aliases:
                     - relation
+                  search:
+                    keywords:
+                      - 関係
+                      - relation
+                      - binary relation
+                      - n-ary relation
+                      - ordered pair
+                      - predicate relation
+                      - 関連
+                      - 直積
+                      - relational model
+                    commonSignals:
+                      - 二つ以上の対象の対応やつながりを定義している
+                      - ordered pair や tuple が出てくる
+                      - 依存関係や包含関係を抽象化している
+                      - relation R on A のような表現がある
+                    antiSignals:
+                      - 人間関係や顧客関係など一般語としての関係だけが出ている
+                      - relation がリレーショナルデータベース製品名の一部としてだけ出る
+                      - correlation など統計的関連だけを指している
+                    relatedNames:
+                      - name: Relational Algebra
+                        kind: method
+                        relevance: 関係を表や演算として扱うデータベース理論の基礎として出てくる。
+                      - name: SQL
+                        kind: language
+                        relevance: リレーショナルデータを操作する言語として関係概念と一緒に出てくる。
+                        officialUrl: https://www.iso.org/standard/76583.html
+                      - name: RDF
+                        kind: standard
+                        relevance: 主語・述語・目的語の関係を表す知識表現として出てくる。
+                        officialUrl: https://www.w3.org/RDF/
+                      - name: GraphQL
+                        kind: language
+                        relevance: エンティティ間の関係を問い合わせる API 文脈で出てくる。
+                        officialUrl: https://graphql.org/
+
                 - slug: function
+
+                  search:
+
+                    keywords:
+
+                      - 関数
+
+                      - function
+
+                      - mapping
+
+                      - map
+
+                      - domain
+
+                      - codomain
+
+                      - deterministic mapping
+
+                      - total function
+
+                      - partial function
+
+                      - input output
+
+                    commonSignals:
+
+                      - 各入力に出力が一意に対応するかを確認している
+
+                      - domain と codomain を区別している
+
+                      - 写像 f colon A to B のような記述がある
+
+                      - 変換規則や集計規則を定義している
+
+                    antiSignals:
+
+                      - JavaScript 関数の文法だけを説明している
+
+                      - 職務 function や機能 function という一般語
+
+                      - 関数型組織など組織設計の用語
+
+                    relatedNames:
+
+                      - name: Haskell
+
+                        kind: language
+
+                        relevance: 関数を第一級の抽象として扱う文脈で頻出する。
+
+                        officialUrl: https://www.haskell.org/
+
+                      - name: TypeScript function type
+
+                        kind: language
+
+                        relevance: 入力と出力の対応を型として表す場面で出てくる。
+
+                        officialUrl: https://www.typescriptlang.org/docs/
+
+                      - name: OpenAPI
+
+                        kind: standard
+
+                        relevance: API 操作を入力と出力の対応として記述する文脈で出てくる。
+
+                        officialUrl: https://www.openapis.org/
+
+                      - name: MapReduce
+
+                        kind: framework
+
+                        relevance: map 関数と reduce 関数を使う分散処理モデルとして出てくる。
                   name: 関数
                   summary: 各入力に対して出力を一つ対応させる写像。
                   whyLearn: API、変換処理、集計規則、識別子対応を定義する基礎になる。
@@ -80,6 +229,41 @@ domain:
                   promptHint: 全順序でなくても順序づけが必要な場面を考えるときに使う。
                   aliases:
                     - partial order
+                  search:
+                    keywords:
+                      - 半順序
+                      - partial order
+                      - poset
+                      - reflexive
+                      - antisymmetric
+                      - transitive
+                      - comparable
+                      - incomparable
+                      - topological order
+                      - DAG order
+                    commonSignals:
+                      - 比較できない要素が存在する順序を扱っている
+                      - 依存関係をグラフや DAG で表している
+                      - 全順序ではない優先順位を議論している
+                      - reflexive antisymmetric transitive が並んでいる
+                    antiSignals:
+                      - 単なる昇順や降順ソートだけの話
+                      - UI の表示順だけを決めている話
+                      - partial が部分的や未完了という一般語で出ている
+                    relatedNames:
+                      - name: Topological Sort
+                        kind: method
+                        relevance: 半順序で表される依存関係を一列に並べる手法として出てくる。
+                      - name: SemVer
+                        kind: standard
+                        relevance: バージョン互換性や制約順序の議論で半順序的に扱われることがある。
+                        officialUrl: https://semver.org/
+                      - name: Vector Clock
+                        kind: method
+                        relevance: 分散システムの因果順序を半順序として表す文脈で出てくる。
+                      - name: DAG
+                        kind: pattern
+                        relevance: 依存関係やワークフローの半順序構造として出てくる。
 
         - slug: proof-induction-and-counting
           name: 証明、帰納、数え上げ
@@ -154,6 +338,42 @@ domain:
                   aliases:
                     - invariant
                     - loop invariant
+                  search:
+                    keywords:
+                      - ループ不変条件
+                      - loop invariant
+                      - invariant
+                      - Hoare logic
+                      - while loop proof
+                      - correctness proof
+                      - precondition
+                      - postcondition
+                      - verification condition
+                    commonSignals:
+                      - ループの各反復前後で保たれる性質を述べている
+                      - 初期化、維持、終了の三段階で正しさを説明している
+                      - assert invariant や decreases 句が出てくる
+                      - while ループの正当性証明をしている
+                    antiSignals:
+                      - ビジネス KPI が変わらないという一般的な不変
+                      - 物理量の保存則だけを扱う話
+                      - invariant が画像特徴量や統計量の意味で出ているだけの話
+                    relatedNames:
+                      - name: Hoare Logic
+                        kind: method
+                        relevance: 事前条件・事後条件・不変条件でプログラム正当性を示す体系として出てくる。
+                      - name: Dafny
+                        kind: tool
+                        relevance: ループ不変条件を明示してプログラム検証するツールとして出てくる。
+                        officialUrl: https://dafny.org/
+                      - name: Frama-C
+                        kind: tool
+                        relevance: C プログラムの契約や不変条件を検証する文脈で出てくる。
+                        officialUrl: https://frama-c.com/
+                      - name: SPARK Ada
+                        kind: language
+                        relevance: 形式検証向けに不変条件を記述するプログラミング言語として出てくる。
+                        officialUrl: https://www.adacore.com/sparkpro
             - slug: counting-and-modular-reasoning
               name: 数え上げと合同算術
               summary: 組合せの総数や整数の周期性を扱う。
@@ -189,6 +409,41 @@ domain:
                   aliases:
                     - modular arithmetic
                     - congruence arithmetic
+                  search:
+                    keywords:
+                      - 合同算術
+                      - modular arithmetic
+                      - congruence
+                      - modulo
+                      - mod
+                      - residue
+                      - finite field
+                      - mod inverse
+                      - cyclic group
+                      - 剰余
+                    commonSignals:
+                      - a congruent b mod n のような記述がある
+                      - 余りだけを使って計算している
+                      - mod inverse や modular exponentiation が出てくる
+                      - 暗号、ハッシュ、チェックサムの数理を説明している
+                    antiSignals:
+                      - CSS module や JavaScript module の話
+                      - modular architecture など設計分割の話
+                      - modulo が単なるプログラミング演算子の文法説明だけで出る
+                    relatedNames:
+                      - name: RSA
+                        kind: protocol
+                        relevance: 大きな整数の合同算術を使う公開鍵暗号として出てくる。
+                      - name: Diffie-Hellman
+                        kind: protocol
+                        relevance: 有限群上の演算を使う鍵交換として出てくる。
+                      - name: Elliptic Curve Cryptography
+                        kind: method
+                        relevance: 有限体上の演算を使う暗号方式として出てくる。
+                      - name: Ed25519
+                        kind: method
+                        relevance: 有限体上の楕円曲線演算を使う署名方式として出てくる。
+                        officialUrl: https://ed25519.cr.yp.to/
 
     - slug: logic-and-formal-reasoning
       name: 論理と形式的推論
@@ -234,6 +489,40 @@ domain:
                   aliases:
                     - satisfiability
                     - satisfiable
+                  search:
+                    keywords:
+                      - 充足可能性
+                      - satisfiability
+                      - satisfiable
+                      - unsatisfiable
+                      - model exists
+                      - assignment
+                      - constraint satisfaction
+                      - SAT
+                      - feasible assignment
+                    commonSignals:
+                      - 条件群を同時に満たす割当てがあるかを問う
+                      - SAT や UNSAT の判定結果が出てくる
+                      - model や witness として具体的な割当てを返している
+                      - 制約の矛盾検出をしている
+                    antiSignals:
+                      - 顧客満足 satisfaction の話
+                      - 満足度アンケートや NPS の話
+                      - feasible が業務上実現可能という一般語で出ているだけ
+                    relatedNames:
+                      - name: SAT Solver
+                        kind: tool
+                        relevance: 充足可能な真偽割当てを探索するツール一般として出てくる。
+                      - name: CSP
+                        kind: method
+                        relevance: 制約を満たす割当てを探す問題として充足可能性と近い文脈で出てくる。
+                      - name: DIMACS CNF
+                        kind: standard
+                        relevance: SAT 問題を交換する代表的な入力形式として出てくる。
+                      - name: Z3
+                        kind: tool
+                        relevance: SAT や SMT の充足可能性判定で広く使われるソルバとして出てくる。
+                        officialUrl: https://github.com/Z3Prover/z3
             - slug: inference-and-equivalence
               name: 推論と同値
               summary: ある式から別の式が従うかを扱う。
@@ -306,6 +595,44 @@ domain:
                   aliases:
                     - first order logic
                     - FOL
+                  search:
+                    keywords:
+                      - 一階述語論理
+                      - first order logic
+                      - FOL
+                      - predicate logic
+                      - quantifier
+                      - forall
+                      - exists
+                      - term
+                      - formula
+                      - model theory
+                    commonSignals:
+                      - forall や exists で対象を量化している
+                      - predicate, function symbol, constant symbol が出てくる
+                      - 命題論理では表しにくい対象一般の制約を表している
+                      - model や interpretation と一緒に論理式を説明している
+                    antiSignals:
+                      - first order が一次近似や一次反応の意味で出ている
+                      - FOL が別の略語として使われている
+                      - 自然言語の文法解析だけを扱っている
+                    relatedNames:
+                      - name: TPTP
+                        kind: standard
+                        relevance: 自動定理証明向けの一階論理問題フォーマットとして出てくる。
+                        officialUrl: https://www.tptp.org/
+                      - name: Prolog
+                        kind: language
+                        relevance: 述語と論理規則を使うロジックプログラミング言語として出てくる。
+                        officialUrl: https://www.swi-prolog.org/
+                      - name: SMT-LIB
+                        kind: standard
+                        relevance: 一階論理風の構文で SMT 問題を記述する標準として出てくる。
+                        officialUrl: https://smt-lib.org/
+                      - name: Alloy
+                        kind: language
+                        relevance: 関係論理に基づく軽量形式仕様言語として一階論理の近くに出てくる。
+                        officialUrl: https://alloytools.org/
             - slug: models-and-metatheory
               name: モデルとメタ性質
               summary: 式がどのような解釈で真になるかと体系の性質を扱う。
@@ -368,7 +695,118 @@ domain:
                   aliases:
                     - satisfiability problem
                     - SAT
+                  search:
+                    keywords:
+                      - SAT
+                      - Boolean satisfiability
+                      - SAT solver
+                      - CNF
+                      - clause
+                      - literal
+                      - DPLL
+                      - CDCL
+                      - UNSAT
+                      - Boolean constraint
+                    commonSignals:
+                      - SAT solver に CNF を入力している
+                      - SAT または UNSAT の判定結果が出てくる
+                      - clause learning や watched literal が出てくる
+                      - スケジューリングや検証を Boolean 制約に落としている
+                    antiSignals:
+                      - Saturday の略として sat が出ている
+                      - SAT 試験や学力テストの話
+                      - satellite の略語として SAT が出ている
+                    relatedNames:
+                      - name: MiniSat
+                        kind: tool
+                        relevance: 教育や研究でよく参照される代表的な SAT ソルバとして出てくる。
+                        officialUrl: http://minisat.se/
+                      - name: Kissat
+                        kind: tool
+                        relevance: 現代的な高性能 SAT ソルバの例として出てくる。
+                        officialUrl: https://github.com/arminbiere/kissat
+                      - name: Glucose
+                        kind: tool
+                        relevance: CDCL 系 SAT ソルバとしてベンチマークや研究で出てくる。
+                      - name: DIMACS CNF
+                        kind: standard
+                        relevance: SAT 問題インスタンスの標準的な入力形式として出てくる。
+
                 - slug: smt
+
+                  search:
+
+                    keywords:
+
+                      - SMT
+
+                      - satisfiability modulo theories
+
+                      - SMT solver
+
+                      - theory solver
+
+                      - bit-vector
+
+                      - array theory
+
+                      - linear arithmetic
+
+                      - quantifier instantiation
+
+                      - SMT-LIB
+
+                    commonSignals:
+
+                      - 整数、実数、配列、ビットベクトルを含む制約を解いている
+
+                      - SMT-LIB の assert や check-sat が出てくる
+
+                      - Z3 や CVC5 で satisfiable を判定している
+
+                      - symbolic execution や bounded verification の文脈
+
+                    antiSignals:
+
+                      - 表面実装技術 Surface Mount Technology の SMT
+
+                      - ソーシャルメディアチームなど組織略称の SMT
+
+                      - 単なる SAT 問題で理論付き制約が出ていない
+
+                    relatedNames:
+
+                      - name: Z3
+
+                        kind: tool
+
+                        relevance: SMT ソルバとしてソフトウェア検証や制約解決で広く使われる。
+
+                        officialUrl: https://github.com/Z3Prover/z3
+
+                      - name: CVC5
+
+                        kind: tool
+
+                        relevance: SMT-LIB 対応の代表的な SMT ソルバとして出てくる。
+
+                        officialUrl: https://cvc5.github.io/
+
+                      - name: SMT-LIB
+
+                        kind: standard
+
+                        relevance: SMT 問題を記述する標準形式として出てくる。
+
+                        officialUrl: https://smt-lib.org/
+
+                      - name: Lean
+
+                        kind: tool
+
+                        relevance: 定理証明の中で SMT 的な自動推論と接続して語られることがある。
+
+                        officialUrl: https://lean-lang.org/
                   name: SMT
                   summary: 命題論理に数値や配列などの理論を加えた充足可能性判定。
                   whyLearn: ソフトウェア検証や制約解決の実務に近い定式化ができる。
@@ -404,6 +842,39 @@ domain:
                   promptHint: この判定問題は必ず有限時間で答えられるかを問うときに使う。
                   aliases:
                     - decidability
+                  search:
+                    keywords:
+                      - 決定可能性
+                      - decidability
+                      - decidable
+                      - undecidable
+                      - decision problem
+                      - halting guarantee
+                      - total algorithm
+                      - computability
+                      - termination
+                    commonSignals:
+                      - 必ず停止して yes か no を返せるかを問う
+                      - undecidable や semi-decidable と比較している
+                      - decision procedure という表現がある
+                      - 自動検査や静的解析の原理的限界を扱っている
+                    antiSignals:
+                      - 経営判断が決定可能という一般語
+                      - decidable が単に意思決定しやすいという意味
+                      - 分類モデルの判定境界だけを扱っている
+                    relatedNames:
+                      - name: Turing Machine
+                        kind: method
+                        relevance: 決定可能性を定義する標準的な計算モデルとして出てくる。
+                      - name: Rice Theorem
+                        kind: method
+                        relevance: プログラム性質の非決定可能性を示す代表的定理として出てくる。
+                      - name: Model Checking
+                        kind: method
+                        relevance: 有限状態系では決定可能な性質検査として対比的に出てくる。
+                      - name: Abstract Interpretation
+                        kind: method
+                        relevance: 非決定可能な解析問題に対して安全な近似を使う方法として出てくる。
 
     - slug: probability-statistics-and-information
       name: 確率・統計・情報
@@ -440,7 +911,121 @@ domain:
                   promptHint: 追加情報を得た後で見込みがどう変わるかを計算するときに使う。
                   aliases:
                     - conditional probability
+                  search:
+                    keywords:
+                      - 条件付き確率
+                      - conditional probability
+                      - given
+                      - posterior
+                      - prior
+                      - likelihood
+                      - P(A|B)
+                      - conditioning
+                      - base rate
+                    commonSignals:
+                      - P(A|B) のような表記がある
+                      - 観測後に確率を更新している
+                      - prior, likelihood, posterior が一緒に出る
+                      - 偽陽性や診断確率を計算している
+                    antiSignals:
+                      - if 文の条件分岐だけを扱っている
+                      - conditional formatting など表計算機能の話
+                      - probability が比喩的に可能性という意味で使われているだけ
+                    relatedNames:
+                      - name: Bayes Rule
+                        kind: method
+                        relevance: 条件付き確率を逆向きに更新する公式として一緒に出てくる。
+                      - name: Naive Bayes
+                        kind: method
+                        relevance: 条件付き確率と独立仮定を使う分類手法として出てくる。
+                      - name: PyMC
+                        kind: library
+                        relevance: 確率モデルで条件付き分布や事後分布を扱うライブラリとして出てくる。
+                        officialUrl: https://www.pymc.io/
+                      - name: Stan
+                        kind: tool
+                        relevance: ベイズ推論で条件付き確率モデルを記述するツールとして出てくる。
+                        officialUrl: https://mc-stan.org/
+
                 - slug: bayes-theorem
+
+                  search:
+
+                    keywords:
+
+                      - ベイズの定理
+
+                      - Bayes theorem
+
+                      - Bayes rule
+
+                      - Bayesian update
+
+                      - posterior
+
+                      - prior
+
+                      - likelihood
+
+                      - evidence
+
+                      - base rate fallacy
+
+                    commonSignals:
+
+                      - 事前確率から事後確率へ更新している
+
+                      - likelihood と evidence を使っている
+
+                      - 検査結果から病気の確率を推定している
+
+                      - Bayesian inference や posterior distribution が出てくる
+
+                    antiSignals:
+
+                      - Bayes という人名や地名だけが出ている
+
+                      - A/B テストのベイズ手法というだけで定理の説明がない
+
+                      - ベイズ最適化だけを扱っていて条件付き確率更新がない
+
+                    relatedNames:
+
+                      - name: Naive Bayes
+
+                        kind: method
+
+                        relevance: ベイズの定理と条件付き独立仮定に基づく代表的分類手法として出てくる。
+
+                      - name: Bayesian Network
+
+                        kind: method
+
+                        relevance: 条件付き確率の分解とベイズ推論を扱うモデルとして出てくる。
+
+                      - name: Stan
+
+                        kind: tool
+
+                        relevance: ベイズ統計モデルを記述し推論するツールとして出てくる。
+
+                        officialUrl: https://mc-stan.org/
+
+                      - name: PyMC
+
+                        kind: library
+
+                        relevance: ベイズ推論を Python で扱うライブラリとして出てくる。
+
+                        officialUrl: https://www.pymc.io/
+
+                      - name: TensorFlow Probability
+
+                        kind: library
+
+                        relevance: 確率モデルやベイズ推論を機械学習と接続するライブラリとして出てくる。
+
+                        officialUrl: https://www.tensorflow.org/probability
                   name: ベイズの定理
                   summary: 条件付き確率を逆向きに結び付ける公式。
                   whyLearn: 原因推定、分類、診断、推薦の理解に直結する。
@@ -459,6 +1044,45 @@ domain:
                   promptHint: 不確実な現象をどの数値で表すかを決めるときに使う。
                   aliases:
                     - random variable
+                  search:
+                    keywords:
+                      - 確率変数
+                      - random variable
+                      - RV
+                      - distribution
+                      - discrete random variable
+                      - continuous random variable
+                      - probability mass function
+                      - probability density function
+                      - PMF
+                      - PDF
+                    commonSignals:
+                      - X tilde distribution のような表記がある
+                      - PMF や PDF を定義している
+                      - 離散型か連続型かを区別している
+                      - サンプル値ではなくランダムな量そのものを扱っている
+                    antiSignals:
+                      - プログラムのランダムな変数名だけを指している
+                      - environment variable など通常の変数の話
+                      - ランダム ID や乱数生成だけで分布の議論がない
+                    relatedNames:
+                      - name: SciPy stats
+                        kind: library
+                        relevance: 確率変数と分布を Python で扱う代表的ライブラリとして出てくる。
+                        officialUrl: https://docs.scipy.org/doc/scipy/reference/stats.html
+                      - name: NumPy random
+                        kind: library
+                        relevance: 確率変数のサンプリングや乱数生成で出てくる。
+                        officialUrl: https://numpy.org/doc/stable/reference/random/
+                      - name: TensorFlow Probability
+                        kind: library
+                        relevance: 分布オブジェクトとして確率変数を扱う文脈で出てくる。
+                        officialUrl: https://www.tensorflow.org/probability
+                      - name: PyTorch Distributions
+                        kind: library
+                        relevance: 確率分布とサンプリングを深層学習で扱う際に出てくる。
+                        officialUrl: https://pytorch.org/docs/stable/distributions.html
+
                 - slug: bernoulli-distribution
                   name: ベルヌーイ分布
                   summary: 成功か失敗かの二値結果を表す分布。
@@ -474,7 +1098,112 @@ domain:
                   aliases:
                     - Gaussian distribution
                     - normal distribution
+                  search:
+                    keywords:
+                      - 正規分布
+                      - normal distribution
+                      - Gaussian distribution
+                      - bell curve
+                      - mean
+                      - standard deviation
+                      - z-score
+                      - normal approximation
+                      - Gaussian noise
+                    commonSignals:
+                      - 平均と標準偏差で分布を指定している
+                      - z-score や 68-95-99.7 rule が出てくる
+                      - 誤差やノイズを Gaussian と仮定している
+                      - CLT による正規近似を説明している
+                    antiSignals:
+                      - normal が正常という一般語
+                      - 正規化 normalization の話だけ
+                      - Gaussian blur など画像処理フィルタだけで確率分布がない
+                    relatedNames:
+                      - name: SciPy stats.norm
+                        kind: library
+                        relevance: 正規分布の密度、分布関数、サンプリングを扱う代表的 API として出てくる。
+                        officialUrl: https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.norm.html
+                      - name: R dnorm
+                        kind: language
+                        relevance: R で正規分布の密度や確率を計算する関数として出てくる。
+                        officialUrl: https://www.r-project.org/
+                      - name: NumPy random.normal
+                        kind: library
+                        relevance: 正規乱数を生成する API として出てくる。
+                        officialUrl: https://numpy.org/doc/stable/reference/random/generated/numpy.random.normal.html
+                      - name: Kalman Filter
+                        kind: method
+                        relevance: ガウスノイズ仮定を用いる推定手法として出てくる。
+
                 - slug: independence
+
+                  search:
+
+                    keywords:
+
+                      - 独立
+
+                      - independence
+
+                      - independent events
+
+                      - conditional independence
+
+                      - iid
+
+                      - independent and identically distributed
+
+                      - uncorrelated
+
+                      - factorization
+
+                      - independence assumption
+
+                    commonSignals:
+
+                      - P(A and B) equals P(A)P(B) のような式がある
+
+                      - iid sample という表現がある
+
+                      - 条件付き独立を仮定して分布を分解している
+
+                      - 相関と独立の違いを説明している
+
+                    antiSignals:
+
+                      - 独立チームや独立サービスなど組織設計の話
+
+                      - independence day など固有名詞
+
+                      - uncorrelated と独立を混同しているだけの説明
+
+                    relatedNames:
+
+                      - name: Naive Bayes
+
+                        kind: method
+
+                        relevance: 特徴量の条件付き独立仮定を置く分類手法として出てくる。
+
+                      - name: Bayesian Network
+
+                        kind: method
+
+                        relevance: 条件付き独立関係をグラフで表すモデルとして出てくる。
+
+                      - name: DAG
+
+                        kind: pattern
+
+                        relevance: 因果モデルやベイジアンネットで独立関係を表す構造として出てくる。
+
+                      - name: DoWhy
+
+                        kind: library
+
+                        relevance: 因果推論で独立性や条件付き独立を確認する文脈で出てくる。
+
+                        officialUrl: https://www.pywhy.org/dowhy/
                   name: 独立
                   summary: 片方の情報がもう片方の確率を変えない関係。
                   whyLearn: モデル簡略化や誤った推論の回避に重要。
@@ -494,7 +1223,112 @@ domain:
                   aliases:
                     - expected value
                     - expectation
+                  search:
+                    keywords:
+                      - 期待値
+                      - expected value
+                      - expectation
+                      - mean
+                      - average outcome
+                      - weighted average
+                      - E(X)
+                      - expected cost
+                      - expected loss
+                    commonSignals:
+                      - E[X] や expected loss と書かれている
+                      - 長期平均や平均コストを計算している
+                      - 確率で重み付けした平均を使っている
+                      - リスクや報酬の期待値を比較している
+                    antiSignals:
+                      - ユーザー期待や期待値調整など心理的期待の話
+                      - KPI の目標値を期待値と呼んでいるだけ
+                      - 平均値だけで確率モデルがない
+                    relatedNames:
+                      - name: Monte Carlo Method
+                        kind: method
+                        relevance: 期待値をサンプル平均で近似する文脈で出てくる。
+                      - name: Markov Decision Process
+                        kind: method
+                        relevance: 期待報酬や期待価値を最適化するモデルとして出てくる。
+                      - name: Reinforcement Learning
+                        kind: method
+                        relevance: 期待リターンを最大化する文脈で期待値が出てくる。
+                      - name: NumPy mean
+                        kind: library
+                        relevance: 標本平均を計算する API として期待値推定の文脈で出てくる。
+                        officialUrl: https://numpy.org/doc/stable/reference/generated/numpy.mean.html
+
                 - slug: variance
+
+                  search:
+
+                    keywords:
+
+                      - 分散
+
+                      - variance
+
+                      - standard deviation
+
+                      - variability
+
+                      - spread
+
+                      - Var(X)
+
+                      - covariance
+
+                      - mean squared deviation
+
+                      - heteroscedasticity
+
+                    commonSignals:
+
+                      - 平均からの二乗偏差を扱っている
+
+                      - standard deviation と一緒に出てくる
+
+                      - ばらつきや不確実性の大きさを比較している
+
+                      - bias variance tradeoff の文脈で出てくる
+
+                    antiSignals:
+
+                      - database variance や仕様差異など一般的な差異の意味
+
+                      - 分散システムの分散
+
+                      - variability が単なる要件変更のばらつきを指している
+
+                    relatedNames:
+
+                      - name: NumPy var
+
+                        kind: library
+
+                        relevance: 分散を計算する代表的な配列 API として出てくる。
+
+                        officialUrl: https://numpy.org/doc/stable/reference/generated/numpy.var.html
+
+                      - name: pandas var
+
+                        kind: library
+
+                        relevance: データフレーム上の分散計算として出てくる。
+
+                        officialUrl: https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.var.html
+
+                      - name: ANOVA
+
+                        kind: method
+
+                        relevance: 分散を分解して群間差を評価する手法として出てくる。
+
+                      - name: PCA
+
+                        kind: method
+
+                        relevance: 分散が大きい方向を選ぶ次元削減手法として出てくる。
                   name: 分散
                   summary: 値のばらつきの大きさを表す尺度。
                   whyLearn: 平均だけでは見えない不安定さを比較できる。
@@ -517,6 +1351,40 @@ domain:
                   aliases:
                     - CLT
                     - central limit theorem
+                  search:
+                    keywords:
+                      - 中心極限定理
+                      - central limit theorem
+                      - CLT
+                      - normal approximation
+                      - sample mean
+                      - asymptotic normality
+                      - iid samples
+                      - sampling distribution
+                    commonSignals:
+                      - サンプル平均が正規分布に近づくと説明している
+                      - n が大きいと正規近似できるという記述
+                      - sampling distribution を扱っている
+                      - 信頼区間や z-test の根拠を説明している
+                    antiSignals:
+                      - 単に中心や極限という一般語
+                      - 極限定理ではなく最適化の収束だけを扱っている
+                      - 正規分布を仮定しているだけで標本平均の近似がない
+                    relatedNames:
+                      - name: Bootstrap
+                        kind: method
+                        relevance: 標本分布や不確実性推定の文脈で CLT と比較されることが多い。
+                      - name: SciPy stats
+                        kind: library
+                        relevance: 正規近似や検定の計算で CLT の利用文脈に出てくる。
+                        officialUrl: https://docs.scipy.org/doc/scipy/reference/stats.html
+                      - name: statsmodels
+                        kind: library
+                        relevance: 回帰推定量の漸近正規性や信頼区間の文脈で出てくる。
+                        officialUrl: https://www.statsmodels.org/
+                      - name: A/B Testing
+                        kind: method
+                        relevance: 差の推定や z 検定の近似根拠として CLT が出てくる。
 
         - slug: statistical-inference
           name: 統計的推論
@@ -542,6 +1410,44 @@ domain:
                   aliases:
                     - MLE
                     - maximum likelihood estimation
+                  search:
+                    keywords:
+                      - 最尤推定
+                      - maximum likelihood estimation
+                      - MLE
+                      - likelihood
+                      - log-likelihood
+                      - negative log likelihood
+                      - NLL
+                      - parameter estimation
+                      - likelihood function
+                    commonSignals:
+                      - likelihood を最大化してパラメータを推定している
+                      - log-likelihood や negative log likelihood が出てくる
+                      - 観測データを最も起こしやすいモデルを選んでいる
+                      - MLE estimate や maximum likelihood estimator が出てくる
+                    antiSignals:
+                      - likely や likelihood が日常語として使われているだけ
+                      - MAP 推定やベイズ事後推定だけで MLE と区別していない
+                      - 最尤ではなく最小二乗だけを説明している
+                    relatedNames:
+                      - name: statsmodels
+                        kind: library
+                        relevance: 統計モデルのパラメータを最尤推定する Python ライブラリとして出てくる。
+                        officialUrl: https://www.statsmodels.org/
+                      - name: scikit-learn
+                        kind: library
+                        relevance: 多くのモデル学習を尤度や損失最小化として解釈する文脈で出てくる。
+                        officialUrl: https://scikit-learn.org/
+                      - name: Stan
+                        kind: tool
+                        relevance: ベイズ推論だけでなく尤度モデルの記述で出てくる。
+                        officialUrl: https://mc-stan.org/
+                      - name: PyTorch CrossEntropyLoss
+                        kind: library
+                        relevance: 分類の負の対数尤度として MLE と接続して出てくる。
+                        officialUrl: https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html
+
                 - slug: confidence-interval
                   name: 信頼区間
                   summary: 推定値の不確実性を区間として表す方法。
@@ -556,6 +1462,42 @@ domain:
                   promptHint: この観測が偶然としてどれくらい珍しいかを見たいときに使う。
                   aliases:
                     - p-value
+                  search:
+                    keywords:
+                      - p 値
+                      - p-value
+                      - significance test
+                      - null hypothesis
+                      - statistical significance
+                      - alpha level
+                      - Type I error
+                      - hypothesis testing
+                      - p < 0.05
+                    commonSignals:
+                      - 帰無仮説の下での極端さを確率で表している
+                      - p less than 0.05 で有意と判断している
+                      - confidence interval や significance level と一緒に出る
+                      - 検定結果の解釈を議論している
+                    antiSignals:
+                      - p がページ番号や確率変数名として出ているだけ
+                      - ビジネス上の重要性を statistical significance と混同している
+                      - posterior probability と p 値を同一視している説明
+                    relatedNames:
+                      - name: SciPy stats
+                        kind: library
+                        relevance: t 検定やカイ二乗検定の p 値を計算するライブラリとして出てくる。
+                        officialUrl: https://docs.scipy.org/doc/scipy/reference/stats.html
+                      - name: R t.test
+                        kind: language
+                        relevance: 統計検定と p 値を出力する代表的な R 関数として出てくる。
+                        officialUrl: https://www.r-project.org/
+                      - name: statsmodels
+                        kind: library
+                        relevance: 回帰係数や検定結果の p 値を出力するライブラリとして出てくる。
+                        officialUrl: https://www.statsmodels.org/
+                      - name: A/B Testing
+                        kind: method
+                        relevance: 施策差の有意性評価で p 値が頻出する。
             - slug: modeling-generalization-and-information
               name: モデリングと一般化と情報量
               summary: データへの当てはめ、汎化、情報の尺度を扱う。
@@ -568,7 +1510,121 @@ domain:
                   promptHint: 説明変数と目的変数の関係をまず単純に表したいときに使う。
                   aliases:
                     - linear regression
+                  search:
+                    keywords:
+                      - 線形回帰
+                      - linear regression
+                      - ordinary least squares
+                      - OLS
+                      - regression coefficient
+                      - dependent variable
+                      - independent variable
+                      - residual
+                      - design matrix
+                    commonSignals:
+                      - y equals X beta plus epsilon のようなモデル式
+                      - OLS や residual sum of squares が出てくる
+                      - 説明変数と目的変数の関係を係数で解釈している
+                      - 回帰係数、切片、残差を扱っている
+                    antiSignals:
+                      - 回帰がソフトウェアの regression bug の意味
+                      - 非線形モデルや木モデルだけを扱っている
+                      - 単なる相関係数だけでモデル式がない
+                    relatedNames:
+                      - name: scikit-learn LinearRegression
+                        kind: library
+                        relevance: Python で線形回帰モデルを学習する代表的 API として出てくる。
+                        officialUrl: https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html
+                      - name: statsmodels OLS
+                        kind: library
+                        relevance: 回帰係数、p 値、信頼区間を扱う統計寄りの実装として出てくる。
+                        officialUrl: https://www.statsmodels.org/
+                      - name: R lm
+                        kind: language
+                        relevance: R で線形モデルを当てはめる標準的な関数として出てくる。
+                        officialUrl: https://www.r-project.org/
+                      - name: glmnet
+                        kind: library
+                        relevance: 正則化付き線形モデルを扱う文脈で出てくる。
+                        officialUrl: https://glmnet.stanford.edu/
+
                 - slug: overfitting
+
+                  search:
+
+                    keywords:
+
+                      - 過学習
+
+                      - overfitting
+
+                      - generalization gap
+
+                      - train test gap
+
+                      - validation loss
+
+                      - model complexity
+
+                      - high variance
+
+                      - regularization
+
+                      - memorization
+
+                    commonSignals:
+
+                      - 訓練性能は高いが検証性能が低い
+
+                      - validation loss が途中から悪化している
+
+                      - モデルがノイズや学習データを記憶している
+
+                      - generalization gap を議論している
+
+                    antiSignals:
+
+                      - 学習量が多いという日常語としての学びすぎ
+
+                      - 本番障害の原因がデータ分布以外にある話
+
+                      - モデルが単に低性能な underfitting の話
+
+                    relatedNames:
+
+                      - name: scikit-learn
+
+                        kind: library
+
+                        relevance: train_test_split や cross_val_score で過学習を検出する文脈で出てくる。
+
+                        officialUrl: https://scikit-learn.org/
+
+                      - name: TensorBoard
+
+                        kind: tool
+
+                        relevance: train loss と validation loss の乖離を可視化する文脈で出てくる。
+
+                        officialUrl: https://www.tensorflow.org/tensorboard
+
+                      - name: Early Stopping
+
+                        kind: method
+
+                        relevance: 過学習を抑える代表的な訓練停止手法として出てくる。
+
+                      - name: Dropout
+
+                        kind: method
+
+                        relevance: ニューラルネットの過学習抑制手法として出てくる。
+
+                      - name: L2 Regularization
+
+                        kind: method
+
+                        relevance: モデル複雑性を抑える正則化として出てくる。
                   name: 過学習
                   summary: 学習データに合わせすぎて未知データに弱くなる現象。
                   whyLearn: モデル評価と実運用のギャップを理解する鍵になる。
@@ -583,7 +1639,125 @@ domain:
                   aliases:
                     - cross validation
                     - CV
+                  search:
+                    keywords:
+                      - 交差検証
+                      - cross validation
+                      - CV
+                      - k-fold
+                      - leave-one-out
+                      - train validation split
+                      - model selection
+                      - validation score
+                      - resampling
+                    commonSignals:
+                      - データを fold に分けて評価している
+                      - k-fold や leave-one-out という表現がある
+                      - 汎化性能を手元データから見積もっている
+                      - モデル選択やハイパーパラメータ比較に使っている
+                    antiSignals:
+                      - validation が単なる入力検証の意味
+                      - CV が履歴書やコンピュータビジョンの略語
+                      - 一回だけの train test split で交差していない
+                    relatedNames:
+                      - name: scikit-learn cross_val_score
+                        kind: library
+                        relevance: Python で k-fold 交差検証を行う代表的 API として出てくる。
+                        officialUrl: https://scikit-learn.org/stable/modules/cross_validation.html
+                      - name: caret
+                        kind: library
+                        relevance: R でリサンプリングによるモデル評価を行う文脈で出てくる。
+                        officialUrl: https://topepo.github.io/caret/
+                      - name: tidymodels
+                        kind: library
+                        relevance: R のモデル評価ワークフローで交差検証と一緒に出てくる。
+                        officialUrl: https://www.tidymodels.org/
+                      - name: Optuna
+                        kind: framework
+                        relevance: ハイパーパラメータ最適化で交差検証スコアを目的関数にする文脈で出てくる。
+                        officialUrl: https://optuna.org/
+
                 - slug: entropy
+
+                  search:
+
+                    keywords:
+
+                      - エントロピー
+
+                      - entropy
+
+                      - Shannon entropy
+
+                      - information entropy
+
+                      - uncertainty
+
+                      - information gain
+
+                      - cross entropy
+
+                      - compression
+
+                      - randomness
+
+                      - min-entropy
+
+                    commonSignals:
+
+                      - 分布の予測しにくさを測っている
+
+                      - Shannon entropy や H(X) の式がある
+
+                      - 情報利得や cross entropy と一緒に出る
+
+                      - 圧縮限界やランダム性評価を扱っている
+
+                    antiSignals:
+
+                      - 熱力学エントロピーだけを扱う物理の話
+
+                      - 組織の混乱を比喩的に entropy と呼ぶ話
+
+                      - entropy が暗号ライブラリの設定名としてだけ出ている
+
+                    relatedNames:
+
+                      - name: SciPy stats.entropy
+
+                        kind: library
+
+                        relevance: エントロピーや KL ダイバージェンスを計算する API として出てくる。
+
+                        officialUrl: https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.entropy.html
+
+                      - name: Decision Tree
+
+                        kind: method
+
+                        relevance: 情報利得で分割を選ぶ文脈でエントロピーが出てくる。
+
+                      - name: Cross Entropy Loss
+
+                        kind: method
+
+                        relevance: 分類モデルの損失関数としてエントロピー概念と一緒に出てくる。
+
+                      - name: NIST SP 800-90
+
+                        kind: standard
+
+                        relevance: 乱数生成やセキュリティ評価におけるエントロピー文脈で出てくる。
+
+                        officialUrl: https://csrc.nist.gov/projects/random-bit-generation
+
+                      - name: gzip
+
+                        kind: tool
+
+                        relevance: 圧縮と情報量の関係を学ぶ入口として出てくる。
+
+                        officialUrl: https://www.gnu.org/software/gzip/
                   name: エントロピー
                   summary: ランダム変数の不確実性や情報量の平均を表す尺度。
                   whyLearn: 圧縮、特徴選択、損失関数、セキュリティ評価まで幅広く再登場する。
@@ -598,6 +1772,42 @@ domain:
                   aliases:
                     - Kullback-Leibler divergence
                     - KL divergence
+                  search:
+                    keywords:
+                      - KL ダイバージェンス
+                      - Kullback-Leibler divergence
+                      - KL divergence
+                      - relative entropy
+                      - distribution mismatch
+                      - variational inference
+                      - evidence lower bound
+                      - ELBO
+                      - cross entropy
+                    commonSignals:
+                      - 二つの確率分布の距離のような量を測っている
+                      - KL(P || Q) のような非対称な表記がある
+                      - variational inference や ELBO と一緒に出る
+                      - cross entropy との差を説明している
+                    antiSignals:
+                      - KL が地名や企業名の略称
+                      - 距離 metric として対称性を仮定している説明
+                      - 単なるカテゴリ分布の比較で KL の定義が出ていない
+                    relatedNames:
+                      - name: PyTorch KLDivLoss
+                        kind: library
+                        relevance: 分布間のずれを損失として扱う API として出てくる。
+                        officialUrl: https://pytorch.org/docs/stable/generated/torch.nn.KLDivLoss.html
+                      - name: TensorFlow Probability
+                        kind: library
+                        relevance: 確率分布間の KL を計算する文脈で出てくる。
+                        officialUrl: https://www.tensorflow.org/probability
+                      - name: Variational Autoencoder
+                        kind: method
+                        relevance: 潜在分布の正則化項として KL ダイバージェンスが出てくる。
+                      - name: PyMC
+                        kind: library
+                        relevance: 変分推論や分布近似の文脈で KL が出てくる。
+                        officialUrl: https://www.pymc.io/
 
     - slug: linear-algebra-and-optimization-foundations
       name: 線形代数と最適化の基礎
@@ -620,7 +1830,132 @@ domain:
                   promptHint: 対象を複数の数で表したいときに使う。
                   aliases:
                     - vector
+                  search:
+                    keywords:
+                      - ベクトル
+                      - vector
+                      - feature vector
+                      - embedding vector
+                      - coordinate
+                      - vector space
+                      - dense vector
+                      - sparse vector
+                      - numerical representation
+                    commonSignals:
+                      - 対象を数値の並びで表している
+                      - embedding や feature vector と書かれている
+                      - cosine similarity や dot product と一緒に出る
+                      - sparse vector と dense vector を区別している
+                    antiSignals:
+                      - vector が感染症媒介生物の意味
+                      - SVG やベクター画像だけの話
+                      - 攻撃ベクトル attack vector の話
+                    relatedNames:
+                      - name: NumPy ndarray
+                        kind: library
+                        relevance: ベクトルを配列として扱う Python の基礎ライブラリとして出てくる。
+                        officialUrl: https://numpy.org/doc/stable/reference/arrays.ndarray.html
+                      - name: PyTorch Tensor
+                        kind: library
+                        relevance: ベクトルやテンソルを機械学習で扱う際に出てくる。
+                        officialUrl: https://pytorch.org/docs/stable/tensors.html
+                      - name: FAISS
+                        kind: library
+                        relevance: ベクトル検索や類似度探索の文脈で出てくる。
+                        officialUrl: https://faiss.ai/
+                      - name: word2vec
+                        kind: method
+                        relevance: 単語をベクトル表現する代表的手法として出てくる。
+                      - name: Apache Arrow
+                        kind: standard
+                        relevance: 列指向データやベクトル化処理の文脈で出てくる。
+                        officialUrl: https://arrow.apache.org/
+
                 - slug: matrix
+
+                  search:
+
+                    keywords:
+
+                      - 行列
+
+                      - matrix
+
+                      - matrices
+
+                      - linear transformation
+
+                      - coefficient matrix
+
+                      - design matrix
+
+                      - sparse matrix
+
+                      - dense matrix
+
+                      - tensor
+
+                      - matrix multiplication
+
+                    commonSignals:
+
+                      - 係数表や線形変換を二次元配列で表している
+
+                      - matrix multiplication や transpose が出てくる
+
+                      - sparse matrix や dense matrix を区別している
+
+                      - X matrix や design matrix が出てくる
+
+                    antiSignals:
+
+                      - 映画 Matrix の話
+
+                      - 組織のマトリクス構造の話
+
+                      - CSS transform matrix の文法だけを扱っている
+
+                    relatedNames:
+
+                      - name: NumPy
+
+                        kind: library
+
+                        relevance: 行列計算を Python で扱う基本ライブラリとして出てくる。
+
+                        officialUrl: https://numpy.org/
+
+                      - name: SciPy sparse
+
+                        kind: library
+
+                        relevance: 疎行列を扱う実務的な数値計算ライブラリとして出てくる。
+
+                        officialUrl: https://docs.scipy.org/doc/scipy/reference/sparse.html
+
+                      - name: BLAS
+
+                        kind: standard
+
+                        relevance: 行列積など線形代数演算の低レベル標準インターフェースとして出てくる。
+
+                        officialUrl: https://www.netlib.org/blas/
+
+                      - name: LAPACK
+
+                        kind: library
+
+                        relevance: 行列分解や線形方程式を解く数値計算ライブラリとして出てくる。
+
+                        officialUrl: https://www.netlib.org/lapack/
+
+                      - name: Eigen
+
+                        kind: library
+
+                        relevance: C++ の行列計算ライブラリとして出てくる。
+
+                        officialUrl: https://eigen.tuxfamily.org/
                   name: 行列
                   summary: 線形変換や係数表を表す長方形配列。
                   whyLearn: バッチ計算、変換、関係表現、最適化の中心概念になる。
@@ -635,6 +1970,44 @@ domain:
                   aliases:
                     - inner product
                     - dot product
+                  search:
+                    keywords:
+                      - 内積
+                      - dot product
+                      - inner product
+                      - scalar product
+                      - cosine similarity
+                      - vector similarity
+                      - projection
+                      - norm
+                      - angle between vectors
+                    commonSignals:
+                      - 二つのベクトルの類似度を計算している
+                      - cosine similarity と一緒に出る
+                      - projection や angle を内積で表している
+                      - x dot y のような表記がある
+                    antiSignals:
+                      - ドット記法 object.property の話
+                      - 点積という言葉が画像の点やピクセルの話で出る
+                      - product が単なるプロダクトや商品を指している
+                    relatedNames:
+                      - name: BLAS dot
+                        kind: standard
+                        relevance: ベクトル内積を高速に計算する標準的な低レベル演算として出てくる。
+                        officialUrl: https://www.netlib.org/blas/
+                      - name: NumPy dot
+                        kind: library
+                        relevance: Python で内積や行列積を計算する代表的 API として出てくる。
+                        officialUrl: https://numpy.org/doc/stable/reference/generated/numpy.dot.html
+                      - name: FAISS
+                        kind: library
+                        relevance: 内積やコサイン類似度によるベクトル検索の文脈で出てくる。
+                        officialUrl: https://faiss.ai/
+                      - name: Annoy
+                        kind: library
+                        relevance: ベクトル類似検索で内積や角度距離と一緒に出てくる。
+                        officialUrl: https://github.com/spotify/annoy
+
                 - slug: rank
                   name: 階数
                   summary: 行列が表せる独立な情報の次元数。
@@ -654,6 +2027,44 @@ domain:
                   promptHint: 条件を連立で解きたいときに使う。
                   aliases:
                     - linear system
+                  search:
+                    keywords:
+                      - 線形方程式系
+                      - linear system
+                      - system of linear equations
+                      - Ax equals b
+                      - coefficient matrix
+                      - unknown vector
+                      - solvability
+                      - overdetermined
+                      - underdetermined
+                    commonSignals:
+                      - Ax equals b を解いている
+                      - 未知数と一次方程式の個数を比較している
+                      - overdetermined や underdetermined が出てくる
+                      - 解の存在、一意性、自由度を議論している
+                    antiSignals:
+                      - linear system が線形システム制御だけを指している
+                      - システム構成の線形な依存関係だけの話
+                      - 非線形方程式を扱っているのに linear と誤記している
+                    relatedNames:
+                      - name: NumPy linalg.solve
+                        kind: library
+                        relevance: 線形方程式系を数値的に解く代表的 API として出てくる。
+                        officialUrl: https://numpy.org/doc/stable/reference/generated/numpy.linalg.solve.html
+                      - name: SciPy linalg
+                        kind: library
+                        relevance: 線形方程式や分解を扱う数値計算ライブラリとして出てくる。
+                        officialUrl: https://docs.scipy.org/doc/scipy/reference/linalg.html
+                      - name: LAPACK
+                        kind: library
+                        relevance: 連立一次方程式の直接解法を実装する標準的ライブラリとして出てくる。
+                        officialUrl: https://www.netlib.org/lapack/
+                      - name: MATLAB backslash
+                        kind: tool
+                        relevance: 線形方程式系を解く代表的な記法として出てくる。
+                        officialUrl: https://www.mathworks.com/help/matlab/ref/mldivide.html
+
                 - slug: gaussian-elimination
                   name: ガウス消去法
                   summary: 行基本変形で線形方程式系を解く手法。
@@ -706,6 +2117,44 @@ domain:
                   promptHint: 誤差を平均的に小さくする近似を求めたいときに使う。
                   aliases:
                     - least squares
+                  search:
+                    keywords:
+                      - 最小二乗
+                      - least squares
+                      - ordinary least squares
+                      - OLS
+                      - residual sum of squares
+                      - squared error
+                      - normal equation
+                      - curve fitting
+                      - regression
+                    commonSignals:
+                      - 残差二乗和を最小化している
+                      - normal equation や X transpose X が出てくる
+                      - curve fitting や regression と一緒に出る
+                      - overdetermined system の近似解を求めている
+                    antiSignals:
+                      - least が単なる最小や最低という一般語
+                      - 二乗が面積計算として出ているだけ
+                      - 絶対値誤差やロバスト損失のみを扱っている
+                    relatedNames:
+                      - name: NumPy lstsq
+                        kind: library
+                        relevance: 最小二乗解を求める代表的な Python API として出てくる。
+                        officialUrl: https://numpy.org/doc/stable/reference/generated/numpy.linalg.lstsq.html
+                      - name: SciPy optimize.least_squares
+                        kind: library
+                        relevance: 非線形最小二乗も含めた最小二乗最適化で出てくる。
+                        officialUrl: https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.least_squares.html
+                      - name: statsmodels OLS
+                        kind: library
+                        relevance: 統計的な線形回帰を最小二乗で推定する文脈で出てくる。
+                        officialUrl: https://www.statsmodels.org/
+                      - name: R lm
+                        kind: language
+                        relevance: 最小二乗による線形モデル当てはめの標準関数として出てくる。
+                        officialUrl: https://www.r-project.org/
+
                 - slug: gram-schmidt-process
                   name: グラム・シュミット法
                   summary: 独立なベクトル列から直交基底を作る手法。
@@ -725,7 +2174,114 @@ domain:
                   promptHint: 変換の本質的なスケールを読みたいときに使う。
                   aliases:
                     - eigenvalue
+                  search:
+                    keywords:
+                      - 固有値
+                      - eigenvalue
+                      - characteristic polynomial
+                      - spectrum
+                      - spectral radius
+                      - diagonalization
+                      - matrix stability
+                      - lambda
+                      - principal eigenvalue
+                    commonSignals:
+                      - Av equals lambda v の式がある
+                      - spectrum や spectral radius を議論している
+                      - 安定性や収束性を固有値で判断している
+                      - characteristic polynomial が出てくる
+                    antiSignals:
+                      - eigen がライブラリ名 Eigen だけを指している
+                      - value が一般的な値の意味で出ている
+                      - 主成分分析だけで固有値の説明がない
+                    relatedNames:
+                      - name: NumPy eig
+                        kind: library
+                        relevance: 行列の固有値と固有ベクトルを計算する代表的 API として出てくる。
+                        officialUrl: https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html
+                      - name: LAPACK
+                        kind: library
+                        relevance: 固有値問題の数値計算ルーチンを提供するライブラリとして出てくる。
+                        officialUrl: https://www.netlib.org/lapack/
+                      - name: ARPACK
+                        kind: library
+                        relevance: 大規模疎行列の固有値計算で出てくる。
+                        officialUrl: https://www.arpack.org/
+                      - name: PageRank
+                        kind: method
+                        relevance: 固有ベクトル中心性や主固有値問題と関連して出てくる。
+
                 - slug: eigenvector
+
+                  search:
+
+                    keywords:
+
+                      - 固有ベクトル
+
+                      - eigenvector
+
+                      - principal component
+
+                      - eigenbasis
+
+                      - eigenspace
+
+                      - power iteration
+
+                      - centrality
+
+                      - PageRank vector
+
+                      - dominant eigenvector
+
+                    commonSignals:
+
+                      - 変換後も向きが変わらないベクトルを扱っている
+
+                      - dominant eigenvector や power iteration が出る
+
+                      - 主成分方向や中心性を説明している
+
+                      - Av equals lambda v の v 側を議論している
+
+                    antiSignals:
+
+                      - vector が単なる配列として出ているだけ
+
+                      - eigenvalue だけを扱い方向を議論していない
+
+                      - 固有名詞の固有とベクトルが別々に出ている
+
+                    relatedNames:
+
+                      - name: PageRank
+
+                        kind: method
+
+                        relevance: リンク行列の主固有ベクトルとしてランキングを求める文脈で出てくる。
+
+                      - name: NumPy eig
+
+                        kind: library
+
+                        relevance: 固有ベクトルを数値計算する代表的 API として出てくる。
+
+                        officialUrl: https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html
+
+                      - name: ARPACK
+
+                        kind: library
+
+                        relevance: 大規模行列の主要固有ベクトル計算で出てくる。
+
+                        officialUrl: https://www.arpack.org/
+
+                      - name: PCA
+
+                        kind: method
+
+                        relevance: 共分散行列の固有ベクトルを主成分方向として使う。
                   name: 固有ベクトル
                   summary: 線形変換で向きが変わらない特別なベクトル。
                   whyLearn: 主成分やランキング計算の理解に直結する。
@@ -740,7 +2296,128 @@ domain:
                   aliases:
                     - SVD
                     - singular value decomposition
+                  search:
+                    keywords:
+                      - 特異値分解
+                      - singular value decomposition
+                      - SVD
+                      - singular values
+                      - low rank approximation
+                      - matrix factorization
+                      - latent factors
+                      - truncated SVD
+                      - dimensionality reduction
+                    commonSignals:
+                      - U Sigma V transpose の分解が出てくる
+                      - low rank approximation をしている
+                      - truncated SVD や latent semantic analysis が出てくる
+                      - 推薦やノイズ除去で行列を分解している
+                    antiSignals:
+                      - SVD が医療や別分野の略称
+                      - 単なる PCA の説明だけで SVD が出ていない
+                      - 行列分解ではなくソフトウェア設計の分解
+                    relatedNames:
+                      - name: NumPy svd
+                        kind: library
+                        relevance: 行列の SVD を計算する代表的 API として出てくる。
+                        officialUrl: https://numpy.org/doc/stable/reference/generated/numpy.linalg.svd.html
+                      - name: SciPy sparse.linalg.svds
+                        kind: library
+                        relevance: 疎行列や大規模行列の truncated SVD で出てくる。
+                        officialUrl: https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.svds.html
+                      - name: scikit-learn TruncatedSVD
+                        kind: library
+                        relevance: 次元削減やテキスト特徴量圧縮で出てくる。
+                        officialUrl: https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.TruncatedSVD.html
+                      - name: LAPACK
+                        kind: library
+                        relevance: SVD の数値計算ルーチンを提供する標準的ライブラリとして出てくる。
+                        officialUrl: https://www.netlib.org/lapack/
+                      - name: Matrix Factorization
+                        kind: method
+                        relevance: 推薦や潜在因子モデルで SVD と一緒に出てくる。
+
                 - slug: principal-component-analysis
+
+                  search:
+
+                    keywords:
+
+                      - 主成分分析
+
+                      - principal component analysis
+
+                      - PCA
+
+                      - principal components
+
+                      - dimensionality reduction
+
+                      - explained variance
+
+                      - covariance matrix
+
+                      - feature compression
+
+                      - whitening
+
+                    commonSignals:
+
+                      - explained variance ratio を見ている
+
+                      - 高次元データを低次元へ射影している
+
+                      - covariance matrix の固有ベクトルを使っている
+
+                      - 可視化や特徴圧縮の前処理として使っている
+
+                    antiSignals:
+
+                      - PCA が別組織や認証名の略称
+
+                      - 主成分という言葉が化学成分の意味だけで出る
+
+                      - 単なる特徴選択で射影や分散最大化がない
+
+                    relatedNames:
+
+                      - name: scikit-learn PCA
+
+                        kind: library
+
+                        relevance: Python で PCA を実行する代表的 API として出てくる。
+
+                        officialUrl: https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html
+
+                      - name: R prcomp
+
+                        kind: language
+
+                        relevance: R で PCA を行う標準的な関数として出てくる。
+
+                        officialUrl: https://www.r-project.org/
+
+                      - name: NumPy svd
+
+                        kind: library
+
+                        relevance: PCA を SVD で計算する文脈で出てくる。
+
+                        officialUrl: https://numpy.org/doc/stable/reference/generated/numpy.linalg.svd.html
+
+                      - name: UMAP
+
+                        kind: method
+
+                        relevance: 次元削減手法として PCA と比較されることが多い。
+
+                        officialUrl: https://umap-learn.readthedocs.io/
+
+                      - name: t-SNE
+
+                        kind: method
+
+                        relevance: 可視化向け次元削減として PCA と比較されることが多い。
                   name: 主成分分析
                   summary: 分散が大きい方向へデータを射影する次元削減法。
                   whyLearn: 可視化、特徴圧縮、相関構造の理解に役立つ。
@@ -772,7 +2449,119 @@ domain:
                   promptHint: どちらへ動けば値が最も増えるかを知りたいときに使う。
                   aliases:
                     - gradient
+                  search:
+                    keywords:
+                      - 勾配
+                      - gradient
+                      - partial derivative
+                      - vector of derivatives
+                      - backpropagation
+                      - automatic differentiation
+                      - gradient norm
+                      - Jacobian
+                      - sensitivity
+                    commonSignals:
+                      - 多変数関数の偏微分をベクトルとして扱っている
+                      - gradient norm や exploding gradients が出てくる
+                      - backpropagation や automatic differentiation と一緒に出る
+                      - パラメータ更新方向を議論している
+                    antiSignals:
+                      - CSS gradient や色のグラデーションの話
+                      - 勾配が地形や坂道の物理的説明だけ
+                      - 単なる差分で微分や最適化の文脈がない
+                    relatedNames:
+                      - name: PyTorch autograd
+                        kind: library
+                        relevance: 勾配を自動計算する深層学習ライブラリ機能として出てくる。
+                        officialUrl: https://pytorch.org/docs/stable/autograd.html
+                      - name: JAX grad
+                        kind: library
+                        relevance: Python 関数の勾配を自動微分で得る API として出てくる。
+                        officialUrl: https://docs.jax.dev/en/latest/_autosummary/jax.grad.html
+                      - name: TensorFlow GradientTape
+                        kind: library
+                        relevance: 勾配計算を記録して最適化する機能として出てくる。
+                        officialUrl: https://www.tensorflow.org/api_docs/python/tf/GradientTape
+                      - name: Autograd
+                        kind: library
+                        relevance: 自動微分ライブラリとして勾配計算の文脈で出てくる。
+                        officialUrl: https://github.com/HIPS/autograd
+
                 - slug: convex-function
+
+                  search:
+
+                    keywords:
+
+                      - 凸関数
+
+                      - convex function
+
+                      - convexity
+
+                      - Jensen inequality
+
+                      - global minimum
+
+                      - local minimum
+
+                      - convex optimization
+
+                      - epigraph
+
+                      - Hessian positive semidefinite
+
+                    commonSignals:
+
+                      - 任意の二点を結ぶ線分との関係を議論している
+
+                      - local minimum が global minimum になると説明している
+
+                      - Hessian が positive semidefinite と書かれている
+
+                      - Jensen の不等式が出てくる
+
+                    antiSignals:
+
+                      - 凸 UI や図形の見た目だけの話
+
+                      - non-convex neural network のみを扱っている
+
+                      - 最適化ではなく凸包 convex hull だけを扱う話
+
+                    relatedNames:
+
+                      - name: CVXPY
+
+                        kind: library
+
+                        relevance: 凸最適化問題を宣言的に記述する Python ライブラリとして出てくる。
+
+                        officialUrl: https://www.cvxpy.org/
+
+                      - name: CVX
+
+                        kind: tool
+
+                        relevance: MATLAB で凸最適化を記述するツールとして出てくる。
+
+                        officialUrl: http://cvxr.com/cvx/
+
+                      - name: Boyd and Vandenberghe Convex Optimization
+
+                        kind: other
+
+                        relevance: 凸関数と凸最適化の標準的な教材名として頻出する。
+
+                        officialUrl: https://web.stanford.edu/~boyd/cvxbook/
+
+                      - name: MOSEK
+
+                        kind: tool
+
+                        relevance: 凸最適化ソルバとして CVX や CVXPY と一緒に出てくる。
+
+                        officialUrl: https://www.mosek.com/
                   name: 凸関数
                   summary: 線分の上にグラフが乗らない形の関数。
                   whyLearn: 局所解と大域解の関係が素直になり、最適化が扱いやすい。
@@ -786,7 +2575,122 @@ domain:
                   promptHint: 少しずつ改善して最小値へ近づく方法を説明するときに使う。
                   aliases:
                     - gradient descent
+                  search:
+                    keywords:
+                      - 勾配降下法
+                      - gradient descent
+                      - SGD
+                      - stochastic gradient descent
+                      - learning rate
+                      - step size
+                      - optimizer
+                      - loss minimization
+                      - convergence
+                    commonSignals:
+                      - loss を下げるためにパラメータを反復更新している
+                      - learning rate や step size を調整している
+                      - SGD, mini-batch, epoch が出てくる
+                      - 勾配の逆方向に進むと説明している
+                    antiSignals:
+                      - gradient が CSS の色変化として出ている
+                      - descent が登山や降下の一般語
+                      - ベイズ最適化や進化計算だけで勾配を使わない
+                    relatedNames:
+                      - name: PyTorch optim.SGD
+                        kind: library
+                        relevance: SGD によるパラメータ更新を行う代表的 API として出てくる。
+                        officialUrl: https://pytorch.org/docs/stable/generated/torch.optim.SGD.html
+                      - name: TensorFlow Keras optimizers
+                        kind: library
+                        relevance: 勾配ベース最適化を訓練ループで使う文脈で出てくる。
+                        officialUrl: https://www.tensorflow.org/api_docs/python/tf/keras/optimizers
+                      - name: Adam
+                        kind: method
+                        relevance: 勾配降下法を拡張した適応的最適化手法として頻出する。
+                      - name: Optax
+                        kind: library
+                        relevance: JAX で勾配ベース最適化を扱うライブラリとして出てくる。
+                        officialUrl: https://optax.readthedocs.io/
+
                 - slug: lagrangian-duality
+
+                  search:
+
+                    keywords:
+
+                      - ラグランジュ双対
+
+                      - Lagrangian duality
+
+                      - Lagrange multiplier
+
+                      - dual problem
+
+                      - primal problem
+
+                      - KKT conditions
+
+                      - constrained optimization
+
+                      - saddle point
+
+                      - strong duality
+
+                    commonSignals:
+
+                      - primal と dual の問題を比較している
+
+                      - Lagrange multiplier や dual variable が出てくる
+
+                      - KKT 条件や strong duality を説明している
+
+                      - 制約付き最適化を目的関数へ組み込んでいる
+
+                    antiSignals:
+
+                      - ラグランジュ補間やラグランジュ点だけの話
+
+                      - 双対がカテゴリ理論や線形計画以外の比喩として出ている
+
+                      - 制約がない最適化だけを扱っている
+
+                    relatedNames:
+
+                      - name: CVXPY
+
+                        kind: library
+
+                        relevance: 制約付き凸最適化と双対変数を扱う文脈で出てくる。
+
+                        officialUrl: https://www.cvxpy.org/
+
+                      - name: CVX
+
+                        kind: tool
+
+                        relevance: 凸最適化の主問題と双対問題を学ぶ文脈で出てくる。
+
+                        officialUrl: http://cvxr.com/cvx/
+
+                      - name: MOSEK
+
+                        kind: tool
+
+                        relevance: 双対変数や KKT 条件を返す最適化ソルバとして出てくる。
+
+                        officialUrl: https://www.mosek.com/
+
+                      - name: SVM
+
+                        kind: method
+
+                        relevance: 制約付き最適化の双対問題として説明される代表例として出てくる。
+
+                      - name: KKT Conditions
+
+                        kind: method
+
+                        relevance: ラグランジュ双対と最適性条件の中心概念として出てくる。
                   name: ラグランジュ双対
                   summary: 制約付き最適化を別の視点から解くための枠組み。
                   whyLearn: 制約の意味と最適性条件を深く理解できる。
@@ -815,7 +2719,115 @@ domain:
                   promptHint: 有限の記憶で処理できるパターンかを見たいときに使う。
                   aliases:
                     - regular language
+                  search:
+                    keywords:
+                      - 正規言語
+                      - regular language
+                      - finite automata
+                      - regular expression
+                      - DFA
+                      - NFA
+                      - closure property
+                      - pumping lemma
+                      - formal language
+                    commonSignals:
+                      - DFA, NFA, regex が同じ表現力として説明されている
+                      - 有限状態で認識できる文字列集合を扱っている
+                      - closure property や pumping lemma が出る
+                      - formal language の階層で正規と文脈自由を比較している
+                    antiSignals:
+                      - regular が通常や定期的という意味
+                      - 正規化 normalized の話
+                      - 実装上の regex 方言だけで言語クラスの議論がない
+                    relatedNames:
+                      - name: Regex
+                        kind: language
+                        relevance: 正規言語を実務で記述する代表的な記法として出てくる。
+                      - name: Lexer
+                        kind: method
+                        relevance: 字句解析で正規言語がトークン定義に使われる。
+                      - name: Ragel
+                        kind: tool
+                        relevance: 正規言語や状態機械をコード生成するツールとして出てくる。
+                        officialUrl: https://www.colm.net/open-source/ragel/
+                      - name: Flex
+                        kind: tool
+                        relevance: 正規表現から字句解析器を生成する古典的ツールとして出てくる。
+                        officialUrl: https://github.com/westes/flex
+
                 - slug: deterministic-finite-automaton
+
+                  search:
+
+                    keywords:
+
+                      - 決定性有限オートマトン
+
+                      - deterministic finite automaton
+
+                      - DFA
+
+                      - finite state machine
+
+                      - transition function
+
+                      - accepting state
+
+                      - start state
+
+                      - state transition
+
+                      - regular language
+
+                    commonSignals:
+
+                      - 各状態と入力記号で遷移先が一意に決まる
+
+                      - transition table や state diagram がある
+
+                      - start state と accepting state を定義している
+
+                      - regex を DFA に変換している
+
+                    antiSignals:
+
+                      - DFA が金融や行政など別略語
+
+                      - 状態機械が非決定性や確率的遷移を含んでいる
+
+                      - UI 状態管理だけで形式言語の入力受理がない
+
+                    relatedNames:
+
+                      - name: Finite State Machine
+
+                        kind: pattern
+
+                        relevance: DFA の実務的な状態遷移モデル名として出てくる。
+
+                      - name: Ragel
+
+                        kind: tool
+
+                        relevance: 状態機械を生成するツールとして DFA 文脈で出てくる。
+
+                        officialUrl: https://www.colm.net/open-source/ragel/
+
+                      - name: Flex
+
+                        kind: tool
+
+                        relevance: 字句解析器生成で DFA に基づく実装が出てくる。
+
+                        officialUrl: https://github.com/westes/flex
+
+                      - name: AutomataLib
+
+                        kind: library
+
+                        relevance: オートマトンをプログラム上で扱うライブラリとして出てくる。
+
+                        officialUrl: https://github.com/LearnLib/automatalib
                   name: 決定性有限オートマトン
                   summary: 各状態と入力で遷移先が一つに定まる有限機械。
                   whyLearn: もっとも明快な状態遷移モデルとして重要。
@@ -831,7 +2843,135 @@ domain:
                   aliases:
                     - NFA
                     - nondeterministic finite automaton
+                  search:
+                    keywords:
+                      - 非決定性有限オートマトン
+                      - nondeterministic finite automaton
+                      - NFA
+                      - epsilon transition
+                      - subset construction
+                      - powerset construction
+                      - nondeterminism
+                      - regular language
+                      - automata conversion
+                    commonSignals:
+                      - 一つの状態から複数の遷移候補がある
+                      - epsilon transition が出てくる
+                      - NFA to DFA conversion を説明している
+                      - subset construction や powerset construction が出る
+                    antiSignals:
+                      - NFA が別団体や規格の略語
+                      - 非決定性が分散システムの実行順序だけを指す
+                      - 確率オートマトンやマルコフ過程の話
+                    relatedNames:
+                      - name: Thompson Construction
+                        kind: method
+                        relevance: 正規表現から NFA を構成する代表的手法として出てくる。
+                      - name: Subset Construction
+                        kind: method
+                        relevance: NFA を DFA に変換する標準手法として出てくる。
+                      - name: RE2
+                        kind: library
+                        relevance: 正規表現エンジンの実装方針を学ぶ際に NFA/DFA と比較される。
+                        officialUrl: https://github.com/google/re2
+                      - name: AutomataLib
+                        kind: library
+                        relevance: NFA や DFA を扱うライブラリとして出てくる。
+                        officialUrl: https://github.com/LearnLib/automatalib
+
                 - slug: regular-expression
+
+                  search:
+
+                    keywords:
+
+                      - 正規表現
+
+                      - regular expression
+
+                      - regex
+
+                      - regexp
+
+                      - pattern matching
+
+                      - character class
+
+                      - quantifier
+
+                      - capture group
+
+                      - backtracking
+
+                      - lookahead
+
+                    commonSignals:
+
+                      - 文字列パターンをスラッシュやメタ文字で表している
+
+                      - character class や quantifier を使っている
+
+                      - grep, sed, ripgrep などの検索文脈で出る
+
+                      - backtracking や catastrophic backtracking を議論している
+
+                    antiSignals:
+
+                      - 正規化表現や正則化 regularization の話
+
+                      - 自然言語の表現力の話だけ
+
+                      - regex 風だが独自 glob パターンの話
+
+                    relatedNames:
+
+                      - name: PCRE
+
+                        kind: library
+
+                        relevance: 実務で広く使われる正規表現エンジンとして出てくる。
+
+                        officialUrl: https://www.pcre.org/
+
+                      - name: RE2
+
+                        kind: library
+
+                        relevance: 線形時間性を重視する正規表現エンジンとして出てくる。
+
+                        officialUrl: https://github.com/google/re2
+
+                      - name: ECMAScript RegExp
+
+                        kind: standard
+
+                        relevance: JavaScript の正規表現仕様として出てくる。
+
+                        officialUrl: https://tc39.es/ecma262/#sec-regexp-regular-expression-objects
+
+                      - name: POSIX regex
+
+                        kind: standard
+
+                        relevance: Unix 系ツールで使われる正規表現標準として出てくる。
+
+                        officialUrl: https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap09.html
+
+                      - name: ripgrep
+
+                        kind: tool
+
+                        relevance: 正規表現検索を高速に行う実務ツールとして出てくる。
+
+                        officialUrl: https://github.com/BurntSushi/ripgrep
+
+                      - name: grep
+
+                        kind: tool
+
+                        relevance: 正規表現によるテキスト検索の古典的ツールとして出てくる。
+
+                        officialUrl: https://www.gnu.org/software/grep/
                   name: 正規表現
                   summary: 正規言語を記述するための記法。
                   whyLearn: テキスト処理や lexer の基礎と理論を結び付けられる。
@@ -897,7 +3037,129 @@ domain:
                   aliases:
                     - CFG
                     - context free grammar
+                  search:
+                    keywords:
+                      - 文脈自由文法
+                      - context-free grammar
+                      - CFG
+                      - production rule
+                      - nonterminal
+                      - terminal
+                      - start symbol
+                      - derivation
+                      - BNF
+                      - EBNF
+                    commonSignals:
+                      - 非終端記号と終端記号を使って生成規則を書いている
+                      - grammar production や derivation が出てくる
+                      - BNF や EBNF の文法仕様がある
+                      - パーサ生成器に入力する文法を定義している
+                    antiSignals:
+                      - grammar が自然言語の文法だけを指している
+                      - regular grammar だけで文脈自由構造がない
+                      - PEG の決定的選択仕様を CFG と同一視している
+                    relatedNames:
+                      - name: ANTLR
+                        kind: tool
+                        relevance: 文法定義からパーサを生成する代表的ツールとして出てくる。
+                        officialUrl: https://www.antlr.org/
+                      - name: GNU Bison
+                        kind: tool
+                        relevance: 文脈自由文法に基づくパーサ生成器として出てくる。
+                        officialUrl: https://www.gnu.org/software/bison/
+                      - name: yacc
+                        kind: tool
+                        relevance: CFG 系の構文解析器生成の古典的ツールとして出てくる。
+                      - name: EBNF
+                        kind: standard
+                        relevance: 文法規則を記述する拡張記法として出てくる。
+                      - name: PEG
+                        kind: method
+                        relevance: CFG と比較される構文定義形式として出てくる。
+
                 - slug: parse-tree
+
+                  search:
+
+                    keywords:
+
+                      - 構文木
+
+                      - parse tree
+
+                      - syntax tree
+
+                      - abstract syntax tree
+
+                      - AST
+
+                      - derivation tree
+
+                      - parser
+
+                      - grammar production
+
+                      - concrete syntax tree
+
+                    commonSignals:
+
+                      - 文法規則の適用過程を木で表している
+
+                      - AST と concrete syntax tree を比較している
+
+                      - parser がトークン列から木を作っている
+
+                      - ノード、親子関係、構文規則が一緒に出てくる
+
+                    antiSignals:
+
+                      - DOM tree だけを扱っていて文法解析がない
+
+                      - 決定木 decision tree の話
+
+                      - 組織図や分類木など一般的な木構造
+
+                    relatedNames:
+
+                      - name: Tree-sitter
+
+                        kind: tool
+
+                        relevance: ソースコードから構文木を生成する実務的なパーサツールとして出てくる。
+
+                        officialUrl: https://tree-sitter.github.io/tree-sitter/
+
+                      - name: ANTLR
+
+                        kind: tool
+
+                        relevance: 文法から parse tree を生成するパーサ生成器として出てくる。
+
+                        officialUrl: https://www.antlr.org/
+
+                      - name: ESTree
+
+                        kind: standard
+
+                        relevance: JavaScript AST の共通仕様として出てくる。
+
+                        officialUrl: https://github.com/estree/estree
+
+                      - name: Babel Parser
+
+                        kind: tool
+
+                        relevance: JavaScript や TypeScript の AST 生成で出てくる。
+
+                        officialUrl: https://babeljs.io/docs/babel-parser
+
+                      - name: Clang AST
+
+                        kind: tool
+
+                        relevance: C/C++/Objective-C の構文木や意味解析で出てくる。
+
+                        officialUrl: https://clang.llvm.org/docs/IntroductionToTheClangAST.html
                   name: 構文木
                   summary: 生成規則の適用過程を木として表したもの。
                   whyLearn: 構文解析と意味解析の橋渡しになる。
@@ -930,6 +3192,41 @@ domain:
                   promptHint: 計算そのものを最小限の機械で定義したいときに使う。
                   aliases:
                     - Turing machine
+                  search:
+                    keywords:
+                      - チューリング機械
+                      - Turing machine
+                      - tape
+                      - head
+                      - state transition
+                      - computability
+                      - universal Turing machine
+                      - Church-Turing thesis
+                      - computation model
+                    commonSignals:
+                      - テープ、ヘッド、状態、遷移関数が出てくる
+                      - 計算可能性の標準モデルとして説明している
+                      - universal machine や simulation を扱っている
+                      - 停止性問題と一緒に出てくる
+                    antiSignals:
+                      - Turing Award や Alan Turing の人物紹介だけ
+                      - チューリングテストの話
+                      - 実際の CPU アーキテクチャだけを扱う話
+                    relatedNames:
+                      - name: Universal Turing Machine
+                        kind: method
+                        relevance: 任意のチューリング機械を模倣できるモデルとして出てくる。
+                      - name: Lambda Calculus
+                        kind: method
+                        relevance: 計算可能性を定義する別モデルとしてチューリング機械と比較される。
+                      - name: Register Machine
+                        kind: method
+                        relevance: チューリング機械と等価な抽象計算モデルとして出てくる。
+                      - name: Brainfuck
+                        kind: language
+                        relevance: チューリング完全性を説明する極小言語の例として出てくる。
+                        officialUrl: https://esolangs.org/wiki/Brainfuck
+
                 - slug: decidable-language
                   name: 決定可能言語
                   summary: 受理か否かを必ず停止して判定できる言語。
@@ -944,6 +3241,41 @@ domain:
                   promptHint: 実行前に停止性を完全判定できるかを問うときに使う。
                   aliases:
                     - halting problem
+                  search:
+                    keywords:
+                      - 停止性問題
+                      - halting problem
+                      - program termination
+                      - undecidable
+                      - nontermination
+                      - infinite loop
+                      - Turing machine
+                      - Rice theorem
+                      - termination analysis
+                    commonSignals:
+                      - 任意のプログラムが停止するかを判定できないと述べている
+                      - infinite loop と undecidable を結びつけている
+                      - 自己参照や対角線論法で証明している
+                      - 静的解析の限界として語っている
+                    antiSignals:
+                      - 単にプログラムがハングした障害報告
+                      - timeout や kill signal の運用対応だけ
+                      - 終了条件のバグ修正だけで原理的限界の話がない
+                    relatedNames:
+                      - name: Rice Theorem
+                        kind: method
+                        relevance: プログラム性質の決定不能性を示す一般化として出てくる。
+                      - name: Abstract Interpretation
+                        kind: method
+                        relevance: 停止性など完全判定できない性質を近似解析する文脈で出てくる。
+                      - name: Termination Analysis
+                        kind: method
+                        relevance: 特定条件下で停止を証明する解析分野として出てくる。
+                      - name: Dafny
+                        kind: tool
+                        relevance: decreases 句などで停止性を証明する形式検証ツールとして出てくる。
+                        officialUrl: https://dafny.org/
+
                 - slug: mapping-reduction
                   name: 写像還元
                   summary: ある問題を別の問題へ計算可能に移し替える手法。
@@ -1010,6 +3342,41 @@ domain:
                   promptHint: 解くのは難しくても答え合わせは速い問題を考えるときに使う。
                   aliases:
                     - NP
+                  search:
+                    keywords:
+                      - NP
+                      - nondeterministic polynomial time
+                      - polynomial-time verification
+                      - certificate
+                      - witness
+                      - decision problem
+                      - verifier
+                      - complexity class
+                      - P vs NP
+                    commonSignals:
+                      - 解の候補を多項式時間で検証できると説明している
+                      - certificate や witness が出てくる
+                      - P, NP, NP-complete を比較している
+                      - 決定問題の複雑性クラスとして使っている
+                    antiSignals:
+                      - NP が NumPy の略として出ている
+                      - nurse practitioner など別分野の略語
+                      - 非決定性を並列実行やランダム性と混同している説明
+                    relatedNames:
+                      - name: Cook-Levin Theorem
+                        kind: method
+                        relevance: SAT が NP 完全であることを示す中心定理として出てくる。
+                      - name: SAT
+                        kind: method
+                        relevance: NP の代表的問題として頻出する。
+                      - name: Verifier
+                        kind: method
+                        relevance: NP を証明書の多項式時間検証として説明する際に出てくる。
+                      - name: Complexity Zoo
+                        kind: other
+                        relevance: 複雑性クラスを調べる参照先として出てくる。
+                        officialUrl: https://complexityzoo.net/Complexity_Zoo
+
                 - slug: np-hard
                   name: NP 困難
                   summary: NP のどの問題よりも少なくとも難しい問題の分類。
@@ -1024,6 +3391,43 @@ domain:
                   promptHint: 難しさの中心例として位置づけたいときに使う。
                   aliases:
                     - NP-complete
+                  search:
+                    keywords:
+                      - NP 完全
+                      - NP-complete
+                      - NP completeness
+                      - polynomial reduction
+                      - Karp reduction
+                      - SAT
+                      - 3-SAT
+                      - Cook-Levin theorem
+                      - hardest in NP
+                    commonSignals:
+                      - NP に属し、NP-hard でもあると説明している
+                      - 多項式時間還元で難しさを示している
+                      - 3-SAT からの reduction が出てくる
+                      - 効率的な厳密解が期待しにくい根拠として使っている
+                    antiSignals:
+                      - NP-hard と NP-complete を同一視している
+                      - 最適化問題そのものを証明なしに NP-complete と呼んでいる
+                      - complete が完了状態という一般語
+                    relatedNames:
+                      - name: 3-SAT
+                        kind: method
+                        relevance: NP 完全性証明の出発点としてよく使われる代表問題として出てくる。
+                      - name: Clique
+                        kind: method
+                        relevance: グラフ問題の NP 完全性例として頻出する。
+                      - name: Vertex Cover
+                        kind: method
+                        relevance: 還元でよく使われる NP 完全問題として出てくる。
+                      - name: Hamiltonian Cycle
+                        kind: method
+                        relevance: 経路探索系の NP 完全問題として出てくる。
+                      - name: Traveling Salesman Problem
+                        kind: method
+                        relevance: 決定版が NP 完全な代表的最適化関連問題として出てくる。
+
                 - slug: p-versus-np
                   name: P 対 NP
                   summary: 検証しやすい問題がすべて効率よく解けるかを問う未解決問題。
@@ -1047,6 +3451,53 @@ domain:
                   aliases:
                     - ZKP
                     - zero knowledge proof
+                  search:
+                    keywords:
+                      - ゼロ知識証明
+                      - zero knowledge proof
+                      - ZKP
+                      - zk-SNARK
+                      - zk-STARK
+                      - proof system
+                      - prover
+                      - verifier
+                      - succinct proof
+                      - privacy preserving proof
+                    commonSignals:
+                      - 秘密を明かさずに主張の正しさを示している
+                      - prover と verifier の関係を説明している
+                      - completeness, soundness, zero-knowledge が一緒に出る
+                      - 回路、constraint system、trusted setup が出てくる
+                    antiSignals:
+                      - 知識ゼロや未経験という一般表現
+                      - 単なる暗号化 encryption の話
+                      - 認証プロトコルだがゼロ知識性を扱っていない
+                    relatedNames:
+                      - name: zk-SNARK
+                        kind: method
+                        relevance: 短い証明サイズを特徴とする代表的なゼロ知識証明方式として出てくる。
+                      - name: zk-STARK
+                        kind: method
+                        relevance: 透明性や耐量子性を特徴として語られるゼロ知識証明方式として出てくる。
+                      - name: Groth16
+                        kind: protocol
+                        relevance: 実装例が多い zk-SNARK の具体的プロトコルとして出てくる。
+                      - name: PLONK
+                        kind: protocol
+                        relevance: 汎用的な zk-SNARK 系プロトコルとして出てくる。
+                      - name: Circom
+                        kind: language
+                        relevance: ゼロ知識回路を記述する DSL として出てくる。
+                        officialUrl: https://docs.circom.io/
+                      - name: Halo2
+                        kind: framework
+                        relevance: PLONK 系の証明システム実装として出てくる。
+                        officialUrl: https://zcash.github.io/halo2/
+                      - name: arkworks
+                        kind: library
+                        relevance: Rust でゼロ知識証明や楕円曲線演算を実装するライブラリ群として出てくる。
+                        officialUrl: https://arkworks.rs/
+
                 - slug: bpp
                   name: BPP
                   summary: 乱択を使って高い確率で正解できる多項式時間問題クラス。

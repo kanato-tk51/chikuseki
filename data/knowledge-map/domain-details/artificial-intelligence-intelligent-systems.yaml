@@ -26,6 +26,41 @@ domain:
                   aliases:
                     - A*
                     - A-star search
+                  search:
+                    keywords:
+                      - A*探索
+                      - A-star search
+                      - A* algorithm
+                      - heuristic search
+                      - pathfinding
+                      - shortest path
+                      - admissible heuristic
+                      - consistent heuristic
+                      - open set
+                      - closed set
+                    commonSignals:
+                      - f(n)=g(n)+h(n) という評価関数が出てくる
+                      - 経路探索、迷路探索、地図上の最短経路を扱っている
+                      - ヒューリスティックが最適性や探索効率に影響すると述べている
+                      - open list / closed list / priority queue が出てくる
+                    antiSignals:
+                      - 星印やワイルドカードとしての * の話だけである
+                      - A/BテストやA*評価のように探索アルゴリズムではない
+                      - 単なるDijkstra法の説明でヒューリスティックが出てこない
+                    relatedNames:
+                      - name: NetworkX
+                        kind: library
+                        relevance: Pythonでグラフ探索や最短経路アルゴリズムを実装・検証するときによく使われる。
+                        officialUrl: https://networkx.org/
+                      - name: Boost Graph Library
+                        kind: library
+                        relevance: C++でA*やDijkstraなどのグラフ探索を扱う代表的ライブラリ。
+                        officialUrl: https://www.boost.org/doc/libs/release/libs/graph/
+                      - name: ROS Navigation Stack
+                        kind: framework
+                        relevance: ロボット経路計画でA*系の探索やコストマップと一緒に登場しやすい。
+                        officialUrl: https://wiki.ros.org/navigation
+
                 - slug: admissible-heuristic
                   name: 許容的ヒューリスティック
                   summary: 真の残コストを過大評価しないヒューリスティックの性質。
@@ -40,6 +75,40 @@ domain:
                   promptHint: ビームサーチがA*とどう違い、どんな場面で使われるか説明して。
                   aliases:
                     - beam search
+                  search:
+                    keywords:
+                      - ビームサーチ
+                      - beam search
+                      - beam width
+                      - sequence decoding
+                      - approximate search
+                      - top-k candidates
+                      - decoder search
+                      - hypothesis pruning
+                      - seq2seq decoding
+                      - candidate generation
+                    commonSignals:
+                      - beam width や num beams を調整している
+                      - 翻訳、要約、音声認識、テキスト生成の候補列探索を扱っている
+                      - 上位N個の仮説だけを残すと説明している
+                      - greedy decoding と比較している
+                    antiSignals:
+                      - レーザービームや物理的なビームの話である
+                      - 検索エンジンの一般的なランキングだけを指している
+                      - 木探索ではあるが候補幅制限が出てこない
+                    relatedNames:
+                      - name: Hugging Face Transformers
+                        kind: library
+                        relevance: テキスト生成や翻訳でbeam searchのパラメータが頻繁に使われる。
+                        officialUrl: https://huggingface.co/docs/transformers/
+                      - name: OpenNMT
+                        kind: framework
+                        relevance: 機械翻訳やseq2seqモデルのデコード設定でbeam searchがよく登場する。
+                        officialUrl: https://opennmt.net/
+                      - name: Fairseq
+                        kind: framework
+                        relevance: sequence-to-sequenceモデルの生成時探索やビーム幅設定で関連が強い。
+                        officialUrl: https://fairseq.readthedocs.io/
             - slug: game-and-tree-search
               name: ゲーム木探索
               summary: 対戦や逐次意思決定を木として表し、勝率や価値を見積もって手を選ぶ。
@@ -68,6 +137,38 @@ domain:
                   aliases:
                     - MCTS
                     - Monte Carlo Tree Search
+                  search:
+                    keywords:
+                      - モンテカルロ木探索
+                      - Monte Carlo Tree Search
+                      - MCTS
+                      - UCT
+                      - tree policy
+                      - rollout
+                      - playout
+                      - simulation search
+                      - game AI
+                      - AlphaGo search
+                    commonSignals:
+                      - selection / expansion / simulation / backpropagation の流れが出てくる
+                      - 囲碁、将棋、ボードゲーム、ゲームAIの先読みを扱っている
+                      - rollout や playout による価値推定を説明している
+                      - UCT や exploration constant が出てくる
+                    antiSignals:
+                      - 単なるモンテカルロ積分や乱数シミュレーションだけで木探索がない
+                      - 決定木やランダムフォレストの木と混同している
+                      - Monte Carlo dropout のような不確実性推定の話である
+                    relatedNames:
+                      - name: AlphaGo
+                        kind: other
+                        relevance: MCTSと深層ニューラルネットワークを組み合わせた代表的な事例として学習上重要。
+                      - name: OpenSpiel
+                        kind: framework
+                        relevance: ゲーム理論・強化学習・探索アルゴリズムの実験でMCTSを扱いやすい。
+                        officialUrl: https://openspiel.readthedocs.io/
+                      - name: MuZero
+                        kind: method
+                        relevance: モデル学習とMCTSを組み合わせる現代的な強化学習系手法として関連が深い。
         - slug: symbolic-representation-and-planning
           name: 記号表現と計画
           summary: 世界知識や行動を明示的な記号として表し、推論や行動列生成に使う。
@@ -85,7 +186,126 @@ domain:
                   aliases:
                     - knowledge graph
                     - KG
+                  search:
+                    keywords:
+                      - ナレッジグラフ
+                      - knowledge graph
+                      - KG
+                      - entity relationship graph
+                      - semantic graph
+                      - RDF
+                      - triples
+                      - SPARQL
+                      - graph database
+                      - entity linking
+                    commonSignals:
+                      - entity、relationship、triple、node、edge を知識表現として扱っている
+                      - 文書検索ではなく構造化された事実や関係を検索している
+                      - SPARQL、RDF、OWL、schema.org が出てくる
+                      - LLMやRAGに構造化知識を接続する話が出てくる
+                    antiSignals:
+                      - 一般的なグラフ理論やネットワーク分析だけで意味論がない
+                      - KubernetesのKnowledge Graphなど固有プロダクト名だけの話である
+                      - 単なるマインドマップや概念図を指している
+                    relatedNames:
+                      - name: RDF
+                        kind: standard
+                        relevance: ナレッジグラフのトリプル表現で広く使われる標準。
+                        officialUrl: https://www.w3.org/RDF/
+                      - name: SPARQL
+                        kind: standard
+                        relevance: RDFグラフに対するクエリ言語としてナレッジグラフと一緒に出る。
+                        officialUrl: https://www.w3.org/TR/sparql11-query/
+                      - name: Neo4j
+                        kind: platform
+                        relevance: グラフデータベースとして知識グラフ実装や探索でよく使われる。
+                        officialUrl: https://neo4j.com/
+                      - name: Wikidata
+                        kind: platform
+                        relevance: 公開ナレッジグラフの代表例として実務・学習の両方で参照される。
+                        officialUrl: https://www.wikidata.org/
+                      - name: Apache Jena
+                        kind: framework
+                        relevance: RDF、SPARQL、推論を扱うJava系の代表的フレームワーク。
+                        officialUrl: https://jena.apache.org/
+
                 - slug: ontology
+
+                  search:
+
+                    keywords:
+
+                      - オントロジー
+
+                      - ontology
+
+                      - OWL
+
+                      - RDF schema
+
+                      - semantic web
+
+                      - taxonomy
+
+                      - class hierarchy
+
+                      - domain model
+
+                      - reasoning
+
+                      - controlled vocabulary
+
+                    commonSignals:
+
+                      - class、property、subClassOf、domain、range などの語が出てくる
+
+                      - 共通語彙、意味制約、概念階層を明示化している
+
+                      - OWL reasoner や推論可能性が話題になっている
+
+                      - ナレッジグラフの型定義や意味論を設計している
+
+                    antiSignals:
+
+                      - 哲学一般の存在論だけで計算機上の知識表現ではない
+
+                      - 単なるカテゴリ一覧やタグ一覧で意味制約がない
+
+                      - データベーススキーマだけを指している
+
+                    relatedNames:
+
+                      - name: OWL
+
+                        kind: standard
+
+                        relevance: Web Ontology Languageとしてオントロジー定義で広く使われる。
+
+                        officialUrl: https://www.w3.org/OWL/
+
+                      - name: Protégé
+
+                        kind: tool
+
+                        relevance: オントロジー作成・編集・推論確認の代表的ツール。
+
+                        officialUrl: https://protege.stanford.edu/
+
+                      - name: RDF Schema
+
+                        kind: standard
+
+                        relevance: RDF上でクラスやプロパティの基本語彙を定義する標準。
+
+                        officialUrl: https://www.w3.org/TR/rdf-schema/
+
+                      - name: SHACL
+
+                        kind: standard
+
+                        relevance: RDFグラフの制約検証でオントロジーやナレッジグラフと併用される。
+
+                        officialUrl: https://www.w3.org/TR/shacl/
                   name: オントロジー
                   summary: 概念間の型や意味関係を明示して共有可能にする意味論的な定義体系。
                   whyLearn: ドメイン知識の曖昧さを減らし、推論可能な共通語彙を作れる。
@@ -128,6 +348,44 @@ domain:
                   aliases:
                     - CSP
                     - constraint satisfaction problem
+                  search:
+                    keywords:
+                      - 制約充足問題
+                      - constraint satisfaction problem
+                      - CSP
+                      - constraint programming
+                      - constraint solver
+                      - backtracking search
+                      - arc consistency
+                      - SAT
+                      - scheduling
+                      - combinatorial optimization
+                    commonSignals:
+                      - 変数、値域、制約、割り当てという定式化が出てくる
+                      - スケジューリング、割当、時間割、ナースロスタリングを扱っている
+                      - backtracking、forward checking、arc consistency が出てくる
+                      - SAT solver や CP-SAT と比較している
+                    antiSignals:
+                      - 単なる入力バリデーションやDB制約だけの話である
+                      - 最適化問題だが制約充足としての変数・値域・制約が明示されない
+                      - CSSやCSPヘッダーなどWebセキュリティ用語のCSPである
+                    relatedNames:
+                      - name: Google OR-Tools
+                        kind: library
+                        relevance: 制約プログラミング、スケジューリング、最適化問題で実務利用が多い。
+                        officialUrl: https://developers.google.com/optimization
+                      - name: MiniZinc
+                        kind: language
+                        relevance: 制約充足・制約最適化問題を宣言的に記述する代表的言語。
+                        officialUrl: https://www.minizinc.org/
+                      - name: Z3
+                        kind: tool
+                        relevance: SMTソルバーとして制約解決や形式検証の文脈で関連が強い。
+                        officialUrl: https://github.com/Z3Prover/z3
+                      - name: Choco Solver
+                        kind: library
+                        relevance: Javaで制約プログラミングを実装するための代表的ライブラリ。
+                        officialUrl: https://choco-solver.org/
 
     - slug: probabilistic-reasoning-and-decision-making
       name: 確率的推論と意思決定
@@ -159,7 +417,114 @@ domain:
                   aliases:
                     - Bayesian network
                     - belief network
+                  search:
+                    keywords:
+                      - ベイジアンネットワーク
+                      - Bayesian network
+                      - belief network
+                      - probabilistic graphical model
+                      - directed acyclic graph
+                      - DAG
+                      - conditional independence
+                      - CPT
+                      - causal inference
+                      - probabilistic inference
+                    commonSignals:
+                      - 有向非巡回グラフで確率依存を表している
+                      - conditional probability table や CPT が出てくる
+                      - 条件付き独立やd-separationを説明している
+                      - 診断、リスク推定、原因推定の不確実性モデルを扱っている
+                    antiSignals:
+                      - 一般的なニューラルネットワークのベイズ化だけを指している
+                      - SNSや通信ネットワークの話で確率モデルではない
+                      - 因果グラフではあるが確率推論が出てこない
+                    relatedNames:
+                      - name: pgmpy
+                        kind: library
+                        relevance: Pythonでベイジアンネットワークや確率グラフィカルモデルを扱うライブラリ。
+                        officialUrl: https://pgmpy.org/
+                      - name: Pyro
+                        kind: library
+                        relevance: 確率プログラミングでベイズ推論やグラフィカルモデルを実装できる。
+                        officialUrl: https://pyro.ai/
+                      - name: Stan
+                        kind: language
+                        relevance: ベイズ統計モデルの記述・推論で広く使われる確率プログラミング言語。
+                        officialUrl: https://mc-stan.org/
+                      - name: bnlearn
+                        kind: library
+                        relevance: Rでベイジアンネットワーク構造学習や推論を行う代表的パッケージ。
+                        officialUrl: https://www.bnlearn.com/
+
                 - slug: hidden-markov-model
+
+                  search:
+
+                    keywords:
+
+                      - 隠れマルコフモデル
+
+                      - hidden Markov model
+
+                      - HMM
+
+                      - Viterbi algorithm
+
+                      - Baum-Welch
+
+                      - forward backward algorithm
+
+                      - sequence labeling
+
+                      - state estimation
+
+                      - emission probability
+
+                      - transition probability
+
+                    commonSignals:
+
+                      - 観測系列と隠れ状態列を区別している
+
+                      - Viterbi、forward-backward、Baum-Welch が出てくる
+
+                      - 音声認識、品詞タグ付け、状態推定、時系列ラベリングを扱っている
+
+                      - 遷移確率と出力確率を推定している
+
+                    antiSignals:
+
+                      - マルコフ連鎖だけで隠れ状態や観測確率がない
+
+                      - TransformerやRNNの系列モデル一般を指しているだけ
+
+                      - HMMという略称が別分野の用語として使われている
+
+                    relatedNames:
+
+                      - name: hmmlearn
+
+                        kind: library
+
+                        relevance: PythonでHMMを学習・推論するための軽量ライブラリ。
+
+                        officialUrl: https://hmmlearn.readthedocs.io/
+
+                      - name: Kaldi
+
+                        kind: framework
+
+                        relevance: 古典的な音声認識でHMMと音響モデルが頻繁に関連する。
+
+                        officialUrl: https://kaldi-asr.org/
+
+                      - name: pomegranate
+
+                        kind: library
+
+                        relevance: HMMを含む確率モデルをPythonで扱うライブラリとして知られる。
+
+                        officialUrl: https://pomegranate.readthedocs.io/
                   name: 隠れマルコフモデル
                   summary: 観測の背後に見えない状態遷移を仮定する時系列モデル。
                   whyLearn: 音声、系列ラベリング、状態推定の基礎として重要。
@@ -212,6 +577,41 @@ domain:
                   aliases:
                     - MDP
                     - Markov decision process
+                  search:
+                    keywords:
+                      - マルコフ決定過程
+                      - Markov decision process
+                      - MDP
+                      - state action reward
+                      - transition probability
+                      - policy
+                      - value function
+                      - Bellman equation
+                      - sequential decision making
+                      - reinforcement learning
+                    commonSignals:
+                      - state、action、reward、transition、policy がセットで出てくる
+                      - Bellman方程式、価値反復、方策反復を扱っている
+                      - 強化学習の問題設定を形式化している
+                      - マルコフ性や逐次意思決定の説明がある
+                    antiSignals:
+                      - 単なるマルコフ連鎖で行動や報酬がない
+                      - 業務意思決定の一般論で状態遷移モデルがない
+                      - プロセス管理やBPMの話で確率的遷移がない
+                    relatedNames:
+                      - name: Gymnasium
+                        kind: framework
+                        relevance: 強化学習環境をMDP的な状態・行動・報酬インターフェースで扱う代表的フレームワーク。
+                        officialUrl: https://gymnasium.farama.org/
+                      - name: OpenAI Gym
+                        kind: framework
+                        relevance: MDPや強化学習環境の標準的なAPIとして長く参照されている。
+                        officialUrl: https://www.gymlibrary.dev/
+                      - name: mdptoolbox
+                        kind: library
+                        relevance: MDPの動的計画法や価値反復を実装するために使われる。
+                        officialUrl: https://pymdptoolbox.readthedocs.io/
+
                 - slug: partially-observable-markov-decision-process
                   name: 部分観測マルコフ決定過程
                   summary: 真の状態が観測できず、観測から信念状態を保つ意思決定モデル。
@@ -240,6 +640,41 @@ domain:
                   aliases:
                     - multi-armed bandit
                     - MAB
+                  search:
+                    keywords:
+                      - 多腕バンディット
+                      - multi-armed bandit
+                      - MAB
+                      - exploration exploitation
+                      - regret
+                      - bandit algorithm
+                      - epsilon greedy
+                      - online experiment
+                      - adaptive allocation
+                      - reward maximization
+                    commonSignals:
+                      - 探索と活用のトレードオフを扱っている
+                      - regret、報酬最大化、逐次割当が出てくる
+                      - A/Bテストと比較してオンラインに配分を変える話がある
+                      - epsilon-greedy、UCB、Thompson sampling が出てくる
+                    antiSignals:
+                      - カジノやスロットマシンの一般的な話だけでアルゴリズムではない
+                      - 強化学習全般だが状態遷移や長期報酬が中心でbanditではない
+                      - セキュリティの攻撃者をbanditと呼んでいるだけ
+                    relatedNames:
+                      - name: Vowpal Wabbit
+                        kind: tool
+                        relevance: contextual banditやオンライン学習の実装で実務利用される。
+                        officialUrl: https://vowpalwabbit.org/
+                      - name: MABWiser
+                        kind: library
+                        relevance: Pythonで多腕バンディット戦略を実装・比較するためのライブラリ。
+                        officialUrl: https://fidelity.github.io/mabwiser/
+                      - name: Ax
+                        kind: platform
+                        relevance: 実験最適化やバンディット的探索と関連して使われることがある。
+                        officialUrl: https://ax.dev/
+
                 - slug: upper-confidence-bound
                   name: 上限信頼区間法
                   summary: 平均報酬だけでなく不確実性も加味して腕を選ぶバンディット戦略。
@@ -277,7 +712,110 @@ domain:
                   promptHint: 線形回帰がどんな前提で成り立つか説明して。
                   aliases:
                     - linear regression
+                  search:
+                    keywords:
+                      - 線形回帰
+                      - linear regression
+                      - ordinary least squares
+                      - OLS
+                      - least squares
+                      - regression model
+                      - coefficients
+                      - residuals
+                      - R-squared
+                      - multicollinearity
+                    commonSignals:
+                      - 目的変数を説明変数の線形結合で予測している
+                      - 残差、最小二乗、回帰係数、決定係数が出てくる
+                      - 回帰診断や多重共線性を扱っている
+                      - 連続値予測のベースラインとして使っている
+                    antiSignals:
+                      - ロジスティック回帰や分類問題だけを扱っている
+                      - 線形代数の一般的な行列計算だけで回帰ではない
+                      - ニューラルネットの線形層の話だけで統計的回帰モデルではない
+                    relatedNames:
+                      - name: scikit-learn
+                        kind: library
+                        relevance: Pythonで線形回帰を含む機械学習モデルを実装する代表的ライブラリ。
+                        officialUrl: https://scikit-learn.org/
+                      - name: statsmodels
+                        kind: library
+                        relevance: 回帰係数、信頼区間、統計的検定を含む線形モデル分析でよく使われる。
+                        officialUrl: https://www.statsmodels.org/
+                      - name: R
+                        kind: language
+                        relevance: lm関数を含む統計分析環境として線形回帰の学習・実務で頻出する。
+                        officialUrl: https://www.r-project.org/
+
                 - slug: logistic-regression
+
+                  search:
+
+                    keywords:
+
+                      - ロジスティック回帰
+
+                      - logistic regression
+
+                      - binary classification
+
+                      - logit
+
+                      - sigmoid
+
+                      - odds ratio
+
+                      - cross entropy
+
+                      - maximum likelihood
+
+                      - classification baseline
+
+                      - probability calibration
+
+                    commonSignals:
+
+                      - sigmoidやlogitで確率を出す分類モデルを説明している
+
+                      - オッズ比、交差エントロピー、最尤推定が出てくる
+
+                      - 二値分類の解釈可能なベースラインとして扱っている
+
+                      - 線形分類境界や正則化項を比較している
+
+                    antiSignals:
+
+                      - 連続値予測の線形回帰だけを扱っている
+
+                      - ロジスティクス業界や物流の話である
+
+                      - ニューラルネットの最終層だけでモデル名として出てこない
+
+                    relatedNames:
+
+                      - name: scikit-learn
+
+                        kind: library
+
+                        relevance: ロジスティック回帰を分類ベースラインとして実装するときによく使われる。
+
+                        officialUrl: https://scikit-learn.org/
+
+                      - name: statsmodels
+
+                        kind: library
+
+                        relevance: ロジットモデル、係数解釈、オッズ比の分析で関連が強い。
+
+                        officialUrl: https://www.statsmodels.org/
+
+                      - name: LIBLINEAR
+
+                        kind: library
+
+                        relevance: 大規模線形分類器の実装としてロジスティック回帰やSVMと関連する。
+
+                        officialUrl: https://www.csie.ntu.edu.tw/~cjlin/liblinear/
                   name: ロジスティック回帰
                   summary: クラス確率を推定するための線形分類モデル。
                   whyLearn: 解釈しやすく堅い分類ベースラインとして重要。
@@ -292,6 +830,40 @@ domain:
                   aliases:
                     - SVM
                     - support vector machine
+                  search:
+                    keywords:
+                      - サポートベクターマシン
+                      - support vector machine
+                      - SVM
+                      - maximum margin
+                      - kernel trick
+                      - support vectors
+                      - soft margin
+                      - RBF kernel
+                      - classification boundary
+                      - hinge loss
+                    commonSignals:
+                      - マージン最大化、サポートベクトル、カーネル法が出てくる
+                      - RBF kernel、linear kernel、soft margin を比較している
+                      - 少中規模データの分類器として扱っている
+                      - hinge loss や C パラメータが出てくる
+                    antiSignals:
+                      - 仮想マシンVMやサーバーVMの話である
+                      - ベクトル検索やembeddingだけを扱っている
+                      - サポートチケットやサポート業務の話である
+                    relatedNames:
+                      - name: LIBSVM
+                        kind: library
+                        relevance: SVMの標準的な実装として長く使われている。
+                        officialUrl: https://www.csie.ntu.edu.tw/~cjlin/libsvm/
+                      - name: scikit-learn
+                        kind: library
+                        relevance: SVCやLinearSVCなどSVM実装が実務・学習でよく使われる。
+                        officialUrl: https://scikit-learn.org/
+                      - name: ThunderSVM
+                        kind: library
+                        relevance: GPU対応の高速SVM実装として大規模データで参照されることがある。
+                        officialUrl: https://github.com/Xtra-Computing/thundersvm
             - slug: tree-and-ensemble-methods
               name: 木とアンサンブル
               summary: 分割規則や複数モデルの組み合わせで高い性能を狙う手法群。
@@ -311,7 +883,118 @@ domain:
                   promptHint: ランダムフォレストが単一決定木より安定しやすい理由を説明して。
                   aliases:
                     - random forest
+                  search:
+                    keywords:
+                      - ランダムフォレスト
+                      - random forest
+                      - bagging
+                      - ensemble learning
+                      - decision trees
+                      - feature importance
+                      - bootstrap aggregation
+                      - out-of-bag
+                      - tabular data
+                      - variance reduction
+                    commonSignals:
+                      - 多数の決定木を平均・多数決している
+                      - bootstrap、bagging、out-of-bag error が出てくる
+                      - feature importance を確認している
+                      - 表形式データの強いベースラインとして使っている
+                    antiSignals:
+                      - 単一の決定木だけを説明している
+                      - 森林、林業、地理情報のランダムな森の話である
+                      - gradient boostingやXGBoostだけを扱っている
+                    relatedNames:
+                      - name: scikit-learn
+                        kind: library
+                        relevance: RandomForestClassifierやRandomForestRegressorが定番実装として使われる。
+                        officialUrl: https://scikit-learn.org/
+                      - name: ranger
+                        kind: library
+                        relevance: RやC++で高速なランダムフォレスト実装として使われる。
+                        officialUrl: https://imbs-hl.github.io/ranger/
+                      - name: H2O
+                        kind: platform
+                        relevance: AutoMLや表形式データ分析でランダムフォレストがモデル候補に含まれる。
+                        officialUrl: https://h2o.ai/
+
                 - slug: gradient-boosting
+
+                  search:
+
+                    keywords:
+
+                      - 勾配ブースティング
+
+                      - gradient boosting
+
+                      - GBDT
+
+                      - boosted trees
+
+                      - residual fitting
+
+                      - learning rate
+
+                      - weak learners
+
+                      - XGBoost
+
+                      - LightGBM
+
+                      - CatBoost
+
+                    commonSignals:
+
+                      - 弱学習器を逐次追加して残差を改善している
+
+                      - learning rate、max depth、early stopping が出てくる
+
+                      - XGBoost、LightGBM、CatBoostの比較がある
+
+                      - 表形式データやKaggleで高性能モデルとして扱っている
+
+                    antiSignals:
+
+                      - AdaBoostだけで勾配に基づく損失最適化がない
+
+                      - GPUブーストや性能向上一般の話である
+
+                      - ランダムフォレストなど並列アンサンブルだけを指している
+
+                    relatedNames:
+
+                      - name: XGBoost
+
+                        kind: library
+
+                        relevance: 勾配ブースティング木の代表的な高性能実装として実務で頻出する。
+
+                        officialUrl: https://xgboost.readthedocs.io/
+
+                      - name: LightGBM
+
+                        kind: library
+
+                        relevance: 大規模表形式データでよく使われる高速なGBDT実装。
+
+                        officialUrl: https://lightgbm.readthedocs.io/
+
+                      - name: CatBoost
+
+                        kind: library
+
+                        relevance: カテゴリ特徴量を扱いやすいGBDT系ライブラリとして使われる。
+
+                        officialUrl: https://catboost.ai/
+
+                      - name: scikit-learn
+
+                        kind: library
+
+                        relevance: GradientBoostingやHistGradientBoostingの標準実装を提供する。
+
+                        officialUrl: https://scikit-learn.org/
                   name: 勾配ブースティング
                   summary: 残差を順次学習して予測を改善するアンサンブル法。
                   whyLearn: 表形式データでの高性能モデル群を理解する基礎になる。
@@ -335,7 +1018,110 @@ domain:
                   promptHint: k-meansが球状クラスタを想定しやすい理由を説明して。
                   aliases:
                     - k-means
+                  search:
+                    keywords:
+                      - k-means
+                      - k平均法
+                      - K-means clustering
+                      - クラスタリング
+                      - centroid
+                      - inertia
+                      - elbow method
+                      - Lloyd algorithm
+                      - unsupervised learning
+                      - cluster assignment
+                    commonSignals:
+                      - centroidやクラスタ中心を反復更新している
+                      - エルボー法でkの数を選んでいる
+                      - ラベルなしデータを似たグループに分けている
+                      - inertia、within-cluster sum of squares が出てくる
+                    antiSignals:
+                      - k近傍法やKNN分類の話である
+                      - 平均値を計算しているだけでクラスタリングではない
+                      - 階層クラスタリングやDBSCANのみを扱っている
+                    relatedNames:
+                      - name: scikit-learn
+                        kind: library
+                        relevance: KMeans実装とクラスタリング評価で最もよく使われるPythonライブラリの一つ。
+                        officialUrl: https://scikit-learn.org/
+                      - name: Spark MLlib
+                        kind: library
+                        relevance: 大規模データに対するk-meansクラスタリングで使われる。
+                        officialUrl: https://spark.apache.org/mllib/
+                      - name: Faiss
+                        kind: library
+                        relevance: ベクトル量子化や近傍探索の文脈でk-means系クラスタリングが関連する。
+                        officialUrl: https://faiss.ai/
+
                 - slug: principal-component-analysis
+
+                  search:
+
+                    keywords:
+
+                      - 主成分分析
+
+                      - principal component analysis
+
+                      - PCA
+
+                      - dimensionality reduction
+
+                      - eigenvectors
+
+                      - explained variance
+
+                      - singular value decomposition
+
+                      - SVD
+
+                      - feature projection
+
+                      - data visualization
+
+                    commonSignals:
+
+                      - 分散を最大化する方向に射影している
+
+                      - explained variance ratio や主成分負荷量が出てくる
+
+                      - 次元削減、可視化、ノイズ除去の前処理として使っている
+
+                      - 固有値分解やSVDと関連して説明している
+
+                    antiSignals:
+
+                      - 主成分という言葉だけで化学成分や栄養成分の話である
+
+                      - t-SNEやUMAPだけを扱い線形射影がない
+
+                      - 因子分析と混同しているが主成分の分散最大化が出てこない
+
+                    relatedNames:
+
+                      - name: scikit-learn
+
+                        kind: library
+
+                        relevance: PCAやIncrementalPCAの実装が前処理・可視化でよく使われる。
+
+                        officialUrl: https://scikit-learn.org/
+
+                      - name: NumPy
+
+                        kind: library
+
+                        relevance: 固有値分解やSVDなどPCAの基礎計算で使われる。
+
+                        officialUrl: https://numpy.org/
+
+                      - name: R prcomp
+
+                        kind: tool
+
+                        relevance: RでPCAを行う標準的な関数として統計分析で頻出する。
+
+                        officialUrl: https://www.r-project.org/
                   name: 主成分分析
                   summary: 分散の大きい方向へ射影して次元を圧縮する手法。
                   whyLearn: 次元削減と可視化の基本が分かる。
@@ -351,6 +1137,40 @@ domain:
                   aliases:
                     - anomaly detection
                     - outlier detection
+                  search:
+                    keywords:
+                      - 異常検知
+                      - anomaly detection
+                      - outlier detection
+                      - novelty detection
+                      - fraud detection
+                      - isolation forest
+                      - one-class SVM
+                      - reconstruction error
+                      - thresholding
+                      - drift detection
+                    commonSignals:
+                      - 正常パターンから外れたデータを検出している
+                      - 閾値、異常スコア、再構成誤差を使っている
+                      - fraud、障害検知、センサーデータ、ログ監視が出てくる
+                      - 教師なしまたは半教師ありで稀なケースを扱っている
+                    antiSignals:
+                      - 通常の二値分類で十分な正例・負例ラベルがある
+                      - 例外処理やエラーハンドリング一般の話である
+                      - セキュリティ侵入検知だけでモデルやスコアリングが出てこない
+                    relatedNames:
+                      - name: PyOD
+                        kind: library
+                        relevance: 多数の異常検知アルゴリズムをPythonで比較・利用できる代表的ライブラリ。
+                        officialUrl: https://pyod.readthedocs.io/
+                      - name: scikit-learn
+                        kind: library
+                        relevance: IsolationForest、OneClassSVM、LocalOutlierFactorなどの実装を提供する。
+                        officialUrl: https://scikit-learn.org/
+                      - name: River
+                        kind: library
+                        relevance: オンライン学習やデータストリーム上の異常・ドリフト検知で使われる。
+                        officialUrl: https://riverml.xyz/
             - slug: validation-and-bias-variance
               name: 検証とバイアス・バリアンス
               summary: 学習結果が未知データでも保つかを確認し、複雑さと汎化のバランスを取る。
@@ -371,6 +1191,41 @@ domain:
                   aliases:
                     - cross-validation
                     - CV
+                  search:
+                    keywords:
+                      - 交差検証
+                      - cross-validation
+                      - CV
+                      - k-fold cross-validation
+                      - stratified k-fold
+                      - leave-one-out
+                      - model validation
+                      - data leakage
+                      - hyperparameter tuning
+                      - nested cross-validation
+                    commonSignals:
+                      - k-foldやfoldごとのスコア平均を出している
+                      - 訓練・検証分割を複数回入れ替えている
+                      - ハイパーパラメータ探索やモデル選択と一緒に使っている
+                      - データリークを避けるための分割設計を議論している
+                    antiSignals:
+                      - 単一のtrain/test splitだけで複数foldがない
+                      - GitHub ActionsなどのCI/CDをCVと略している
+                      - 履歴書CVやComputer Visionの略称として使っている
+                    relatedNames:
+                      - name: scikit-learn
+                        kind: library
+                        relevance: KFold、StratifiedKFold、cross_val_scoreなど交差検証ユーティリティが豊富。
+                        officialUrl: https://scikit-learn.org/
+                      - name: caret
+                        kind: library
+                        relevance: Rでモデル学習・再サンプリング・交差検証を行う定番パッケージ。
+                        officialUrl: https://topepo.github.io/caret/
+                      - name: tidymodels
+                        kind: framework
+                        relevance: Rでリサンプリングやモデル評価を一貫して扱うフレームワーク。
+                        officialUrl: https://www.tidymodels.org/
+
                 - slug: overfitting
                   name: 過学習
                   summary: 学習データに適応しすぎて未知データで性能が落ちる現象。
@@ -401,7 +1256,110 @@ domain:
                   aliases:
                     - backpropagation
                     - backprop
+                  search:
+                    keywords:
+                      - 誤差逆伝播法
+                      - backpropagation
+                      - backprop
+                      - chain rule
+                      - automatic differentiation
+                      - gradient computation
+                      - neural network training
+                      - computational graph
+                      - reverse-mode autodiff
+                      - loss gradient
+                    commonSignals:
+                      - chain ruleで各層の勾配を計算している
+                      - forward passとbackward passを区別している
+                      - loss.backward、autograd、gradient tape が出てくる
+                      - ニューラルネットの重み更新の仕組みを説明している
+                    antiSignals:
+                      - 一般的なフィードバックや振り返りをbackpropと比喩している
+                      - 最適化アルゴリズムSGDだけで勾配計算の逆伝播がない
+                      - 逆伝播ではなくバックプロパゲーションネットワークという古い分類名だけである
+                    relatedNames:
+                      - name: PyTorch
+                        kind: framework
+                        relevance: autogradにより誤差逆伝播と勾配計算を実装する深層学習フレームワーク。
+                        officialUrl: https://pytorch.org/
+                      - name: TensorFlow
+                        kind: framework
+                        relevance: 自動微分と計算グラフによりニューラルネットワーク学習を支える。
+                        officialUrl: https://www.tensorflow.org/
+                      - name: JAX
+                        kind: framework
+                        relevance: 自動微分と関数変換を中心に勾配計算を扱う機械学習フレームワーク。
+                        officialUrl: https://jax.dev/
+
                 - slug: stochastic-gradient-descent
+
+                  search:
+
+                    keywords:
+
+                      - 確率的勾配降下法
+
+                      - stochastic gradient descent
+
+                      - SGD
+
+                      - mini-batch
+
+                      - learning rate
+
+                      - optimizer
+
+                      - gradient descent
+
+                      - momentum
+
+                      - weight update
+
+                      - training loop
+
+                    commonSignals:
+
+                      - mini-batchごとにパラメータを更新している
+
+                      - learning rate、momentum、epoch、batch sizeが出てくる
+
+                      - 勾配降下法と確率的近似の違いを説明している
+
+                      - optimizerとしてSGDとAdamを比較している
+
+                    antiSignals:
+
+                      - 単なるデータセットのシャッフルやランダムサンプリングだけである
+
+                      - SDGや持続可能な開発目標の誤字・略称である
+
+                      - 勾配を使わない探索最適化の話である
+
+                    relatedNames:
+
+                      - name: PyTorch Optim
+
+                        kind: library
+
+                        relevance: SGD、Adam、Momentumなどの最適化アルゴリズムを提供する。
+
+                        officialUrl: https://pytorch.org/docs/stable/optim.html
+
+                      - name: TensorFlow Keras Optimizers
+
+                        kind: library
+
+                        relevance: Kerasモデル学習でSGDやAdamなどを設定する標準API。
+
+                        officialUrl: https://keras.io/api/optimizers/
+
+                      - name: Optax
+
+                        kind: library
+
+                        relevance: JAXエコシステムでSGD系最適化器を組み合わせるために使われる。
+
+                        officialUrl: https://optax.readthedocs.io/
                   name: 確率的勾配降下法
                   summary: ミニバッチ単位で損失を下げる方向へ反復更新する最適化法。
                   whyLearn: 学習速度、安定性、汎化の関係を理解できる。
@@ -429,7 +1387,117 @@ domain:
                   aliases:
                     - CNN
                     - convolutional neural network
+                  search:
+                    keywords:
+                      - 畳み込みニューラルネットワーク
+                      - convolutional neural network
+                      - CNN
+                      - convolution layer
+                      - pooling
+                      - feature map
+                      - image classification
+                      - receptive field
+                      - ResNet
+                      - computer vision
+                    commonSignals:
+                      - convolution、kernel、filter、feature mapが出てくる
+                      - 画像分類、物体検出、セグメンテーションの特徴抽出を扱っている
+                      - pooling、stride、padding、receptive fieldを説明している
+                      - ResNet、VGG、EfficientNetなどが出てくる
+                    antiSignals:
+                      - CNNニュースやテレビ局の話である
+                      - 一般的なニューラルネットだが畳み込み層がない
+                      - 信号処理の畳み込みだけで学習モデルではない
+                    relatedNames:
+                      - name: PyTorch
+                        kind: framework
+                        relevance: CNNモデルの実装・学習で広く使われる深層学習フレームワーク。
+                        officialUrl: https://pytorch.org/
+                      - name: TensorFlow
+                        kind: framework
+                        relevance: 画像分類やCNNモデル構築で広く使われる。
+                        officialUrl: https://www.tensorflow.org/
+                      - name: Keras
+                        kind: framework
+                        relevance: Conv2DやPooling層を使ってCNNを簡潔に構築できる。
+                        officialUrl: https://keras.io/
+                      - name: ResNet
+                        kind: method
+                        relevance: CNNの代表的アーキテクチャとして画像認識で頻出する。
+                      - name: OpenCV
+                        kind: library
+                        relevance: 画像処理パイプラインとCNN推論の前後処理でよく一緒に使われる。
+                        officialUrl: https://opencv.org/
+
                 - slug: recurrent-neural-network
+
+                  search:
+
+                    keywords:
+
+                      - 再帰型ニューラルネットワーク
+
+                      - recurrent neural network
+
+                      - RNN
+
+                      - sequence modeling
+
+                      - hidden state
+
+                      - time series
+
+                      - backpropagation through time
+
+                      - BPTT
+
+                      - vanishing gradient
+
+                      - sequence prediction
+
+                    commonSignals:
+
+                      - hidden stateを時刻ごとに更新している
+
+                      - 系列予測、時系列、言語モデル、音声認識の文脈で出てくる
+
+                      - BPTTや勾配消失が説明されている
+
+                      - LSTMやGRUと比較している
+
+                    antiSignals:
+
+                      - Recursive Neural Networkなど木構造再帰モデルの話である
+
+                      - Transformerだけを扱い再帰状態がない
+
+                      - RNNという略称が放送局や別組織名である
+
+                    relatedNames:
+
+                      - name: PyTorch
+
+                        kind: framework
+
+                        relevance: RNN、GRU、LSTMなどの系列モデル実装を提供する。
+
+                        officialUrl: https://pytorch.org/
+
+                      - name: TensorFlow Keras
+
+                        kind: framework
+
+                        relevance: SimpleRNN、GRU、LSTM層で系列モデルを構築できる。
+
+                        officialUrl: https://keras.io/
+
+                      - name: cuDNN
+
+                        kind: library
+
+                        relevance: GPU上のRNN/LSTM高速化で深層学習フレームワークと併用される。
+
+                        officialUrl: https://developer.nvidia.com/cudnn
                   name: 再帰型ニューラルネットワーク
                   summary: 過去の状態を引き継ぎながら系列を処理するネットワーク。
                   whyLearn: 系列処理の基本発想と長期依存の難しさを理解できる。
@@ -462,6 +1530,45 @@ domain:
                   aliases:
                     - embedding
                     - representation vector
+                  search:
+                    keywords:
+                      - 埋め込み表現
+                      - embedding
+                      - vector embedding
+                      - representation vector
+                      - sentence embedding
+                      - word embedding
+                      - dense vector
+                      - semantic similarity
+                      - nearest neighbor search
+                      - vector search
+                    commonSignals:
+                      - テキスト、画像、ユーザー、アイテムをベクトル化している
+                      - cosine similarityやnearest neighborで類似度を計算している
+                      - RAG、推薦、クラスタリング、意味検索に使っている
+                      - dense vectorやembedding modelが出てくる
+                    antiSignals:
+                      - HTMLのembedタグや埋め込み動画の話である
+                      - ワンホット表現だけで連続ベクトル表現ではない
+                      - 単なるデータベースへの埋め込み保存で意味表現がない
+                    relatedNames:
+                      - name: Sentence Transformers
+                        kind: library
+                        relevance: 文や文書の埋め込み生成で広く使われるPythonライブラリ。
+                        officialUrl: https://www.sbert.net/
+                      - name: Gensim
+                        kind: library
+                        relevance: Word2Vecなど古典的な単語埋め込みの学習・利用で使われる。
+                        officialUrl: https://radimrehurek.com/gensim/
+                      - name: Faiss
+                        kind: library
+                        relevance: 埋め込みベクトルの近傍検索やクラスタリングでよく使われる。
+                        officialUrl: https://faiss.ai/
+                      - name: Annoy
+                        kind: library
+                        relevance: 大量の埋め込みを近似近傍探索するためのライブラリとして知られる。
+                        officialUrl: https://github.com/spotify/annoy
+
                 - slug: self-supervised-learning
                   name: 自己教師あり学習
                   summary: データ自体から学習課題を作り、大量のラベルなしデータで表現を学ぶ方法。
@@ -476,6 +1583,41 @@ domain:
                   promptHint: コントラスト学習が類似性学習に向く理由を説明して。
                   aliases:
                     - contrastive learning
+                  search:
+                    keywords:
+                      - コントラスト学習
+                      - contrastive learning
+                      - contrastive loss
+                      - positive pairs
+                      - negative pairs
+                      - InfoNCE
+                      - Siamese network
+                      - triplet loss
+                      - representation learning
+                      - CLIP
+                    commonSignals:
+                      - positive pairとnegative pairを使って表現を近づけたり離したりしている
+                      - InfoNCE、triplet loss、cosine similarityが出てくる
+                      - 自己教師あり学習やマルチモーダル表現学習を扱っている
+                      - CLIP、SimCLR、MoCoなどの手法名が出てくる
+                    antiSignals:
+                      - 画像のコントラスト調整だけを指している
+                      - A/B比較や対比表現の一般論で学習損失ではない
+                      - 分類のcross entropyだけでペア・距離学習がない
+                    relatedNames:
+                      - name: SimCLR
+                        kind: method
+                        relevance: 画像表現の自己教師ありコントラスト学習を代表する手法。
+                      - name: MoCo
+                        kind: method
+                        relevance: negative queueを使う対照学習手法としてよく比較される。
+                      - name: CLIP
+                        kind: method
+                        relevance: 画像とテキストの対応づけに対照学習を使った代表的モデル。
+                      - name: Sentence Transformers
+                        kind: library
+                        relevance: 類似文ペアやtriplet lossで文埋め込みを学習する文脈で関連する。
+                        officialUrl: https://www.sbert.net/
             - slug: multimodal-architectures
               name: マルチモーダル構造
               summary: 画像・テキスト・音声など複数の入力様式を同一または連結表現で扱う。
@@ -489,7 +1631,112 @@ domain:
                   aliases:
                     - ViT
                     - vision transformer
+                  search:
+                    keywords:
+                      - Vision Transformer
+                      - ViT
+                      - ビジョントランスフォーマー
+                      - image patches
+                      - patch embedding
+                      - transformer encoder
+                      - image classification
+                      - attention for vision
+                      - DeiT
+                      - Swin Transformer
+                    commonSignals:
+                      - 画像をパッチ列に分割してTransformerへ入れている
+                      - patch embeddingやclass tokenが出てくる
+                      - CNNとViTの比較をしている
+                      - DeiT、Swin、MAEなど視覚Transformer系の名称が出てくる
+                    antiSignals:
+                      - 電気機器のtransformerや変圧器の話である
+                      - テキスト用Transformerだけで画像パッチが出てこない
+                      - OpenAI Vision APIなど製品の画像入力一般だけを指している
+                    relatedNames:
+                      - name: timm
+                        kind: library
+                        relevance: ViTやSwinなど多数の画像モデル実装を提供するPyTorch系ライブラリ。
+                        officialUrl: https://huggingface.co/docs/timm/
+                      - name: Hugging Face Transformers
+                        kind: library
+                        relevance: ViTモデルや画像分類パイプラインを利用できる。
+                        officialUrl: https://huggingface.co/docs/transformers/
+                      - name: DeiT
+                        kind: method
+                        relevance: Vision Transformerの効率的学習手法としてViTと一緒に学ばれる。
+                      - name: Swin Transformer
+                        kind: method
+                        relevance: 階層的・局所窓attentionを使う視覚Transformerとして関連が強い。
+
                 - slug: clip
+
+                  search:
+
+                    keywords:
+
+                      - CLIP
+
+                      - Contrastive Language Image Pre-training
+
+                      - 画像テキスト埋め込み
+
+                      - multimodal embedding
+
+                      - zero-shot image classification
+
+                      - image-text contrastive learning
+
+                      - vision language model
+
+                      - text-image retrieval
+
+                      - OpenAI CLIP
+
+                      - cross-modal retrieval
+
+                    commonSignals:
+
+                      - 画像とテキストを同じベクトル空間に写している
+
+                      - zero-shot分類やテキスト画像検索を扱っている
+
+                      - contrastive pretrainingやimage-text pairsが出てくる
+
+                      - OpenCLIP、LAION、ViT-B/32などが出てくる
+
+                    antiSignals:
+
+                      - クリップボード、動画クリップ、紙クリップの話である
+
+                      - 画像分類だけでテキストとの対応づけがない
+
+                      - 生成画像モデルのCLIP guidanceだけでCLIP自体の説明ではない
+
+                    relatedNames:
+
+                      - name: OpenCLIP
+
+                        kind: library
+
+                        relevance: CLIP系モデルのオープンな実装・学習済みモデルとして広く使われる。
+
+                        officialUrl: https://github.com/mlfoundations/open_clip
+
+                      - name: Hugging Face Transformers
+
+                        kind: library
+
+                        relevance: CLIPModelやCLIPProcessorで画像テキスト埋め込みを扱える。
+
+                        officialUrl: https://huggingface.co/docs/transformers/
+
+                      - name: LAION
+
+                        kind: platform
+
+                        relevance: CLIP系モデルの学習データや評価の文脈でよく出る大規模画像テキストデータセット。
+
+                        officialUrl: https://laion.ai/
                   name: CLIP
                   summary: 画像とテキストを同一埋め込み空間で対応づける対照学習モデル。
                   whyLearn: テキスト条件付き画像理解やマルチモーダル検索の基礎になる。
@@ -528,7 +1775,110 @@ domain:
                   aliases:
                     - self-attention
                     - attention
+                  search:
+                    keywords:
+                      - 自己注意機構
+                      - self-attention
+                      - attention mechanism
+                      - scaled dot-product attention
+                      - multi-head attention
+                      - query key value
+                      - QKV
+                      - transformer
+                      - attention score
+                      - sequence modeling
+                    commonSignals:
+                      - Query、Key、Value、QKVが出てくる
+                      - attention weightやscaled dot-productを説明している
+                      - TransformerやLLMの内部構造を扱っている
+                      - multi-head attentionやcausal maskが出てくる
+                    antiSignals:
+                      - 心理学的な注意や集中力の話である
+                      - cross-attentionだけを扱い同一系列内参照ではない
+                      - 単なる重要度重み付けでQKV構造がない
+                    relatedNames:
+                      - name: Hugging Face Transformers
+                        kind: library
+                        relevance: Transformerモデルのself-attention実装や可視化の文脈で頻出する。
+                        officialUrl: https://huggingface.co/docs/transformers/
+                      - name: PyTorch
+                        kind: framework
+                        relevance: MultiheadAttentionなどattention層を実装する深層学習基盤として使われる。
+                        officialUrl: https://pytorch.org/
+                      - name: FlashAttention
+                        kind: method
+                        relevance: self-attention計算を高速・省メモリ化する実装としてよく一緒に出る。
+                        officialUrl: https://github.com/Dao-AILab/flash-attention
+
                 - slug: tokenizer
+
+                  search:
+
+                    keywords:
+
+                      - トークナイザ
+
+                      - tokenizer
+
+                      - tokenization
+
+                      - BPE
+
+                      - byte pair encoding
+
+                      - WordPiece
+
+                      - SentencePiece
+
+                      - subword tokenization
+
+                      - vocabulary
+
+                      - token count
+
+                    commonSignals:
+
+                      - 文字列をtoken id列へ変換している
+
+                      - BPE、WordPiece、SentencePieceの比較がある
+
+                      - トークン数、コンテキスト長、料金見積もりを扱っている
+
+                      - unknown tokenや語彙サイズが話題になっている
+
+                    antiSignals:
+
+                      - OAuthやJWTなど認証トークンの話である
+
+                      - 暗号資産やAPI tokenの話である
+
+                      - 自然言語処理ではなく一般的な文字列splitだけを指している
+
+                    relatedNames:
+
+                      - name: Hugging Face Tokenizers
+
+                        kind: library
+
+                        relevance: BPE、WordPiece、SentencePiece系トークナイザを高速に扱うライブラリ。
+
+                        officialUrl: https://huggingface.co/docs/tokenizers/
+
+                      - name: SentencePiece
+
+                        kind: library
+
+                        relevance: サブワード分割の定番ライブラリとしてLLMや機械翻訳で使われる。
+
+                        officialUrl: https://github.com/google/sentencepiece
+
+                      - name: tiktoken
+
+                        kind: library
+
+                        relevance: OpenAI系モデルのトークン数見積もりや分割確認で広く使われる。
+
+                        officialUrl: https://github.com/openai/tiktoken
                   name: トークナイザ
                   summary: 文字列をモデルが扱うトークン列に分割する前処理。
                   whyLearn: 文字数とコスト、文脈長、分割誤差の背景が分かる。
@@ -557,6 +1907,39 @@ domain:
                   aliases:
                     - context window
                     - context length
+                  search:
+                    keywords:
+                      - コンテキストウィンドウ
+                      - context window
+                      - context length
+                      - token limit
+                      - long context
+                      - prompt length
+                      - attention span
+                      - KV cache
+                      - sliding window attention
+                      - long-context LLM
+                    commonSignals:
+                      - 入力できる最大トークン数や会話履歴の制限を扱っている
+                      - long context、KV cache、attention costが出てくる
+                      - RAGで何件の文書をプロンプトに入れるか議論している
+                      - 要約・圧縮・チャンク化で文脈長を節約している
+                    antiSignals:
+                      - WebブラウザのwindowオブジェクトやUIウィンドウの話である
+                      - 業務文脈や組織背景という意味のcontextだけでモデル制限ではない
+                      - OSのコンテキストスイッチの話である
+                    relatedNames:
+                      - name: RoPE
+                        kind: method
+                        relevance: 長い文脈や位置表現の拡張で頻繁に参照される。
+                      - name: ALiBi
+                        kind: method
+                        relevance: 長さ外挿を意識したattention位置バイアスとして文脈長の議論で出る。
+                      - name: vLLM
+                        kind: framework
+                        relevance: 推論時のKV cache管理や長文処理性能の文脈で関連する。
+                        officialUrl: https://docs.vllm.ai/
+
                 - slug: system-prompt
                   name: システムプロンプト
                   summary: モデルの役割や応答方針を上位から与える指示。
@@ -572,6 +1955,40 @@ domain:
                   aliases:
                     - decoding
                     - sampling strategy
+                  search:
+                    keywords:
+                      - デコーディング戦略
+                      - decoding strategy
+                      - sampling strategy
+                      - greedy decoding
+                      - beam search
+                      - temperature
+                      - top-k sampling
+                      - top-p sampling
+                      - nucleus sampling
+                      - repetition penalty
+                    commonSignals:
+                      - temperature、top-p、top-k、beam widthを調整している
+                      - 出力の多様性、安定性、反復、長さを制御している
+                      - greedy decodingとsamplingの比較がある
+                      - 生成時だけ変更できるパラメータを扱っている
+                    antiSignals:
+                      - 文字コードのdecodeやBase64デコードだけの話である
+                      - モデルの学習方法やファインチューニングだけを扱っている
+                      - 音声・動画コーデックのデコーディングの話である
+                    relatedNames:
+                      - name: Hugging Face Transformers
+                        kind: library
+                        relevance: temperature、top_k、top_p、num_beamsなど生成デコード設定を提供する。
+                        officialUrl: https://huggingface.co/docs/transformers/
+                      - name: llama.cpp
+                        kind: tool
+                        relevance: ローカルLLM推論でサンプリング設定を調整する文脈で頻出する。
+                        officialUrl: https://github.com/ggml-org/llama.cpp
+                      - name: vLLM
+                        kind: framework
+                        relevance: LLM serving時のサンプリングパラメータや生成制御で使われる。
+                        officialUrl: https://docs.vllm.ai/
         - slug: adaptation-grounding-and-alignment
           name: 適応、接地、アラインメント
           summary: 事前学習済みモデルを特定目的に合わせ、外部知識と結びつける。
@@ -589,7 +2006,122 @@ domain:
                   aliases:
                     - SFT
                     - supervised fine-tuning
+                  search:
+                    keywords:
+                      - 教師ありファインチューニング
+                      - supervised fine-tuning
+                      - SFT
+                      - instruction tuning
+                      - fine-tuning dataset
+                      - supervised adaptation
+                      - LoRA fine-tuning
+                      - full fine-tuning
+                      - task adaptation
+                      - instruction dataset
+                    commonSignals:
+                      - instruction-response形式のデータで追加学習している
+                      - base modelを特定タスクや文体へ適応している
+                      - epoch、learning rate、loss、train datasetが出てくる
+                      - prompt engineeringでは足りず重み更新を行っている
+                    antiSignals:
+                      - プロンプトだけを変更しモデル重みを更新していない
+                      - RLHFやDPOのみで教師あり損失が出てこない
+                      - 一般的な機械学習の教師あり学習でLLM適応ではない
+                    relatedNames:
+                      - name: Hugging Face TRL
+                        kind: library
+                        relevance: SFTTrainerなどLLMの教師ありファインチューニング機能を提供する。
+                        officialUrl: https://huggingface.co/docs/trl/
+                      - name: PEFT
+                        kind: library
+                        relevance: LoRAなどのパラメータ効率的ファインチューニングと併用される。
+                        officialUrl: https://huggingface.co/docs/peft/
+                      - name: Axolotl
+                        kind: tool
+                        relevance: LLMのSFTやLoRA学習設定を扱う実務ツールとして使われる。
+                        officialUrl: https://github.com/axolotl-ai-cloud/axolotl
+                      - name: LlamaFactory
+                        kind: tool
+                        relevance: LLMのSFT、LoRA、DPOなどの学習ワークフローで利用される。
+                        officialUrl: https://github.com/hiyouga/LLaMA-Factory
+
                 - slug: lora
+
+                  search:
+
+                    keywords:
+
+                      - LoRA
+
+                      - low-rank adaptation
+
+                      - 低ランク適応
+
+                      - parameter efficient fine-tuning
+
+                      - PEFT
+
+                      - adapter
+
+                      - rank
+
+                      - alpha
+
+                      - QLoRA
+
+                      - fine-tuning
+
+                    commonSignals:
+
+                      - rank、lora_alpha、target_modulesなどの設定が出てくる
+
+                      - 全重み更新ではなくadapter重みだけを学習している
+
+                      - QLoRA、PEFT、低VRAM学習が出てくる
+
+                      - base modelにadapterをマージする話がある
+
+                    antiSignals:
+
+                      - LoRaWANや長距離無線通信のLoRaである
+
+                      - 法律のLORAなど別略称である
+
+                      - 単なるファインチューニングで低ランク行列やadapterが出てこない
+
+                    relatedNames:
+
+                      - name: PEFT
+
+                        kind: library
+
+                        relevance: LoRAやQLoRAなどのパラメータ効率的チューニングを実装する代表ライブラリ。
+
+                        officialUrl: https://huggingface.co/docs/peft/
+
+                      - name: bitsandbytes
+
+                        kind: library
+
+                        relevance: QLoRAなど量子化を併用した効率的学習でよく使われる。
+
+                        officialUrl: https://github.com/bitsandbytes-foundation/bitsandbytes
+
+                      - name: Hugging Face Transformers
+
+                        kind: library
+
+                        relevance: PEFTと組み合わせてLoRA適用モデルを読み込み・学習する文脈で使われる。
+
+                        officialUrl: https://huggingface.co/docs/transformers/
+
+                      - name: Axolotl
+
+                        kind: tool
+
+                        relevance: LoRAファインチューニングの設定・実行ツールとして実務で使われる。
+
+                        officialUrl: https://github.com/axolotl-ai-cloud/axolotl
                   name: LoRA
                   summary: 低ランク行列だけを学習して大規模モデルを効率的に適応する手法。
                   whyLearn: パラメータ効率の良い実務適応法として重要。
@@ -605,7 +2137,109 @@ domain:
                   aliases:
                     - RLHF
                     - reinforcement learning from human feedback
+                  search:
+                    keywords:
+                      - RLHF
+                      - reinforcement learning from human feedback
+                      - 人間フィードバックからの強化学習
+                      - preference model
+                      - reward model
+                      - PPO
+                      - human preference
+                      - alignment
+                      - helpful harmless honest
+                      - preference data
+                    commonSignals:
+                      - 人間の選好データから報酬モデルを学習している
+                      - SFT、reward model、PPOの段階が出てくる
+                      - alignment、helpfulness、harmlessnessを改善する話がある
+                      - pairwise rankingやannotator preferenceが出てくる
+                    antiSignals:
+                      - 通常の強化学習で人間フィードバックがない
+                      - 人手ラベル付きSFTだけで報酬モデルや方策最適化がない
+                      - アンケート分析だけでモデル更新がない
+                    relatedNames:
+                      - name: Hugging Face TRL
+                        kind: library
+                        relevance: PPOTrainerなどRLHF系の学習実装でよく使われる。
+                        officialUrl: https://huggingface.co/docs/trl/
+                      - name: Proximal Policy Optimization
+                        kind: method
+                        relevance: RLHFで言語モデルを最適化する際によく使われる強化学習手法。
+                      - name: OpenAI Evals
+                        kind: framework
+                        relevance: 整列後モデルの振る舞い評価や比較で関連することがある。
+                        officialUrl: https://github.com/openai/evals
+
                 - slug: direct-preference-optimization
+
+                  search:
+
+                    keywords:
+
+                      - 直接選好最適化
+
+                      - Direct Preference Optimization
+
+                      - DPO
+
+                      - preference optimization
+
+                      - RL-free alignment
+
+                      - preference pairs
+
+                      - chosen rejected
+
+                      - reward model free
+
+                      - alignment fine-tuning
+
+                      - pairwise preference
+
+                    commonSignals:
+
+                      - chosen / rejected の選好ペアを使っている
+
+                      - reward modelを明示的に作らない整列手法と説明している
+
+                      - RLHFやPPOと比較して簡潔と述べている
+
+                      - betaパラメータやreference modelが出てくる
+
+                    antiSignals:
+
+                      - データ保護責任者DPOやData Protection Officerの話である
+
+                      - 直接方策最適化など別分野のDPOである
+
+                      - 選好データではなく単一正解ラベルだけを使っている
+
+                    relatedNames:
+
+                      - name: Hugging Face TRL
+
+                        kind: library
+
+                        relevance: DPOTrainerにより選好ペアを使ったDPO学習を実装できる。
+
+                        officialUrl: https://huggingface.co/docs/trl/
+
+                      - name: LlamaFactory
+
+                        kind: tool
+
+                        relevance: SFT後のDPO学習を含むLLMチューニングワークフローで利用される。
+
+                        officialUrl: https://github.com/hiyouga/LLaMA-Factory
+
+                      - name: PEFT
+
+                        kind: library
+
+                        relevance: DPOをLoRAなどのパラメータ効率的手法と組み合わせるときに使われる。
+
+                        officialUrl: https://huggingface.co/docs/peft/
                   name: 直接選好最適化
                   summary: 報酬モデルと強化学習を明示せずに選好データから整列させる方法。
                   whyLearn: 現代のアラインメント実務でよく比較対象になる。
@@ -626,7 +2260,141 @@ domain:
                   aliases:
                     - RAG
                     - retrieval-augmented generation
+                  search:
+                    keywords:
+                      - 検索拡張生成
+                      - retrieval-augmented generation
+                      - RAG
+                      - grounded generation
+                      - semantic search
+                      - document retrieval
+                      - chunking
+                      - vector search
+                      - citations
+                      - context injection
+                    commonSignals:
+                      - 文書をchunk化してembeddingを作り検索している
+                      - retrieveした文脈をプロンプトに入れて回答している
+                      - hallucination低減や出典提示を目的にしている
+                      - retriever、generator、reranker、vector storeが出てくる
+                    antiSignals:
+                      - 単なる検索エンジンで生成モデルがない
+                      - LLM単体のプロンプト生成だけで外部検索がない
+                      - RAGという略称が別組織名や色指定として使われている
+                    relatedNames:
+                      - name: LangChain
+                        kind: framework
+                        relevance: RAGパイプライン、retriever、chain構成で広く使われる。
+                        officialUrl: https://www.langchain.com/
+                      - name: LlamaIndex
+                        kind: framework
+                        relevance: 文書インデックス化、retrieval、RAGアプリ構築でよく使われる。
+                        officialUrl: https://www.llamaindex.ai/
+                      - name: Haystack
+                        kind: framework
+                        relevance: 検索、リランキング、生成を組み合わせたRAGシステム構築に使われる。
+                        officialUrl: https://haystack.deepset.ai/
+                      - name: FAISS
+                        kind: library
+                        relevance: RAGで埋め込み近傍検索を行うローカル索引としてよく使われる。
+                        officialUrl: https://faiss.ai/
+                      - name: BM25
+                        kind: method
+                        relevance: キーワード検索ベースのretrieverとしてRAGでdense retrievalと比較される。
+
                 - slug: vector-database
+
+                  search:
+
+                    keywords:
+
+                      - ベクトルデータベース
+
+                      - vector database
+
+                      - vector store
+
+                      - ANN search
+
+                      - approximate nearest neighbor
+
+                      - HNSW
+
+                      - embedding index
+
+                      - similarity search
+
+                      - semantic search
+
+                      - dense retrieval
+
+                    commonSignals:
+
+                      - embeddingを保存し類似度検索している
+
+                      - HNSW、IVF、ANN、cosine similarityが出てくる
+
+                      - RAGやsemantic searchの検索基盤を扱っている
+
+                      - metadata filteringやhybrid searchを議論している
+
+                    antiSignals:
+
+                      - 通常のRDBやドキュメントDBだけでベクトル索引がない
+
+                      - 幾何ベクトルや線形代数の話だけでデータベースではない
+
+                      - 画像ベクター素材のデータベースの話である
+
+                    relatedNames:
+
+                      - name: Pinecone
+
+                        kind: service
+
+                        relevance: マネージドなベクトル検索サービスとしてRAG構築でよく使われる。
+
+                        officialUrl: https://www.pinecone.io/
+
+                      - name: Weaviate
+
+                        kind: platform
+
+                        relevance: オープンソースのベクトルデータベースとしてRAGや意味検索で利用される。
+
+                        officialUrl: https://weaviate.io/
+
+                      - name: Milvus
+
+                        kind: platform
+
+                        relevance: 大規模ベクトル検索基盤として実務で採用されることが多い。
+
+                        officialUrl: https://milvus.io/
+
+                      - name: Qdrant
+
+                        kind: platform
+
+                        relevance: HNSWベースのベクトル検索エンジンとしてRAGでよく使われる。
+
+                        officialUrl: https://qdrant.tech/
+
+                      - name: pgvector
+
+                        kind: library
+
+                        relevance: PostgreSQL上でベクトル検索を行う拡張として実務導入しやすい。
+
+                        officialUrl: https://github.com/pgvector/pgvector
+
+                      - name: FAISS
+
+                        kind: library
+
+                        relevance: ローカル・大規模近傍検索ライブラリとしてベクトルDB比較で頻出する。
+
+                        officialUrl: https://faiss.ai/
                   name: ベクトルデータベース
                   summary: 埋め込み表現を近傍検索できるよう保存・索引化するストア。
                   whyLearn: RAGや意味検索を成立させる基盤の一つだから。
@@ -642,6 +2410,44 @@ domain:
                   aliases:
                     - reranker
                     - re-ranker
+                  search:
+                    keywords:
+                      - リランキングモデル
+                      - reranker
+                      - re-ranker
+                      - cross-encoder
+                      - passage reranking
+                      - search relevance
+                      - retrieval ranking
+                      - RAG reranking
+                      - candidate reranking
+                      - relevance score
+                    commonSignals:
+                      - 初期検索のtop-k候補を再スコアリングしている
+                      - bi-encoderとcross-encoderを比較している
+                      - RAGで検索精度やコンテキスト品質を上げる話がある
+                      - relevance scoreやNDCG改善を扱っている
+                    antiSignals:
+                      - 単なるソートやORDER BYだけの話で意味的関連度モデルがない
+                      - 学習ランキング全般だがRAGや検索候補の再評価ではない
+                      - ランキング変更のビジネス運用だけでモデルが出てこない
+                    relatedNames:
+                      - name: Sentence Transformers
+                        kind: library
+                        relevance: CrossEncoderによる検索候補リランキングを実装できる。
+                        officialUrl: https://www.sbert.net/
+                      - name: Cohere Rerank
+                        kind: service
+                        relevance: RAGや検索結果の再順位付けサービスとして実務で見かける。
+                        officialUrl: https://cohere.com/rerank
+                      - name: Vespa
+                        kind: platform
+                        relevance: 検索ランキングや二段階ランキングを本番検索で扱うプラットフォーム。
+                        officialUrl: https://vespa.ai/
+                      - name: Elasticsearch
+                        kind: platform
+                        relevance: 初期検索結果に対するスコアリングや再ランキング構成で関連する。
+                        officialUrl: https://www.elastic.co/elasticsearch
 
     - slug: recommendation-reinforcement-learning-and-agentic-systems
       name: 推薦、強化学習、エージェント
@@ -664,7 +2470,118 @@ domain:
                   promptHint: Q学習が環境モデルなしで学べる理由を説明して。
                   aliases:
                     - Q-learning
+                  search:
+                    keywords:
+                      - Q学習
+                      - Q-learning
+                      - action-value function
+                      - Q-value
+                      - temporal difference
+                      - TD learning
+                      - Bellman update
+                      - off-policy
+                      - epsilon greedy
+                      - reinforcement learning
+                    commonSignals:
+                      - Q(s,a)や行動価値関数を更新している
+                      - Bellman update、TD error、epsilon-greedyが出てくる
+                      - off-policy学習として説明されている
+                      - grid worldやCartPoleなどの環境で実装している
+                    antiSignals:
+                      - Q&Aや質問回答のQを指している
+                      - Q値という統計・品質管理の別概念である
+                      - Deep Q-Networkの実装だけで表形式Q学習の説明がない
+                    relatedNames:
+                      - name: Gymnasium
+                        kind: framework
+                        relevance: Q学習の環境実験で状態・行動・報酬APIを提供する。
+                        officialUrl: https://gymnasium.farama.org/
+                      - name: Stable-Baselines3
+                        kind: library
+                        relevance: 強化学習アルゴリズムの比較実験で価値ベース手法と一緒に参照される。
+                        officialUrl: https://stable-baselines3.readthedocs.io/
+                      - name: RLlib
+                        kind: framework
+                        relevance: 分散強化学習や実験管理の文脈でQ学習系手法と関連する。
+                        officialUrl: https://docs.ray.io/en/latest/rllib/
+
                 - slug: deep-q-network
+
+                  search:
+
+                    keywords:
+
+                      - Deep Q-Network
+
+                      - DQN
+
+                      - deep reinforcement learning
+
+                      - experience replay
+
+                      - target network
+
+                      - Q-network
+
+                      - Atari
+
+                      - replay buffer
+
+                      - temporal difference loss
+
+                      - value-based RL
+
+                    commonSignals:
+
+                      - Q関数をニューラルネットで近似している
+
+                      - experience replayやtarget networkが出てくる
+
+                      - Atariゲームやピクセル入力から学習している
+
+                      - replay buffer、TD loss、epsilon decayを扱っている
+
+                    antiSignals:
+
+                      - DQNという略称がデータ品質ネットワークなど別意味である
+
+                      - 通常のQ学習でニューラルネットがない
+
+                      - 深層学習一般だが報酬・行動価値が出てこない
+
+                    relatedNames:
+
+                      - name: Stable-Baselines3
+
+                        kind: library
+
+                        relevance: DQN実装を提供し、強化学習実験で広く使われる。
+
+                        officialUrl: https://stable-baselines3.readthedocs.io/
+
+                      - name: CleanRL
+
+                        kind: library
+
+                        relevance: DQNなど強化学習アルゴリズムの単一ファイル実装で学習・検証しやすい。
+
+                        officialUrl: https://docs.cleanrl.dev/
+
+                      - name: Gymnasium
+
+                        kind: framework
+
+                        relevance: DQNを試すための標準的な環境APIを提供する。
+
+                        officialUrl: https://gymnasium.farama.org/
+
+                      - name: ALE
+
+                        kind: platform
+
+                        relevance: Atari Learning EnvironmentとしてDQNの代表的評価環境に使われる。
+
+                        officialUrl: https://ale.farama.org/
                   name: Deep Q-Network
                   summary: Q関数近似に深層ニューラルネットワークを使う手法。
                   whyLearn: 高次元入力でRLを成立させた代表例として重要。
@@ -691,6 +2608,41 @@ domain:
                   promptHint: 文脈付きバンディットが通常のバンディットより表現力が高い理由を説明して。
                   aliases:
                     - contextual bandit
+                  search:
+                    keywords:
+                      - 文脈付きバンディット
+                      - contextual bandit
+                      - context features
+                      - LinUCB
+                      - policy learning
+                      - online recommendation
+                      - ad allocation
+                      - exploration exploitation
+                      - counterfactual evaluation
+                      - logged bandit feedback
+                    commonSignals:
+                      - ユーザーや状況の特徴量を見て腕を選んでいる
+                      - LinUCB、logged bandit feedback、IPS評価が出てくる
+                      - 広告配信、推薦、UI出し分けの逐次最適化を扱っている
+                      - A/Bテストより適応的に配分する話がある
+                    antiSignals:
+                      - 通常の多腕バンディットで文脈特徴がない
+                      - レコメンドのオフラインランキングだけで探索がない
+                      - コンテキストという語だけでバンディット問題ではない
+                    relatedNames:
+                      - name: Vowpal Wabbit
+                        kind: tool
+                        relevance: contextual banditの学習・推論・ログ形式で実務利用される代表的ツール。
+                        officialUrl: https://vowpalwabbit.org/
+                      - name: MABWiser
+                        kind: library
+                        relevance: contextual banditを含むバンディット戦略をPythonで試せる。
+                        officialUrl: https://fidelity.github.io/mabwiser/
+                      - name: RecSim
+                        kind: framework
+                        relevance: 推薦環境のシミュレーションでbanditやRLの評価に使われる。
+                        officialUrl: https://github.com/google-research/recsim
+
                 - slug: offline-reinforcement-learning
                   name: オフライン強化学習
                   summary: 過去ログだけを使って新しい方策を学ぶ強化学習。
@@ -723,7 +2675,114 @@ domain:
                   aliases:
                     - collaborative filtering
                     - CF
+                  search:
+                    keywords:
+                      - 協調フィルタリング
+                      - collaborative filtering
+                      - CF
+                      - user-item interaction
+                      - user-based CF
+                      - item-based CF
+                      - implicit feedback
+                      - rating matrix
+                      - nearest neighbor recommendation
+                      - recommender system
+                    commonSignals:
+                      - user-item matrixやrating matrixを使って推薦している
+                      - 類似ユーザー・類似アイテムから未評価アイテムを予測している
+                      - cold start、implicit feedback、top-N recommendationが出てくる
+                      - content-based filteringと比較している
+                    antiSignals:
+                      - コンテンツベース推薦だけでユーザー間・アイテム間相互作用がない
+                      - フィルタリング一般やスパムフィルタの話である
+                      - 行列分解だけを説明し協調データの文脈がない
+                    relatedNames:
+                      - name: Surprise
+                        kind: library
+                        relevance: 協調フィルタリングや行列分解を試すPythonライブラリとして知られる。
+                        officialUrl: https://surpriselib.com/
+                      - name: implicit
+                        kind: library
+                        relevance: 暗黙フィードバックを使う協調フィルタリング実装でよく使われる。
+                        officialUrl: https://github.com/benfred/implicit
+                      - name: LensKit
+                        kind: library
+                        relevance: 推薦アルゴリズムの実験・評価で協調フィルタリングを扱う。
+                        officialUrl: https://lenskit.org/
+                      - name: RecBole
+                        kind: framework
+                        relevance: 推薦モデルの比較実験で協調フィルタリング系手法を含む。
+                        officialUrl: https://recbole.io/
+
                 - slug: matrix-factorization
+
+                  search:
+
+                    keywords:
+
+                      - 行列分解
+
+                      - matrix factorization
+
+                      - latent factors
+
+                      - user-item matrix
+
+                      - collaborative filtering
+
+                      - SVD
+
+                      - ALS
+
+                      - implicit feedback
+
+                      - recommender systems
+
+                      - rating prediction
+
+                    commonSignals:
+
+                      - ユーザー行列とアイテム行列の潜在因子に分解している
+
+                      - ALS、SVD、latent factor、rating predictionが出てくる
+
+                      - Netflix Prizeや協調フィルタリングの文脈がある
+
+                      - implicit feedbackやconfidence weightingを扱っている
+
+                    antiSignals:
+
+                      - 一般の線形代数分解だけで推薦や潜在因子がない
+
+                      - PCAやNMFの説明だけでuser-item行列がない
+
+                      - 因数分解という数学演算の話である
+
+                    relatedNames:
+
+                      - name: implicit
+
+                        kind: library
+
+                        relevance: ALSなど暗黙フィードバック向け行列分解を実装するPythonライブラリ。
+
+                        officialUrl: https://github.com/benfred/implicit
+
+                      - name: Spark MLlib ALS
+
+                        kind: library
+
+                        relevance: 大規模推薦でALSによる行列分解を利用できる。
+
+                        officialUrl: https://spark.apache.org/docs/latest/ml-collaborative-filtering.html
+
+                      - name: Surprise
+
+                        kind: library
+
+                        relevance: SVD系推薦アルゴリズムを学習・評価するために使われる。
+
+                        officialUrl: https://surpriselib.com/
                   name: 行列分解
                   summary: ユーザー・アイテム行列を潜在因子へ分解して推薦する手法。
                   whyLearn: 推薦システムの古典かつ実用的な中心手法。
@@ -750,6 +2809,45 @@ domain:
                   promptHint: ツール呼び出しが通常のテキスト生成より何を可能にするか説明して。
                   aliases:
                     - tool calling
+                  search:
+                    keywords:
+                      - ツール呼び出し
+                      - tool calling
+                      - function calling
+                      - tool use
+                      - API calling
+                      - structured output
+                      - JSON schema
+                      - agent tools
+                      - external function
+                      - LLM orchestration
+                    commonSignals:
+                      - LLMが外部APIや関数を選択して呼び出している
+                      - JSON schemaやstructured tool argumentsが出てくる
+                      - 検索、計算、DB参照、カレンダー操作などをモデルが委譲している
+                      - agent、tools、function call、tool resultが出てくる
+                    antiSignals:
+                      - 通常のプログラム内関数呼び出しだけでLLMが関与しない
+                      - CLIツールの使い方一般でモデルによる選択がない
+                      - API連携だが自然言語モデルの推論がない
+                    relatedNames:
+                      - name: Model Context Protocol
+                        kind: protocol
+                        relevance: LLMが外部ツールやデータソースへ接続する標準的な文脈で登場する。
+                        officialUrl: https://modelcontextprotocol.io/
+                      - name: LangChain
+                        kind: framework
+                        relevance: tool callingやagent executorを組み合わせたLLMアプリ構築で使われる。
+                        officialUrl: https://www.langchain.com/
+                      - name: LlamaIndex
+                        kind: framework
+                        relevance: ツール利用エージェントやデータ接続を含むLLMアプリ設計で使われる。
+                        officialUrl: https://www.llamaindex.ai/
+                      - name: Semantic Kernel
+                        kind: framework
+                        relevance: 関数呼び出しやプラグインを使ったAIオーケストレーションで関連する。
+                        officialUrl: https://github.com/microsoft/semantic-kernel
+
                 - slug: planner-executor
                   name: プランナー・エグゼキュータ
                   summary: 計画を作る役割と実行する役割を分けるエージェント構成パターン。
@@ -788,7 +2886,125 @@ domain:
                   promptHint: ベンチマークが便利でありながら危うい理由を説明して。
                   aliases:
                     - benchmark
+                  search:
+                    keywords:
+                      - ベンチマーク
+                      - benchmark
+                      - evaluation benchmark
+                      - leaderboard
+                      - MMLU
+                      - HELM
+                      - BIG-bench
+                      - SWE-bench
+                      - accuracy
+                      - model evaluation
+                    commonSignals:
+                      - モデルを共通データセットやタスクで比較している
+                      - leaderboard、score、accuracy、pass@kなどが出てくる
+                      - MMLU、GSM8K、HumanEval、SWE-benchなどの名称が出てくる
+                      - benchmark saturationやデータ汚染を議論している
+                    antiSignals:
+                      - CPUやストレージ性能測定だけでAI評価ではない
+                      - 自社KPIだけで標準化された評価課題がない
+                      - 単発のデモ結果をベンチマークと呼んでいるだけ
+                    relatedNames:
+                      - name: HELM
+                        kind: framework
+                        relevance: 言語モデル評価を多面的に整理する代表的ベンチマーク基盤。
+                        officialUrl: https://crfm.stanford.edu/helm/
+                      - name: lm-evaluation-harness
+                        kind: tool
+                        relevance: 多数のLLMベンチマークを実行するために広く使われる評価ツール。
+                        officialUrl: https://github.com/EleutherAI/lm-evaluation-harness
+                      - name: MMLU
+                        kind: method
+                        relevance: LLMの知識・推論能力評価として広く参照される代表的ベンチマーク。
+                      - name: SWE-bench
+                        kind: method
+                        relevance: コーディングエージェントやソフトウェア修正能力の評価でよく使われる。
+                        officialUrl: https://www.swebench.com/
+                      - name: BIG-bench
+                        kind: method
+                        relevance: 大規模言語モデルの多様な能力評価で参照される。
+                        officialUrl: https://github.com/google/BIG-bench
+
                 - slug: golden-set
+
+                  search:
+
+                    keywords:
+
+                      - ゴールデンセット
+
+                      - golden set
+
+                      - eval set
+
+                      - gold dataset
+
+                      - reference answers
+
+                      - curated test set
+
+                      - regression eval
+
+                      - evaluation cases
+
+                      - human-labeled examples
+
+                      - domain-specific evaluation
+
+                    commonSignals:
+
+                      - 自社・自業務に合わせた評価例を厳選している
+
+                      - 期待回答、採点基準、回帰テストケースを持っている
+
+                      - モデル更新ごとの品質比較に使っている
+
+                      - 汎用ベンチマークでは足りないケースを補っている
+
+                    antiSignals:
+
+                      - 本番データ全量や訓練データそのものを指している
+
+                      - 黄金データという比喩だけで評価用途ではない
+
+                      - ラベル品質が低く参照正解として管理されていない
+
+                    relatedNames:
+
+                      - name: OpenAI Evals
+
+                        kind: framework
+
+                        relevance: 独自評価セットを作成してモデル挙動を回帰テストする文脈で使われる。
+
+                        officialUrl: https://github.com/openai/evals
+
+                      - name: LangSmith
+
+                        kind: platform
+
+                        relevance: LLMアプリの評価データセット、実行記録、比較に使われる。
+
+                        officialUrl: https://www.langchain.com/langsmith
+
+                      - name: Ragas
+
+                        kind: tool
+
+                        relevance: RAG評価用のデータセットやメトリクス作成で使われる。
+
+                        officialUrl: https://docs.ragas.io/
+
+                      - name: DeepEval
+
+                        kind: framework
+
+                        relevance: LLMアプリのテストケースや評価セット管理で使われる。
+
+                        officialUrl: https://docs.confident-ai.com/
                   name: ゴールデンセット
                   summary: 対象業務に合わせて厳選した高信頼の評価事例集。
                   whyLearn: 汎用ベンチマークだけでは見えない実務品質を測れる。
@@ -817,7 +3033,110 @@ domain:
                   aliases:
                     - hallucination
                     - confabulation
+                  search:
+                    keywords:
+                      - 幻覚
+                      - hallucination
+                      - confabulation
+                      - factual error
+                      - ungrounded answer
+                      - fabricated citation
+                      - faithfulness
+                      - factuality
+                      - groundedness
+                      - LLM failure
+                    commonSignals:
+                      - もっともらしいが根拠のない回答を生成している
+                      - fabricated citation、存在しない論文、架空URLが出てくる
+                      - RAG、grounding、fact-checkingで低減を試みている
+                      - factuality、faithfulness、groundednessを評価している
+                    antiSignals:
+                      - 医学・精神医学の幻覚症状のみを扱っている
+                      - 単なる不正解やバグで生成モデルのもっともらしさがない
+                      - 創作やフィクションとして意図的に架空内容を作っている
+                    relatedNames:
+                      - name: Ragas
+                        kind: tool
+                        relevance: RAG回答のfaithfulnessやgroundedness評価で幻覚検知と関連する。
+                        officialUrl: https://docs.ragas.io/
+                      - name: TruLens
+                        kind: tool
+                        relevance: LLMアプリの回答根拠性や評価計測に使われる。
+                        officialUrl: https://www.trulens.org/
+                      - name: DeepEval
+                        kind: framework
+                        relevance: hallucination metricなどLLM出力評価で利用される。
+                        officialUrl: https://docs.confident-ai.com/
+
                 - slug: calibration
+
+                  search:
+
+                    keywords:
+
+                      - キャリブレーション
+
+                      - calibration
+
+                      - probability calibration
+
+                      - confidence calibration
+
+                      - expected calibration error
+
+                      - ECE
+
+                      - reliability diagram
+
+                      - Platt scaling
+
+                      - isotonic regression
+
+                      - uncertainty estimation
+
+                    commonSignals:
+
+                      - 予測確率と実際の正答率のズレを測っている
+
+                      - reliability diagram、ECE、Brier scoreが出てくる
+
+                      - temperature scaling、Platt scaling、isotonic regressionを使っている
+
+                      - 自信度が過大・過小であることを評価している
+
+                    antiSignals:
+
+                      - センサーやモニターの物理的校正だけを扱っている
+
+                      - モデル精度accuracyだけで確信度の妥当性がない
+
+                      - ハイパーパラメータ調整をcalibrationと呼んでいるだけ
+
+                    relatedNames:
+
+                      - name: scikit-learn
+
+                        kind: library
+
+                        relevance: CalibratedClassifierCVやisotonic regressionで確率校正を扱える。
+
+                        officialUrl: https://scikit-learn.org/
+
+                      - name: netcal
+
+                        kind: library
+
+                        relevance: ニューラルネットや分類器の確率キャリブレーション評価・補正に使われる。
+
+                        officialUrl: https://github.com/fabiankueppers/calibration-framework
+
+                      - name: TensorFlow Probability
+
+                        kind: library
+
+                        relevance: 不確実性推定や確率モデルと合わせて校正を考える文脈で使われる。
+
+                        officialUrl: https://www.tensorflow.org/probability
                   name: キャリブレーション
                   summary: モデルの確信度と実際の正答確率の一致度。
                   whyLearn: 自信を伴う予測を安全に使うには不可欠。
@@ -847,6 +3166,41 @@ domain:
                   promptHint: プロンプトインジェクションがなぜ単なる悪い入力以上の問題か説明して。
                   aliases:
                     - prompt injection
+                  search:
+                    keywords:
+                      - プロンプトインジェクション
+                      - prompt injection
+                      - indirect prompt injection
+                      - prompt attack
+                      - instruction override
+                      - system prompt leak
+                      - malicious prompt
+                      - tool injection
+                      - RAG attack
+                      - LLM security
+                    commonSignals:
+                      - 外部文書やユーザー入力がsystem promptを上書きしようとしている
+                      - ignore previous instructions のような指示乗っ取りが出てくる
+                      - RAGやtool callingで外部入力を信頼しすぎるリスクを扱っている
+                      - system prompt leakやdata exfiltrationが話題になっている
+                    antiSignals:
+                      - SQL injectionやXSSだけでLLM指示系統がない
+                      - 通常の悪意ある入力だがモデルへの指示上書きではない
+                      - prompt engineeringの改善テクニックだけを指している
+                    relatedNames:
+                      - name: OWASP Top 10 for LLM Applications
+                        kind: standard
+                        relevance: LLMアプリの代表的リスク分類としてprompt injectionが中心的に扱われる。
+                        officialUrl: https://owasp.org/www-project-top-10-for-large-language-model-applications/
+                      - name: Garak
+                        kind: tool
+                        relevance: LLMの脆弱性やプロンプト攻撃耐性をテストするツールとして使われる。
+                        officialUrl: https://github.com/NVIDIA/garak
+                      - name: Promptfoo
+                        kind: tool
+                        relevance: プロンプト攻撃や安全性テストを含むLLM評価に使われる。
+                        officialUrl: https://www.promptfoo.dev/
+
                 - slug: jailbreak
                   name: ジェイルブレイク
                   summary: 制約や安全方針を回避して禁止出力を引き出そうとする誘導手法。
@@ -862,6 +3216,44 @@ domain:
                   aliases:
                     - red teaming
                     - red-teaming
+                  search:
+                    keywords:
+                      - レッドチーミング
+                      - red teaming
+                      - AI red team
+                      - adversarial testing
+                      - safety evaluation
+                      - jailbreak testing
+                      - misuse testing
+                      - threat modeling
+                      - robustness testing
+                      - model risk assessment
+                    commonSignals:
+                      - 攻撃者視点でモデルの危険挙動や抜け道を探している
+                      - jailbreak、prompt injection、data leakageのテストをしている
+                      - 本番前の安全性評価やリスクアセスメントとして実施している
+                      - threat modelやabuse caseを作っている
+                    antiSignals:
+                      - セキュリティ演習一般でAIモデルやLLMが関係しない
+                      - 通常のQAテストだけで敵対的観点がない
+                      - 赤チームという組織名やイベント名だけで評価活動ではない
+                    relatedNames:
+                      - name: Garak
+                        kind: tool
+                        relevance: LLMへの攻撃的テストや脆弱性スキャンに使われる。
+                        officialUrl: https://github.com/NVIDIA/garak
+                      - name: Promptfoo
+                        kind: tool
+                        relevance: jailbreakやprompt injectionを含むLLMテストケース実行に使われる。
+                        officialUrl: https://www.promptfoo.dev/
+                      - name: PyRIT
+                        kind: tool
+                        relevance: 生成AIシステムのリスク発見を支援するレッドチーミングツール。
+                        officialUrl: https://github.com/Azure/PyRIT
+                      - name: MITRE ATLAS
+                        kind: framework
+                        relevance: AIシステムへの敵対的戦術・技法を整理する知識ベースとして参照される。
+                        officialUrl: https://atlas.mitre.org/
             - slug: documentation-and-governance-hooks
               name: 文書化とガバナンス接続
               summary: モデルやデータの来歴、用途、制約を記録し、説明責任へ接続する。
@@ -874,6 +3266,41 @@ domain:
                   promptHint: モデルカードに何を書くとレビューに役立つか説明して。
                   aliases:
                     - model card
+                  search:
+                    keywords:
+                      - モデルカード
+                      - model card
+                      - model documentation
+                      - intended use
+                      - limitations
+                      - ethical considerations
+                      - evaluation results
+                      - model governance
+                      - risk disclosure
+                      - responsible AI
+                    commonSignals:
+                      - intended use、limitations、training data、evaluation resultsを記載している
+                      - モデル利用条件やリスクをチーム・利用者に共有している
+                      - responsible AIやgovernanceの成果物として扱っている
+                      - Hugging FaceのREADME形式でモデル説明を書いている
+                    antiSignals:
+                      - クレジットカードやIDカードの話である
+                      - 単なるモデル概要READMEで評価・制約・用途がない
+                      - データセットの文書化でモデル自体を扱っていない
+                    relatedNames:
+                      - name: Hugging Face Model Card
+                        kind: platform
+                        relevance: 公開モデルの用途、評価、制約を記述する実務上よく見る形式。
+                        officialUrl: https://huggingface.co/docs/hub/model-cards
+                      - name: Model Card Toolkit
+                        kind: tool
+                        relevance: モデルカード生成を支援するツールとして知られる。
+                        officialUrl: https://github.com/tensorflow/model-card-toolkit
+                      - name: NIST AI RMF
+                        kind: standard
+                        relevance: AIリスク管理の文脈でモデル文書化や説明責任と関連する。
+                        officialUrl: https://www.nist.gov/itl/ai-risk-management-framework
+
                 - slug: data-card
                   name: データカード
                   summary: データセットの収集方法、範囲、偏り、制約を記述する文書。
@@ -890,6 +3317,40 @@ domain:
                   aliases:
                     - content provenance
                     - provenance
+                  search:
+                    keywords:
+                      - コンテンツ来歴
+                      - content provenance
+                      - provenance
+                      - content authenticity
+                      - C2PA
+                      - Content Credentials
+                      - watermarking
+                      - metadata signing
+                      - generated content disclosure
+                      - media provenance
+                    commonSignals:
+                      - 画像・動画・文書の生成元や編集履歴を追跡している
+                      - C2PA、Content Credentials、署名付きメタデータが出てくる
+                      - 生成AIコンテンツの開示、真正性、改ざん検知を扱っている
+                      - watermarkingやprovenance metadataを比較している
+                    antiSignals:
+                      - データリネージ一般でコンテンツ真正性の話ではない
+                      - Gitのコミット履歴だけを指している
+                      - 著作権表示だけで来歴や検証可能性がない
+                    relatedNames:
+                      - name: C2PA
+                        kind: standard
+                        relevance: デジタルコンテンツの来歴・真正性を記録する代表的な標準。
+                        officialUrl: https://c2pa.org/
+                      - name: Content Credentials
+                        kind: standard
+                        relevance: C2PAにもとづくコンテンツ来歴表示の実装・運用名として広く使われる。
+                        officialUrl: https://contentcredentials.org/
+                      - name: Coalition for Content Provenance and Authenticity
+                        kind: other
+                        relevance: C2PA標準を推進する団体として来歴管理の文脈で出る。
+                        officialUrl: https://c2pa.org/
 
 edges:
   - from: bayes-theorem

@@ -12,6 +12,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { listKnowledgeDomains } from "@/features/knowledge-map/queries";
+import { KnowledgeLinkerForm } from "@/features/knowledge-linker/components/knowledge-linker-form";
+import { listKnowledgeLinksForEntity } from "@/features/knowledge-linker/queries";
 import { DeleteQuestionForm } from "@/features/questions/components/delete-question-form";
 import { getQuestionById } from "@/features/questions/queries";
 import {
@@ -72,11 +75,31 @@ function TextBlock({ title, value }: { title: string; value: string }) {
   );
 }
 
+function questionKnowledgeText(
+  question: NonNullable<Awaited<ReturnType<typeof getQuestionById>>>,
+) {
+  return [
+    question.title,
+    question.questionMd,
+    question.answerMd,
+    question.explanationMd,
+  ]
+    .filter((value): value is string => Boolean(value && value.trim()))
+    .join("\n\n");
+}
+
 export default async function QuestionDetailPage({
   params,
 }: QuestionDetailPageProps) {
   const { id } = await params;
-  const question = await getQuestionById(id);
+  const [question, domains, linkedKnowledgeNodes] = await Promise.all([
+    getQuestionById(id),
+    listKnowledgeDomains(),
+    listKnowledgeLinksForEntity({
+      entityType: "question_card",
+      entityId: id,
+    }),
+  ]);
 
   if (!question) {
     notFound();
@@ -195,6 +218,27 @@ export default async function QuestionDetailPage({
           <TextBlock title="Answer" value={question.answerMd} />
           <TextBlock title="Explanation" value={question.explanationMd} />
         </div>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Knowledge Links</CardTitle>
+            <CardDescription>
+              この Question を Knowledge Map のノードに接続する
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <KnowledgeLinkerForm
+              domains={domains}
+              initialText={questionKnowledgeText(question)}
+              targetEntity={{
+                entityType: "question_card",
+                entityId: question.id,
+                label: question.title,
+              }}
+              linkedNodes={linkedKnowledgeNodes}
+            />
+          </CardContent>
+        </Card>
       </div>
     </main>
   );

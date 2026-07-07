@@ -26,7 +26,122 @@ domain:
                   aliases:
                     - vision
                     - product vision
+                  search:
+                    keywords:
+                      - プロダクトビジョン
+                      - product vision
+                      - vision statement
+                      - future state
+                      - desired future
+                      - プロダクトの未来像
+                      - vision narrative
+                      - mission vision strategy
+                      - north star
+                    commonSignals:
+                      - 将来どんな世界を作りたいかを議論している
+                      - ロードマップや優先順位の上位判断基準として語られている
+                      - 3年後、5年後、10年後の到達状態が説明されている
+                      - 機能一覧ではなく存在意義や未来像を表現している
+                    antiSignals:
+                      - computer vision や画像認識モデルの話
+                      - 企業理念だけで個別プロダクトに接続していない話
+                      - 視力、視覚、アイケアの話
+                      - 単なる短期KPIや四半期目標の話
+                    relatedNames:
+                      - name: Product Vision Board
+                        kind: method
+                        relevance: プロダクトの対象、ニーズ、価値、事業目標を一枚で整理するビジョン設計手法として一緒に出やすい。
+                      - name: Working Backwards
+                        kind: method
+                        relevance: 将来の顧客価値から逆算して製品構想を作る手法としてビジョン策定と関連する。
+                      - name: PR/FAQ
+                        kind: method
+                        relevance: ローンチ時の顧客価値を先に文章化するため、プロダクトビジョンの具体化に使われる。
+                      - name: Product Strategy Canvas
+                        kind: framework
+                        relevance: ビジョンを市場、顧客、価値提案、戦略へ接続する道具として併用される。
+
                 - slug: product-strategy
+
+                  search:
+
+                    keywords:
+
+                      - プロダクト戦略
+
+                      - product strategy
+
+                      - strategy themes
+
+                      - strategic bets
+
+                      - where to play
+
+                      - how to win
+
+                      - 問題選択
+
+                      - 顧客問題の優先順位
+
+                      - product strategy overview
+
+                      - 戦略テーマ
+
+                    commonSignals:
+
+                      - どの顧客問題に集中するかを選んでいる
+
+                      - ロードマップの前提として戦略テーマが定義されている
+
+                      - 複数の市場や顧客セグメントから狙いを絞っている
+
+                      - 競合、差別化、勝ち筋、順序付けが同時に語られている
+
+                    antiSignals:
+
+                      - 全社経営戦略だけでプロダクト範囲に落ちていない話
+
+                      - 技術選定やアーキテクチャ戦略だけの話
+
+                      - マーケティングキャンペーン単体の話
+
+                      - 単なる機能リクエスト一覧
+
+                    relatedNames:
+
+                      - name: SVPG Product Strategy
+
+                        kind: framework
+
+                        relevance: 解くべき問題を選び、チームへ戦略的文脈を与える考え方としてよく参照される。
+
+                        officialUrl: https://www.svpg.com/product-strategy-overview/
+
+                      - name: Product Strategy Canvas
+
+                        kind: framework
+
+                        relevance: 顧客、価値、競争、目標を整理して戦略を可視化するために使われる。
+
+                      - name: Lean Canvas
+
+                        kind: framework
+
+                        relevance: 顧客課題、解決策、価値提案、チャネルなどを戦略仮説として整理できる。
+
+                      - name: Business Model Canvas
+
+                        kind: framework
+
+                        relevance: プロダクト戦略を事業モデルや価値提供構造へ接続する際に使われる。
+
+                      - name: Porter Five Forces
+
+                        kind: framework
+
+                        relevance: 市場構造や競争圧力を踏まえた戦略判断で参照される。
+
+                        officialUrl: https://www.isc.hbs.edu/strategy/business-strategy/Pages/the-five-forces.aspx
                   name: プロダクト戦略
                   summary: ビジョンを実現するために、どの問題をどの順番で解くかを定める方針。
                   whyLearn: 機能要望の寄せ集めではなく、解くべき問題の束として計画できる。
@@ -55,7 +170,113 @@ domain:
                   aliases:
                     - market segment
                     - target market
+                  search:
+                    keywords:
+                      - ターゲットセグメント
+                      - target segment
+                      - market segment
+                      - target market
+                      - segmentation
+                      - STP
+                      - 顧客セグメント
+                      - 市場セグメント
+                      - early adopter segment
+                      - served available market
+                    commonSignals:
+                      - 誰を最初の対象顧客にするかを議論している
+                      - 市場を業種、規模、利用文脈、課題で分けている
+                      - 全員向けではなく特定顧客群に絞っている
+                      - TAM から現実的に狙う範囲を切り出している
+                    antiSignals:
+                      - ネットワークセグメントやメモリセグメントの話
+                      - 広告配信の短期オーディエンス設定だけの話
+                      - 顧客ではなく社内組織の部署分類だけの話
+                      - 単なる人口統計だけで課題や文脈がない分類
+                    relatedNames:
+                      - name: STP
+                        kind: framework
+                        relevance: Segmentation、Targeting、Positioning の流れでターゲット顧客を決める代表的枠組み。
+                      - name: TAM SAM SOM
+                        kind: framework
+                        relevance: 市場全体から実際に狙う市場範囲を切り出す際に使われる。
+                      - name: Crossing the Chasm
+                        kind: framework
+                        relevance: 初期市場から主流市場へ移る際の顧客セグメント選択で参照される。
+                      - name: Jobs Segmentation
+                        kind: method
+                        relevance: 属性ではなく顧客が達成したい進歩によってセグメントを切る方法として関連する。
+
                 - slug: ideal-customer-profile
+
+                  search:
+
+                    keywords:
+
+                      - 理想顧客プロファイル
+
+                      - ICP
+
+                      - ideal customer profile
+
+                      - best-fit customer
+
+                      - firmographics
+
+                      - technographics
+
+                      - target account
+
+                      - B2B ICP
+
+                      - high-fit customer
+
+                      - 顧客適合度
+
+                    commonSignals:
+
+                      - 最も刺さる顧客条件を定義している
+
+                      - 業種、従業員規模、利用ツール、予算、課題成熟度を並べている
+
+                      - 営業対象や初期導入企業の選別基準を作っている
+
+                      - 高LTV、低CAC、短いセールスサイクルなどの適合条件が出ている
+
+                    antiSignals:
+
+                      - inductively coupled plasma など化学分析の ICP
+
+                      - Internet Cache Protocol の ICP
+
+                      - 暗号資産やトークン名としての ICP
+
+                      - 人物像だけで企業・顧客適合条件がない話
+
+                    relatedNames:
+
+                      - name: Account-Based Marketing
+
+                        kind: method
+
+                        relevance: B2Bで理想顧客に近いアカウントを選び、営業・マーケティングを集中させる実践として関連する。
+
+                      - name: Firmographics
+
+                        kind: method
+
+                        relevance: 企業規模、業種、地域などでICPを記述するためによく使われる。
+
+                      - name: Technographics
+
+                        kind: method
+
+                        relevance: 利用技術スタックや導入済みツールをICP条件に含める際に使われる。
+
+                      - name: Buyer Persona
+
+                        kind: method
+
+                        relevance: ICPが企業やアカウント単位、persona が人物単位の理解として併用される。
                   name: 理想顧客プロファイル
                   summary: 最も高い適合度と継続価値を持つ顧客像を記述したもの。
                   whyLearn: セグメントの中でも、今もっとも刺さる顧客を具体化できる。
@@ -71,6 +292,46 @@ domain:
                   aliases:
                     - positioning
                     - strategic positioning
+                  search:
+                    keywords:
+                      - 戦略的ポジショニング
+                      - strategic positioning
+                      - positioning
+                      - competitive positioning
+                      - 競争優位
+                      - 競争軸
+                      - differentiated position
+                      - unique position
+                      - positioning map
+                      - category positioning
+                    commonSignals:
+                      - 競合と何が違うのかを説明している
+                      - 高価格、低コスト、専門特化、利便性などの勝ち方を選んでいる
+                      - 自社がどのカテゴリに見られるべきかを議論している
+                      - 比較軸や価値軸に対して立ち位置を定めている
+                    antiSignals:
+                      - CSS position や UI 要素配置の話
+                      - 地理的位置や座標の話
+                      - 単なるブランドコピーだけで戦略的選択がない話
+                      - 求人ポジションや役職の話
+                    relatedNames:
+                      - name: Porter Strategic Positioning
+                        kind: framework
+                        relevance: 競合と異なる活動体系で価値を作る戦略論としてポジショニング理解に直結する。
+                        officialUrl: https://www.isc.hbs.edu/strategy/business-strategy/Pages/strategic-positioning.aspx
+                      - name: Porter Five Forces
+                        kind: framework
+                        relevance: 業界構造と競争圧力を踏まえて有利な位置取りを考える際に使われる。
+                        officialUrl: https://www.isc.hbs.edu/strategy/business-strategy/Pages/the-five-forces.aspx
+                      - name: Positioning Map
+                        kind: method
+                        relevance: 顧客が認識する競争軸上で自社と競合の位置を可視化する方法。
+                      - name: Blue Ocean Strategy
+                        kind: framework
+                        relevance: 既存競争軸から離れた価値曲線を作るポジショニング発想として関連する。
+                      - name: Category Design
+                        kind: method
+                        relevance: 新しいカテゴリ上でプロダクトの意味づけを行う実務と関連する。
 
         - slug: value-proposition-and-fit
           name: 価値提案と適合
@@ -89,6 +350,44 @@ domain:
                   aliases:
                     - value prop
                     - value proposition
+                  search:
+                    keywords:
+                      - 価値提案
+                      - value proposition
+                      - value prop
+                      - unique value proposition
+                      - UVP
+                      - customer value
+                      - benefit statement
+                      - 顧客便益
+                      - 選ばれる理由
+                      - pain reliever
+                      - gain creator
+                    commonSignals:
+                      - 顧客がなぜ選ぶのかを一文で表している
+                      - 機能ではなく便益、痛みの解消、成果で語っている
+                      - 営業資料、LP、オンボーディングで同じ価値表現を使おうとしている
+                      - 顧客課題と提供価値を対応づけている
+                    antiSignals:
+                      - 企業価値評価や valuation の話
+                      - プログラミングの value object や値型の話
+                      - 抽象的な美辞麗句だけで顧客課題がない話
+                      - 価格割引やキャンペーン訴求だけの話
+                    relatedNames:
+                      - name: Value Proposition Canvas
+                        kind: framework
+                        relevance: 顧客のジョブ、痛み、利得と提供価値を対応づける代表的な価値提案設計フレーム。
+                      - name: Strategyzer
+                        kind: tool
+                        relevance: Value Proposition Canvas や Business Model Canvas の文脈でよく参照される。
+                        officialUrl: https://www.strategyzer.com/
+                      - name: Lean Canvas
+                        kind: framework
+                        relevance: 課題、解決策、独自価値提案を早期仮説として整理する際に使われる。
+                      - name: Jobs to Be Done
+                        kind: framework
+                        relevance: 顧客が達成したい進歩から価値提案を定義する際に関連する。
+
                 - slug: positioning-statement
                   name: ポジショニングステートメント
                   summary: 対象顧客、カテゴリ、主要便益、差別化要因を短く定義した文章。
@@ -119,7 +418,124 @@ domain:
                   aliases:
                     - PSF
                     - problem solution fit
+                  search:
+                    keywords:
+                      - 問題解決適合
+                      - problem-solution fit
+                      - PSF
+                      - problem solution fit
+                      - solution validation
+                      - customer problem validation
+                      - 課題検証
+                      - 解決策検証
+                      - early validation
+                      - MVP validation
+                    commonSignals:
+                      - PMF の前段階として課題と解決策の噛み合いを確認している
+                      - MVP、プロトタイプ、手動運用で顧客反応を見ている
+                      - 顧客が本当にその課題を解きたいかを検証している
+                      - 解決策を作り込む前に仮説を潰している
+                    antiSignals:
+                      - PMF と同義で市場拡大後の強い需要を指している場合
+                      - 数学や最適化の solution の話
+                      - サポートチケットの個別解決だけの話
+                      - 技術的に動くかだけを検証している話
+                    relatedNames:
+                      - name: Lean Startup
+                        kind: framework
+                        relevance: 仮説検証とMVPによって問題と解決策の適合を検証する文脈で使われる。
+                      - name: Customer Development
+                        kind: method
+                        relevance: 顧客課題と解決策仮説を市場で検証するための基本プロセスとして関連する。
+                      - name: MVP
+                        kind: method
+                        relevance: 問題に対する解決策の最小検証単位として使われる。
+                      - name: Concierge MVP
+                        kind: method
+                        relevance: 実装前に手動運用で解決策価値を検証する方法として関連する。
+                      - name: Wizard of Oz Test
+                        kind: method
+                        relevance: 裏側を手動にして解決策体験を先に検証する手法として使われる。
+
                 - slug: product-market-fit
+
+                  search:
+
+                    keywords:
+
+                      - プロダクトマーケットフィット
+
+                      - product-market fit
+
+                      - product market fit
+
+                      - PMF
+
+                      - strong market demand
+
+                      - market pull
+
+                      - retention curve
+
+                      - Sean Ellis test
+
+                      - PMF survey
+
+                      - 市場適合
+
+                    commonSignals:
+
+                      - 市場から強い需要や pull があるかを判断している
+
+                      - 継続率、紹介、自然流入、営業効率の改善が語られている
+
+                      - 拡大投資に入ってよいかを議論している
+
+                      - ユーザーが手放せない状態や代替困難性が言及されている
+
+                    antiSignals:
+
+                      - probability mass function の PMF
+
+                      - private military firm の PMF
+
+                      - 単なるリリース完了や初期利用者数だけの話
+
+                      - 一社の受託要件に合っただけの話
+
+                    relatedNames:
+
+                      - name: Sean Ellis Test
+
+                        kind: method
+
+                        relevance: ユーザーがそのプロダクトを失ったらどれほど困るかでPMFの兆候を見る方法として有名。
+
+                      - name: Lean Startup
+
+                        kind: framework
+
+                        relevance: 探索から成長へ移る判断点としてPMFが扱われる。
+
+                      - name: Sequoia Arc PMF Framework
+
+                        kind: framework
+
+                        relevance: PMFの型や到達兆候を整理する実務フレームとして参照される。
+
+                        officialUrl: https://www.sequoiacap.com/article/pmf-framework/
+
+                      - name: AARRR
+
+                        kind: framework
+
+                        relevance: 獲得、活性化、継続などの指標からPMFの兆候を観測する際に関連する。
+
+                      - name: Cohort Analysis
+
+                        kind: method
+
+                        relevance: 継続率の形から持続的価値があるかを見るために使われる。
                   name: プロダクトマーケットフィット
                   summary: 良い市場に対し、その市場が強く求めるプロダクトを提供できている状態。
                   whyLearn: 拡大に入る前に、需要の強さと利用の持続性を見極められる。
@@ -135,6 +551,41 @@ domain:
                   aliases:
                     - beachhead
                     - initial target market
+                  search:
+                    keywords:
+                      - ビーチヘッド市場
+                      - beachhead market
+                      - beachhead segment
+                      - initial target market
+                      - niche market
+                      - wedge market
+                      - early market
+                      - 最初に勝つ市場
+                      - 初期市場
+                      - 市場集中
+                    commonSignals:
+                      - 最初に深く勝つ市場を狭く定義している
+                      - 全市場ではなく初期導入しやすいニッチを選んでいる
+                      - 初期成功事例やリファレンス顧客を作る狙いがある
+                      - 隣接市場への拡張順序が語られている
+                    antiSignals:
+                      - 軍事上の橋頭堡や上陸作戦の話
+                      - 単なる小さい市場で成長戦略がない話
+                      - 広告ターゲティングの一時的なテスト対象だけの話
+                      - 地理的な海岸や港湾の話
+                    relatedNames:
+                      - name: Crossing the Chasm
+                        kind: framework
+                        relevance: 初期採用者から主流市場へ進む前に狭い市場で勝つ考え方と結びつく。
+                      - name: Bowling Alley Strategy
+                        kind: method
+                        relevance: 隣接するニッチ市場へ順に展開していく戦略として関連する。
+                      - name: TAM SAM SOM
+                        kind: framework
+                        relevance: 広い市場から最初に狙う現実的な市場範囲を絞る際に使われる。
+                      - name: Wedge Strategy
+                        kind: method
+                        relevance: 狭い入口から市場に入り、隣接領域へ広げる戦略として関連する。
 
     - slug: discovery-and-problem-framing
       name: ディスカバリーと問題設定
@@ -158,7 +609,113 @@ domain:
                   aliases:
                     - JTBD
                     - jobs theory
+                  search:
+                    keywords:
+                      - Jobs to Be Done
+                      - JTBD
+                      - jobs theory
+                      - job to be done
+                      - 顧客のジョブ
+                      - progress
+                      - hire a product
+                      - customer progress
+                      - job statement
+                      - outcome-driven innovation
+                    commonSignals:
+                      - 顧客が製品を雇う理由を説明している
+                      - 属性ではなく進歩、状況、目的で顧客を理解している
+                      - 代替手段や乗り換え理由が議論されている
+                      - job statement や desired outcome が書かれている
+                    antiSignals:
+                      - 求人、採用、職務記述書の job の話
+                      - バッチ処理やジョブキューの話
+                      - 単なるユーザー属性やペルソナだけの話
+                      - 社内タスク管理の job の話
+                    relatedNames:
+                      - name: Outcome-Driven Innovation
+                        kind: method
+                        relevance: 顧客ジョブと望ましい成果を構造化してイノベーション機会を探す手法として関連する。
+                      - name: Switch Interview
+                        kind: method
+                        relevance: 顧客がある製品を雇った瞬間を掘り、ジョブを発見する代表的手法。
+                      - name: Forces of Progress
+                        kind: framework
+                        relevance: 顧客が現状から移行する力学をJTBDで説明する際に使われる。
+                        officialUrl: https://www.christenseninstitute.org/graphic/the-forces-of-progress/
+                      - name: Job Map
+                        kind: method
+                        relevance: 顧客がジョブを遂行するステップを分解するために使われる。
+                      - name: Customer Development
+                        kind: method
+                        relevance: 顧客課題の探索と検証の文脈でJTBDと併用される。
+
                 - slug: forces-of-progress
+
+                  search:
+
+                    keywords:
+
+                      - 進歩の力学
+
+                      - forces of progress
+
+                      - push pull habit anxiety
+
+                      - push of the situation
+
+                      - pull of new solution
+
+                      - habit of the present
+
+                      - anxiety of new solution
+
+                      - switching forces
+
+                      - 乗り換えの力学
+
+                      - JTBD forces
+
+                    commonSignals:
+
+                      - 現状の痛みと新しい解決策の魅力を分けている
+
+                      - 習慣や不安が乗り換えを妨げると説明している
+
+                      - push、pull、habit、anxiety の4要素が出ている
+
+                      - なぜ顧客が移行しないかを構造化している
+
+                    antiSignals:
+
+                      - 物理学の力、重力、摩擦力の話
+
+                      - 組織変革一般の推進力だけでJTBD文脈がない話
+
+                      - 進捗率やプロジェクト進行管理の話
+
+                      - マーケティングファネルだけの話
+
+                    relatedNames:
+
+                      - name: Jobs to Be Done
+
+                        kind: framework
+
+                        relevance: 顧客の乗り換え行動を説明するJTBDの中核的な補助フレームとして使われる。
+
+                        officialUrl: https://www.christenseninstitute.org/theory/jobs-to-be-done/
+
+                      - name: Switch Interview
+
+                        kind: method
+
+                        relevance: push、pull、habit、anxiety を実際の乗り換え経験から抽出するために使われる。
+
+                      - name: Customer Forces Canvas
+
+                        kind: method
+
+                        relevance: 乗り換えを促進・阻害する力を可視化するキャンバスとして関連する。
                   name: 進歩の力学
                   summary: 変化を促す力と、現状維持に引き戻す力を整理する枠組み。
                   whyLearn: なぜ顧客が移行しないのか、どこで不安が生まれるのかを見やすくなる。
@@ -174,6 +731,44 @@ domain:
                   aliases:
                     - switching interview
                     - switch interview
+                  search:
+                    keywords:
+                      - スイッチインタビュー
+                      - switch interview
+                      - switching interview
+                      - JTBD interview
+                      - customer switching
+                      - purchase timeline
+                      - 乗り換えインタビュー
+                      - 採用理由インタビュー
+                      - 解約理由インタビュー
+                      - moment of struggle
+                    commonSignals:
+                      - 顧客がいつ、なぜ、何から乗り換えたかを時系列で聞いている
+                      - 検討開始、探索、決定、利用開始の出来事を掘っている
+                      - 購入や解約の直前に起きたきっかけを聞いている
+                      - 代替手段や不安、習慣を整理している
+                    antiSignals:
+                      - ネットワークスイッチや Nintendo Switch のインタビュー
+                      - 職務面接や採用インタビューの話
+                      - アンケートだけで時系列の意思決定を掘っていない話
+                      - 単なる満足度ヒアリング
+                    relatedNames:
+                      - name: Jobs to Be Done
+                        kind: framework
+                        relevance: スイッチインタビューはJTBDを発見するための代表的な調査手法として使われる。
+                        officialUrl: https://www.christenseninstitute.org/theory/jobs-to-be-done/
+                      - name: The Re-Wired Group
+                        kind: other
+                        relevance: JTBDとスイッチインタビューの実務普及でよく参照される名前。
+                        officialUrl: https://therewiredgroup.com/
+                      - name: Forces of Progress
+                        kind: framework
+                        relevance: インタビュー結果を push、pull、habit、anxiety に整理する際に使われる。
+                        officialUrl: https://www.christenseninstitute.org/graphic/the-forces-of-progress/
+                      - name: Timeline Interview
+                        kind: method
+                        relevance: 購入・導入・解約までの出来事を時系列で掘るために関連する。
 
             - slug: context-modeling
               name: 利用文脈のモデル化
@@ -188,6 +783,42 @@ domain:
                   aliases:
                     - user persona
                     - archetype
+                  search:
+                    keywords:
+                      - ペルソナ
+                      - persona
+                      - user persona
+                      - buyer persona
+                      - proto-persona
+                      - user archetype
+                      - 顧客像
+                      - 利用者像
+                      - 行動特性
+                      - UX persona
+                    commonSignals:
+                      - 典型的な利用者像を名前、目標、行動、課題で記述している
+                      - デザイン判断の前提としてユーザー像を揃えている
+                      - ペルソナごとのニーズや利用場面を比較している
+                      - 調査からユーザー archetype を作っている
+                    antiSignals:
+                      - ゲームや作品名としての Persona
+                      - SNSの人格やキャラクター設定だけの話
+                      - 具体的な調査や行動根拠がない理想顧客像だけの話
+                      - 購買企業単位の ICP の話
+                    relatedNames:
+                      - name: Empathy Map
+                        kind: method
+                        relevance: ユーザーの考え、感情、行動、痛みを整理してペルソナ理解を補完する。
+                      - name: Proto-Persona
+                        kind: method
+                        relevance: 調査前の仮説的なユーザー像としてペルソナ作成の初期段階で使われる。
+                      - name: Customer Journey Map
+                        kind: method
+                        relevance: ペルソナがどの場面でどんな体験をするかを時系列で整理する際に使われる。
+                      - name: ResearchOps
+                        kind: method
+                        relevance: 複数調査から得たユーザー知見を管理・更新する運用として関連する。
+
                 - slug: buyer-user-gap
                   name: 購買者と利用者の分離
                   summary: 買う人と使う人が異なることで、価値判断や要件がずれる状況。
@@ -204,6 +835,44 @@ domain:
                   aliases:
                     - customer journey
                     - journey map
+                  search:
+                    keywords:
+                      - ユーザージャーニー
+                      - customer journey
+                      - user journey
+                      - journey map
+                      - customer journey map
+                      - touchpoint
+                      - experience map
+                      - service journey
+                      - 利用体験の流れ
+                      - 顧客接点
+                    commonSignals:
+                      - 認知、登録、初回利用、継続、解約などの流れが語られている
+                      - 体験のどこで摩擦や離脱があるかを探している
+                      - タッチポイント、感情曲線、課題、機会を時系列に並べている
+                      - 部署やチャネルをまたぐ顧客体験を整理している
+                    antiSignals:
+                      - 旅行の旅程や観光ルートの話
+                      - データパイプラインの処理フローだけの話
+                      - 単なる画面遷移図で顧客状態や接点がない話
+                      - 採用候補者の選考ジャーニーだけの話
+                    relatedNames:
+                      - name: Customer Journey Map
+                        kind: method
+                        relevance: 顧客の行動、感情、接点、課題を時系列で可視化する代表手法。
+                      - name: Service Blueprint
+                        kind: method
+                        relevance: ユーザー体験の裏側にある業務やシステム接点まで含めて整理する。
+                      - name: Experience Map
+                        kind: method
+                        relevance: 製品やチャネルをまたいだ広い体験の流れを把握する際に使われる。
+                      - name: Funnel Analysis
+                        kind: method
+                        relevance: ジャーニー上の離脱箇所を定量的に把握する分析手法として関連する。
+                      - name: Touchpoint Map
+                        kind: method
+                        relevance: 顧客接点を洗い出して体験改善点を見つけるために使われる。
 
         - slug: opportunity-discovery-and-validation
           name: 機会発見と検証
@@ -222,7 +891,125 @@ domain:
                   aliases:
                     - continuous discovery
                     - discovery habit
+                  search:
+                    keywords:
+                      - 継続的ディスカバリー
+                      - continuous discovery
+                      - continuous discovery habits
+                      - discovery habit
+                      - weekly customer touchpoint
+                      - product discovery
+                      - dual-track agile
+                      - 仮説更新
+                      - 顧客接点の継続
+                      - discovery cadence
+                    commonSignals:
+                      - 毎週または継続的に顧客と話す仕組みがある
+                      - 一度きりのリサーチではなく discovery cadence が設計されている
+                      - 仮説、機会、解決策、検証が反復的に更新されている
+                      - delivery backlog と discovery backlog を分けている
+                    antiSignals:
+                      - 法務の discovery や証拠開示の話
+                      - データディスカバリーやBIカタログだけの話
+                      - 一回限りの市場調査レポート
+                      - 単なるアイデア出し会議
+                    relatedNames:
+                      - name: Continuous Discovery Habits
+                        kind: method
+                        relevance: 継続的な顧客接点と仮説検証を実践する代表的な方法論として参照される。
+                      - name: Opportunity Solution Tree
+                        kind: framework
+                        relevance: 継続的ディスカバリーの学びを outcome、opportunity、solution、test に整理する。
+                        officialUrl: https://www.producttalk.org/opportunity-solution-trees/
+                      - name: Product Trio
+                        kind: pattern
+                        relevance: PM、デザイナー、エンジニアが共同で継続的に発見活動を行う基本単位。
+                      - name: Dual-Track Agile
+                        kind: framework
+                        relevance: discovery と delivery を並行して回す考え方として関連する。
+                      - name: Assumption Testing
+                        kind: method
+                        relevance: 継続的な仮説検証活動の具体的な実践として使われる。
+
                 - slug: customer-interview
+
+                  search:
+
+                    keywords:
+
+                      - 顧客インタビュー
+
+                      - customer interview
+
+                      - user interview
+
+                      - customer conversation
+
+                      - problem interview
+
+                      - solution interview
+
+                      - qualitative research
+
+                      - 半構造化インタビュー
+
+                      - ユーザー調査
+
+                      - 顧客ヒアリング
+
+                    commonSignals:
+
+                      - 顧客の発言、行動、課題、意思決定理由を直接聞いている
+
+                      - インタビューガイド、質問設計、録音、文字起こしが出ている
+
+                      - 要望ではなく過去の具体的行動を聞いている
+
+                      - 定性調査の結果から機会や仮説を作っている
+
+                    antiSignals:
+
+                      - 採用面接や社員インタビューの話
+
+                      - 営業商談メモだけで調査目的がない話
+
+                      - アンケート集計だけの話
+
+                      - ユーザーの希望機能リストだけで文脈がない話
+
+                    relatedNames:
+
+                      - name: The Mom Test
+
+                        kind: method
+
+                        relevance: 顧客インタビューで誘導質問や願望回答を避けるためによく参照される。
+
+                      - name: Customer Development
+
+                        kind: method
+
+                        relevance: 課題仮説と顧客理解を検証するインタビュー実践として関連する。
+
+                      - name: Jobs to Be Done Interview
+
+                        kind: method
+
+                        relevance: 顧客の進歩や乗り換え理由を掘るインタビュー形式として関連する。
+
+                      - name: Dovetail
+
+                        kind: tool
+
+                        relevance: インタビュー記録、タグ付け、インサイト管理で使われるリサーチリポジトリ。
+
+                        officialUrl: https://dovetail.com/
+
+                      - name: Research Repository
+
+                        kind: pattern
+
+                        relevance: 顧客インタビューの知見を蓄積・再利用する運用として関連する。
                   name: 顧客インタビュー
                   summary: 顧客の行動、課題、意思決定、文脈を直接聞く調査手法。
                   whyLearn: ログや要望票だけでは見えない動機や制約を理解できる。
@@ -238,6 +1025,41 @@ domain:
                   aliases:
                     - trio
                     - product trio
+                  search:
+                    keywords:
+                      - プロダクトトリオ
+                      - product trio
+                      - trio
+                      - PM designer engineer
+                      - product manager designer engineer
+                      - cross-functional discovery
+                      - 共同ディスカバリー
+                      - three-legged product team
+                      - continuous discovery trio
+                    commonSignals:
+                      - PM、デザイナー、エンジニアが一緒に discovery している
+                      - 価値、使いやすさ、実現性を同時に検討している
+                      - 職能ごとの引き渡しではなく共同で顧客理解している
+                      - トリオで顧客インタビューや仮説検証を回している
+                    antiSignals:
+                      - 音楽グループや三人組一般の話
+                      - プロジェクト管理上の三者承認だけの話
+                      - PMだけが企画し、他職種が実装待ちしている話
+                      - 組織図の人数構成だけで discovery 文脈がない話
+                    relatedNames:
+                      - name: Continuous Discovery Habits
+                        kind: method
+                        relevance: プロダクトトリオが継続的ディスカバリーを行う単位として紹介される。
+                      - name: Opportunity Solution Tree
+                        kind: framework
+                        relevance: トリオで outcome から機会、解決策、検証を共有する道具として使われる。
+                        officialUrl: https://www.producttalk.org/opportunity-solution-trees/
+                      - name: Dual-Track Agile
+                        kind: framework
+                        relevance: discovery と delivery の接続を三職種で担う文脈で関連する。
+                      - name: Empowered Product Team
+                        kind: pattern
+                        relevance: 価値、ユーザビリティ、実現性の判断をチーム内で行う構造として近い。
 
             - slug: opportunity-mapping-and-hypothesis
               name: 機会の構造化と仮説化
@@ -252,6 +1074,46 @@ domain:
                   aliases:
                     - OST
                     - opportunity solution tree
+                  search:
+                    keywords:
+                      - Opportunity Solution Tree
+                      - OST
+                      - 機会解決策ツリー
+                      - outcome opportunity solution test
+                      - opportunity mapping
+                      - assumption test
+                      - Teresa Torres OST
+                      - discovery tree
+                      - 機会ツリー
+                    commonSignals:
+                      - outcome の下に opportunity、solution、experiment を木構造で並べている
+                      - 解決策へ飛ばずに機会空間を整理している
+                      - 顧客課題から複数の施策案を派生させている
+                      - 仮説検証や実験がツリー末端に置かれている
+                    antiSignals:
+                      - original soundtrack の OST
+                      - 一般的な木構造データやアルゴリズムの話
+                      - 組織図やマインドマップだけで outcome/opportunity がない話
+                      - ソリューション一覧だけで顧客機会がない話
+                    relatedNames:
+                      - name: Continuous Discovery Habits
+                        kind: method
+                        relevance: OSTを使って継続的ディスカバリーの思考を可視化する方法論として関連する。
+                      - name: Teresa Torres
+                        kind: other
+                        relevance: Opportunity Solution Tree の実務普及で最もよく参照される名前。
+                      - name: Assumption Testing
+                        kind: method
+                        relevance: OSTの下位にある solution から検証すべき仮説へ落とす際に使われる。
+                      - name: Miro
+                        kind: tool
+                        relevance: OSTをチームで可視化・共同編集するホワイトボードツールとしてよく使われる。
+                        officialUrl: https://miro.com/
+                      - name: FigJam
+                        kind: tool
+                        relevance: OSTや仮説マップを共同作成する場として使われる。
+                        officialUrl: https://www.figma.com/figjam/
+
                 - slug: opportunity-space
                   name: オポチュニティスペース
                   summary: 顧客の痛み、欲求、未充足ニーズを機会として並べた探索領域。
@@ -268,6 +1130,44 @@ domain:
                   aliases:
                     - riskiest assumption
                     - critical assumption
+                  search:
+                    keywords:
+                      - 最重要仮説
+                      - riskiest assumption
+                      - critical assumption
+                      - RAT
+                      - riskiest assumption test
+                      - assumption mapping
+                      - hypothesis testing
+                      - leap-of-faith assumption
+                      - 仮説検証
+                      - 不確実性の高い前提
+                    commonSignals:
+                      - これが間違っていたら施策が成立しない前提を探している
+                      - 重要度と不確実性で仮説を並べている
+                      - 実装前に何を最初に確かめるべきかを議論している
+                      - MVP、プロトタイプ、実験で大きなリスクから潰している
+                    antiSignals:
+                      - 一般的なリスク管理表だけで顧客価値や施策仮説がない話
+                      - セキュリティ脆弱性や運用リスクだけの話
+                      - すでに確実な前提を確認しているだけの話
+                      - 単なるTODOの優先順位付け
+                    relatedNames:
+                      - name: Riskiest Assumption Test
+                        kind: method
+                        relevance: 最も危険な前提を低コストで検証するための直接的な手法。
+                      - name: Assumption Mapping
+                        kind: method
+                        relevance: 不確実性と重要度で仮説を整理し、検証順を決めるために使われる。
+                      - name: Lean Startup
+                        kind: framework
+                        relevance: 大きな不確実性を仮説として置き、実験で学ぶ考え方と結びつく。
+                      - name: MVP
+                        kind: method
+                        relevance: 最重要仮説を検証する最小単位の実験として使われる。
+                      - name: Experiment Board
+                        kind: tool
+                        relevance: 仮説、実験、結果、学習を整理するボードとして関連する。
 
     - slug: outcome-metrics-and-experimentation
       name: 成果指標と実験による意思決定
@@ -291,7 +1191,116 @@ domain:
                   aliases:
                     - objective
                     - OKR objective
+                  search:
+                    keywords:
+                      - Objective
+                      - OKR objective
+                      - 目標
+                      - 定性的目標
+                      - ambitious objective
+                      - quarterly objective
+                      - strategic objective
+                      - team objective
+                      - 目指す状態
+                      - ゴール設定
+                    commonSignals:
+                      - 今期や今サイクルで達成したい方向を定性的に表している
+                      - Key Result とセットで目標が書かれている
+                      - 手段や機能ではなく状態や変化を表現している
+                      - 野心的だが理解しやすいゴール文になっている
+                    antiSignals:
+                      - プログラミングの object や objective function の話
+                      - 履歴書の career objective の話
+                      - 単なるタスク名や機能名
+                      - 数値KPIだけで目標の方向がない話
+                    relatedNames:
+                      - name: OKR
+                        kind: framework
+                        relevance: Objective と Key Result を組み合わせて目標と測定を接続する代表的フレーム。
+                      - name: Google re:Work OKR
+                        kind: method
+                        relevance: OKRの実践例として Objective の書き方や運用で参照されやすい。
+                        officialUrl: https://rework.withgoogle.com/intl/en/guides/set-goals-with-okrs
+                      - name: SMART Goals
+                        kind: framework
+                        relevance: 目標設定の具体性や測定可能性を検討する比較対象としてよく出る。
+                      - name: Product Goal
+                        kind: method
+                        relevance: Scrum文脈でプロダクト改善の到達目標として Objective と接続する。
+
                 - slug: key-result
+
+                  search:
+
+                    keywords:
+
+                      - Key Result
+
+                      - KR
+
+                      - OKR key result
+
+                      - 主要な結果
+
+                      - 成果指標
+
+                      - measurable result
+
+                      - quantified outcome
+
+                      - 目標達成指標
+
+                      - OKR scoring
+
+                      - committed KR
+
+                    commonSignals:
+
+                      - Objective の達成を示す数値条件が書かれている
+
+                      - 何をもって達成とみなすかが定量化されている
+
+                      - 四半期末に採点や振り返りを行う前提がある
+
+                      - 増加率、達成率、件数、継続率などが目標値として置かれている
+
+                    antiSignals:
+
+                      - 暗号鍵やAPI keyの結果の話
+
+                      - Krypton の元素記号 KR
+
+                      - キーリザルトが継続監視KPIと完全に同一視されているだけの話
+
+                      - 数値はあるが上位 Objective が存在しない話
+
+                    relatedNames:
+
+                      - name: OKR
+
+                        kind: framework
+
+                        relevance: Key Result は Objective の達成を測るOKRの構成要素として使われる。
+
+                      - name: Google re:Work OKR
+
+                        kind: method
+
+                        relevance: Key Result の設定、共有、採点の実務例として参照される。
+
+                        officialUrl: https://rework.withgoogle.com/intl/en/guides/set-goals-with-okrs
+
+                      - name: KPI
+
+                        kind: method
+
+                        relevance: KRとKPIはどちらも指標だが、KRは目標期間の達成判定として使われる。
+
+                      - name: CFR
+
+                        kind: method
+
+                        relevance: Conversation、Feedback、Recognition としてOKR運用を補完する実践で関連する。
                   name: Key Result
                   summary: Objective の達成を示す定量的な結果指標。
                   whyLearn: 目標達成を言いっぱなしにせず、測定可能にできる。
@@ -307,6 +1316,44 @@ domain:
                   aliases:
                     - result
                     - business outcome
+                  search:
+                    keywords:
+                      - アウトカム
+                      - outcome
+                      - business outcome
+                      - customer outcome
+                      - product outcome
+                      - outcomes over output
+                      - desired outcome
+                      - 成果
+                      - 顧客の変化
+                      - 行動変容
+                    commonSignals:
+                      - 機能を出したかではなく何が変わったかを問うている
+                      - ユーザー行動、顧客価値、事業成果の変化が語られている
+                      - output と outcome を比較している
+                      - 施策の成功基準が顧客や事業の結果で表現されている
+                    antiSignals:
+                      - 医療アウトカムや臨床試験結果だけの話
+                      - スポーツの試合結果だけの話
+                      - ログ出力やプログラム output の話
+                      - 納品物一覧を outcome と呼んでいるだけの話
+                    relatedNames:
+                      - name: Outcomes over Output
+                        kind: framework
+                        relevance: 出荷物ではなく顧客や事業の変化で評価する考え方として直接関連する。
+                      - name: OKR
+                        kind: framework
+                        relevance: Objective と Key Result を通じて狙う outcome を表現する際に使われる。
+                      - name: North Star Framework
+                        kind: framework
+                        relevance: 中心指標で長期的な customer outcome と business outcome を接続する。
+                      - name: Impact Mapping
+                        kind: method
+                        relevance: 成果から行動変化や施策へ逆算する手法として関連する。
+                      - name: Outcome Mapping
+                        kind: method
+                        relevance: 関係者の行動変化を成果として整理する際に使われる。
 
             - slug: product-measurement-frameworks
               name: プロダクト計測フレーム
@@ -321,7 +1368,127 @@ domain:
                   aliases:
                     - NSM
                     - north star metric
+                  search:
+                    keywords:
+                      - ノーススターメトリクス
+                      - North Star Metric
+                      - NSM
+                      - North Star Framework
+                      - input metrics
+                      - leading indicator
+                      - core value metric
+                      - one metric that matters
+                      - OMTM
+                      - 中心指標
+                    commonSignals:
+                      - 顧客価値と長期事業成果を一つの中心指標で表している
+                      - NSM と input metrics を分解している
+                      - 多すぎるKPIを束ねる主指標を探している
+                      - プロダクトチーム横断で同じ成功指標を置いている
+                    antiSignals:
+                      - 天文学や北極星そのものの話
+                      - Network and Service Management など別分野の NSM
+                      - 一時的なキャンペーン指標を North Star と呼んでいるだけの話
+                      - 売上だけで顧客価値との関係が説明されていない話
+                    relatedNames:
+                      - name: North Star Framework
+                        kind: framework
+                        relevance: North Star Metric と input metrics を使ってプロダクト成長を整理する代表的枠組み。
+                      - name: Amplitude North Star Playbook
+                        kind: method
+                        relevance: North Star Metric の定義と運用でよく参照される実務資料。
+                        officialUrl: https://amplitude.com/north-star-hub
+                      - name: AARRR
+                        kind: framework
+                        relevance: 顧客ライフサイクル指標とNSMを接続して成長を捉える際に関連する。
+                      - name: OMTM
+                        kind: method
+                        relevance: One Metric That Matters として特定フェーズで最重要指標を選ぶ考え方。
+                      - name: Metrics Tree
+                        kind: method
+                        relevance: NSMを入力指標へ分解して改善レバーを見つける際に使われる。
+
                 - slug: kpi
+
+                  search:
+
+                    keywords:
+
+                      - KPI
+
+                      - key performance indicator
+
+                      - 重要業績指標
+
+                      - product KPI
+
+                      - metric dashboard
+
+                      - 指標ツリー
+
+                      - KPI tree
+
+                      - operational metric
+
+                      - health metric
+
+                      - 定点観測指標
+
+                    commonSignals:
+
+                      - 継続的に監視する重要指標を定義している
+
+                      - ダッシュボード、週次レビュー、健全性指標が出ている
+
+                      - 売上、継続率、活性化率、利用頻度などを管理している
+
+                      - 指標の責任者や更新頻度が決まっている
+
+                    antiSignals:
+
+                      - OKRのKey Resultと完全に同じ意味で使っているだけの話
+
+                      - 一度限りの実験評価指標だけの話
+
+                      - プロダクトではなく個人評価の人事KPIだけの話
+
+                      - 数値はあるが意思決定に使われていない話
+
+                    relatedNames:
+
+                      - name: Balanced Scorecard
+
+                        kind: framework
+
+                        relevance: 複数観点の業績指標を整理する代表的な管理フレームとしてKPI設計と関連する。
+
+                      - name: KPI Tree
+
+                        kind: method
+
+                        relevance: 上位指標を下位指標へ分解し、改善レバーを整理するために使われる。
+
+                      - name: OKR
+
+                        kind: framework
+
+                        relevance: KPIは継続監視、OKRは期間内の変化目標として比較されやすい。
+
+                      - name: Looker
+
+                        kind: tool
+
+                        relevance: KPIダッシュボードや定点観測レポートの構築に使われるBIツール。
+
+                        officialUrl: https://looker.com/
+
+                      - name: Tableau
+
+                        kind: tool
+
+                        relevance: 複数KPIの可視化やモニタリングでよく使われるBIツール。
+
+                        officialUrl: https://www.tableau.com/
                   name: KPI
                   summary: 継続的に監視する重要業績指標の総称。
                   whyLearn: 運営に必要な複数の観測点を体系的に持てる。
@@ -336,6 +1503,45 @@ domain:
                   aliases:
                     - HEART
                     - goals signals metrics
+                  search:
+                    keywords:
+                      - HEART フレームワーク
+                      - HEART framework
+                      - Happiness Engagement Adoption Retention Task Success
+                      - Goals Signals Metrics
+                      - GSM
+                      - UX metrics
+                      - user-centered metrics
+                      - UX指標
+                      - Task Success
+                      - Google HEART
+                    commonSignals:
+                      - Happiness、Engagement、Adoption、Retention、Task Success の分類が出ている
+                      - UXを事業目標に接続する指標設計をしている
+                      - Goals、Signals、Metrics の順に指標へ落としている
+                      - ユーザー中心の定量指標を複数カテゴリで整理している
+                    antiSignals:
+                      - 心臓、循環器、健康指標の話
+                      - 感情や好意だけを測り、HEARTの5分類がない話
+                      - 技術的な heartbeat 監視の話
+                      - Retention 単体の話でHEART文脈がない場合
+                    relatedNames:
+                      - name: Google HEART
+                        kind: framework
+                        relevance: HEARTはGoogle由来のユーザー中心指標フレームとして知られる。
+                        officialUrl: https://research.google/pubs/measuring-the-user-experience-on-a-large-scale-user-centered-metrics-for-web-applications/
+                      - name: Goals-Signals-Metrics
+                        kind: method
+                        relevance: HEARTの各カテゴリを具体的な測定指標へ落とす手順として使われる。
+                      - name: CASTLE
+                        kind: framework
+                        relevance: 業務アプリやエンタープライズUX指標でHEARTの補完として比較される。
+                      - name: SUS
+                        kind: method
+                        relevance: ユーザビリティの定量評価としてHEARTのHappinessやTask Successと関連する。
+                      - name: UX Benchmarking
+                        kind: method
+                        relevance: UX指標を継続測定する文脈でHEARTと併用される。
 
         - slug: evidence-and-experimentation
           name: 根拠と実験
@@ -354,7 +1560,125 @@ domain:
                   aliases:
                     - split testing
                     - online controlled experiment
+                  search:
+                    keywords:
+                      - A/B テスト
+                      - A/B testing
+                      - AB test
+                      - split testing
+                      - online controlled experiment
+                      - randomized experiment
+                      - variant test
+                      - treatment group
+                      - conversion experiment
+                      - 実験プラットフォーム
+                    commonSignals:
+                      - control と treatment の結果を比較している
+                      - ユーザーをランダムに複数パターンへ割り当てている
+                      - コンバージョン率、継続率、クリック率などを実験評価している
+                      - 統計的有意差、MDE、sample size、p-value が出ている
+                    antiSignals:
+                      - 単なるリリース前QAや手動テストの話
+                      - A案B案の社内好み比較だけで実ユーザー割当がない話
+                      - 医療や農学などプロダクト外の実験だけの話
+                      - ABという略称が血液型やアルファベット分類を指す話
+                    relatedNames:
+                      - name: Optimizely
+                        kind: platform
+                        relevance: WebやプロダクトのA/Bテスト管理で広く使われる実験プラットフォーム。
+                        officialUrl: https://www.optimizely.com/
+                      - name: Statsig
+                        kind: platform
+                        relevance: 機能実験、メトリクス、feature gate を組み合わせる実験基盤として関連する。
+                        officialUrl: https://www.statsig.com/
+                      - name: GrowthBook
+                        kind: platform
+                        relevance: オープンソース寄りの feature flag とA/Bテスト基盤として使われる。
+                        officialUrl: https://www.growthbook.io/
+                      - name: LaunchDarkly
+                        kind: platform
+                        relevance: feature flag と段階的リリースを使った実験運用で関連する。
+                        officialUrl: https://launchdarkly.com/
+                      - name: CUPED
+                        kind: method
+                        relevance: オンライン実験の分散削減手法としてA/Bテスト分析で出やすい。
+                      - name: Feature Flag
+                        kind: pattern
+                        relevance: 実験対象の出し分けやロールバックに使われる実装パターン。
+
                 - slug: guardrail-metric
+
+                  search:
+
+                    keywords:
+
+                      - ガードレール指標
+
+                      - guardrail metric
+
+                      - counter metric
+
+                      - safety metric
+
+                      - do-no-harm metric
+
+                      - secondary metric
+
+                      - negative impact metric
+
+                      - 副作用指標
+
+                      - OEC guardrail
+
+                      - metric tradeoff
+
+                    commonSignals:
+
+                      - 主指標は改善しても悪化させてはいけない指標を置いている
+
+                      - 実験の副作用や品質低下を監視している
+
+                      - 収益は上がったがUXや解約率が悪化していないかを見ている
+
+                      - do no harm や safety metric が言及されている
+
+                    antiSignals:
+
+                      - 道路や階段の物理的なガードレールの話
+
+                      - AI安全性のガードレールだけでプロダクト指標がない話
+
+                      - セキュリティポリシーだけの話
+
+                      - 単なる補助KPIで主指標との副作用関係がない話
+
+                    relatedNames:
+
+                      - name: Online Controlled Experiment
+
+                        kind: method
+
+                        relevance: 実験で主指標以外の悪化を検出するためにガードレール指標が使われる。
+
+                      - name: Overall Evaluation Criterion
+
+                        kind: method
+
+                        relevance: 実験の主評価指標とガードレールの関係を整理する際に出やすい。
+
+                      - name: Statsig
+
+                        kind: platform
+
+                        relevance: 実験メトリクスの監視やガードレール設定を行うプラットフォームとして関連する。
+
+                        officialUrl: https://www.statsig.com/
+
+                      - name: Metric Review
+
+                        kind: method
+
+                        relevance: 主指標改善と副作用悪化のバランスをレビューする運用として関連する。
                   name: ガードレール指標
                   summary: 主指標を改善しても壊してはいけない副作用監視指標。
                   whyLearn: 一つの数値最適化で体験や収益の別指標を壊すのを防げる。
@@ -370,6 +1694,41 @@ domain:
                   aliases:
                     - control
                     - baseline group
+                  search:
+                    keywords:
+                      - コントロール群
+                      - control group
+                      - control
+                      - baseline group
+                      - holdout group
+                      - treatment group
+                      - experiment group
+                      - random assignment
+                      - 対照群
+                      - 比較対象群
+                    commonSignals:
+                      - 新施策を適用しない比較対象を設けている
+                      - treatment group と結果を比較している
+                      - ランダム割当や holdout が言及されている
+                      - 施策なしのベースラインと比較して効果を測っている
+                    antiSignals:
+                      - 医療や心理学のRCTだけでプロダクト文脈がない話
+                      - 管理者グループや権限グループの話
+                      - UIコンポーネントの control の話
+                      - 比較対象がなく単に前後比較だけの話
+                    relatedNames:
+                      - name: Randomized Controlled Trial
+                        kind: method
+                        relevance: control group と treatment group を比較する実験設計の基本形として関連する。
+                      - name: A/B Testing
+                        kind: method
+                        relevance: プロダクト実験でcontrol groupを設定して施策効果を見る代表的手法。
+                      - name: Holdout
+                        kind: method
+                        relevance: 一部ユーザーに新施策を出さず長期効果を比較するために使われる。
+                      - name: Feature Flag
+                        kind: pattern
+                        relevance: control と treatment の出し分けを実装する際に使われる。
 
             - slug: metric-quality-and-reliability
               name: 指標の質と解釈
@@ -400,6 +1759,43 @@ domain:
                   aliases:
                     - n
                     - sample size
+                  search:
+                    keywords:
+                      - サンプルサイズ
+                      - sample size
+                      - 'n'
+                      - statistical power
+                      - power analysis
+                      - minimum detectable effect
+                      - MDE
+                      - 有意水準
+                      - 検出力
+                      - 実験に必要な観測数
+                    commonSignals:
+                      - A/Bテストやアンケートで必要な観測数を計算している
+                      - 検出力、効果量、有意水準、MDE が出ている
+                      - 結果を信じるにはデータが足りるかを議論している
+                      - 実験期間や必要トラフィックを見積もっている
+                    antiSignals:
+                      - 統計学一般の授業だけでプロダクト実験文脈がない話
+                      - データベースのページサイズやバッチサイズの話
+                      - サンプルコードのサイズの話
+                      - 小規模な定性インタビュー人数の目安だけで統計推定していない話
+                    relatedNames:
+                      - name: Power Analysis
+                        kind: method
+                        relevance: 必要なサンプルサイズを有意水準、検出力、効果量から見積もる方法。
+                      - name: Minimum Detectable Effect
+                        kind: method
+                        relevance: 検出したい最小効果量から必要サンプル数を決める際に使われる。
+                      - name: Evan Miller Sample Size Calculator
+                        kind: tool
+                        relevance: A/Bテストのサンプルサイズ見積もりで広く参照される計算ツール。
+                        officialUrl: https://www.evanmiller.org/ab-testing/sample-size.html
+                      - name: Optimizely Sample Size Calculator
+                        kind: tool
+                        relevance: 実験設計時に必要トラフィックや期間を見積もるために使われる。
+                        officialUrl: https://www.optimizely.com/sample-size-calculator/
 
     - slug: prioritization-roadmapping-and-investment
       name: 優先順位、ロードマップ、投資判断
@@ -423,7 +1819,120 @@ domain:
                   aliases:
                     - RICE score
                     - reach impact confidence effort
+                  search:
+                    keywords:
+                      - RICE
+                      - RICE score
+                      - Reach Impact Confidence Effort
+                      - RICE prioritization
+                      - RICE scoring
+                      - 優先順位スコア
+                      - Intercom RICE
+                      - 施策優先順位
+                      - feature prioritization
+                    commonSignals:
+                      - Reach、Impact、Confidence、Effort の4項目でスコア計算している
+                      - 多数の施策案を横並びで比較している
+                      - confidence を使って不確実性を重みづけしている
+                      - feature prioritization の文脈で RICE score が出ている
+                    antiSignals:
+                      - 米、稲作、食品としての rice
+                      - Rice University の話
+                      - RICE処置法など医療・応急処置の話
+                      - 単なる優先順位表で R/I/C/E の要素がない話
+                    relatedNames:
+                      - name: Intercom RICE
+                        kind: method
+                        relevance: RICE優先順位づけを広く普及させた実務上の代表的な参照元。
+                        officialUrl: https://www.intercom.com/blog/rice-simple-prioritization-for-product-managers/
+                      - name: ICE Scoring
+                        kind: method
+                        relevance: Impact、Confidence、Easeで評価する軽量な優先順位手法として比較される。
+                      - name: Impact Effort Matrix
+                        kind: method
+                        relevance: 価値と工数で施策を整理する簡易優先順位づけとして関連する。
+                      - name: Productboard
+                        kind: tool
+                        relevance: RICEなどのスコアリングを製品要望管理に組み込むツールとして使われる。
+                        officialUrl: https://www.productboard.com/
+                      - name: Jira Product Discovery
+                        kind: tool
+                        relevance: 施策候補の評価、スコアリング、優先順位づけで使われる。
+                        officialUrl: https://www.atlassian.com/software/jira/product-discovery
+
                 - slug: moscow
+
+                  search:
+
+                    keywords:
+
+                      - MoSCoW
+
+                      - MoSCoW prioritization
+
+                      - Must Should Could Won't
+
+                      - Must Have
+
+                      - Should Have
+
+                      - Could Have
+
+                      - Won't Have
+
+                      - 優先度分類
+
+                      - スコープ調整
+
+                      - DSDM MoSCoW
+
+                    commonSignals:
+
+                      - Must、Should、Could、Won't の分類が出ている
+
+                      - 締切固定で何を落とすかを議論している
+
+                      - 要件や機能を必須度で分類している
+
+                      - スコープ調整やリリース範囲決定の文脈で使われている
+
+                    antiSignals:
+
+                      - ロシアの都市 Moscow の話
+
+                      - 政治、地理、旅行文脈のモスクワ
+
+                      - must/should/could という一般的な助動詞の説明だけの話
+
+                      - スコア計算型の優先順位づけを MoSCoW と混同している話
+
+                    relatedNames:
+
+                      - name: DSDM
+
+                        kind: framework
+
+                        relevance: MoSCoW優先順位づけが広く使われてきたアジャイルプロジェクト管理フレーム。
+
+                      - name: Agile Business Consortium
+
+                        kind: other
+
+                        relevance: DSDMやMoSCoWの実務ガイドで参照される団体名。
+
+                        officialUrl: https://www.agilebusiness.org/
+
+                      - name: Timeboxing
+
+                        kind: method
+
+                        relevance: 納期固定でスコープを調整する場面でMoSCoWと一緒に使われる。
+
+                      - name: Scope Management
+
+                        kind: method
+
+                        relevance: Must/Should/Could/Won'tで納品範囲を管理する文脈で関連する。
                   name: MoSCoW
                   summary: Must、Should、Could、Won't で必要性の強さを分ける優先順位法。
                   whyLearn: 納期固定の場面で、何を落とせるかを明示しやすい。
@@ -439,6 +1948,42 @@ domain:
                   aliases:
                     - kano
                     - customer satisfaction model
+                  search:
+                    keywords:
+                      - Kano モデル
+                      - Kano model
+                      - 狩野モデル
+                      - customer satisfaction model
+                      - must-be quality
+                      - performance quality
+                      - delighters
+                      - attractive quality
+                      - basic needs
+                      - 満足度モデル
+                    commonSignals:
+                      - Must-be、Performance、Attractive などの分類が出ている
+                      - 機能が満足や不満にどう効くかを議論している
+                      - 顧客満足を要件優先順位に反映している
+                      - 当たり前品質、魅力品質、一元的品質が出ている
+                    antiSignals:
+                      - 地名、人名、作品名としての Kano
+                      - 単なる満足度アンケートでKanoの分類がない話
+                      - 機能数や要望数だけで優先順位を決めている話
+                      - 品質保証テストだけの話
+                    relatedNames:
+                      - name: Kano Survey
+                        kind: method
+                        relevance: 機能に対する満足・不満足の反応からKano分類を行う調査手法。
+                      - name: ASQ Kano Model
+                        kind: method
+                        relevance: 品質管理や顧客満足の文脈でKanoモデルを学ぶ際によく参照される。
+                        officialUrl: https://asq.org/quality-resources/kano-model
+                      - name: Quality Function Deployment
+                        kind: method
+                        relevance: 顧客要求を品質特性へ変換する実践でKano分類と併用されることがある。
+                      - name: Feature Prioritization
+                        kind: method
+                        relevance: 機能が満足に与える影響で優先順位を考える文脈で関連する。
 
             - slug: economic-sequencing
               name: 経済合理性による順序付け
@@ -453,7 +1998,113 @@ domain:
                   aliases:
                     - weighted shortest job first
                     - WSJF
+                  search:
+                    keywords:
+                      - WSJF
+                      - Weighted Shortest Job First
+                      - Cost of Delay
+                      - job size
+                      - economic sequencing
+                      - SAFe WSJF
+                      - 遅延コスト
+                      - 経済的優先順位
+                      - CD3
+                    commonSignals:
+                      - Cost of Delay を job size や duration で割って順序付けしている
+                      - 大規模なバックログやポートフォリオの経済的優先順位を決めている
+                      - SAFeやLean Portfolio Managementの文脈で出ている
+                      - 先送り損失と作業サイズを同時に評価している
+                    antiSignals:
+                      - 単なる小さいタスクから処理する shortest job first の話
+                      - OSスケジューリングだけの話
+                      - RICEやICEをWSJFと呼んでいるだけの話
+                      - 遅延コストの評価がない優先順位づけ
+                    relatedNames:
+                      - name: SAFe
+                        kind: framework
+                        relevance: WSJFをポートフォリオやプログラムバックログの順序付けに用いる代表的フレーム。
+                        officialUrl: https://scaledagileframework.com/
+                      - name: Cost of Delay
+                        kind: method
+                        relevance: WSJFの分子として遅延による価値損失を表す中心概念。
+                      - name: CD3
+                        kind: method
+                        relevance: Cost of Delay Divided by Duration としてWSJFに近い経済的順序付け手法。
+                      - name: Don Reinertsen
+                        kind: other
+                        relevance: プロダクト開発フローとCost of Delayの文脈でよく参照される名前。
+
                 - slug: cost-of-delay
+
+                  search:
+
+                    keywords:
+
+                      - 遅延コスト
+
+                      - Cost of Delay
+
+                      - CoD
+
+                      - delay cost
+
+                      - cost of delay divided by duration
+
+                      - CD3
+
+                      - urgency profile
+
+                      - economic value of time
+
+                      - 先送り損失
+
+                      - 時間価値
+
+                    commonSignals:
+
+                      - 今やらないことで失われる価値を見積もっている
+
+                      - 遅延による売上損失、学習損失、リスク増加が議論されている
+
+                      - 時間が経つほど価値が下がる施策を評価している
+
+                      - WSJFやCD3の入力として使われている
+
+                    antiSignals:
+
+                      - 建設や物流の遅延賠償だけの話
+
+                      - 単なる工数見積もりで時間価値がない話
+
+                      - SLA違反やインシデント影響だけの運用文脈
+
+                      - 技術的なレイテンシコストの話
+
+                    relatedNames:
+
+                      - name: WSJF
+
+                        kind: method
+
+                        relevance: Cost of Delay を作業サイズで割って着手順を決める代表手法。
+
+                      - name: CD3
+
+                        kind: method
+
+                        relevance: Cost of Delay を期間で割って経済合理的に順序付ける手法。
+
+                      - name: Don Reinertsen
+
+                        kind: other
+
+                        relevance: プロダクト開発における遅延コストとフロー経済性の文脈で参照される。
+
+                      - name: Lean Product Development
+
+                        kind: framework
+
+                        relevance: 待ち時間や遅延が価値に与える影響を扱う開発管理の文脈で関連する。
                   name: 遅延コスト
                   summary: その仕事を後回しにしたときに生じる価値損失。
                   whyLearn: 先送りの痛みを可視化し、優先順位に時間軸を入れられる。
@@ -487,7 +2138,131 @@ domain:
                   aliases:
                     - roadmap
                     - product roadmap
+                  search:
+                    keywords:
+                      - プロダクトロードマップ
+                      - product roadmap
+                      - roadmap
+                      - roadmapping
+                      - strategy roadmap
+                      - feature roadmap
+                      - theme roadmap
+                      - now next later roadmap
+                      - ロードマッピング
+                      - 将来計画
+                    commonSignals:
+                      - 今後何に取り組むかを時間軸やテーマで示している
+                      - 戦略、優先順位、関係者説明のための計画がある
+                      - feature、theme、outcome、Now/Next/Later などの形式が出ている
+                      - ロードマップレビューや更新頻度が語られている
+                    antiSignals:
+                      - プロジェクトの詳細ガントチャートだけの話
+                      - 個人学習ロードマップやキャリアロードマップだけの話
+                      - 確定納期一覧だけで戦略や優先順位がない話
+                      - 技術移行計画だけでプロダクト価値に接続していない話
+                    relatedNames:
+                      - name: Aha!
+                        kind: tool
+                        relevance: プロダクトロードマップ作成・管理ツールとして広く使われる。
+                        officialUrl: https://www.aha.io/
+                      - name: Productboard
+                        kind: tool
+                        relevance: 顧客要望、優先順位、ロードマップを接続するツールとして関連する。
+                        officialUrl: https://www.productboard.com/
+                      - name: Jira Product Discovery
+                        kind: tool
+                        relevance: アイデア、優先順位、ロードマップの管理に使われる。
+                        officialUrl: https://www.atlassian.com/software/jira/product-discovery
+                      - name: ProductPlan
+                        kind: tool
+                        relevance: ロードマップの可視化と共有で使われる専用ツール。
+                        officialUrl: https://www.productplan.com/
+                      - name: Now-Next-Later
+                        kind: method
+                        relevance: 日付確約を避けて方向性を示すロードマップ形式として関連する。
+                      - name: Outcome-Based Roadmap
+                        kind: method
+                        relevance: 機能ではなく成果を単位にするロードマップ設計として関連する。
+
                 - slug: outcome-based-roadmap
+
+                  search:
+
+                    keywords:
+
+                      - アウトカムベースロードマップ
+
+                      - outcome-based roadmap
+
+                      - outcome roadmap
+
+                      - goal-based roadmap
+
+                      - outcome-driven roadmap
+
+                      - theme-based roadmap
+
+                      - problem-based roadmap
+
+                      - 成果ベースロードマップ
+
+                      - feature roadmap alternative
+
+                      - problem ownership
+
+                    commonSignals:
+
+                      - 機能名ではなく達成したい成果や顧客変化をロードマップ単位にしている
+
+                      - feature commitment を避けて problem ownership を重視している
+
+                      - OKRやoutcomeに紐づいて取り組みが並んでいる
+
+                      - 何を作るかより何を変えるかを説明している
+
+                    antiSignals:
+
+                      - 通常の機能ロードマップに成果名を後付けしているだけの話
+
+                      - 事業計画の売上目標だけでプロダクト探索がない話
+
+                      - プロジェクト納期表だけの話
+
+                      - 成果物 deliverable を outcome と呼んでいるだけの話
+
+                    relatedNames:
+
+                      - name: Outcomes over Output
+
+                        kind: framework
+
+                        relevance: 機能出荷ではなく成果達成でロードマップを組む思想として直接関連する。
+
+                      - name: OKR
+
+                        kind: framework
+
+                        relevance: ロードマップの単位をObjectiveやKey Resultに接続する際に使われる。
+
+                      - name: Now-Next-Later
+
+                        kind: method
+
+                        relevance: 成果やテーマを時間確度別に整理する形式として併用される。
+
+                      - name: Opportunity Solution Tree
+
+                        kind: framework
+
+                        relevance: outcomeから機会と解決策を導くため、outcome-based roadmapの前段になる。
+
+                        officialUrl: https://www.producttalk.org/opportunity-solution-trees/
+
+                      - name: Impact Mapping
+
+                        kind: method
+
+                        relevance: 成果から行動変化や施策へ逆算するロードマップ設計で使われる。
                   name: アウトカムベースロードマップ
                   summary: 機能ではなく、達成したい成果や変化を単位にした roadmap。
                   whyLearn: feature commitment ではなく problem ownership に寄せられる。
@@ -503,6 +2278,42 @@ domain:
                   aliases:
                     - now next later
                     - time-horizon roadmap
+                  search:
+                    keywords:
+                      - Now-Next-Later
+                      - now next later
+                      - Now Next Later roadmap
+                      - NNL roadmap
+                      - no-date roadmap
+                      - time horizon roadmap
+                      - 今・次・後
+                      - 日付なしロードマップ
+                      - confidence-based roadmap
+                      - roadmap horizon
+                    commonSignals:
+                      - Now、Next、Later の3列で取り組みを整理している
+                      - 日付ではなく確度や優先度でロードマップを表現している
+                      - 長期の納期確約を避けたい文脈で使われている
+                      - 今やること、次に考えること、将来の候補を分けている
+                    antiSignals:
+                      - 日常会話の now, next, later という一般表現
+                      - タスク管理の今日・明日・いつかリストだけの話
+                      - 厳密なリリース計画やガントチャートの話
+                      - 時制や英語表現の説明
+                    relatedNames:
+                      - name: ProdPad
+                        kind: tool
+                        relevance: Now-Next-Later形式のロードマップ普及でよく参照されるプロダクト管理ツール。
+                        officialUrl: https://www.prodpad.com/
+                      - name: Janna Bastow
+                        kind: other
+                        relevance: Now-Next-Laterロードマップの普及文脈でよく言及される名前。
+                      - name: Outcome-Based Roadmap
+                        kind: method
+                        relevance: Now/Next/Laterの各列に機能ではなく成果や問題を置く実践として関連する。
+                      - name: Product Roadmap
+                        kind: method
+                        relevance: 日付確約を弱めたロードマップ形式として通常のロードマップと比較される。
 
             - slug: portfolio-governance
               name: 投資ポートフォリオの統治
@@ -517,6 +2328,46 @@ domain:
                   aliases:
                     - stage gate
                     - gated development
+                  search:
+                    keywords:
+                      - Stage-Gate
+                      - stage gate
+                      - gated development
+                      - idea-to-launch
+                      - go kill decision
+                      - gate review
+                      - new product development
+                      - NPD process
+                      - 段階審査
+                      - ゲート審査
+                    commonSignals:
+                      - アイデアからローンチまでを段階と審査で分けている
+                      - 各ゲートで go/kill/hold の判断をしている
+                      - 不確実な新製品投資を段階的に評価している
+                      - NPD、gate review、business case、launch readiness が出ている
+                    antiSignals:
+                      - 劇場の stage や物理的な gate の話
+                      - 電子回路のゲートや論理ゲートの話
+                      - ウォーターフォール開発を単に段階と呼んでいるだけの話
+                      - 継続的ディスカバリーだけでゲート審査がない話
+                    relatedNames:
+                      - name: Stage-Gate International
+                        kind: method
+                        relevance: Stage-Gate手法の公式・実務普及元としてよく参照される。
+                        officialUrl: https://www.stage-gate.com/
+                      - name: Robert G. Cooper
+                        kind: other
+                        relevance: Stage-Gateプロセスの創始者として関連資料で頻出する名前。
+                      - name: New Product Development
+                        kind: method
+                        relevance: 新製品開発プロセスを段階とゲートで管理する文脈で使われる。
+                      - name: Portfolio Management
+                        kind: method
+                        relevance: 複数案件のgo/kill判断や投資配分でStage-Gateと結びつく。
+                      - name: Go/Kill Decision
+                        kind: method
+                        relevance: 各ゲートで継続、保留、中止を判断するStage-Gateの中核実践。
+
                 - slug: kill-criteria
                   name: 中止基準
                   summary: その投資や施策を止める条件を事前に定めた基準。
@@ -556,7 +2407,120 @@ domain:
                   aliases:
                     - POM
                     - product model
+                  search:
+                    keywords:
+                      - プロダクトオペレーティングモデル
+                      - product operating model
+                      - POM
+                      - product model
+                      - product-led operating model
+                      - empowered teams
+                      - outcome-oriented organization
+                      - product organization
+                      - feature factory
+                      - プロダクト型組織
+                    commonSignals:
+                      - feature factory から outcome-driven team へ移行する話
+                      - チームの責務、権限、戦略、discovery、delivery の流れを設計している
+                      - プロダクトチームが成果責任を持つ運営モデルを語っている
+                      - 組織全体で product work をどう回すかを議論している
+                    antiSignals:
+                      - 製造業の操業モデルだけでデジタルプロダクト文脈がない話
+                      - 単なる開発プロセスやチケット運用だけの話
+                      - 事業部制や組織図だけで学習ループがない話
+                      - POMが Project Object Model など別略語を指す話
+                    relatedNames:
+                      - name: SVPG Product Operating Model
+                        kind: framework
+                        relevance: プロダクト中心の組織運営モデルとして実務で頻繁に参照される。
+                        officialUrl: https://www.svpg.com/the-product-operating-model-an-introduction/
+                      - name: Empowered Product Team
+                        kind: pattern
+                        relevance: POMを実現する基本単位として権限移譲されたチームが扱われる。
+                      - name: Team Topologies
+                        kind: framework
+                        relevance: チーム責務や相互作用を設計する補助フレームとして関連する。
+                        officialUrl: https://teamtopologies.com/
+                      - name: Dual-Track Agile
+                        kind: framework
+                        relevance: discovery と delivery を組織運用に組み込む際に関連する。
+                      - name: Product-Led Organization
+                        kind: pattern
+                        relevance: プロダクト中心で意思決定と学習を回す組織形態として関連する。
+
                 - slug: empowered-product-team
+
+                  search:
+
+                    keywords:
+
+                      - 権限移譲されたプロダクトチーム
+
+                      - empowered product team
+
+                      - empowered team
+
+                      - autonomous product team
+
+                      - mission team
+
+                      - cross-functional team
+
+                      - problem team
+
+                      - outcome team
+
+                      - team autonomy
+
+                      - team accountability
+
+                    commonSignals:
+
+                      - チームが解決策ではなく問題や成果を任されている
+
+                      - PM、デザイナー、エンジニアが一体で意思決定している
+
+                      - 上層部が機能を指定するのではなくチームが発見・検証している
+
+                      - autonomy と accountability がセットで語られている
+
+                    antiSignals:
+
+                      - 単に権限が多い個人や管理職の話
+
+                      - チームビルディング研修だけの話
+
+                      - 実装タスクだけを自律的に消化している話
+
+                      - 成果責任がなく機能納品だけを任されている話
+
+                    relatedNames:
+
+                      - name: SVPG Empowered Product Teams
+
+                        kind: pattern
+
+                        relevance: 成果責任と解決策の裁量を持つチーム像として広く参照される。
+
+                      - name: Product Trio
+
+                        kind: pattern
+
+                        relevance: PM、デザイナー、エンジニアが共同で価値・UX・実現性を検討する単位として関連する。
+
+                      - name: Team Topologies
+
+                        kind: framework
+
+                        relevance: チームの責務境界や認知負荷を設計する文脈で関連する。
+
+                        officialUrl: https://teamtopologies.com/
+
+                      - name: Outcome-Based Roadmap
+
+                        kind: method
+
+                        relevance: チームに機能ではなく成果を委ねるロードマップ設計として関連する。
                   name: 権限移譲されたプロダクトチーム
                   summary: 解くべき問題と成果に責任を持ち、解決策の裁量も持つチーム。
                   whyLearn: 企画部門の指示待ちではなく、問題解決主体のチーム設計を理解できる。
@@ -572,6 +2536,44 @@ domain:
                   aliases:
                     - outcomes over output
                     - outcome focus
+                  search:
+                    keywords:
+                      - アウトカム重視
+                      - outcomes over output
+                      - outcome over output
+                      - output vs outcome
+                      - feature factory
+                      - impact over shipping
+                      - 成果重視
+                      - 出荷量ではなく成果
+                      - value delivery
+                      - problem ownership
+                    commonSignals:
+                      - 機能を出したかより成果が動いたかを重視している
+                      - output、outcome、impact の違いを説明している
+                      - feature factory への問題意識がある
+                      - チームが顧客や事業の変化に責任を持っている
+                    antiSignals:
+                      - プログラムの標準出力やログ出力の話
+                      - 成果物 deliverable を outcome と呼んでいるだけの話
+                      - 売上だけを追い顧客価値が語られていない話
+                      - 精神論として成果主義を語るだけでプロダクト判断がない話
+                    relatedNames:
+                      - name: Outcomes over Output
+                        kind: framework
+                        relevance: 機能出荷量ではなく成果で評価する考え方として直接関連する。
+                      - name: OKR
+                        kind: framework
+                        relevance: 成果をObjectiveとKey Resultへ落とす運用でよく使われる。
+                      - name: Impact Mapping
+                        kind: method
+                        relevance: 成果からユーザー行動や施策へ逆算するために使われる。
+                      - name: Outcome-Based Roadmap
+                        kind: method
+                        relevance: 成果重視をロードマップ表現に落とした形式として関連する。
+                      - name: Feature Factory
+                        kind: pattern
+                        relevance: 出荷量だけを追うアンチパターンとして比較対象になる。
 
             - slug: backlog-and-execution-interface
               name: backlog と実行の接続
@@ -586,7 +2588,131 @@ domain:
                   aliases:
                     - backlog
                     - product backlog
+                  search:
+                    keywords:
+                      - プロダクトバックログ
+                      - product backlog
+                      - backlog
+                      - ordered list
+                      - backlog item
+                      - PBI
+                      - user story
+                      - backlog ordering
+                      - 価値順
+                      - 改善候補リスト
+                    commonSignals:
+                      - プロダクト改善候補が順序付きで並んでいる
+                      - Product Owner、PBI、user story、refinement が出ている
+                      - 価値、リスク、依存関係に基づいて順序付けしている
+                      - ロードマップやゴールから実行単位へ落としている
+                    antiSignals:
+                      - 単なる未処理タスクの山でプロダクト価値順でない話
+                      - バグ一覧だけで改善候補や戦略接続がない話
+                      - 在庫 backlog や業務滞留の一般論
+                      - 個人TODOリストの話
+                    relatedNames:
+                      - name: Scrum
+                        kind: framework
+                        relevance: Product Backlog を中心的な作業管理アーティファクトとして定義する。
+                        officialUrl: https://scrumguides.org/scrum-guide.html
+                      - name: Product Owner
+                        kind: method
+                        relevance: Product Backlog の価値最大化と順序付けに責任を持つ役割として関連する。
+                      - name: Jira
+                        kind: tool
+                        relevance: backlog item、user story、優先順位を管理する代表的な開発管理ツール。
+                        officialUrl: https://www.atlassian.com/software/jira
+                      - name: Azure DevOps
+                        kind: tool
+                        relevance: Scrumやアジャイルのbacklog管理に使われるプラットフォーム。
+                        officialUrl: https://azure.microsoft.com/products/devops
+                      - name: Linear
+                        kind: tool
+                        relevance: プロダクト開発タスクやバックログの管理で使われるツール。
+                        officialUrl: https://linear.app/
+                      - name: User Story
+                        kind: method
+                        relevance: backlog item の表現形式としてよく使われる。
+
                 - slug: backlog-refinement
+
+                  search:
+
+                    keywords:
+
+                      - バックログリファインメント
+
+                      - backlog refinement
+
+                      - backlog grooming
+
+                      - refinement
+
+                      - PBI refinement
+
+                      - story splitting
+
+                      - acceptance criteria
+
+                      - definition of ready
+
+                      - 見積もり
+
+                      - バックログ詳細化
+
+                    commonSignals:
+
+                      - backlog item を小さく、明確に、見積もり可能にしている
+
+                      - acceptance criteria や story splitting が出ている
+
+                      - 次のスプリントや実装に入れる粒度へ整えている
+
+                      - Product Owner と開発者が継続的にbacklogを見直している
+
+                    antiSignals:
+
+                      - 単なるタスク消化会議
+
+                      - 仕様を詳細化するだけで優先順位や価値を見直していない話
+
+                      - データ精製や画像 refinement の話
+
+                      - 一回限りの要件定義フェーズ
+
+                    relatedNames:
+
+                      - name: Scrum
+
+                        kind: framework
+
+                        relevance: Product Backlog item を小さく明確にする継続活動として refinement が扱われる。
+
+                        officialUrl: https://scrumguides.org/scrum-guide.html
+
+                      - name: DEEP Backlog
+
+                        kind: method
+
+                        relevance: Detailed appropriately、Estimated、Emergent、Prioritized の観点でbacklog品質を見る。
+
+                      - name: Story Splitting
+
+                        kind: method
+
+                        relevance: 大きすぎるbacklog itemを実行可能な小単位に分割する技法として関連する。
+
+                      - name: Acceptance Criteria
+
+                        kind: method
+
+                        relevance: backlog item の完了条件や期待動作を明確化する際に使われる。
+
+                      - name: Planning Poker
+
+                        kind: method
+
+                        relevance: refinement時の見積もりや認識合わせで使われることがある。
                   name: バックログリファインメント
                   summary: backlog item を小さく具体化し、順序や粒度を整える継続活動。
                   whyLearn: 曖昧な要求を実行可能な単位に変換しやすくなる。
@@ -602,6 +2728,43 @@ domain:
                   aliases:
                     - PO
                     - product owner
+                  search:
+                    keywords:
+                      - プロダクトオーナー
+                      - Product Owner
+                      - PO
+                      - Scrum Product Owner
+                      - backlog owner
+                      - value maximization
+                      - product goal owner
+                      - backlog ordering
+                      - スクラムPO
+                      - プロダクト責任者
+                    commonSignals:
+                      - backlog の順序付けや価値最大化に責任を持つ役割が出ている
+                      - Scrum Team、Product Goal、Product Backlog と一緒に語られている
+                      - ステークホルダー要求を整理して開発チームへ接続している
+                      - PO と PM の違いが議論されている
+                    antiSignals:
+                      - 会社や製品の法的所有者の話
+                      - Product Manager と完全同義として曖昧に使っているだけの話
+                      - プロジェクトオーナーや業務オーナーの話
+                      - backlog責任がない単なる承認者の話
+                    relatedNames:
+                      - name: Scrum Guide
+                        kind: standard
+                        relevance: Product Owner の責任や Product Backlog との関係を定義する主要文書。
+                        officialUrl: https://scrumguides.org/scrum-guide.html
+                      - name: Scrum
+                        kind: framework
+                        relevance: Product Owner を Scrum Team の責任の一つとして位置づける。
+                        officialUrl: https://scrumguides.org/
+                      - name: Product Backlog
+                        kind: method
+                        relevance: Product Owner が価値最大化のために管理・順序付けする対象。
+                      - name: Product Goal
+                        kind: method
+                        relevance: Product Owner がbacklogを束ねる長期目標として扱う。
 
         - slug: launch-and-adoption
           name: ローンチと採用拡大
@@ -620,6 +2783,48 @@ domain:
                   aliases:
                     - GTM
                     - go to market
+                  search:
+                    keywords:
+                      - Go-To-Market
+                      - GTM
+                      - go to market
+                      - go-to-market strategy
+                      - 市場投入戦略
+                      - launch strategy
+                      - product marketing
+                      - sales enablement
+                      - channel strategy
+                      - customer acquisition
+                    commonSignals:
+                      - 製品をどう市場に出し、誰に売り、どう採用を作るかを議論している
+                      - チャネル、営業、マーケティング、サポート、価格、ローンチが一緒に出ている
+                      - ICP、ポジショニング、メッセージング、販売資料が接続されている
+                      - ローンチ後の獲得や採用拡大の設計がある
+                    antiSignals:
+                      - Google Tag Manager の GTM
+                      - geometric mean や一般略語としての GTM
+                      - 市場投入ではなく単なる社内リリース通知の話
+                      - 広告キャンペーン単体で製品戦略に接続していない話
+                    relatedNames:
+                      - name: Product Marketing
+                        kind: method
+                        relevance: 市場投入時のメッセージ、ポジショニング、販売支援を担う実務として関連する。
+                      - name: Sales Enablement
+                        kind: method
+                        relevance: 営業が新製品を売れるよう資料、トーク、プロセスを整えるGTM活動として関連する。
+                      - name: PLG
+                        kind: framework
+                        relevance: Product-Led Growth としてプロダクト利用を起点に獲得・拡大するGTM戦略。
+                      - name: ABM
+                        kind: method
+                        relevance: B2Bの特定アカウントに集中するGTM戦術として関連する。
+                      - name: Launch Plan
+                        kind: method
+                        relevance: GTMを具体的な公開日、対象、メッセージ、チャネルへ落とす計画として使われる。
+                      - name: Positioning Statement
+                        kind: method
+                        relevance: GTMメッセージの前提として対象顧客と価値を明文化する。
+
                 - slug: beta-release
                   name: ベータリリース
                   summary: 一部ユーザーに限定して機能や製品を試験提供する段階。
@@ -636,6 +2841,45 @@ domain:
                   aliases:
                     - rollout
                     - phased rollout
+                  search:
+                    keywords:
+                      - ロールアウト計画
+                      - rollout plan
+                      - rollout
+                      - phased rollout
+                      - progressive rollout
+                      - gradual rollout
+                      - canary release
+                      - dark launch
+                      - feature flag rollout
+                      - 段階展開
+                    commonSignals:
+                      - どのユーザーにどの順番で機能を広げるかを決めている
+                      - 段階公開、限定公開、割合公開、ロールバック条件が出ている
+                      - feature flag や canary release と一緒に語られている
+                      - ローンチリスクを減らしながら学習する計画がある
+                    antiSignals:
+                      - インフラデプロイだけで顧客や採用計画がない話
+                      - 単なる広報公開日だけの話
+                      - OSや端末へのアップデート配信だけでプロダクト判断がない話
+                      - 全面一斉公開で段階展開がない話
+                    relatedNames:
+                      - name: Feature Flag
+                        kind: pattern
+                        relevance: 機能を対象ユーザーや割合で出し分けるロールアウト実装に使われる。
+                      - name: LaunchDarkly
+                        kind: platform
+                        relevance: feature flag と段階的ロールアウトの管理で使われる代表的プラットフォーム。
+                        officialUrl: https://launchdarkly.com/
+                      - name: Canary Release
+                        kind: pattern
+                        relevance: 少数ユーザーや環境に先行展開してリスクを抑えるリリースパターン。
+                      - name: Dark Launch
+                        kind: pattern
+                        relevance: ユーザーに見せずに本番環境で機能や負荷を検証する展開方法。
+                      - name: Progressive Delivery
+                        kind: method
+                        relevance: 段階的公開、計測、ロールバックを組み合わせるリリース運用として関連する。
 
             - slug: adoption-and-learning
               name: 採用拡大と継続学習
@@ -650,7 +2894,138 @@ domain:
                   aliases:
                     - activation metric
                     - aha moment
+                  search:
+                    keywords:
+                      - アクティベーション
+                      - activation
+                      - activation metric
+                      - user activation
+                      - aha moment
+                      - time to value
+                      - onboarding
+                      - first value
+                      - 初期価値到達
+                      - AARRR activation
+                    commonSignals:
+                      - 新規ユーザーが最初の価値を体験したかを測っている
+                      - aha moment、time to value、onboarding が出ている
+                      - 登録完了ではなく価値到達イベントを定義している
+                      - ファネルの初期離脱や初回成功体験を改善している
+                    antiSignals:
+                      - ライセンス認証やアカウント有効化だけの話
+                      - 化学反応やニューラルネットのactivationの話
+                      - マーケティング施策の開始をactivationと呼んでいるだけの話
+                      - 単なるログイン回数を価値到達と混同している話
+                    relatedNames:
+                      - name: AARRR
+                        kind: framework
+                        relevance: Activation は Pirate Metrics の主要ステージとして扱われる。
+                      - name: Pirate Metrics
+                        kind: framework
+                        relevance: 獲得後にユーザーが価値を感じる段階としてactivationを位置づける。
+                      - name: Pendo
+                        kind: platform
+                        relevance: オンボーディングや初期価値到達の計測・改善で使われるプロダクト分析ツール。
+                        officialUrl: https://www.pendo.io/
+                      - name: Amplitude
+                        kind: platform
+                        relevance: ユーザー行動分析からactivation eventやaha momentを見つける際に使われる。
+                        officialUrl: https://amplitude.com/
+                      - name: Mixpanel
+                        kind: platform
+                        relevance: ファネル分析やイベント分析でactivation到達率を測る際に使われる。
+                        officialUrl: https://mixpanel.com/
+                      - name: Onboarding Checklist
+                        kind: pattern
+                        relevance: 初期価値到達までの行動を促すプロダクトパターンとして関連する。
+
                 - slug: retention
+
+                  search:
+
+                    keywords:
+
+                      - リテンション
+
+                      - retention
+
+                      - retention rate
+
+                      - user retention
+
+                      - customer retention
+
+                      - cohort retention
+
+                      - repeat usage
+
+                      - 継続率
+
+                      - 継続利用
+
+                      - retention curve
+
+                    commonSignals:
+
+                      - ユーザーが時間をまたいで戻ってくるかを見ている
+
+                      - D1、D7、D30、月次継続率、cohort retention が出ている
+
+                      - 一過性の獲得ではなく持続的な価値を測っている
+
+                      - retention curve が平坦化するかを議論している
+
+                    antiSignals:
+
+                      - 人材定着率だけのHR文脈
+
+                      - メモリ保持、データ保持、ログ保持の技術文脈
+
+                      - 登録ユーザー累計を継続利用と混同している話
+
+                      - 一度だけの再訪を長期retentionと呼んでいる話
+
+                    relatedNames:
+
+                      - name: Cohort Analysis
+
+                        kind: method
+
+                        relevance: ユーザー獲得時期別に継続利用を比較するための代表的分析手法。
+
+                      - name: AARRR
+
+                        kind: framework
+
+                        relevance: Retention は Pirate Metrics の中核ステージとして扱われる。
+
+                      - name: Amplitude
+
+                        kind: platform
+
+                        relevance: retention curve や cohort analysis を行うプロダクト分析ツールとして使われる。
+
+                        officialUrl: https://amplitude.com/
+
+                      - name: Mixpanel
+
+                        kind: platform
+
+                        relevance: イベントベースの継続率分析やコホート分析でよく使われる。
+
+                        officialUrl: https://mixpanel.com/
+
+                      - name: DAU/MAU
+
+                        kind: method
+
+                        relevance: 利用頻度や習慣化を把握する補助指標として継続率と一緒に出る。
+
+                      - name: Churn Analysis
+
+                        kind: method
+
+                        relevance: 継続の裏側にある離脱要因を分析する手法として関連する。
                   name: リテンション
                   summary: ユーザーが時間をまたいで継続利用する度合い。
                   whyLearn: 一過性の獲得と、持続価値のあるプロダクトを区別できる。
@@ -666,6 +3041,44 @@ domain:
                   aliases:
                     - churn rate
                     - attrition
+                  search:
+                    keywords:
+                      - チャーン
+                      - churn
+                      - churn rate
+                      - customer churn
+                      - user churn
+                      - logo churn
+                      - revenue churn
+                      - 解約率
+                      - 離脱率
+                      - attrition
+                    commonSignals:
+                      - ユーザーや顧客が離脱・解約する率を見ている
+                      - logo churn、revenue churn、gross churn、net churn が出ている
+                      - なぜ顧客が使わなくなったかを分析している
+                      - retention の逆指標として扱われている
+                    antiSignals:
+                      - バターを作る churn や攪拌の話
+                      - MLモデルの churn prediction だけでプロダクト判断がない話
+                      - 一時的な非アクティブを解約と混同している話
+                      - インフラのノード churn など分散システム文脈
+                    relatedNames:
+                      - name: Churn Analysis
+                        kind: method
+                        relevance: 離脱ユーザーや解約顧客の原因、タイミング、兆候を分析する手法。
+                      - name: Net Revenue Retention
+                        kind: method
+                        relevance: SaaSでチャーンと拡張収益を合わせて既存顧客収益の維持を測る指標。
+                      - name: Cohort Analysis
+                        kind: method
+                        relevance: 獲得時期や顧客群ごとの離脱傾向を見るために使われる。
+                      - name: Survival Analysis
+                        kind: method
+                        relevance: ユーザーや顧客がどれくらい継続するかを時間軸で分析する手法。
+                      - name: Customer Health Score
+                        kind: method
+                        relevance: 解約リスクの早期検知に使われるカスタマーサクセス指標として関連する。
 
         - slug: lifecycle-and-governance
           name: ライフサイクルと関係者統治
@@ -692,6 +3105,44 @@ domain:
                   aliases:
                     - EOL
                     - retirement
+                  search:
+                    keywords:
+                      - End of Life
+                      - EOL
+                      - product retirement
+                      - sunset
+                      - deprecation
+                      - end of support
+                      - EOS
+                      - 提供終了
+                      - 廃止計画
+                    commonSignals:
+                      - 製品や機能の提供終了、保守終了、廃止を計画している
+                      - deprecation、sunset、migration、end of support が出ている
+                      - 既存顧客への通知、移行先、期限、例外対応が語られている
+                      - 終了判断と顧客影響の管理を行っている
+                    antiSignals:
+                      - テキストファイルの end of line の EOL
+                      - 医療・介護の終末期ケアの話
+                      - 単なる障害停止や一時的なサービス停止
+                      - 機能を非推奨にしただけで提供終了計画がない話
+                    relatedNames:
+                      - name: Deprecation Policy
+                        kind: method
+                        relevance: 機能やAPIを廃止する前に通知期間、互換性、移行を定める運用として関連する。
+                      - name: End of Support
+                        kind: method
+                        relevance: 保守やサポート終了の節目としてEOLと一緒に扱われる。
+                      - name: Migration Plan
+                        kind: method
+                        relevance: 既存ユーザーを代替手段へ安全に移すため、EOL計画に不可欠。
+                      - name: Sunset Plan
+                        kind: method
+                        relevance: 製品や機能の終了告知、段階停止、顧客移行をまとめる計画として関連する。
+                      - name: Lifecycle Policy
+                        kind: standard
+                        relevance: 製品提供、保守、終了のルールを明確化するポリシーとして関連する。
+
                 - slug: migration-plan
                   name: 移行計画
                   summary: 既存ユーザーを代替手段へ安全に移すための計画。

@@ -5,7 +5,12 @@ import { redirect } from "next/navigation";
 import { and, eq, or } from "drizzle-orm";
 
 import { getDb } from "@/db/client";
-import { entityLinks, questionCards, reviewItems } from "@/db/schema";
+import {
+  entityLinks,
+  knowledgeEntityLinks,
+  questionCards,
+  reviewItems,
+} from "@/db/schema";
 import {
   type QuestionFormState,
   questionFormSchema,
@@ -124,6 +129,15 @@ export async function deleteQuestionAction(formData: FormData) {
       );
 
     await tx
+      .delete(knowledgeEntityLinks)
+      .where(
+        and(
+          eq(knowledgeEntityLinks.entityType, "question_card"),
+          eq(knowledgeEntityLinks.entityId, parsedId.data),
+        ),
+      );
+
+    await tx
       .delete(reviewItems)
       .where(
         and(
@@ -139,5 +153,6 @@ export async function deleteQuestionAction(formData: FormData) {
 
   revalidatePath("/questions");
   revalidatePath("/reviews/today");
+  revalidatePath("/knowledge-map");
   redirect("/questions");
 }

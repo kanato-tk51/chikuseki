@@ -26,7 +26,108 @@ domain:
                   aliases:
                     - client-side rendering
                     - クライアントサイドレンダリング
+                  search:
+                    keywords:
+                      - CSR
+                      - client-side rendering
+                      - クライアントサイドレンダリング
+                      - SPA
+                      - single page application
+                      - browser rendering
+                      - DOM rendering
+                      - JavaScript rendering
+                    commonSignals:
+                      - ブラウザで JavaScript が画面を組み立てる
+                      - 初回 HTML が空に近く root 要素だけがある
+                      - SEO や初回表示速度とのトレードオフが話題になる
+                      - API から取得したデータで画面を更新する
+                    antiSignals:
+                      - corporate social responsibility の略として CSR が使われている
+                      - 単に JavaScript を少し使う静的ページを指している
+                      - SSR や SSG が主題でクライアント描画が中心ではない
+                    relatedNames:
+                      - name: React
+                        kind: library
+                        relevance: CSR 型の UI 実装で最も広く見かけるコンポーネントライブラリの一つ。
+                        officialUrl: https://react.dev/
+                      - name: Vue
+                        kind: framework
+                        relevance: クライアント側で画面状態と DOM 更新を扱う代表的なフレームワーク。
+                        officialUrl: https://vuejs.org/
+                      - name: Angular
+                        kind: framework
+                        relevance: SPA と CSR の文脈で長く使われているフルスタック寄りのフロントエンドフレームワーク。
+                        officialUrl: https://angular.dev/
+                      - name: Vite
+                        kind: tool
+                        relevance: CSR アプリの開発サーバーやビルド基盤として実務でよく使われる。
+                        officialUrl: https://vite.dev/
+
                 - slug: ssr
+
+                  search:
+
+                    keywords:
+
+                      - SSR
+
+                      - server-side rendering
+
+                      - サーバーサイドレンダリング
+
+                      - server-rendered HTML
+
+                      - universal rendering
+
+                      - isomorphic rendering
+
+                      - hydration
+
+                      - initial HTML
+
+                    commonSignals:
+
+                      - サーバで HTML を生成して返す
+
+                      - hydration mismatch や初回表示の話が出る
+
+                      - SEO や OGP やクローラー対応が論点になる
+
+                      - パーソナライズされた HTML を返す
+
+                    antiSignals:
+
+                      - サーバ API 実装だけを指していて HTML 生成がない
+
+                      - 画像レンダリングや PDF 生成の文脈で rendering と言っている
+
+                      - CDN キャッシュの話だけで描画戦略に触れていない
+
+                    relatedNames:
+
+                      - name: Next.js
+
+                        kind: framework
+
+                        relevance: React 系で SSR、SSG、ハイブリッドレンダリングを扱う代表的なフレームワーク。
+
+                        officialUrl: https://nextjs.org/
+
+                      - name: Nuxt
+
+                        kind: framework
+
+                        relevance: Vue 系で SSR やサーバー主導レンダリングを扱う代表的なフレームワーク。
+
+                        officialUrl: https://nuxt.com/
+
+                      - name: Remix
+
+                        kind: framework
+
+                        relevance: サーバー中心のデータ取得と HTML 生成を重視する Web アプリフレームワーク。
+
+                        officialUrl: https://remix.run/
                   name: SSR
                   summary: サーバで HTML を生成して返し、初回表示を早めやすくする方式。
                   whyLearn: 初回表示品質、検索性、パーソナライズ、サーバ計算負荷の関係を学べる。
@@ -47,7 +148,104 @@ domain:
                   aliases:
                     - service worker
                     - SW
+                  search:
+                    keywords:
+                      - service worker
+                      - SW
+                      - サービスワーカー
+                      - fetch event
+                      - offline cache
+                      - background sync
+                      - push notification
+                      - Cache API
+                    commonSignals:
+                      - fetch を横取りしてキャッシュから返す
+                      - install activate fetch イベントが出る
+                      - offline fallback や stale-while-revalidate が出る
+                      - ブラウザのバックグラウンドで動くワーカーが話題になる
+                    antiSignals:
+                      - Web Worker 一般の話でネットワーク仲介がない
+                      - サーバ側のバックグラウンドジョブを worker と呼んでいる
+                      - service account や service mesh の service と混同している
+                    relatedNames:
+                      - name: Workbox
+                        kind: library
+                        relevance: Service Worker のキャッシュ戦略や生成を支援する代表的なライブラリ。
+                        officialUrl: https://developer.chrome.com/docs/workbox/
+                      - name: Cache API
+                        kind: standard
+                        relevance: Service Worker からレスポンスを保存・再利用するためによく使われるブラウザ API。
+                        officialUrl: https://developer.mozilla.org/en-US/docs/Web/API/Cache
+                      - name: Push API
+                        kind: standard
+                        relevance: PWA のプッシュ通知実装で Service Worker と一緒に扱われる。
+                        officialUrl: https://developer.mozilla.org/en-US/docs/Web/API/Push_API
+
                 - slug: progressive-web-app
+
+                  search:
+
+                    keywords:
+
+                      - PWA
+
+                      - progressive web app
+
+                      - プログレッシブウェブアプリ
+
+                      - installable web app
+
+                      - Web App Manifest
+
+                      - offline capable
+
+                      - app-like web
+
+                      - home screen install
+
+                    commonSignals:
+
+                      - ホーム画面に追加できる Web アプリ
+
+                      - manifest と service worker が一緒に出る
+
+                      - オフライン対応や再訪時の高速表示が話題になる
+
+                      - ネイティブアプリに近い体験を Web で提供する
+
+                    antiSignals:
+
+                      - 単なるレスポンシブ Web デザインを指している
+
+                      - モバイル Web 全般を PWA と呼んでいるだけ
+
+                      - アプリストア配布のネイティブアプリが主題である
+
+                    relatedNames:
+
+                      - name: Web App Manifest
+
+                        kind: standard
+
+                        relevance: PWA のインストール性、表示名、アイコン、起動表示を定義する主要要素。
+
+                        officialUrl: https://developer.mozilla.org/en-US/docs/Web/Manifest
+
+                      - name: Workbox
+
+                        kind: library
+
+                        relevance: PWA のオフライン対応やキャッシュ戦略の実装でよく使われる。
+
+                        officialUrl: https://developer.chrome.com/docs/workbox/
+
+                      - name: Lighthouse
+
+                        kind: tool
+
+                        relevance: PWA や Web 性能の検査ツールとして実務でよく使われる。
+
+                        officialUrl: https://developer.chrome.com/docs/lighthouse/
                   name: Progressive Web App
                   summary: Web 技術で作りつつ、インストール性やオフライン性などアプリらしい体験を持たせる形態。
                   whyLearn: Web とネイティブのあいだにある選択肢を理解できるようになる。
@@ -72,7 +270,109 @@ domain:
                   aliases:
                     - remote state
                     - server state
+                  search:
+                    keywords:
+                      - server state
+                      - remote state
+                      - サーバーステート
+                      - asynchronous state
+                      - stale data
+                      - query cache
+                      - revalidation
+                      - cache invalidation
+                      - optimistic update
+                    commonSignals:
+                      - クライアントが正本ではなくサーバから再取得する
+                      - staleTime cacheTime invalidation の話が出る
+                      - mutation 後に一覧を再取得する
+                      - optimistic update や rollback が出る
+                    antiSignals:
+                      - UI の開閉状態やフォーム入力だけを指している
+                      - データベースサーバの稼働状態を指している
+                      - Redux の global state 一般の話で remote data がない
+                    relatedNames:
+                      - name: TanStack Query
+                        kind: library
+                        relevance: サーバーステートの取得、キャッシュ、再検証、無効化を扱う代表的なライブラリ。
+                        officialUrl: https://tanstack.com/query/latest
+                      - name: SWR
+                        kind: library
+                        relevance: stale-while-revalidate 型のデータ取得と再検証を扱う React 向けライブラリ。
+                        officialUrl: https://swr.vercel.app/
+                      - name: Apollo Client
+                        kind: library
+                        relevance: GraphQL のサーバーデータ取得とキャッシュ管理でよく使われる。
+                        officialUrl: https://www.apollographql.com/docs/react/
+                      - name: RTK Query
+                        kind: library
+                        relevance: Redux Toolkit に含まれるサーバーデータ取得・キャッシュ機能として実務で見かける。
+                        officialUrl: https://redux-toolkit.js.org/rtk-query/overview
+
                 - slug: normalized-cache
+
+                  search:
+
+                    keywords:
+
+                      - normalized cache
+
+                      - entity cache
+
+                      - 正規化キャッシュ
+
+                      - cache normalization
+
+                      - normalized store
+
+                      - entity store
+
+                      - cache identity
+
+                      - object cache
+
+                    commonSignals:
+
+                      - id ごとに entity を一度だけ保存する
+
+                      - 一覧と詳細の同じオブジェクトを同期したい
+
+                      - cache key や type policy が話題になる
+
+                      - ネストしたレスポンスを参照構造に変換する
+
+                    antiSignals:
+
+                      - データベースの正規化だけを指している
+
+                      - HTTP キャッシュや CDN キャッシュだけの話
+
+                      - メモリ使用量削減の一般論で entity identity がない
+
+                    relatedNames:
+
+                      - name: Apollo Client
+
+                        kind: library
+
+                        relevance: GraphQL レスポンスをエンティティ単位で正規化して保持する代表例。
+
+                        officialUrl: https://www.apollographql.com/docs/react/
+
+                      - name: Relay
+
+                        kind: framework
+
+                        relevance: GraphQL の正規化ストアと fragment colocation の文脈でよく出る。
+
+                        officialUrl: https://relay.dev/
+
+                      - name: Redux Toolkit createEntityAdapter
+
+                        kind: library
+
+                        relevance: Redux 上でエンティティを正規化して管理する実装例として使われる。
+
+                        officialUrl: https://redux-toolkit.js.org/api/createEntityAdapter
                   name: 正規化キャッシュ
                   summary: エンティティを重複なく保持し、参照関係で再利用できるようにしたクライアントキャッシュ。
                   whyLearn: 部分更新や一覧詳細間の一貫性を保ちやすくなる理由を理解できる。
@@ -93,7 +393,118 @@ domain:
                   aliases:
                     - code splitting
                     - bundle splitting
+                  search:
+                    keywords:
+                      - code splitting
+                      - bundle splitting
+                      - コード分割
+                      - dynamic import
+                      - lazy loading
+                      - route-based splitting
+                      - chunk
+                      - JavaScript bundle
+                    commonSignals:
+                      - 初回 JavaScript バンドルを小さくしたい
+                      - route ごとに chunk を分ける
+                      - dynamic import で遅延読み込みする
+                      - Lighthouse で unused JavaScript が指摘される
+                    antiSignals:
+                      - マイクロサービス分割やリポジトリ分割を指している
+                      - データ分割や shard の話でコード配信がない
+                      - 単にファイルを分けただけでバンドル境界がない
+                    relatedNames:
+                      - name: webpack
+                        kind: tool
+                        relevance: dynamic import や chunk 分割の文脈で長く使われている代表的なバンドラ。
+                        officialUrl: https://webpack.js.org/
+                      - name: Rollup
+                        kind: tool
+                        relevance: ライブラリやアプリのバンドル分割で使われる主要な JavaScript バンドラ。
+                        officialUrl: https://rollupjs.org/
+                      - name: Vite
+                        kind: tool
+                        relevance: Rollup ベースの本番ビルドと高速な開発体験を提供する代表的ツール。
+                        officialUrl: https://vite.dev/
+                      - name: React lazy
+                        kind: library
+                        relevance: React でコンポーネントを遅延読み込みする代表的な仕組み。
+                        officialUrl: https://react.dev/reference/react/lazy
+
                 - slug: core-web-vitals
+
+                  search:
+
+                    keywords:
+
+                      - Core Web Vitals
+
+                      - CWV
+
+                      - Web Vitals
+
+                      - LCP
+
+                      - INP
+
+                      - CLS
+
+                      - field data
+
+                      - user experience metrics
+
+                      - page experience
+
+                    commonSignals:
+
+                      - LCP INP CLS を改善したい
+
+                      - lab data と field data の差が話題になる
+
+                      - 画像読み込みや JavaScript 実行が UX 指標に影響する
+
+                      - PageSpeed Insights のスコア改善が話題になる
+
+                    antiSignals:
+
+                      - サーバの CPU やメモリ性能だけを指している
+
+                      - 旧指標 FID だけを中心にしていて現在の CWV 文脈ではない
+
+                      - SEO 一般論で具体的な Web Vitals 指標が出ない
+
+                    relatedNames:
+
+                      - name: Lighthouse
+
+                        kind: tool
+
+                        relevance: Core Web Vitals を含む Web 性能・品質診断で広く使われる。
+
+                        officialUrl: https://developer.chrome.com/docs/lighthouse/
+
+                      - name: PageSpeed Insights
+
+                        kind: tool
+
+                        relevance: 実利用データとラボデータで Web Vitals を確認する定番ツール。
+
+                        officialUrl: https://pagespeed.web.dev/
+
+                      - name: Chrome UX Report
+
+                        kind: service
+
+                        relevance: 実ユーザー環境の Web Vitals を集計するデータソースとして使われる。
+
+                        officialUrl: https://developer.chrome.com/docs/crux/
+
+                      - name: web-vitals
+
+                        kind: library
+
+                        relevance: Web Vitals 指標をアプリ内で計測するための公式寄りの JavaScript ライブラリ。
+
+                        officialUrl: https://github.com/GoogleChrome/web-vitals
                   name: Core Web Vitals
                   summary: 実利用時の表示・応答・安定性を測る主要な Web UX 指標群。
                   whyLearn: 性能議論を感覚ではなく共通の指標でレビューできるようになる。
@@ -124,7 +535,99 @@ domain:
                   aliases:
                     - resource-oriented API
                     - resource-oriented design
+                  search:
+                    keywords:
+                      - resource-oriented design
+                      - resource-oriented API
+                      - リソース指向設計
+                      - RESTful API
+                      - REST API
+                      - HTTP resource
+                      - URI design
+                      - HTTP methods
+                      - representation
+                    commonSignals:
+                      - 名詞ベースの URI と HTTP メソッドの対応を設計している
+                      - GET POST PUT PATCH DELETE の使い分けが出る
+                      - resource representation や status code が話題になる
+                      - RPC 風 endpoint との比較がある
+                    antiSignals:
+                      - 単なる JSON over HTTP を REST と呼んでいるだけ
+                      - doSomething のような操作名中心 API が主題
+                      - 社内リソース配分や人的リソースの話
+                    relatedNames:
+                      - name: HTTP Semantics
+                        kind: standard
+                        relevance: HTTP メソッド、ステータスコード、表現の意味論がリソース指向設計の前提になる。
+                        officialUrl: https://www.rfc-editor.org/rfc/rfc9110.html
+                      - name: OpenAPI
+                        kind: standard
+                        relevance: リソース指向で設計した HTTP API を契約として記述する際によく使われる。
+                        officialUrl: https://www.openapis.org/
+                      - name: JSON:API
+                        kind: standard
+                        relevance: JSON ベースのリソース表現や関連表現を規約化する仕様として比較対象になる。
+                        officialUrl: https://jsonapi.org/
+
                 - slug: content-negotiation
+
+                  search:
+
+                    keywords:
+
+                      - content negotiation
+
+                      - コンテントネゴシエーション
+
+                      - 表現交渉
+
+                      - Accept header
+
+                      - Content-Type
+
+                      - media type
+
+                      - MIME type
+
+                      - Vary header
+
+                      - 406 Not Acceptable
+
+                    commonSignals:
+
+                      - Accept header に応じて JSON や XML を返し分ける
+
+                      - Content-Type と media type の設計が出る
+
+                      - Vary header によるキャッシュ分岐が話題になる
+
+                      - API バージョンを media type で表す話がある
+
+                    antiSignals:
+
+                      - 契約交渉や価格交渉を negotiation と呼んでいる
+
+                      - 単に JSON を返すだけで表現選択がない
+
+                      - 言語切替だけが主題で HTTP 交渉の話ではない
+
+                    relatedNames:
+
+                      - name: HTTP Semantics
+
+                        kind: standard
+
+                        relevance: HTTP における表現、メディアタイプ、交渉の意味論を定義している。
+
+                        officialUrl: https://www.rfc-editor.org/rfc/rfc9110.html
+
+                      - name: IANA Media Types
+
+                        kind: standard
+
+                        relevance: Content-Type や Accept で使うメディアタイプの登録体系として関連する。
+
+                        officialUrl: https://www.iana.org/assignments/media-types/media-types.xhtml
                   name: コンテントネゴシエーション
                   summary: クライアントとサーバが表現形式を合意してやり取りする仕組み。
                   whyLearn: 同じリソースを複数表現で提供する基本を理解できる。
@@ -145,7 +648,103 @@ domain:
                   aliases:
                     - OpenAPI Specification
                     - OAS
+                  search:
+                    keywords:
+                      - OpenAPI
+                      - OAS
+                      - OpenAPI Specification
+                      - Swagger
+                      - API contract
+                      - API schema
+                      - OpenAPI document
+                      - contract-first API
+                      - schema-driven development
+                    commonSignals:
+                      - yaml や json で API 仕様を書く
+                      - Swagger UI や codegen が出る
+                      - request body response schema examples を定義する
+                      - contract-first や API lint が話題になる
+                    antiSignals:
+                      - open API が単に公開 API の意味で使われている
+                      - GraphQL schema や AsyncAPI を指している
+                      - README に手書きした API 説明だけを指している
+                    relatedNames:
+                      - name: OpenAPI Initiative
+                        kind: standard
+                        relevance: OpenAPI Specification の公式な管理主体として参照される。
+                        officialUrl: https://www.openapis.org/
+                      - name: Swagger UI
+                        kind: tool
+                        relevance: OpenAPI 定義から対話的な API ドキュメントを生成する定番ツール。
+                        officialUrl: https://swagger.io/tools/swagger-ui/
+                      - name: Redoc
+                        kind: tool
+                        relevance: OpenAPI ドキュメント表示でよく使われるツール。
+                        officialUrl: https://redocly.com/redoc/
+                      - name: OpenAPI Generator
+                        kind: tool
+                        relevance: OpenAPI 定義からクライアントやサーバスタブを生成する代表的ツール。
+                        officialUrl: https://openapi-generator.tech/
+
                 - slug: json-api
+
+                  search:
+
+                    keywords:
+
+                      - JSON:API
+
+                      - JSON API
+
+                      - JSON:API spec
+
+                      - jsonapi
+
+                      - compound documents
+
+                      - included resources
+
+                      - relationships
+
+                      - sparse fieldsets
+
+                      - resource object
+
+                    commonSignals:
+
+                      - data attributes relationships included が出る
+
+                      - compound document で関連リソースを同梱する
+
+                      - type と id を持つ resource object が話題になる
+
+                      - links や meta を標準形で返す
+
+                    antiSignals:
+
+                      - JSON を返す API 一般を JSON API と呼んでいるだけ
+
+                      - OpenAPI の JSON schema と混同している
+
+                      - GraphQL の nested response を指している
+
+                    relatedNames:
+
+                      - name: JSON:API
+
+                        kind: standard
+
+                        relevance: JSON ベース HTTP API の表現形式、関連、リンク、エラー形式を定める仕様そのもの。
+
+                        officialUrl: https://jsonapi.org/
+
+                      - name: Ember Data
+
+                        kind: library
+
+                        relevance: JSON:API と長く結びついてきたクライアント側データ管理ライブラリ。
+
+                        officialUrl: https://guides.emberjs.com/release/models/
                   name: JSON:API
                   summary: JSON を用いた HTTP API の表現形式と規約を定める仕様。
                   whyLearn: 一覧、関連、リンク、含有表現を一貫した形で設計しやすくなる。
@@ -170,7 +769,121 @@ domain:
                   aliases:
                     - gRPC
                     - remote procedure call
+                  search:
+                    keywords:
+                      - gRPC
+                      - RPC
+                      - remote procedure call
+                      - Protocol Buffers
+                      - protobuf
+                      - HTTP/2
+                      - service stub
+                      - unary call
+                      - streaming RPC
+                    commonSignals:
+                      - proto ファイルから client stub を生成する
+                      - unary server streaming bidirectional streaming が出る
+                      - 内部サービス間通信で型契約を強めたい
+                      - HTTP JSON より効率的なバイナリ通信が話題になる
+                    antiSignals:
+                      - 汎用的な RPC という言葉だけで gRPC 固有語がない
+                      - GraphQL resolver 呼び出しを RPC と呼んでいるだけ
+                      - HTTP クライアントライブラリ一般の話
+                    relatedNames:
+                      - name: gRPC
+                        kind: protocol
+                        relevance: 型付き RPC 通信の公式ドキュメントとして直接参照される。
+                        officialUrl: https://grpc.io/
+                      - name: Protocol Buffers
+                        kind: standard
+                        relevance: gRPC の IDL とメッセージシリアライズとして最もよく一緒に使われる。
+                        officialUrl: https://protobuf.dev/
+                      - name: gRPC-Web
+                        kind: protocol
+                        relevance: ブラウザから gRPC 系通信を扱う場合の制約と実装で登場する。
+                        officialUrl: https://github.com/grpc/grpc-web
+                      - name: Buf
+                        kind: tool
+                        relevance: protobuf スキーマ管理、lint、breaking change 検知でよく使われる。
+                        officialUrl: https://buf.build/
+
                 - slug: graphql
+
+                  search:
+
+                    keywords:
+
+                      - GraphQL
+
+                      - グラフQL
+
+                      - query language for APIs
+
+                      - schema
+
+                      - resolver
+
+                      - query
+
+                      - mutation
+
+                      - subscription
+
+                      - introspection
+
+                      - fragment
+
+                    commonSignals:
+
+                      - クライアントが必要な shape を query で指定する
+
+                      - schema resolver mutation subscription が出る
+
+                      - overfetching や underfetching の回避が話題になる
+
+                      - introspection で API を探索する
+
+                    antiSignals:
+
+                      - graph database や knowledge graph の話
+
+                      - REST の filter parameter を GraphQL と呼んでいる
+
+                      - グラフ構造アルゴリズムが主題で API ではない
+
+                    relatedNames:
+
+                      - name: GraphQL
+
+                        kind: standard
+
+                        relevance: GraphQL 仕様と学習リソースの公式入口として参照される。
+
+                        officialUrl: https://graphql.org/
+
+                      - name: Apollo Server
+
+                        kind: framework
+
+                        relevance: GraphQL サーバ実装として実務でよく見かける。
+
+                        officialUrl: https://www.apollographql.com/docs/apollo-server/
+
+                      - name: Relay
+
+                        kind: framework
+
+                        relevance: GraphQL クライアント設計、fragment、Connection 仕様の文脈で頻出する。
+
+                        officialUrl: https://relay.dev/
+
+                      - name: GraphiQL
+
+                        kind: tool
+
+                        relevance: GraphQL クエリの試行や schema 探索の定番ツール。
+
+                        officialUrl: https://github.com/graphql/graphiql
                   name: GraphQL
                   summary: クライアントが必要なデータ形状を宣言して取得できる型付き API 方式。
                   whyLearn: UI 駆動のデータ取得や疎結合なクライアント開発の理解に役立つ。
@@ -191,7 +904,99 @@ domain:
                   aliases:
                     - API versioning
                     - API version
+                  search:
+                    keywords:
+                      - API versioning
+                      - API version
+                      - バージョニング
+                      - backward compatibility
+                      - breaking change
+                      - deprecation
+                      - URI versioning
+                      - header versioning
+                      - media type versioning
+                      - Sunset header
+                    commonSignals:
+                      - v1 v2 を URI や header で分ける
+                      - breaking change をどう出すかが議論される
+                      - deprecated endpoint や migration period が出る
+                      - 後方互換性を保ちながら API を進化させたい
+                    antiSignals:
+                      - ライブラリやアプリ自体のリリース番号だけ
+                      - DB migration のバージョン管理だけ
+                      - Git tag やブランチ戦略だけが主題
+                    relatedNames:
+                      - name: OpenAPI
+                        kind: standard
+                        relevance: API 契約の版管理と互換性方針を記述・共有する際に使われる。
+                        officialUrl: https://www.openapis.org/
+                      - name: Semantic Versioning
+                        kind: standard
+                        relevance: 互換性と破壊的変更を説明する比較概念としてよく使われる。
+                        officialUrl: https://semver.org/
+                      - name: Sunset HTTP Header
+                        kind: standard
+                        relevance: API 廃止予定を HTTP で伝える設計の文脈で関連する。
+                        officialUrl: https://www.rfc-editor.org/rfc/rfc8594.html
+
                 - slug: idempotency-key
+
+
+                  search:
+
+                    keywords:
+
+                      - Idempotency Key
+
+                      - Idempotency-Key
+
+                      - 冪等キー
+
+                      - safe retry
+
+                      - duplicate request prevention
+
+                      - request deduplication
+
+                      - double payment prevention
+
+                      - retry token
+
+                    commonSignals:
+
+                      - 二重注文や二重決済を防ぎたい
+
+                      - POST の再試行時に同じ副作用を一度だけ発生させる
+
+                      - 同じキーのリクエストには保存済み結果を返す
+
+                      - タイムアウト後の retry が安全かどうかを議論している
+
+                    antiSignals:
+
+                      - HTTP メソッドの冪等性一般だけでキー運用がない
+
+                      - DB の unique constraint だけを指している
+
+                      - message queue の deduplication だけで HTTP API 文脈がない
+
+                    relatedNames:
+
+                      - name: UUID
+
+                        kind: standard
+
+                        relevance: 冪等キーの一意値生成で実務上よく使われる識別子。
+
+                        officialUrl: https://www.rfc-editor.org/rfc/rfc9562.html
+
+                      - name: Stripe API
+
+                        kind: service
+
+                        relevance: 決済 API の安全な再試行例として Idempotency Key の説明でよく参照される。
+
+                        officialUrl: https://docs.stripe.com/api/idempotent_requests
                   name: Idempotency Key
                   summary: 重複送信時に副作用を二重発生させないためのリクエスト識別子。
                   whyLearn: 決済や作成系 API で安全な再試行を実現する重要語彙になる。
@@ -222,7 +1027,99 @@ domain:
                   aliases:
                     - layered architecture
                     - n-tier architecture
+                  search:
+                    keywords:
+                      - layered architecture
+                      - n-tier architecture
+                      - レイヤードアーキテクチャ
+                      - presentation layer
+                      - application layer
+                      - domain layer
+                      - infrastructure layer
+                      - dependency direction
+                      - service layer
+                    commonSignals:
+                      - controller service repository の層分けが出る
+                      - 上位層が下位層に依存する構成を説明している
+                      - presentation application domain infrastructure が並ぶ
+                      - レイヤを跨ぐ依存や循環依存が問題になる
+                    antiSignals:
+                      - ネットワークの OSI レイヤだけを指している
+                      - デプロイ環境の tiers だけでコード構造の話ではない
+                      - Photoshop や Figma のレイヤの話
+                    relatedNames:
+                      - name: MVC
+                        kind: pattern
+                        relevance: UI 層や責務分離の基本パターンとしてレイヤ構造と一緒に説明されやすい。
+                      - name: Clean Architecture
+                        kind: pattern
+                        relevance: レイヤード構造の依存方向をより厳格に扱う比較対象としてよく出る。
+                      - name: Spring Framework
+                        kind: framework
+                        relevance: Controller、Service、Repository などの層分け例として実務資料で頻出する。
+                        officialUrl: https://spring.io/projects/spring-framework
+
                 - slug: hexagonal-architecture
+
+                  search:
+
+                    keywords:
+
+                      - hexagonal architecture
+
+                      - ports and adapters
+
+                      - ヘキサゴナルアーキテクチャ
+
+                      - ポートアンドアダプタ
+
+                      - inbound adapter
+
+                      - outbound adapter
+
+                      - dependency inversion
+
+                      - domain core
+
+                      - application port
+
+                    commonSignals:
+
+                      - domain core を DB や UI から切り離したい
+
+                      - repository や API client を adapter と呼ぶ
+
+                      - port interface と adapter implementation の分離が出る
+
+                      - フレームワーク依存を外側へ追い出す
+
+                    antiSignals:
+
+                      - 六角形の図形や UI デザインの話
+
+                      - マイクロサービスの配置図を六角形で描いただけ
+
+                      - adapter pattern 単体の話でアプリ全体の依存方向がない
+
+                    relatedNames:
+
+                      - name: Ports and Adapters
+
+                        kind: pattern
+
+                        relevance: ヘキサゴナルアーキテクチャの別名として資料上で頻出する。
+
+                      - name: Clean Architecture
+
+                        kind: pattern
+
+                        relevance: 外部依存を内側から分離する考え方の比較対象としてよく扱われる。
+
+                      - name: Onion Architecture
+
+                        kind: pattern
+
+                        relevance: ドメイン中心と依存方向の観点で似た構造として比較される。
                   name: ヘキサゴナルアーキテクチャ
                   summary: ドメイン中心にポートとアダプタを置き、外部依存を周辺へ押し出す構造。
                   whyLearn: フレームワークや外部システムへの依存を弱める考え方が身につく。
@@ -243,7 +1140,103 @@ domain:
                   aliases:
                     - vertical slice
                     - feature slice
+                  search:
+                    keywords:
+                      - Vertical Slice Architecture
+                      - vertical slice
+                      - feature slice
+                      - feature folder
+                      - use case oriented
+                      - request handler
+                      - slice per feature
+                      - feature-based architecture
+                    commonSignals:
+                      - レイヤ横断ではなく機能単位にコードをまとめる
+                      - feature folder や use case folder が出る
+                      - 変更要求に関係するコードを一箇所に寄せたい
+                      - request handler 単位で処理を分ける
+                    antiSignals:
+                      - データ分析の vertical slice や市場セグメントの話
+                      - UI の縦長レイアウトを指している
+                      - 単にフォルダ名を features にしただけで責務境界がない
+                    relatedNames:
+                      - name: MediatR
+                        kind: library
+                        relevance: .NET で request handler 単位の縦切り構成を実装する例としてよく出る。
+                        officialUrl: https://github.com/jbogard/MediatR
+                      - name: CQRS
+                        kind: pattern
+                        relevance: command と query をユースケース単位で分ける構成と組み合わせて語られやすい。
+                      - name: ASP.NET Minimal APIs
+                        kind: framework
+                        relevance: endpoint ごとの薄い構成と feature slice の実装例で登場しやすい。
+                        officialUrl: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis
+
                 - slug: modular-monolith
+
+                  search:
+
+                    keywords:
+
+                      - modular monolith
+
+                      - modulith
+
+                      - モジュラーモノリス
+
+                      - module boundary
+
+                      - structured monolith
+
+                      - monolith first
+
+                      - internal modules
+
+                      - single deployable
+
+                      - bounded module
+
+                    commonSignals:
+
+                      - deploy は一体だがコード上の境界を明確にする
+
+                      - マイクロサービス化前にモジュール境界を育てる
+
+                      - 内部モジュール間の依存ルールを検査する
+
+                      - shared database のまま境界を切る話がある
+
+                    antiSignals:
+
+                      - 何も分割されていない巨大モノリスを指しているだけ
+
+                      - すでに独立デプロイの複数サービスになっている
+
+                      - module federation などフロントエンド分割の話
+
+                    relatedNames:
+
+                      - name: Spring Modulith
+
+                        kind: framework
+
+                        relevance: Java Spring 系でモジュラーモノリスを支援する具体的なフレームワーク。
+
+                        officialUrl: https://spring.io/projects/spring-modulith
+
+                      - name: ArchUnit
+
+                        kind: tool
+
+                        relevance: モジュール境界や依存ルールをテストで検証する用途で使われる。
+
+                        officialUrl: https://www.archunit.org/
+
+                      - name: Domain-Driven Design
+
+                        kind: method
+
+                        relevance: モジュール境界を業務境界に沿って設計する考え方として関連が強い。
                   name: モジュラーモノリス
                   summary: 単一デプロイのまま、明確なモジュール境界で分割されたモノリス。
                   whyLearn: 分散化の複雑さを避けつつ境界設計を学べる実務的な選択肢になる。
@@ -268,7 +1261,99 @@ domain:
                   aliases:
                     - bounded context
                     - 境界コンテキスト
+                  search:
+                    keywords:
+                      - bounded context
+                      - 境界づけられたコンテキスト
+                      - 境界コンテキスト
+                      - DDD
+                      - domain-driven design
+                      - ubiquitous language
+                      - context map
+                      - model boundary
+                      - domain boundary
+                    commonSignals:
+                      - 同じ言葉が部署や業務領域で異なる意味を持つ
+                      - ubiquitous language と model boundary が出る
+                      - サービス境界やモジュール境界を業務語彙で切る
+                      - context map で上流下流関係を整理する
+                    antiSignals:
+                      - React context や実行コンテキストの話
+                      - 認証 context や request context だけを指している
+                      - 単なる namespace や package 分割を指している
+                    relatedNames:
+                      - name: Domain-Driven Design Reference
+                        kind: method
+                        relevance: Bounded Context を含む DDD 用語の安定した参照先として使われる。
+                        officialUrl: https://www.domainlanguage.com/ddd/reference/
+                      - name: EventStorming
+                        kind: method
+                        relevance: 業務イベントを起点に境界や用語の違いを発見する方法として併用される。
+                        officialUrl: https://www.eventstorming.com/
+                      - name: Context Mapper
+                        kind: tool
+                        relevance: DDD の context map や bounded context を記述するためのツール。
+                        officialUrl: https://contextmapper.org/
+
                 - slug: aggregate
+
+                  search:
+
+                    keywords:
+
+                      - aggregate
+
+                      - aggregate root
+
+                      - 集約
+
+                      - 集約ルート
+
+                      - consistency boundary
+
+                      - invariant
+
+                      - domain object
+
+                      - entity cluster
+
+                      - transactional boundary
+
+                    commonSignals:
+
+                      - aggregate root 経由で内部 entity を変更する
+
+                      - 不変条件をどの範囲で守るかが話題になる
+
+                      - 1 トランザクションで更新する境界を決める
+
+                      - テーブル設計ではなくドメイン整合性が主題
+
+                    antiSignals:
+
+                      - SQL の aggregate function や GROUP BY の話
+
+                      - ログ集計やメトリクス集計の意味で使われている
+
+                      - コレクションをまとめるだけで不変条件がない
+
+                    relatedNames:
+
+                      - name: Domain-Driven Design Reference
+
+                        kind: method
+
+                        relevance: Aggregate と Aggregate Root の定義を確認する参照先として使われる。
+
+                        officialUrl: https://www.domainlanguage.com/ddd/reference/
+
+                      - name: EventStorming
+
+                        kind: method
+
+                        relevance: コマンド、イベント、不変条件から集約候補を発見する場面で使われる。
+
+                        officialUrl: https://www.eventstorming.com/
                   name: 集約
                   summary: 一貫性を保つために一つの単位として更新されるドメインオブジェクト群。
                   whyLearn: どこまでを同時に整合的に扱うかを設計できるようになる。
@@ -289,7 +1374,100 @@ domain:
                   aliases:
                     - ACL
                     - anti-corruption layer
+                  search:
+                    keywords:
+                      - Anti-Corruption Layer
+                      - ACL
+                      - 腐敗防止層
+                      - translation layer
+                      - legacy integration
+                      - model translation
+                      - adapter layer
+                      - boundary protection
+                    commonSignals:
+                      - 旧システムのデータ構造を内部モデルへ翻訳する
+                      - 外部 API の用語をドメインモデルに持ち込まない
+                      - legacy model と domain model の間に変換層を置く
+                      - 境界の外側の都合を内側へ漏らさない
+                    antiSignals:
+                      - ACL が access control list の意味で使われている
+                      - セキュリティのアクセス制御だけが主題
+                      - 単なる DTO 変換だけでモデル汚染防止の意図がない
+                    relatedNames:
+                      - name: Domain-Driven Design Reference
+                        kind: method
+                        relevance: Anti-Corruption Layer が DDD の境界保護パターンとして説明される。
+                        officialUrl: https://www.domainlanguage.com/ddd/reference/
+                      - name: Adapter Pattern
+                        kind: pattern
+                        relevance: 外部モデルを内部モデルへ変換する実装上の形として関連する。
+                      - name: Strangler Fig Pattern
+                        kind: pattern
+                        relevance: 旧システムからの段階移行で ACL を併用することが多い。
+
                 - slug: strangler-fig-pattern
+
+                  search:
+
+                    keywords:
+
+                      - Strangler Fig Pattern
+
+                      - strangler fig
+
+                      - strangler pattern
+
+                      - ストラングラーパターン
+
+                      - legacy modernization
+
+                      - incremental migration
+
+                      - gradual replacement
+
+                      - facade migration
+
+                      - route-by-route migration
+
+                    commonSignals:
+
+                      - 旧システムを一括刷新せず機能単位で置き換える
+
+                      - proxy や routing で新旧の実装へ振り分ける
+
+                      - legacy modernization や gradual migration が出る
+
+                      - 移行中に旧モデルと新モデルが共存する
+
+                    antiSignals:
+
+                      - 植物の strangler fig の生態を指している
+
+                      - 単なる big bang rewrite の話
+
+                      - 新規開発だけで旧システムとの共存がない
+
+                    relatedNames:
+
+                      - name: Strangler Fig Application
+
+                        kind: pattern
+
+                        relevance: 旧システムを段階的に置換する原典的な説明として参照される。
+
+                        officialUrl: https://martinfowler.com/bliki/StranglerFigApplication.html
+
+                      - name: Reverse Proxy
+
+                        kind: pattern
+
+                        relevance: 旧実装と新実装へのルーティングを切り替える入口として使われやすい。
+
+                      - name: Feature Flag
+
+                        kind: pattern
+
+                        relevance: 新旧実装の段階切替やロールバックで併用されることがある。
                   name: Strangler Fig Pattern
                   summary: 旧システムを段階的に新実装へ置き換えていく移行パターン。
                   whyLearn: リスクを抑えながら刷新するための現実的な移行戦略を学べる。
@@ -320,7 +1498,108 @@ domain:
                   aliases:
                     - API gateway
                     - gateway
+                  search:
+                    keywords:
+                      - API Gateway
+                      - APIゲートウェイ
+                      - edge gateway
+                      - ingress gateway
+                      - request routing
+                      - rate limiting
+                      - authentication at edge
+                      - gateway proxy
+                    commonSignals:
+                      - 認証 認可 ルーティング レート制限を入口でまとめる
+                      - 複数 backend への公開境界を作る
+                      - north-south traffic の入口制御が話題になる
+                      - API key や token 検証を gateway で行う
+                    antiSignals:
+                      - ネットワークルータやデフォルトゲートウェイの話
+                      - BFF のようなクライアント専用集約が主題
+                      - load balancer 一般だけで API 契約や横断関心事がない
+                    relatedNames:
+                      - name: Kong Gateway
+                        kind: platform
+                        relevance: API Gateway 製品・OSS として実務でよく見かける。
+                        officialUrl: https://konghq.com/kong/
+                      - name: Envoy
+                        kind: tool
+                        relevance: gateway proxy や L7 traffic 制御の基盤としてよく使われる。
+                        officialUrl: https://www.envoyproxy.io/
+                      - name: NGINX
+                        kind: tool
+                        relevance: reverse proxy や gateway 的な入口制御で広く使われる。
+                        officialUrl: https://nginx.org/
+                      - name: Apigee
+                        kind: platform
+                        relevance: API 管理と gateway 機能を組み合わせた代表的なプラットフォーム。
+                        officialUrl: https://cloud.google.com/apigee
+
                 - slug: backends-for-frontends
+
+                  search:
+
+                    keywords:
+
+                      - BFF
+
+                      - Backends for Frontends
+
+                      - backend for frontend
+
+                      - フロントエンド専用バックエンド
+
+                      - experience API
+
+                      - client-specific backend
+
+                      - mobile backend
+
+                      - frontend-optimized API
+
+                    commonSignals:
+
+                      - Web とモバイルで API 形状を変えたい
+
+                      - frontend ごとに専用の集約 API を置く
+
+                      - 画面都合の orchestration を専用層に寄せる
+
+                      - 汎用 API がクライアントごとの要件で膨らんでいる
+
+                    antiSignals:
+
+                      - BFF が best friend forever の意味で使われている
+
+                      - 単なる API Gateway を BFF と呼んでいるだけ
+
+                      - 単一 backend しかなくクライアント別最適化がない
+
+                    relatedNames:
+
+                      - name: Backends for Frontends Pattern
+
+                        kind: pattern
+
+                        relevance: フロントエンド別バックエンドを作る代表的なアーキテクチャパターン。
+
+                        officialUrl: https://learn.microsoft.com/en-us/azure/architecture/patterns/backends-for-frontends
+
+                      - name: YARP
+
+                        kind: framework
+
+                        relevance: .NET 系で BFF や lightweight gateway を実装する具体例として使われる。
+
+                        officialUrl: https://microsoft.github.io/reverse-proxy/
+
+                      - name: Apollo Router
+
+                        kind: framework
+
+                        relevance: GraphQL 集約をクライアント体験向けに最適化する文脈で比較対象になる。
+
+                        officialUrl: https://www.apollographql.com/docs/router/
                   name: Backends for Frontends
                   summary: フロントエンドごとに最適化された専用バックエンドを用意するパターン。
                   whyLearn: Web、モバイル、管理画面で必要な API 形状が違うときの整理に役立つ。
@@ -341,7 +1620,94 @@ domain:
                   aliases:
                     - gateway aggregation
                     - response aggregation
+                  search:
+                    keywords:
+                      - Gateway Aggregation
+                      - response aggregation
+                      - API aggregation
+                      - aggregator gateway
+                      - fan-in request
+                      - composite response
+                      - backend aggregation
+                    commonSignals:
+                      - 複数 backend への呼び出しを gateway がまとめる
+                      - クライアント往復回数を減らす
+                      - composite response を返す
+                      - gateway の肥大化やタイムアウトが問題になる
+                    antiSignals:
+                      - ログ集約やメトリクス集約の話
+                      - GraphQL schema stitching だけが主題
+                      - クライアント側で複数 API を呼ぶだけ
+                    relatedNames:
+                      - name: Gateway Aggregation Pattern
+                        kind: pattern
+                        relevance: Gateway が複数 backend 呼び出しを一つの応答へまとめる代表的パターン。
+                        officialUrl: https://learn.microsoft.com/en-us/azure/architecture/patterns/gateway-aggregation
+                      - name: API Gateway
+                        kind: pattern
+                        relevance: Gateway Aggregation の責務を置く入口層として関連が強い。
+
                 - slug: api-composition
+
+                  search:
+
+                    keywords:
+
+                      - API Composition
+
+                      - aggregator pattern
+
+                      - composite query
+
+                      - query composition
+
+                      - service aggregation
+
+                      - read-side composition
+
+                      - microservice query
+
+                    commonSignals:
+
+                      - 複数サービスから集めて一つの画面データを作る
+
+                      - join がサービス境界を跨いで難しい
+
+                      - aggregator service や composite query が出る
+
+                      - CQRS read model と比較している
+
+                    antiSignals:
+
+                      - 音楽や作文の composition の話
+
+                      - Gateway Aggregation と区別なく入口層だけの話
+
+                      - 単一 DB 内の SQL join だけを指している
+
+                    relatedNames:
+
+                      - name: API Composition Pattern
+
+                        kind: pattern
+
+                        relevance: マイクロサービスで複数サービスの結果を合成する代表的な問い合わせパターン。
+
+                        officialUrl: https://microservices.io/patterns/data/api-composition.html
+
+                      - name: GraphQL
+
+                        kind: standard
+
+                        relevance: 複数データソースをクライアント要求の形へ合成する実装選択肢として使われる。
+
+                        officialUrl: https://graphql.org/
+
+                      - name: CQRS
+
+                        kind: pattern
+
+                        relevance: 複雑な読み取りを API Composition ではなく read model に寄せる比較対象になる。
                   name: API Composition
                   summary: 複数サービスの API を呼び合わせて一つの問い合わせ結果を構成するパターン。
                   whyLearn: 画面やユースケースごとの読み取り統合を設計しやすくなる。
@@ -366,7 +1732,121 @@ domain:
                   aliases:
                     - pub sub
                     - publish-subscribe
+                  search:
+                    keywords:
+                      - publish-subscribe
+                      - pub/sub
+                      - PubSub
+                      - パブサブ
+                      - topic
+                      - subscription
+                      - fan-out
+                      - event topic
+                      - message broker
+                    commonSignals:
+                      - publisher が subscriber を知らずに配信する
+                      - topic channel subscription fan-out が出る
+                      - 1 つのイベントを複数 consumer が受け取る
+                      - 疎結合な通知やイベント配信が話題になる
+                    antiSignals:
+                      - SNS やブログの投稿と購読の一般的な話
+                      - 単一 consumer の work queue だけを指している
+                      - webhook 配信を何でも pub/sub と呼んでいる
+                    relatedNames:
+                      - name: Apache Kafka
+                        kind: platform
+                        relevance: topic ベースの pub/sub と event streaming の代表的な実装。
+                        officialUrl: https://kafka.apache.org/
+                      - name: RabbitMQ
+                        kind: platform
+                        relevance: exchange と queue を使った pub/sub 型配信の代表的な message broker。
+                        officialUrl: https://www.rabbitmq.com/
+                      - name: NATS
+                        kind: platform
+                        relevance: 軽量な pub/sub メッセージング基盤として比較されやすい。
+                        officialUrl: https://nats.io/
+                      - name: Google Cloud Pub/Sub
+                        kind: service
+                        relevance: managed pub/sub サービスの具体例として実務資料で頻出する。
+                        officialUrl: https://cloud.google.com/pubsub
+
                 - slug: apache-kafka
+
+                  search:
+
+                    keywords:
+
+                      - Apache Kafka
+
+                      - Kafka
+
+                      - event streaming
+
+                      - distributed log
+
+                      - topic
+
+                      - partition
+
+                      - consumer group
+
+                      - offset
+
+                      - broker
+
+                      - Kafka Connect
+
+                    commonSignals:
+
+                      - topic partition consumer group offset が出る
+
+                      - event streaming platform として説明される
+
+                      - ログ型の保持と再読込が話題になる
+
+                      - CDC や stream processing と一緒に出る
+
+                    antiSignals:
+
+                      - 作家フランツ・カフカや文学の話
+
+                      - 単純な FIFO queue としてだけ説明している
+
+                      - Kafka という名前の社内プロジェクトで Apache Kafka ではない
+
+                    relatedNames:
+
+                      - name: Apache Kafka
+
+                        kind: platform
+
+                        relevance: 大規模 event streaming の代表的な OSS プラットフォーム。
+
+                        officialUrl: https://kafka.apache.org/
+
+                      - name: Kafka Connect
+
+                        kind: framework
+
+                        relevance: Kafka と外部システムを接続するコネクタ基盤として頻出する。
+
+                        officialUrl: https://kafka.apache.org/documentation/#connect
+
+                      - name: Kafka Streams
+
+                        kind: library
+
+                        relevance: Kafka 上のストリーム処理をアプリケーション内で扱うためのライブラリ。
+
+                        officialUrl: https://kafka.apache.org/documentation/streams/
+
+                      - name: Debezium
+
+                        kind: platform
+
+                        relevance: CDC イベントを Kafka に流す代表的な組み合わせとしてよく使われる。
+
+                        officialUrl: https://debezium.io/
                   name: Apache Kafka
                   summary: 大規模なイベントストリーミングを扱う代表的な分散プラットフォーム。
                   whyLearn: イベント駆動や CDC の実務で頻出する語彙を押さえられる。
@@ -387,7 +1867,108 @@ domain:
                   aliases:
                     - AsyncAPI
                     - asynchronous API spec
+                  search:
+                    keywords:
+                      - AsyncAPI
+                      - asynchronous API spec
+                      - 非同期API仕様
+                      - event contract
+                      - message schema
+                      - channel definition
+                      - broker protocol
+                      - event-driven API docs
+                      - asyncapi.yaml
+                    commonSignals:
+                      - channel message schema を yaml で定義する
+                      - Kafka や AMQP のイベント契約を文書化する
+                      - OpenAPI の非同期版として説明される
+                      - producer consumer と message payload の仕様が出る
+                    antiSignals:
+                      - 非同期処理一般だけで契約記述がない
+                      - OpenAPI の HTTP endpoint 仕様だけが主題
+                      - GraphQL subscription を機械的に AsyncAPI と呼んでいる
+                    relatedNames:
+                      - name: AsyncAPI Initiative
+                        kind: standard
+                        relevance: 非同期 API と event-driven architecture の契約記述仕様の公式入口。
+                        officialUrl: https://www.asyncapi.com/
+                      - name: AsyncAPI Generator
+                        kind: tool
+                        relevance: AsyncAPI 定義からドキュメントやコードを生成するツールとして関連する。
+                        officialUrl: https://www.asyncapi.com/tools/generator
+                      - name: CloudEvents
+                        kind: standard
+                        relevance: AsyncAPI で表現するイベントのメタデータ形式として併用されやすい。
+                        officialUrl: https://cloudevents.io/
+
                 - slug: cloudevents
+
+
+                  search:
+
+                    keywords:
+
+                      - CloudEvents
+
+                      - クラウドイベント
+
+                      - event envelope
+
+                      - event metadata
+
+                      - ce-id
+
+                      - ce-source
+
+                      - ce-type
+
+                      - ce-time
+
+                      - CNCF CloudEvents
+
+                    commonSignals:
+
+                      - id source type specversion などの共通属性が出る
+
+                      - イベントの envelope と payload を分ける
+
+                      - webhook や broker 間でイベント形式を揃える
+
+                      - ce- で始まる HTTP header が出る
+
+                    antiSignals:
+
+                      - クラウド上のイベント開催情報を指している
+
+                      - ログイベントや監視イベントの総称として使っている
+
+                      - event sourcing の保存イベント形式そのものと混同している
+
+                    relatedNames:
+
+                      - name: CloudEvents
+
+                        kind: standard
+
+                        relevance: イベントメタデータを共通化する仕様そのもの。
+
+                        officialUrl: https://cloudevents.io/
+
+                      - name: CNCF
+
+                        kind: other
+
+                        relevance: CloudEvents がクラウドネイティブ標準群の一部として扱われる文脈で関連する。
+
+                        officialUrl: https://www.cncf.io/
+
+                      - name: Knative Eventing
+
+                        kind: platform
+
+                        relevance: CloudEvents 形式のイベント連携を扱うクラウドネイティブ実装例。
+
+                        officialUrl: https://knative.dev/docs/eventing/
                   name: CloudEvents
                   summary: イベントの共通メタデータを標準化して相互運用性を高める仕様。
                   whyLearn: イベント識別やルーティングを統一的に扱う意義を理解できる。
@@ -418,7 +1999,100 @@ domain:
                   aliases:
                     - saga pattern
                     - SAGA
+                  search:
+                    keywords:
+                      - Saga
+                      - saga pattern
+                      - サガパターン
+                      - distributed transaction
+                      - choreography
+                      - orchestration
+                      - compensation
+                      - long-running transaction
+                    commonSignals:
+                      - 複数サービスのローカルトランザクションを順に進める
+                      - 失敗時に補償処理を実行する
+                      - choreography と orchestration の比較がある
+                      - 注文 決済 在庫 予約などを跨ぐ整合性が話題になる
+                    antiSignals:
+                      - 物語やゲームの saga の意味で使われている
+                      - 単一 DB トランザクションだけを指している
+                      - バッチ処理の長い手順を単に saga と呼んでいる
+                    relatedNames:
+                      - name: Temporal
+                        kind: platform
+                        relevance: 長時間ワークフローと補償処理を実装する具体的な基盤としてよく出る。
+                        officialUrl: https://temporal.io/
+                      - name: Camunda
+                        kind: platform
+                        relevance: 業務プロセスの orchestration と補償を扱う比較対象として使われる。
+                        officialUrl: https://camunda.com/
+                      - name: Axon Framework
+                        kind: framework
+                        relevance: DDD、CQRS、Saga の Java 実装例として資料で見かける。
+                        officialUrl: https://www.axoniq.io/products/axon-framework
+
                 - slug: compensating-transaction
+
+                  search:
+
+                    keywords:
+
+                      - compensating transaction
+
+                      - compensation
+
+                      - 補償トランザクション
+
+                      - compensating action
+
+                      - rollback alternative
+
+                      - reverse operation
+
+                      - undo operation
+
+                      - failure recovery
+
+                    commonSignals:
+
+                      - 失敗したので前段の効果を打ち消す
+
+                      - 返金 予約取消 在庫戻しなどの逆操作が出る
+
+                      - rollback できない外部副作用をどう扱うかが話題になる
+
+                      - Saga の各 step に compensation を定義する
+
+                    antiSignals:
+
+                      - 給与や報酬の compensation の話
+
+                      - DB の rollback だけで外部副作用がない
+
+                      - 単なるエラーハンドリングで業務的な逆操作がない
+
+                    relatedNames:
+
+                      - name: Saga Pattern
+
+                        kind: pattern
+
+                        relevance: Saga の失敗時回復手段として補償トランザクションがよく使われる。
+
+                      - name: Temporal
+
+                        kind: platform
+
+                        relevance: ワークフロー内で失敗時の補償処理をコードとして表現する実装例。
+
+                        officialUrl: https://temporal.io/
+
+                      - name: Try-Confirm-Cancel
+
+                        kind: pattern
+
+                        relevance: 分散処理で確保、確定、取消を分ける補償系パターンとして比較される。
                   name: 補償トランザクション
                   summary: 途中失敗時に前段の処理効果を打ち消すための逆操作。
                   whyLearn: 分散整合性では失敗後の戻し方が本体設計の一部だと理解できる。
@@ -439,7 +2113,107 @@ domain:
                   aliases:
                     - transactional outbox
                     - outbox pattern
+                  search:
+                    keywords:
+                      - transactional outbox
+                      - outbox pattern
+                      - アウトボックスパターン
+                      - dual write problem
+                      - reliable event publishing
+                      - outbox table
+                      - relay process
+                      - local transaction
+                    commonSignals:
+                      - DB 更新とメッセージ送信の dual write が問題になる
+                      - outbox table にイベントを書いて後で publish する
+                      - relay worker が未送信イベントを配送する
+                      - 業務データとイベントを同一 transaction で保存する
+                    antiSignals:
+                      - メールアプリの送信箱の話
+                      - message queue に直接 publish するだけで DB 整合性の話がない
+                      - event sourcing と同一視している
+                    relatedNames:
+                      - name: Transactional Outbox Pattern
+                        kind: pattern
+                        relevance: DB 更新とイベント公開の不整合を避ける代表的なパターン。
+                        officialUrl: https://microservices.io/patterns/data/transactional-outbox.html
+                      - name: Debezium
+                        kind: platform
+                        relevance: outbox table の変更を CDC でイベント配信する実装例として使われる。
+                        officialUrl: https://debezium.io/
+                      - name: Kafka Connect
+                        kind: framework
+                        relevance: outbox から Kafka などへイベントを流す連携基盤として関連する。
+                        officialUrl: https://kafka.apache.org/documentation/#connect
+
                 - slug: change-data-capture
+
+
+                  search:
+
+                    keywords:
+
+                      - CDC
+
+                      - change data capture
+
+                      - 変更データキャプチャ
+
+                      - database change stream
+
+                      - binlog
+
+                      - WAL
+
+                      - oplog
+
+                      - log-based CDC
+
+                      - replication log
+
+                    commonSignals:
+
+                      - binlog WAL oplog を読んで変更を検出する
+
+                      - DB の insert update delete をイベント化する
+
+                      - 既存システムの変更を下流へ流したい
+
+                      - outbox と組み合わせて reliable publish する
+
+                    antiSignals:
+
+                      - 組織の change management を CDC と呼んでいる
+
+                      - timestamp polling だけで log-based CDC ではない
+
+                      - ETL バッチ抽出だけが主題
+
+                    relatedNames:
+
+                      - name: Debezium
+
+                        kind: platform
+
+                        relevance: OSS の CDC 基盤として PostgreSQL、MySQL、MongoDB などで広く使われる。
+
+                        officialUrl: https://debezium.io/
+
+                      - name: Kafka Connect
+
+                        kind: framework
+
+                        relevance: CDC connector で DB 変更を Kafka へ流す基盤として使われる。
+
+                        officialUrl: https://kafka.apache.org/documentation/#connect
+
+                      - name: AWS Database Migration Service
+
+                        kind: service
+
+                        relevance: managed な CDC や移行用途の具体例として実務で見かける。
+
+                        officialUrl: https://aws.amazon.com/dms/
                   name: Change Data Capture
                   summary: データベース変更を継続的に検出して下流へ伝える仕組み。
                   whyLearn: 再実装せずに既存データ変更をイベント化する考え方を学べる。
@@ -464,7 +2238,102 @@ domain:
                   aliases:
                     - command query responsibility segregation
                     - CQRS
+                  search:
+                    keywords:
+                      - CQRS
+                      - command query responsibility segregation
+                      - コマンドクエリ責務分離
+                      - read model
+                      - write model
+                      - command model
+                      - query model
+                      - read side
+                    commonSignals:
+                      - command と query のモデルを分ける
+                      - read model を非同期に更新する
+                      - 書き込み側と読み取り側の最適化が違う
+                      - event sourcing と組み合わせるか議論している
+                    antiSignals:
+                      - CQS のメソッド設計だけを指している
+                      - 単に SELECT と UPDATE を分けているだけ
+                      - 複雑な読み取り API 一般でモデル分離がない
+                    relatedNames:
+                      - name: CQRS Pattern
+                        kind: pattern
+                        relevance: 読み取りと書き込みのモデル分離を説明する代表的なパターン。
+                        officialUrl: https://learn.microsoft.com/en-us/azure/architecture/patterns/cqrs
+                      - name: EventStoreDB
+                        kind: platform
+                        relevance: CQRS と Event Sourcing を組み合わせる文脈でよく出るイベントストア。
+                        officialUrl: https://www.eventstore.com/
+                      - name: MediatR
+                        kind: library
+                        relevance: .NET で command handler と query handler を分ける実装例として使われる。
+                        officialUrl: https://github.com/jbogard/MediatR
+
                 - slug: event-sourcing
+
+                  search:
+
+                    keywords:
+
+                      - Event Sourcing
+
+                      - イベントソーシング
+
+                      - event store
+
+                      - append-only log
+
+                      - event replay
+
+                      - snapshot
+
+                      - aggregate events
+
+                      - current state projection
+
+                    commonSignals:
+
+                      - 現在状態ではなく変更イベント列を正本にする
+
+                      - event replay で状態を再構築する
+
+                      - snapshot や projection が話題になる
+
+                      - 監査ログと業務イベントの違いを議論している
+
+                    antiSignals:
+
+                      - event-driven architecture 一般の話
+
+                      - ログを保存しているだけで状態再構成がない
+
+                      - 分析用イベントトラッキングだけを指している
+
+                    relatedNames:
+
+                      - name: EventStoreDB
+
+                        kind: platform
+
+                        relevance: Event Sourcing 用のイベントストアとしてよく参照される。
+
+                        officialUrl: https://www.eventstore.com/
+
+                      - name: Axon Framework
+
+                        kind: framework
+
+                        relevance: Java 系で DDD、CQRS、Event Sourcing を扱う実装例として使われる。
+
+                        officialUrl: https://www.axoniq.io/products/axon-framework
+
+                      - name: CQRS
+
+                        kind: pattern
+
+                        relevance: Event Sourcing と組み合わせて read model を作る設計で頻出する。
                   name: Event Sourcing
                   summary: 現在状態ではなく、状態変化イベントの列を正本として保存するパターン。
                   whyLearn: 監査性や履歴再構成の利点と、導入コストの高さを理解できる。
@@ -485,7 +2354,100 @@ domain:
                   aliases:
                     - Cache-Control
                     - HTTP caching directive
+                  search:
+                    keywords:
+                      - Cache-Control
+                      - HTTP cache
+                      - HTTP caching directive
+                      - max-age
+                      - s-maxage
+                      - no-cache
+                      - no-store
+                      - stale-while-revalidate
+                      - immutable
+                      - public private cache
+                    commonSignals:
+                      - max-age s-maxage no-store を設定する
+                      - CDN とブラウザでキャッシュ方針を分ける
+                      - stale-while-revalidate や immutable が出る
+                      - private なレスポンスを共有キャッシュに置くか議論している
+                    antiSignals:
+                      - アプリ内メモリキャッシュや Redis の話だけ
+                      - CPU cache や browser storage の一般論
+                      - キャッシュ削除の運用だけで HTTP header がない
+                    relatedNames:
+                      - name: HTTP Caching
+                        kind: standard
+                        relevance: Cache-Control を含む HTTP キャッシュ仕様として参照される。
+                        officialUrl: https://www.rfc-editor.org/rfc/rfc9111.html
+                      - name: Varnish Cache
+                        kind: tool
+                        relevance: HTTP キャッシュや reverse proxy キャッシュの実装例として見かける。
+                        officialUrl: https://varnish-cache.org/
+                      - name: Fastly
+                        kind: service
+                        relevance: CDN 上の Cache-Control と surrogate key 運用の文脈でよく出る。
+                        officialUrl: https://www.fastly.com/
+
                 - slug: etag
+
+                  search:
+
+                    keywords:
+
+                      - ETag
+
+                      - entity tag
+
+                      - HTTP validator
+
+                      - If-None-Match
+
+                      - If-Match
+
+                      - 304 Not Modified
+
+                      - weak ETag
+
+                      - strong ETag
+
+                      - optimistic concurrency
+
+                    commonSignals:
+
+                      - If-None-Match で 304 を返す
+
+                      - リソース表現の版を validator として使う
+
+                      - If-Match で lost update を防ぐ
+
+                      - strong validator と weak validator の違いが出る
+
+                    antiSignals:
+
+                      - HTML tag や marketing tag の話
+
+                      - Git tag や Docker image tag の話
+
+                      - 単なる version カラムで HTTP 条件付きリクエストがない
+
+                    relatedNames:
+
+                      - name: HTTP Semantics
+
+                        kind: standard
+
+                        relevance: ETag、条件付きリクエスト、検証子の意味論を定義している。
+
+                        officialUrl: https://www.rfc-editor.org/rfc/rfc9110.html
+
+                      - name: HTTP Caching
+
+                        kind: standard
+
+                        relevance: ETag を使ったキャッシュ再検証の仕様として関連する。
+
+                        officialUrl: https://www.rfc-editor.org/rfc/rfc9111.html
                   name: ETag
                   summary: リソース表現の版を識別し、再送や競合回避に使う検証子。
                   whyLearn: 差分再利用と同時更新保護の両方に効く重要語彙になる。
@@ -516,7 +2478,115 @@ domain:
                   aliases:
                     - monolith
                     - monolithic app
+                  search:
+                    keywords:
+                      - monolith
+                      - monolithic app
+                      - monolithic architecture
+                      - モノリス
+                      - single deployable
+                      - single process application
+                      - tightly coupled app
+                      - modular monolith
+                      - big ball of mud
+                    commonSignals:
+                      - 単一のアプリケーションとしてビルド デプロイする
+                      - 機能間の変更が同じリリース単位に乗る
+                      - microservices と比較している
+                      - modular monolith か big ball of mud かが論点になる
+                    antiSignals:
+                      - 地質学や建築物としての monolith の話
+                      - 単に大きいコードベースというだけで実行単位が不明
+                      - フロントエンドの単一ページだけを指している
+                    relatedNames:
+                      - name: Monolith First
+                        kind: pattern
+                        relevance: 初期段階では分散化よりモノリスを起点にする考え方としてよく参照される。
+                        officialUrl: https://martinfowler.com/bliki/MonolithFirst.html
+                      - name: Ruby on Rails
+                        kind: framework
+                        relevance: フルスタック Web モノリスの代表的な実装例として長く使われている。
+                        officialUrl: https://rubyonrails.org/
+                      - name: Django
+                        kind: framework
+                        relevance: 単一アプリで Web 機能をまとめる構成の代表例として比較されやすい。
+                        officialUrl: https://www.djangoproject.com/
+
                 - slug: microservices
+
+                  search:
+
+                    keywords:
+
+                      - microservices
+
+                      - microservice architecture
+
+                      - マイクロサービス
+
+                      - independently deployable
+
+                      - service boundary
+
+                      - business capability
+
+                      - service discovery
+
+                      - distributed system
+
+                      - decentralized data
+
+                    commonSignals:
+
+                      - 独立デプロイ可能な小さなサービス群
+
+                      - business capability ごとに境界を切る
+
+                      - distributed transaction や observability が課題になる
+
+                      - database per service や service discovery が出る
+
+                    antiSignals:
+
+                      - 単なる複数リポジトリや複数パッケージの話
+
+                      - 関数分割やクラス分割だけを指している
+
+                      - modular monolith をマイクロサービスと呼んでいるだけ
+
+                    relatedNames:
+
+                      - name: Microservices Guide
+
+                        kind: pattern
+
+                        relevance: microservices の基本特性を整理した定番の参照資料。
+
+                        officialUrl: https://martinfowler.com/microservices/
+
+                      - name: Kubernetes
+
+                        kind: platform
+
+                        relevance: 複数サービスの配備・スケール・運用基盤として一緒に出やすい。
+
+                        officialUrl: https://kubernetes.io/
+
+                      - name: Istio
+
+                        kind: platform
+
+                        relevance: microservices の service mesh と通信制御の文脈でよく使われる。
+
+                        officialUrl: https://istio.io/
+
+                      - name: Dapr
+
+                        kind: platform
+
+                        relevance: 分散アプリケーションの pub/sub、state、service invocation を抽象化する実装例。
+
+                        officialUrl: https://dapr.io/
                   name: マイクロサービス
                   summary: 独立配備可能な小さなサービス群でシステムを構成するスタイル。
                   whyLearn: 自律性と複雑性の交換条件を理解する中心概念になる。
@@ -537,7 +2607,111 @@ domain:
                   aliases:
                     - serverless
                     - functions as a service
+                  search:
+                    keywords:
+                      - serverless
+                      - サーバレス
+                      - Functions as a Service
+                      - FaaS
+                      - event-driven compute
+                      - cold start
+                      - pay per use
+                      - managed runtime
+                      - function invocation
+                    commonSignals:
+                      - サーバ管理を意識せず関数をデプロイする
+                      - cold start や実行時間制限が話題になる
+                      - イベントに応じて関数が起動する
+                      - リクエスト数や実行時間ベースの課金を考える
+                    antiSignals:
+                      - サーバが存在しないという文字通りの意味で説明している
+                      - 単なる managed VM や VPS の話
+                      - コンテナ運用一般で FaaS やイベント起動がない
+                    relatedNames:
+                      - name: AWS Lambda
+                        kind: service
+                        relevance: FaaS と serverless compute の代表的なサービスとして頻出する。
+                        officialUrl: https://aws.amazon.com/lambda/
+                      - name: Azure Functions
+                        kind: service
+                        relevance: managed function runtime の比較対象としてよく出る。
+                        officialUrl: https://azure.microsoft.com/products/functions/
+                      - name: Google Cloud Functions
+                        kind: service
+                        relevance: イベント駆動で関数を実行する serverless サービスの代表例。
+                        officialUrl: https://cloud.google.com/functions
+                      - name: AWS SAM
+                        kind: tool
+                        relevance: AWS 上の serverless アプリを定義・デプロイするツールとして使われる。
+                        officialUrl: https://aws.amazon.com/serverless/sam/
+
                 - slug: edge-computing
+
+                  search:
+
+                    keywords:
+
+                      - edge computing
+
+                      - edge runtime
+
+                      - エッジコンピューティング
+
+                      - edge function
+
+                      - CDN edge
+
+                      - low latency compute
+
+                      - geo-distributed runtime
+
+                      - edge worker
+
+                      - near-user execution
+
+                    commonSignals:
+
+                      - ユーザーに近いリージョンや CDN edge で処理する
+
+                      - 認証 判定 リダイレクト A/B 分岐を edge で行う
+
+                      - 低レイテンシや地域性が論点になる
+
+                      - edge runtime の制約や cold start が話題になる
+
+                    antiSignals:
+
+                      - Microsoft Edge ブラウザの話
+
+                      - edge case の意味で edge が使われている
+
+                      - IoT デバイス側処理だけで Web 配信や近接実行の話がない
+
+                    relatedNames:
+
+                      - name: Cloudflare Workers
+
+                        kind: platform
+
+                        relevance: CDN edge 上で JavaScript や Web 標準 API を実行する代表例。
+
+                        officialUrl: https://workers.cloudflare.com/
+
+                      - name: Fastly Compute
+
+                        kind: platform
+
+                        relevance: edge runtime で低遅延処理を行う代表的なプラットフォーム。
+
+                        officialUrl: https://www.fastly.com/products/edge-compute
+
+                      - name: Vercel Edge Runtime
+
+                        kind: platform
+
+                        relevance: Web アプリの middleware や edge function 実行でよく参照される。
+
+                        officialUrl: https://vercel.com/docs/functions/runtimes/edge
                   name: エッジコンピューティング
                   summary: 利用者やデータ発生源に近い場所で計算を行い、遅延を下げる配置モデル。
                   whyLearn: レイテンシ、地域性、キャッシュ、近接実行の設計を考えられる。
@@ -562,7 +2736,110 @@ domain:
                   aliases:
                     - multitenancy
                     - multi-tenant
+                  search:
+                    keywords:
+                      - multitenancy
+                      - multi-tenant
+                      - multi tenancy
+                      - マルチテナンシー
+                      - tenant
+                      - tenant model
+                      - SaaS tenancy
+                      - pooled model
+                      - silo model
+                      - tenant-aware application
+                    commonSignals:
+                      - 複数顧客が同じアプリ基盤を共有する
+                      - tenant id を全データやリクエストで扱う
+                      - silo pool bridge などの分離モデルが出る
+                      - SaaS のコスト効率と分離性を比較している
+                    antiSignals:
+                      - 不動産の tenant 入居者の話
+                      - 単一顧客向け専用環境だけを指している
+                      - ユーザー権限管理だけでテナント境界がない
+                    relatedNames:
+                      - name: AWS SaaS Lens
+                        kind: method
+                        relevance: SaaS のテナント分離、運用、コスト、信頼性を考える参照体系として使われる。
+                        officialUrl: https://docs.aws.amazon.com/wellarchitected/latest/saas-lens/
+                      - name: PostgreSQL Row Level Security
+                        kind: standard
+                        relevance: 共有 DB でテナントごとの行アクセスを制御する実装候補として関連する。
+                        officialUrl: https://www.postgresql.org/docs/current/ddl-rowsecurity.html
+                      - name: Kubernetes Namespace
+                        kind: platform
+                        relevance: テナント別のリソース分離や運用境界の例として扱われる。
+                        officialUrl: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+
                 - slug: tenant-isolation
+
+                  search:
+
+                    keywords:
+
+                      - tenant isolation
+
+                      - テナント分離
+
+                      - テナント隔離
+
+                      - row-level security
+
+                      - RLS
+
+                      - schema per tenant
+
+                      - database per tenant
+
+                      - noisy neighbor
+
+                      - data isolation
+
+                      - tenant boundary
+
+                    commonSignals:
+
+                      - 他テナントのデータが見えないようにする
+
+                      - tenant_id の漏れや cross-tenant access が問題になる
+
+                      - database per tenant schema per tenant shared table を比較する
+
+                      - noisy neighbor やリソース隔離が話題になる
+
+                    antiSignals:
+
+                      - 単なるユーザー role 権限の話
+
+                      - テスト用 tenant データ作成だけ
+
+                      - マルチテナントではなく単一組織内の部署分け
+
+                    relatedNames:
+
+                      - name: PostgreSQL Row Level Security
+
+                        kind: standard
+
+                        relevance: 共有テーブルでテナントごとの行アクセスを制御する代表的な仕組み。
+
+                        officialUrl: https://www.postgresql.org/docs/current/ddl-rowsecurity.html
+
+                      - name: AWS IAM
+
+                        kind: service
+
+                        relevance: クラウドリソースやサービスアクセスのテナント分離設計で関係する。
+
+                        officialUrl: https://aws.amazon.com/iam/
+
+                      - name: Kubernetes ResourceQuota
+
+                        kind: platform
+
+                        relevance: テナントごとのリソース利用上限や noisy neighbor 対策で使われる。
+
+                        officialUrl: https://kubernetes.io/docs/concepts/policy/resource-quotas/
                   name: テナント分離
                   summary: 共有基盤上でもテナント間でデータや実行境界を分離するための考え方。
                   whyLearn: SaaS で最重要の信頼要件の一つを学べる。
@@ -583,7 +2860,115 @@ domain:
                   aliases:
                     - stateless process
                     - stateless app
+                  search:
+                    keywords:
+                      - stateless process
+                      - stateless app
+                      - ステートレスプロセス
+                      - stateless service
+                      - horizontal scaling
+                      - externalized session
+                      - disposable process
+                      - shared-nothing process
+                      - sticky session
+                    commonSignals:
+                      - プロセス内メモリに永続状態を持たない
+                      - セッションを外部ストアに置く
+                      - 任意のインスタンスへリクエストを振り分けられる
+                      - horizontal scaling や rolling restart がしやすい
+                    antiSignals:
+                      - HTTP が stateless であるという一般説明だけ
+                      - 状態が全く不要な業務という意味で使っている
+                      - DB や外部ストアまで含めて状態がないと誤解している
+                    relatedNames:
+                      - name: The Twelve-Factor App
+                        kind: method
+                        relevance: stateless process や disposable process の原則を説明する定番の参照先。
+                        officialUrl: https://12factor.net/
+                      - name: Kubernetes
+                        kind: platform
+                        relevance: stateless workload の水平スケールや再配置の実行基盤として関連する。
+                        officialUrl: https://kubernetes.io/
+                      - name: Redis
+                        kind: service
+                        relevance: セッションや一時状態をプロセス外へ逃がす保存先としてよく使われる。
+                        officialUrl: https://redis.io/
+
                 - slug: config-in-env
+
+                  search:
+
+                    keywords:
+
+                      - config in env
+
+                      - externalized config
+
+                      - 設定の環境外部化
+
+                      - environment variables
+
+                      - env vars
+
+                      - twelve-factor config
+
+                      - runtime configuration
+
+                      - secrets management
+
+                      - config map
+
+                    commonSignals:
+
+                      - DB 接続先や API key をコードに埋め込まない
+
+                      - 環境変数や secret manager から設定を注入する
+
+                      - dev staging production で同じコードを使う
+
+                      - build-time config と runtime config の違いが話題になる
+
+                    antiSignals:
+
+                      - フロントエンドの公開環境変数だけで秘密情報の話がない
+
+                      - 設定ファイルを repo に直書きしているだけ
+
+                      - OS 環境設定や開発者 PC の PATH 設定だけが主題
+
+                    relatedNames:
+
+                      - name: The Twelve-Factor App
+
+                        kind: method
+
+                        relevance: 設定をコードから分離し環境で与える原則の代表的な参照先。
+
+                        officialUrl: https://12factor.net/config
+
+                      - name: Kubernetes ConfigMap
+
+                        kind: platform
+
+                        relevance: Kubernetes 上で非機密設定を外部化して注入する代表的な仕組み。
+
+                        officialUrl: https://kubernetes.io/docs/concepts/configuration/configmap/
+
+                      - name: Kubernetes Secret
+
+                        kind: platform
+
+                        relevance: 機密値を環境や volume として渡す仕組みとして関連する。
+
+                        officialUrl: https://kubernetes.io/docs/concepts/configuration/secret/
+
+                      - name: HashiCorp Vault
+
+                        kind: tool
+
+                        relevance: secrets management と動的 secret 配布の実務ツールとしてよく使われる。
+
+                        officialUrl: https://www.hashicorp.com/products/vault
                   name: 設定の環境外部化
                   summary: デプロイ差分となる設定値をコードから分離して環境側で与える原則。
                   whyLearn: 秘密情報漏えいと環境依存の混乱を減らすための基礎になる。
@@ -635,6 +3020,44 @@ domain:
                   aliases:
                     - C4
                     - context container component code
+                  search:
+                    keywords:
+                      - C4 model
+                      - C4
+                      - Context Container Component Code
+                      - C4 diagrams
+                      - software architecture diagram
+                      - system context diagram
+                      - container diagram
+                      - component diagram
+                      - Structurizr
+                    commonSignals:
+                      - Context Container Component Code の4レベルで説明する
+                      - システム境界や外部 actor を図にする
+                      - architecture diagram を zoom level ごとに分ける
+                      - Structurizr DSL や C4-PlantUML が出る
+                    antiSignals:
+                      - 爆薬 C4 の話
+                      - 車種やモデル番号として C4 が出ている
+                      - ただの箱線図で C4 のレベルや記法に触れていない
+                    relatedNames:
+                      - name: C4 model
+                        kind: method
+                        relevance: C4 model の公式説明と図法の参照先。
+                        officialUrl: https://c4model.com/
+                      - name: Structurizr
+                        kind: tool
+                        relevance: C4 model を DSL や diagram as code で記述する代表的なツール。
+                        officialUrl: https://structurizr.com/
+                      - name: PlantUML
+                        kind: tool
+                        relevance: C4-PlantUML などを通じて C4 図をテキストで管理する際に使われる。
+                        officialUrl: https://plantuml.com/
+                      - name: Mermaid
+                        kind: tool
+                        relevance: ドキュメント内でアーキテクチャ図を軽量に記述するツールとして併用される。
+                        officialUrl: https://mermaid.js.org/
+
                 - slug: container-diagram
                   name: コンテナ図
                   summary: システムを構成する主要なアプリケーション実行単位と相互関係を示す図。
@@ -660,6 +3083,39 @@ domain:
                   aliases:
                     - ADR
                     - architecture decision record
+                  search:
+                    keywords:
+                      - ADR
+                      - Architecture Decision Record
+                      - アーキテクチャ決定記録
+                      - decision record
+                      - decision log
+                      - context decision consequences
+                      - status proposed accepted deprecated
+                      - lightweight architecture documentation
+                    commonSignals:
+                      - context decision consequences を短く記録する
+                      - accepted superseded deprecated などの状態が出る
+                      - なぜその技術選定をしたかを後から追いたい
+                      - docs/adr や decision log が出る
+                    antiSignals:
+                      - ADR が American Depositary Receipt の金融用語として使われている
+                      - 議事録や仕様書全体を ADR と呼んでいるだけ
+                      - 決定内容だけで背景や代替案や帰結がない
+                    relatedNames:
+                      - name: MADR
+                        kind: method
+                        relevance: ADR のテンプレート形式としてよく参照される Markdown Architecture Decision Records。
+                        officialUrl: https://adr.github.io/madr/
+                      - name: adr-tools
+                        kind: tool
+                        relevance: ADR ファイルの作成や採番を支援する軽量ツールとして使われる。
+                        officialUrl: https://github.com/npryce/adr-tools
+                      - name: arc42
+                        kind: method
+                        relevance: アーキテクチャ文書化の体系として ADR と併用・比較されることがある。
+                        officialUrl: https://arc42.org/
+
                 - slug: architecturally-significant-requirement
                   name: Architecturally Significant Requirement
                   summary: アーキテクチャに測定可能な影響を与える重要要求。

@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   FileQuestion,
   LibraryBig,
+  Link2,
   ListChecks,
   Map,
   NotebookText,
@@ -24,6 +25,13 @@ const sections = [
     href: "/knowledge-map",
     icon: Map,
     badge: "Map",
+  },
+  {
+    title: "Knowledge Linker",
+    description: "外部テキストから関連ノード候補を出す",
+    href: "/knowledge-linker",
+    icon: Link2,
+    badge: "Link",
   },
   {
     title: "Resources",
