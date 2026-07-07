@@ -2,6 +2,7 @@ import { and, asc, desc, eq, inArray, ne, sql } from "drizzle-orm";
 
 import { getDb } from "@/db/client";
 import {
+  entityLinks,
   knowledgeAliases,
   knowledgeEntityLinks,
   knowledgeNodeProgress,
@@ -20,6 +21,8 @@ import type {
 } from "@/features/knowledge-map/validators";
 import type {
   KnowledgeLinkableEntityType,
+  KnowledgeQuestionDraftRequest,
+  KnowledgeLinkDeleteRequest,
   KnowledgeLinkSaveRequest,
 } from "@/features/knowledge-linker/validators";
 
@@ -104,6 +107,13 @@ export type KnowledgeLinkedEntity = {
   relationType: string;
   createdAt: Date;
   detail: string | null;
+};
+
+export type KnowledgeQuestionDraft = {
+  id: string;
+  title: string;
+  nodeName: string;
+  href: string;
 };
 
 const levelPriority: Record<KnowledgeNodeLevel, number> = {
@@ -542,6 +552,58 @@ async function entityExists(
   return Boolean(entity);
 }
 
+async function getLinkSourceEntity(
+  entityType: "resource" | "learning_note",
+  entityId: string,
+) {
+  if (entityType === "resource") {
+    const [entity] = await getDb()
+      .select({
+        id: resources.id,
+        title: resources.title,
+        summary: resources.summary,
+        memo: resources.memo,
+        url: resources.url,
+      })
+      .from(resources)
+      .where(eq(resources.id, entityId))
+      .limit(1);
+
+    return entity
+      ? {
+          ...entity,
+          entityType,
+          contextText: [entity.summary, entity.memo, entity.url]
+            .filter((value): value is string => Boolean(value && value.trim()))
+            .join("\n\n"),
+        }
+      : null;
+  }
+
+  const [entity] = await getDb()
+    .select({
+      id: learningNotes.id,
+      title: learningNotes.title,
+      bodyMd: learningNotes.bodyMd,
+      resourceTitle: resources.title,
+      resourceUrl: resources.url,
+    })
+    .from(learningNotes)
+    .leftJoin(resources, eq(learningNotes.resourceId, resources.id))
+    .where(eq(learningNotes.id, entityId))
+    .limit(1);
+
+  return entity
+    ? {
+        ...entity,
+        entityType,
+        contextText: [entity.resourceTitle, entity.resourceUrl, entity.bodyMd]
+          .filter((value): value is string => Boolean(value && value.trim()))
+          .join("\n\n"),
+      }
+    : null;
+}
+
 export async function listKnowledgeLinksForEntity({
   entityType,
   entityId,
@@ -639,6 +701,151 @@ export async function saveKnowledgeEntityLinks({
     savedCount: inserted.length,
     links: await listKnowledgeLinksForEntity({ entityType, entityId }),
   };
+}
+
+export async function deleteKnowledgeEntityLink({
+  entityType,
+  entityId,
+  nodeId,
+  relationType,
+}: KnowledgeLinkDeleteRequest) {
+  await getDb()
+    .delete(knowledgeEntityLinks)
+    .where(
+      and(
+        eq(knowledgeEntityLinks.entityType, entityType),
+        eq(knowledgeEntityLinks.entityId, entityId),
+        eq(knowledgeEntityLinks.nodeId, nodeId),
+        eq(knowledgeEntityLinks.relationType, relationType),
+      ),
+    );
+
+  return {
+    links: await listKnowledgeLinksForEntity({ entityType, entityId }),
+  };
+}
+
+function questionDraftTitle(sourceTitle: string, nodeName: string) {
+  const title = `${nodeName}: ${sourceTitle}`;
+
+  return title.length > 300 ? `${title.slice(0, 297)}...` : title;
+}
+
+function questionDraftQuestion(sourceTitle: string, nodeName: string) {
+  return [
+    `「${sourceTitle}」の文脈で、${nodeName} とは何かを説明してください。`,
+    "",
+    "- 何を解決する概念・技術か",
+    "- 実務でどこに出てくるか",
+    "- 似た概念と混同しやすい点は何か",
+  ].join("\n");
+}
+
+function questionDraftAnswer(node: {
+  name: string;
+  summary: string;
+  whyLearn: string | null;
+  promptHint: string | null;
+}) {
+  return [
+    `${node.name}: ${node.summary}`,
+    node.whyLearn ? `\n覚える理由: ${node.whyLearn}` : null,
+    node.promptHint ? `\n確認観点: ${node.promptHint}` : null,
+    "\nこの回答は Knowledge Map から作った draft です。元の Resource / Note を見直して、具体例や補足を追加してください。",
+  ]
+    .filter((value): value is string => Boolean(value))
+    .join("\n");
+}
+
+export async function createQuestionDraftsForKnowledgeLinks({
+  entityType,
+  entityId,
+  nodeIds,
+}: KnowledgeQuestionDraftRequest) {
+  const source = await getLinkSourceEntity(entityType, entityId);
+
+  if (!source) {
+    throw new Error("Question draft の元になる対象が見つかりません");
+  }
+
+  const uniqueNodeIds = [...new Set(nodeIds)];
+  const nodes = await getDb()
+    .select({
+      id: knowledgeNodes.id,
+      domainSlug: knowledgeNodes.domainSlug,
+      slug: knowledgeNodes.slug,
+      name: knowledgeNodes.name,
+      summary: knowledgeNodes.summary,
+      whyLearn: knowledgeNodes.whyLearn,
+      promptHint: knowledgeNodes.promptHint,
+    })
+    .from(knowledgeNodes)
+    .where(
+      and(
+        inArray(knowledgeNodes.id, uniqueNodeIds),
+        ne(knowledgeNodes.curationStatus, "deprecated"),
+      ),
+    )
+    .limit(20);
+
+  if (nodes.length === 0) {
+    throw new Error("Question draft に使える Knowledge Node がありません");
+  }
+
+  const created = await getDb().transaction(async (tx) => {
+    const drafts: KnowledgeQuestionDraft[] = [];
+
+    for (const node of nodes) {
+      const [question] = await tx
+        .insert(questionCards)
+        .values({
+          title: questionDraftTitle(source.title, node.name),
+          difficulty: "medium",
+          status: "draft",
+          questionMd: questionDraftQuestion(source.title, node.name),
+          answerMd: questionDraftAnswer(node),
+          explanationMd: [
+            `Source: ${source.title}`,
+            source.contextText ? `\nContext:\n${source.contextText.slice(0, 2000)}` : null,
+          ]
+            .filter((value): value is string => Boolean(value))
+            .join("\n"),
+        })
+        .returning({ id: questionCards.id, title: questionCards.title });
+
+      await tx
+        .insert(knowledgeEntityLinks)
+        .values({
+          nodeId: node.id,
+          entityType: "question_card",
+          entityId: question.id,
+          relationType: "tests",
+        })
+        .onConflictDoNothing();
+
+      await tx
+        .insert(entityLinks)
+        .values({
+          fromType: entityType,
+          fromId: source.id,
+          toType: "question_card",
+          toId: question.id,
+          relationType: "derived_question",
+        })
+        .onConflictDoNothing();
+
+      drafts.push({
+        id: question.id,
+        title: question.title,
+        nodeName: node.name,
+        href: `/questions/${question.id}`,
+      });
+    }
+
+    return drafts;
+  });
+
+  return { created };
 }
 
 export async function listKnowledgeLinkedEntitiesForNode(

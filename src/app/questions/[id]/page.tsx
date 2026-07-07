@@ -219,7 +219,7 @@ export default async function QuestionDetailPage({
           <TextBlock title="Explanation" value={question.explanationMd} />
         </div>
 
-        <Card>
+        <Card id="knowledge-links">
           <CardHeader>
             <CardTitle>Knowledge Links</CardTitle>
             <CardDescription>

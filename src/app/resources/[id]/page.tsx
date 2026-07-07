@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Edit, ExternalLink, NotebookText, Plus } from "lucide-react";
+import {
+  ArrowLeft,
+  Edit,
+  ExternalLink,
+  HelpCircle,
+  NotebookText,
+  Plus,
+} from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -17,6 +24,11 @@ import { KnowledgeLinkerForm } from "@/features/knowledge-linker/components/know
 import { listKnowledgeLinksForEntity } from "@/features/knowledge-linker/queries";
 import { listNotesByResourceId } from "@/features/notes/queries";
 import { learningNoteTypeLabels } from "@/features/notes/validators";
+import { listQuestionsByResourceId } from "@/features/questions/queries";
+import {
+  difficultyLabels,
+  questionStatusLabels,
+} from "@/features/questions/validators";
 import { DeleteResourceForm } from "@/features/resources/components/delete-resource-form";
 import { getResourceById } from "@/features/resources/queries";
 import { resourceTypeLabels } from "@/features/resources/validators";
@@ -100,9 +112,10 @@ export default async function ResourceDetailPage({
   params,
 }: ResourceDetailPageProps) {
   const { id } = await params;
-  const [resource, notes, domains, linkedKnowledgeNodes] = await Promise.all([
+  const [resource, notes, questions, domains, linkedKnowledgeNodes] = await Promise.all([
     getResourceById(id),
     listNotesByResourceId(id),
+    listQuestionsByResourceId(id),
     listKnowledgeDomains(),
     listKnowledgeLinksForEntity({
       entityType: "resource",
@@ -219,7 +232,7 @@ export default async function ResourceDetailPage({
           <TextBlock title="Memo" value={resource.memo} />
         </div>
 
-        <Card>
+        <Card id="knowledge-links">
           <CardHeader>
             <CardTitle>Knowledge Links</CardTitle>
             <CardDescription>
@@ -304,6 +317,73 @@ export default async function ResourceDetailPage({
                   </h2>
                   <p className="max-w-md text-sm text-muted-foreground">
                     この Resource から学んだことを Note として保存します。
+                  </p>
+                </div>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Derived Questions</CardTitle>
+            <CardDescription>
+              この Resource から作成された Question
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            {questions.length > 0 ? (
+              <div className="overflow-x-auto">
+                <div className="min-w-[620px]">
+                  <div className="grid grid-cols-[minmax(260px,1fr)_120px_120px_150px] gap-3 border-b border-border px-3 pb-2 text-xs font-medium uppercase text-muted-foreground">
+                    <div>Title</div>
+                    <div>Difficulty</div>
+                    <div>Status</div>
+                    <div>Created</div>
+                  </div>
+                  <div className="divide-y divide-border">
+                    {questions.map((question) => (
+                      <div
+                        key={question.id}
+                        className="grid grid-cols-[minmax(260px,1fr)_120px_120px_150px] items-center gap-3 px-3 py-3 text-sm"
+                      >
+                        <Link
+                          href={`/questions/${question.id}`}
+                          className="min-w-0 font-medium text-foreground underline-offset-4 hover:underline"
+                        >
+                          <span className="block truncate">
+                            {question.title}
+                          </span>
+                        </Link>
+                        <div>
+                          <Badge variant="outline">
+                            {difficultyLabels[question.difficulty]}
+                          </Badge>
+                        </div>
+                        <div>
+                          <Badge variant="secondary">
+                            {questionStatusLabels[question.status]}
+                          </Badge>
+                        </div>
+                        <div className="font-mono text-xs text-muted-foreground">
+                          {formatDateTime(question.createdAt)}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="flex flex-col items-center gap-4 py-10 text-center">
+                <div className="flex size-12 items-center justify-center rounded-lg border border-border bg-muted text-muted-foreground">
+                  <HelpCircle aria-hidden="true" className="size-5" />
+                </div>
+                <div className="space-y-1">
+                  <h2 className="text-base font-medium">
+                    Question はまだありません
+                  </h2>
+                  <p className="max-w-md text-sm text-muted-foreground">
+                    Knowledge Links から作成した復習問題がここに表示されます。
                   </p>
                 </div>
               </div>

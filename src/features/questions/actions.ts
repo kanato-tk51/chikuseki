@@ -41,8 +41,15 @@ export async function createQuestionAction(
     return validationErrorState(values, parsed.error.flatten().fieldErrors);
   }
 
+  let createdQuestionId: string;
+
   try {
-    await getDb().insert(questionCards).values(parsed.data);
+    const [question] = await getDb()
+      .insert(questionCards)
+      .values(parsed.data)
+      .returning({ id: questionCards.id });
+
+    createdQuestionId = question.id;
   } catch {
     return {
       status: "error",
@@ -52,7 +59,7 @@ export async function createQuestionAction(
   }
 
   revalidatePath("/questions");
-  redirect("/questions");
+  redirect(`/questions/${createdQuestionId}#knowledge-links`);
 }
 
 export async function updateQuestionAction(

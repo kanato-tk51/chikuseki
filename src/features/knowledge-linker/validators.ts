@@ -62,9 +62,28 @@ export const knowledgeLinkSaveRequestSchema = z.object({
     .default("covers"),
 });
 
+export const knowledgeLinkDeleteRequestSchema = z.object({
+  entityType: z.enum(knowledgeLinkableEntityTypes),
+  entityId: z.uuid(),
+  nodeId: z.uuid(),
+  relationType: z.string().trim().min(1).max(80).default("covers"),
+});
+
+export const knowledgeQuestionDraftRequestSchema = z.object({
+  entityType: z.enum(["resource", "learning_note"]),
+  entityId: z.uuid(),
+  nodeIds: z.array(z.uuid()).min(1).max(20),
+});
+
 export type KnowledgeLinkerRequest = z.infer<
   typeof knowledgeLinkerRequestSchema
 >;
 export type KnowledgeLinkSaveRequest = z.infer<
   typeof knowledgeLinkSaveRequestSchema
+>;
+export type KnowledgeLinkDeleteRequest = z.infer<
+  typeof knowledgeLinkDeleteRequestSchema
+>;
+export type KnowledgeQuestionDraftRequest = z.infer<
+  typeof knowledgeQuestionDraftRequestSchema
 >;

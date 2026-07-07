@@ -36,8 +36,15 @@ export async function createResourceAction(
     return validationErrorState(values, parsed.error.flatten().fieldErrors);
   }
 
+  let createdResourceId: string;
+
   try {
-    await getDb().insert(resources).values(parsed.data);
+    const [resource] = await getDb()
+      .insert(resources)
+      .values(parsed.data)
+      .returning({ id: resources.id });
+
+    createdResourceId = resource.id;
   } catch {
     return {
       status: "error",
@@ -47,7 +54,7 @@ export async function createResourceAction(
   }
 
   revalidatePath("/resources");
-  redirect("/resources");
+  redirect(`/resources/${createdResourceId}#knowledge-links`);
 }
 
 export async function updateResourceAction(

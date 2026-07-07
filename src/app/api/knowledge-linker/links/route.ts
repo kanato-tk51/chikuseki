@@ -1,8 +1,14 @@
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
-import { saveKnowledgeEntityLinks } from "@/features/knowledge-linker/queries";
-import { knowledgeLinkSaveRequestSchema } from "@/features/knowledge-linker/validators";
+import {
+  deleteKnowledgeEntityLink,
+  saveKnowledgeEntityLinks,
+} from "@/features/knowledge-linker/queries";
+import {
+  knowledgeLinkDeleteRequestSchema,
+  knowledgeLinkSaveRequestSchema,
+} from "@/features/knowledge-linker/validators";
 
 function entityPath(entityType: string, entityId: string) {
   if (entityType === "resource") {
@@ -61,4 +67,35 @@ export async function POST(request: Request) {
       { status: 400 },
     );
   }
+}
+
+export async function DELETE(request: Request) {
+  let body: unknown;
+
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json(
+      { error: "JSON を読み取れませんでした" },
+      { status: 400 },
+    );
+  }
+
+  const parsed = knowledgeLinkDeleteRequestSchema.safeParse(body);
+
+  if (!parsed.success) {
+    return NextResponse.json(
+      {
+        error: parsed.error.issues[0]?.message ?? "入力内容を確認してください",
+      },
+      { status: 400 },
+    );
+  }
+
+  const result = await deleteKnowledgeEntityLink(parsed.data);
+
+  revalidatePath(entityPath(parsed.data.entityType, parsed.data.entityId));
+  revalidatePath("/knowledge-map");
+
+  return NextResponse.json(result);
 }

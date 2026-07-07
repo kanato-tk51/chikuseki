@@ -36,8 +36,15 @@ export async function createNoteAction(
     return validationErrorState(values, parsed.error.flatten().fieldErrors);
   }
 
+  let createdNoteId: string;
+
   try {
-    await getDb().insert(learningNotes).values(parsed.data);
+    const [note] = await getDb()
+      .insert(learningNotes)
+      .values(parsed.data)
+      .returning({ id: learningNotes.id });
+
+    createdNoteId = note.id;
   } catch {
     return {
       status: "error",
@@ -47,7 +54,7 @@ export async function createNoteAction(
   }
 
   revalidatePath("/notes");
-  redirect("/notes");
+  redirect(`/notes/${createdNoteId}#knowledge-links`);
 }
 
 export async function updateNoteAction(

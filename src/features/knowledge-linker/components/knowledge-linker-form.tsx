@@ -20,6 +20,7 @@ import {
 import type {
   KnowledgeLinkCandidate,
   KnowledgeLinkedNode,
+  KnowledgeQuestionDraft,
 } from "@/features/knowledge-linker/queries";
 import {
   knowledgeLinkableEntityTypeLabels,
@@ -90,9 +91,13 @@ export function KnowledgeLinkerForm({
   const [candidates, setCandidates] = useState<KnowledgeLinkCandidate[]>([]);
   const [linkedNodes, setLinkedNodes] =
     useState<KnowledgeLinkedNode[]>(initialLinkedNodes);
+  const [createdDrafts, setCreatedDrafts] = useState<KnowledgeQuestionDraft[]>(
+    [],
+  );
   const [decisions, setDecisions] = useState<Record<string, Decision>>({});
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [isCreatingQuestions, setIsCreatingQuestions] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
@@ -230,6 +235,89 @@ export function KnowledgeLinkerForm({
     }
   }
 
+  async function removeLinkedNode(node: KnowledgeLinkedNode) {
+    if (!targetEntity) {
+      return;
+    }
+
+    setError(null);
+    setSaveMessage(null);
+
+    try {
+      const response = await fetch("/api/knowledge-linker/links", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          entityType: targetEntity.entityType,
+          entityId: targetEntity.entityId,
+          nodeId: node.id,
+          relationType: node.relationType,
+        }),
+      });
+      const payload = (await response.json()) as {
+        links?: KnowledgeLinkedNode[];
+        error?: string;
+      };
+
+      if (!response.ok) {
+        setError(payload.error ?? "Knowledge Link の解除に失敗しました");
+        return;
+      }
+
+      setLinkedNodes(payload.links ?? []);
+      setSaveMessage("Knowledge Link を解除しました");
+    } catch {
+      setError("Knowledge Link の解除に失敗しました");
+    }
+  }
+
+  async function createQuestionDrafts() {
+    if (
+      !targetEntity ||
+      targetEntity.entityType === "question_card" ||
+      linkedNodes.length === 0
+    ) {
+      return;
+    }
+
+    setIsCreatingQuestions(true);
+    setError(null);
+    setSaveMessage(null);
+    setCreatedDrafts([]);
+
+    try {
+      const response = await fetch("/api/knowledge-linker/question-drafts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          entityType: targetEntity.entityType,
+          entityId: targetEntity.entityId,
+          nodeIds: linkedNodes.map((node) => node.id).slice(0, 20),
+        }),
+      });
+      const payload = (await response.json()) as {
+        created?: KnowledgeQuestionDraft[];
+        error?: string;
+      };
+
+      if (!response.ok) {
+        setError(payload.error ?? "Question draft の作成に失敗しました");
+        return;
+      }
+
+      setCreatedDrafts(payload.created ?? []);
+      setSaveMessage(`${payload.created?.length ?? 0}件の Question draft を作成しました`);
+    } catch {
+      setError("Question draft の作成に失敗しました");
+    } finally {
+      setIsCreatingQuestions(false);
+    }
+  }
+
   return (
     <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -346,6 +434,22 @@ export function KnowledgeLinkerForm({
             ) : null}
           </div>
           <div className="flex flex-wrap gap-2">
+            {targetEntity && targetEntity.entityType !== "question_card" ? (
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                disabled={linkedNodes.length === 0 || isCreatingQuestions}
+                onClick={createQuestionDrafts}
+              >
+                {isCreatingQuestions ? (
+                  <Loader2 aria-hidden="true" className="animate-spin" />
+                ) : (
+                  <Check aria-hidden="true" />
+                )}
+                Create question drafts
+              </Button>
+            ) : null}
             {targetEntity ? (
               <Button
                 type="button"
@@ -375,19 +479,58 @@ export function KnowledgeLinkerForm({
           </div>
         </div>
 
+        {createdDrafts.length > 0 ? (
+          <div className="rounded-lg border border-border bg-card p-3">
+            <div className="mb-2 text-sm font-medium">Created drafts</div>
+            <div className="space-y-2">
+              {createdDrafts.map((draft) => (
+                <Link
+                  key={draft.id}
+                  href={draft.href}
+                  className="flex items-center justify-between gap-3 rounded-md border border-border px-2 py-2 text-sm transition-colors hover:bg-muted"
+                >
+                  <span className="min-w-0">
+                    <span className="block truncate font-medium">
+                      {draft.title}
+                    </span>
+                    <span className="block text-xs text-muted-foreground">
+                      {draft.nodeName}
+                    </span>
+                  </span>
+                  <ExternalLink aria-hidden="true" className="size-4 shrink-0" />
+                </Link>
+              ))}
+            </div>
+          </div>
+        ) : null}
+
         {linkedNodes.length > 0 ? (
           <div className="rounded-lg border border-border bg-card p-3">
             <div className="mb-2 text-sm font-medium">Linked nodes</div>
             <div className="flex flex-wrap gap-2">
               {linkedNodes.map((node) => (
-                <Link
+                <span
                   key={`${node.id}-${node.relationType}`}
-                  href={`/knowledge-map/${node.domainSlug}?node=${node.slug}`}
-                  className="inline-flex min-h-7 max-w-full items-center gap-1 rounded-md border border-border px-2 py-1 text-xs text-foreground transition-colors hover:bg-muted"
+                  className="inline-flex min-h-8 max-w-full items-center gap-1 rounded-md border border-border px-2 py-1 text-xs text-foreground"
                 >
-                  <span className="truncate">{node.name}</span>
+                  <Link
+                    href={`/knowledge-map/${node.domainSlug}?node=${node.slug}`}
+                    className="truncate underline-offset-4 hover:underline"
+                  >
+                    {node.name}
+                  </Link>
                   <Badge variant="outline">{node.relationType}</Badge>
-                </Link>
+                  {targetEntity ? (
+                    <button
+                      type="button"
+                      className="inline-flex size-5 items-center justify-center rounded-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                      title="Remove link"
+                      onClick={() => void removeLinkedNode(node)}
+                    >
+                      <X aria-hidden="true" className="size-3" />
+                    </button>
+                  ) : null}
+                </span>
               ))}
             </div>
           </div>

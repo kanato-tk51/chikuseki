@@ -215,7 +215,7 @@ export default async function NoteDetailPage({ params }: NoteDetailPageProps) {
           )}
         </section>
 
-        <Card>
+        <Card id="knowledge-links">
           <CardHeader>
             <CardTitle>Knowledge Links</CardTitle>
             <CardDescription>

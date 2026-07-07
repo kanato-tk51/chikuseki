@@ -192,6 +192,17 @@ export default async function KnowledgeDomainPage({
 
   const selected = overview.selectedNode;
   const linkedEntities = await listKnowledgeLinkedEntitiesForNode(selected.id);
+  const linkedEntityCounts = linkedEntities.reduce(
+    (counts, entity) => {
+      counts[entity.type] += 1;
+      return counts;
+    },
+    {
+      resource: 0,
+      learning_note: 0,
+      question_card: 0,
+    },
+  );
   const returnTo = `/knowledge-map/${domainSlug}?node=${selected.slug}`;
   const searchResults =
     q.length > 0
@@ -476,7 +487,9 @@ export default async function KnowledgeDomainPage({
               <CardHeader>
                 <CardTitle>Linked Learning Assets</CardTitle>
                 <CardDescription>
-                  {linkedEntities.length} Resources / Notes / Questions
+                  Resource {linkedEntityCounts.resource} / Note{" "}
+                  {linkedEntityCounts.learning_note} / Question{" "}
+                  {linkedEntityCounts.question_card}
                 </CardDescription>
               </CardHeader>
               <CardContent>
