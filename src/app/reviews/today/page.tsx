@@ -20,6 +20,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { KnowledgeStatusBadge } from "@/features/knowledge-map/components/status-badge";
+import {
+  listKnowledgeLinksForQuestionIds,
+  type KnowledgeLinkedNode,
+} from "@/features/knowledge-linker/queries";
 import { difficultyLabels } from "@/features/questions/validators";
 import { submitReviewResultAction } from "@/features/reviews/actions";
 import { listTodayReviewItems } from "@/features/reviews/queries";
@@ -78,7 +83,13 @@ function ReviewTextBlock({ title, value }: { title: string; value: string }) {
   );
 }
 
-function ReviewItemCard({ item }: { item: TodayReviewItem }) {
+function ReviewItemCard({
+  item,
+  linkedNodes,
+}: {
+  item: TodayReviewItem;
+  linkedNodes: KnowledgeLinkedNode[];
+}) {
   return (
     <Card>
       <CardHeader className="gap-3">
@@ -102,6 +113,23 @@ function ReviewItemCard({ item }: { item: TodayReviewItem }) {
               Interval {item.intervalDays} days / Ease{" "}
               {item.ease.toFixed(2)}
             </CardDescription>
+            {linkedNodes.length > 0 ? (
+              <div className="flex flex-wrap gap-1.5">
+                {linkedNodes.slice(0, 6).map((node) => (
+                  <Link
+                    key={`${item.questionId}-${node.id}-${node.relationType}`}
+                    href={`/knowledge-map/${node.domainSlug}?node=${node.slug}`}
+                    className="inline-flex min-h-6 max-w-full items-center gap-1 rounded-md border border-border px-2 py-0.5 text-xs transition-colors hover:bg-muted"
+                  >
+                    <span className="max-w-44 truncate">{node.name}</span>
+                    <KnowledgeStatusBadge status={node.status} />
+                  </Link>
+                ))}
+                {linkedNodes.length > 6 ? (
+                  <Badge variant="outline">+{linkedNodes.length - 6}</Badge>
+                ) : null}
+              </div>
+            ) : null}
           </div>
           <Button asChild variant="outline" size="sm">
             <Link href={`/questions/${item.questionId}`}>Question</Link>
@@ -166,6 +194,9 @@ function ReviewItemCard({ item }: { item: TodayReviewItem }) {
 
 export default async function TodayReviewsPage() {
   const reviewItems = await listTodayReviewItems();
+  const knowledgeLinksByQuestionId = await listKnowledgeLinksForQuestionIds(
+    reviewItems.map((item) => item.questionId),
+  );
 
   return (
     <main className="min-h-screen bg-background">
@@ -201,7 +232,11 @@ export default async function TodayReviewsPage() {
         {reviewItems.length > 0 ? (
           <section className="space-y-4">
             {reviewItems.map((item) => (
-              <ReviewItemCard key={item.reviewItemId} item={item} />
+              <ReviewItemCard
+                key={item.reviewItemId}
+                item={item}
+                linkedNodes={knowledgeLinksByQuestionId.get(item.questionId) ?? []}
+              />
             ))}
           </section>
         ) : (

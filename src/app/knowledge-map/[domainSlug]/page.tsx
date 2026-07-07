@@ -3,8 +3,11 @@ import { notFound } from "next/navigation";
 import {
   ArrowLeft,
   ArrowRight,
+  Clock,
   CornerDownRight,
+  FileQuestion,
   GitBranch,
+  ListChecks,
   Search,
 } from "lucide-react";
 
@@ -29,8 +32,16 @@ import {
 import {
   knowledgeNodeLevelLabels,
 } from "@/features/knowledge-map/validators";
-import { listKnowledgeLinkedEntitiesForNode } from "@/features/knowledge-linker/queries";
+import {
+  getKnowledgeNodeLearningStats,
+  listKnowledgeLinkedEntitiesForNode,
+} from "@/features/knowledge-linker/queries";
 import { knowledgeLinkableEntityTypeLabels } from "@/features/knowledge-linker/validators";
+import {
+  difficultyLabels,
+  questionStatusLabels,
+} from "@/features/questions/validators";
+import { reviewResultLabels } from "@/features/reviews/validators";
 
 export const dynamic = "force-dynamic";
 
@@ -54,6 +65,34 @@ function progressPercent(counts: KnowledgeProgressCounts & { total: number }) {
   }
 
   return Math.round((counts.understood / counts.total) * 100);
+}
+
+function formatDateTime(value: Date) {
+  return new Intl.DateTimeFormat("ja-JP", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(value);
+}
+
+function attentionReasonLabel(
+  reason: "due" | "weak" | "draft" | "not_queued",
+) {
+  if (reason === "due") {
+    return "Due";
+  }
+
+  if (reason === "weak") {
+    return "Weak";
+  }
+
+  if (reason === "draft") {
+    return "Draft";
+  }
+
+  return "Not queued";
 }
 
 function ProgressStrip({
@@ -191,7 +230,10 @@ export default async function KnowledgeDomainPage({
   }
 
   const selected = overview.selectedNode;
-  const linkedEntities = await listKnowledgeLinkedEntitiesForNode(selected.id);
+  const [linkedEntities, learningStats] = await Promise.all([
+    listKnowledgeLinkedEntitiesForNode(selected.id),
+    getKnowledgeNodeLearningStats(selected.id),
+  ]);
   const linkedEntityCounts = linkedEntities.reduce(
     (counts, entity) => {
       counts[entity.type] += 1;
@@ -485,6 +527,109 @@ export default async function KnowledgeDomainPage({
 
             <Card>
               <CardHeader>
+                <CardTitle>Learning Signals</CardTitle>
+                <CardDescription>
+                  {learningStats.linkedQuestionCount} linked questions /{" "}
+                  {learningStats.dueQuestionCount} due
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid gap-2 sm:grid-cols-3">
+                  <div className="rounded-lg border border-border p-3">
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <FileQuestion aria-hidden="true" className="size-3.5" />
+                      Questions
+                    </div>
+                    <div className="mt-1 text-xl font-semibold">
+                      {learningStats.linkedQuestionCount}
+                    </div>
+                    <div className="mt-1 text-xs text-muted-foreground">
+                      Draft {learningStats.draftQuestionCount} / Active{" "}
+                      {learningStats.activeQuestionCount}
+                    </div>
+                  </div>
+                  <div className="rounded-lg border border-border p-3">
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <ListChecks aria-hidden="true" className="size-3.5" />
+                      Review queue
+                    </div>
+                    <div className="mt-1 text-xl font-semibold">
+                      {learningStats.queuedQuestionCount}
+                    </div>
+                    <div className="mt-1 text-xs text-muted-foreground">
+                      Not queued {learningStats.notQueuedQuestionCount}
+                    </div>
+                  </div>
+                  <div className="rounded-lg border border-border p-3">
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <Clock aria-hidden="true" className="size-3.5" />
+                      Needs attention
+                    </div>
+                    <div className="mt-1 text-xl font-semibold">
+                      {learningStats.dueQuestionCount +
+                        learningStats.lastAgainOrHardCount}
+                    </div>
+                    <div className="mt-1 text-xs text-muted-foreground">
+                      Due {learningStats.dueQuestionCount} / Weak{" "}
+                      {learningStats.lastAgainOrHardCount}
+                    </div>
+                  </div>
+                </div>
+
+                {learningStats.attentionQuestions.length > 0 ? (
+                  <div className="divide-y divide-border rounded-lg border border-border">
+                    {learningStats.attentionQuestions.map((question) => (
+                      <Link
+                        key={question.id}
+                        href={question.href}
+                        className="grid gap-2 px-3 py-3 text-sm transition-colors hover:bg-muted/40 sm:grid-cols-[150px_minmax(220px,1fr)]"
+                      >
+                        <div className="flex flex-wrap items-center gap-2">
+                          <Badge
+                            variant={
+                              question.reason === "due" ||
+                              question.reason === "weak"
+                                ? "destructive"
+                                : "outline"
+                            }
+                          >
+                            {attentionReasonLabel(question.reason)}
+                          </Badge>
+                          <Badge variant="outline">
+                            {difficultyLabels[question.difficulty]}
+                          </Badge>
+                        </div>
+                        <div className="min-w-0 space-y-1">
+                          <div className="truncate font-medium">
+                            {question.title}
+                          </div>
+                          <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+                            <span>{questionStatusLabels[question.status]}</span>
+                            {question.lastResult ? (
+                              <span>
+                                Last {reviewResultLabels[question.lastResult]}
+                              </span>
+                            ) : null}
+                            {question.nextReviewAt ? (
+                              <span>
+                                Next {formatDateTime(question.nextReviewAt)}
+                              </span>
+                            ) : null}
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="rounded-lg border border-dashed border-border p-4 text-sm text-muted-foreground">
+                    復習待ち、弱点、draft、未キューの Question はありません
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
                 <CardTitle>Linked Learning Assets</CardTitle>
                 <CardDescription>
                   Resource {linkedEntityCounts.resource} / Note{" "}
@@ -513,11 +658,38 @@ export default async function KnowledgeDomainPage({
                           <div className="truncate font-medium">
                             {entity.title}
                           </div>
-                          {entity.detail ? (
-                            <p className="line-clamp-1 text-xs text-muted-foreground">
-                              {entity.detail}
-                            </p>
-                          ) : null}
+                          <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+                            {entity.detail ? <span>{entity.detail}</span> : null}
+                            {entity.question ? (
+                              <>
+                                <span>
+                                  {questionStatusLabels[entity.question.status]}
+                                </span>
+                                {entity.question.review ? (
+                                  <>
+                                    <span>
+                                      Next{" "}
+                                      {formatDateTime(
+                                        entity.question.review.nextReviewAt,
+                                      )}
+                                    </span>
+                                    {entity.question.review.lastResult ? (
+                                      <span>
+                                        Last{" "}
+                                        {
+                                          reviewResultLabels[
+                                            entity.question.review.lastResult
+                                          ]
+                                        }
+                                      </span>
+                                    ) : null}
+                                  </>
+                                ) : (
+                                  <span>Not queued</span>
+                                )}
+                              </>
+                            ) : null}
+                          </div>
                         </div>
                       </Link>
                     ))}

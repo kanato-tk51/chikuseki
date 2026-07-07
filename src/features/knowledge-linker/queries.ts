@@ -11,6 +11,7 @@ import {
   knowledgeNodeSearchKeywords,
   knowledgeNodes,
   knowledgeRelatedItems,
+  reviewItems,
   learningNotes,
   questionCards,
   resources,
@@ -25,6 +26,11 @@ import type {
   KnowledgeLinkDeleteRequest,
   KnowledgeLinkSaveRequest,
 } from "@/features/knowledge-linker/validators";
+import type {
+  DifficultyLevel,
+  QuestionStatus,
+} from "@/features/questions/validators";
+import type { ReviewResult } from "@/features/reviews/validators";
 
 type SearchKeywordType = "keyword" | "common_signal" | "anti_signal";
 
@@ -107,6 +113,18 @@ export type KnowledgeLinkedEntity = {
   relationType: string;
   createdAt: Date;
   detail: string | null;
+  question?: {
+    status: QuestionStatus;
+    difficulty: DifficultyLevel;
+    review: {
+      reviewItemId: string;
+      nextReviewAt: Date;
+      intervalDays: number;
+      ease: number;
+      lastResult: ReviewResult | null;
+      due: boolean;
+    } | null;
+  };
 };
 
 export type KnowledgeQuestionDraft = {
@@ -114,6 +132,28 @@ export type KnowledgeQuestionDraft = {
   title: string;
   nodeName: string;
   href: string;
+};
+
+type AttentionQuestionReason = "due" | "weak" | "draft" | "not_queued";
+
+export type KnowledgeNodeLearningStats = {
+  linkedQuestionCount: number;
+  draftQuestionCount: number;
+  activeQuestionCount: number;
+  queuedQuestionCount: number;
+  dueQuestionCount: number;
+  lastAgainOrHardCount: number;
+  notQueuedQuestionCount: number;
+  attentionQuestions: Array<{
+    id: string;
+    title: string;
+    href: string;
+    status: QuestionStatus;
+    difficulty: DifficultyLevel;
+    nextReviewAt: Date | null;
+    lastResult: ReviewResult | null;
+    reason: AttentionQuestionReason;
+  }>;
 };
 
 const levelPriority: Record<KnowledgeNodeLevel, number> = {
@@ -851,6 +891,7 @@ export async function createQuestionDraftsForKnowledgeLinks({
 export async function listKnowledgeLinkedEntitiesForNode(
   nodeId: string,
 ): Promise<KnowledgeLinkedEntity[]> {
+  const now = new Date();
   const [resourceRows, noteRows, questionRows] = await Promise.all([
     getDb()
       .select({
@@ -898,11 +939,25 @@ export async function listKnowledgeLinkedEntitiesForNode(
         relationType: knowledgeEntityLinks.relationType,
         createdAt: knowledgeEntityLinks.createdAt,
         detail: questionCards.difficulty,
+        status: questionCards.status,
+        difficulty: questionCards.difficulty,
+        reviewItemId: reviewItems.id,
+        nextReviewAt: reviewItems.nextReviewAt,
+        intervalDays: reviewItems.intervalDays,
+        ease: reviewItems.ease,
+        lastResult: reviewItems.lastResult,
       })
       .from(knowledgeEntityLinks)
       .innerJoin(
         questionCards,
         eq(knowledgeEntityLinks.entityId, questionCards.id),
+      )
+      .leftJoin(
+        reviewItems,
+        and(
+          eq(reviewItems.targetType, "question_card"),
+          eq(reviewItems.targetId, questionCards.id),
+        ),
       )
       .where(
         and(
@@ -929,6 +984,187 @@ export async function listKnowledgeLinkedEntitiesForNode(
       ...row,
       type: "question_card" as const,
       href: `/questions/${row.id}`,
+      question: {
+        status: row.status as QuestionStatus,
+        difficulty: row.difficulty as DifficultyLevel,
+        review:
+          row.reviewItemId && row.nextReviewAt
+            ? {
+                reviewItemId: row.reviewItemId,
+                nextReviewAt: row.nextReviewAt,
+                intervalDays: row.intervalDays ?? 0,
+                ease: row.ease ?? 2.5,
+                lastResult: row.lastResult as ReviewResult | null,
+                due: row.nextReviewAt <= now,
+              }
+            : null,
+      },
     })),
   ].sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+}
+
+export async function getKnowledgeNodeLearningStats(
+  nodeId: string,
+): Promise<KnowledgeNodeLearningStats> {
+  const now = new Date();
+  const rows = await getDb()
+    .select({
+      id: questionCards.id,
+      title: questionCards.title,
+      status: questionCards.status,
+      difficulty: questionCards.difficulty,
+      reviewItemId: reviewItems.id,
+      nextReviewAt: reviewItems.nextReviewAt,
+      lastResult: reviewItems.lastResult,
+      createdAt: questionCards.createdAt,
+    })
+    .from(knowledgeEntityLinks)
+    .innerJoin(questionCards, eq(knowledgeEntityLinks.entityId, questionCards.id))
+    .leftJoin(
+      reviewItems,
+      and(
+        eq(reviewItems.targetType, "question_card"),
+        eq(reviewItems.targetId, questionCards.id),
+      ),
+    )
+    .where(
+      and(
+        eq(knowledgeEntityLinks.nodeId, nodeId),
+        eq(knowledgeEntityLinks.entityType, "question_card"),
+      ),
+    )
+    .orderBy(desc(questionCards.createdAt))
+    .limit(500);
+
+  const attentionQuestions = rows
+    .map((row) => {
+      const due = Boolean(row.nextReviewAt && row.nextReviewAt <= now);
+      const weak = row.lastResult === "again" || row.lastResult === "hard";
+      const draft = row.status === "draft";
+      const notQueued = !row.reviewItemId && row.status !== "archived";
+      let reason: AttentionQuestionReason | null = null;
+
+      if (due) {
+        reason = "due";
+      } else if (weak) {
+        reason = "weak";
+      } else if (draft) {
+        reason = "draft";
+      } else if (notQueued) {
+        reason = "not_queued";
+      }
+
+      return reason
+        ? {
+            id: row.id,
+            title: row.title,
+            href: `/questions/${row.id}`,
+            status: row.status as QuestionStatus,
+            difficulty: row.difficulty as DifficultyLevel,
+            nextReviewAt: row.nextReviewAt,
+            lastResult: row.lastResult as ReviewResult | null,
+            reason,
+          }
+        : null;
+    })
+    .filter((row): row is NonNullable<typeof row> => Boolean(row))
+    .sort((a, b) => {
+      const priority: Record<AttentionQuestionReason, number> = {
+        due: 0,
+        weak: 1,
+        draft: 2,
+        not_queued: 3,
+      };
+
+      return (
+        priority[a.reason] - priority[b.reason] ||
+        (a.nextReviewAt?.getTime() ?? Number.MAX_SAFE_INTEGER) -
+          (b.nextReviewAt?.getTime() ?? Number.MAX_SAFE_INTEGER) ||
+        a.title.localeCompare(b.title)
+      );
+    })
+    .slice(0, 8);
+
+  return {
+    linkedQuestionCount: rows.length,
+    draftQuestionCount: rows.filter((row) => row.status === "draft").length,
+    activeQuestionCount: rows.filter((row) => row.status === "active").length,
+    queuedQuestionCount: rows.filter((row) => Boolean(row.reviewItemId)).length,
+    dueQuestionCount: rows.filter(
+      (row) => row.nextReviewAt && row.nextReviewAt <= now,
+    ).length,
+    lastAgainOrHardCount: rows.filter(
+      (row) => row.lastResult === "again" || row.lastResult === "hard",
+    ).length,
+    notQueuedQuestionCount: rows.filter(
+      (row) => !row.reviewItemId && row.status !== "archived",
+    ).length,
+    attentionQuestions,
+  };
+}
+
+export async function listKnowledgeLinksForQuestionIds(questionIds: string[]) {
+  const uniqueQuestionIds = [...new Set(questionIds)].filter((id) =>
+    uuidPattern.test(id),
+  );
+
+  if (uniqueQuestionIds.length === 0) {
+    return new Map<string, KnowledgeLinkedNode[]>();
+  }
+
+  const rows = await getDb()
+    .select({
+      questionId: knowledgeEntityLinks.entityId,
+      id: knowledgeNodes.id,
+      domainSlug: knowledgeNodes.domainSlug,
+      slug: knowledgeNodes.slug,
+      name: knowledgeNodes.name,
+      level: knowledgeNodes.level,
+      summary: knowledgeNodes.summary,
+      status:
+        sql<KnowledgeProgressStatus>`coalesce(${knowledgeNodeProgress.status}, 'unknown'::knowledge_progress_status)`.as(
+          "status",
+        ),
+      relationType: knowledgeEntityLinks.relationType,
+      createdAt: knowledgeEntityLinks.createdAt,
+    })
+    .from(knowledgeEntityLinks)
+    .innerJoin(knowledgeNodes, eq(knowledgeEntityLinks.nodeId, knowledgeNodes.id))
+    .leftJoin(
+      knowledgeNodeProgress,
+      eq(knowledgeNodeProgress.nodeId, knowledgeNodes.id),
+    )
+    .where(
+      and(
+        eq(knowledgeEntityLinks.entityType, "question_card"),
+        inArray(knowledgeEntityLinks.entityId, uniqueQuestionIds),
+        ne(knowledgeNodes.curationStatus, "deprecated"),
+      ),
+    )
+    .orderBy(
+      asc(knowledgeNodes.domainSlug),
+      asc(knowledgeNodes.level),
+      asc(knowledgeNodes.sortOrder),
+      asc(knowledgeNodes.name),
+    );
+
+  const byQuestionId = new Map<string, KnowledgeLinkedNode[]>();
+
+  for (const row of rows) {
+    const nodes = byQuestionId.get(row.questionId) ?? [];
+    nodes.push({
+      id: row.id,
+      domainSlug: row.domainSlug,
+      slug: row.slug,
+      name: row.name,
+      level: row.level as KnowledgeNodeLevel,
+      summary: row.summary,
+      status: row.status as KnowledgeProgressStatus,
+      relationType: row.relationType,
+      createdAt: row.createdAt,
+    });
+    byQuestionId.set(row.questionId, nodes);
+  }
+
+  return byQuestionId;
 }
