@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import {
+  ChevronLeft,
+  ChevronRight,
   FileQuestion,
   Layers3,
   LibraryBig,
@@ -46,38 +48,80 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${geistSans.variable} ${geistMono.variable} dark h-full`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full`}
     >
-      <body className="flex min-h-full flex-col antialiased">
-        <header className="fixed inset-x-3 top-3 z-50">
-          <div className="mx-auto flex max-w-6xl items-center gap-2 rounded-lg border border-border bg-card/95 p-1.5 shadow-sm backdrop-blur">
+      <body className="min-h-full bg-background text-foreground antialiased">
+        <input
+          id="app-sidebar-toggle"
+          type="checkbox"
+          aria-label="サイドバーの表示幅を切り替える"
+          className="sr-only"
+        />
+        <aside className="app-sidebar fixed inset-y-0 left-0 z-50 flex w-16 flex-col border-r border-sidebar-border bg-sidebar transition-[width] duration-200 sm:w-60">
+          <div className="sidebar-header relative flex h-16 shrink-0 items-center border-b border-sidebar-border px-2 sm:px-4">
             <Link
               href="/"
               aria-label="Home"
               title="Home"
-              className="inline-flex h-9 shrink-0 items-center gap-2 rounded-md px-2.5 text-sm font-semibold tracking-normal text-foreground transition-colors hover:bg-muted focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+              className="sidebar-logo-link flex h-10 min-w-0 flex-1 items-center justify-center gap-3 rounded-lg text-sm font-semibold text-sidebar-foreground transition-colors hover:bg-sidebar-accent focus-visible:ring-3 focus-visible:ring-sidebar-ring/50 sm:justify-start sm:pl-2"
             >
-              <Layers3 aria-hidden="true" className="size-4" />
-              <span>chikuseki</span>
+              <span className="sidebar-logo-mark flex size-8 shrink-0 items-center justify-center text-foreground">
+                <Layers3 aria-hidden="true" className="size-4" />
+              </span>
+              <span className="sidebar-expanded-inline hidden sm:inline">
+                chikuseki
+              </span>
             </Link>
-            <nav
-              aria-label="Primary navigation"
-              className="flex min-w-0 flex-1 items-center gap-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            <label
+              htmlFor="app-sidebar-toggle"
+              title="サイドバーの表示幅を切り替える"
+              className="sidebar-toggle-control ml-auto flex size-8 shrink-0 cursor-pointer items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
             >
+              <ChevronLeft
+                aria-hidden="true"
+                className="sidebar-collapse-icon size-4"
+              />
+              <ChevronRight
+                aria-hidden="true"
+                className="sidebar-expand-icon hidden size-4"
+              />
+            </label>
+          </div>
+
+          <div className="min-h-0 flex-1 overflow-y-auto px-2 py-4 sm:px-3">
+            <p className="sidebar-expanded-block mb-2 hidden px-3 text-xs font-medium uppercase tracking-wider text-muted-foreground sm:block">
+              Workspace
+            </p>
+            <nav aria-label="Primary navigation" className="space-y-1">
               {primaryNavItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="inline-flex h-9 shrink-0 items-center gap-2 rounded-md px-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+                  aria-label={item.label}
+                  title={item.label}
+                  className="sidebar-nav-link flex h-10 items-center justify-center gap-3 rounded-lg px-2 text-sm font-medium text-sidebar-foreground/75 transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-3 focus-visible:ring-sidebar-ring/50 sm:justify-start sm:px-3"
                 >
-                  <item.icon aria-hidden="true" className="size-4" />
-                  <span>{item.label}</span>
+                  <item.icon aria-hidden="true" className="size-4 shrink-0" />
+                  <span className="sidebar-expanded-inline hidden sm:inline">
+                    {item.label}
+                  </span>
                 </Link>
               ))}
             </nav>
           </div>
-        </header>
-        <div className="flex min-h-full flex-1 flex-col pt-16">{children}</div>
+
+          <div className="sidebar-expanded-block hidden shrink-0 border-t border-sidebar-border px-5 py-4 sm:block">
+            <p className="text-xs leading-5 text-muted-foreground">
+              Personal Engineering
+              <br />
+              Learning OS
+            </p>
+          </div>
+        </aside>
+
+        <div className="app-content min-h-screen pl-16 transition-[padding] duration-200 sm:pl-60">
+          {children}
+        </div>
       </body>
     </html>
   );

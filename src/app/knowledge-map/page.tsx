@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BookOpenCheck, Search, SlidersHorizontal } from "lucide-react";
+import { ArrowRight, Search, SlidersHorizontal } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -14,7 +14,6 @@ import { KnowledgeStatusBadge } from "@/features/knowledge-map/components/status
 import {
   listKnowledgeDomains,
   searchKnowledgeNodes,
-  type KnowledgeProgressCounts,
 } from "@/features/knowledge-map/queries";
 import {
   knowledgeNodeLevelLabels,
@@ -45,39 +44,6 @@ function isProgressStatus(value: string): value is KnowledgeProgressStatus {
 
 function isNodeLevel(value: string): value is KnowledgeNodeLevel {
   return knowledgeNodeLevels.includes(value as KnowledgeNodeLevel);
-}
-
-function progressPercent(counts: KnowledgeProgressCounts & { total: number }) {
-  if (counts.total === 0) {
-    return 0;
-  }
-
-  return Math.round((counts.understood / counts.total) * 100);
-}
-
-function ProgressStrip({
-  counts,
-}: {
-  counts: KnowledgeProgressCounts & { total: number };
-}) {
-  const understood = progressPercent(counts);
-
-  return (
-    <div className="space-y-2">
-      <div className="h-2 overflow-hidden rounded-full bg-muted">
-        <div
-          className="h-full rounded-full bg-primary"
-          style={{ width: `${understood}%` }}
-        />
-      </div>
-      <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground">
-        <span>Total {counts.total}</span>
-        <span>Unknown {counts.unknown}</span>
-        <span>Learning {counts.learning}</span>
-        <span>Understood {counts.understood}</span>
-      </div>
-    </div>
-  );
 }
 
 export default async function KnowledgeMapPage({
@@ -240,33 +206,23 @@ export default async function KnowledgeMapPage({
             </Card>
           ) : null}
 
-          <div className="grid gap-4 md:grid-cols-2">
-            {domains.map((domain) => (
-              <Card key={domain.id}>
-                <CardHeader>
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="min-w-0 space-y-1">
-                      <CardTitle className="truncate">{domain.name}</CardTitle>
-                      <CardDescription className="line-clamp-2">
-                        {domain.summary}
-                      </CardDescription>
-                    </div>
-                    <Badge variant="outline">{progressPercent(domain.counts)}%</Badge>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <ProgressStrip counts={domain.counts} />
-                  <Button asChild variant="outline" size="sm">
-                    <Link href={`/knowledge-map/${domain.domainSlug}`}>
-                      <BookOpenCheck aria-hidden="true" />
-                      Open
-                      <ArrowRight aria-hidden="true" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <nav aria-label="Knowledge domains">
+            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {domains.map((domain) => (
+                <Link
+                  key={domain.id}
+                  href={`/knowledge-map/${domain.domainSlug}`}
+                  className="group flex min-h-12 items-center justify-between gap-3 rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50"
+                >
+                  <span>{domain.name}</span>
+                  <ArrowRight
+                    aria-hidden="true"
+                    className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5"
+                  />
+                </Link>
+              ))}
+            </div>
+          </nav>
         </section>
       </div>
     </main>

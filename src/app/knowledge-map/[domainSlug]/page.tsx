@@ -23,11 +23,11 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { KnowledgeProgressForm } from "@/features/knowledge-map/components/progress-form";
 import { KnowledgeStatusBadge } from "@/features/knowledge-map/components/status-badge";
+import { KnowledgeTree } from "@/features/knowledge-map/components/knowledge-tree";
 import {
   getKnowledgeDomainOverview,
   searchKnowledgeNodes,
   type KnowledgeProgressCounts,
-  type KnowledgeTreeNode,
 } from "@/features/knowledge-map/queries";
 import {
   knowledgeNodeLevelLabels,
@@ -118,72 +118,6 @@ function ProgressStrip({
         <span>Understood {counts.understood}</span>
       </div>
     </div>
-  );
-}
-
-function TreeItem({
-  node,
-  domainSlug,
-  selectedSlug,
-  depth = 0,
-}: {
-  node: KnowledgeTreeNode;
-  domainSlug: string;
-  selectedSlug: string;
-  depth?: number;
-}) {
-  const isSelected = node.slug === selectedSlug;
-
-  return (
-    <li>
-      <Link
-        href={`/knowledge-map/${domainSlug}?node=${node.slug}`}
-        className={`grid min-h-9 grid-cols-[1fr_auto] items-center gap-2 rounded-lg px-2 py-1.5 text-sm transition-colors ${
-          isSelected
-            ? "bg-primary text-primary-foreground"
-            : "text-foreground hover:bg-muted"
-        }`}
-        style={{ paddingLeft: `${8 + depth * 14}px` }}
-      >
-        <span className="min-w-0">
-          <span className="block truncate font-medium">{node.name}</span>
-          <span
-            className={`block truncate text-xs ${
-              isSelected ? "text-primary-foreground/70" : "text-muted-foreground"
-            }`}
-          >
-            {knowledgeNodeLevelLabels[node.level]}
-          </span>
-        </span>
-        <span
-          className={`size-2 rounded-full ${
-            node.status === "understood"
-              ? "bg-emerald-400"
-              : node.status === "learning"
-                ? "bg-sky-400"
-                : node.status === "interested"
-                  ? "bg-amber-400"
-                  : node.status === "ignored"
-                    ? "bg-destructive"
-                    : "bg-muted-foreground/40"
-          }`}
-          aria-hidden="true"
-        />
-      </Link>
-      {node.children.length > 0 ? (
-        <ul className="mt-1 space-y-1">
-          {node.children.map((child) => (
-            <TreeItem
-              key={child.id}
-              node={child}
-              domainSlug={domainSlug}
-              selectedSlug={selectedSlug}
-              depth={depth + 1}
-            />
-          ))}
-        </ul>
-      ) : null}
-    </li>
   );
 }
 
@@ -392,13 +326,11 @@ export default async function KnowledgeDomainPage({
                 <CardDescription>{overview.nodes.length} nodes</CardDescription>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-1">
-                  <TreeItem
-                    node={overview.domain}
-                    domainSlug={domainSlug}
-                    selectedSlug={selected.slug}
-                  />
-                </ul>
+                <KnowledgeTree
+                  root={overview.domain}
+                  domainSlug={domainSlug}
+                  selectedSlug={selected.slug}
+                />
               </CardContent>
             </Card>
           </div>
