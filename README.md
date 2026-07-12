@@ -25,6 +25,7 @@ pnpm knowledge-map:import
 
 ## Documents
 
+- [Product roadmap](./docs/product-roadmap.md)
 - [Engineering Learning OS implementation plan](./docs/engineering-learning-os-plan.md)
 - [ChatGPT import template](./docs/chatgpt-import-template.md)
 - [Knowledge map master data memo](./docs/knowledge-map-master-data-note.md)

@@ -1,5 +1,7 @@
 # Engineering Learning OS 実装計画
 
+> 現在の実装優先順位と完了条件は [Product Roadmap](./product-roadmap.md) を正とする。この文書にある初期フェーズ案のうち、Code Problem、コードエディタ、コード実行、Runner は後期フェーズへ延期している。
+
 ## 目的
 
 このプロダクトは、自分専用の Engineering Learning OS として、TypeScript、Go、Rust の実装力を高めるための学習・開発・登壇・発信の知識を蓄積し、復習し、再利用できるようにする。
